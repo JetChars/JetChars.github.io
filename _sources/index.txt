@@ -9,10 +9,11 @@ Welcome to jetchars's documentation!
 Contents:
 
 .. toctree::
-   :maxdepth: 2
+    :maxdepth: 1
 
+    docs/enable_dvr_with_devstack
 
-
+    
 Indices and tables
 ==================
 
