@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# jetchars documentation build configuration file, created by
+# JetChars documentation build configuration file, created by
 # sphinx-quickstart on Sat May 16 07:41:38 2015.
 #
 # This file is execfile()d with the current directory set to its
@@ -54,9 +54,9 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'jetchars'
-copyright = u'2015, jetchars'
-author = u'jetchars'
+project = u'JetChars'
+copyright = u'2015, JetChars'
+author = u'JetChars'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -180,7 +180,7 @@ html_static_path = ['_static']
 #html_show_sourcelink = True
 
 # If true, "Created using Sphinx" is shown in the HTML footer. Default is True.
-#html_show_sphinx = True
+html_show_sphinx = False
 
 # If true, "(C) Copyright ..." is shown in the HTML footer. Default is True.
 #html_show_copyright = True
@@ -208,7 +208,7 @@ html_static_path = ['_static']
 #html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'jetcharsdoc'
+htmlhelp_basename = 'JetCharsdoc'
 
 # -- Options for LaTeX output ---------------------------------------------
 
@@ -230,8 +230,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  (master_doc, 'jetchars.tex', u'jetchars Documentation',
-   u'jetchars', 'manual'),
+  (master_doc, 'JetChars.tex', u'JetChars Documentation',
+   u'JetChars', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -260,7 +260,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'jetchars', u'jetchars Documentation',
+    (master_doc, 'JetChars', u'JetChars Documentation',
      [author], 1)
 ]
 
@@ -274,8 +274,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  (master_doc, 'jetchars', u'jetchars Documentation',
-   author, 'jetchars', 'One line description of project.',
+  (master_doc, 'JetChars', u'JetChars Documentation',
+   author, 'JetChars', 'One line description of project.',
    'Miscellaneous'),
 ]
 
