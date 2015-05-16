@@ -11,9 +11,9 @@ Contents:
 .. toctree::
     :maxdepth: 1
 
-    docs/enable_dvr_with_devstack
+    /source/_templates/enable_dvr_with_devstack
+    /source/_templates/testing
 
-    
 Indices and tables
 ==================
 
