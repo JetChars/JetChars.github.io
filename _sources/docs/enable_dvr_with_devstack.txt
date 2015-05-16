@@ -81,7 +81,7 @@ Enable DVR with DevStack
 ========================
 In order to enable distributed router on each compute-node, Neutron-metadata-agent and Neutron-L3-agent was needed. So we need to add q-meta and q-l3 as well as q-agt on each computer node’s local.conf file.
 
-.. image:: /source/images/image1.png
+.. image:: /images/image1.png
 
 Currently devstack not support deploy DVR on GRE tunnel, and tunnel type has been hard coded to vxlan mode, below is part of devstack’s code (lib/neutron_plugins/ml2 ):
 

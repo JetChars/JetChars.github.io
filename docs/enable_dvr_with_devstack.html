@@ -179,7 +179,7 @@ Keystone的身份验证，来获得目标服务的Endpoint来找到目标服务�
 <div class="section" id="enable-dvr-with-devstack">
 <h1>Enable DVR with DevStack<a class="headerlink" href="#enable-dvr-with-devstack" title="Permalink to this headline">¶</a></h1>
 <p>In order to enable distributed router on each compute-node, Neutron-metadata-agent and Neutron-L3-agent was needed. So we need to add q-meta and q-l3 as well as q-agt on each computer node’s local.conf file.</p>
-<img alt="source/images/image1.png" src="source/images/image1.png" />
+<img alt="images/image1.png" src="images/image1.png" />
 <p>Currently devstack not support deploy DVR on GRE tunnel, and tunnel type has been hard coded to vxlan mode, below is part of devstack’s code (lib/neutron_plugins/ml2&nbsp;):</p>
 <p>With DVR, floating IPs access directly from each compute node, but SNAT still need to be centralized to network node.</p>
 <p>Configure Network Node</p>
