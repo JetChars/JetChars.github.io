@@ -6,7 +6,10 @@
 Welcome to jetchars's documentation!
 ====================================
 
-Contents:
+
+
+DevStack Learning
+=================
 
 .. toctree::
     :maxdepth: 1
