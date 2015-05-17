@@ -3,7 +3,7 @@
 Enable DVR with DevStack
 ========================
 
-DVR is short for distributed virtual router, with this feature enabled packets flow with floating IP will no longer send to network node. It helps alleviate network node's pressure greatly when large amount north-south data flow occurs. [#]_
+DVR is short for distributed virtual router, with this feature enabled packets flow with floating IP will no longer send to network node. It helps to alleviate network node's pressure greatly when large amount of north-south data flow occurs. [#]_
 
 
 
@@ -15,11 +15,11 @@ In order to enable distributed router on each compute-node, Neutron-metadata-age
 
 .. image:: images/image1.png
 
-Currently devstack not support deploy DVR on GRE tunnel [#]_ , and tunnel type has been hard coded to vxlan mode, below is part of devstack’s code ``lib/neutron_plugins/ml2``:
+Currently devstack doesn't support deploying DVR on GRE tunnel [#]_ , and tunnel type has been hard coded to vxlan mode, the following is a part of devstack’s code ``lib/neutron_plugins/ml2``:
 
 .. image:: images/image2.png
 
-With DVR, floating IPs access directly from each compute node, but SNAT still need to be centralized to network node.
+With DVR, floating IPs can be accessed directly from each compute node, but SNAT still need to be centralized to network node.
 
 .. image:: images/image3.png
 
@@ -29,7 +29,7 @@ With DVR, floating IPs access directly from each compute node, but SNAT still ne
 Configure Network Node
 ======================
 
-Here’s the neutron configuration part of ``local.conf`` on network node.
+Here's the neutron configuration part of ``local.conf`` on network node.
 
 .. code-block:: shell
     :linenos:
@@ -54,7 +54,7 @@ Here’s the neutron configuration part of ``local.conf`` on network node.
     Q_SERVICE_PLUGIN_CLASSES=neutron.services.l3_router.l3_router_plugin.L3RouterPlugin
     Q_ML2_PLUGIN_MECHANISM_DRIVERS=openvswitch,linuxbridge,l2population
 
-DVR mode can be **dvr_snat** , **dvr** or **legacy**. *Legacy* is Q_DVR_MODE ‘s default value, *dvr_snat* is for network node enables snat router, and *dvr* mode is for compute node. 
+DVR mode can be **dvr_snat** , **dvr** or **legacy**. *Legacy* is Q_DVR_MODE ‘s default value, *dvr_snat* is for network node which enables snat router, and *dvr* mode is for compute node. 
 
 **L2population** is needed by DVR. The L2 Population driver enables broadcast, multicast, and unicast traffic to scale out on large overlay networks. This traffic is sent to the relevant agent via encapsulation as a targeted unicast. [#]_
 
@@ -66,7 +66,7 @@ After Installation you might see 3 bridges and 4 namespaces on network node.
 
 .. image:: images/image6.png
 
-Namespace fip* is for floating IP accessing. qdhcp* is for allocate IP addresses. snat* is for SNAT function. qrouter* only serves VM in current host.
+Namespace fip* is for floating IP accessing. qdhcp* is for allocating IP addresses. snat* is for SNAT function. qrouter* only serves VM in current host.
 
 
 
@@ -74,7 +74,7 @@ Namespace fip* is for floating IP accessing. qdhcp* is for allocate IP addresses
 Configure Compute Node
 ======================
 
-Below is the neutron configuration part of ``local.conf`` on compute node
+The following is the neutron configuration part of ``local.conf`` on compute node
 
 .. code-block:: shell
     :linenos:
@@ -97,10 +97,10 @@ After installation you might see 3 bridges and 2 namespaces.
 
 .. image:: images/image8.png
 
-fip* and qrouter* did same job as those two virtual devices on control node.
-Still we need to do some configurations manually.
+fip* and qrouter* did the same job as two virtual devices on network node.
+We still need to do some configurations manually.
 
-1. Adding an spare physical device(NIC) to br-ex
+1. Add an free physical device(NIC) to br-ex
 
 .. code-block:: shell
 
@@ -112,9 +112,9 @@ Still we need to do some configurations manually.
 
     $ sudo ifconfig br-ex 192.168.137.253
 
-3. Adding a route to floating network via fip*
+3. Add a route to floating network via fip*
 
-Before we adding this route we need to know fip’s IP address.
+Before we adding this route, we need to know fip’s IP address.
 
 .. image:: images/image9.png
 

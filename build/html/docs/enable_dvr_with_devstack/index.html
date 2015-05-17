@@ -31,6 +31,7 @@
 
   
     <link rel="top" title="JetChars 0.1 documentation" href="../../index.html"/>
+        <link rel="next" title="KVM Optimization" href="../kvm_optimization/index.html"/>
         <link rel="prev" title="Welcome to jetchars’s documentation!" href="../../index.html"/> 
 
   
@@ -79,6 +80,28 @@
 </ul>
 </li>
 </ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../kvm_optimization/index.html">KVM Optimization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../kvm_optimization/index.html#disk-optimization">Disk Optimization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kvm_optimization/index.html#asynchronous-io">Asynchronous IO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kvm_optimization/index.html#disk-cache-mode">Disk Cache Mode</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../kvm_optimization/index.html#memory-optimization">Memory Optimization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kvm_optimization/index.html#transparent-hugepage">Transparent HugePage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../kvm_optimization/index.html#network-optimization">Network Optimization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kvm_optimization/index.html#mtu-size">MTU Size</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+</ul>
+<ul class="simple">
+</ul>
 
           
         
@@ -117,19 +140,19 @@
             
   <div class="section" id="enable-dvr-with-devstack">
 <h1>Enable DVR with DevStack<a class="headerlink" href="#enable-dvr-with-devstack" title="Permalink to this headline">¶</a></h1>
-<p>DVR is short for distributed virtual router, with this feature enabled packets flow with floating IP will no longer send to network node. It helps alleviate network node&#8217;s pressure greatly when large amount north-south data flow occurs. <a class="footnote-reference" href="#id4" id="id1">[1]</a></p>
+<p>DVR is short for distributed virtual router, with this feature enabled packets flow with floating IP will no longer send to network node. It helps to alleviate network node&#8217;s pressure greatly when large amount of north-south data flow occurs. <a class="footnote-reference" href="#id4" id="id1">[1]</a></p>
 <div class="section" id="brief-intro">
 <h2>Brief Intro<a class="headerlink" href="#brief-intro" title="Permalink to this headline">¶</a></h2>
 <p>In order to enable distributed router on each compute-node, Neutron-metadata-agent and Neutron-L3-agent are both needed. So we need to add <strong>q-meta</strong> and <strong>q-l3</strong> as well as <em>q-agt</em> on each computer node’s <code class="docutils literal"><span class="pre">local.conf</span></code> file.</p>
 <img alt="../../_images/image1.png" src="../../_images/image1.png" />
-<p>Currently devstack not support deploy DVR on GRE tunnel <a class="footnote-reference" href="#id5" id="id2">[2]</a> , and tunnel type has been hard coded to vxlan mode, below is part of devstack’s code <code class="docutils literal"><span class="pre">lib/neutron_plugins/ml2</span></code>:</p>
+<p>Currently devstack doesn&#8217;t support deploying DVR on GRE tunnel <a class="footnote-reference" href="#id5" id="id2">[2]</a> , and tunnel type has been hard coded to vxlan mode, the following is a part of devstack’s code <code class="docutils literal"><span class="pre">lib/neutron_plugins/ml2</span></code>:</p>
 <img alt="../../_images/image2.png" src="../../_images/image2.png" />
-<p>With DVR, floating IPs access directly from each compute node, but SNAT still need to be centralized to network node.</p>
+<p>With DVR, floating IPs can be accessed directly from each compute node, but SNAT still need to be centralized to network node.</p>
 <img alt="../../_images/image3.png" src="../../_images/image3.png" />
 </div>
 <div class="section" id="configure-network-node">
 <h2>Configure Network Node<a class="headerlink" href="#configure-network-node" title="Permalink to this headline">¶</a></h2>
-<p>Here’s the neutron configuration part of <code class="docutils literal"><span class="pre">local.conf</span></code> on network node.</p>
+<p>Here&#8217;s the neutron configuration part of <code class="docutils literal"><span class="pre">local.conf</span></code> on network node.</p>
 <div class="highlight-shell"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -167,17 +190,17 @@ ENABLED_SERVICES+<span class="o">=</span>,q-svc,q-agt,q-dhcp,q-l3,q-meta,neutron
 </span><span class="hll"><span class="nv">Q_ML2_PLUGIN_MECHANISM_DRIVERS</span><span class="o">=</span>openvswitch,linuxbridge,l2population
 </span></pre></div>
 </td></tr></table></div>
-<p>DVR mode can be <strong>dvr_snat</strong> , <strong>dvr</strong> or <strong>legacy</strong>. <em>Legacy</em> is Q_DVR_MODE ‘s default value, <em>dvr_snat</em> is for network node enables snat router, and <em>dvr</em> mode is for compute node.</p>
+<p>DVR mode can be <strong>dvr_snat</strong> , <strong>dvr</strong> or <strong>legacy</strong>. <em>Legacy</em> is Q_DVR_MODE ‘s default value, <em>dvr_snat</em> is for network node which enables snat router, and <em>dvr</em> mode is for compute node.</p>
 <p><strong>L2population</strong> is needed by DVR. The L2 Population driver enables broadcast, multicast, and unicast traffic to scale out on large overlay networks. This traffic is sent to the relevant agent via encapsulation as a targeted unicast. <a class="footnote-reference" href="#id6" id="id3">[3]</a></p>
 <img alt="../../_images/image4.png" src="../../_images/image4.png" />
 <p>After Installation you might see 3 bridges and 4 namespaces on network node.</p>
 <img alt="../../_images/image5.png" src="../../_images/image5.png" />
 <img alt="../../_images/image6.png" src="../../_images/image6.png" />
-<p>Namespace fip* is for floating IP accessing. qdhcp* is for allocate IP addresses. snat* is for SNAT function. qrouter* only serves VM in current host.</p>
+<p>Namespace fip* is for floating IP accessing. qdhcp* is for allocating IP addresses. snat* is for SNAT function. qrouter* only serves VM in current host.</p>
 </div>
 <div class="section" id="configure-compute-node">
 <h2>Configure Compute Node<a class="headerlink" href="#configure-compute-node" title="Permalink to this headline">¶</a></h2>
-<p>Below is the neutron configuration part of <code class="docutils literal"><span class="pre">local.conf</span></code> on compute node</p>
+<p>The following is the neutron configuration part of <code class="docutils literal"><span class="pre">local.conf</span></code> on compute node</p>
 <div class="highlight-shell"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -200,10 +223,10 @@ ENABLED_SERVICES+<span class="o">=</span> q-agt,q-l3,q-meta, neutron
 <p>After installation you might see 3 bridges and 2 namespaces.</p>
 <img alt="../../_images/image7.png" src="../../_images/image7.png" />
 <img alt="../../_images/image8.png" src="../../_images/image8.png" />
-<p>fip* and qrouter* did same job as those two virtual devices on control node.
-Still we need to do some configurations manually.</p>
+<p>fip* and qrouter* did the same job as two virtual devices on network node.
+We still need to do some configurations manually.</p>
 <ol class="arabic simple">
-<li>Adding an spare physical device(NIC) to br-ex</li>
+<li>Add an free physical device(NIC) to br-ex</li>
 </ol>
 <div class="highlight-shell"><div class="highlight"><pre><span class="nv">$ </span>sudo ovs-vsctl add-port br-ex eth1
 </pre></div>
@@ -215,9 +238,9 @@ Still we need to do some configurations manually.</p>
 </pre></div>
 </div>
 <ol class="arabic simple" start="3">
-<li>Adding a route to floating network via fip*</li>
+<li>Add a route to floating network via fip*</li>
 </ol>
-<p>Before we adding this route we need to know fip’s IP address.</p>
+<p>Before we adding this route, we need to know fip’s IP address.</p>
 <img alt="../../_images/image9.png" src="../../_images/image9.png" />
 <p>We use the IP on fg* .</p>
 <div class="highlight-shell"><div class="highlight"><pre><span class="nv">$ </span>sudo ip route add 192.168.0.0/16 via 192.168.137.171
@@ -252,6 +275,8 @@ Still we need to do some configurations manually.</p>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../kvm_optimization/index.html" class="btn btn-neutral float-right" title="KVM Optimization" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../../index.html" class="btn btn-neutral" title="Welcome to jetchars’s documentation!" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
