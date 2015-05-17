@@ -3,17 +3,19 @@
 Enable DVR with DevStack
 ========================
 
-DVR is short for distributed virtual route, with this feature enabled packets flow with floating IP will no longer send to network node. It helps alleviate network node's pressure greatly when large amount north-east data flow occurs.
+DVR is short for distributed virtual router, with this feature enabled packets flow with floating IP will no longer send to network node. It helps alleviate network node's pressure greatly when large amount north-east data flow occurs. [#]_ [#]_
+
+
 
 
 Brief Intro
 ===========
 
-In order to enable distributed router on each compute-node, Neutron-metadata-agent and Neutron-L3-agent was needed. So we need to add q-meta and q-l3 as well as q-agt on each computer node’s local.conf file.
+In order to enable distributed router on each compute-node, Neutron-metadata-agent and Neutron-L3-agent was needed. So we need to add **q-meta** and **q-l3** as well as *q-agt* on each computer node’s ``local.conf`` file. 
 
 .. image:: /images/enable_dvr_with_devstack/image1.png
 
-Currently devstack not support deploy DVR on GRE tunnel, and tunnel type has been hard coded to vxlan mode, below is part of devstack’s code (lib/neutron_plugins/ml2 ):
+Currently devstack not support deploy DVR on GRE tunnel, and tunnel type has been hard coded to vxlan mode, below is part of devstack’s code ``lib/neutron_plugins/ml2``:
 
 .. image:: /images/enable_dvr_with_devstack/image2.png
 
@@ -22,10 +24,12 @@ With DVR, floating IPs access directly from each compute node, but SNAT still ne
 .. image:: /images/enable_dvr_with_devstack/image3.png
 
 
+
+
 Configure Network Node
 ======================
 
-Here’s the neutron configuration part of local.conf on network node.
+Here’s the neutron configuration part of ``local.conf`` on network node.
 
 .. code-block:: shell
     :linenos:
@@ -50,8 +54,9 @@ Here’s the neutron configuration part of local.conf on network node.
     Q_SERVICE_PLUGIN_CLASSES=neutron.services.l3_router.l3_router_plugin.L3RouterPlugin
     Q_ML2_PLUGIN_MECHANISM_DRIVERS=openvswitch,linuxbridge,l2population
 
-DVR mode can be dvr_snat , dvr or legacy. Legacy is Q_DVR_MODE ‘s default value, dvr_snat is for network node enables snat router, and dvr mode is for compute node. 
-L2population was needed by DVR. The L2 Population driver enables broadcast, multicast, and unicast traffic to scale out on large overlay networks. This traffic is sent to the relevant agent via encapsulation as a targeted unicast.
+DVR mode can be **dvr_snat** , **dvr** or **legacy**. *Legacy* is Q_DVR_MODE ‘s default value, *dvr_snat* is for network node enables snat router, and *dvr* mode is for compute node. 
+
+**L2population** was needed by DVR. The L2 Population driver enables broadcast, multicast, and unicast traffic to scale out on large overlay networks. This traffic is sent to the relevant agent via encapsulation as a targeted unicast. [#]_
 
 .. image:: /images/enable_dvr_with_devstack/image4.png
 
@@ -64,10 +69,12 @@ After Installation you might see 3 bridges and 4 namespaces on network node.
 Namespace fip* is for floating IP accessing. qdhcp* is for allocate IP addresses. snat* is for SNAT function. qrouter* only serves VM in current host.
 
 
+
+
 Configure Compute Node
 ======================
 
-Below is the neutron configuration part of local.conf on compute node
+Below is the neutron configuration part of ``local.conf`` on compute node
 
 .. code-block:: shell
     :linenos:
@@ -92,19 +99,20 @@ After installation you might see 3 bridges and 2 namespaces.
 
 fip* and qrouter* did same job as those two virtual devices on control node.
 Still we need to do some configurations manually.
-Adding an spare physical device(NIC) to br-ex
+
+1. Adding an spare physical device(NIC) to br-ex
 
 .. code-block:: shell
 
     $ sudo ovs-vsctl add-port br-ex eth1
 
-Allocate an IP for br-ex as a gateway
+2. Allocate an IP for br-ex as a gateway
 
 .. code-block:: shell
 
     $ sudo ifconfig br-ex 192.168.137.253
 
-Adding a route to floating network via fip*
+3. Adding a route to floating network via fip*
 
 Before we adding this route we need to know fip’s IP address.
 
@@ -117,3 +125,12 @@ We use the IP on fg* .
 
     $ sudo ip route add 192.168.0.0/16 via 192.168.137.171
 
+
+
+
+References
+==========
+
+.. [#] https://wiki.openstack.org/wiki/Neutron/DVR/HowTo
+.. [#] https://blueprints.launchpad.net/neutron/+spec/neutron-ovs-dvr
+.. [#] https://wiki.openstack.org/wiki/Neutron/DVR_L2_Agent

@@ -75,6 +75,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#brief-intro">Brief Intro</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#configure-network-node">Configure Network Node</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#configure-compute-node">Configure Compute Node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
 </ul>
 </li>
 </ul>
@@ -116,19 +117,19 @@
             
   <div class="section" id="enable-dvr-with-devstack">
 <h1>Enable DVR with DevStack<a class="headerlink" href="#enable-dvr-with-devstack" title="Permalink to this headline">¶</a></h1>
-<p>DVR is short for distributed virtual route, with this feature enabled packets flow with floating IP will no longer send to network node. It helps alleviate network node&#8217;s pressure greatly when large amount north-east data flow occurs.</p>
+<p>DVR is short for distributed virtual router, with this feature enabled packets flow with floating IP will no longer send to network node. It helps alleviate network node&#8217;s pressure greatly when large amount north-east data flow occurs. <a class="footnote-reference" href="#id4" id="id1">[1]</a> <a class="footnote-reference" href="#id5" id="id2">[2]</a></p>
 <div class="section" id="brief-intro">
 <h2>Brief Intro<a class="headerlink" href="#brief-intro" title="Permalink to this headline">¶</a></h2>
-<p>In order to enable distributed router on each compute-node, Neutron-metadata-agent and Neutron-L3-agent was needed. So we need to add q-meta and q-l3 as well as q-agt on each computer node’s local.conf file.</p>
+<p>In order to enable distributed router on each compute-node, Neutron-metadata-agent and Neutron-L3-agent was needed. So we need to add <strong>q-meta</strong> and <strong>q-l3</strong> as well as <em>q-agt</em> on each computer node’s <code class="docutils literal"><span class="pre">local.conf</span></code> file.</p>
 <img alt="../_images/image1.png" src="../_images/image1.png" />
-<p>Currently devstack not support deploy DVR on GRE tunnel, and tunnel type has been hard coded to vxlan mode, below is part of devstack’s code (lib/neutron_plugins/ml2&nbsp;):</p>
+<p>Currently devstack not support deploy DVR on GRE tunnel, and tunnel type has been hard coded to vxlan mode, below is part of devstack’s code <code class="docutils literal"><span class="pre">lib/neutron_plugins/ml2</span></code>:</p>
 <img alt="../_images/image2.png" src="../_images/image2.png" />
 <p>With DVR, floating IPs access directly from each compute node, but SNAT still need to be centralized to network node.</p>
 <img alt="../_images/image3.png" src="../_images/image3.png" />
 </div>
 <div class="section" id="configure-network-node">
 <h2>Configure Network Node<a class="headerlink" href="#configure-network-node" title="Permalink to this headline">¶</a></h2>
-<p>Here’s the neutron configuration part of local.conf on network node.</p>
+<p>Here’s the neutron configuration part of <code class="docutils literal"><span class="pre">local.conf</span></code> on network node.</p>
 <div class="highlight-shell"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -166,8 +167,8 @@ ENABLED_SERVICES+<span class="o">=</span>,q-svc,q-agt,q-dhcp,q-l3,q-meta,neutron
 </span><span class="hll"><span class="nv">Q_ML2_PLUGIN_MECHANISM_DRIVERS</span><span class="o">=</span>openvswitch,linuxbridge,l2population
 </span></pre></div>
 </td></tr></table></div>
-<p>DVR mode can be dvr_snat , dvr or legacy. Legacy is Q_DVR_MODE ‘s default value, dvr_snat is for network node enables snat router, and dvr mode is for compute node.
-L2population was needed by DVR. The L2 Population driver enables broadcast, multicast, and unicast traffic to scale out on large overlay networks. This traffic is sent to the relevant agent via encapsulation as a targeted unicast.</p>
+<p>DVR mode can be <strong>dvr_snat</strong> , <strong>dvr</strong> or <strong>legacy</strong>. <em>Legacy</em> is Q_DVR_MODE ‘s default value, <em>dvr_snat</em> is for network node enables snat router, and <em>dvr</em> mode is for compute node.</p>
+<p><strong>L2population</strong> was needed by DVR. The L2 Population driver enables broadcast, multicast, and unicast traffic to scale out on large overlay networks. This traffic is sent to the relevant agent via encapsulation as a targeted unicast. <a class="footnote-reference" href="#id6" id="id3">[3]</a></p>
 <img alt="../_images/image4.png" src="../_images/image4.png" />
 <p>After Installation you might see 3 bridges and 4 namespaces on network node.</p>
 <img alt="../_images/image5.png" src="../_images/image5.png" />
@@ -176,7 +177,7 @@ L2population was needed by DVR. The L2 Population driver enables broadcast, mult
 </div>
 <div class="section" id="configure-compute-node">
 <h2>Configure Compute Node<a class="headerlink" href="#configure-compute-node" title="Permalink to this headline">¶</a></h2>
-<p>Below is the neutron configuration part of local.conf on compute node</p>
+<p>Below is the neutron configuration part of <code class="docutils literal"><span class="pre">local.conf</span></code> on compute node</p>
 <div class="highlight-shell"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -200,22 +201,49 @@ ENABLED_SERVICES+<span class="o">=</span> q-agt,q-l3,q-meta, neutron
 <img alt="../_images/image7.png" src="../_images/image7.png" />
 <img alt="../_images/image8.png" src="../_images/image8.png" />
 <p>fip* and qrouter* did same job as those two virtual devices on control node.
-Still we need to do some configurations manually.
-Adding an spare physical device(NIC) to br-ex</p>
+Still we need to do some configurations manually.</p>
+<ol class="arabic simple">
+<li>Adding an spare physical device(NIC) to br-ex</li>
+</ol>
 <div class="highlight-shell"><div class="highlight"><pre><span class="nv">$ </span>sudo ovs-vsctl add-port br-ex eth1
 </pre></div>
 </div>
-<p>Allocate an IP for br-ex as a gateway</p>
+<ol class="arabic simple" start="2">
+<li>Allocate an IP for br-ex as a gateway</li>
+</ol>
 <div class="highlight-shell"><div class="highlight"><pre><span class="nv">$ </span>sudo ifconfig br-ex 192.168.137.253
 </pre></div>
 </div>
-<p>Adding a route to floating network via fip*</p>
+<ol class="arabic simple" start="3">
+<li>Adding a route to floating network via fip*</li>
+</ol>
 <p>Before we adding this route we need to know fip’s IP address.</p>
 <img alt="../_images/image9.png" src="../_images/image9.png" />
 <p>We use the IP on fg* .</p>
 <div class="highlight-shell"><div class="highlight"><pre><span class="nv">$ </span>sudo ip route add 192.168.0.0/16 via 192.168.137.171
 </pre></div>
 </div>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://wiki.openstack.org/wiki/Neutron/DVR/HowTo">https://wiki.openstack.org/wiki/Neutron/DVR/HowTo</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id5" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="https://blueprints.launchpad.net/neutron/+spec/neutron-ovs-dvr">https://blueprints.launchpad.net/neutron/+spec/neutron-ovs-dvr</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference external" href="https://wiki.openstack.org/wiki/Neutron/DVR_L2_Agent">https://wiki.openstack.org/wiki/Neutron/DVR_L2_Agent</a></td></tr>
+</tbody>
+</table>
 </div>
 </div>
 
