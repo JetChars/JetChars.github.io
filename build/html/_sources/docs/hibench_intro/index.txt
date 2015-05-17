@@ -44,7 +44,7 @@ Each workload can run separately:
 Default Configurations
 ======================
 
-Default configurations' data size normally very small.
+Default configurations' data size normally very small.(Release version: 3.0）
 
 DFSIOE
 ------
