@@ -14,7 +14,7 @@ DevStack Learning
 .. toctree::
     :maxdepth: 1
 
-    docs/enable_dvr_with_devstack
+    docs/enable_dvr_with_devstack/index
 
     
 Indices and tables

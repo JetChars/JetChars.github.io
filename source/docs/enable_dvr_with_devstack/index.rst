@@ -3,7 +3,7 @@
 Enable DVR with DevStack
 ========================
 
-DVR is short for distributed virtual router, with this feature enabled packets flow with floating IP will no longer send to network node. It helps alleviate network node's pressure greatly when large amount north-east data flow occurs. [#]_
+DVR is short for distributed virtual router, with this feature enabled packets flow with floating IP will no longer send to network node. It helps alleviate network node's pressure greatly when large amount north-south data flow occurs. [#]_
 
 
 
@@ -13,15 +13,15 @@ Brief Intro
 
 In order to enable distributed router on each compute-node, Neutron-metadata-agent and Neutron-L3-agent are both needed. So we need to add **q-meta** and **q-l3** as well as *q-agt* on each computer node’s ``local.conf`` file. 
 
-.. image:: /images/enable_dvr_with_devstack/image1.png
+.. image:: images/image1.png
 
 Currently devstack not support deploy DVR on GRE tunnel [#]_ , and tunnel type has been hard coded to vxlan mode, below is part of devstack’s code ``lib/neutron_plugins/ml2``:
 
-.. image:: /images/enable_dvr_with_devstack/image2.png
+.. image:: images/image2.png
 
 With DVR, floating IPs access directly from each compute node, but SNAT still need to be centralized to network node.
 
-.. image:: /images/enable_dvr_with_devstack/image3.png
+.. image:: images/image3.png
 
 
 
@@ -58,13 +58,13 @@ DVR mode can be **dvr_snat** , **dvr** or **legacy**. *Legacy* is Q_DVR_MODE ‘
 
 **L2population** is needed by DVR. The L2 Population driver enables broadcast, multicast, and unicast traffic to scale out on large overlay networks. This traffic is sent to the relevant agent via encapsulation as a targeted unicast. [#]_
 
-.. image:: /images/enable_dvr_with_devstack/image4.png
+.. image:: images/image4.png
 
 After Installation you might see 3 bridges and 4 namespaces on network node.
 
-.. image:: /images/enable_dvr_with_devstack/image5.png
+.. image:: images/image5.png
 
-.. image:: /images/enable_dvr_with_devstack/image6.png
+.. image:: images/image6.png
 
 Namespace fip* is for floating IP accessing. qdhcp* is for allocate IP addresses. snat* is for SNAT function. qrouter* only serves VM in current host.
 
@@ -93,9 +93,9 @@ Below is the neutron configuration part of ``local.conf`` on compute node
 
 After installation you might see 3 bridges and 2 namespaces.
 
-.. image:: /images/enable_dvr_with_devstack/image7.png
+.. image:: images/image7.png
 
-.. image:: /images/enable_dvr_with_devstack/image8.png
+.. image:: images/image8.png
 
 fip* and qrouter* did same job as those two virtual devices on control node.
 Still we need to do some configurations manually.
@@ -116,7 +116,7 @@ Still we need to do some configurations manually.
 
 Before we adding this route we need to know fip’s IP address.
 
-.. image:: /images/enable_dvr_with_devstack/image9.png
+.. image:: images/image9.png
 
 
 We use the IP on fg* . 
