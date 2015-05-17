@@ -5,7 +5,7 @@ HiBench - The Hadoop BenchMark Suit
 Most of my hadoop tuning data derived with this benchmark tool.
 
 
-What is HiBench? [#]_ 
+What is `HiBench <https://github.com/intel-hadoop/Hibench>`_?
 ================
 
 This benchmark suite contains 10 typical Hadoop workloads (including micro benchmarks, HDFS benchmarks, web search benchmarks, machine learning benchmarks, and data analytics benchmarks). [#]_
@@ -44,7 +44,7 @@ Each workload can run separately:
 Default Configurations
 ======================
 
-Default configurations' data size normally very small.(Release version: 3.0）
+Default configurations' data size normally very small.(Release version: 3.0)
 
 DFSIOE
 ------
@@ -162,8 +162,5 @@ k-means
 
 
 
-References
-==========
 
-.. [#] https://github.com/intel-hadoop/Hibench
 .. [#] http://ieeexplore.ieee.org/xpl/articleDetails.jsp?reload=true&arnumber=5452747

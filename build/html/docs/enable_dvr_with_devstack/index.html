@@ -71,7 +71,9 @@
         
           
           
-              <ul class="current">
+              <ul class="simple">
+</ul>
+<ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="">Enable DVR with DevStack</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#brief-intro">Brief Intro</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#configure-network-node">Configure Network Node</a></li>
@@ -98,7 +100,20 @@
 </ul>
 </li>
 </ul>
-<ul class="simple">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hibench_intro/index.html">HiBench - The Hadoop BenchMark Suit</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hibench_intro/index.html#what-is-hibench">What is HiBench?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hibench_intro/index.html#benchmark-types">BenchMark Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hibench_intro/index.html#configuration-running-scripts">Configuration &amp; Running scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hibench_intro/index.html#default-configurations">Default Configurations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../hibench_intro/index.html#dfsioe">DFSIOE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hibench_intro/index.html#sort">Sort</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hibench_intro/index.html#wordcount">WordCount</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hibench_intro/index.html#k-means">k-means</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <ul class="simple">
 </ul>
@@ -143,9 +158,12 @@
 <p>DVR is short for distributed virtual router, with this feature enabled packets flow with floating IP will no longer send to network node. It helps to alleviate network node&#8217;s pressure greatly when large amount of north-south data flow occurs. <a class="footnote-reference" href="#id4" id="id1">[1]</a></p>
 <div class="section" id="brief-intro">
 <h2>Brief Intro<a class="headerlink" href="#brief-intro" title="Permalink to this headline">¶</a></h2>
-<p>In order to enable distributed router on each compute-node, Neutron-metadata-agent and Neutron-L3-agent are both needed. So we need to add <strong>q-meta</strong> and <strong>q-l3</strong> as well as <em>q-agt</em> on each computer node’s <code class="docutils literal"><span class="pre">local.conf</span></code> file.</p>
+<p>In order to enable distributed router on each compute-node, Neutron-metadata-agent and Neutron-L3-agent are both needed. So we need to add <strong>q-meta</strong> and <strong>q-l3</strong> as well as <em>q-agt</em> on each computer node&#8217;s <code class="docutils literal"><span class="pre">local.conf</span></code> file.</p>
 <img alt="../../_images/image1.png" src="../../_images/image1.png" />
-<p>Currently devstack doesn&#8217;t support deploying DVR on GRE tunnel <a class="footnote-reference" href="#id5" id="id2">[2]</a> , and tunnel type has been hard coded to vxlan mode, the following is a part of devstack’s code <code class="docutils literal"><span class="pre">lib/neutron_plugins/ml2</span></code>:</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Currently devstack doesn&#8217;t support deploying DVR on GRE tunnel <a class="footnote-reference" href="#id5" id="id2">[2]</a> , and tunnel type has been hard coded to vxlan mode, the following is a part of devstack&#8217;s code <code class="docutils literal"><span class="pre">lib/neutron_plugins/ml2</span></code>:</p>
+</div>
 <img alt="../../_images/image2.png" src="../../_images/image2.png" />
 <p>With DVR, floating IPs can be accessed directly from each compute node, but SNAT still need to be centralized to network node.</p>
 <img alt="../../_images/image3.png" src="../../_images/image3.png" />
@@ -190,7 +208,10 @@ ENABLED_SERVICES+<span class="o">=</span>,q-svc,q-agt,q-dhcp,q-l3,q-meta,neutron
 </span><span class="hll"><span class="nv">Q_ML2_PLUGIN_MECHANISM_DRIVERS</span><span class="o">=</span>openvswitch,linuxbridge,l2population
 </span></pre></div>
 </td></tr></table></div>
-<p>DVR mode can be <strong>dvr_snat</strong> , <strong>dvr</strong> or <strong>legacy</strong>. <em>Legacy</em> is Q_DVR_MODE ‘s default value, <em>dvr_snat</em> is for network node which enables snat router, and <em>dvr</em> mode is for compute node.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">DVR mode can be <strong>dvr_snat</strong> , <strong>dvr</strong> or <strong>legacy</strong>. <em>Legacy</em> is Q_DVR_MODE &#8216;s default value, <em>dvr_snat</em> is for network node which enables snat router, and <em>dvr</em> mode is for compute node.</p>
+</div>
 <p><strong>L2population</strong> is needed by DVR. The L2 Population driver enables broadcast, multicast, and unicast traffic to scale out on large overlay networks. This traffic is sent to the relevant agent via encapsulation as a targeted unicast. <a class="footnote-reference" href="#id6" id="id3">[3]</a></p>
 <img alt="../../_images/image4.png" src="../../_images/image4.png" />
 <p>After Installation you might see 3 bridges and 4 namespaces on network node.</p>
@@ -240,7 +261,7 @@ We still need to do some configurations manually.</p>
 <ol class="arabic simple" start="3">
 <li>Add a route to floating network via fip*</li>
 </ol>
-<p>Before we adding this route, we need to know fip’s IP address.</p>
+<p>Before we adding this route, we need to know fip&#8217;s IP address.</p>
 <img alt="../../_images/image9.png" src="../../_images/image9.png" />
 <p>We use the IP on fg* .</p>
 <div class="highlight-shell"><div class="highlight"><pre><span class="nv">$ </span>sudo ip route add 192.168.0.0/16 via 192.168.137.171

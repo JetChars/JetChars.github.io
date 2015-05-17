@@ -70,7 +70,9 @@
         
           
           
-              <ul>
+              <ul class="simple">
+</ul>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../enable_dvr_with_devstack/index.html">Enable DVR with DevStack</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#brief-intro">Brief Intro</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#configure-network-node">Configure Network Node</a></li>
@@ -99,7 +101,7 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="">HiBench - The Hadoop BenchMark Suit</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#what-is-hibench">What is HiBench? </a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-hibench">What is HiBench?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#benchmark-types">BenchMark Types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#configuration-running-scripts">Configuration &amp; Running scripts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#default-configurations">Default Configurations</a><ul>
@@ -109,7 +111,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#k-means">k-means</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
 </ul>
 </li>
 </ul>
@@ -155,8 +156,8 @@
 <h1>HiBench - The Hadoop BenchMark Suit<a class="headerlink" href="#hibench-the-hadoop-benchmark-suit" title="Permalink to this headline">¶</a></h1>
 <p>Most of my hadoop tuning data derived with this benchmark tool.</p>
 <div class="section" id="what-is-hibench">
-<h2>What is HiBench? <a class="footnote-reference" href="#id3" id="id1">[1]</a><a class="headerlink" href="#what-is-hibench" title="Permalink to this headline">¶</a></h2>
-<p>This benchmark suite contains 10 typical Hadoop workloads (including micro benchmarks, HDFS benchmarks, web search benchmarks, machine learning benchmarks, and data analytics benchmarks). <a class="footnote-reference" href="#id4" id="id2">[2]</a></p>
+<h2>What is <a class="reference external" href="https://github.com/intel-hadoop/Hibench">HiBench</a>?<a class="headerlink" href="#what-is-hibench" title="Permalink to this headline">¶</a></h2>
+<p>This benchmark suite contains 10 typical Hadoop workloads (including micro benchmarks, HDFS benchmarks, web search benchmarks, machine learning benchmarks, and data analytics benchmarks). <a class="footnote-reference" href="#id2" id="id1">[1]</a></p>
 <p>Advantages:</p>
 <ul class="simple">
 <li>Realistic and comprehensive</li>
@@ -187,7 +188,7 @@
 </div>
 <div class="section" id="default-configurations">
 <h2>Default Configurations<a class="headerlink" href="#default-configurations" title="Permalink to this headline">¶</a></h2>
-<p>Default configurations&#8217; data size normally very small.(Release version: 3.0）</p>
+<p>Default configurations&#8217; data size normally very small.(Release version: 3.0)</p>
 <div class="section" id="dfsioe">
 <h3>DFSIOE<a class="headerlink" href="#dfsioe" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-shell"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -361,22 +362,13 @@
 <span class="hll"><span class="nv">MAX_ITERATION</span><span class="o">=</span>5
 </span></pre></div>
 </td></tr></table></div>
-</div>
-</div>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
-<table class="docutils footnote" frame="void" id="id3" rules="none">
+<table class="docutils footnote" frame="void" id="id2" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://github.com/intel-hadoop/Hibench">https://github.com/intel-hadoop/Hibench</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://ieeexplore.ieee.org/xpl/articleDetails.jsp?reload=true&amp;arnumber=5452747">http://ieeexplore.ieee.org/xpl/articleDetails.jsp?reload=true&amp;arnumber=5452747</a></td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id4" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="http://ieeexplore.ieee.org/xpl/articleDetails.jsp?reload=true&amp;arnumber=5452747">http://ieeexplore.ieee.org/xpl/articleDetails.jsp?reload=true&amp;arnumber=5452747</a></td></tr>
-</tbody>
-</table>
+</div>
 </div>
 </div>
 

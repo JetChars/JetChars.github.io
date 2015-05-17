@@ -6,6 +6,12 @@
 Welcome to jetchars's documentation!
 ====================================
 
+.. toctree::
+    :maxdepth: 1
+    :hidden:
+
+    #docs/resume/index
+ 
 
 
 DevStack Hacking

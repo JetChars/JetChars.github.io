@@ -11,11 +11,11 @@ DVR is short for distributed virtual router, with this feature enabled packets f
 Brief Intro
 ===========
 
-In order to enable distributed router on each compute-node, Neutron-metadata-agent and Neutron-L3-agent are both needed. So we need to add **q-meta** and **q-l3** as well as *q-agt* on each computer node’s ``local.conf`` file. 
+In order to enable distributed router on each compute-node, Neutron-metadata-agent and Neutron-L3-agent are both needed. So we need to add **q-meta** and **q-l3** as well as *q-agt* on each computer node's ``local.conf`` file. 
 
 .. image:: images/image1.png
 
-Currently devstack doesn't support deploying DVR on GRE tunnel [#]_ , and tunnel type has been hard coded to vxlan mode, the following is a part of devstack’s code ``lib/neutron_plugins/ml2``:
+.. warning:: Currently devstack doesn't support deploying DVR on GRE tunnel [#]_ , and tunnel type has been hard coded to vxlan mode, the following is a part of devstack's code ``lib/neutron_plugins/ml2``:
 
 .. image:: images/image2.png
 
@@ -54,7 +54,7 @@ Here's the neutron configuration part of ``local.conf`` on network node.
     Q_SERVICE_PLUGIN_CLASSES=neutron.services.l3_router.l3_router_plugin.L3RouterPlugin
     Q_ML2_PLUGIN_MECHANISM_DRIVERS=openvswitch,linuxbridge,l2population
 
-DVR mode can be **dvr_snat** , **dvr** or **legacy**. *Legacy* is Q_DVR_MODE ‘s default value, *dvr_snat* is for network node which enables snat router, and *dvr* mode is for compute node. 
+.. note:: DVR mode can be **dvr_snat** , **dvr** or **legacy**. *Legacy* is Q_DVR_MODE 's default value, *dvr_snat* is for network node which enables snat router, and *dvr* mode is for compute node. 
 
 **L2population** is needed by DVR. The L2 Population driver enables broadcast, multicast, and unicast traffic to scale out on large overlay networks. This traffic is sent to the relevant agent via encapsulation as a targeted unicast. [#]_
 
@@ -114,7 +114,7 @@ We still need to do some configurations manually.
 
 3. Add a route to floating network via fip*
 
-Before we adding this route, we need to know fip’s IP address.
+Before we adding this route, we need to know fip's IP address.
 
 .. image:: images/image9.png
 
