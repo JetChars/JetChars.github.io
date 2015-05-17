@@ -117,12 +117,12 @@
             
   <div class="section" id="enable-dvr-with-devstack">
 <h1>Enable DVR with DevStack<a class="headerlink" href="#enable-dvr-with-devstack" title="Permalink to this headline">¶</a></h1>
-<p>DVR is short for distributed virtual router, with this feature enabled packets flow with floating IP will no longer send to network node. It helps alleviate network node&#8217;s pressure greatly when large amount north-east data flow occurs. <a class="footnote-reference" href="#id4" id="id1">[1]</a> <a class="footnote-reference" href="#id5" id="id2">[2]</a></p>
+<p>DVR is short for distributed virtual router, with this feature enabled packets flow with floating IP will no longer send to network node. It helps alleviate network node&#8217;s pressure greatly when large amount north-east data flow occurs. <a class="footnote-reference" href="#id4" id="id1">[1]</a></p>
 <div class="section" id="brief-intro">
 <h2>Brief Intro<a class="headerlink" href="#brief-intro" title="Permalink to this headline">¶</a></h2>
-<p>In order to enable distributed router on each compute-node, Neutron-metadata-agent and Neutron-L3-agent was needed. So we need to add <strong>q-meta</strong> and <strong>q-l3</strong> as well as <em>q-agt</em> on each computer node’s <code class="docutils literal"><span class="pre">local.conf</span></code> file.</p>
+<p>In order to enable distributed router on each compute-node, Neutron-metadata-agent and Neutron-L3-agent are both needed. So we need to add <strong>q-meta</strong> and <strong>q-l3</strong> as well as <em>q-agt</em> on each computer node’s <code class="docutils literal"><span class="pre">local.conf</span></code> file.</p>
 <img alt="../_images/image1.png" src="../_images/image1.png" />
-<p>Currently devstack not support deploy DVR on GRE tunnel, and tunnel type has been hard coded to vxlan mode, below is part of devstack’s code <code class="docutils literal"><span class="pre">lib/neutron_plugins/ml2</span></code>:</p>
+<p>Currently devstack not support deploy DVR on GRE tunnel <a class="footnote-reference" href="#id5" id="id2">[2]</a> , and tunnel type has been hard coded to vxlan mode, below is part of devstack’s code <code class="docutils literal"><span class="pre">lib/neutron_plugins/ml2</span></code>:</p>
 <img alt="../_images/image2.png" src="../_images/image2.png" />
 <p>With DVR, floating IPs access directly from each compute node, but SNAT still need to be centralized to network node.</p>
 <img alt="../_images/image3.png" src="../_images/image3.png" />
@@ -168,7 +168,7 @@ ENABLED_SERVICES+<span class="o">=</span>,q-svc,q-agt,q-dhcp,q-l3,q-meta,neutron
 </span></pre></div>
 </td></tr></table></div>
 <p>DVR mode can be <strong>dvr_snat</strong> , <strong>dvr</strong> or <strong>legacy</strong>. <em>Legacy</em> is Q_DVR_MODE ‘s default value, <em>dvr_snat</em> is for network node enables snat router, and <em>dvr</em> mode is for compute node.</p>
-<p><strong>L2population</strong> was needed by DVR. The L2 Population driver enables broadcast, multicast, and unicast traffic to scale out on large overlay networks. This traffic is sent to the relevant agent via encapsulation as a targeted unicast. <a class="footnote-reference" href="#id6" id="id3">[3]</a></p>
+<p><strong>L2population</strong> is needed by DVR. The L2 Population driver enables broadcast, multicast, and unicast traffic to scale out on large overlay networks. This traffic is sent to the relevant agent via encapsulation as a targeted unicast. <a class="footnote-reference" href="#id6" id="id3">[3]</a></p>
 <img alt="../_images/image4.png" src="../_images/image4.png" />
 <p>After Installation you might see 3 bridges and 4 namespaces on network node.</p>
 <img alt="../_images/image5.png" src="../_images/image5.png" />
