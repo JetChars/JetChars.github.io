@@ -1,0 +1,399 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Hadoop Configuration Tuning &mdash; JetChars 0.1 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="JetChars 0.1 documentation" href="../../index.html"/>
+        <link rel="next" title="Linux Documentation Tools" href="../documentation_tools/index.html"/>
+        <link rel="prev" title="HiBench - The Hadoop BenchMark Suit" href="../hibench_intro/index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="../../index.html" class="icon icon-home"> JetChars
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="simple">
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../enable_dvr_with_devstack/index.html">Enable DVR with DevStack</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#brief-intro">Brief Intro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#configure-network-node">Configure Network Node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#configure-compute-node">Configure Compute Node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#references">References</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../kvm_optimization/index.html">KVM Optimization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../kvm_optimization/index.html#disk-optimization">Disk Optimization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kvm_optimization/index.html#asynchronous-io">Asynchronous IO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kvm_optimization/index.html#disk-cache-mode">Disk Cache Mode</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../kvm_optimization/index.html#memory-optimization">Memory Optimization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kvm_optimization/index.html#transparent-hugepage">Transparent HugePage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../kvm_optimization/index.html#network-optimization">Network Optimization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kvm_optimization/index.html#mtu-size">MTU Size</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../hibench_intro/index.html">HiBench - The Hadoop BenchMark Suit</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hibench_intro/index.html#what-is-hibench">What is HiBench?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hibench_intro/index.html#benchmark-types">BenchMark Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hibench_intro/index.html#configuration-running-scripts">Configuration &amp; Running scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hibench_intro/index.html#default-configurations">Default Configurations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../hibench_intro/index.html#dfsioe">DFSIOE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hibench_intro/index.html#sort">Sort</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hibench_intro/index.html#wordcount">WordCount</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hibench_intro/index.html#k-means">k-means</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Hadoop Configuration Tuning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#rack-awareness">Rack Awareness</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#assumption">Assumption</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#replica-placement">Replica Placement</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#creating-new-block">Creating New Block</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#replicate-existing-block">Replicate Existing Block</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#topology-script">Topology Script</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../documentation_tools/index.html">Linux Documentation Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation_tools/index.html#sphinx-python-document-generator">Sphinx - Python Document Generator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../documentation_tools/index.html#issues">issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../documentation_tools/index.html#pandoc-universal-document-converter">Pandoc - Universal document converter</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../network_tools/index.html">Network Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../network_tools/index.html#home-made-proxy-setting-tool">Home made proxy setting tool</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">JetChars</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>Hadoop Configuration Tuning</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/docs/hadoop_conf_tuning/index.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="hadoop-configuration-tuning">
+<h1>Hadoop Configuration Tuning<a class="headerlink" href="#hadoop-configuration-tuning" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="rack-awareness">
+<h2>Rack Awareness<a class="headerlink" href="#rack-awareness" title="Permalink to this headline">¶</a></h2>
+<p>Typically large Hadoop clusters are arranged in racks and network traffic between different nodes with in the same rack is much more desirable than network traffic across the racks. In addition NameNode tries to place replicas of block on multiple racks for improved fault tolerance. Hadoop lets the cluster administrators decide which rack a node belongs to through configuration variable net.topology.script.file.name. When this script is configured, each node runs the script to determine its rack id. A default installation assumes all the nodes belong to the same rack. This feature and configuration is further described in PDF attached to <a class="reference external" href="https://issues.apache.org/jira/browse/HADOOP-692">HADOOP-692</a></p>
+<img alt="../../_images/network_topology.png" src="../../_images/network_topology.png" />
+<ul class="simple">
+<li>distance(/D1/R1/H1,/D1/R1/H1)=0  same datanode</li>
+<li>distance(/D1/R1/H1,/D1/R1/H2)=2  same rack different datanode</li>
+<li>distance(/D1/R1/H1,/D1/R1/H4)=4  same DataCenter different rack</li>
+<li>distance(/D1/R1/H1,/D2/R3/H7)=6  different DataCenter</li>
+</ul>
+<div class="section" id="assumption">
+<h3>Assumption<a class="headerlink" href="#assumption" title="Permalink to this headline">¶</a></h3>
+<p>Bandwidth in/out of a subtree may be less than the total bandwidth of machines within the subtree.</p>
+</div>
+<div class="section" id="replica-placement">
+<h3>Replica Placement<a class="headerlink" href="#replica-placement" title="Permalink to this headline">¶</a></h3>
+<p>The block replica placement policy is intended to get a tradeoff between <code class="docutils literal"><span class="pre">minimizing</span> <span class="pre">the</span> <span class="pre">write</span> <span class="pre">cost</span></code> and <code class="docutils literal"><span class="pre">maximizing</span> <span class="pre">data</span> <span class="pre">reliability</span> <span class="pre">and</span> <span class="pre">availability,</span> <span class="pre">and</span> <span class="pre">aggregate</span> <span class="pre">read</span> <span class="pre">bandwidth</span></code>.</p>
+<div class="section" id="creating-new-block">
+<h4>Creating New Block<a class="headerlink" href="#creating-new-block" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><p class="first">First replica on local node</p>
+</li>
+<li><p class="first">Second replica on different node at same rack</p>
+</li>
+<li><p class="first">Third replica on different node at different rack</p>
+</li>
+<li><dl class="first docutils">
+<dt>Other replicas following</dt>
+<dd><ul class="first last simple">
+<li>One replica at most on each node</li>
+<li>if replicas smaller that racks*2, no more than 2 replicas on same rack</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="replicate-existing-block">
+<h4>Replicate Existing Block<a class="headerlink" href="#replicate-existing-block" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>If one replica exists, put 2nd replica on different rack</li>
+<li>If two replica on same rack, put 3rd replica on different rack</li>
+<li>If two replica on different rack, put 3rd replica on the same rack as replica 1</li>
+<li>If available replica more than 3, put randomly.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="topology-script">
+<h3>Topology Script<a class="headerlink" href="#topology-script" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Add parameter <code class="docutils literal"><span class="pre">net.topology.script.file.name</span></code> to <strong>core-site.xml</strong></li>
+<li>Write script file</li>
+</ul>
+<div class="sidebar"><p><em>Note</em> :</p>
+<p>The script name that should be invoked to resolve DNS names to NetworkTopology names. Example: the script would take host.foo.bar as an argument, and return /rack1 as the output.</p>
+</div><p>sample c script</p>
+<div class="highlight-c"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span> <span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[]){</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span> <span class="p">;</span><span class="n">i</span><span class="o">&lt;</span> <span class="n">argc</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="kt">char</span><span class="o">*</span> <span class="n">ipStr</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="c1">//  找到ip对应的rack设置,下面的</span>
+        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;/rack1/&quot;</span><span class="o">&lt;&lt;</span><span class="n">i</span><span class="o">&lt;&lt;</span><span class="s">&quot; &quot;</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">cout</span><span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>sample python script</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">string</span> <span class="kn">import</span> <span class="n">join</span>
+
+<span class="n">DEFAULT_RACK</span> <span class="o">=</span> <span class="s">&#39;/default/rack0&#39;</span><span class="p">;</span>
+<span class="n">RACK_MAP</span> <span class="o">=</span> <span class="p">{</span> <span class="s">&#39;10.72.10.1&#39;</span> <span class="p">:</span> <span class="s">&#39;/datacenter0/rack0&#39;</span><span class="p">,</span>
+<span class="s">&#39;10.112.110.26&#39;</span> <span class="p">:</span> <span class="s">&#39;/datacenter1/rack0&#39;</span><span class="p">,</span>
+<span class="s">&#39;10.112.110.27&#39;</span> <span class="p">:</span> <span class="s">&#39;/datacenter1/rack0&#39;</span><span class="p">,</span>
+<span class="s">&#39;10.112.110.28&#39;</span> <span class="p">:</span> <span class="s">&#39;/datacenter1/rack0&#39;</span><span class="p">,</span>
+<span class="s">&#39;10.2.5.1&#39;</span> <span class="p">:</span> <span class="s">&#39;/datacenter2/rack0&#39;</span><span class="p">,</span>
+<span class="s">&#39;10.2.10.1&#39;</span> <span class="p">:</span> <span class="s">&#39;/datacenter2/rack1&#39;</span>
+<span class="p">}</span>
+
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+    <span class="k">print</span> <span class="n">DEFAULT_RACK</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span> <span class="n">join</span><span class="p">([</span><span class="n">RACK_MAP</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">DEFAULT_RACK</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:]],</span><span class="s">&quot; &quot;</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<p>sample bash shell script</p>
+<div class="highlight-shell"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">HADOOP_CONF</span><span class="o">=</span>/etc/hadoop/conf
+
+<span class="k">while</span> <span class="o">[</span> <span class="nv">$# </span>-gt <span class="m">0</span> <span class="o">]</span> <span class="p">;</span> <span class="k">do</span>
+    <span class="nv">nodeArg</span><span class="o">=</span><span class="nv">$1</span>
+    <span class="nb">exec</span>&lt; <span class="si">${</span><span class="nv">HADOOP_CONF</span><span class="si">}</span>/topology.data
+    <span class="nv">result</span><span class="o">=</span>””
+    <span class="k">while</span> <span class="nb">read </span>line <span class="p">;</span> <span class="k">do</span>
+        <span class="nv">ar</span><span class="o">=(</span> <span class="nv">$line</span> <span class="o">)</span>
+        <span class="k">if</span> <span class="o">[</span> “<span class="si">${</span><span class="nv">ar</span><span class="p">[0]</span><span class="si">}</span>” <span class="o">=</span> “<span class="nv">$nodeArg</span>” <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
+            <span class="nv">result</span><span class="o">=</span>”<span class="si">${</span><span class="nv">ar</span><span class="p">[1]</span><span class="si">}</span>”
+        <span class="k">fi</span>
+    <span class="k">done</span>
+    <span class="nb">shift</span>
+<span class="nb">    </span><span class="k">if</span> <span class="o">[</span> -z “<span class="nv">$result</span>” <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
+        <span class="nb">echo</span> -n “/default/rack “
+    <span class="k">else</span>
+        <span class="nb">echo</span> -n “<span class="nv">$result</span> “
+    <span class="k">fi</span>
+<span class="k">done</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../documentation_tools/index.html" class="btn btn-neutral float-right" title="Linux Documentation Tools" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../hibench_intro/index.html" class="btn btn-neutral" title="HiBench - The Hadoop BenchMark Suit" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, JetChars.
+    </p>
+  </div>
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Jet Chars’s Resume &mdash; JetChars 0.1 documentation</title>
+  <title>Linux Documentation Tools &mdash; JetChars 0.1 documentation</title>
   
 
   
@@ -30,7 +30,9 @@
   
 
   
-    <link rel="top" title="JetChars 0.1 documentation" href="../../index.html"/> 
+    <link rel="top" title="JetChars 0.1 documentation" href="../../index.html"/>
+        <link rel="next" title="Network Tools" href="../network_tools/index.html"/>
+        <link rel="prev" title="HiBench - The Hadoop BenchMark Suit" href="../hibench_intro/index.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -113,9 +115,17 @@
 </ul>
 </li>
 </ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../documentation_tools/index.html">Linux Documentation Tools</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../documentation_tools/index.html#pandoc-universal-document-converter">Pandoc - Universal document converter</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">Linux Documentation Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#sphinx-python-document-generator">Sphinx - Python Document Generator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#issues">issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#pandoc-universal-document-converter">Pandoc - Universal document converter</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../network_tools/index.html">Network Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../network_tools/index.html#home-made-proxy-setting-tool">Home made proxy setting tool</a></li>
 </ul>
 </li>
 </ul>
@@ -142,11 +152,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
-    <li>Jet Chars&#8217;s Resume</li>
+    <li>Linux Documentation Tools</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../../_sources/docs/resume/index.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/docs/documentation_tools/index.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -155,51 +165,74 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="jet-chars-s-resume">
-<h1>Jet Chars&#8217;s Resume<a class="headerlink" href="#jet-chars-s-resume" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="contact-me">
-<h2>Contact Me<a class="headerlink" href="#contact-me" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Email : <a class="reference external" href="mailto:calebjay&#37;&#52;&#48;live&#46;cn">calebjay<span>&#64;</span>live<span>&#46;</span>cn</a></li>
-<li>Tel : +86 181-0793-5886</li>
-</ul>
+  <div class="section" id="linux-documentation-tools">
+<h1>Linux Documentation Tools<a class="headerlink" href="#linux-documentation-tools" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="sphinx-python-document-generator">
+<h2><a class="reference external" href="http://sphinx-doc.org">Sphinx</a> - Python Document Generator<a class="headerlink" href="#sphinx-python-document-generator" title="Permalink to this headline">¶</a></h2>
+<p>With this tool, we can extract manual from our python project&#8217;s source code, convert rst file into html tex or pdf files, and so on ...</p>
+<p><a class="reference external" href="http://www.pythondoc.com/sphinx/index.html">Chinese Documentation</a></p>
+<p><a class="reference external" href="http://zh-sphinx-doc.readthedocs.org/en/latest/">Another Chinese Documentation</a></p>
+<div class="section" id="issues">
+<h3>issues<a class="headerlink" href="#issues" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">ValueError: unknown locale: UTF-8</p>
+<div class="highlight-python"><div class="highlight"><pre>sphinx-build -b html -d build/doctrees   source build/html
+Traceback (most recent call last):
+  File &quot;/usr/local/bin/sphinx-build&quot;, line 11, in &lt;module&gt;
+    sys.exit(main())
+  File &quot;/Library/Python/2.7/site-packages/sphinx/__init__.py&quot;, line 51, in main
+    sys.exit(build_main(argv))
+  File &quot;/Library/Python/2.7/site-packages/sphinx/__init__.py&quot;, line 61, in build_main
+    from sphinx import cmdline
+  File &quot;/Library/Python/2.7/site-packages/sphinx/cmdline.py&quot;, line 19, in &lt;module&gt;
+    from docutils.utils import SystemMessage
+  File &quot;/Library/Python/2.7/site-packages/docutils/utils/__init__.py&quot;, line 20, in &lt;module&gt;
+    import docutils.io
+  File &quot;/Library/Python/2.7/site-packages/docutils/io.py&quot;, line 18, in &lt;module&gt;
+    from docutils.utils.error_reporting import locale_encoding, ErrorString, ErrorOutput
+  File &quot;/Library/Python/2.7/site-packages/docutils/utils/error_reporting.py&quot;, line 47, in &lt;module&gt;
+    locale_encoding = locale.getlocale()[1] or locale.getdefaultlocale()[1]
+  File &quot;/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/locale.py&quot;, line 511, in getdefaultlocale
+    return _parse_localename(localename)
+  File &quot;/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/locale.py&quot;, line 443, in _parse_localename
+    raise ValueError, &#39;unknown locale: %s&#39; % localename
+</pre></div>
 </div>
-<div class="section" id="education-background">
-<h2>Education Background<a class="headerlink" href="#education-background" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Master&#8217;s Degree : Peking University <em>Software Engineering</em></li>
-<li>Bachelor&#8217;s Degree : Nankai University <em>Basic Chemistry</em></li>
+</li>
 </ul>
+<p><strong>Solution</strong></p>
+<div class="highlight-shell"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="nb">export </span><span class="nv">LC_ALL</span><span class="o">=</span>es_ES.UTF-8
+<span class="nb">export </span><span class="nv">LANG</span><span class="o">=</span>es_ES.UTF-8
+</pre></div>
+</td></tr></table></div>
 </div>
-<div class="section" id="experiences">
-<h2>Experiences<a class="headerlink" href="#experiences" title="Permalink to this headline">¶</a></h2>
-<p>2014.11~2015.05 Intel Asia Pacific Research Center.</p>
-<ul class="simple">
-<li>OpenStack Deployment w/ DevStack &amp; PXE</li>
-<li>Sahara Optimization</li>
-<li>Hadoop Tuning</li>
-</ul>
 </div>
-<div class="section" id="basic-skills">
-<h2>Basic Skills<a class="headerlink" href="#basic-skills" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Programing Languages: <code class="docutils literal"><span class="pre">python</span></code> <code class="docutils literal"><span class="pre">c</span></code> <code class="docutils literal"><span class="pre">java</span></code></li>
-<li>Marking Languages: <code class="docutils literal"><span class="pre">Markdown</span></code> <code class="docutils literal"><span class="pre">reStructedText</span></code> <code class="docutils literal"><span class="pre">HTML</span></code></li>
-<li><code class="docutils literal"><span class="pre">Linux</span> <span class="pre">development</span></code> <code class="docutils literal"><span class="pre">SQL</span></code> <code class="docutils literal"><span class="pre">QT</span></code></li>
-</ul>
-</div>
-<div class="section" id="interested-areas">
-<h2>Interested Areas<a class="headerlink" href="#interested-areas" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Cloud Computing: <code class="docutils literal"><span class="pre">OpenStack</span></code> <code class="docutils literal"><span class="pre">Spark</span></code> <code class="docutils literal"><span class="pre">Storm</span></code> <code class="docutils literal"><span class="pre">Docker</span></code></li>
-<li>Machine Learning: <code class="docutils literal"><span class="pre">Nature</span> <span class="pre">Language</span> <span class="pre">Processing</span></code></li>
-</ul>
+<div class="section" id="pandoc-universal-document-converter">
+<h2><a class="reference external" href="https://github.com/jgm/pandoc/releases">Pandoc</a> - Universal document converter<a class="headerlink" href="#pandoc-universal-document-converter" title="Permalink to this headline">¶</a></h2>
+<p>Useage:</p>
+<div class="highlight-shell"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># this command will transfer srcfile into dstfile according to suffix</span>
+pandoc srcfile -o dstfile.suffix
+</pre></div>
+</td></tr></table></div>
+<p>One pic you can see how powerful it is.</p>
+<img alt="../../_images/pandoc.jpg" src="../../_images/pandoc.jpg" />
 </div>
 </div>
 
 
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../network_tools/index.html" class="btn btn-neutral float-right" title="Network Tools" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../hibench_intro/index.html" class="btn btn-neutral" title="HiBench - The Hadoop BenchMark Suit" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

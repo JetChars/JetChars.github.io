@@ -37,7 +37,7 @@ Hadoop Tuning
 =============
 
 .. toctree::
-    :maxdepth: 1
+    :maxdepth: 2
 
     docs/hibench_intro/index
     docs/hadoop_conf_tuning/index
@@ -52,7 +52,8 @@ Linux Tools
 
     docs/anaconda_kickstart/index
     docs/screen/index
-
+    docs/documentation_tools/index
+    docs/network_tools/index
 
 
 
