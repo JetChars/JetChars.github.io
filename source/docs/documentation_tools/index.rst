@@ -14,7 +14,9 @@ With this tool, we can extract manual from our python project's source code, con
 
 issues
 ------
-* ValueError: unknown locale: UTF-8 ::
+* ValueError: unknown locale: UTF-8 
+
+This error occurs in my **Macbook Air** (2011, OS X Yosemite)::
 
     sphinx-build -b html -d build/doctrees   source build/html
     Traceback (most recent call last):
@@ -46,8 +48,11 @@ issues
     export LANG=es_ES.UTF-8
 
 
-`Pandoc <https://github.com/jgm/pandoc/releases>`_ - Universal document converter
+`Pandoc <http://pandoc.org>`_ - Universal document converter
 =================================================================================
+
+`Download <https://github.com/jgm/pandoc/releases>`_
+
 Useage:
 
 .. code-block:: shell

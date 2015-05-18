@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Linux Documentation Tools &mdash; JetChars 0.1 documentation</title>
+  <title>CentOS Tuning &mdash; JetChars 0.1 documentation</title>
   
 
   
@@ -31,8 +31,8 @@
 
   
     <link rel="top" title="JetChars 0.1 documentation" href="../../index.html"/>
-        <link rel="next" title="Network Tools" href="../network_tools/index.html"/>
-        <link rel="prev" title="Hadoop Configuration Tuning" href="../hadoop_conf_tuning/index.html"/> 
+        <link rel="next" title="Hadoop Configuration Tuning" href="../hadoop_conf_tuning/index.html"/>
+        <link rel="prev" title="HiBench - The Hadoop BenchMark Suit" href="../hibench_intro/index.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -100,7 +100,7 @@
 </ul>
 </li>
 </ul>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../hibench_intro/index.html">HiBench - The Hadoop BenchMark Suit</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../hibench_intro/index.html#what-is-hibench">What is HiBench?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hibench_intro/index.html#benchmark-types">BenchMark Types</a></li>
@@ -112,6 +112,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../hibench_intro/index.html#k-means">k-means</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">CentOS Tuning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#unlimit-non-root-user-s-resources">Unlimit Non-root User&#8217;s Resources</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../hadoop_conf_tuning/index.html">Hadoop Configuration Tuning</a><ul>
@@ -129,13 +133,13 @@
 </ul>
 </li>
 </ul>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">Linux Documentation Tools</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#sphinx-python-document-generator">Sphinx - Python Document Generator</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#issues">issues</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../documentation_tools/index.html">Linux Documentation Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation_tools/index.html#sphinx-python-document-generator">Sphinx - Python Document Generator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../documentation_tools/index.html#issues">issues</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#pandoc-universal-document-converter">Pandoc - Universal document converter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../documentation_tools/index.html#pandoc-universal-document-converter">Pandoc - Universal document converter</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../network_tools/index.html">Network Tools</a><ul>
@@ -166,11 +170,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
-    <li>Linux Documentation Tools</li>
+    <li>CentOS Tuning</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../../_sources/docs/documentation_tools/index.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/docs/centos_tuning/index.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -179,60 +183,23 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="linux-documentation-tools">
-<h1>Linux Documentation Tools<a class="headerlink" href="#linux-documentation-tools" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="sphinx-python-document-generator">
-<h2><a class="reference external" href="http://sphinx-doc.org">Sphinx</a> - Python Document Generator<a class="headerlink" href="#sphinx-python-document-generator" title="Permalink to this headline">¶</a></h2>
-<p>With this tool, we can extract manual from our python project&#8217;s source code, convert rst file into html tex or pdf files, and so on ...</p>
-<p><a class="reference external" href="http://www.pythondoc.com/sphinx/index.html">Chinese Documentation</a></p>
-<p><a class="reference external" href="http://zh-sphinx-doc.readthedocs.org/en/latest/">Another Chinese Documentation</a></p>
-<div class="section" id="issues">
-<h3>issues<a class="headerlink" href="#issues" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li>ValueError: unknown locale: UTF-8</li>
-</ul>
-<p>This error occurs in my <strong>Macbook Air</strong> (2011, OS X Yosemite):</p>
-<div class="highlight-python"><div class="highlight"><pre>sphinx-build -b html -d build/doctrees   source build/html
-Traceback (most recent call last):
-  File &quot;/usr/local/bin/sphinx-build&quot;, line 11, in &lt;module&gt;
-    sys.exit(main())
-  File &quot;/Library/Python/2.7/site-packages/sphinx/__init__.py&quot;, line 51, in main
-    sys.exit(build_main(argv))
-  File &quot;/Library/Python/2.7/site-packages/sphinx/__init__.py&quot;, line 61, in build_main
-    from sphinx import cmdline
-  File &quot;/Library/Python/2.7/site-packages/sphinx/cmdline.py&quot;, line 19, in &lt;module&gt;
-    from docutils.utils import SystemMessage
-  File &quot;/Library/Python/2.7/site-packages/docutils/utils/__init__.py&quot;, line 20, in &lt;module&gt;
-    import docutils.io
-  File &quot;/Library/Python/2.7/site-packages/docutils/io.py&quot;, line 18, in &lt;module&gt;
-    from docutils.utils.error_reporting import locale_encoding, ErrorString, ErrorOutput
-  File &quot;/Library/Python/2.7/site-packages/docutils/utils/error_reporting.py&quot;, line 47, in &lt;module&gt;
-    locale_encoding = locale.getlocale()[1] or locale.getdefaultlocale()[1]
-  File &quot;/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/locale.py&quot;, line 511, in getdefaultlocale
-    return _parse_localename(localename)
-  File &quot;/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/locale.py&quot;, line 443, in _parse_localename
-    raise ValueError, &#39;unknown locale: %s&#39; % localename
-</pre></div>
-</div>
-<p><strong>Solution</strong></p>
+  <div class="section" id="centos-tuning">
+<h1>CentOS Tuning<a class="headerlink" href="#centos-tuning" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="unlimit-non-root-user-s-resources">
+<h2>Unlimit Non-root User&#8217;s Resources<a class="headerlink" href="#unlimit-non-root-user-s-resources" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-shell"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span class="nb">export </span><span class="nv">LC_ALL</span><span class="o">=</span>es_ES.UTF-8
-<span class="nb">export </span><span class="nv">LANG</span><span class="o">=</span>es_ES.UTF-8
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre>sudo rm -rf /etc/security/limits.d
+sudo cat &gt;&gt; /etc/security/limits.conf <span class="s">&lt;&lt; EOF</span>
+<span class="s">*                -       nproc           100000</span>
+<span class="s">*                -       nofile          100000</span>
+<span class="s">*                -       memlock         unlimited</span>
+<span class="s">EOF</span>
 </pre></div>
 </td></tr></table></div>
-</div>
-</div>
-<div class="section" id="pandoc-universal-document-converter">
-<h2><a class="reference external" href="http://pandoc.org">Pandoc</a> - Universal document converter<a class="headerlink" href="#pandoc-universal-document-converter" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://github.com/jgm/pandoc/releases">Download</a></p>
-<p>Useage:</p>
-<div class="highlight-shell"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># this command will transfer srcfile into dstfile according to suffix</span>
-pandoc srcfile -o dstfile.suffix
-</pre></div>
-</td></tr></table></div>
-<p>One pic you can see how powerful it is.</p>
-<img alt="../../_images/pandoc.jpg" src="../../_images/pandoc.jpg" />
 </div>
 </div>
 
@@ -242,10 +209,10 @@ pandoc srcfile -o dstfile.suffix
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../network_tools/index.html" class="btn btn-neutral float-right" title="Network Tools" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../hadoop_conf_tuning/index.html" class="btn btn-neutral float-right" title="Hadoop Configuration Tuning" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../hadoop_conf_tuning/index.html" class="btn btn-neutral" title="Hadoop Configuration Tuning" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../hibench_intro/index.html" class="btn btn-neutral" title="HiBench - The Hadoop BenchMark Suit" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

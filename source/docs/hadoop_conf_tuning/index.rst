@@ -2,6 +2,13 @@
 Hadoop Configuration Tuning
 ===========================
 
+`DoopShot <https://github.com/JetChars/hadoopshot>`_ - Automatic Conf & Analysis Tool
+=====================================================================================
+
+In order to simplify hadoop tunning process, I've started this project with my friend `Xinni <https://github.com/irisayame>`_.
+This tool has helped us with configurating hadoop, extracting system info and collecting datas, as well as analyzing results.
+
+
 Rack Awareness
 ==============
 
@@ -31,16 +38,16 @@ Creating New Block
 * First replica on local node
 * Second replica on different node at same rack
 * Third replica on different node at different rack
-* Other replicas following 
-    * One replica at most on each node
-    * if replicas smaller that racks*2, no more than 2 replicas on same rack
+* Other replicas follow the rules below
+    * Each node has at most one replica
+    * If replicas are less than racks*2, no more than 2 replicas on the same rack
 
 Replicate Existing Block
 ^^^^^^^^^^^^^^^^^^^^^^^^
 * If one replica exists, put 2nd replica on different rack
-* If two replica on same rack, put 3rd replica on different rack
-* If two replica on different rack, put 3rd replica on the same rack as replica 1
-* If available replica more than 3, put randomly.
+* If two replicas on same rack, put 3rd replica on different rack
+* If two replicas on different racks, put 3rd replica on the same rack with replica 1
+* If there are more than 3 available replicas, then put other replicas randomly.
 
 Topology Script
 ---------------
@@ -61,7 +68,7 @@ The script name that should be invoked to resolve DNS names to NetworkTopology n
 
    </div>
 
-sample c script
+*Sample c script*
 
 .. code-block:: c
     :linenos:
@@ -69,13 +76,12 @@ sample c script
     int main(int argc , char *argv[]){
         for(int i=1 ;i< argc; i++){
             char* ipStr = argv[i];
-            //  找到ip对应的rack设置,下面的
             cout<<"/rack1/"<<i<<" ";
         }
         cout<< endl;
     }
 
-sample python script
+*Sample python script*
 
 .. code-block:: python
     :linenos:
@@ -97,7 +103,7 @@ sample python script
     else:
         print join([RACK_MAP.get(i, DEFAULT_RACK) for i in sys.argv[1:]]," ")
 
-sample bash shell script
+*Sample bash shell script*
 
 .. code-block:: shell
     :linenos:
@@ -107,17 +113,17 @@ sample bash shell script
     while [ $# -gt 0 ] ; do
         nodeArg=$1
         exec< ${HADOOP_CONF}/topology.data 
-        result=”” 
+        result=""
         while read line ; do
             ar=( $line ) 
-            if [ “${ar[0]}” = “$nodeArg” ] ; then
+            if [ "${ar[0]}" = "$nodeArg" ] ; then
                 result=”${ar[1]}”
             fi
         done 
         shift 
-        if [ -z “$result” ] ; then
-            echo -n “/default/rack “
+        if [ -z "$result" ] ; then
+            echo -n "/default/rack "
         else
-            echo -n “$result “
+            echo -n "$result "
         fi
     done

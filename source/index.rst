@@ -40,8 +40,9 @@ Hadoop Tuning
     :maxdepth: 2
 
     docs/hibench_intro/index
-    docs/hadoop_conf_tuning/index
+    docs/centos_tuning/index
     docs/linux_kernel_tuning/index
+    docs/hadoop_conf_tuning/index
 
 
 Linux Tools

@@ -90,13 +90,20 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#memory-optimization">Memory Optimization</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#transparent-hugepage">Transparent HugePage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#check-hugepage-status">Check HugePage status</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#enable-1gb-hugepage">Enable 1GB HugePage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#anonymous-hugepages">Anonymous HugePages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#transparent-hugepages-thp">Transparent HugePages(THP)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#start-to-use-thp">Start to use THP</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#network-optimization">Network Optimization</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#mtu-size">MTU Size</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#enhance-launch-speed">Enhance Launch Speed</a></li>
 </ul>
 </li>
 </ul>
@@ -114,10 +121,36 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../centos_tuning/index.html">CentOS Tuning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../centos_tuning/index.html#unlimit-non-root-user-s-resources">Unlimit Non-root User&#8217;s Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../hadoop_conf_tuning/index.html">Hadoop Configuration Tuning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hadoop_conf_tuning/index.html#doopshot-automatic-conf-analysis-tool">DoopShot - Automatic Conf &amp; Analysis Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hadoop_conf_tuning/index.html#rack-awareness">Rack Awareness</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../hadoop_conf_tuning/index.html#assumption">Assumption</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hadoop_conf_tuning/index.html#replica-placement">Replica Placement</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../hadoop_conf_tuning/index.html#creating-new-block">Creating New Block</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hadoop_conf_tuning/index.html#replicate-existing-block">Replicate Existing Block</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../hadoop_conf_tuning/index.html#topology-script">Topology Script</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../documentation_tools/index.html">Linux Documentation Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation_tools/index.html#sphinx-python-document-generator">Sphinx - Python Document Generator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../documentation_tools/index.html#issues">issues</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../documentation_tools/index.html#pandoc-universal-document-converter">Pandoc - Universal document converter</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../network_tools/index.html">Network Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../network_tools/index.html#home-made-proxy-setting-tool">Home made proxy setting tool</a></li>
 </ul>
 </li>
 </ul>
@@ -159,6 +192,7 @@
             
   <div class="section" id="kvm-optimization">
 <h1>KVM Optimization<a class="headerlink" href="#kvm-optimization" title="Permalink to this headline">¶</a></h1>
+<p>Normally kvm instances are managed by virsh, in which instance is called domain. virsh can be used to create, pause, and shutdown domains.</p>
 <div class="section" id="disk-optimization">
 <h2>Disk Optimization<a class="headerlink" href="#disk-optimization" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="asynchronous-io">
@@ -166,12 +200,102 @@
 </div>
 <div class="section" id="disk-cache-mode">
 <h3>Disk Cache Mode<a class="headerlink" href="#disk-cache-mode" title="Permalink to this headline">¶</a></h3>
+<p>disk_cachemodes: <code class="docutils literal"><span class="pre">writethrough</span></code> <code class="docutils literal"><span class="pre">writeback</span></code> <code class="docutils literal"><span class="pre">none(default)</span></code> <code class="docutils literal"><span class="pre">directsync</span></code></p>
 </div>
 </div>
 <div class="section" id="memory-optimization">
 <h2>Memory Optimization<a class="headerlink" href="#memory-optimization" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="transparent-hugepage">
-<h3>Transparent HugePage<a class="headerlink" href="#transparent-hugepage" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="check-hugepage-status">
+<h3>Check HugePage status<a class="headerlink" href="#check-hugepage-status" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">sysctl</span> <span class="pre">-a</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">-i</span> <span class="pre">huge</span></code></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">vm</span><span class="o">.</span><span class="n">hugepages_treat_as_movable</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">vm</span><span class="o">.</span><span class="n">hugetlb_shm_group</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">vm</span><span class="o">.</span><span class="n">nr_hugepages</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">vm</span><span class="o">.</span><span class="n">nr_hugepages_mempolicy</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">vm</span><span class="o">.</span><span class="n">nr_overcommit_hugepages</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">cat</span> <span class="pre">/proc/meminfo</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">-i</span> <span class="pre">huge</span></code></p>
+<div class="highlight-python"><div class="highlight"><pre>AnonHugePages:      8192 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="enable-1gb-hugepage">
+<h3>Enable 1GB HugePage<a class="headerlink" href="#enable-1gb-hugepage" title="Permalink to this headline">¶</a></h3>
+<p>Currently, this size only support rhel &amp; centos.
+<em>Restarting Host OS</em> is required after the step 1.
+After that, hugepage number cannot be changed.</p>
+<ol class="arabic">
+<li><p class="first">kernel options: <code class="docutils literal"><span class="pre">default_hugepagesz=1G</span> <span class="pre">hugepagesz=1G</span> <span class="pre">hugepages=80</span> <span class="pre">hugepagesz=2M</span> <span class="pre">hugepages=1024</span></code></p>
+<div class="highlight-python"><div class="highlight"><pre>sudo vi /etc/default/grub
+grub2-mkconfig
+</pre></div>
+</div>
+</li>
+<li><p class="first">Mount 1GB huge pages</p>
+<div class="highlight-python"><div class="highlight"><pre>mkdir /dev/hugepages1G
+mount -t hugetlbfs -o pagesize=1G none /dev/hugepages1G
+mkdir /dev/hugepages2M
+mount -t hugetlbfs -o pagesize=2M none /dev/hugepages2M
+</pre></div>
+</div>
+</li>
+<li><p class="first">Restart libvirtd</p>
+<div class="highlight-python"><div class="highlight"><pre>systemctl restart libvirtd
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="anonymous-hugepages">
+<h3>Anonymous HugePages<a class="headerlink" href="#anonymous-hugepages" title="Permalink to this headline">¶</a></h3>
+<p>kvm instance will use anonymous hugepages by default. Once hugepages are allocated to an instance, they will not be recycled until the instance is destroyed.</p>
+<div class="highlight-shell"><div class="highlight"><pre>ps -fp <span class="sb">`</span>grep AnonHugePages /proc/*/smaps <span class="p">|</span> grep -v <span class="s1">&#39;AnonHugePages: 0 kB&#39;</span> <span class="p">|</span> cut -d/ -f3<span class="sb">`</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="transparent-hugepages-thp">
+<h3>Transparent HugePages(THP)<a class="headerlink" href="#transparent-hugepages-thp" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="start-to-use-thp">
+<h4>Start to use THP<a class="headerlink" href="#start-to-use-thp" title="Permalink to this headline">¶</a></h4>
+<div class="sidebar"><p><strong>Warning!</strong></p>
+<p>If Nova-Compute Service is not disabled, any changes to libvirt.xml will not take effect.</p>
+</div><ol class="arabic">
+<li><p class="first">Disable Nova-Compute Service</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">virsh</span> <span class="pre">destroy</span> <span class="pre">&lt;instance&gt;</span></code></p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">virsh</span> <span class="pre">edit</span> <span class="pre">&lt;instance&gt;</span></code></p>
+<div class="highlight-python"><div class="highlight"><pre>&lt;memoryBacking&gt;
+  &lt;hugepages/&gt;
+&lt;/memoryBacking&gt;
+</pre></div>
+</div>
+</li>
+<li><dl class="first docutils">
+<dt>Allocate THP (2 methods)</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">sysctl</span> <span class="pre">-w</span> <span class="pre">vm.nr_hugepages=val</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">echo</span> <span class="pre">val</span> <span class="pre">&gt;</span> <span class="pre">/proc/sys/vm/nr_hugepages</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">virsh</span> <span class="pre">start</span> <span class="pre">&lt;instance&gt;</span></code></p>
+</li>
+<li><p class="first">Start Nova-Compute Service</p>
+</li>
+</ol>
+</div>
 </div>
 </div>
 <div class="section" id="network-optimization">
@@ -179,6 +303,10 @@
 <div class="section" id="mtu-size">
 <h3>MTU Size<a class="headerlink" href="#mtu-size" title="Permalink to this headline">¶</a></h3>
 </div>
+</div>
+<div class="section" id="enhance-launch-speed">
+<h2>Enhance Launch Speed<a class="headerlink" href="#enhance-launch-speed" title="Permalink to this headline">¶</a></h2>
+<p>resize qcow2 image&#8217;s disk size to fit target flavor&#8217;s disk size</p>
 </div>
 </div>
 
