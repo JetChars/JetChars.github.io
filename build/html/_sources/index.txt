@@ -20,7 +20,7 @@ DevStack Hacking
 .. toctree::
     :maxdepth: 1
 
-    docs/devstack_quickstart/index
+    #docs/devstack_quickstart/index
     docs/enable_dvr_with_devstack/index
 
 
@@ -28,10 +28,9 @@ OpenStack Customization
 =======================
 
 .. toctree::
-    :maxdepth: 1
+    :maxdepth: 2
 
     docs/kvm_optimization/index
-    docs/resize_qcow2_image/index
 
 Hadoop Tuning
 =============

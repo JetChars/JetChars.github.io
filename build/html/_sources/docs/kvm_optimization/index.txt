@@ -5,8 +5,8 @@ KVM Optimization
 
 Normally kvm instances are managed by virsh, in which instance is called domain. virsh can be used to create, pause, and shutdown domains.
 
-Disk Optimization
-=================
+Disk
+====
 
 Asynchronous IO
 ---------------
@@ -76,8 +76,8 @@ qcow2 belongs to *file backend*.
 * cinder volume
 * local lvm
 
-Memory Optimization
-===================
+Memory
+======
 
 Drop Memory Cache
 -----------------
@@ -193,8 +193,8 @@ If Nova-Compute Service is not disabled, any changes to libvirt.xml will not tak
 #. Start Nova-Compute Service
 
 
-Network Optimization
-====================
+Network
+=======
 
 MTU Size
 --------

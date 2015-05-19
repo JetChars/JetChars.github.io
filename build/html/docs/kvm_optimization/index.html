@@ -74,7 +74,6 @@
               <ul class="simple">
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../devstack_quickstart/index.html">OpenStack installation with DevStack</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../enable_dvr_with_devstack/index.html">Enable DVR with DevStack</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#brief-intro">Brief Intro</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#configure-network-node">Configure Network Node</a></li>
@@ -85,13 +84,13 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="">KVM Optimization</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#disk-optimization">Disk Optimization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#disk">Disk</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#asynchronous-io">Asynchronous IO</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#disk-cache-mode">Disk Cache Mode</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#storage-backend">Storage Backend</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#memory-optimization">Memory Optimization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#memory">Memory</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#drop-memory-cache">Drop Memory Cache</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#hugepages">HugePages</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#check-hugepage-status">Check HugePage status</a></li>
@@ -102,7 +101,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#network-optimization">Network Optimization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#network">Network</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#mtu-size">MTU Size</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#turn-off-nic-s-offloads">Turn off NIC&#8217;s offloads</a></li>
 </ul>
@@ -144,6 +143,16 @@
 </li>
 </ul>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../screen/index.html">Screen - full-screen window manager</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../screen/index.html#command-list">Command List</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../screen/index.html#commands-out-of-screen">Commands out of screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../screen/index.html#commands-inside-screen">Commands inside screen</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../screen/index.html#shortcuts-keys">Shortcuts Keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../screen/index.html#configuration-files">Configuration Files</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../documentation_tools/index.html">Linux Documentation Tools</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../documentation_tools/index.html#sphinx-python-document-generator">Sphinx - Python Document Generator</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../documentation_tools/index.html#issues">issues</a></li>
@@ -196,8 +205,8 @@
   <div class="section" id="kvm-optimization">
 <h1>KVM Optimization<a class="headerlink" href="#kvm-optimization" title="Permalink to this headline">¶</a></h1>
 <p>Normally kvm instances are managed by virsh, in which instance is called domain. virsh can be used to create, pause, and shutdown domains.</p>
-<div class="section" id="disk-optimization">
-<h2>Disk Optimization<a class="headerlink" href="#disk-optimization" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="disk">
+<h2>Disk<a class="headerlink" href="#disk" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="asynchronous-io">
 <h3>Asynchronous IO<a class="headerlink" href="#asynchronous-io" title="Permalink to this headline">¶</a></h3>
 <p>AIO is not enabled by defalut, default value is io=&#8217;threads&#8217;, when AIO enabled, io=&#8217;native&#8217;.
@@ -285,8 +294,8 @@ qcow2 belongs to <em>file backend</em>.</p>
 </ul>
 </div>
 </div>
-<div class="section" id="memory-optimization">
-<h2>Memory Optimization<a class="headerlink" href="#memory-optimization" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="memory">
+<h2>Memory<a class="headerlink" href="#memory" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="drop-memory-cache">
 <h3>Drop Memory Cache<a class="headerlink" href="#drop-memory-cache" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-shell"><div class="highlight"><pre><span class="nb">echo </span><span class="m">3</span> &gt; /proc/sys/vm/drop_caches
@@ -392,8 +401,8 @@ mount -t hugetlbfs -o pagesize=2M none /dev/hugepages2M
 </div>
 </div>
 </div>
-<div class="section" id="network-optimization">
-<h2>Network Optimization<a class="headerlink" href="#network-optimization" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="network">
+<h2>Network<a class="headerlink" href="#network" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="mtu-size">
 <h3>MTU Size<a class="headerlink" href="#mtu-size" title="Permalink to this headline">¶</a></h3>
 <p>When using tunnel network (GRE, vxlan) , set the MTU in the Guest to 1400, this will allow for the GRE/vxlan header and no packet fragmentation.</p>

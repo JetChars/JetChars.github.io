@@ -1,0 +1,19 @@
+===================================
+Screen - full-screen window manager
+===================================
+
+shortcuts
+=========
+
+Commands start with ^a (^ is short for ctrl)
+
+======== =============
+d        detach
+s        split screen
+c/n/p/k  create/next/previous/kill window
+"/'      select window from list / by index
+A        change window's name
+^a       previous window viewed
+\ or ^\  quit session (close all windows)
+[/]      edit mode, press space bar to start select, press again to complete copy; paste
+?        help
