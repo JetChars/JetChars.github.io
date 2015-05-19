@@ -15,12 +15,6 @@ AIO is not enabled by defalut, default value is io='threads', when AIO enabled, 
 There is no available option to enable AIO, cause 'threads' mode will improve network storage(cinder)'s performance [#]_.
 So we need to change nova's libvirt config file manually.
 
-.. code-block:: shell
-
-    # vi /usr/lib/python2.7/dist-packages/nova/virt/libvirt/config.py
-    vi /opt/stack/nova/nova/virt/libvirt/config.py
-
-
 .. code-block:: python
     :linenos:
 
@@ -50,6 +44,13 @@ So we need to change nova's libvirt config file manually.
                 if self.io is not None:  #add
                     drv.set("io", self.io)   #add
                 dev.append(drv)
+
+Here's the location of configuration file.
+
+.. code-block:: shell
+
+    # vi /usr/lib/python2.7/dist-packages/nova/virt/libvirt/config.py
+    vi /opt/stack/nova/nova/virt/libvirt/config.py
 
 
 
@@ -88,8 +89,27 @@ Drop Memory Cache
 HugePages
 ---------
 
+.. raw:: html
+
+    <div class="sidebar">
+
+**Note**
+
+There are two types of Hugepages, **Anonymous** and **Transparent**.
+
+**AnonHugePages** stands for the total space of Anonymous Hugepage.
+It can be divided by *Hugepagesize*
+
+**HugePages_Total** stands for the total space of Transparent Hugepages.
+Equals to *vm.nr_hugepages* * *Hugepagesize*
+
+.. raw:: html
+
+    </div>
+
 Check HugePage status
 ^^^^^^^^^^^^^^^^^^^^^
+
 
 * ``sudo sysctl -a | grep -i huge`` ::
 
@@ -205,7 +225,7 @@ Turn off NIC's offloads
 
 Turn **TSO/LRO** and **GRO/GSO** off on the instance physical machine for traffic to work, will help improve instance's performance greatly, especially **GRO** . [#]_
 
-* Check offloads status ::
+* Check offloads' status ::
 
     $ ethtool -k enp6s0f1
     tcp-segmentation-offload: on
@@ -224,8 +244,8 @@ Turn **TSO/LRO** and **GRO/GSO** off on the instance physical machine for traffi
 ::
 
 
-Improve Launch Speed
-====================
+Improve Instance's Launch Speed
+===============================
 
 * Resize qcow2 image's disk size to fit target flavor's disk size
 
@@ -236,8 +256,10 @@ Improve Launch Speed
     sudo apt-get install libguestfs-tools -y --force-yes 2>/dev/null || sudo yum install -y libguestfs-tools
     # create an empty qcow2 image with target size
     qemu-img create -f qcow2 image_name image_size
-    # use guestfish resize it
+    # use guestfish to resize it
     virt-resize -d --expand /dev/sda1 src_image dst_image
     qemu-img info dst_image
+
+
 .. [#] https://blueprints.launchpad.net/nova/+spec/improve-nova-kvm-io-support
 .. [#] https://www.rdoproject.org/Using_GRE_tenant_networks

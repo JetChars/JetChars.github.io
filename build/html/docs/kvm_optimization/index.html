@@ -74,6 +74,7 @@
               <ul class="simple">
 </ul>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../devstack_quickstart/index.html">OpenStack installation with DevStack</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../enable_dvr_with_devstack/index.html">Enable DVR with DevStack</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#brief-intro">Brief Intro</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#configure-network-node">Configure Network Node</a></li>
@@ -106,7 +107,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#turn-off-nic-s-offloads">Turn off NIC&#8217;s offloads</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#improve-launch-speed">Improve Launch Speed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#improve-instance-s-launch-speed">Improve Instance&#8217;s Launch Speed</a></li>
 </ul>
 </li>
 </ul>
@@ -202,10 +203,6 @@
 <p>AIO is not enabled by defalut, default value is io=&#8217;threads&#8217;, when AIO enabled, io=&#8217;native&#8217;.
 There is no available option to enable AIO, cause &#8216;threads&#8217; mode will improve network storage(cinder)&#8217;s performance <a class="footnote-reference" href="#id3" id="id1">[1]</a>.
 So we need to change nova&#8217;s libvirt config file manually.</p>
-<div class="highlight-shell"><div class="highlight"><pre><span class="c"># vi /usr/lib/python2.7/dist-packages/nova/virt/libvirt/config.py</span>
-vi /opt/stack/nova/nova/virt/libvirt/config.py
-</pre></div>
-</div>
 <div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -259,6 +256,11 @@ vi /opt/stack/nova/nova/virt/libvirt/config.py
             <span class="n">dev</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">drv</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div>
+<p>Here&#8217;s the location of configuration file.</p>
+<div class="highlight-shell"><div class="highlight"><pre><span class="c"># vi /usr/lib/python2.7/dist-packages/nova/virt/libvirt/config.py</span>
+vi /opt/stack/nova/nova/virt/libvirt/config.py
+</pre></div>
+</div>
 </div>
 <div class="section" id="disk-cache-mode">
 <h3>Disk Cache Mode<a class="headerlink" href="#disk-cache-mode" title="Permalink to this headline">¶</a></h3>
@@ -293,7 +295,13 @@ qcow2 belongs to <em>file backend</em>.</p>
 </div>
 <div class="section" id="hugepages">
 <h3>HugePages<a class="headerlink" href="#hugepages" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="check-hugepage-status">
+<div class="sidebar"><p><strong>Note</strong></p>
+<p>There are two types of Hugepages, <strong>Anonymous</strong> and <strong>Transparent</strong>.</p>
+<p><strong>AnonHugePages</strong> stands for the total space of Anonymous Hugepage.
+It can be divided by <em>Hugepagesize</em></p>
+<p><strong>HugePages_Total</strong> stands for the total space of Transparent Hugepages.
+Equals to <em>vm.nr_hugepages</em> * <em>Hugepagesize</em></p>
+</div><div class="section" id="check-hugepage-status">
 <h4>Check HugePage status<a class="headerlink" href="#check-hugepage-status" title="Permalink to this headline">¶</a></h4>
 <ul>
 <li><p class="first"><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">sysctl</span> <span class="pre">-a</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">-i</span> <span class="pre">huge</span></code></p>
@@ -413,7 +421,7 @@ service neutron-dhcp-agent restart
 <h3>Turn off NIC&#8217;s offloads<a class="headerlink" href="#turn-off-nic-s-offloads" title="Permalink to this headline">¶</a></h3>
 <p>Turn <strong>TSO/LRO</strong> and <strong>GRO/GSO</strong> off on the instance physical machine for traffic to work, will help improve instance&#8217;s performance greatly, especially <strong>GRO</strong> . <a class="footnote-reference" href="#id4" id="id2">[2]</a></p>
 <ul>
-<li><p class="first">Check offloads status</p>
+<li><p class="first">Check offloads&#8217; status</p>
 <div class="highlight-python"><div class="highlight"><pre>$ ethtool -k enp6s0f1
 tcp-segmentation-offload: on
         tx-tcp-segmentation: on
@@ -434,8 +442,8 @@ large-receive-offload: off
 </ul>
 </div>
 </div>
-<div class="section" id="improve-launch-speed">
-<h2>Improve Launch Speed<a class="headerlink" href="#improve-launch-speed" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="improve-instance-s-launch-speed">
+<h2>Improve Instance&#8217;s Launch Speed<a class="headerlink" href="#improve-instance-s-launch-speed" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Resize qcow2 image&#8217;s disk size to fit target flavor&#8217;s disk size</li>
 </ul>
@@ -449,7 +457,7 @@ large-receive-offload: off
 sudo apt-get install libguestfs-tools -y --force-yes 2&gt;/dev/null <span class="o">||</span> sudo yum install -y libguestfs-tools
 <span class="c"># create an empty qcow2 image with target size</span>
 qemu-img create -f qcow2 image_name image_size
-<span class="c"># use guestfish resize it</span>
+<span class="c"># use guestfish to resize it</span>
 virt-resize -d --expand /dev/sda1 src_image dst_image
 qemu-img info dst_image
 </pre></div>
