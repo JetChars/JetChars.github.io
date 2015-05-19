@@ -2,17 +2,17 @@
 Hadoop Configuration Tuning
 ===========================
 
-`DoopShot <https://github.com/JetChars/hadoopshot>`_ - Automatic Conf & Analysis Tool
+.. `DoopShot <https://github.com/JetChars/hadoopshot>`_ - Automatic Conf & Analysis Tool
 =====================================================================================
 
-In order to simplify hadoop tunning process, I've started this project with my friend `Xinni <https://github.com/irisayame>`_.
-This tool has helped us with configurating hadoop, extracting system info and collecting datas, as well as analyzing results.
+.. In order to simplify hadoop tunning process, I've started this project with my friend `Xinni <https://github.com/irisayame>`_.
+.. This tool has helped us with configurating hadoop, extracting system info and collecting datas, as well as analyzing results.
 
 
 Rack Awareness
 ==============
 
-Typically large Hadoop clusters are arranged in racks and network traffic between different nodes with in the same rack is much more desirable than network traffic across the racks. In addition NameNode tries to place replicas of block on multiple racks for improved fault tolerance. Hadoop lets the cluster administrators decide which rack a node belongs to through configuration variable net.topology.script.file.name. When this script is configured, each node runs the script to determine its rack id. A default installation assumes all the nodes belong to the same rack. This feature and configuration is further described in PDF attached to `HADOOP-692 <https://issues.apache.org/jira/browse/HADOOP-692>`_
+Typically large Hadoop clusters are arranged in racks and network traffic between different nodes with in the same rack is much more desirable than network traffic across the racks. In addition NameNode tries to place replicas of block on multiple racks for improved fault tolerance. Hadoop lets the cluster administrators decide which rack a node belongs to through configuration variable ``net.topology.script.file.name``. When this script is configured, each node runs the script to determine its rack id. A default installation assumes all the nodes belong to the same rack. This feature and configuration is further described in PDF attached to `HADOOP-692 <https://issues.apache.org/jira/browse/HADOOP-692>`_
 
 
 .. image:: images/network_topology.png
@@ -54,8 +54,6 @@ Topology Script
 
 * Add parameter ``net.topology.script.file.name`` to **core-site.xml**
 
-* Write script file
-
 .. raw:: html
 
    <div class="sidebar">
@@ -67,6 +65,8 @@ The script name that should be invoked to resolve DNS names to NetworkTopology n
 .. raw:: html
 
    </div>
+
+* Write script file
 
 *Sample c script*
 
@@ -127,3 +127,9 @@ The script name that should be invoked to resolve DNS names to NetworkTopology n
             echo -n "$result "
         fi
     done
+
+Topology data ::
+
+    hadoopdata1.ec.com     /dc1/rack1
+    hadoopdata1            /dc1/rack1
+    10.1.1.1               /dc1/rack2

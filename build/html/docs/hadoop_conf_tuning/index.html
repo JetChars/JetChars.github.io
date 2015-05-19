@@ -126,7 +126,6 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Hadoop Configuration Tuning</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#doopshot-automatic-conf-analysis-tool">DoopShot - Automatic Conf &amp; Analysis Tool</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rack-awareness">Rack Awareness</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#assumption">Assumption</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#replica-placement">Replica Placement</a><ul>
@@ -192,14 +191,10 @@
             
   <div class="section" id="hadoop-configuration-tuning">
 <h1>Hadoop Configuration Tuning<a class="headerlink" href="#hadoop-configuration-tuning" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="doopshot-automatic-conf-analysis-tool">
-<h2><a class="reference external" href="https://github.com/JetChars/hadoopshot">DoopShot</a> - Automatic Conf &amp; Analysis Tool<a class="headerlink" href="#doopshot-automatic-conf-analysis-tool" title="Permalink to this headline">¶</a></h2>
-<p>In order to simplify hadoop tunning process, I&#8217;ve started this project with my friend <a class="reference external" href="https://github.com/irisayame">Xinni</a>.
-This tool has helped us with configurating hadoop, extracting system info and collecting datas, as well as analyzing results.</p>
-</div>
+<hr class="docutils" />
 <div class="section" id="rack-awareness">
 <h2>Rack Awareness<a class="headerlink" href="#rack-awareness" title="Permalink to this headline">¶</a></h2>
-<p>Typically large Hadoop clusters are arranged in racks and network traffic between different nodes with in the same rack is much more desirable than network traffic across the racks. In addition NameNode tries to place replicas of block on multiple racks for improved fault tolerance. Hadoop lets the cluster administrators decide which rack a node belongs to through configuration variable net.topology.script.file.name. When this script is configured, each node runs the script to determine its rack id. A default installation assumes all the nodes belong to the same rack. This feature and configuration is further described in PDF attached to <a class="reference external" href="https://issues.apache.org/jira/browse/HADOOP-692">HADOOP-692</a></p>
+<p>Typically large Hadoop clusters are arranged in racks and network traffic between different nodes with in the same rack is much more desirable than network traffic across the racks. In addition NameNode tries to place replicas of block on multiple racks for improved fault tolerance. Hadoop lets the cluster administrators decide which rack a node belongs to through configuration variable <code class="docutils literal"><span class="pre">net.topology.script.file.name</span></code>. When this script is configured, each node runs the script to determine its rack id. A default installation assumes all the nodes belong to the same rack. This feature and configuration is further described in PDF attached to <a class="reference external" href="https://issues.apache.org/jira/browse/HADOOP-692">HADOOP-692</a></p>
 <img alt="../../_images/network_topology.png" src="../../_images/network_topology.png" />
 <ul class="simple">
 <li>distance(/D1/R1/H1,/D1/R1/H1)=0  same datanode</li>
@@ -248,22 +243,22 @@ This tool has helped us with configurating hadoop, extracting system info and co
 <h3>Topology Script<a class="headerlink" href="#topology-script" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Add parameter <code class="docutils literal"><span class="pre">net.topology.script.file.name</span></code> to <strong>core-site.xml</strong></li>
-<li>Write script file</li>
 </ul>
 <div class="sidebar"><p><em>Note</em> :</p>
 <p>The script name that should be invoked to resolve DNS names to NetworkTopology names. Example: the script would take host.foo.bar as an argument, and return /rack1 as the output.</p>
-</div><p><em>Sample c script</em></p>
+</div><ul class="simple">
+<li>Write script file</li>
+</ul>
+<p><em>Sample c script</em></p>
 <div class="highlight-c"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4
 5
 6
-7
-8</pre></div></td><td class="code"><div class="highlight"><pre><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span> <span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[]){</span>
+7</pre></div></td><td class="code"><div class="highlight"><pre><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span> <span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[]){</span>
     <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span> <span class="p">;</span><span class="n">i</span><span class="o">&lt;</span> <span class="n">argc</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
         <span class="kt">char</span><span class="o">*</span> <span class="n">ipStr</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-        <span class="c1">//  找到ip对应的rack设置,下面的</span>
         <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;/rack1/&quot;</span><span class="o">&lt;&lt;</span><span class="n">i</span><span class="o">&lt;&lt;</span><span class="s">&quot; &quot;</span><span class="p">;</span>
     <span class="p">}</span>
     <span class="n">cout</span><span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
@@ -328,22 +323,28 @@ This tool has helped us with configurating hadoop, extracting system info and co
 <span class="k">while</span> <span class="o">[</span> <span class="nv">$# </span>-gt <span class="m">0</span> <span class="o">]</span> <span class="p">;</span> <span class="k">do</span>
     <span class="nv">nodeArg</span><span class="o">=</span><span class="nv">$1</span>
     <span class="nb">exec</span>&lt; <span class="si">${</span><span class="nv">HADOOP_CONF</span><span class="si">}</span>/topology.data
-    <span class="nv">result</span><span class="o">=</span>””
+    <span class="nv">result</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
     <span class="k">while</span> <span class="nb">read </span>line <span class="p">;</span> <span class="k">do</span>
         <span class="nv">ar</span><span class="o">=(</span> <span class="nv">$line</span> <span class="o">)</span>
-        <span class="k">if</span> <span class="o">[</span> “<span class="si">${</span><span class="nv">ar</span><span class="p">[0]</span><span class="si">}</span>” <span class="o">=</span> “<span class="nv">$nodeArg</span>” <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ar</span><span class="p">[0]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="nv">$nodeArg</span><span class="s2">&quot;</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
             <span class="nv">result</span><span class="o">=</span>”<span class="si">${</span><span class="nv">ar</span><span class="p">[1]</span><span class="si">}</span>”
         <span class="k">fi</span>
     <span class="k">done</span>
     <span class="nb">shift</span>
-<span class="nb">    </span><span class="k">if</span> <span class="o">[</span> -z “<span class="nv">$result</span>” <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
-        <span class="nb">echo</span> -n “/default/rack “
+<span class="nb">    </span><span class="k">if</span> <span class="o">[</span> -z <span class="s2">&quot;</span><span class="nv">$result</span><span class="s2">&quot;</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
+        <span class="nb">echo</span> -n <span class="s2">&quot;/default/rack &quot;</span>
     <span class="k">else</span>
-        <span class="nb">echo</span> -n “<span class="nv">$result</span> “
+        <span class="nb">echo</span> -n <span class="s2">&quot;</span><span class="nv">$result</span><span class="s2"> &quot;</span>
     <span class="k">fi</span>
 <span class="k">done</span>
 </pre></div>
 </td></tr></table></div>
+<p>Topology data</p>
+<div class="highlight-python"><div class="highlight"><pre>hadoopdata1.ec.com     /dc1/rack1
+hadoopdata1            /dc1/rack1
+10.1.1.1               /dc1/rack2
+</pre></div>
+</div>
 </div>
 </div>
 </div>

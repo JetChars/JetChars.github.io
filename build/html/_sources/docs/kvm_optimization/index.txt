@@ -11,15 +11,85 @@ Disk Optimization
 Asynchronous IO
 ---------------
 
+AIO is not enabled by defalut, default value is io='threads', when AIO enabled, io='native'.
+There is no available option to enable AIO, cause 'threads' mode will improve network storage(cinder)'s performance [#]_.
+So we need to change nova's libvirt config file manually.
+
+.. code-block:: shell
+
+    # vi /usr/lib/python2.7/dist-packages/nova/virt/libvirt/config.py
+    vi /opt/stack/nova/nova/virt/libvirt/config.py
+
+
+.. code-block:: python
+    :linenos:
+
+    class LibvirtConfigGuestDisk(LibvirtConfigGuestDevice):
+    
+        def __init__(self, **kwargs):
+            super(LibvirtConfigGuestDisk, self).__init__(root_name="disk",
+                                                         **kwargs)
+            .
+            .
+            self.snapshot = None
+            self.backing_store = None
+            self.io = "native"    #add
+        def format_dom(self):
+            dev = super(LibvirtConfigGuestDisk, self).format_dom()
+            .
+            .
+            if (self.driver_name is not None or
+                self.driver_format is not None or
+                self.driver_cache is not None or
+                    self.driver_discard is not None):
+                drv = etree.Element("driver")
+                if self.driver_name is not None:
+                    drv.set("name", self.driver_name)
+                .
+                .
+                if self.io is not None:  #add
+                    drv.set("io", self.io)   #add
+                dev.append(drv)
+
+
+
 Disk Cache Mode
 ---------------
-disk_cachemodes: ``writethrough`` ``writeback`` ``none(default)`` ``directsync``
+disk_cachemodes: ``writethrough`` ``writeback`` ``none(default)`` ``directsync`` ``unsafe`` ::
+
+    [libvirt]
+    vif_driver = nova.virt.libvirt.vif.LibvirtGenericVIFDriver inject_partition = -2
+    live_migration_uri = qemu+ssh://stack@%s/system use_usb_tablet = False
+    cpu_mode = none
+    virt_type = kvm
+    disk_cachemodes = file=writeback,block=none
+
+Storage Backend
+---------------
+
+**block backend** performs better than **file backend**.
+qcow2 belongs to *file backend*.
+
+**2 ways to realize block backend**
+
+* cinder volume
+* local lvm
 
 Memory Optimization
 ===================
 
+Drop Memory Cache
+-----------------
+
+.. code-block:: shell
+
+    echo 3 > /proc/sys/vm/drop_caches
+
+HugePages
+---------
+
 Check HugePage status
----------------------
+^^^^^^^^^^^^^^^^^^^^^
 
 * ``sudo sysctl -a | grep -i huge`` ::
 
@@ -40,7 +110,7 @@ Check HugePage status
 
 
 Enable 1GB HugePage
--------------------
+^^^^^^^^^^^^^^^^^^^
 
 Currently, this size only support rhel & centos.
 *Restarting Host OS* is required after the step 1.
@@ -65,20 +135,16 @@ After that, hugepage number cannot be changed.
 
 
 Anonymous HugePages
--------------------
+^^^^^^^^^^^^^^^^^^^
 
 kvm instance will use anonymous hugepages by default. Once hugepages are allocated to an instance, they will not be recycled until the instance is destroyed.
 
 .. code-block:: shell
 
-    ps -fp `grep AnonHugePages /proc/*/smaps | grep -v 'AnonHugePages: 0 kB' | cut -d/ -f3`
-
+    ps -fp `grep AnonHugePages /proc/*/smaps | grep -v 'AnonHugePages:         0 kB' | cut -d/ -f3`
 
 Transparent HugePages(THP)
---------------------------
-
-Start to use THP
-^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
 
@@ -112,8 +178,66 @@ Network Optimization
 
 MTU Size
 --------
+When using tunnel network (GRE, vxlan) , set the MTU in the Guest to 1400, this will allow for the GRE/vxlan header and no packet fragmentation.
 
-Enhance Launch Speed
+* change default dnsmasq conf file at **/etc/neutron/dhcp_agent.ini** ::
+
+.. code-block:: guess
+
+    dnsmasq_config_file = /etc/neutron/dnsmasq-neutron.conf
+
+* add dhcp option to **/etc/neutron/dnsmasq-neutron.conf** ::
+
+.. code-block:: guess
+
+    dhcp-option-force=26,1400
+
+* restart Neutron-DHCP service
+
+.. code-block:: shell
+
+    # sudo pkill -1 neutron-dhcp-agent
+    service neutron-dhcp-agent restart
+    
+
+Turn off NIC's offloads
+-----------------------
+
+Turn **TSO/LRO** and **GRO/GSO** off on the instance physical machine for traffic to work, will help improve instance's performance greatly, especially **GRO** . [#]_
+
+* Check offloads status ::
+
+    $ ethtool -k enp6s0f1
+    tcp-segmentation-offload: on
+            tx-tcp-segmentation: on
+            tx-tcp-ecn-segmentation: off [fixed]
+            tx-tcp6-segmentation: on
+    udp-fragmentation-offload: off [fixed]
+    generic-segmentation-offload: on
+    generic-receive-offload: off
+    large-receive-offload: off
+
+* Turn offloads off ::
+
+    $ sudo ethtool -K enp6s0f1 tso off lro off gro off gso off
+
+::
+
+
+Improve Launch Speed
 ====================
 
-resize qcow2 image's disk size to fit target flavor's disk size
+* Resize qcow2 image's disk size to fit target flavor's disk size
+
+.. code-block:: shell
+    :linenos:
+
+    # guestfish - the libguestfs Filesystem Interactive SHell
+    sudo apt-get install libguestfs-tools -y --force-yes 2>/dev/null || sudo yum install -y libguestfs-tools
+    # create an empty qcow2 image with target size
+    qemu-img create -f qcow2 image_name image_size
+    # use guestfish resize it
+    virt-resize -d --expand /dev/sda1 src_image dst_image
+    qemu-img info dst_image
+.. [#] https://blueprints.launchpad.net/nova/+spec/improve-nova-kvm-io-support
+.. [#] https://www.rdoproject.org/Using_GRE_tenant_networks
