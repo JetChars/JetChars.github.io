@@ -18,7 +18,7 @@ DevStack Hacking
 ================
 
 .. toctree::
-    :maxdepth: 1
+    :maxdepth: 2
 
     #docs/devstack_quickstart/index
     docs/enable_dvr_with_devstack/index
@@ -40,7 +40,7 @@ Hadoop Tuning
 
     docs/hibench_intro/index
     docs/centos_tuning/index
-    docs/linux_kernel_tuning/index
+    #docs/linux_kernel_tuning/index
     docs/hadoop_conf_tuning/index
 
 
@@ -48,12 +48,13 @@ Linux Tools
 ===========
 
 .. toctree::
-    :maxdepth: 1
+    :maxdepth: 2
 
-    docs/anaconda_kickstart/index
+    #docs/anaconda_kickstart/index
     docs/screen/index
+    docs/string_process/index
     docs/documentation_tools/index
-    docs/network_tools/index
+    #docs/network_tools/index
 
 
 
