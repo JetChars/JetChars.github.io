@@ -95,7 +95,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#hugepages">HugePages</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#check-hugepage-status">Check HugePage status</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#enable-1gb-hugepage">Enable 1GB HugePage</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#anonymous-hugepages">Anonymous HugePages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#anonymous-hugepages-ahp">Anonymous HugePages (AHP)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#transparent-hugepages-thp">Transparent HugePages(THP)</a></li>
 </ul>
 </li>
@@ -143,7 +143,7 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../screen/index.html">Screen - full-screen window manager</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../screen/index.html">Screen - Full-screen window manager</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../screen/index.html#command-list">Command List</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../screen/index.html#commands-out-of-screen">Commands out of screen</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../screen/index.html#commands-inside-screen">Commands inside screen</a></li>
@@ -305,7 +305,7 @@ qcow2 belongs to <em>file backend</em>.</p>
 <div class="section" id="hugepages">
 <h3>HugePages<a class="headerlink" href="#hugepages" title="Permalink to this headline">¶</a></h3>
 <div class="sidebar"><p><strong>Note</strong></p>
-<p>There are two types of Hugepages, <strong>Anonymous</strong> and <strong>Transparent</strong>.</p>
+<p>There are two types of Hugepages, <strong>Anonymous</strong> and <strong>Transparent</strong>. Without hugepage, disk I/O drop drastically.</p>
 <p><strong>AnonHugePages</strong> stands for the total space of Anonymous Hugepage.
 It can be divided by <em>Hugepagesize</em></p>
 <p><strong>HugePages_Total</strong> stands for the total space of Transparent Hugepages.
@@ -361,17 +361,27 @@ mount -t hugetlbfs -o pagesize=2M none /dev/hugepages2M
 </li>
 </ol>
 </div>
-<div class="section" id="anonymous-hugepages">
-<h4>Anonymous HugePages<a class="headerlink" href="#anonymous-hugepages" title="Permalink to this headline">¶</a></h4>
-<p>kvm instance will use anonymous hugepages by default. Once hugepages are allocated to an instance, they will not be recycled until the instance is destroyed.</p>
+<div class="section" id="anonymous-hugepages-ahp">
+<h4>Anonymous HugePages (AHP)<a class="headerlink" href="#anonymous-hugepages-ahp" title="Permalink to this headline">¶</a></h4>
+<p>kvm instance will use anonymous hugepages by default. AHPs were allocated dynamically, once hugepages are allocated to an instance, they will not be recycled until the instance is destroyed.</p>
+<p><strong>Check which process use AHP</strong></p>
 <div class="highlight-shell"><div class="highlight"><pre>ps -fp <span class="sb">`</span>grep AnonHugePages /proc/*/smaps <span class="p">|</span> grep -v <span class="s1">&#39;AnonHugePages:         0 kB&#39;</span> <span class="p">|</span> cut -d/ -f3<span class="sb">`</span>
+</pre></div>
+</div>
+<p><strong>Enable anonymous hugepage</strong></p>
+<div class="highlight-shell"><div class="highlight"><pre>sudo <span class="nb">echo </span>always &gt; /sys/kernel/mm/transparent_hugepage/enabled
+sudo <span class="nb">echo </span>madvise &gt; /sys/kernel/mm/transparent_hugepage/defrag
 </pre></div>
 </div>
 </div>
 <div class="section" id="transparent-hugepages-thp">
 <h4>Transparent HugePages(THP)<a class="headerlink" href="#transparent-hugepages-thp" title="Permalink to this headline">¶</a></h4>
+<p>THP is kind of static Hugepage, once its number changed, memory useage goes with it.</p>
 <div class="sidebar"><p><strong>Warning!</strong></p>
-<p>If Nova-Compute Service is not disabled, any changes to libvirt.xml will not take effect.</p>
+<ul class="simple">
+<li>If Nova-Compute Service is not disabled, any changes to libvirt.xml will not take effect.</li>
+<li>THPs are known to cause  unexpected node reboots and performance problem with Oracle RAC &amp; JDK</li>
+</ul>
 </div><ol class="arabic">
 <li><p class="first">Disable Nova-Compute Service</p>
 </li>

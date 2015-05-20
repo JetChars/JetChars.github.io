@@ -95,7 +95,7 @@ HugePages
 
 **Note**
 
-There are two types of Hugepages, **Anonymous** and **Transparent**.
+There are two types of Hugepages, **Anonymous** and **Transparent**. Without hugepage, disk I/O drop drastically.
 
 **AnonHugePages** stands for the total space of Anonymous Hugepage.
 It can be divided by *Hugepagesize*
@@ -154,17 +154,29 @@ After that, hugepage number cannot be changed.
     systemctl restart libvirtd
 
 
-Anonymous HugePages
-^^^^^^^^^^^^^^^^^^^
+Anonymous HugePages (AHP)
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
-kvm instance will use anonymous hugepages by default. Once hugepages are allocated to an instance, they will not be recycled until the instance is destroyed.
+kvm instance will use anonymous hugepages by default. AHPs were allocated dynamically, once hugepages are allocated to an instance, they will not be recycled until the instance is destroyed.
+
+**Check which process use AHP**
 
 .. code-block:: shell
 
     ps -fp `grep AnonHugePages /proc/*/smaps | grep -v 'AnonHugePages:         0 kB' | cut -d/ -f3`
 
+**Enable anonymous hugepage**
+
+.. code-block:: shell
+
+    sudo echo always > /sys/kernel/mm/transparent_hugepage/enabled
+    sudo echo madvise > /sys/kernel/mm/transparent_hugepage/defrag
+
+
 Transparent HugePages(THP)
-^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+THP is kind of static Hugepage, once its number changed, memory useage goes with it.
 
 .. raw:: html
 
@@ -172,7 +184,8 @@ Transparent HugePages(THP)
 
 **Warning!**
 
-If Nova-Compute Service is not disabled, any changes to libvirt.xml will not take effect.
+* If Nova-Compute Service is not disabled, any changes to libvirt.xml will not take effect.
+* THPs are known to cause  unexpected node reboots and performance problem with Oracle RAC & JDK
 
 .. raw:: html
 
