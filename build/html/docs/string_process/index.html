@@ -78,7 +78,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#brief-intro">Brief Intro</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#configure-network-node">Configure Network Node</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#configure-compute-node">Configure Compute Node</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#references">References</a></li>
 </ul>
 </li>
 </ul>
@@ -156,12 +155,17 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="">String Processing Tools</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#regular-expression">Regular Expression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#awk-pattern-directed-scanning-and-processing">awk &#8211; pattern-directed scanning and processing</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#synopsis">SYNOPSIS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#synopsis">Synopsis</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#predefined-variables">Predefined variables</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#sed-stream-editor">sed &#8211; stream editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sed-stream-editor">sed &#8211; stream editor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Synopsis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Examples</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../documentation_tools/index.html">Linux Documentation Tools</a><ul>
@@ -217,7 +221,7 @@
 <div class="section" id="awk-pattern-directed-scanning-and-processing">
 <h2>awk &#8211; pattern-directed scanning and processing<a class="headerlink" href="#awk-pattern-directed-scanning-and-processing" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="synopsis">
-<h3>SYNOPSIS<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h3>
+<h3>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal"><span class="pre">awk</span> <span class="pre">[</span> <span class="pre">-F</span> <span class="pre">field-separator</span> <span class="pre">]</span> <span class="pre">[</span> <span class="pre">-v</span> <span class="pre">var=value</span> <span class="pre">]</span> <span class="pre">[</span> <span class="pre">'prog'</span> <span class="pre">|</span> <span class="pre">-f</span> <span class="pre">progfile</span> <span class="pre">]</span> <span class="pre">[</span> <span class="pre">file</span> <span class="pre">...</span>&nbsp; <span class="pre">]</span></code></p>
 <ul class="simple">
 <li>FS&#8217; default val is white space, it should be a regex</li>
@@ -272,6 +276,111 @@ BEGIN     <span class="o">{</span>    <span class="c"># Simulate echo(1)</span>
 </div>
 <div class="section" id="sed-stream-editor">
 <h2>sed &#8211; stream editor<a class="headerlink" href="#sed-stream-editor" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>Synopsis<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal"><span class="pre">sed</span> <span class="pre">[-Ealn]</span> <span class="pre">cmd</span> <span class="pre">[file</span> <span class="pre">...]</span></code></p>
+<p><code class="docutils literal"><span class="pre">sed</span> <span class="pre">[-Ealn]</span> <span class="pre">[-e</span> <span class="pre">cmd]</span> <span class="pre">[-f</span> <span class="pre">cmd_file]</span> <span class="pre">[-i</span> <span class="pre">extension]</span> <span class="pre">[file</span> <span class="pre">...]</span></code></p>
+<ul>
+<li><p class="first">support regex</p>
+</li>
+<li><p class="first">escape charactor \ can be applied to &#8221; but not &#8216;</p>
+</li>
+<li><dl class="first docutils">
+<dt>edit cmds <code class="docutils literal"><span class="pre">[addr1[,addr2]]function</span></code>, seperated by &#8221;;&#8221;</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">sed</span> <span class="pre">-n</span> <span class="pre">'3p'</span> <span class="pre">datafile</span></code>     only print line 3</li>
+<li><code class="docutils literal"><span class="pre">sed</span> <span class="pre">-n</span> <span class="pre">'/expr/'p</span> <span class="pre">FILE</span></code>    print all lines match expr</li>
+<li><code class="docutils literal"><span class="pre">sed</span> <span class="pre">-n</span> <span class="pre">'4,/expr/'p</span> <span class="pre">FILE</span></code>  print start from line 4 till line match expr</li>
+<li><code class="docutils literal"><span class="pre">sed</span> <span class="pre">-n</span> <span class="pre">'p;n'</span> <span class="pre">file</span></code> output odd-numbered line</li>
+<li><code class="docutils literal"><span class="pre">sed</span> <span class="pre">-n</span> <span class="pre">'n;p'</span> <span class="pre">file</span></code> output even-numbered line</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="84%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">options</th>
+<th class="head">description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>n</td>
+<td>only output with function <code class="docutils literal"><span class="pre">p</span></code></td>
+</tr>
+<tr class="row-odd"><td>e</td>
+<td>exec multiple cmds <code class="docutils literal"><span class="pre">sed</span> <span class="pre">-e</span> <span class="pre">'regex1'</span> <span class="pre">-e</span> <span class="pre">'regex2'</span> <span class="pre">FILE</span></code></td>
+</tr>
+<tr class="row-even"><td>i</td>
+<td>edit in file <code class="docutils literal"><span class="pre">sudo</span> <span class="pre">sed</span> <span class="pre">-i</span> <span class="pre">'/^RSYNC_ENABLED=false/</span> <span class="pre">{s/false/true/</span> <span class="pre">}'</span> <span class="pre">/etc/default/rsync</span></code></td>
+</tr>
+<tr class="row-odd"><td>f</td>
+<td>exec cmds stores in cmd_file</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="32%" />
+<col width="68%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">name</th>
+<th class="head">description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>s/regex/replacement/flags</td>
+<td>switch lines, flags can be &#8216;val&#8217; &#8216;g&#8217;</td>
+</tr>
+<tr class="row-odd"><td>n/d/p</td>
+<td>next/delete/print line</td>
+</tr>
+<tr class="row-even"><td>!function</td>
+<td>apply the func only to the lines that are not selected</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id2">
+<h3>Examples<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-shell"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># substitute all aaa into bbb</span>
+sed <span class="s1">&#39;s/aaa/bbb/g&#39;</span> FILE
+<span class="c"># only substitute form line 1 to 50</span>
+sed <span class="s1">&#39;1,50s/aaa/bbb/g&#39;</span> FILE
+<span class="c"># add # to the front of line 1,2</span>
+
+<span class="c"># not print line 2 to 5</span>
+sed <span class="s1">&#39;2,5d&#39;</span> datafile
+<span class="c"># not print last line</span>
+sed <span class="s1">&#39;$d&#39;</span> file
+<span class="c"># not print first line is not applicable</span>
+sed <span class="s1">&#39;^d&#39;</span> file
+<span class="c"># not print empty lines</span>
+sed -e <span class="s1">&#39;/^$/d&#39;</span>
+</pre></div>
+</td></tr></table></div>
+</div>
 </div>
 </div>
 

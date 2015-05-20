@@ -128,8 +128,6 @@ We use the IP on fg* .
 
 
 
-References
-==========
 
 .. [#] https://wiki.openstack.org/wiki/Neutron/DVR/HowTo
 .. [#] https://blueprints.launchpad.net/neutron/+spec/neutron-ovs-dvr
