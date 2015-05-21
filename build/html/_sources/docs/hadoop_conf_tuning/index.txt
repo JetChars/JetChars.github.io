@@ -128,6 +128,20 @@ The script name that should be invoked to resolve DNS names to NetworkTopology n
         fi
     done
 
+
+.. raw:: html
+
+   <div class="sidebar">
+
+**Important !**
+
+**topology data** need to contain hostname, hostname.region, IP of each node.
+
+.. raw:: html
+
+   </div>
+
+
 Topology data ::
 
     hadoopdata1.ec.com     /dc1/rack1

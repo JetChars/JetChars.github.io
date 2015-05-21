@@ -3,14 +3,14 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to jetchars's documentation!
+Welcome to JetChars's Documentation!
 ====================================
 
 .. toctree::
     :maxdepth: 1
     :hidden:
 
-    #docs/resume/index
+    .. docs/resume/index
  
 
 
@@ -20,7 +20,7 @@ DevStack Hacking
 .. toctree::
     :maxdepth: 2
 
-    #docs/devstack_quickstart/index
+    .. docs/devstack_quickstart/index
     docs/enable_dvr_with_devstack/index
 
 
@@ -40,7 +40,7 @@ Hadoop Tuning
 
     docs/hibench_intro/index
     docs/centos_tuning/index
-    #docs/linux_kernel_tuning/index
+    .. docs/linux_kernel_tuning/index
     docs/hadoop_conf_tuning/index
 
 
@@ -56,6 +56,14 @@ Linux Tools
     docs/documentation_tools/index
     #docs/network_tools/index
 
+Git
+===
+
+.. toctree::
+    :maxdepth: 2
+
+    docs/github/index
+ 
 
 
 Indices and tables
