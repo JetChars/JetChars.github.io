@@ -1,0 +1,122 @@
+========================
+ReStructured Text (reST)
+========================
+
+.. image:: images/rst.png
+    :align: right
+    :width: 200px
+    :alt: rst logo
+
+
+reStructuredText is an easy-to-read, what-you-see-is-what-you-get plaintext markup syntax and parser system. It is useful for in-line program documentation (such as Python docstrings), for quickly creating simple web pages, and for standalone documents. reStructuredText is designed for extensibility for specific application domains. The reStructuredText parser is a component of Docutils. reStructuredText is a *revision* and *reinterpretation* of the **StructuredText** and **Setext** lightweight markup systems. [#]_
+
+`official doc <http://docutils.sourceforge.net/docs/dev/rst/alternatives.html>`_
+
+`fruit doc <http://openalea.gforge.inria.fr/doc/openalea/doc/_build/html/source/sphinx/rest_syntax.html>`_
+
+
+Table of Content Tree (toctree)
+-------------------------------
+
+.. sidebar:: table of content tree
+
+    * menu depth 2
+    * add numbers to titles
+    * one file can only have one title
+    * linux glob matching 
+    * hidden title
+
+Usually put in index.rst file at root dir
+
+.. code-block:: rst
+
+    .. toctree::
+        :maxdepth: 2
+        :numbered:
+        :titlesonly:
+        :glob:
+        :hidden:
+
+
+Photos
+------
+
+.. sidebar:: Note
+
+    png file not support distortion, so resize it only need to change width or height
+
+.. code-block:: rst
+
+    .. image:: images/rst.png
+        :align: right
+        :width: 400px
+        :height: 100px
+        :alt: alternate text
+       
+
+SideBar
+-------
+
+.. sidebar:: Sidebar Title
+    :subtitle: Optional Sidebar Subtitle
+ 
+    Subsequent indented lines comprise
+    the body of the sidebar, and are
+    interpreted as body elements.
+
+.. code-block:: rst
+
+    .. sidebar:: Sidebar Title
+       :subtitle: Optional Sidebar Subtitle
+    
+       Subsequent indented lines comprise
+       the body of the sidebar, and are
+       interpreted as body elements.
+
+Paragraph Mark
+--------------
+
+.. code-block:: rst
+
+    .. note::
+    .. warning::
+
+.. note:: paragraph of note
+.. warning:: paragraph of warning
+
+HTML
+----
+
+.. raw:: html     
+    
+    <div class="sidebar">
+
+rst contents with no titlebar
+
+.. code-block:: guess
+
+    hello world!
+ 
+.. raw:: html    
+    
+    </div>
+
+
+
+.. code-block:: html
+
+    .. raw:: html
+    
+        <div class="sidebar">
+    
+    rst contents with no titlebar
+
+    .. code-block:: python
+    
+        hello world!
+    
+    .. raw:: html
+    
+        </div>
+
+.. [#] http://docutils.sourceforge.net/rst.html
