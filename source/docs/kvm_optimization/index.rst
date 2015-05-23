@@ -89,23 +89,16 @@ Drop Memory Cache
 HugePages
 ---------
 
-.. raw:: html
+.. sidebar:: Note
 
-    <div class="sidebar">
+    There are two types of Hugepages, **Anonymous** and **Transparent**. Without hugepage, disk I/O drop drastically.
+    
+    **AnonHugePages** stands for the total space of Anonymous Hugepage.
+    It can be divided by *Hugepagesize*
+    
+    **HugePages_Total** stands for the total space of Transparent Hugepages.
+    Equals to *vm.nr_hugepages* * *Hugepagesize*
 
-**Note**
-
-There are two types of Hugepages, **Anonymous** and **Transparent**. Without hugepage, disk I/O drop drastically.
-
-**AnonHugePages** stands for the total space of Anonymous Hugepage.
-It can be divided by *Hugepagesize*
-
-**HugePages_Total** stands for the total space of Transparent Hugepages.
-Equals to *vm.nr_hugepages* * *Hugepagesize*
-
-.. raw:: html
-
-    </div>
 
 Check HugePage status
 ^^^^^^^^^^^^^^^^^^^^^
@@ -178,18 +171,10 @@ Transparent HugePages(THP)
 
 THP is kind of static Hugepage, once its number changed, memory useage goes with it.
 
-.. raw:: html
+.. sidebar:: Warning !
 
-    <div class="sidebar">
-
-**Warning!**
-
-* If Nova-Compute Service is not disabled, any changes to libvirt.xml will not take effect.
-* THPs are known to cause  unexpected node reboots and performance problem with Oracle RAC & JDK
-
-.. raw:: html
-
-    </div>
+    * If Nova-Compute Service is not disabled, any changes to libvirt.xml will not take effect.
+    * THPs are known to cause  unexpected node reboots and performance problem with Oracle RAC & JDK
 
 #. Disable Nova-Compute Service
 #. ``virsh destroy <instance>``

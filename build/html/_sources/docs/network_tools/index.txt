@@ -2,6 +2,15 @@
 Network Tools
 =============
 
+.. image:: images/django_logo.svg
+    :align: right
+
+Django -- web framework
+=======================
+
+Open vSwitch
+============
+
 Home made proxy setting tool
 ============================
 

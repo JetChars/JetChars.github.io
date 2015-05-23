@@ -31,6 +31,7 @@
 
   
     <link rel="top" title="JetChars 0.1 documentation" href="../../index.html"/>
+        <link rel="next" title="Virtualization" href="../virtualization/index.html"/>
         <link rel="prev" title="Linux Documentation Tools" href="../documentation_tools/index.html"/> 
 
   
@@ -77,25 +78,34 @@
 <li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#brief-intro">Brief Intro</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#configure-network-node">Configure Network Node</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#configure-compute-node">Configure Compute Node</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#references">References</a></li>
 </ul>
 </li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../kvm_optimization/index.html">KVM Optimization</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../kvm_optimization/index.html#disk-optimization">Disk Optimization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../kvm_optimization/index.html#disk">Disk</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../kvm_optimization/index.html#asynchronous-io">Asynchronous IO</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../kvm_optimization/index.html#disk-cache-mode">Disk Cache Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kvm_optimization/index.html#storage-backend">Storage Backend</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../kvm_optimization/index.html#memory-optimization">Memory Optimization</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../kvm_optimization/index.html#transparent-hugepage">Transparent HugePage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kvm_optimization/index.html#memory">Memory</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kvm_optimization/index.html#drop-memory-cache">Drop Memory Cache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kvm_optimization/index.html#hugepages">HugePages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../kvm_optimization/index.html#check-hugepage-status">Check HugePage status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kvm_optimization/index.html#enable-1gb-hugepage">Enable 1GB HugePage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kvm_optimization/index.html#anonymous-hugepages-ahp">Anonymous HugePages (AHP)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kvm_optimization/index.html#transparent-hugepages-thp">Transparent HugePages(THP)</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../kvm_optimization/index.html#network-optimization">Network Optimization</a><ul>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../kvm_optimization/index.html#network">Network</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../kvm_optimization/index.html#mtu-size">MTU Size</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kvm_optimization/index.html#turn-off-nic-s-offloads">Turn off NIC&#8217;s offloads</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../kvm_optimization/index.html#improve-instance-s-launch-speed">Improve Instance&#8217;s Launch Speed</a></li>
 </ul>
 </li>
 </ul>
@@ -113,8 +123,11 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../centos_tuning/index.html">CentOS Tuning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../centos_tuning/index.html#unlimit-non-root-user-s-resources">Unlimit Non-root User&#8217;s Resources</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../hadoop_conf_tuning/index.html">Hadoop Configuration Tuning</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../hadoop_conf_tuning/index.html#doopshot-automatic-hadoop-configuration-tool">DoopShot - Automatic Hadoop Configuration Tool</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hadoop_conf_tuning/index.html#rack-awareness">Rack Awareness</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../hadoop_conf_tuning/index.html#assumption">Assumption</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../hadoop_conf_tuning/index.html#replica-placement">Replica Placement</a><ul>
@@ -129,6 +142,32 @@
 </li>
 </ul>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../screen/index.html">Screen - Full-screen window manager</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../screen/index.html#command-list">Command List</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../screen/index.html#commands-out-of-screen">Commands out of screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../screen/index.html#commands-inside-screen">Commands inside screen</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../screen/index.html#shortcuts-keys">Shortcuts Keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../screen/index.html#configuration-files">Configuration Files</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../string_process/index.html">String Processing Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../string_process/index.html#regular-expression">Regular Expression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../string_process/index.html#awk-pattern-directed-scanning-and-processing">awk &#8211; pattern-directed scanning and processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../string_process/index.html#synopsis">Synopsis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string_process/index.html#predefined-variables">Predefined variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string_process/index.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../string_process/index.html#sed-stream-editor">sed &#8211; stream editor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../string_process/index.html#id1">Synopsis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string_process/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string_process/index.html#id2">Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../documentation_tools/index.html">Linux Documentation Tools</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../documentation_tools/index.html#sphinx-python-document-generator">Sphinx - Python Document Generator</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../documentation_tools/index.html#issues">issues</a></li>
@@ -138,9 +177,33 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Network Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#django-web-framework">Django &#8211; web framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#open-vswitch">Open vSwitch</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#home-made-proxy-setting-tool">Home made proxy setting tool</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../virtualization/index.html">Virtualization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../virtualization/index.html#hypervisors">Hypervisors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../virtualization/index.html#libvirt">Libvirt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../virtualization/index.html#virsh-virtualization-management-interface">Virsh &#8211; Virtualization Management Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../virtualization/index.html#docker">Docker</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../github/index.html">GitHub &#8211; Git repository hosting service</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../github/index.html#github-com">github.com</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../github/index.html#shortcuts">shortcuts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../github/index.html#search-engine">search engine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../github/index.html#url-customization">url customization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../github/index.html#github-io-github-pages">github.io &#8211; github pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../github/index.html#git-io-short-addr-service">git.io &#8211; short addr service</a></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
 </ul>
 
           
@@ -180,6 +243,13 @@
             
   <div class="section" id="network-tools">
 <h1>Network Tools<a class="headerlink" href="#network-tools" title="Permalink to this headline">¶</a></h1>
+<div align="right" class="align-right"><img src="../../_images/django_logo.svg" /></div>
+<div class="section" id="django-web-framework">
+<h2>Django &#8211; web framework<a class="headerlink" href="#django-web-framework" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="open-vswitch">
+<h2>Open vSwitch<a class="headerlink" href="#open-vswitch" title="Permalink to this headline">¶</a></h2>
+</div>
 <div class="section" id="home-made-proxy-setting-tool">
 <h2>Home made proxy setting tool<a class="headerlink" href="#home-made-proxy-setting-tool" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-shell"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -243,6 +313,8 @@ chmod +x /intel-pxy.sh
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../virtualization/index.html" class="btn btn-neutral float-right" title="Virtualization" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../documentation_tools/index.html" class="btn btn-neutral" title="Linux Documentation Tools" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>

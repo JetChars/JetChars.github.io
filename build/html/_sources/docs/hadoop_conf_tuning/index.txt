@@ -54,17 +54,9 @@ Topology Script
 
 * Add parameter ``net.topology.script.file.name`` to **core-site.xml**
 
-.. raw:: html
+.. sidebar:: Note
 
-   <div class="sidebar">
-
-*Note* :
-
-The script name that should be invoked to resolve DNS names to NetworkTopology names. Example: the script would take host.foo.bar as an argument, and return /rack1 as the output.
-
-.. raw:: html
-
-   </div>
+    The script name that should be invoked to resolve DNS names to NetworkTopology names. Example: the script would take host.foo.bar as an argument, and return /rack1 as the output.
 
 * Write script file
 
@@ -129,17 +121,9 @@ The script name that should be invoked to resolve DNS names to NetworkTopology n
     done
 
 
-.. raw:: html
+.. sidebar:: Important !
 
-   <div class="sidebar">
-
-**Important !**
-
-**topology data** need to contain hostname, hostname.region, IP of each node.
-
-.. raw:: html
-
-   </div>
+    **topology data** need to contain hostname, hostname.region, IP of each node.
 
 
 Topology data ::

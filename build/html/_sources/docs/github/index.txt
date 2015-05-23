@@ -5,6 +5,8 @@ GitHub -- Git repository hosting service
 github.com
 ==========
 
+`JetChars' HomePage <https://github.com/JetChars>`_
+
 shortcuts
 ---------
 
@@ -50,6 +52,7 @@ github.io -- github pages
 * 300M free space
 * create project at github, name as username.github.io
 * create empty file ``.nojerky`` at root if any folder start with '_'
+* create ``404.html`` at root for customized 404 page
 
 git.io -- short addr service
 ============================

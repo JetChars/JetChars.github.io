@@ -78,7 +78,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#brief-intro">Brief Intro</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#configure-network-node">Configure Network Node</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#configure-compute-node">Configure Compute Node</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#references">References</a></li>
 </ul>
 </li>
 </ul>
@@ -154,8 +153,19 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../string_process/index.html">String Processing Tools</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../string_process/index.html#awk-pattern-directed-scanning-and-processing">awk &#8211; pattern-directed scanning and processing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../string_process/index.html#sed-stream-editor">sed &#8211; stream editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../string_process/index.html#regular-expression">Regular Expression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../string_process/index.html#awk-pattern-directed-scanning-and-processing">awk &#8211; pattern-directed scanning and processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../string_process/index.html#synopsis">Synopsis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string_process/index.html#predefined-variables">Predefined variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string_process/index.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../string_process/index.html#sed-stream-editor">sed &#8211; stream editor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../string_process/index.html#id1">Synopsis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string_process/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string_process/index.html#id2">Examples</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../documentation_tools/index.html">Linux Documentation Tools</a><ul>
@@ -164,6 +174,40 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../documentation_tools/index.html#pandoc-universal-document-converter">Pandoc - Universal document converter</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../network_tools/index.html">Network Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../network_tools/index.html#django-web-framework">Django &#8211; web framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../network_tools/index.html#open-vswitch">Open vSwitch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../network_tools/index.html#home-made-proxy-setting-tool">Home made proxy setting tool</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../virtualization/index.html">Virtualization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../virtualization/index.html#hypervisors">Hypervisors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../virtualization/index.html#libvirt">Libvirt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../virtualization/index.html#virsh-virtualization-management-interface">Virsh &#8211; Virtualization Management Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../virtualization/index.html#docker">Docker</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git &#8211; Extraordinary version contrl software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../github/index.html">GitHub &#8211; Git repository hosting service</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../github/index.html#github-com">github.com</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../github/index.html#shortcuts">shortcuts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../github/index.html#search-engine">search engine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../github/index.html#url-customization">url customization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../github/index.html#github-io-github-pages">github.io &#8211; github pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../github/index.html#git-io-short-addr-service">git.io &#8211; short addr service</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../markdown/index.html">ReStructured Text (reST)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../markdown/index.html#photos">Photos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../markdown/index.html#sidebar">SideBar</a></li>
 </ul>
 </li>
 </ul>
@@ -305,13 +349,15 @@ qcow2 belongs to <em>file backend</em>.</p>
 </div>
 <div class="section" id="hugepages">
 <h3>HugePages<a class="headerlink" href="#hugepages" title="Permalink to this headline">¶</a></h3>
-<div class="sidebar"><p><strong>Note</strong></p>
+<div class="sidebar">
+<p class="first sidebar-title">Note</p>
 <p>There are two types of Hugepages, <strong>Anonymous</strong> and <strong>Transparent</strong>. Without hugepage, disk I/O drop drastically.</p>
 <p><strong>AnonHugePages</strong> stands for the total space of Anonymous Hugepage.
 It can be divided by <em>Hugepagesize</em></p>
-<p><strong>HugePages_Total</strong> stands for the total space of Transparent Hugepages.
+<p class="last"><strong>HugePages_Total</strong> stands for the total space of Transparent Hugepages.
 Equals to <em>vm.nr_hugepages</em> * <em>Hugepagesize</em></p>
-</div><div class="section" id="check-hugepage-status">
+</div>
+<div class="section" id="check-hugepage-status">
 <h4>Check HugePage status<a class="headerlink" href="#check-hugepage-status" title="Permalink to this headline">¶</a></h4>
 <ul>
 <li><p class="first"><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">sysctl</span> <span class="pre">-a</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">-i</span> <span class="pre">huge</span></code></p>
@@ -378,12 +424,14 @@ sudo <span class="nb">echo </span>madvise &gt; /sys/kernel/mm/transparent_hugepa
 <div class="section" id="transparent-hugepages-thp">
 <h4>Transparent HugePages(THP)<a class="headerlink" href="#transparent-hugepages-thp" title="Permalink to this headline">¶</a></h4>
 <p>THP is kind of static Hugepage, once its number changed, memory useage goes with it.</p>
-<div class="sidebar"><p><strong>Warning!</strong></p>
-<ul class="simple">
+<div class="sidebar">
+<p class="first sidebar-title">Warning !</p>
+<ul class="last simple">
 <li>If Nova-Compute Service is not disabled, any changes to libvirt.xml will not take effect.</li>
 <li>THPs are known to cause  unexpected node reboots and performance problem with Oracle RAC &amp; JDK</li>
 </ul>
-</div><ol class="arabic">
+</div>
+<ol class="arabic">
 <li><p class="first">Disable Nova-Compute Service</p>
 </li>
 <li><p class="first"><code class="docutils literal"><span class="pre">virsh</span> <span class="pre">destroy</span> <span class="pre">&lt;instance&gt;</span></code></p>
