@@ -5,7 +5,8 @@ GitHub -- Git repository hosting service
 github.com
 ==========
 
-`JetChars' HomePage <https://github.com/JetChars>`_
+| `JetChars' HomePage <https://github.com/JetChars>`_
+| `GitCafe <https://gitcafe.com>`_ -- substitue for github
 
 shortcuts
 ---------
@@ -50,11 +51,15 @@ github.io -- github pages
 =========================
 
 * 300M free space
-* create project at github, name as username.github.io
-* create empty file ``.nojerky`` at root if any folder start with '_'
-* create ``404.html`` at root for customized 404 page
+* Steps
+    * create project at github, name as username.github.io
+    * create empty file ``.nojerky`` at root if any folder start with '_'
+    * create `404.html <http://www.qq.com/404/>`_ at root for customized 404 page
+* official recomment build with `jekyll <http://jekyllrb.com>`_
+* 
 
-git.io -- short addr service
+
+`git.io <http://git.io>`_ -- short addr service
 ============================
 
 .. code-block:: shell

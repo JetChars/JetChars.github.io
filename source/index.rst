@@ -3,6 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+
 Welcome to JetChars's Documentation!
 ====================================
 
@@ -84,3 +85,7 @@ Indices and tables
 * :ref:`modindex`
 * :ref:`search`
 
+
+:download:`pdf <../build/latex/JetChars.pdf>`
+:download:`LaTeX <../build/latex/JetChars.tex>`
+:download:`epub <../build/epub/JetChars.epub>`

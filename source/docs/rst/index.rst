@@ -11,42 +11,21 @@ ReStructured Text (reST)
 reStructuredText is an easy-to-read, what-you-see-is-what-you-get plaintext markup syntax and parser system. It is useful for in-line program documentation (such as Python docstrings), for quickly creating simple web pages, and for standalone documents. reStructuredText is designed for extensibility for specific application domains. The reStructuredText parser is a component of Docutils. reStructuredText is a *revision* and *reinterpretation* of the **StructuredText** and **Setext** lightweight markup systems. [#]_
 
 
-`quick start <http://docutils.sourceforge.net/docs/user/rst/quickref.html>`_
+.. sidebar:: Note
 
-`alternatives <http://docutils.sourceforge.net/docs/dev/rst/alternatives.html>`_
+    "reStructuredText" is ONE word, not two!
 
-`fruit doc <http://openalea.gforge.inria.fr/doc/openalea/doc/_build/html/source/sphinx/rest_syntax.html>`_
+| `quick start <http://docutils.sourceforge.net/docs/user/rst/quickref.html>`_
+| `alternatives <http://docutils.sourceforge.net/docs/dev/rst/alternatives.html>`_
+| `fruit doc <http://openalea.gforge.inria.fr/doc/openalea/doc/_build/html/source/sphinx/rest_syntax.html>`_
+|
+|
+|
+|
+|
 
-
-Table of Content Tree (toctree)
--------------------------------
-
-
-.. raw:: html     
-    
-    <div class="sidebar">
-
-* menu depth 2
-* add numbers to titles
-* one file can only have one title
-* linux glob matching 
-* hidden title
-
-.. raw:: html     
-    
-    </div>
-
-Usually put in index.rst file at root dir
-
-.. code-block:: rst
-
-    .. toctree::
-        :maxdepth: 2
-        :numbered:
-        :titlesonly:
-        :glob:
-        :hidden:
-
+Standard rST
+============
 
 Inline mark
 -----------
@@ -63,7 +42,8 @@ Inline mark
     
     </div>
 
-Inline markup allows words and phrases within text to have character styles (like italics and boldface) and functionality (like hyperlinks).
+| Inline markup allows words and phrases within text to have character styles (like italics and boldface) and functionality (like hyperlinks).
+|
 
 .. code-block:: rst
 
@@ -106,16 +86,10 @@ SideBar
        the body of the sidebar, and are
        interpreted as body elements.
 
-Paragraph Mark
---------------
+|
+|
+|
 
-.. code-block:: rst
-
-    .. note::
-    .. warning::
-
-.. note:: paragraph of note
-.. warning:: paragraph of warning
 
 HTML
 ----
@@ -151,6 +125,55 @@ rst contents with no titlebar
     .. raw:: html
     
         </div>
+
+
+Maths & Equttions w/ LaTeX
+--------------------------
+
+:math:`\alpha > \beta`
+
+
+Sphinx Customized rST
+=====================
+
+
+Table of Content Tree (toctree)
+-------------------------------
+
+
+.. sidebar:: Example
+
+    - menu depth 2
+    - add numbers to titles
+    - one file only one title
+    - linux glob matching 
+    - hidden title
+
+
+| Usually put in index.rst file at root dir
+|
+
+.. code-block:: rst
+
+    .. toctree::
+        :maxdepth: 2
+        :numbered:
+        :titlesonly:
+        :glob:
+        :hidden:
+
+
+Paragraph Mark
+--------------
+
+.. code-block:: rst
+
+    .. note:: paragraph of note
+    .. warning:: paragraph of warning
+
+.. note:: paragraph of note
+.. warning:: paragraph of warning
+
 
 Code Block
 ----------
@@ -193,9 +216,23 @@ Code Block
     void main(){for(qne(0,0,0),scanf("%d",&m);m--;printf("%d\n",Q[c]))scanf("%d",&c);}
 
 
-Maths & Equttions w/ LaTeX
---------------------------
+Intersect Index
+---------------
 
-:math:`\alpha > \beta`
+Download
+^^^^^^^^
+
+.. sidebar:: Example
+
+    :download:`rst.png <images/rst.png>`
+
+| Referenced file will be copied to folder ``build/html/_downloads/``
+|
+
+.. code-block:: rst
+
+    :download:`rst.png <images/rst.png>`
+
+
 
 .. [#] http://docutils.sourceforge.net/rst.html

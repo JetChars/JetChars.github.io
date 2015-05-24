@@ -8,6 +8,9 @@ Network Tools
 Django -- web framework
 =======================
 
+`cn version doc <http://django-chinese-docs.readthedocs.org/en/latest/index.html>`_
+
+
 Open vSwitch
 ============
 
