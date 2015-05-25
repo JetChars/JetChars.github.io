@@ -133,3 +133,42 @@ Topology data ::
     hadoopdata1.ec.com     /dc1/rack1
     hadoopdata1            /dc1/rack1
     10.1.1.1               /dc1/rack2
+
+Check whether rack awareness is enabled
+---------------------------------------
+
+Check hdfs topology info
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: shell
+    :linenos:
+
+    $ hadoop dfsadmin -report
+    Name: 172.16.0.4:50010 (172.16.0.4)
+    Hostname: r16s04
+    Rack: /dc1/rack16
+
+
+
+Check replica placement
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: shell
+    :linenos:
+
+    $ hdfs dfs -cat /HiBench/benchmarks/TestDFSIO-Enh/_merged_reports.txt
+    /HiBench/benchmarks/TestDFSIO-Enh/io_write/part-00000 414033800 bytes, 4 block(s):  OK
+    0. BP-2107384216-192.168.16.3-1432011436876:blk_1073752772_11948 len=134217728 repl=3 [/dc1/rack16/node2/172.16.0.2:50010, /dc1/rack16/node3/172.16.0.3:50010, /dc1/rack16/node4/172.16.0.4:50010]
+    1. BP-2107384216-192.168.16.3-1432011436876:blk_1073752773_11949 len=134217728 repl=3 [/dc1/rack16/node3/172.16.0.3:50010, /dc1/rack16/node1/172.16.0.1:50010, /dc1/rack16/node2/172.16.0.2:50010]
+    2. BP-2107384216-192.168.16.3-1432011436876:blk_1073752774_11950 len=134217728 repl=3 [/dc1/rack16/node2/172.16.0.2:50010, /dc1/rack16/node3/172.16.0.3:50010, /dc1/rack16/node4/172.16.0.4:50010]
+    3. BP-2107384216-192.168.16.3-1432011436876:blk_1073752775_11951 len=11380616 repl=3 [/dc1/rack16/node2/172.16.0.2:50010, /dc1/rack16/node1/172.16.0.1:50010, /dc1/rack16/node3/172.16.0.3:50010]
+
+
+===============================
+Hadoop Virtualization Extension
+===============================
+
+
+
+
+
