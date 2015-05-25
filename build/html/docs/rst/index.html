@@ -1,0 +1,560 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ReStructured Text (reST) &mdash; JetChars 0.1 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="JetChars 0.1 documentation" href="../../index.html"/>
+        <link rel="prev" title="Scalable Vector Graphics (SVG)" href="../svg/index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="../../index.html" class="icon icon-home"> JetChars
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="simple">
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../enable_dvr_with_devstack/index.html">Enable DVR with DevStack</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#brief-intro">Brief Intro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#configure-network-node">Configure Network Node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#configure-compute-node">Configure Compute Node</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../kvm_optimization/index.html">KVM Optimization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../kvm_optimization/index.html#disk">Disk</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kvm_optimization/index.html#asynchronous-io">Asynchronous IO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kvm_optimization/index.html#disk-cache-mode">Disk Cache Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kvm_optimization/index.html#storage-backend">Storage Backend</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../kvm_optimization/index.html#memory">Memory</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kvm_optimization/index.html#drop-memory-cache">Drop Memory Cache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kvm_optimization/index.html#hugepages">HugePages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../kvm_optimization/index.html#check-hugepage-status">Check HugePage status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kvm_optimization/index.html#enable-1gb-hugepage">Enable 1GB HugePage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kvm_optimization/index.html#anonymous-hugepages-ahp">Anonymous HugePages (AHP)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kvm_optimization/index.html#transparent-hugepages-thp">Transparent HugePages(THP)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../kvm_optimization/index.html#network">Network</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kvm_optimization/index.html#mtu-size">MTU Size</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kvm_optimization/index.html#turn-off-nic-s-offloads">Turn off NIC&#8217;s offloads</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../kvm_optimization/index.html#improve-instance-s-launch-speed">Improve Instance&#8217;s Launch Speed</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hibench_intro/index.html">HiBench - The Hadoop BenchMark Suit</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hibench_intro/index.html#what-is-hibench">What is HiBench?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hibench_intro/index.html#benchmark-types">BenchMark Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hibench_intro/index.html#configuration-running-scripts">Configuration &amp; Running scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hibench_intro/index.html#default-configurations">Default Configurations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../hibench_intro/index.html#dfsioe">DFSIOE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hibench_intro/index.html#sort">Sort</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hibench_intro/index.html#wordcount">WordCount</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hibench_intro/index.html#k-means">k-means</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../centos_tuning/index.html">CentOS Tuning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../centos_tuning/index.html#unlimit-non-root-user-s-resources">Unlimit Non-root User&#8217;s Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../hadoop_conf_tuning/index.html">Hadoop Configuration Tuning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hadoop_conf_tuning/index.html#rack-awareness">Rack Awareness</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../hadoop_conf_tuning/index.html#assumption">Assumption</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hadoop_conf_tuning/index.html#replica-placement">Replica Placement</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../hadoop_conf_tuning/index.html#creating-new-block">Creating New Block</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hadoop_conf_tuning/index.html#replicate-existing-block">Replicate Existing Block</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../hadoop_conf_tuning/index.html#topology-script">Topology Script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hadoop_conf_tuning/index.html#check-whether-rack-awareness-is-enabled">Check whether rack awareness is enabled</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../hadoop_conf_tuning/index.html#check-hdfs-topology-info">Check hdfs topology info</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hadoop_conf_tuning/index.html#check-replica-placement">Check replica placement</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../hadoop_conf_tuning/index.html#hadoop-virtualization-extension">Hadoop Virtualization Extension</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../screen/index.html">Screen - Full-screen window manager</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../screen/index.html#command-list">Command List</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../screen/index.html#commands-out-of-screen">Commands out of screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../screen/index.html#commands-inside-screen">Commands inside screen</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../screen/index.html#shortcuts-keys">Shortcuts Keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../screen/index.html#configuration-files">Configuration Files</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../string_process/index.html">String Processing Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../string_process/index.html#regular-expression">Regular Expression</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../string_process/index.html#basic-regular-express">Basic Regular Express</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../string_process/index.html#grep-globally-search-a-regular-expression-and-print">grep &#8211; Globally search a Regular Expression and Print</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../string_process/index.html#awk-pattern-directed-scanning-and-processing">awk &#8211; pattern-directed scanning and processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../string_process/index.html#synopsis">Synopsis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string_process/index.html#predefined-variables">Predefined variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string_process/index.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../string_process/index.html#sed-stream-editor">sed &#8211; stream editor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../string_process/index.html#id1">Synopsis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string_process/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string_process/index.html#id2">Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation_tools/index.html">Linux Documentation Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation_tools/index.html#sphinx-python-document-generator">Sphinx - Python Document Generator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../documentation_tools/index.html#issues">issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../documentation_tools/index.html#pandoc-universal-document-converter">Pandoc - Universal document converter</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../network_tools/index.html">Network Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../network_tools/index.html#django-web-framework">Django &#8211; web framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../network_tools/index.html#open-vswitch">Open vSwitch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../network_tools/index.html#home-made-proxy-setting-tool">Home made proxy setting tool</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../virtualization/index.html">Virtualization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../virtualization/index.html#hypervisors">Hypervisors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../virtualization/index.html#libvirt">Libvirt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../virtualization/index.html#virsh-virtualization-management-interface">Virsh &#8211; Virtualization Management Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../virtualization/index.html#docker">Docker</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git &#8211; Extraordinary version contrl software</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../git/index.html#git-proxy-command">Git Proxy Command</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../github/index.html">GitHub &#8211; Git repository hosting service</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../github/index.html#github-com">github.com</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../github/index.html#shortcuts">shortcuts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../github/index.html#search-engine">search engine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../github/index.html#url-customization">url customization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../github/index.html#github-io-github-pages">github.io &#8211; github pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../github/index.html#git-io-short-addr-service">git.io &#8211; short addr service</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../svg/index.html">Scalable Vector Graphics (SVG)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../svg/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">ReStructured Text (reST)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#standard-rst">Standard rST</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#inline-mark">Inline mark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#photos">Photos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sidebar">SideBar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#html">HTML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#maths-equttions-w-latex">Maths &amp; Equttions w/ LaTeX</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#sphinx-customized-rst">Sphinx Customized rST</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#table-of-content-tree-toctree">Table of Content Tree (toctree)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#paragraph-mark">Paragraph Mark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-block">Code Block</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#intersect-index">Intersect Index</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#download">Download</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">JetChars</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>ReStructured Text (reST)</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/docs/rst/index.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="restructured-text-rest">
+<h1>ReStructured Text (reST)<a class="headerlink" href="#restructured-text-rest" title="Permalink to this headline">¶</a></h1>
+<a class="reference internal image-reference" href="../../_images/rst.png"><img alt="rst logo" class="align-right" src="../../_images/rst.png" style="width: 200px;" /></a>
+<p>reStructuredText is an easy-to-read, what-you-see-is-what-you-get plaintext markup syntax and parser system. It is useful for in-line program documentation (such as Python docstrings), for quickly creating simple web pages, and for standalone documents. reStructuredText is designed for extensibility for specific application domains. The reStructuredText parser is a component of Docutils. reStructuredText is a <em>revision</em> and <em>reinterpretation</em> of the <strong>StructuredText</strong> and <strong>Setext</strong> lightweight markup systems. <a class="footnote-reference" href="#id2" id="id1">[1]</a></p>
+<div class="sidebar">
+<p class="first sidebar-title">Note</p>
+<p class="last">&#8220;reStructuredText&#8221; is ONE word, not two!</p>
+</div>
+<div class="line-block">
+<div class="line"><a class="reference external" href="http://docutils.sourceforge.net/docs/user/rst/quickref.html">quick start</a></div>
+<div class="line"><a class="reference external" href="http://docutils.sourceforge.net/docs/dev/rst/alternatives.html">alternatives</a></div>
+<div class="line"><a class="reference external" href="http://openalea.gforge.inria.fr/doc/openalea/doc/_build/html/source/sphinx/rest_syntax.html">fruit doc</a></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<div class="section" id="standard-rst">
+<h2>Standard rST<a class="headerlink" href="#standard-rst" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="inline-mark">
+<h3>Inline mark<a class="headerlink" href="#inline-mark" title="Permalink to this headline">¶</a></h3>
+<div class="sidebar"><div class="line-block">
+<div class="line"><em>italic</em></div>
+<div class="line"><strong>bold</strong></div>
+<div class="line"><code class="docutils literal"><span class="pre">inline</span> <span class="pre">literal</span></code></div>
+</div>
+</div><div class="line-block">
+<div class="line">Inline markup allows words and phrases within text to have character styles (like italics and boldface) and functionality (like hyperlinks).</div>
+<div class="line"><br /></div>
+</div>
+<div class="highlight-rst"><div class="highlight"><pre><span class="ge">*italic*</span>
+<span class="gs">**bold**</span>
+<span class="s">``inline literal``</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="photos">
+<h3>Photos<a class="headerlink" href="#photos" title="Permalink to this headline">¶</a></h3>
+<div class="sidebar">
+<p class="first sidebar-title">Note</p>
+<p class="last">png file not support distortion, so resize it only need to change width or height</p>
+</div>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">image</span><span class="p">::</span> images/rst.png
+    <span class="nc">:align:</span> <span class="nf">right</span>
+    <span class="nc">:width:</span> <span class="nf">400px</span>
+    <span class="nc">:height:</span> <span class="nf">100px</span>
+    <span class="nc">:alt:</span> <span class="nf">alternate text</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sidebar">
+<h3>SideBar<a class="headerlink" href="#sidebar" title="Permalink to this headline">¶</a></h3>
+<div class="sidebar">
+<p class="first sidebar-title">Sidebar Title</p>
+<p class="sidebar-subtitle">Optional Sidebar Subtitle</p>
+<p class="last">Subsequent indented lines comprise
+the body of the sidebar, and are
+interpreted as body elements.</p>
+</div>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">sidebar</span><span class="p">::</span> Sidebar Title
+   <span class="nc">:subtitle:</span> <span class="nf">Optional Sidebar Subtitle</span>
+
+   Subsequent indented lines comprise
+   the body of the sidebar, and are
+   interpreted as body elements.
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="html">
+<h3>HTML<a class="headerlink" href="#html" title="Permalink to this headline">¶</a></h3>
+<div class="sidebar"><p>rst contents with no titlebar</p>
+<div class="highlight-guess"><div class="highlight"><pre>hello world!
+</pre></div>
+</div>
+</div><div class="highlight-html"><div class="highlight"><pre>.. raw:: html
+
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;sidebar&quot;</span><span class="nt">&gt;</span>
+
+rst contents with no titlebar
+
+.. code-block:: guess
+
+    hello world!
+
+.. raw:: html
+
+    <span class="nt">&lt;/div&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="maths-equttions-w-latex">
+<h3>Maths &amp; Equttions w/ LaTeX<a class="headerlink" href="#maths-equttions-w-latex" title="Permalink to this headline">¶</a></h3>
+<p><span class="math">\alpha &gt; \beta</span></p>
+</div>
+</div>
+<div class="section" id="sphinx-customized-rst">
+<h2>Sphinx Customized rST<a class="headerlink" href="#sphinx-customized-rst" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="table-of-content-tree-toctree">
+<h3>Table of Content Tree (toctree)<a class="headerlink" href="#table-of-content-tree-toctree" title="Permalink to this headline">¶</a></h3>
+<div class="sidebar">
+<p class="first sidebar-title">Example</p>
+<ul class="last simple">
+<li>menu depth 2</li>
+<li>add numbers to titles</li>
+<li>one file only one title</li>
+<li>linux glob matching</li>
+<li>hidden title</li>
+</ul>
+</div>
+<div class="line-block">
+<div class="line">Usually put in index.rst file at root dir</div>
+<div class="line"><br /></div>
+</div>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">toctree</span><span class="p">::</span>
+    <span class="nc">:maxdepth:</span> <span class="nf">2</span>
+    <span class="nc">:numbered:</span>
+    <span class="nc">:titlesonly:</span>
+    <span class="nc">:glob:</span>
+    <span class="nc">:hidden:</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="paragraph-mark">
+<h3>Paragraph Mark<a class="headerlink" href="#paragraph-mark" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">note</span><span class="p">::</span> paragraph of note
+<span class="p">..</span> <span class="ow">warning</span><span class="p">::</span> paragraph of warning
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">paragraph of note</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">paragraph of warning</p>
+</div>
+</div>
+<div class="section" id="code-block">
+<h3>Code Block<a class="headerlink" href="#code-block" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">code-block</span><span class="p">::</span> c
+    <span class="nc">:linenos:</span>
+    <span class="nc">:emphasize-lines:</span> <span class="nf">3,5-7</span>
+
+    #include&lt;stdio.h&gt;
+    int Q[93],a[8],c=0,m=-1,i,t;
+    void qne(int rw,int l,int r){
+        if(rw!=255)
+            for(int pos=255&amp;~(rw|l|r),p;pos;pos-=p){
+                for(t=p=pos&amp;-pos,a[++m]=1;t&gt;&gt;=1;++a[m]);
+                qne(rw+p,(l+p)&lt;&lt;1,(r+p)&gt;&gt;1);
+            }
+        else for(Q[++c]=i=0;i&lt;8;Q[c]=Q[c]*10+a[i++]);
+        --m;
+    }
+    void main(){for(qne(0,0,0),scanf(&quot;%d&quot;,&amp;m);m--;printf(&quot;%d\n&quot;,Q[c]))scanf(&quot;%d&quot;,&amp;c);}
+</pre></div>
+</div>
+<div class="highlight-c"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span class="cp">#include&lt;stdio.h&gt;</span>
+<span class="kt">int</span> <span class="n">Q</span><span class="p">[</span><span class="mi">93</span><span class="p">],</span><span class="n">a</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">m</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">t</span><span class="p">;</span>
+<span class="hll"><span class="kt">void</span> <span class="nf">qne</span><span class="p">(</span><span class="kt">int</span> <span class="n">rw</span><span class="p">,</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span><span class="kt">int</span> <span class="n">r</span><span class="p">){</span>
+</span>    <span class="k">if</span><span class="p">(</span><span class="n">rw</span><span class="o">!=</span><span class="mi">255</span><span class="p">)</span>
+<span class="hll">        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">pos</span><span class="o">=</span><span class="mi">255</span><span class="o">&amp;~</span><span class="p">(</span><span class="n">rw</span><span class="o">|</span><span class="n">l</span><span class="o">|</span><span class="n">r</span><span class="p">),</span><span class="n">p</span><span class="p">;</span><span class="n">pos</span><span class="p">;</span><span class="n">pos</span><span class="o">-=</span><span class="n">p</span><span class="p">){</span>
+</span><span class="hll">            <span class="k">for</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="n">p</span><span class="o">=</span><span class="n">pos</span><span class="o">&amp;-</span><span class="n">pos</span><span class="p">,</span><span class="n">a</span><span class="p">[</span><span class="o">++</span><span class="n">m</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">t</span><span class="o">&gt;&gt;=</span><span class="mi">1</span><span class="p">;</span><span class="o">++</span><span class="n">a</span><span class="p">[</span><span class="n">m</span><span class="p">]);</span>
+</span><span class="hll">            <span class="n">qne</span><span class="p">(</span><span class="n">rw</span><span class="o">+</span><span class="n">p</span><span class="p">,(</span><span class="n">l</span><span class="o">+</span><span class="n">p</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">,(</span><span class="n">r</span><span class="o">+</span><span class="n">p</span><span class="p">)</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">);</span>
+</span>        <span class="p">}</span>
+    <span class="k">else</span> <span class="k">for</span><span class="p">(</span><span class="n">Q</span><span class="p">[</span><span class="o">++</span><span class="n">c</span><span class="p">]</span><span class="o">=</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">8</span><span class="p">;</span><span class="n">Q</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">=</span><span class="n">Q</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span><span class="o">+</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="o">++</span><span class="p">]);</span>
+    <span class="o">--</span><span class="n">m</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">main</span><span class="p">(){</span><span class="k">for</span><span class="p">(</span><span class="n">qne</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">m</span><span class="p">);</span><span class="n">m</span><span class="o">--</span><span class="p">;</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">Q</span><span class="p">[</span><span class="n">c</span><span class="p">]))</span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">c</span><span class="p">);}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="intersect-index">
+<h3>Intersect Index<a class="headerlink" href="#intersect-index" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="download">
+<h4>Download<a class="headerlink" href="#download" title="Permalink to this headline">¶</a></h4>
+<div class="sidebar">
+<p class="first sidebar-title">Example</p>
+<p class="last"><a class="reference download internal" href="../../_downloads/rst.png"><code class="xref download docutils literal"><span class="pre">rst.png</span></code></a></p>
+</div>
+<div class="line-block">
+<div class="line">Referenced file will be copied to folder <code class="docutils literal"><span class="pre">build/html/_downloads/</span></code></div>
+<div class="line"><br /></div>
+</div>
+<div class="highlight-rst"><div class="highlight"><pre><span class="na">:download:</span><span class="nv">`rst.png &lt;images/rst.png&gt;`</span>
+</pre></div>
+</div>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://docutils.sourceforge.net/rst.html">http://docutils.sourceforge.net/rst.html</a></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../svg/index.html" class="btn btn-neutral" title="Scalable Vector Graphics (SVG)" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, JetChars.
+    </p>
+  </div>
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

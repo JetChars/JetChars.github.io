@@ -1,0 +1,1769 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>OpenStack installation with DevStack &mdash; JetChars 0.1 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="JetChars 0.1 documentation" href="../../index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="../../index.html" class="icon icon-home"> JetChars
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="simple">
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../enable_dvr_with_devstack/index.html">Enable DVR with DevStack</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#brief-intro">Brief Intro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#configure-network-node">Configure Network Node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#configure-compute-node">Configure Compute Node</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../kvm_optimization/index.html">KVM Optimization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../kvm_optimization/index.html#disk">Disk</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kvm_optimization/index.html#asynchronous-io">Asynchronous IO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kvm_optimization/index.html#disk-cache-mode">Disk Cache Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kvm_optimization/index.html#storage-backend">Storage Backend</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../kvm_optimization/index.html#memory">Memory</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kvm_optimization/index.html#drop-memory-cache">Drop Memory Cache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kvm_optimization/index.html#hugepages">HugePages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../kvm_optimization/index.html#check-hugepage-status">Check HugePage status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kvm_optimization/index.html#enable-1gb-hugepage">Enable 1GB HugePage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kvm_optimization/index.html#anonymous-hugepages-ahp">Anonymous HugePages (AHP)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kvm_optimization/index.html#transparent-hugepages-thp">Transparent HugePages(THP)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../kvm_optimization/index.html#network">Network</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kvm_optimization/index.html#mtu-size">MTU Size</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kvm_optimization/index.html#turn-off-nic-s-offloads">Turn off NIC&#8217;s offloads</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../kvm_optimization/index.html#improve-instance-s-launch-speed">Improve Instance&#8217;s Launch Speed</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hibench_intro/index.html">HiBench - The Hadoop BenchMark Suit</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hibench_intro/index.html#what-is-hibench">What is HiBench?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hibench_intro/index.html#benchmark-types">BenchMark Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hibench_intro/index.html#configuration-running-scripts">Configuration &amp; Running scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hibench_intro/index.html#default-configurations">Default Configurations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../hibench_intro/index.html#dfsioe">DFSIOE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hibench_intro/index.html#sort">Sort</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hibench_intro/index.html#wordcount">WordCount</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hibench_intro/index.html#k-means">k-means</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../centos_tuning/index.html">CentOS Tuning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../centos_tuning/index.html#unlimit-non-root-user-s-resources">Unlimit Non-root User&#8217;s Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../hadoop_conf_tuning/index.html">Hadoop Configuration Tuning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hadoop_conf_tuning/index.html#rack-awareness">Rack Awareness</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../hadoop_conf_tuning/index.html#assumption">Assumption</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hadoop_conf_tuning/index.html#replica-placement">Replica Placement</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../hadoop_conf_tuning/index.html#creating-new-block">Creating New Block</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hadoop_conf_tuning/index.html#replicate-existing-block">Replicate Existing Block</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../hadoop_conf_tuning/index.html#topology-script">Topology Script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hadoop_conf_tuning/index.html#check-whether-rack-awareness-is-enabled">Check whether rack awareness is enabled</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../hadoop_conf_tuning/index.html#check-hdfs-topology-info">Check hdfs topology info</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hadoop_conf_tuning/index.html#check-replica-placement">Check replica placement</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../hadoop_conf_tuning/index.html#hadoop-virtualization-extension">Hadoop Virtualization Extension</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../screen/index.html">Screen - Full-screen window manager</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../screen/index.html#command-list">Command List</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../screen/index.html#commands-out-of-screen">Commands out of screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../screen/index.html#commands-inside-screen">Commands inside screen</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../screen/index.html#shortcuts-keys">Shortcuts Keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../screen/index.html#configuration-files">Configuration Files</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../string_process/index.html">String Processing Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../string_process/index.html#regular-expression">Regular Expression</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../string_process/index.html#basic-regular-express">Basic Regular Express</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../string_process/index.html#grep-globally-search-a-regular-expression-and-print">grep &#8211; Globally search a Regular Expression and Print</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../string_process/index.html#awk-pattern-directed-scanning-and-processing">awk &#8211; pattern-directed scanning and processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../string_process/index.html#synopsis">Synopsis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string_process/index.html#predefined-variables">Predefined variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string_process/index.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../string_process/index.html#sed-stream-editor">sed &#8211; stream editor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../string_process/index.html#id1">Synopsis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string_process/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string_process/index.html#id2">Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation_tools/index.html">Linux Documentation Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation_tools/index.html#sphinx-python-document-generator">Sphinx - Python Document Generator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../documentation_tools/index.html#issues">issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../documentation_tools/index.html#pandoc-universal-document-converter">Pandoc - Universal document converter</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../network_tools/index.html">Network Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../network_tools/index.html#django-web-framework">Django &#8211; web framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../network_tools/index.html#open-vswitch">Open vSwitch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../network_tools/index.html#home-made-proxy-setting-tool">Home made proxy setting tool</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../virtualization/index.html">Virtualization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../virtualization/index.html#hypervisors">Hypervisors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../virtualization/index.html#libvirt">Libvirt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../virtualization/index.html#virsh-virtualization-management-interface">Virsh &#8211; Virtualization Management Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../virtualization/index.html#docker">Docker</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git &#8211; Extraordinary version contrl software</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../git/index.html#git-proxy-command">Git Proxy Command</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../github/index.html">GitHub &#8211; Git repository hosting service</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../github/index.html#github-com">github.com</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../github/index.html#shortcuts">shortcuts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../github/index.html#search-engine">search engine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../github/index.html#url-customization">url customization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../github/index.html#github-io-github-pages">github.io &#8211; github pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../github/index.html#git-io-short-addr-service">git.io &#8211; short addr service</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../rst/index.html">ReStructured Text (reST)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../rst/index.html#standard-rst">Standard rST</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../rst/index.html#inline-mark">Inline mark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rst/index.html#photos">Photos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rst/index.html#sidebar">SideBar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rst/index.html#html">HTML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rst/index.html#maths-equttions-w-latex">Maths &amp; Equttions w/ LaTeX</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../rst/index.html#sphinx-customized-rst">Sphinx Customized rST</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../rst/index.html#table-of-content-tree-toctree">Table of Content Tree (toctree)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rst/index.html#paragraph-mark">Paragraph Mark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rst/index.html#code-block">Code Block</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rst/index.html#intersect-index">Intersect Index</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../rst/index.html#download">Download</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../md/index.html">MarkDown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../svg/index.html">Scalable Vector Graphics (SVG)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../svg/index.html#resources">Resources</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">JetChars</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>OpenStack installation with DevStack</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/docs/devstack_quickstart/index.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="openstack-installation-with-devstack">
+<h1>OpenStack installation with DevStack<a class="headerlink" href="#openstack-installation-with-devstack" title="Permalink to this headline">¶</a></h1>
+<p>Revision &lt;1.0&gt;</p>
+<p>Last Print Date: DATE \&#64; &#8220;yy/M/d&#8221; 3/19/2015 - DATE \&#64; &#8220;AM/PMh:mm&#8221;
+11:23 AM</p>
+<p><strong>Primary Author(s): Wenjie, Cai &lt;wenjie.cai&#64;intel.com&gt;</strong></p>
+<p><strong>Key Contributors: Weiting, Chen Lin, Qi</strong></p>
+<p>TOC \o 2-4 \t &#8220;Title, 5&#8221;</p>
+<p>Multi-Node OpenStack installation with DevStack PAGEREF _Toc \h 1</p>
+<p>Network Configuration PAGEREF _Toc1 \h 4</p>
+<ol class="arabic simple">
+<li>Network interface Configuration PAGEREF _Toc2 \h 5</li>
+<li>Connect outside of Intel PAGEREF _Toc3 \h 5</li>
+</ol>
+<ol class="arabic simple">
+<li>Environment variables PAGEREF _Toc4 \h 5</li>
+<li>Git Proxy Command PAGEREF _Toc5 \h 6</li>
+<li>Pip index URL PAGEREF _Toc6 \h 6</li>
+<li>apt configuration PAGEREF _Toc7 \h 7</li>
+</ol>
+<p>DevStack Configuration PAGEREF _Toc8 \h 9</p>
+<ol class="arabic simple">
+<li>Preparation PAGEREF _Toc9 \h 10</li>
+</ol>
+<p>Add third party repositories (EPEL, rpmforge, atomic, PUIAS) for
+CentOS6.5 PAGEREF _Toc10 \h 10</p>
+<p>Upgrade python 2.6 to 2.7 for CentOS6.5 PAGEREF _Toc11 \h 11</p>
+<p>Add the DevStack User PAGEREF _Toc12 \h 11</p>
+<p>Install NTP, change time zone into shanghai. PAGEREF _Toc13 \h 11</p>
+<p>ssh login without password PAGEREF _Toc14 \h 12</p>
+<ol class="arabic simple">
+<li>Fire up DevStack PAGEREF _Toc15 \h 12</li>
+</ol>
+<p>To work via the CLI PAGEREF _Toc16 \h 17</p>
+<p>Tips PAGEREF _Toc17 \h 20</p>
+<ol class="arabic">
+<li><dl class="first docutils">
+<dt>Tool screen can create screens; each screen might have lots of</dt>
+<dd><p class="first last">windows. PAGEREF _Toc18 \h 20</p>
+</dd>
+</dl>
+</li>
+<li><p class="first">Hostname PAGEREF _Toc19 \h 20</p>
+</li>
+<li><p class="first">Reset the bridge PAGEREF _Toc20 \h 20</p>
+</li>
+<li><p class="first">Logs PAGEREF _Toc21 \h 20</p>
+</li>
+<li><p class="first">config files PAGEREF _Toc22 \h 21</p>
+</li>
+<li><p class="first">Sahara plugins PAGEREF _Toc23 \h 22</p>
+</li>
+<li><p class="first">Multi-Node swift configuration PAGEREF _Toc24 \h 23</p>
+</li>
+<li><p class="first">Debugging Neutron issues PAGEREF _Toc25 \h 25</p>
+</li>
+</ol>
+<p>Troubleshooting PAGEREF _Toc26 \h 27</p>
+<ol class="arabic simple">
+<li>Pip issues PAGEREF _Toc27 \h 27</li>
+<li>Screen issue PAGEREF _Toc28 \h 30</li>
+<li>olso issue PAGEREF _Toc29 \h 31</li>
+<li>Dashboard issues PAGEREF _Toc30 \h 31</li>
+<li>Python issue PAGEREF _Toc31 \h 32</li>
+<li>Rabbit issues PAGEREF _Toc32 \h 32</li>
+<li>MySQL issue PAGEREF _Toc33 \h 33</li>
+<li>Cinder issue PAGEREF _Toc34 \h 33</li>
+<li>Nova issues PAGEREF _Toc35 \h 33</li>
+</ol>
+<p><em>Network Configuration</em></p>
+<p>The Multi-Node tutorial does not cover all the configurations we need to
+face in a normal environment or an environment with network connections
+restrains.</p>
+<p>Among all issues, Network connection is the biggest one. It contains
+lots of sub issues.</p>
+<ol class="arabic simple">
+<li>Network interface Configuration</li>
+</ol>
+<p>$ vi /etc/network/interfaces</p>
+<p>auto p1p1</p>
+<p>iface p1p1 inet static</p>
+<p>address 192.168.11.67</p>
+<p>netmask 255.255.0.0</p>
+<p>network 192.168.0.0</p>
+<p>broadcast 192.168.255.255</p>
+<p>gateway 192.168.2.200</p>
+<p>dns-nameservers 10.248.2.5 10.239.27.228 172.17.6.9</p>
+<p>dns-search sh.intel.com</p>
+<p>auto p2p1</p>
+<p>iface p2p1 inet manual</p>
+<p>up ifconfig $IFACE 0.0.0.0 up</p>
+<p>down ifconfig $IFACE 0.0.0.0 down</p>
+<ol class="arabic simple" start="2">
+<li>Connect outside of Intel</li>
+</ol>
+<p>Since we use ubuntu to install the OpenStack enviroment, lots of tools
+need to be installed by apt, which need an http_proxy or https_proxy
+to connect the internet. Pip and git also need some configuration to
+access the internet.</p>
+<p>List of available proxy servers:</p>
+<p>proxy-shz.intel.com:911 #cannot over the wall</p>
+<p>proxy-ir.intel.com:911</p>
+<p>proxy-sc.socks.intel.com:1080</p>
+<p>proxy-jf.intel.com:1080</p>
+<ol class="arabic simple">
+<li>Environment variables <a class="footnote-reference" href="#id19" id="id1">[1]</a></li>
+</ol>
+<p>Add below to <strong>/etc/enviroments</strong></p>
+<p>GIT_PROXY_COMMAND=/usr/bin/git-proxy</p>
+<p>http_proxy=&#8221;<em>http://proxy-shz.intel.com:911</em>&#8220;</p>
+<p>https_proxy=&#8221;<em>https://proxy-shz.intel.com:911</em>&#8220;</p>
+<p>ftp_proxy=&#8221;<em>ftp://proxy-shz.intel.com:911</em>&#8220;</p>
+<p>socks_proxy=&#8221;<em>socks://proxy-shz.intel.com:911</em>&#8220;</p>
+<p>no_proxy=&#8221;localhost,*intel.com:911,192.168.0.0/16,10.0.0.0/8,127.0.0.0/8&#8221;</p>
+<p>HTTP_PROXY=&#8221;<em>http://proxy-shz.intel.com:911</em>&#8220;</p>
+<p>HTTPS_PROXY=&#8221;<em>https://proxy-shz.intel.com:911</em>&#8220;</p>
+<p>FTP_PROXY=&#8221;<em>ftp://proxy-shz.intel.com:911</em>&#8220;</p>
+<p>SOCKS_PROXY=&#8221;<em>socks://proxy-shz.intel.com:911</em>&#8220;</p>
+<p>NO_PROXY=&#8221;localhost,*intel.com:911,192.168.0.0/16,10.0.0.0/8,127.0.0.0/8&#8221;</p>
+<p>Sometimes set variables to <strong>/etc/environment</strong> not take effect. I also
+write a script named my.pxy</p>
+<p>export GIT_PROXY_COMMAND=/usr/bin/git-proxy</p>
+<p>export proxyaddr=proxy-shz.intel.com</p>
+<p>export proxyport=911</p>
+<p>export http_proxy=&#8221;<a class="reference external" href="http://$proxyaddr:$proxyport">http://$proxyaddr:$proxyport</a>&#8220;</p>
+<p>export https_proxy=&#8221;<a class="reference external" href="https://$proxyaddr:$proxyport">https://$proxyaddr:$proxyport</a>&#8220;</p>
+<p>export ftp_proxy=&#8221;<a class="reference external" href="ftp://$proxyaddr:$proxyport">ftp://$proxyaddr:$proxyport</a>&#8220;</p>
+<p>export socks_proxy=&#8221;socks://$proxyaddr:$proxyport&#8221;</p>
+<p>export
+no_proxy=&#8221;localhost,*intel.com:911,192.168.0.0/16,10.0.0.0/8,127.0.0.0/8&#8221;</p>
+<p>export HTTP_PROXY=$http_proxy</p>
+<p>export HTTPS_PROXY=$https_proxy</p>
+<p>export FTP_PROXY=$ftp_proxy</p>
+<p>export SOCKS_PROXY=$socks_proxy</p>
+<p>export NO_PROXY=$no_proxy</p>
+<p>Use command below to start this script <a class="footnote-reference" href="#id20" id="id2">[2]</a>:</p>
+<p>$. my.pxy</p>
+<p>Proxy urls without scheme might cause bugs; apt apps can be downloaded
+and installed properly. ‘ping’ was always not available.</p>
+<ol class="arabic simple">
+<li>Git Proxy Command</li>
+</ol>
+<p>Git need extra configuration for url with “git://” scheme. Configure
+proxy command with netcat (/usr/bin/git-proxy) and add its link to the
+environment (GIT_PROXY_COMMAND).</p>
+<p>Create the file <strong>/usr/bin/git-proxy</strong></p>
+<p>/usr/bin/git-proxy</p>
+<p>#!/bin/sh</p>
+<p>case $1 in</p>
+<p>*.intel.com|192.168.*|127.0.*|localhost|10.*)</p>
+<p>METHOD=&#8221;-X connect&#8221;</p>
+<p>;;</p>
+<p>*)</p>
+<p>METHOD=&#8221;-X 5 -x proxy-socks.sc.intel.com:1080&#8221;</p>
+<p>;;</p>
+<p>esac</p>
+<p>/bin/nc.openbsd $METHOD $*</p>
+<p>We have another choice to ‘avoid’ this issue. I found git source can be
+changed in file stackrc, so we can simply change its scheme “git://” to
+“http://”, because git source with http scheme is available.</p>
+<ol class="arabic simple">
+<li>Pip index URL</li>
+</ol>
+<p>Create the file <strong>~/.pip/pip.conf</strong> and it also can be changed at
+<strong>/etc/pip.conf</strong> for all users.</p>
+<p>$mkdir ~/.pip</p>
+<p>$ vi ~/.pip/pip.conf</p>
+<p>[global]</p>
+<p>default-timeout = 60</p>
+<p>respect-virtualenv = true</p>
+<p>build = /tmp/.pip/build</p>
+<p>download-cache = /tmp/.pip/cache</p>
+<p>index_url = <em>http://pypi.douban.com/simple/</em></p>
+<p>[install]</p>
+<p>use-mirrors = true</p>
+<p>mirrors = <a class="reference external" href="http://pypi.douban.com">*http://pypi.douban.com*</a></p>
+<p>Pip cannot browse default index url, we need to add another url to its
+configuration file (~/.pip/pip.conf). douban’s source <a class="footnote-reference" href="#id21" id="id3">[3]</a> is a choice.
+But, sometimes it failed to work(might inform you that pkgs cannot find
+at …/dist-packages), So I use gocept’s <a class="footnote-reference" href="#id22" id="id4">[4]</a> as a backup. Other candidate
+could be found in this website
+<a class="reference external" href="http://www.pypi-mirrors.org/">*http://www.pypi-mirrors.org/*</a> , from
+this site, you can see Location of Packages, Last update time, its Age,
+Response Time and health Status of each available source.</p>
+<ol class="arabic simple">
+<li>apt configuration</li>
+</ol>
+<p>create the file <strong>/etc/apt/apt.conf</strong></p>
+<p>Acquire::http::Proxy &#8220;<em>http://proxy-shz.intel.com:911/</em>&#8221;;</p>
+<p>Acquire::https::Proxy &#8220;<em>https://proxy-shz.intel.com:911/</em>&#8221;;</p>
+<p>Acquire::ftp::Proxy &#8220;<em>ftp://proxy-shz.intel.com:911/</em>&#8221;;</p>
+<p>Acquire::socks::Proxy &#8220;<em>socks://proxy-shz.intel.com:911/</em>&#8221;;</p>
+<p>Apt’s default package source is really slow, it takes bunch of time to
+wait. Its source list <strong>(/etc/apt/sources.list</strong>) can be replaced with
+our local server:</p>
+<p>deb <em>http://linux-ftp.sh.intel.com/pub/mirrors/ubuntu/</em> trusty main
+restricted universe multiverse</p>
+<p>#deb <em>http://linux-ftp.sh.intel.com/pub/mirrors/ubuntu/</em> trusty-security
+main restricted universe multiverse</p>
+<p>deb <em>http://linux-ftp.sh.intel.com/pub/mirrors/ubuntu/</em> trusty-updates
+main restricted universe multiverse</p>
+<p>deb <em>http://linux-ftp.sh.intel.com/pub/mirrors/ubuntu/</em> trusty-proposed
+main restricted universe multiverse</p>
+<p>deb <em>http://linux-ftp.sh.intel.com/pub/mirrors/ubuntu/</em> trusty-backports
+main restricted universe multiverse</p>
+<p>deb-src <em>http://linux-ftp.sh.intel.com/pub/mirrors/ubuntu/</em> trusty main
+restricted universe multiverse</p>
+<p>deb-src <em>http://linux-ftp.sh.intel.com/pub/mirrors/ubuntu/</em>
+trusty-security main restricted universe multiverse</p>
+<p>#deb-src <em>http://linux-ftp.sh.intel.com/pub/mirrors/ubuntu/</em>
+trusty-updates main restricted universe multiverse</p>
+<p>deb-src <em>http://linux-ftp.sh.intel.com/pub/mirrors/ubuntu/</em>
+trusty-proposed main restricted universe multiverse</p>
+<p>deb-src <em>http://linux-ftp.sh.intel.com/pub/mirrors/ubuntu/</em>
+trusty-backports main restricted universe multiverse</p>
+<p>Speed is really fast, but some packages might be corrupt, and not up to
+date.</p>
+<p>Below is aliyun’s source list.</p>
+<p># deb cdrom:[Ubuntu 14.04.1 LTS _Trusty Tahr_ - Release amd64
+(20140722.2)]/ trusty main restricted</p>
+<p># See <a class="reference external" href="http://help.ubuntu.com/community/UpgradeNotes">http://help.ubuntu.com/community/UpgradeNotes</a> for how to upgrade
+to</p>
+<p># newer versions of the distribution.</p>
+<p>deb <a class="reference external" href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> trusty main restricted</p>
+<p>deb-src <a class="reference external" href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> trusty main restricted</p>
+<p>## Major bug fix updates produced after the final release of the</p>
+<p>## distribution.</p>
+<p>deb <a class="reference external" href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> trusty-updates main restricted</p>
+<p>deb-src <a class="reference external" href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> trusty-updates main restricted</p>
+<p>## N.B. software from this repository is ENTIRELY UNSUPPORTED by the
+Ubuntu</p>
+<p>## team. Also, please note that software in universe WILL NOT receive
+any</p>
+<p>## review or updates from the Ubuntu security team.</p>
+<p>deb <a class="reference external" href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> trusty universe</p>
+<p>deb-src <a class="reference external" href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> trusty universe</p>
+<p>deb <a class="reference external" href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> trusty-updates universe</p>
+<p>deb-src <a class="reference external" href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> trusty-updates universe</p>
+<p>## N.B. software from this repository is ENTIRELY UNSUPPORTED by the
+Ubuntu</p>
+<p>## team, and may not be under a free licence. Please satisfy yourself as
+to</p>
+<p>## your rights to use the software. Also, please note that software in</p>
+<p>## multiverse WILL NOT receive any review or updates from the Ubuntu</p>
+<p>## security team.</p>
+<p>deb <a class="reference external" href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> trusty multiverse</p>
+<p>deb-src <a class="reference external" href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> trusty multiverse</p>
+<p>deb <a class="reference external" href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> trusty-updates multiverse</p>
+<p>deb-src <a class="reference external" href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> trusty-updates multiverse</p>
+<p>## N.B. software from this repository may not have been tested as</p>
+<p>## extensively as that contained in the main release, although it
+includes</p>
+<p>## newer versions of some applications which may provide useful
+features.</p>
+<p>## Also, please note that software in backports WILL NOT receive any
+review</p>
+<p>## or updates from the Ubuntu security team.</p>
+<p>deb <a class="reference external" href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> trusty-backports main restricted
+universe multiverse</p>
+<p>deb-src <a class="reference external" href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> trusty-backports main
+restricted universe multiverse</p>
+<p>deb <a class="reference external" href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> trusty-security main restricted</p>
+<p>deb-src <a class="reference external" href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> trusty-security main
+restricted</p>
+<p>deb <a class="reference external" href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> trusty-security universe</p>
+<p>deb-src <a class="reference external" href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> trusty-security universe</p>
+<p>deb <a class="reference external" href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> trusty-security multiverse</p>
+<p>deb-src <a class="reference external" href="http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a> trusty-security multiverse</p>
+<p>## Uncomment the following two lines to add software from Canonical&#8217;s</p>
+<p>## &#8216;partner&#8217; repository.</p>
+<p>## This software is not part of Ubuntu, but is offered by Canonical and
+the</p>
+<p>## respective vendors as a service to Ubuntu users.</p>
+<p># deb <a class="reference external" href="http://archive.canonical.com/ubuntu">http://archive.canonical.com/ubuntu</a> trusty partner</p>
+<p># deb-src <a class="reference external" href="http://archive.canonical.com/ubuntu">http://archive.canonical.com/ubuntu</a> trusty partner</p>
+<p>## This software is not part of Ubuntu, but is offered by third-party</p>
+<p>## developers who want to ship their latest software.</p>
+<p>deb <a class="reference external" href="http://extras.ubuntu.com/ubuntu">http://extras.ubuntu.com/ubuntu</a> trusty main</p>
+<p>deb-src <a class="reference external" href="http://extras.ubuntu.com/ubuntu">http://extras.ubuntu.com/ubuntu</a> trusty main</p>
+<p><img alt="image1" src="docs/devstack_quickstart/media/image2.png" /></p>
+<p><em>DevStack Configuration</em></p>
+<p>It takes some time to realize that official tutorial <a class="footnote-reference" href="#id23" id="id5">[5]</a> is not
+explicit enough to deploy OpenStack, so I took a sample from
+<strong>devstack/samples/local.conf</strong>, apparently this configuration works
+better. So I use this tutorial as a reference to modify local.conf. And
+I also referred from some other tutorials <a class="footnote-reference" href="#id24" id="id6">[6]</a>.</p>
+<ol class="arabic simple">
+<li>Preparation</li>
+</ol>
+<p>Add third party repositories (EPEL, rpmforge, atomic, PUIAS) for
+CentOS6.5</p>
+<ol class="arabic">
+<li><p class="first">Install priority plugin</p>
+<blockquote>
+<div><p># yum install yum-priorities</p>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic">
+<li><dl class="first docutils">
+<dt>Download EPEL (Extended Packages for Enterprise Linux), RPMforge</dt>
+<dd><p class="first last">installing package, then install it</p>
+</dd>
+</dl>
+</li>
+</ol>
+<p># wget
+<a class="reference external" href="http://mirrors.ustc.edu.cn/fedora/epel/6/x86_64/epel-release-6-8.noarch.rpm">http://mirrors.ustc.edu.cn/fedora/epel/6/x86_64/epel-release-6-8.noarch.rpm</a></p>
+<p># wget <a class="reference external" href="http://rpms.famillecollet.com/enterprise/remi-release-6.rpm">http://rpms.famillecollet.com/enterprise/remi-release-6.rpm</a></p>
+<p># wget
+<a class="reference external" href="http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm">http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm</a></p>
+<p># rpm –ivh epel-release-6-8.noarch.rpm</p>
+<p># rpm –ivh remi-release-6.rpm</p>
+<p># rpm –ivh rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm</p>
+<ol class="arabic">
+<li><p class="first">Check whether repo was installed like this</p>
+<blockquote>
+<div><p># rpm -q epel-release</p>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic">
+<li><p class="first">Import gpg key for epel &amp; rpmforge</p>
+<blockquote>
+<div><p># rpm &#8211;import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-6</p>
+<p># rpm &#8211;import <a class="reference external" href="http://apt.sw.be/RPM-GPG-KEY.dag.txt">http://apt.sw.be/RPM-GPG-KEY.dag.txt</a></p>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic">
+<li><dl class="first docutils">
+<dt>Create PUIAS computational repository manually( gpgcheck should be</dt>
+<dd><blockquote class="first">
+<div><p>disabled since gpgkey is not available)</p>
+</div></blockquote>
+<p>[PUIAS_6_computational]</p>
+<p>name=PUIAS computational Base $releasever - $basearch</p>
+<p>mirrorlist=http://puias.math.ias.edu/data/puias/computational/$releasever/$basearch/mirrorlist</p>
+<p>#baseurl=http://puias.math.ias.edu/data/puias/computational/$releasever/$basearch</p>
+<p>gpgcheck=0</p>
+<p class="last">gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puias</p>
+</dd>
+</dl>
+</li>
+</ol>
+<ol class="arabic">
+<li><dl class="first docutils">
+<dt>By the way, package python-mox still can’t be found in any</dt>
+<dd><blockquote class="first">
+<div><p>repository, so we need to install it manually.</p>
+</div></blockquote>
+<p>$ wget
+<a class="reference external" href="ftp://ftp.is.co.za/mirror/fedora.redhat.com/epel/6/ppc64/python-mox-0.5.3-2.el6.noarch.rpm">ftp://ftp.is.co.za/mirror/fedora.redhat.com/epel/6/ppc64/python-mox-0.5.3-2.el6.noarch.rpm</a></p>
+<p class="last">$ rpm –ivh python-mox-0.5.3-2.el6.noarch.rpm</p>
+</dd>
+</dl>
+</li>
+</ol>
+<ol class="arabic">
+<li><dl class="first docutils">
+<dt>On the other side, mariadb-server conlicts with mysql-lib while</dt>
+<dd><blockquote class="first">
+<div><p>installing it. We can solve this problem by removing mysql-lib’s
+dependency, which is dangerous. And Django conflicts with
+python-django.</p>
+</div></blockquote>
+<p># rpm -e &#8211;nodeps mysql-libs</p>
+<p class="last"># rpm -e &#8211;nodeps python-django</p>
+</dd>
+</dl>
+</li>
+</ol>
+<p>Upgrade python 2.6 to 2.7 for CentOS6.5</p>
+<p>Add the DevStack User</p>
+<p>Openstack runs as a non-root user that has sudo access to root. Every
+node must use the same name and preferably uid.</p>
+<p># groupadd stack</p>
+<p># useradd -g stack -s /bin/bash -d /opt/stack -m stack</p>
+<p># echo &#8220;stack ALL=(ALL) NOPASSWD: ALL&#8221; &gt;&gt; /etc/sudoers</p>
+<p>Install NTP <a class="footnote-reference" href="#id25" id="id7">[7]</a>, change time zone into shanghai.</p>
+<p># atp-get install ntp</p>
+<p># ln -sf /usr/share/zoneinfo/posix/Asia/Shanghai/ etc/localtime</p>
+<ol class="loweralpha simple">
+<li>Controller node</li>
+</ol>
+<p>Add to ctrl node’s <strong>/etc/ntp.conf</strong></p>
+<p>server 210.72.145.44 #Authorized Center in China</p>
+<p>server 10.239.44.241</p>
+<p>server 10.239.3.193</p>
+<p>server 0.ubuntu.pool.ntp.org</p>
+<p>server 1.ubuntu.pool.ntp.org</p>
+<p>server 2.ubuntu.pool.ntp.org</p>
+<p>server 3.ubuntu.pool.ntp.org</p>
+<p>server 3.asia.pool.ntp.org</p>
+<p>server 0.asia.pool.ntp.org</p>
+<p>server 2.cn.pool.ntp.org</p>
+<p>server 192.168.2.200 #Servers above is not accessible inside intel</p>
+<p>server 127.127.1.0 #Hardware clock</p>
+<p>fudge 127.127.1.0 stratum 10</p>
+<ol class="loweralpha simple">
+<li>Other nodes</li>
+</ol>
+<p>Delete another time servers and add the following document to other
+nodes’ <strong>/etc/ntp.conf</strong></p>
+<p>server 192.168.11.66 #delete all other servers. Set your local
+ntp-server’s IP</p>
+<ol class="loweralpha simple">
+<li>Verify operation</li>
+</ol>
+<p>Run these two commands to check NTP service’s status in all nodes:</p>
+<p># ntpq –c peers</p>
+<p>remote refid st t when poll reach delay offset jitter</p>
+<hr class="docutils" />
+<p>*192.168.11.66 LOCAL(0) 11 u 731 1024 377 0.248 0.045 0.023</p>
+<p>Contents in remote column indicate hostname or IP address.</p>
+<p># ntpq –c assoc</p>
+<p>ind assid status conf reach auth condition last_event cnt</p>
+<hr class="docutils" />
+<p>1 25916 965a yes yes none sys.peer sys_peer 5</p>
+<p>Content in the condition column should indicate sys.peer .</p>
+<p>ssh login without password</p>
+<p>It doesn’t work by simply copying rsa keys based on my experience, I
+tried to solve this issue by changing its mod to 600, as some article
+says <a class="footnote-reference" href="#id26" id="id8">[8]</a>. After reading ssh manual, finally the problem was solved with
+this simple command below. <a class="footnote-reference" href="#id27" id="id9">[9]</a></p>
+<p>Create rsa key:</p>
+<p>$ ssh-keygen -t rsa -P &#8216;&#8217;</p>
+<p>Authorization:</p>
+<p>$ssh-copy-id -i ~/.ssh/id_rsa.pub <a class="reference external" href="mailto:stack&#37;&#52;&#48;192&#46;168&#46;11&#46;68">stack<span>&#64;</span>192<span>&#46;</span>168<span>&#46;</span>11<span>&#46;</span>68</a></p>
+<ol class="arabic simple">
+<li>Fire up DevStack</li>
+</ol>
+<p>Download DevStack</p>
+<p>Clone devstack from its official repository. Also, you can get from
+github <a class="footnote-reference" href="#id28" id="id10">[10]</a> .</p>
+<p>$ git clone <a class="reference external" href="https://git.openstack.org/openstack-dev/devstack">https://git.openstack.org/openstack-dev/devstack</a></p>
+<p>stack.sh <a class="footnote-reference" href="#id29" id="id11">[11]</a></p>
+<p>Load localrc before stackrc; before localrc loaded, ENABLED_SERVICE is
+not null, it contains all of the main services.</p>
+<p>stackrc <a class="footnote-reference" href="#id30" id="id12">[12]</a></p>
+<p>stackrc is the primary configuration file for DevStack. It contains all
+of the settings that control the services started and the repositories
+used to download the source for those services. stackrc sources the
+localrc section of local.conf to perform the default overrides.</p>
+<p>DATABASE_TYPE: Select the database backend to use. The default is
+mysql, postgresql is also available</p>
+<p>ENABLED_SERVICES: Specify which services to launch. Below are its
+default values.</p>
+<p>ENABLED_SERVICES=g-api,g-reg,key,n-api,n-crt,n-obj,n-cpu,n-net,n-cond,c-sch,c-api,c-vol,n-sch,n-cauth,horizon,rabbit,tempest,$DATABASE_TYPE</p>
+<p>Service Repos can be overridden in local.conf</p>
+<p>GIT_BASE=git://github.com/ #scheme <a class="reference external" href="http://">http://</a> is supported</p>
+<p>NOVA_REPO=$GIT_BASE/openstack/nova.git</p>
+<p>NOVA_BRANCH=master</p>
+<p>Configure local.conf <a class="footnote-reference" href="#id31" id="id13">[13]</a></p>
+<p>This gives it the ability to override any variables set in
+``stackrc``. Also, most of the settings in ``stack.sh`` are
+written to only be set if no value has already been set; this lets
+``local.conf`` effectively override the default values.</p>
+<p>Took sample from <strong>devstack/samples/</strong></p>
+<p>$cp samples/localrc ./</p>
+<p>$vi localrc</p>
+<p>And you can also get our configuration samples:</p>
+<p>$ git clone <a class="reference external" href="mailto:git&#37;&#52;&#48;github&#46;com">git<span>&#64;</span>github<span>&#46;</span>com</a>:poppyqi/devstack-multinode-nova-network.git</p>
+<p>Minimal configuration</p>
+<p>[[local|localrc]]</p>
+<p>FLOATING_RANGE=192.168.11.224/27</p>
+<p>FIXED_RANGE=10.11.12.0/24</p>
+<p>FIXED_NETWORK_SIZE=256</p>
+<p>FLAT_INTERFACE=eth0</p>
+<p>ADMIN_PASSWORD=123456</p>
+<p>MYSQL_PASSWORD=$ADMIN_PASSWORD</p>
+<p>RABBIT_PASSWORD=$ADMIN_PASSWORD</p>
+<p>SERVICE_PASSWORD=$ADMIN_PASSWORD</p>
+<p>The following list shows some of OpenStack’s service options.</p>
+<p># glance-Image service</p>
+<p>g-api<strong>,</strong>g-reg</p>
+<p># keystone service</p>
+<p>Key</p>
+<p># Nova-compute Service</p>
+<p>n-api<strong>,</strong>n-crt<strong>,</strong>n-obj<strong>,</strong>n-cpu<strong>,</strong>n-cond<strong>,</strong>n-sch</p>
+<p># Nova-network Service</p>
+<p>n-net</p>
+<p># vnc</p>
+<p>n-novnc<strong>,</strong>n-xvnc<strong>,</strong>n-cauth</p>
+<p># heat</p>
+<p>h-eng<strong>,</strong>h-api<strong>,</strong>h-api-cfn<strong>,</strong>h-api-cw</p>
+<p># dashboard</p>
+<p>horizon</p>
+<p># additional services</p>
+<p>rabbit<strong>,</strong>tempest<strong>,</strong>mysql</p>
+<p># Swift - Object Storage</p>
+<p>s-proxy,s-object,s-container,s-account</p>
+<p># Neutron - Networking Service</p>
+<p># If Neutron is not declared the old good nova-network will be used</p>
+<p>q-svc,q-agt,q-dhcp,q-l3,q-meta,neutron</p>
+<p>## Neutron - Load Balancing</p>
+<p>q-lbaas</p>
+<p>## Neutron - VPN as a Service</p>
+<p>q-vpn</p>
+<p>## Neutron - Firewall as a Service</p>
+<p>q-fwaas</p>
+<p># VLAN configuration</p>
+<p>#Q_PLUGIN=ml2</p>
+<p>#ENABLE_TENANT_VLANS=True</p>
+<p># GRE tunnel configuration</p>
+<p>Q_PLUGIN=ml2</p>
+<p>ENABLE_TENANT_TUNNELS=True</p>
+<p># VXLAN tunnel configuration</p>
+<p>#Q_PLUGIN=ml2</p>
+<p>#Q_ML2_TENANT_NETWORK_TYPE=vxlan</p>
+<p># Cinder - Block Device Service</p>
+<p>VOLUME_GROUP=&#8221;cinder-volumes&#8221;</p>
+<p>cinder,c-api,c-vol,c-sch,c-bak</p>
+<p># Heat - Orchestration Service</p>
+<p>heat,h-api,h-api-cfn,h-api-cw,h-eng</p>
+<p>#IMAGE_URLS+=&#8221;,http://fedorapeople.org/groups/heat/prebuilt-jeos-images/F17-x86_64-cfntools.qcow2&#8221;</p>
+<p># Ceilometer - Metering Service (metering + alarming)</p>
+<p>ENABLED_SERVICES+=,ceilometer-acompute,ceilometer-acentral,ceilometer-collector,ceilometer-api</p>
+<p>ENABLED_SERVICES+=,ceilometer-alarm-notify,ceilometer-alarm-eval</p>
+<p>ENABLED_SERVICES+=,trove,tr-api,tr-tmgr,tr-cond</p>
+<p># Sahara - Enable auto assignment of floating IPs. By default Sahara
+expects this setting to be enabled</p>
+<p>EXTRA_OPTS=(auto_assign_floating_ip=True)</p>
+<p>ENABLED_SERVICES+=,sahara</p>
+<p>Services can be added, or disabled like this:</p>
+<p>ENABLED_SERVICES+=,new_service #change variable</p>
+<p>enable_service service_name</p>
+<p>disable_service service_name</p>
+<p>disable_all_services</p>
+<p>Some common configuration variables:</p>
+<p>#Set ``OFFLINE`` to ``True`` to configure ``stack.sh`` to
+run cleanly without Internet access. ``stack.sh`` must have been
+previously run with Internet access to install prerequisites and fetch
+repositories.</p>
+<p>OFFLINE=True</p>
+<p>#Installation Directory default value is /opt/stack</p>
+<p>DESK=/opt/stack</p>
+<p>#Enable Logging</p>
+<p>LOG_COLOR=False #defaut: True</p>
+<p>LOGDAYS=2 #defaut: 7</p>
+<p>LOGFILE=$DEST/logs/stack.sh.log #old log files are cleaned automatically</p>
+<p>SCREEN_LOGDIR=$DEST/logs/screen</p>
+<p>#Enabling Syslog</p>
+<p>SYSLOG=True #default: False</p>
+<p>SYSLOG_HOST=$HOST_IP</p>
+<p>SYSLOG_PORT=516</p>
+<p>#Reclone every time</p>
+<p>RECLONE=yes #default: “”</p>
+<p>#Service Catalog Backend</p>
+<p>KEYSTONE_CATALOG_BACKEND=template #default: sql</p>
+<p># Apache fronted for WSGI</p>
+<p>APACHE_ENABLED_SERVICES+=keystone,swift</p>
+<p>#APACHE_ENABLED_SERVICES+=keystone</p>
+<p># MultiNode</p>
+<p>#master node</p>
+<p>MULTI_HOST=True</p>
+<p>#slave node</p>
+<p>MYSQL_HOST=w.x.y.z</p>
+<p>RABBIT_HOST=w.x.y.z</p>
+<p>GLANCE_HOSTPORT=w.x.y.z:9292</p>
+<p>If the installation is successful, you can see:</p>
+<p>Controller node</p>
+<p>Horizon is now available at <a class="reference external" href="http://192.168.11.66/">http://192.168.11.66/</a></p>
+<p>Keystone is serving at <a class="reference external" href="http://192.168.11.66:5000/v2.0/">http://192.168.11.66:5000/v2.0/</a></p>
+<p>Examples on using novaclient command line is in exercise.sh</p>
+<p>The default users are: admin and demo</p>
+<p>The password: 123456</p>
+<p>This is your host ip: 192.168.11.66</p>
+<p>Compute node</p>
+<p>Keystone is serving at <a class="reference external" href="http://192.168.11.66:5000/v2.0/">http://192.168.11.66:5000/v2.0/</a></p>
+<p>Examples on using nova client command line is in exercise.sh</p>
+<p>The default users are: admin and demo</p>
+<p>The password: 123456</p>
+<p>This is your host ip: 192.168.11.68</p>
+<p>After installation, in order to access the dashboard, use plink.exe to
+create a tunnel with the following command:</p>
+<p>plink.exe -N -D 127.0.0.1:1080 <a class="reference external" href="mailto:root&#37;&#52;&#48;10&#46;239&#46;44&#46;197">root<span>&#64;</span>10<span>&#46;</span>239<span>&#46;</span>44<span>&#46;</span>197</a> -pw <a class="reference external" href="mailto:intel&#37;&#52;&#48;123">intel<span>&#64;</span>123</a></p>
+<p><img alt="image2" src="docs/devstack_quickstart/media/image3.png" /></p>
+<p>Then you can use 127.0.0.1 as a SOCKS Host.</p>
+<p><img alt="image3" src="docs/devstack_quickstart/media/image4.png" /></p>
+<p>To work via the CLI</p>
+<p>Start by getting admin creds.</p>
+<p>$ source /opt/stack/python-novaclient/tools/nova.bash_completion</p>
+<p>$ source openrc admin admin # source openrc [username] [tenantname]</p>
+<p>$ nova image-list</p>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<p>| ID | Name | Status | Server |</p>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<p>| fc516707-164b-404c-9576-420542012824 |
+Fedora-x86_64-20-20140618-sda | ACTIVE | |</p>
+<p>| 1d80bb04-480e-48ce-988e-b83bc551bd76 | cirros-0.3.2-x86_64-uec |
+ACTIVE | |</p>
+<p>| 88e9eac3-9fa2-42c9-a9f3-3c1523cf4d1f |
+cirros-0.3.2-x86_64-uec-kernel | ACTIVE | |</p>
+<p>| cab81836-ea3f-426a-a661-d5e6f4332245 |
+cirros-0.3.2-x86_64-uec-ramdisk | ACTIVE | |</p>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<p>$ nova list</p>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<p>| ID | Name | Status | Task State | Power State | Networks |</p>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<p>| 604830c1-d005-437a-bcb3-c66d0311e8d3 |
+ttt-604830c1-d005-437a-bcb3-c66d0311e8d3 | ACTIVE | - | Running |
+private=10.4.128.2 |</p>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<p>$ nova get-vnc-console 604830c1-d005-437a-bcb3-c66d0311e8d3 novnc</p>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<p>| Type | Url |</p>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<p>| novnc |
+<a class="reference external" href="http://192.168.11.71:6080/vnc_auto.html?token=c327f2f8-077d-41d6-abdb-c7f32e23a095">http://192.168.11.71:6080/vnc_auto.html?token=c327f2f8-077d-41d6-abdb-c7f32e23a095</a>
+|</p>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<p>$ keystone service-list</p>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<p>| id | name | type | description |</p>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<p>| 1bd206f9e464425d929a64f0ba531010 | cinder | volume | Cinder Volume
+Service |</p>
+<p>| dd42b0dbb9df4177ba17fefb3e40f5b4 | cinderv2 | volumev2 | Cinder
+Volume Service V2 |</p>
+<p>| 4236a2d5567743d4b56904750568b485 | ec2 | ec2 | EC2 Compatibility
+Layer |</p>
+<p>| bb4df826f91d49e1ba80fe871f7eb8bf | glance | image | Glance Image
+Service |</p>
+<p>| 715bd7975203409b98d62254a1acd841 | heat | orchestration | Heat
+Orchestration Service |</p>
+<p>| 2745721026403dad820fae659aa1a0 | heat-cfn | cloudformation | Heat
+CloudFormation Service |</p>
+<p>| f4fa0e6e7a5749b89b65e38a4cfd7752 | keystone | identity | Keystone
+Identity Service |</p>
+<p>| 9b7e54f73ff24b838d5958c06be0bf1f | nova | compute | Nova Compute
+Service |</p>
+<p>| 8a1c5c61f986426093feb175083dc3b5 | novav21 | computev21 | Nova
+Compute Service V2.1 |</p>
+<p>| c9b19b20ecb34eca879e80e105777d5f | s3 | s3 | S3 |</p>
+<p>| 356268b0abee42838e5ff8353d254d7f | swift | object-store | Swift
+Service |</p>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<ol class="arabic simple">
+<li></li>
+</ol>
+<p>nova-manage service list # Check Nova service status</p>
+<p>Binary Host Zone Status State Updated_At</p>
+<p>nova-cert control internal enabled :-) 2014-12-06 02:29:44</p>
+<p>nova-conductor control internal enabled :-) 2014-12-06 02:29:42</p>
+<p>nova-consoleauth control internal enabled :-) 2014-12-06 02:29:44</p>
+<p>nova-scheduler control internal enabled :-) 2014-12-06 02:29:47</p>
+<p>nova-compute node-01 nova enabled :-) 2014-12-06 02:29:46</p>
+<p>nova-compute node-02 nova enabled :-) 2014-12-06 02:29:46</p>
+<p>nova-compute node-03 nova enabled :-) 2014-04-06 02:29:42</p>
+<p>#EC2 credentials</p>
+<p>$. eucarc</p>
+<p><em>Tips</em></p>
+<ol class="arabic">
+<li><dl class="first docutils">
+<dt>Tool screen can create screens; each screen might have lots of</dt>
+<dd><p class="first last">windows.</p>
+</dd>
+</dl>
+</li>
+</ol>
+<p>Short-cut keys: “ctrl + a” as initial</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Key</td>
+<td>Function</td>
+</tr>
+<tr class="row-even"><td>d</td>
+<td>detach screen</td>
+</tr>
+<tr class="row-odd"><td>c/n/p/k</td>
+<td>create, next, previous, kill window</td>
+</tr>
+<tr class="row-even"><td>“</td>
+<td>Select window from list</td>
+</tr>
+<tr class="row-odd"><td>Ctrl + a</td>
+<td>Previous window viewed</td>
+</tr>
+<tr class="row-even"><td>[</td>
+<td>Edit mode, press space bar to start select, press again to complete copy</td>
+</tr>
+<tr class="row-odd"><td>]</td>
+<td>paste</td>
+</tr>
+<tr class="row-even"><td>?</td>
+<td>help</td>
+</tr>
+</tbody>
+</table>
+<p>Recommended screenrc configuration:</p>
+<ol class="arabic simple">
+<li>Hostname</li>
+</ol>
+<p>Name of current working computer can be saved in <strong>/etc/hostname</strong>. And
+you can store other computer’s name in <strong>/etc/hosts</strong>.</p>
+<ol class="arabic simple">
+<li>Reset the bridge</li>
+</ol>
+<p>$ sudo brctl delif br100 eth0.926</p>
+<p>$ sudo ip link set dev br100 down</p>
+<p>$ sudo brctl delbr br100</p>
+<ol class="arabic simple">
+<li>Logs</li>
+</ol>
+<p>Logs all stored at <strong>$DEST/logs/</strong></p>
+<p>/opt/stack/logs/stack.sh.log</p>
+<p>/opt/stack/logs/screen-c-api.log</p>
+<p>/opt/stack/logs/screen-c-sch.log</p>
+<p>/opt/stack/logs/screen-c-vol.log</p>
+<p>/opt/stack/logs/screen-g-api.log</p>
+<p>/opt/stack/logs/screen-g-reg.log</p>
+<p>/opt/stack/logs/screen-h-api-cfn.log</p>
+<p>/opt/stack/logs/screen-h-api-cw.log</p>
+<p>/opt/stack/logs/screen-h-api.log</p>
+<p>/opt/stack/logs/screen-h-eng.log</p>
+<p>/opt/stack/logs/screen-horizon.log</p>
+<p>/opt/stack/logs/screen-key-access.log</p>
+<p>/opt/stack/logs/screen-key.log</p>
+<p>/opt/stack/logs/screen-n-api.log</p>
+<p>/opt/stack/logs/screen-n-cauth.log</p>
+<p>/opt/stack/logs/screen-n-cond.log</p>
+<p>/opt/stack/logs/screen-n-cpu.log</p>
+<p>/opt/stack/logs/screen-n-crt.log</p>
+<p>/opt/stack/logs/screen-n-net.log</p>
+<p>/opt/stack/logs/screen-n-novnc.log</p>
+<p>/opt/stack/logs/screen-n-obj.log</p>
+<p>/opt/stack/logs/screen-n-sch.log</p>
+<p>/opt/stack/logs/screen-n-xvnc.log</p>
+<p>/opt/stack/logs/screen-s-account.log</p>
+<p>/opt/stack/logs/screen-sahara.log</p>
+<p>/opt/stack/logs/screen-s-container.log</p>
+<p>/opt/stack/logs/screen-s-object.log</p>
+<p>/opt/stack/logs/screen-s-proxy.log</p>
+<ol class="arabic simple">
+<li>config files</li>
+</ol>
+<p>/etc/apache2/apache2.conf</p>
+<p>/etc/apache2/ports.conf</p>
+<p>/etc/apt/apt.conf</p>
+<p>/etc/cinder/cinder.conf</p>
+<p>/etc/cinder/rootwrap.conf</p>
+<p>/etc/dhcp/dhclient.conf</p>
+<p>/etc/glance/glance-api.conf</p>
+<p>/etc/glance/glance-cache.conf</p>
+<p>/etc/glance/glance-registry.conf</p>
+<p>/etc/heat/heat.conf</p>
+<p>/etc/iscsi/iscsid.conf</p>
+<p>/etc/keystone/keystone.conf</p>
+<p>/etc/libvirt/libvirt.conf</p>
+<p>/etc/libvirt/libvirtd.conf</p>
+<p>/etc/libvirt/lxc.conf</p>
+<p>/etc/libvirt/qemu.conf</p>
+<p>/etc/libvirt/qemu-lockd.conf</p>
+<p>/etc/libvirt/virtlockd.conf</p>
+<p>/etc/libvirt/virt-login-shell.conf</p>
+<p>/etc/nova/nova.conf</p>
+<p>/etc/nova/rootwrap.conf</p>
+<p>/etc/qemu/target-x86_64.conf</p>
+<p>/etc/sahara/sahara.conf</p>
+<p>/etc/swift/container-sync-realms.conf</p>
+<p>/etc/swift/proxy-server.conf</p>
+<p>/etc/swift/swift.conf</p>
+<p>/etc/swift/test.conf</p>
+<p>/etc/tgt/targets.conf</p>
+<p>/etc/ufw/sysctl.conf</p>
+<p>/etc/ufw/ufw.conf</p>
+<p>/opt/stack/cinder/openstack-common.conf</p>
+<p>/opt/stack/devstack/local.conf</p>
+<p>/opt/stack/glance/openstack-common.conf</p>
+<p>/opt/stack/heat/openstack-common.conf</p>
+<p>/opt/stack/horizon/openstack-common.conf</p>
+<p>/opt/stack/keystone/openstack-common.conf</p>
+<p>/opt/stack/nova/openstack-common.conf</p>
+<p>/opt/stack/sahara/openstack-common.conf</p>
+<p>/opt/stack/tempest/openstack-common.conf</p>
+<p>/opt/stack/horizon/openstack_dashboard/conf</p>
+<p>/opt/stack/horizon/horizon/test/settings.py</p>
+<p>/opt/stack/horizon/openstack_dashboard/settings.py</p>
+<p>/opt/stack/horizon/openstack_dashboard/enabled/_30_settings.py</p>
+<p>/opt/stack/horizon/openstack_dashboard/local/local_settings.py</p>
+<p>/opt/stack/horizon/openstack_dashboard/test/settings.py</p>
+<p>/opt/stack/horizon/openstack_dashboard/test/settings.pyc</p>
+<p>/opt/stack/horizon/openstack_dashboard/test/integration_tests/tests/test_user_settings.py</p>
+<p>/opt/stack/horizon/openstack_dashboard/utils/settings.py</p>
+<p>Eg: sahara’s proxy command can be added at <strong>/etc/sahara/sahara.conf</strong></p>
+<p>$ vi /etc/sahara/sahara.conf</p>
+<ol class="arabic simple">
+<li>Sahara plugins</li>
+</ol>
+<p><a href="#id14"><span class="problematic" id="id15">**</span></a>Vanilla Plugin **</p>
+<p>image list</p>
+<p><a class="reference external" href="http://sahara-files.mirantis.com/sahara-juno-vanilla-1.2.1-ubuntu-14.04.qcow2">http://sahara-files.mirantis.com/sahara-juno-vanilla-1.2.1-ubuntu-14.04.qcow2</a></p>
+<p><a class="reference external" href="http://sahara-files.mirantis.com/sahara-juno-vanilla-1.2.1-centos-6.5.qcow2">http://sahara-files.mirantis.com/sahara-juno-vanilla-1.2.1-centos-6.5.qcow2</a></p>
+<p><a class="reference external" href="http://sahara-files.mirantis.com/sahara-juno-vanilla-1.2.1-fedora-20.qcow2">http://sahara-files.mirantis.com/sahara-juno-vanilla-1.2.1-fedora-20.qcow2</a></p>
+<p><a class="reference external" href="http://sahara-files.mirantis.com/sahara-juno-vanilla-2.4.1-ubuntu-14.04.qcow2">http://sahara-files.mirantis.com/sahara-juno-vanilla-2.4.1-ubuntu-14.04.qcow2</a></p>
+<p><a class="reference external" href="http://sahara-files.mirantis.com/sahara-juno-vanilla-2.4.1-centos-6.5.qcow2">http://sahara-files.mirantis.com/sahara-juno-vanilla-2.4.1-centos-6.5.qcow2</a></p>
+<p><a class="reference external" href="http://sahara-files.mirantis.com/sahara-juno-vanilla-2.4.1-fedora-20.qcow2">http://sahara-files.mirantis.com/sahara-juno-vanilla-2.4.1-fedora-20.qcow2</a></p>
+<p>Default usernames:</p>
+<p>OS username</p>
+<p>Ubuntu 14.04 ubuntu</p>
+<p>Fedora 20 fedora</p>
+<p>CentOS 6.5 cloud-user</p>
+<p><strong>Hortonworks Data Platform</strong> (username: cloud-user)</p>
+<p><a class="reference external" href="http://sahara-files.mirantis.com/sahara-juno-hdp-1.3.2-centos-6.5.qcow2">http://sahara-files.mirantis.com/sahara-juno-hdp-1.3.2-centos-6.5.qcow2</a></p>
+<p><a class="reference external" href="http://sahara-files.mirantis.com/sahara-juno-hdp-2.0.6-centos-6.5.qcow2">http://sahara-files.mirantis.com/sahara-juno-hdp-2.0.6-centos-6.5.qcow2</a></p>
+<p><a class="reference external" href="http://sahara-files.mirantis.com/sahara-juno-hdp-plain-centos-6.5.qcow2">http://sahara-files.mirantis.com/sahara-juno-hdp-plain-centos-6.5.qcow2</a></p>
+<p><strong>Cloudera</strong></p>
+<p>It is not enabled in sahara by default. To enable it you should manually
+modify the Sahara configuration file (default
+<strong>/etc/sahara/sahara.conf</strong>) to add “cdh” in “plugins” value. <a class="footnote-reference" href="#id32" id="id16">[14]</a></p>
+<p>plugins=cdh,vanilla,hdp,fake</p>
+<p>To use the cloudera plugin, you should have cm_api (version &gt;=8.0.0)
+installed on the server where Sahara is running. To install cm_api,
+simply use pip:</p>
+<p>$ sudo pip install cm_api</p>
+<p>$ sudo /etc/init.d/memcached restart</p>
+<ol class="arabic simple" start="7">
+<li>Multi-Node swift configuration</li>
+</ol>
+<p>By default, devstack didn’t support the installation of multi-node
+swift. We need to install and configure swift to storage node manually
+or write code into local.sh file to realize it.</p>
+<p>At controller node, we need to configure rings. Run following script in
+directory <strong>/etc/swift</strong>.</p>
+<p>#!/bin/bash</p>
+<p>rm -f *.builder *.ring.gz backups/*.builder backups/*.ring.gz</p>
+<p>$SLAVES=&#8221;192.168.11.65 192.168.11.67 192.168.11.68 192.168.11.69&#8221;
+#change them to your storage node’s IP</p>
+<p>for i in object container account; do</p>
+<p>swift-ring-builder ${i}.builder create 10 3 1</p>
+<p>done</p>
+<p>for j in SLAVES;do</p>
+<p>swift-ring-builder object.builder add r1z1-${j}:6013/sdb1 100</p>
+<p>done</p>
+<p>for j in SLAVES;do</p>
+<p>swift-ring-builder account.builder add r1z1-${j}:6012/sdb1 100</p>
+<p>done</p>
+<p>for j in SLAVES;do</p>
+<p>swift-ring-builder container.builder add r1z1-${j}:6011/sdb1 100</p>
+<p>done</p>
+<p>for i in object container account; do</p>
+<p>swift-ring-builder ${i}.builder rebalance</p>
+<p>done</p>
+<p>for j in SLAVES;do</p>
+<p>scp *.gz <a class="reference external" href="mailto:stack&#37;&#52;&#48;$j">stack<span>&#64;</span>$j</a>:/ect/swift</p>
+<p>done</p>
+<p>sudo /etc/init.d/rsync restart</p>
+<p>sudo swift-init all restart</p>
+<p>At storage node, we need to create a file named local.sh in
+/opt/stack/devstack</p>
+<p>#!/usr/bin/env bash</p>
+<p>umask 022</p>
+<p>PATH=$PATH:/usr/local/sbin:/usr/sbin:/sbin</p>
+<p>FILES=/opt/stack/devstack/files</p>
+<p>DEST=${DEST:-/opt/stack}</p>
+<p>TOP_DIR=$(cd $(dirname &#8220;$0&#8221;) &amp;&amp; pwd)</p>
+<p>SWIFT_HASH=66a3d6b56c1f479c8b4e70ab5c2000f5</p>
+<p>source $TOP_DIR/functions</p>
+<p>source $TOP_DIR/lib/config</p>
+<p>source $TOP_DIR/stackrc</p>
+<p>source $TOP_DIR/lib/database</p>
+<p>source $TOP_DIR/lib/rpc_backend</p>
+<p>source $TOP_DIR/lib/apache</p>
+<p>source $TOP_DIR/lib/tls</p>
+<p>source $TOP_DIR/lib/infra</p>
+<p>source $TOP_DIR/lib/oslo</p>
+<p>source $TOP_DIR/lib/stackforge</p>
+<p>source $TOP_DIR/lib/horizon</p>
+<p>source $TOP_DIR/lib/keystone</p>
+<p>source $TOP_DIR/lib/glance</p>
+<p>source $TOP_DIR/lib/nova</p>
+<p>source $TOP_DIR/lib/cinder</p>
+<p>source $TOP_DIR/lib/swift</p>
+<p>source $TOP_DIR/lib/ceilometer</p>
+<p>source $TOP_DIR/lib/heat</p>
+<p>source $TOP_DIR/lib/neutron</p>
+<p>source $TOP_DIR/lib/ldap</p>
+<p>source $TOP_DIR/lib/dstat</p>
+<p>source $TOP_DIR/openrc admin admin</p>
+<p>cleanup_swift</p>
+<p>install_swift</p>
+<p>configure_swift</p>
+<p>create_swift_disk</p>
+<p>sudo /etc/init.d/rsync restart</p>
+<p>sudo swift-init all restart</p>
+<ol class="arabic simple" start="8">
+<li>Debugging Neutron issues <a class="footnote-reference" href="#id33" id="id17">[15]</a></li>
+</ol>
+<ol class="arabic simple">
+<li>show devices</li>
+</ol>
+<p><strong>ip a</strong> shows status of all physical and virtual devices</p>
+<p><strong>ovs-vsctl</strong> <strong>show</strong> shows interfaces and bridges in the virtual
+switch</p>
+<p><strong>ovs-dpctl</strong> <strong>show</strong> shows datapaths on the switch</p>
+<ol class="arabic simple" start="2">
+<li>tracking packets</li>
+</ol>
+<p><strong>tcpdump -n -i &lt;interface&gt; -w &lt;filename&gt;</strong> dump traffic on a network</p>
+<p><strong>iptables -L</strong> check iptables rules</p>
+<ol class="arabic simple" start="3">
+<li>network namespaces</li>
+</ol>
+<p>Network namespaces allow VLANs to share overlapping address space –
+important for bigger deployments, and to provide multi-tenant networks</p>
+<p><strong>ip netns list</strong> lists all known network namespaces</p>
+<p><strong>ip netns exec &lt;namespace id&gt; route –n</strong> Shows routing table inside
+specific namespace</p>
+<p>Execute arbitrary commands (incl. ssh, ping)</p>
+<ol class="arabic simple" start="4">
+<li>DHCP</li>
+</ol>
+<p><strong>Scenario: Instance is not getting IP address</strong></p>
+<p>i. <strong>nova console-log &lt;instance name&gt;</strong> DHCP request sent, no reply
+received</p>
+<ol class="lowerroman simple" start="2">
+<li>Verify neutron-dhcp-agent is running: <strong>ps aux | grep -i dhcp</strong></li>
+<li>Check host logs (/opt/stack/logs/screen/screen-horizon.log)</li>
+</ol>
+<p>iv. If host is not seeing DHCP traffic: <strong>tcpdump -i all | grep -i
+dhcp</strong></p>
+<ol class="arabic simple" start="5">
+<li>Access/routing</li>
+</ol>
+<p>Scenario: I can&#8217;t SSH into an instance</p>
+<ol class="lowerroman simple">
+<li>Security groups: port 22 TCP &amp; all ICMP allowed?</li>
+<li>Is floating IP address routable from client?</li>
+</ol>
+<p><strong>route -n</strong> on client<strong>,</strong> verify that public subnet in OpenStack is
+accessible from client (eg. for local LAN, that it matches
+192.168.0.0/24)</p>
+<ol class="lowerroman simple" start="3">
+<li>Bridges OK?</li>
+</ol>
+<p><strong>ovs-vsctl show</strong> is ethernet card attached to same bridge as public
+network?</p>
+<p><strong>neutron router show router1</strong> are the private subnet and public subnet
+connected to the router?</p>
+<p><strong>ip netns exec &lt;public namespace id&gt; ping &lt;floating IP&gt;</strong> does the
+public network match the local LAN exactly?</p>
+<p><strong>ip netns exec &lt;private namespace id&gt; route –n</strong> is traffic being
+correctly routed from the instance out?</p>
+<ol class="lowerroman simple" start="4">
+<li>mtu size</li>
+</ol>
+<p><strong>ping &lt;ip&gt;</strong> by default, packet size is 84 bytes.</p>
+<p># ping 10.11.12.34</p>
+<p>PING 10.11.12.34 (10.11.12.34) 56(84) bytes of data.</p>
+<p>64 bytes from 10.11.12.34: icmp_seq=1 ttl=63 time=0.592 ms</p>
+<p>64 bytes from 10.11.12.34: icmp_seq=2 ttl=63 time=0.519 ms</p>
+<p>64 bytes from 10.11.12.34: icmp_seq=3 ttl=63 time=0.468 ms</p>
+<p>Using argument –s to designate package size, to find out the maximum mtu
+size of network.</p>
+<p>Then change dhcp_agent’s setting, by modifying
+<strong>/etc/neutron/dnsmasq-neutron.conf</strong></p>
+<p>dnsmasq_conf_file = /etc/neutron/dnsmasq-neutron.conf</p>
+<p>add dhcp force option to <strong>/etc/neutron/dnsmasq-neutron.conf</strong></p>
+<p>dhcp-option-force=26,1400</p>
+<p>after configuration, restart the dhcp-agent service</p>
+<p>$service neutron-dhcp-agent restart #restart dhcp agent service</p>
+<p><em>Troubleshooting</em></p>
+<p>Some issue can be solved by reading doc from SharePoint <a class="footnote-reference" href="#id34" id="id18">[16]</a>.</p>
+<ol class="arabic simple">
+<li>Pip issues</li>
+</ol>
+<ol class="lowerroman simple">
+<li>pip installation issue</li>
+</ol>
+<ul class="simple">
+<li>install_get_pip</li>
+<li>[[ ! -r /opt/devstack/files/get-pip.py ]]</li>
+<li>sudo -E python /opt/devstack/files/get-pip.py</li>
+</ul>
+<p>Cannot fetch index base URL <a class="reference external" href="https://pypi.python.org/simple/">https://pypi.python.org/simple/</a></p>
+<p>Could not find any downloads that satisfy the requirement pip in
+/usr/local/lib/python2.7/dist-packages</p>
+<p>Downloading/unpacking pip</p>
+<p>Cleaning up...</p>
+<p>No distributions at all found for pip in
+/usr/local/lib/python2.7/dist-packages</p>
+<p>Storing debug log for failure in /opt/stack/.pip/pip.log</p>
+<p>++ err_trap</p>
+<p>++ local r=1</p>
+<p>++ set +o xtrace</p>
+<p>stack.sh failed</p>
+<p>Error on exit</p>
+<p>World dumping... see ./worlddump-2014-12-04-071633.txt for details</p>
+<p>Change pip source by editing <strong>stack.sh</strong> at line 703.</p>
+<p>if [[ &#8220;$OFFLINE&#8221; != &#8220;True&#8221; ]]; then</p>
+<p>PYPI_ALTERNATIVE_URL=$PYPI_ALTERNATIVE_URL
+$TOP_DIR/tools/install_pip.sh</p>
+<p>fi</p>
+<ol class="lowerroman simple" start="2">
+<li>Index url issue</li>
+</ol>
+<p>2014-12-10 14:38:43.222 | Cannot fetch index base URL
+<a class="reference external" href="http://pypi.douban.com/simple/">http://pypi.douban.com/simple/</a></p>
+<p>2014-12-10 14:38:43.222 | <a class="reference external" href="http://pypi.douban.com/simple/pip/">http://pypi.douban.com/simple/pip/</a> uses an
+insecure transport scheme (http). Consider using https if
+pypi.douban.com has it available</p>
+<p>2014-12-10 14:38:43.222 | <a class="reference external" href="http://pypi.douban.com/pip/">http://pypi.douban.com/pip/</a> uses an insecure
+transport scheme (http). Consider using https if pypi.douban.com has it
+available</p>
+<p>2014-12-10 14:40:45.586 | Could not find any downloads that satisfy the
+requirement pip in /usr/local/lib/python2.7/dist-packages</p>
+<p>2014-12-10 14:40:45.586 | Downloading/unpacking pip</p>
+<p>2014-12-10 14:40:45.586 | Cleaning up...</p>
+<p>2014-12-10 14:40:45.586 | No distributions at all found for pip in
+/usr/local/lib/python2.7/dist-packages</p>
+<p>Perhaps the server is down, change index_base_URL into
+<a class="reference external" href="http://pypi.gocept.com/simple/">*http://pypi.gocept.com/simple/*</a> to
+solve the issue.</p>
+<p>$mkdir ~/.pip</p>
+<p>$ vi ~/.pip/pip.conf</p>
+<p>change douban into gocept gloably.</p>
+<p>:%s#douban#gocept#g</p>
+<p>:x</p>
+<p>If it still doesn’t work, it might be caused by proxy server’s
+connectivity.</p>
+<ol class="lowerroman simple" start="3">
+<li>AssertionError: Multiple .dist-info directories</li>
+</ol>
+<p>2014-12-15 03:46:28.420 | Installing collected packages: setuptools</p>
+<p>2014-12-15 03:46:28.427 | Found existing installation: setuptools 7.0</p>
+<p>2014-12-15 03:46:28.431 | Uninstalling setuptools:</p>
+<p>2014-12-15 03:46:28.436 | Successfully uninstalled setuptools</p>
+<p>2014-12-15 03:46:28.505 | Rolling back uninstall of setuptools</p>
+<p>2014-12-15 03:46:28.508 | Cleaning up...</p>
+<p>2014-12-15 03:46:28.508 | Exception:</p>
+<p>2014-12-15 03:46:28.508 | Traceback (most recent call last):</p>
+<p>2014-12-15 03:46:28.508 | File
+&#8220;/usr/local/lib/python2.7/dist-packages/pip/basecommand.py&#8221;, line 122,
+in main</p>
+<p>2014-12-15 03:46:28.508 | status = self.run(options, args)</p>
+<p>2014-12-15 03:46:28.508 | File
+&#8220;/usr/local/lib/python2.7/dist-packages/pip/commands/install.py&#8221;, line
+283, in run</p>
+<p>2014-12-15 03:46:28.508 | requirement_set.install(install_options,
+global_options, root=options.root_path)</p>
+<p>2014-12-15 03:46:28.508 | File
+&#8220;/usr/local/lib/python2.7/dist-packages/pip/req.py&#8221;, line 1435, in
+install</p>
+<p>2014-12-15 03:46:28.508 | requirement.install(install_options,
+global_options, *args, **kwargs)</p>
+<p>2014-12-15 03:46:28.508 | File
+&#8220;/usr/local/lib/python2.7/dist-packages/pip/req.py&#8221;, line 671, in
+install</p>
+<p>2014-12-15 03:46:28.508 | self.move_wheel_files(self.source_dir,
+root=root)</p>
+<p>2014-12-15 03:46:28.508 | File
+&#8220;/usr/local/lib/python2.7/dist-packages/pip/req.py&#8221;, line 901, in
+move_wheel_files</p>
+<p>2014-12-15 03:46:28.508 | pycompile=self.pycompile,</p>
+<p>2014-12-15 03:46:28.508 | File
+&#8220;/usr/local/lib/python2.7/dist-packages/pip/wheel.py&#8221;, line 215, in
+move_wheel_files</p>
+<p>2014-12-15 03:46:28.508 | clobber(source, lib_dir, True)</p>
+<p>2014-12-15 03:46:28.508 | File
+&#8220;/usr/local/lib/python2.7/dist-packages/pip/wheel.py&#8221;, line 193, in
+clobber</p>
+<p>2014-12-15 03:46:28.508 | assert not info_dir, &#8216;Multiple .dist-info
+directories&#8217;</p>
+<p>Solution:</p>
+<p>$ rm –rf /usr/local/lib/python2.7/dist-packages</p>
+<p>$ sudo init 6</p>
+<ol class="lowerroman simple" start="4">
+<li>pkg_resources.DistributionNotFound: pip==1.5.6</li>
+</ol>
+<p>2014-12-29 08:20:40.632 | + pip_install -U setuptools</p>
+<p>2014-12-29 08:20:40.635 | + sudo -H PIP_DOWNLOAD_CACHE=/var/cache/pip
+http_proxy=http://proxy-shz.intel.com:911
+https_proxy=https://proxy-shz.intel.com:911
+&#8216;no_proxy=localhost,*intel.com:911,192.168.0.0/16,10.0.0.0/8,127.0.0.0/8&#8217;
+/usr/local/bin/pip install -U setuptools</p>
+<p>2014-12-29 08:20:40.686 | Traceback (most recent call last):</p>
+<p>2014-12-29 08:20:40.686 | File &#8220;/usr/local/bin/pip&#8221;, line 5, in
+&lt;module&gt;</p>
+<p>2014-12-29 08:20:40.686 | from pkg_resources import load_entry_point</p>
+<p>2014-12-29 08:20:40.686 | File
+&#8220;/usr/local/lib/python2.7/dist-packages/pkg_resources/__init__.py&#8221;,
+line 2956, in &lt;module&gt;</p>
+<p>2014-12-29 08:20:40.686 | working_set = WorkingSet._build_master()</p>
+<p>2014-12-29 08:20:40.686 | File
+&#8220;/usr/local/lib/python2.7/dist-packages/pkg_resources/__init__.py&#8221;,
+line 568, in _build_master</p>
+<p>2014-12-29 08:20:40.686 | return
+cls._build_from_requirements(__requires__)</p>
+<p>2014-12-29 08:20:40.686 | File
+&#8220;/usr/local/lib/python2.7/dist-packages/pkg_resources/__init__.py&#8221;,
+line 581, in _build_from_requirements</p>
+<p>2014-12-29 08:20:40.686 | dists = ws.resolve(reqs, Environment())</p>
+<p>2014-12-29 08:20:40.686 | File
+&#8220;/usr/local/lib/python2.7/dist-packages/pkg_resources/__init__.py&#8221;,
+line 760, in resolve</p>
+<p>2014-12-29 08:20:40.686 | raise DistributionNotFound(req)</p>
+<p>2014-12-29 08:20:40.687 | pkg_resources.DistributionNotFound:
+pip==1.5.6</p>
+<p>$ sudo rm /usr/local/bin/pip</p>
+<p>$ sudo rm /usr/local/lib/python2.7/dist-packages/pip* -rf</p>
+<p>And comment the install_pip command in stack.sh</p>
+<p>Then manually install the pip</p>
+<p>$ sudo apt-get install python-pip</p>
+<p>If not work, try this to fix DistributionNotFound error:</p>
+<p>$ sudo –E easy_install &#8211;upgrade pip</p>
+<ol class="arabic simple">
+<li>Screen issue</li>
+</ol>
+<ol class="lowerroman simple">
+<li>screen cannot open</li>
+</ol>
+<p>Cannot open your terminal &#8216;/dev/pts/0&#8217; - please check.</p>
+<p>Solve this issue by changing its owner:</p>
+<p>$ sudo chown stack:stack /dev/pts/0</p>
+<ol class="arabic simple">
+<li>olso issue</li>
+</ol>
+<ol class="lowerroman simple">
+<li>pkg_resources.VersionConflict</li>
+</ol>
+<p>2014-12-13 21:18:01.099 | raise VersionConflict(tmpl % args)</p>
+<p>2014-12-13 21:18:01.099 | pkg_resources.VersionConflict: SQLAlchemy
+0.8.4 is installed but SQLAlchemy&lt;=0.8.99,&lt;=0.9.99,&gt;=0.8.4,&gt;=0.9.7 is
+required by [&#8216;ceilometer&#8217;]</p>
+<p>Solution:</p>
+<p>$ sudo pip uninstall oslo.db</p>
+<p>$ sudo pip install oslo.db</p>
+<p>Ii. Can’t import packages</p>
+<p>$ sudo apt-get remove oslo.config oslo.rootwrap</p>
+<p>$ sudo apt-get install oslo.config oslo.rootwrap</p>
+<ol class="arabic simple">
+<li>Dashboard issues</li>
+</ol>
+<ol class="lowerroman simple">
+<li>authorization error</li>
+</ol>
+<p>Unauthorized at /admin/</p>
+<p>Unauthorized (HTTP 401) (Request-ID:
+req-a7ef8ee1-3ce6-4082-b91b-4876208164c6)</p>
+<p>This error occurs when adding new node to controller node. Clearing web
+browser’s cookie can solve this problem.</p>
+<ol class="lowerroman simple" start="2">
+<li>Authentication failure when login dashboard</li>
+</ol>
+<p>After restarting the machine, an error occurs when you login dashboard:</p>
+<p>“An error occurred authenticating. Please try again later”</p>
+<p>Solution:</p>
+<p>$cd /devstack &amp;&amp; sh rejoin-stack.sh</p>
+<p>iii. apache2: Could not determine the server&#8217;s fully qualified domain
+name</p>
+<p>$ echo &#8220;ServerName localhost&#8221; | sudo tee
+/etc/apache2/conf-available/fqdn.conf</p>
+<p>$ sudo a2enconf fqdn</p>
+<ol class="arabic simple">
+<li>Python issue</li>
+</ol>
+<ol class="lowerroman simple">
+<li>ImportError: No module named MySQLdb</li>
+</ol>
+<p>$ sudo apt-get install python-mysqldb</p>
+<ol class="lowerroman simple" start="2">
+<li>ImportError: No module named libvirt</li>
+</ol>
+<p>$ sudo apt-get remove python-libvirt</p>
+<p>$ sudo apt-get install python-libvirt</p>
+<ol class="lowerroman simple" start="3">
+<li>attribute cannot be found.</li>
+</ol>
+<p>Traceback (most recent call last):</p>
+<p>File &#8220;/usr/local/bin/neutron-openvswitch-agent&#8221;, line 6, in &lt;module&gt;</p>
+<p>from neutron.plugins.openvswitch.agent.ovs_neutron_agent import main</p>
+<p>File
+&#8220;/opt/stack/neutron/neutron/plugins/openvswitch/agent/ovs_neutron_agent.py&#8221;,
+line 53, in &lt;module&gt;</p>
+<p>cfg.CONF.import_group(&#8216;AGENT&#8217;,
+&#8216;neutron.plugins.openvswitch.common.config&#8217;)</p>
+<p>File &#8220;/usr/lib/python2.7/dist-packages/oslo/config/cfg.py&#8221;, line 1810,
+in import_group</p>
+<p>__import__(module_str)</p>
+<p>File &#8220;/opt/stack/neutron/neutron/plugins/openvswitch/common/config.py&#8221;,
+line 38, in &lt;module&gt;</p>
+<p>cfg.IPOpt(&#8216;local_ip&#8217;, version=4,</p>
+<p>AttributeError: &#8216;module&#8217; object has no attribute &#8216;IPOpt&#8217;</p>
+<p>Open file
+&#8220;/opt/stack/neutron/neutron/plugins/openvswitch/common/config.py&#8221;, we
+can easily find that cfg is a component of oslo.config.</p>
+<p>from oslo.config import cfg</p>
+<p>Apparently, this issue caused by oslo.config’s integrity.</p>
+<p>$ sudo apt-get remove python-oslo.config</p>
+<p>$ sudo apt-get install python-oslo.config</p>
+<ol class="arabic simple">
+<li>Rabbit issues</li>
+</ol>
+<ol class="lowerroman simple">
+<li>Error: unable to connect to node <a class="reference external" href="mailto:rabbit&#37;&#52;&#48;upstream">rabbit<span>&#64;</span>upstream</a>: nodedown</li>
+</ol>
+<p>$ sudo apt-get remove rabbit-server</p>
+<p>$ sudo apt-get install rabbit-server</p>
+<ol class="lowerroman simple" start="2">
+<li>Failed to set rabbitmq password</li>
+</ol>
+<p>$sudo service rabbit-server restart</p>
+<ol class="lowerroman simple" start="3">
+<li>Failed to start rabbitmq-server</li>
+</ol>
+<p>Check the log file at <strong>/var/log/rabbitmq/startup_log</strong></p>
+<p>If error type is “eaddrinuse”, which mean the listen port had been in
+use. We can change parameters in /etc/rabbitmq/rabbitmq-env.conf , below
+are it’s default values:</p>
+<p>NODENAME=rabbit</p>
+<p>NODE_PORT=5632</p>
+<p>$sudo service rabbit-server restart</p>
+<ol class="arabic simple">
+<li>MySQL issue</li>
+</ol>
+<p>i. ERROR 2003 (HY000): Can&#8217;t connect to MySQL server on &#8216;127.0.0.1&#8217;
+(111)</p>
+<p>$sudo apt-get remove mysql-server mysql-common</p>
+<p>$sudo /etc/init.d/mysql restart</p>
+<ol class="arabic simple">
+<li>Cinder issue</li>
+</ol>
+<ol class="lowerroman simple">
+<li>auto configuration is incorrect.</li>
+</ol>
+<p>Edit <strong>/etc/cinder/cinder.conf</strong>, and restart cinder service.</p>
+<p>$ cinder-volume</p>
+<ol class="arabic simple">
+<li>Nova issues</li>
+</ol>
+<ol class="lowerroman">
+<li><p class="first">Permissions of directory</p>
+<blockquote>
+<div><p><strong>/opt/stack, /etc /nova, / var /log /nova</strong> user groups and users
+are stack. If somehow the problem, make sure that these directory
+permissions are correct.</p>
+<p>Cited a problem:</p>
+<p>please re-run nova-manage db sync</p>
+<p>This problem is probably caused by permission<strong>. /var /log /nova</strong>
+needs when /<strong>etc/nova/nova.conf</strong> debugs.</p>
+<p>logdir = / var / log / nova</p>
+<p>This option is very important when you debug, A problem can go to
+<strong>/var /log /nova</strong> in check.</p>
+<p>Therefore, when you encounter a strange installation problem, you
+can execute the following three commands:</p>
+</div></blockquote>
+</li>
+</ol>
+<p>sudo chown stack:stack /opt -R</p>
+<p>sudo chown stack:stack /etc/nova -R</p>
+<blockquote>
+<div>sudo chown stack:stack /var/log/nova –R</div></blockquote>
+<ol class="lowerroman simple" start="2">
+<li>nova-compute services start unsuccessfully</li>
+</ol>
+<p>Refer to the <strong>/logs/nova-compute.log</strong></p>
+<p>ERROR oslo.messaging._drivers.impl_rabbit [-] AMQP server on
+controller:5672 is unreachable: Socket closed. Try again in 5 seconds.</p>
+<blockquote>
+<div><p>If the compute node can’t communicate with RabbitMQ, check
+RabbitMQ’s password in <strong>/etc/nova/nova.conf</strong> first.</p>
+<p>The results show that the password is set incorrectly; no wonder
+compute node has been unable to communicate with RabbitMQ. After
+changing the RabbitMQ’s password, the compute node starts
+successfully.</p>
+<p><strong>SIOCADDRT: File exists</strong></p>
+</div></blockquote>
+<table class="docutils footnote" frame="void" id="id19" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://intelpedia.intel.com/Proxy_at_Intel">https://intelpedia.intel.com/Proxy_at_Intel</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id20" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>‘#’ for root user, ‘$’ for normal user, below the same</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id21" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference external" href="http://pypi.douban.com/simple/">http://pypi.douban.com/simple/</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id22" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[4]</a></td><td><a class="reference external" href="http://pypi.gocept.com/simple/">http://pypi.gocept.com/simple/</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id23" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id5">[5]</a></td><td><a class="reference external" href="http://docs.openstack.org/developer/devstack/guides/multinode-lab.html">http://docs.openstack.org/developer/devstack/guides/multinode-lab.html</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id24" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id6">[6]</a></td><td><a class="reference external" href="https://github.com/openstack-dev/devstack">https://github.com/openstack-dev/devstack</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id25" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id7">[7]</a></td><td><a class="reference external" href="http://blog.csdn.net/iloli/article/details/6431757">http://blog.csdn.net/iloli/article/details/6431757</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id26" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id8">[8]</a></td><td><a class="reference external" href="http://www.linuxidc.com/Linux/2011-04/34278.htm">http://www.linuxidc.com/Linux/2011-04/34278.htm</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id27" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id9">[9]</a></td><td><a class="reference external" href="http://blog.chinaunix.net/uid-26284395-id-2949145.html">http://blog.chinaunix.net/uid-26284395-id-2949145.html</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id28" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id10">[10]</a></td><td><a class="reference external" href="https://github.com/openstack-dev/devstack.git">https://github.com/openstack-dev/devstack.git</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id29" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id11">[11]</a></td><td><a class="reference external" href="http://docs.openstack.org/developer/devstack/stack.sh.html">http://docs.openstack.org/developer/devstack/stack.sh.html</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id30" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id12">[12]</a></td><td><a class="reference external" href="http://docs.openstack.org/developer/devstack/stackrc.html">http://docs.openstack.org/developer/devstack/stackrc.html</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id31" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id13">[13]</a></td><td><a class="reference external" href="http://docs.openstack.org/developer/devstack/configuration.html">http://docs.openstack.org/developer/devstack/configuration.html</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id32" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id16">[14]</a></td><td><a class="reference external" href="http://docs.openstack.org/developer/sahara/userdoc/cdh_plugin.html">http://docs.openstack.org/developer/sahara/userdoc/cdh_plugin.html</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id33" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id17">[15]</a></td><td><a class="reference external" href="http://www.slideshare.net/nearyd/neutron-open-vswt?qid=aa5d9d51-02da-4724-8a23-f812e857670c&amp;v=default&amp;b=&amp;from_search=2">http://www.slideshare.net/nearyd/neutron-open-vswt?qid=aa5d9d51-02da-4724-8a23-f812e857670c&amp;v=default&amp;b=&amp;from_search=2</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id34" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id18">[16]</a></td><td><a class="reference external" href="https://sharepoint.gar.ith.intel.com/sites/SSG-0751/SP/COE/_layouts/WordViewer.aspx?id=/sites/SSG-0751/SP/COE/OpenStack">https://sharepoint.gar.ith.intel.com/sites/SSG-0751/SP/COE/_layouts/WordViewer.aspx?id=/sites/SSG-0751/SP/COE/OpenStack</a></td></tr>
+</tbody>
+</table>
+</div>
+
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, JetChars.
+    </p>
+  </div>
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
