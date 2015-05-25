@@ -23,6 +23,7 @@ DevStack Hacking
 
     docs/devstack_quickstart/index
     docs/enable_dvr_with_devstack/index
+    docs/devstack_t13g/index
 
 
 OpenStack Customization

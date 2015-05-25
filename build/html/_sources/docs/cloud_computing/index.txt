@@ -57,6 +57,8 @@ Terminologies
 | **JBOD** -- Just a Bunch of Disks
 | **i18n** -- internationalization
 | **l10n** -- localization
+| **k8s** -- kubernetes
+| **HBA** -- Host Bus Adapter, HBA card opposite to RAID card
 
 
 |

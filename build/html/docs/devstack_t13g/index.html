@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>OpenStack &mdash; JetChars 0.1 documentation</title>
+  <title>DevStack Trouble Shooting &mdash; JetChars 0.1 documentation</title>
   
 
   
@@ -31,7 +31,7 @@
 
   
     <link rel="top" title="JetChars 0.1 documentation" href="../../index.html"/>
-        <link rel="next" title="KVM Optimization" href="../kvm_optimization/index.html"/>
+        <link rel="next" title="OpenStack" href="../openstack/index.html"/>
         <link rel="prev" title="Enable DVR with DevStack" href="../enable_dvr_with_devstack/index.html"/> 
 
   
@@ -78,7 +78,7 @@
 </ul>
 </li>
 </ul>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../devstack_quickstart/index.html">OpenStack installation with DevStack</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../enable_dvr_with_devstack/index.html">Enable DVR with DevStack</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#brief-intro">Brief Intro</a></li>
@@ -86,10 +86,17 @@
 <li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#configure-compute-node">Configure Compute Node</a></li>
 </ul>
 </li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">DevStack Trouble Shooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pip-issues">Pip Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#python-issues">Python issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rabbit-issues">Rabbit issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#other-issues">Other issues</a></li>
 </ul>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">OpenStack</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id1">nova-docker</a></li>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../openstack/index.html">OpenStack</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#id1">nova-docker</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../kvm_optimization/index.html">KVM Optimization</a><ul>
@@ -278,11 +285,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
-    <li>OpenStack</li>
+    <li>DevStack Trouble Shooting</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../../_sources/docs/openstack/index.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/docs/devstack_t13g/index.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -291,11 +298,168 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="openstack">
-<h1>OpenStack<a class="headerlink" href="#openstack" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="https://wiki.openstack.org/wiki/Main_Page">wiki</a></p>
-<div class="section" id="id1">
-<h2><a class="reference external" href="https://wiki.openstack.org/wiki/Docker">nova-docker</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="devstack-trouble-shooting">
+<h1>DevStack Trouble Shooting<a class="headerlink" href="#devstack-trouble-shooting" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="pip-issues">
+<h2>Pip Issues<a class="headerlink" href="#pip-issues" title="Permalink to this headline">¶</a></h2>
+<div class="sidebar">
+<p class="first sidebar-title">Note</p>
+<ul class="last simple">
+<li>pip 7.0.1 seems not work well with ubuntu 14.04 (trusty)</li>
+<li>apt&#8217;s python-pip version is 1.5.4</li>
+<li>pip can be upgrade to designated version use opt <code class="docutils literal"><span class="pre">-U</span> <span class="pre">pip==version</span></code></li>
+<li>if pip installed by apt, then remove have to use it, too.</li>
+</ul>
+</div>
+<ol class="arabic simple">
+<li>Install pip</li>
+</ol>
+<div class="highlight-shell"><div class="highlight"><pre>sudo easy_install pip
+sudo apt-get install python-pip
+sudo yum install python-pip
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li>Upgrade pip</li>
+</ol>
+<div class="highlight-shell"><div class="highlight"><pre>sudo pip install -U pip
+sudo pip install -U <span class="nv">pip</span><span class="o">==</span>6.0.8
+sudo easy_install -U pip
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li>Remove pip</li>
+</ol>
+<div class="highlight-shell"><div class="highlight"><pre>sudo easy_install remove pip
+sudo pip uninstall pip
+sudo apt-get remove python-pip
+sudo yum remove python-pip
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li>Check pip version</li>
+</ol>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pip</span> <span class="o">-</span><span class="n">V</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li>Config pip</li>
+</ol>
+<div class="sidebar">
+<p class="first sidebar-title">Note</p>
+<ul class="last simple">
+<li>if not add <strong>trusted-host</strong> to conf file, some pkgs might not be able install</li>
+<li>sometimes official mirror not available, try some other <a class="reference external" href="http://www.pypi-mirrors.org">mirrors</a></li>
+</ul>
+</div>
+<div class="line-block">
+<div class="line">global conf file <code class="docutils literal"><span class="pre">/etc/pip.conf</span></code></div>
+<div class="line">user conf file <code class="docutils literal"><span class="pre">~/.pip/pip.conf</span></code></div>
+<div class="line"><br /></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>[global]
+default-timeout = 60
+respect-virtualenv = true
+build = /tmp/.pip/build
+download-cache = /tmp/.pip/cache
+index_url = http://pypi.python.org/simple/
+trusted-host = pypi.python.org
+
+[install]
+use-mirrors = true
+mirrors = http://pypi.python.org
+</pre></div>
+</div>
+</div>
+<div class="section" id="python-issues">
+<h2>Python issues<a class="headerlink" href="#python-issues" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><dl class="first docutils">
+<dt>importError</dt>
+<dd><ul class="first last">
+<li><p class="first">No module named MySQLdb:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install python-mysqldb
+</pre></div>
+</div>
+</li>
+<li><p class="first">No module named libvirt:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get remove python-libvirt
+$ sudo apt-get install python-libvirt
+</pre></div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</div>
+<div class="section" id="rabbit-issues">
+<h2>Rabbit issues<a class="headerlink" href="#rabbit-issues" title="Permalink to this headline">¶</a></h2>
+<p>1. unable to connect to node <a class="reference external" href="mailto:rabbit&#37;&#52;&#48;upstream">rabbit<span>&#64;</span>upstream</a>: nodedown</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get remove rabbit-server
+$ sudo apt-get install rabbit-server
+</pre></div>
+</div>
+<p>2. Failed to set rabbitmq password</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo service rabbit-server restart
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li>Failed to start rabbitmq-server</li>
+</ol>
+<div class="line-block">
+<div class="line">Check the log file at <code class="docutils literal"><span class="pre">/var/log/rabbitmq/startup_log</span></code> , If error type is “eaddrinuse”, which mean the listen port had been in use. We can change parameters in <code class="docutils literal"><span class="pre">/etc/rabbitmq/rabbitmq-env.conf</span></code> , following are it’s default values:</div>
+<div class="line"><br /></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">NODENAME</span><span class="o">=</span><span class="n">rabbit</span>
+<span class="n">NODE_PORT</span><span class="o">=</span><span class="mi">5632</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">then we can restart it.</div>
+<div class="line"><br /></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>$sudo service rabbit-server restart
+</pre></div>
+</div>
+</div>
+<div class="section" id="other-issues">
+<h2>Other issues<a class="headerlink" href="#other-issues" title="Permalink to this headline">¶</a></h2>
+<p>1. screen cannot open</p>
+<div class="highlight-python"><div class="highlight"><pre>Cannot open your terminal &#39;/dev/pts/0&#39; - please check
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><strong>Solution</strong></div>
+<div class="line"><br /></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo chown stack:stack /dev/pts/0
+</pre></div>
+</div>
+<p>2. mysql server failed to start</p>
+<div class="highlight-python"><div class="highlight"><pre>Setting up mysql-server-5.5 (5.5.43-0ubuntu0.14.04.1) ...
+start: Job failed to start
+invoke-rc.d: initscript mysql, action &quot;start&quot; failed.
+dpkg: error processing package mysql-server-5.5 (--configure):
+ subprocess installed post-installation script returned error exit status 1
+dpkg: dependency problems prevent configuration of mysql-server:
+ mysql-server depends on mysql-server-5.5; however:
+  Package mysql-server-5.5 is not configured yet.
+
+dpkg: error processing package mysql-server (--configure):
+ dependency problems - leaving unconfigured
+Errors were encountered while processing:
+ mysql-server-5.5
+ mysql-server
+E: Sub-process /usr/bin/dpkg returned an error code (1)
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><strong>Solution :</strong> uninstall thoroughly.</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
 </div>
 </div>
 
@@ -305,7 +469,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../kvm_optimization/index.html" class="btn btn-neutral float-right" title="KVM Optimization" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../openstack/index.html" class="btn btn-neutral float-right" title="OpenStack" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../enable_dvr_with_devstack/index.html" class="btn btn-neutral" title="Enable DVR with DevStack" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
