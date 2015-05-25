@@ -9,9 +9,9 @@ Welcome to JetChars's Documentation!
 
 .. toctree::
     :maxdepth: 1
-    :hidden:
 
-    .. docs/resume/index
+    #docs/resume/index
+    docs/cloud_computing/index
  
 
 
@@ -21,7 +21,7 @@ DevStack Hacking
 .. toctree::
     :maxdepth: 1
 
-    .. docs/devstack_quickstart/index
+    docs/devstack_quickstart/index
     docs/enable_dvr_with_devstack/index
 
 
@@ -30,7 +30,8 @@ OpenStack Customization
 
 .. toctree::
     :maxdepth: 1
-
+    
+    docs/openstack/index
     docs/kvm_optimization/index
 
 Hadoop Tuning

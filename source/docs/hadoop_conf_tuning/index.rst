@@ -9,6 +9,9 @@ Hadoop Configuration Tuning
 .. This tool has helped us with configurating hadoop, extracting system info and collecting datas, as well as analyzing results.
 
 
+`Hadoop 2.6.0 Release Note <https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/releasenotes.html>`_
+
+
 Rack Awareness
 ==============
 
@@ -132,6 +135,9 @@ Topology data ::
     hadoopdata1            /dc1/rack1
     10.1.1.1               /dc1/rack2
 
+|
+|
+
 Check whether rack awareness is enabled
 ---------------------------------------
 
@@ -162,12 +168,13 @@ Check replica placement
     3. BP-2107384216-192.168.16.3-1432011436876:blk_1073752775_11951 len=11380616 repl=3 [/dc1/rack16/node2/172.16.0.2:50010, /dc1/rack16/node1/172.16.0.1:50010, /dc1/rack16/node3/172.16.0.3:50010]
 
 
+Hadoop Virtualization Extension(HVE)
 ===============================
-Hadoop Virtualization Extension
-===============================
+
+HVE is a new feature that extends the Hadoop topology awareness mechanism to account for the virtualization layer and refine data-locality-related policies. It is designed to enhance the reliability and performance of virtualized Hadoop clusters with extended topology layer and refined locality related policies. Test results documented in the following sections of this paper do show that reliability and performance can be optimized by taking advantage of this awareness of the virtualization topology.
+
+| HVE was developed by VMware engineers working with Apache Hadoop open source community, and the resulting patches have been contributed back to Apache Hadoop on trunk and branch-1. Umbrella JIRA `HADOOP-8468 <https://issues.apache.org/jira/browse/HADOOP-8468>`_ tracks progress of this effort in the Apache community. [#]_
 
 
 
-
-=======
-
+.. [#] http://www.vmware.com/files/pdf/Hadoop-Virtualization-Extensions-on-VMware-vSphere-5.pdf

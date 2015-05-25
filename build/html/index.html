@@ -31,7 +31,7 @@
 
   
     <link rel="top" title="JetChars 0.1 documentation" href="#"/>
-        <link rel="next" title="Enable DVR with DevStack" href="docs/enable_dvr_with_devstack/index.html"/> 
+        <link rel="next" title="Cloud Computing" href="docs/cloud_computing/index.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -70,9 +70,15 @@
         
           
           
-              <ul class="simple">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="docs/cloud_computing/index.html">Cloud Computing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="docs/cloud_computing/index.html#docker">Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/cloud_computing/index.html#terminologies">Terminologies</a></li>
+</ul>
+</li>
 </ul>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="docs/devstack_quickstart/index.html">OpenStack installation with DevStack</a></li>
 <li class="toctree-l1"><a class="reference internal" href="docs/enable_dvr_with_devstack/index.html">Enable DVR with DevStack</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="docs/enable_dvr_with_devstack/index.html#brief-intro">Brief Intro</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docs/enable_dvr_with_devstack/index.html#configure-network-node">Configure Network Node</a></li>
@@ -81,6 +87,10 @@
 </li>
 </ul>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="docs/openstack/index.html">OpenStack</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="docs/openstack/index.html#id1">nova-docker</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="docs/kvm_optimization/index.html">KVM Optimization</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="docs/kvm_optimization/index.html#disk">Disk</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="docs/kvm_optimization/index.html#asynchronous-io">Asynchronous IO</a></li>
@@ -142,9 +152,9 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="docs/hadoop_conf_tuning/index.html#hadoop-virtualization-extension-hve">Hadoop Virtualization Extension(HVE)</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="docs/hadoop_conf_tuning/index.html#hadoop-virtualization-extension">Hadoop Virtualization Extension</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="docs/screen/index.html">Screen - Full-screen window manager</a><ul>
@@ -179,7 +189,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="docs/documentation_tools/index.html">Linux Documentation Tools</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="docs/documentation_tools/index.html#sphinx-python-document-generator">Sphinx - Python Document Generator</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="docs/documentation_tools/index.html#issues">issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/documentation_tools/index.html#issues">Issues</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="docs/documentation_tools/index.html#pandoc-universal-document-converter">Pandoc - Universal document converter</a></li>
@@ -283,12 +293,16 @@
   <div class="section" id="welcome-to-jetchars-s-documentation">
 <h1>Welcome to JetChars&#8217;s Documentation!<a class="headerlink" href="#welcome-to-jetchars-s-documentation" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="docs/cloud_computing/index.html">Cloud Computing</a></li>
+</ul>
 </div>
 </div>
 <div class="section" id="devstack-hacking">
 <h1>DevStack Hacking<a class="headerlink" href="#devstack-hacking" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="docs/devstack_quickstart/index.html">OpenStack installation with DevStack</a></li>
 <li class="toctree-l1"><a class="reference internal" href="docs/enable_dvr_with_devstack/index.html">Enable DVR with DevStack</a></li>
 </ul>
 </div>
@@ -297,6 +311,7 @@
 <h1>OpenStack Customization<a class="headerlink" href="#openstack-customization" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="docs/openstack/index.html">OpenStack</a></li>
 <li class="toctree-l1"><a class="reference internal" href="docs/kvm_optimization/index.html">KVM Optimization</a></li>
 </ul>
 </div>
@@ -308,7 +323,6 @@
 <li class="toctree-l1"><a class="reference internal" href="docs/hibench_intro/index.html">HiBench - The Hadoop BenchMark Suit</a></li>
 <li class="toctree-l1"><a class="reference internal" href="docs/centos_tuning/index.html">CentOS Tuning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="docs/hadoop_conf_tuning/index.html">Hadoop Configuration Tuning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="docs/hadoop_conf_tuning/index.html#hadoop-virtualization-extension">Hadoop Virtualization Extension</a></li>
 </ul>
 </div>
 </div>
@@ -361,7 +375,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="docs/enable_dvr_with_devstack/index.html" class="btn btn-neutral float-right" title="Enable DVR with DevStack" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="docs/cloud_computing/index.html" class="btn btn-neutral float-right" title="Cloud Computing" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
     </div>

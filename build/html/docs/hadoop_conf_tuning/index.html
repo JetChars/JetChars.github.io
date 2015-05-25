@@ -71,7 +71,12 @@
         
           
           
-              <ul class="simple">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../cloud_computing/index.html">Cloud Computing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cloud_computing/index.html#docker">Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cloud_computing/index.html#terminologies">Terminologies</a></li>
+</ul>
+</li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../enable_dvr_with_devstack/index.html">Enable DVR with DevStack</a><ul>
@@ -82,6 +87,10 @@
 </li>
 </ul>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../openstack/index.html">OpenStack</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#id1">nova-docker</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../kvm_optimization/index.html">KVM Optimization</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../kvm_optimization/index.html#disk">Disk</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../kvm_optimization/index.html#asynchronous-io">Asynchronous IO</a></li>
@@ -143,9 +152,9 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#hadoop-virtualization-extension-hve">Hadoop Virtualization Extension(HVE)</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#hadoop-virtualization-extension">Hadoop Virtualization Extension</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../screen/index.html">Screen - Full-screen window manager</a><ul>
@@ -218,10 +227,6 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../svg/index.html">Scalable Vector Graphics (SVG)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../svg/index.html#resources">Resources</a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="../rst/index.html">ReStructured Text (reST)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../rst/index.html#standard-rst">Standard rST</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../rst/index.html#inline-mark">Inline mark</a></li>
@@ -241,6 +246,11 @@
 </li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../md/index.html">MarkDown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../svg/index.html">Scalable Vector Graphics (SVG)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../svg/index.html#resources">Resources</a></li>
 </ul>
 </li>
 </ul>
@@ -283,6 +293,7 @@
   <div class="section" id="hadoop-configuration-tuning">
 <h1>Hadoop Configuration Tuning<a class="headerlink" href="#hadoop-configuration-tuning" title="Permalink to this headline">¶</a></h1>
 <hr class="docutils" />
+<p><a class="reference external" href="https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/releasenotes.html">Hadoop 2.6.0 Release Note</a></p>
 <div class="section" id="rack-awareness">
 <h2>Rack Awareness<a class="headerlink" href="#rack-awareness" title="Permalink to this headline">¶</a></h2>
 <p>Typically large Hadoop clusters are arranged in racks and network traffic between different nodes with in the same rack is much more desirable than network traffic across the racks. In addition NameNode tries to place replicas of block on multiple racks for improved fault tolerance. Hadoop lets the cluster administrators decide which rack a node belongs to through configuration variable <code class="docutils literal"><span class="pre">net.topology.script.file.name</span></code>. When this script is configured, each node runs the script to determine its rack id. A default installation assumes all the nodes belong to the same rack. This feature and configuration is further described in PDF attached to <a class="reference external" href="https://issues.apache.org/jira/browse/HADOOP-692">HADOOP-692</a></p>
@@ -442,6 +453,10 @@ hadoopdata1            /dc1/rack1
 10.1.1.1               /dc1/rack2
 </pre></div>
 </div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
 </div>
 <div class="section" id="check-whether-rack-awareness-is-enabled">
 <h3>Check whether rack awareness is enabled<a class="headerlink" href="#check-whether-rack-awareness-is-enabled" title="Permalink to this headline">¶</a></h3>
@@ -475,10 +490,19 @@ Rack: /dc1/rack16
 </div>
 </div>
 </div>
+<div class="section" id="hadoop-virtualization-extension-hve">
+<h2>Hadoop Virtualization Extension(HVE)<a class="headerlink" href="#hadoop-virtualization-extension-hve" title="Permalink to this headline">¶</a></h2>
+<p>HVE is a new feature that extends the Hadoop topology awareness mechanism to account for the virtualization layer and refine data-locality-related policies. It is designed to enhance the reliability and performance of virtualized Hadoop clusters with extended topology layer and refined locality related policies. Test results documented in the following sections of this paper do show that reliability and performance can be optimized by taking advantage of this awareness of the virtualization topology.</p>
+<div class="line-block">
+<div class="line">HVE was developed by VMware engineers working with Apache Hadoop open source community, and the resulting patches have been contributed back to Apache Hadoop on trunk and branch-1. Umbrella JIRA <a class="reference external" href="https://issues.apache.org/jira/browse/HADOOP-8468">HADOOP-8468</a> tracks progress of this effort in the Apache community. <a class="footnote-reference" href="#id2" id="id1">[1]</a></div>
 </div>
-<div class="section" id="hadoop-virtualization-extension">
-<h1>Hadoop Virtualization Extension<a class="headerlink" href="#hadoop-virtualization-extension" title="Permalink to this headline">¶</a></h1>
-<hr class="docutils" />
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://www.vmware.com/files/pdf/Hadoop-Virtualization-Extensions-on-VMware-vSphere-5.pdf">http://www.vmware.com/files/pdf/Hadoop-Virtualization-Extensions-on-VMware-vSphere-5.pdf</a></td></tr>
+</tbody>
+</table>
+</div>
 </div>
 
 

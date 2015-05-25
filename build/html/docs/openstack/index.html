@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>HiBench - The Hadoop BenchMark Suit &mdash; JetChars 0.1 documentation</title>
+  <title>OpenStack &mdash; JetChars 0.1 documentation</title>
   
 
   
@@ -31,8 +31,8 @@
 
   
     <link rel="top" title="JetChars 0.1 documentation" href="../../index.html"/>
-        <link rel="next" title="CentOS Tuning" href="../centos_tuning/index.html"/>
-        <link rel="prev" title="KVM Optimization" href="../kvm_optimization/index.html"/> 
+        <link rel="next" title="KVM Optimization" href="../kvm_optimization/index.html"/>
+        <link rel="prev" title="Enable DVR with DevStack" href="../enable_dvr_with_devstack/index.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -74,6 +74,7 @@
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../cloud_computing/index.html">Cloud Computing</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../cloud_computing/index.html#docker">Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cloud_computing/index.html#terminologies">Terminologies</a></li>
 </ul>
 </li>
 </ul>
@@ -85,7 +86,11 @@
 </ul>
 </li>
 </ul>
-<ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">OpenStack</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">nova-docker</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../kvm_optimization/index.html">KVM Optimization</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../kvm_optimization/index.html#disk">Disk</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../kvm_optimization/index.html#asynchronous-io">Asynchronous IO</a></li>
@@ -113,16 +118,16 @@
 </ul>
 </li>
 </ul>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">HiBench - The Hadoop BenchMark Suit</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#what-is-hibench">What is HiBench?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#benchmark-types">BenchMark Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#configuration-running-scripts">Configuration &amp; Running scripts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#default-configurations">Default Configurations</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#dfsioe">DFSIOE</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sort">Sort</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#wordcount">WordCount</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#k-means">k-means</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hibench_intro/index.html">HiBench - The Hadoop BenchMark Suit</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hibench_intro/index.html#what-is-hibench">What is HiBench?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hibench_intro/index.html#benchmark-types">BenchMark Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hibench_intro/index.html#configuration-running-scripts">Configuration &amp; Running scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hibench_intro/index.html#default-configurations">Default Configurations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../hibench_intro/index.html#dfsioe">DFSIOE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hibench_intro/index.html#sort">Sort</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hibench_intro/index.html#wordcount">WordCount</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hibench_intro/index.html#k-means">k-means</a></li>
 </ul>
 </li>
 </ul>
@@ -272,11 +277,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
-    <li>HiBench - The Hadoop BenchMark Suit</li>
+    <li>OpenStack</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../../_sources/docs/hibench_intro/index.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/docs/openstack/index.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -285,223 +290,11 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="hibench-the-hadoop-benchmark-suit">
-<h1>HiBench - The Hadoop BenchMark Suit<a class="headerlink" href="#hibench-the-hadoop-benchmark-suit" title="Permalink to this headline">¶</a></h1>
-<p>Most of my hadoop tuning data derived with this benchmark tool.</p>
-<div class="section" id="what-is-hibench">
-<h2>What is <a class="reference external" href="https://github.com/intel-hadoop/Hibench">HiBench</a>?<a class="headerlink" href="#what-is-hibench" title="Permalink to this headline">¶</a></h2>
-<p>This benchmark suite contains 10 typical Hadoop workloads (including micro benchmarks, HDFS benchmarks, web search benchmarks, machine learning benchmarks, and data analytics benchmarks). <a class="footnote-reference" href="#id2" id="id1">[1]</a></p>
-<p>Advantages:</p>
-<ul class="simple">
-<li>Realistic and comprehensive</li>
-<li>Quantitive characteriztion of different workload</li>
-<li>Evaluation of different deployment</li>
-</ul>
-</div>
-<div class="section" id="benchmark-types">
-<h2>BenchMark Types<a class="headerlink" href="#benchmark-types" title="Permalink to this headline">¶</a></h2>
-<p>HiBench Contains 5 different types of benchmark.</p>
-<ol class="arabic simple">
-<li>micro benchmarks: <code class="docutils literal"><span class="pre">Sort</span></code> <code class="docutils literal"><span class="pre">WordCount</span></code> <code class="docutils literal"><span class="pre">TeraSort</span></code></li>
-<li>HDFS benchmarks: <code class="docutils literal"><span class="pre">enhanced</span> <span class="pre">DFSIO</span></code> <code class="docutils literal"><span class="pre">Sleep</span></code></li>
-<li>web search benchmarks: <code class="docutils literal"><span class="pre">Nutching</span> <span class="pre">indexing</span></code> <code class="docutils literal"><span class="pre">PageRank</span></code></li>
-<li>machine learning benchmarks: <code class="docutils literal"><span class="pre">Bayes</span> <span class="pre">Classification</span></code> <code class="docutils literal"><span class="pre">K-means</span></code> <code class="docutils literal"><span class="pre">Clustering</span></code></li>
-<li>data analytics benchmarks: <code class="docutils literal"><span class="pre">Hive</span></code> <code class="docutils literal"><span class="pre">Query</span></code> <code class="docutils literal"><span class="pre">Benchmark</span></code></li>
-</ol>
-</div>
-<div class="section" id="configuration-running-scripts">
-<h2>Configuration &amp; Running scripts<a class="headerlink" href="#configuration-running-scripts" title="Permalink to this headline">¶</a></h2>
-<p>Global enviroment variable in <code class="docutils literal"><span class="pre">bin/hibench-config.sh</span></code></p>
-<p>Each workload can run separately:</p>
-<ul class="simple">
-<li><code class="docutils literal"><span class="pre">conf/configure.sh</span></code>  Configuration file contains all parameters such as data size and test options.</li>
-<li><code class="docutils literal"><span class="pre">bin/prepare*.sh</span></code>    Generate or copy each workload&#8217;s prepare data into HDFS.</li>
-<li><code class="docutils literal"><span class="pre">bin/run*.sh</span></code>        Execute the workload</li>
-</ul>
-</div>
-<div class="section" id="default-configurations">
-<h2>Default Configurations<a class="headerlink" href="#default-configurations" title="Permalink to this headline">¶</a></h2>
-<p>Default configurations&#8217; data size normally very small.(Release version: 3.0)</p>
-<div class="section" id="dfsioe">
-<h3>DFSIOE<a class="headerlink" href="#dfsioe" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-shell"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">## paths</span>
-<span class="nv">INPUT_HDFS</span><span class="o">=</span><span class="si">${</span><span class="nv">DATA_HDFS</span><span class="si">}</span>/benchmarks/TestDFSIO-Enh
-
-<span class="nb">export </span><span class="nv">HADOOP_OPTS</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HADOOP_OPTS</span><span class="s2"> -Dtest.build.data=</span><span class="si">${</span><span class="nv">INPUT_HDFS</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="nv">MAP_JAVA_OPTS</span><span class="o">=</span><span class="sb">`</span>cat <span class="nv">$HADOOP_CONF_DIR</span>/mapred-site.xml <span class="p">|</span> grep <span class="s2">&quot;mapreduce.map.java.opts&quot;</span> <span class="p">|</span> awk -F<span class="se">\&lt;</span> <span class="s1">&#39;{print $5}&#39;</span> <span class="p">|</span> awk -F<span class="se">\&gt;</span> <span class="s1">&#39;{print $NF}&#39;</span><span class="sb">`</span>
-<span class="nv">RED_JAVA_OPTS</span><span class="o">=</span><span class="sb">`</span>cat <span class="nv">$HADOOP_CONF_DIR</span>/mapred-site.xml <span class="p">|</span> grep <span class="s2">&quot;mapreduce.reduce.java.opts&quot;</span> <span class="p">|</span> awk -F<span class="se">\&lt;</span> <span class="s1">&#39;{print $5}&#39;</span> <span class="p">|</span> awk -F<span class="se">\&gt;</span> <span class="s1">&#39;{print $NF}&#39;</span><span class="sb">`</span>
-
-<span class="c"># dfsioe-read</span>
-<span class="hll"><span class="nv">RD_NUM_OF_FILES</span><span class="o">=</span>256
-</span><span class="hll"><span class="nv">RD_FILE_SIZE</span><span class="o">=</span><span class="m">200</span> <span class="c">#2000</span>
-</span>
-<span class="c"># dfsioe-write</span>
-<span class="hll"><span class="nv">WT_NUM_OF_FILES</span><span class="o">=</span>256
-</span><span class="hll"><span class="nv">WT_FILE_SIZE</span><span class="o">=</span><span class="m">100</span> <span class="c">#1000</span>
-</span></pre></div>
-</td></tr></table></div>
-</div>
-<div class="section" id="sort">
-<h3>Sort<a class="headerlink" href="#sort" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-shell"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># compress</span>
-<span class="nv">COMPRESS</span><span class="o">=</span><span class="nv">$COMPRESS_GLOBAL</span>
-<span class="nv">COMPRESS_CODEC</span><span class="o">=</span><span class="nv">$COMPRESS_CODEC_GLOBAL</span>
-
-<span class="c"># paths</span>
-<span class="nv">INPUT_HDFS</span><span class="o">=</span><span class="si">${</span><span class="nv">DATA_HDFS</span><span class="si">}</span>/Sort/Input
-<span class="nv">OUTPUT_HDFS</span><span class="o">=</span><span class="si">${</span><span class="nv">DATA_HDFS</span><span class="si">}</span>/Sort/Output
-
-<span class="k">if</span> <span class="o">[</span> <span class="nv">$COMPRESS</span> -eq <span class="m">1</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-    <span class="nv">INPUT_HDFS</span><span class="o">=</span><span class="si">${</span><span class="nv">INPUT_HDFS</span><span class="si">}</span>-comp
-    <span class="nv">OUTPUT_HDFS</span><span class="o">=</span><span class="si">${</span><span class="nv">OUTPUT_HDFS</span><span class="si">}</span>-comp
-<span class="k">fi</span>
-
-<span class="c"># for prepare (per node) - 24G/node</span>
-<span class="c">#DATASIZE=24000000000</span>
-<span class="hll"><span class="nv">DATASIZE</span><span class="o">=</span>2400000000
-</span><span class="hll"><span class="nv">NUM_MAPS</span><span class="o">=</span>16
-</span>
-<span class="c"># for running (in total)</span>
-<span class="hll"><span class="nv">NUM_REDS</span><span class="o">=</span>48
-</span></pre></div>
-</td></tr></table></div>
-</div>
-<div class="section" id="wordcount">
-<h3>WordCount<a class="headerlink" href="#wordcount" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-shell"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># compress</span>
-<span class="c"># for best performance set COMPRESS=1 for MR1 and COMPRESS=0 for MR2 (for WordCount)</span>
-<span class="nv">COMPRESS</span><span class="o">=</span><span class="nv">$COMPRESS_GLOBAL</span>
-<span class="nv">COMPRESS_CODEC</span><span class="o">=</span><span class="nv">$COMPRESS_CODEC_GLOBAL</span>
-
-<span class="c"># paths</span>
-<span class="nv">INPUT_HDFS</span><span class="o">=</span><span class="si">${</span><span class="nv">DATA_HDFS</span><span class="si">}</span>/Wordcount/Input
-<span class="nv">OUTPUT_HDFS</span><span class="o">=</span><span class="si">${</span><span class="nv">DATA_HDFS</span><span class="si">}</span>/Wordcount/Output
-
-<span class="k">if</span> <span class="o">[</span> <span class="nv">$COMPRESS</span> -eq <span class="m">1</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-    <span class="nv">INPUT_HDFS</span><span class="o">=</span><span class="si">${</span><span class="nv">INPUT_HDFS</span><span class="si">}</span>-comp
-    <span class="nv">OUTPUT_HDFS</span><span class="o">=</span><span class="si">${</span><span class="nv">OUTPUT_HDFS</span><span class="si">}</span>-comp
-<span class="k">fi</span>
-
-<span class="c"># for preparation (per node) - 32G</span>
-<span class="c">#DATASIZE=32000000000</span>
-<span class="hll"><span class="nv">DATASIZE</span><span class="o">=</span>3200000000
-</span><span class="hll"><span class="nv">NUM_MAPS</span><span class="o">=</span>16
-</span>
-<span class="c"># for running (in total)</span>
-<span class="hll"><span class="nv">NUM_REDS</span><span class="o">=</span>48
-</span></pre></div>
-</td></tr></table></div>
-</div>
-<div class="section" id="k-means">
-<h3>k-means<a class="headerlink" href="#k-means" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-shell"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># compress</span>
-<span class="nv">COMPRESS</span><span class="o">=</span><span class="nv">$COMPRESS_GLOBAL</span>
-<span class="nv">COMPRESS_CODEC</span><span class="o">=</span><span class="nv">$COMPRESS_CODEC_GLOBAL</span>
-
-<span class="c"># paths</span>
-<span class="nv">INPUT_HDFS</span><span class="o">=</span><span class="si">${</span><span class="nv">DATA_HDFS</span><span class="si">}</span>/KMeans/Input
-<span class="nv">OUTPUT_HDFS</span><span class="o">=</span><span class="si">${</span><span class="nv">DATA_HDFS</span><span class="si">}</span>/KMeans/Output
-<span class="k">if</span> <span class="o">[</span> <span class="nv">$COMPRESS</span> -eq <span class="m">1</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-    <span class="nv">INPUT_HDFS</span><span class="o">=</span><span class="si">${</span><span class="nv">INPUT_HDFS</span><span class="si">}</span>-comp
-    <span class="nv">OUTPUT_HDFS</span><span class="o">=</span><span class="si">${</span><span class="nv">OUTPUT_HDFS</span><span class="si">}</span>-comp
-<span class="k">fi</span>
-<span class="nv">INPUT_SAMPLE</span><span class="o">=</span><span class="si">${</span><span class="nv">INPUT_HDFS</span><span class="si">}</span>/samples
-<span class="nv">INPUT_CLUSTER</span><span class="o">=</span><span class="si">${</span><span class="nv">INPUT_HDFS</span><span class="si">}</span>/cluster
-
-<span class="c"># for prepare</span>
-<span class="hll"><span class="nv">NUM_OF_CLUSTERS</span><span class="o">=</span>5
-</span><span class="c">#NUM_OF_SAMPLES=20000000</span>
-<span class="hll"><span class="nv">NUM_OF_SAMPLES</span><span class="o">=</span>3000000
-</span><span class="c">#SAMPLES_PER_INPUTFILE=4000000</span>
-<span class="hll"><span class="nv">SAMPLES_PER_INPUTFILE</span><span class="o">=</span>600000
-</span><span class="hll"><span class="nv">DIMENSIONS</span><span class="o">=</span>20
-</span>
-<span class="c"># for running</span>
-<span class="hll"><span class="nv">MAX_ITERATION</span><span class="o">=</span>5
-</span></pre></div>
-</td></tr></table></div>
-<table class="docutils footnote" frame="void" id="id2" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://ieeexplore.ieee.org/xpl/articleDetails.jsp?reload=true&amp;arnumber=5452747">http://ieeexplore.ieee.org/xpl/articleDetails.jsp?reload=true&amp;arnumber=5452747</a></td></tr>
-</tbody>
-</table>
-</div>
+  <div class="section" id="openstack">
+<h1>OpenStack<a class="headerlink" href="#openstack" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://wiki.openstack.org/wiki/Main_Page">wiki</a></p>
+<div class="section" id="id1">
+<h2><a class="reference external" href="https://wiki.openstack.org/wiki/Docker">nova-docker</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -511,10 +304,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../centos_tuning/index.html" class="btn btn-neutral float-right" title="CentOS Tuning" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../kvm_optimization/index.html" class="btn btn-neutral float-right" title="KVM Optimization" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../kvm_optimization/index.html" class="btn btn-neutral" title="KVM Optimization" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../enable_dvr_with_devstack/index.html" class="btn btn-neutral" title="Enable DVR with DevStack" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -71,7 +71,12 @@
         
           
           
-              <ul class="simple">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../cloud_computing/index.html">Cloud Computing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cloud_computing/index.html#docker">Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cloud_computing/index.html#terminologies">Terminologies</a></li>
+</ul>
+</li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../enable_dvr_with_devstack/index.html">Enable DVR with DevStack</a><ul>
@@ -82,6 +87,10 @@
 </li>
 </ul>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../openstack/index.html">OpenStack</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#id1">nova-docker</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../kvm_optimization/index.html">KVM Optimization</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../kvm_optimization/index.html#disk">Disk</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../kvm_optimization/index.html#asynchronous-io">Asynchronous IO</a></li>
@@ -143,9 +152,9 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../hadoop_conf_tuning/index.html#hadoop-virtualization-extension-hve">Hadoop Virtualization Extension(HVE)</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../hadoop_conf_tuning/index.html#hadoop-virtualization-extension">Hadoop Virtualization Extension</a></li>
 </ul>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../screen/index.html">Screen - Full-screen window manager</a><ul>
@@ -180,7 +189,7 @@
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Linux Documentation Tools</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#sphinx-python-document-generator">Sphinx - Python Document Generator</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#issues">issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#issues">Issues</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#pandoc-universal-document-converter">Pandoc - Universal document converter</a></li>
@@ -218,10 +227,6 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../svg/index.html">Scalable Vector Graphics (SVG)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../svg/index.html#resources">Resources</a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="../rst/index.html">ReStructured Text (reST)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../rst/index.html#standard-rst">Standard rST</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../rst/index.html#inline-mark">Inline mark</a></li>
@@ -241,6 +246,11 @@
 </li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../md/index.html">MarkDown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../svg/index.html">Scalable Vector Graphics (SVG)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../svg/index.html#resources">Resources</a></li>
 </ul>
 </li>
 </ul>
@@ -285,14 +295,21 @@
 <div class="section" id="sphinx-python-document-generator">
 <h2><a class="reference external" href="http://sphinx-doc.org">Sphinx</a> - Python Document Generator<a class="headerlink" href="#sphinx-python-document-generator" title="Permalink to this headline">¶</a></h2>
 <p>With this tool, we can extract manual from our python project&#8217;s source code, convert rst file into html tex or pdf files, and so on ...</p>
-<p><a class="reference external" href="http://www.pythondoc.com/sphinx/index.html">Chinese Documentation</a></p>
-<p><a class="reference external" href="http://zh-sphinx-doc.readthedocs.org/en/latest/">Another Chinese Documentation</a></p>
+<div class="line-block">
+<div class="line"><a class="reference external" href="http://www.pythondoc.com/sphinx/index.html">Chinese Documentation</a></div>
+<div class="line"><a class="reference external" href="http://zh-sphinx-doc.readthedocs.org/en/latest/">Another Chinese Documentation</a></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
 <div class="section" id="issues">
-<h3>issues<a class="headerlink" href="#issues" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
+<h3>Issues<a class="headerlink" href="#issues" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
 <li>ValueError: unknown locale: UTF-8</li>
-</ul>
-<p>This error occurs in my <strong>Macbook Air</strong> (2011, OS X Yosemite):</p>
+</ol>
+<div class="line-block">
+<div class="line">This error occurs in my <strong>Macbook Air</strong> (2011, OS X Yosemite)</div>
+<div class="line"><br /></div>
+</div>
 <div class="highlight-python"><div class="highlight"><pre>sphinx-build -b html -d build/doctrees   source build/html
 Traceback (most recent call last):
   File &quot;/usr/local/bin/sphinx-build&quot;, line 11, in &lt;module&gt;
@@ -315,7 +332,10 @@ Traceback (most recent call last):
     raise ValueError, &#39;unknown locale: %s&#39; % localename
 </pre></div>
 </div>
-<p><strong>Solution</strong></p>
+<div class="line-block">
+<div class="line"><strong>Solution</strong></div>
+<div class="line"><br /></div>
+</div>
 <div class="highlight-shell"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="highlight"><pre><span class="nb">export </span><span class="nv">LC_ALL</span><span class="o">=</span>es_ES.UTF-8
 <span class="nb">export </span><span class="nv">LANG</span><span class="o">=</span>es_ES.UTF-8

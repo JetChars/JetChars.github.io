@@ -8,15 +8,19 @@ Linux Documentation Tools
 
 With this tool, we can extract manual from our python project's source code, convert rst file into html tex or pdf files, and so on ... 
 
-`Chinese Documentation <http://www.pythondoc.com/sphinx/index.html>`_
+| `Chinese Documentation <http://www.pythondoc.com/sphinx/index.html>`_
+| `Another Chinese Documentation <http://zh-sphinx-doc.readthedocs.org/en/latest/>`_
+|
+|
 
-`Another Chinese Documentation <http://zh-sphinx-doc.readthedocs.org/en/latest/>`_
-
-issues
+Issues
 ------
-* ValueError: unknown locale: UTF-8 
 
-This error occurs in my **Macbook Air** (2011, OS X Yosemite)::
+1. ValueError: unknown locale: UTF-8 
+
+| This error occurs in my **Macbook Air** (2011, OS X Yosemite)
+|
+::
 
     sphinx-build -b html -d build/doctrees   source build/html
     Traceback (most recent call last):
@@ -39,7 +43,8 @@ This error occurs in my **Macbook Air** (2011, OS X Yosemite)::
       File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/locale.py", line 443, in _parse_localename
         raise ValueError, 'unknown locale: %s' % localename
 
-**Solution**
+| **Solution**
+|
 
 .. code-block:: shell
     :linenos:

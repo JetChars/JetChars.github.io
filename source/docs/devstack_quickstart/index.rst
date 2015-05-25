@@ -1,6 +1,7 @@
 ====================================
-OpenStack installation with DevStack
+OpenStack installation with `DevStack <http://git.openstack.org/cgit/openstack-dev/devstack/>`_
 ====================================
+
 
 Revision <1.0>
 
