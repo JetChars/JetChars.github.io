@@ -22,7 +22,7 @@ DevStack Hacking
     :maxdepth: 1
 
     docs/devstack_quickstart/index
-    docs/enable_dvr_with_devstack/index
+    docs/devstack_dvr/index
     docs/devstack_t13g/index
 
 

@@ -74,16 +74,17 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="">Cloud Computing</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#docker">Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ceph">Ceph</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#terminologies">Terminologies</a></li>
 </ul>
 </li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../devstack_quickstart/index.html">OpenStack installation with DevStack</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../enable_dvr_with_devstack/index.html">Enable DVR with DevStack</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#brief-intro">Brief Intro</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#configure-network-node">Configure Network Node</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#configure-compute-node">Configure Compute Node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devstack_dvr/index.html">Enable DVR with DevStack</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_dvr/index.html#brief-intro">Brief Intro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_dvr/index.html#configure-network-node">Configure Network Node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_dvr/index.html#configure-compute-node">Configure Compute Node</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../devstack_t13g/index.html">DevStack Trouble Shooting</a><ul>
@@ -303,7 +304,7 @@
 <ul>
 <li><p class="first">High value data must be structured data, can be transfer from low value data</p>
 </li>
-<li><p class="first">Data stored worldwide has been exploded, growing by a factor of 9 in five years (2006~2011) <a class="footnote-reference" href="#id2" id="id1">[1]</a></p>
+<li><p class="first">Data stored worldwide has been exploded, growing by a factor of 9 in five years (2006~2011) <a class="footnote-reference" href="#id3" id="id1">[1]</a></p>
 </li>
 <li><dl class="first docutils">
 <dt>Classification</dt>
@@ -382,6 +383,11 @@
 <li><a class="reference external" href="http://kubernetes.io">Kubernetes</a> is an open source orchestration system for Docker containers</li>
 </ul>
 </div>
+<div class="section" id="ceph">
+<h2>Ceph<a class="headerlink" href="#ceph" title="Permalink to this headline">¶</a></h2>
+<img alt="../../_images/ceph.png" class="align-right" src="../../_images/ceph.png" />
+<p>Ceph is a free software storage platform designed to present object, block, and file storage from a single distributed computer cluster <a class="footnote-reference" href="#id4" id="id2">[2]</a></p>
+</div>
 <div class="section" id="terminologies">
 <h2>Terminologies<a class="headerlink" href="#terminologies" title="Permalink to this headline">¶</a></h2>
 <div class="line-block">
@@ -395,6 +401,8 @@
 <div class="line"><strong>l10n</strong> &#8211; localization</div>
 <div class="line"><strong>k8s</strong> &#8211; kubernetes</div>
 <div class="line"><strong>HBA</strong> &#8211; Host Bus Adapter, HBA card opposite to RAID card</div>
+<div class="line"><strong>IMGO</strong> &#8211;In My Humble Opinion</div>
+<div class="line"><strong>volume</strong> &#8211; detachable block storage device</div>
 </div>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -402,10 +410,16 @@
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
-<table class="docutils footnote" frame="void" id="id2" rules="none">
+<table class="docutils footnote" frame="void" id="id3" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://www.emc.com/collateral/analyst-reports/idc-extracting-value-from-chaos-ar.pdf">http://www.emc.com/collateral/analyst-reports/idc-extracting-value-from-chaos-ar.pdf</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Ceph_(software">http://en.wikipedia.org/wiki/Ceph_(software</a>)</td></tr>
 </tbody>
 </table>
 </div>

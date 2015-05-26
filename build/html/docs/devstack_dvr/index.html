@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>DevStack Trouble Shooting &mdash; JetChars 0.1 documentation</title>
+  <title>Enable DVR with DevStack &mdash; JetChars 0.1 documentation</title>
   
 
   
@@ -31,8 +31,8 @@
 
   
     <link rel="top" title="JetChars 0.1 documentation" href="../../index.html"/>
-        <link rel="next" title="OpenStack" href="../openstack/index.html"/>
-        <link rel="prev" title="Enable DVR with DevStack" href="../enable_dvr_with_devstack/index.html"/> 
+        <link rel="next" title="DevStack Trouble Shooting" href="../devstack_t13g/index.html"/>
+        <link rel="prev" title="OpenStack installation with DevStack" href="../devstack_quickstart/index.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -77,17 +77,17 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../devstack_quickstart/index.html">OpenStack installation with DevStack</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../enable_dvr_with_devstack/index.html">Enable DVR with DevStack</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#brief-intro">Brief Intro</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#configure-network-node">Configure Network Node</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#configure-compute-node">Configure Compute Node</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Enable DVR with DevStack</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#brief-intro">Brief Intro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configure-network-node">Configure Network Node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configure-compute-node">Configure Compute Node</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">DevStack Trouble Shooting</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#pip-issues">Pip Issues</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#python-issues">Python issues</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#rabbit-issues">Rabbit issues</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#other-issues">Other issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devstack_t13g/index.html">DevStack Trouble Shooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#pip-issues">Pip Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#python-issues">Python issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#rabbit-issues">Rabbit issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#other-issues">Other issues</a></li>
 </ul>
 </li>
 </ul>
@@ -282,11 +282,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
-    <li>DevStack Trouble Shooting</li>
+    <li>Enable DVR with DevStack</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../../_sources/docs/devstack_t13g/index.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/docs/devstack_dvr/index.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -295,236 +295,172 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="devstack-trouble-shooting">
-<h1>DevStack Trouble Shooting<a class="headerlink" href="#devstack-trouble-shooting" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="pip-issues">
-<h2>Pip Issues<a class="headerlink" href="#pip-issues" title="Permalink to this headline">¶</a></h2>
-<div class="sidebar">
-<p class="first sidebar-title">Note</p>
-<ul class="last simple">
-<li>pip 7.0.1 seems not work well with ubuntu 14.04 (trusty)</li>
-<li>apt&#8217;s python-pip version is 1.5.4</li>
-<li>pip can be upgrade to designated version use opt <code class="docutils literal"><span class="pre">-U</span> <span class="pre">pip==version</span></code></li>
-<li>if pip installed by apt, then remove have to use it, too.</li>
-</ul>
+  <div class="section" id="enable-dvr-with-devstack">
+<h1>Enable DVR with DevStack<a class="headerlink" href="#enable-dvr-with-devstack" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line">DVR is short for distributed virtual router, with this feature enabled packets flow with floating IP will no longer send to network node. It helps to alleviate network node&#8217;s pressure greatly when large amount of north-south data flow occurs. <a class="footnote-reference" href="#id4" id="id1">[1]</a></div>
+<div class="line"><br /></div>
+</div>
+<div class="section" id="brief-intro">
+<h2>Brief Intro<a class="headerlink" href="#brief-intro" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">In order to enable distributed router on each compute-node, Neutron-metadata-agent and Neutron-L3-agent are both needed. So we need to add <strong>q-meta</strong> and <strong>q-l3</strong> as well as <em>q-agt</em> on each computer node&#8217;s <code class="docutils literal"><span class="pre">local.conf</span></code> file.</div>
+<div class="line"><br /></div>
+</div>
+<img alt="../../_images/image1.png" src="../../_images/image1.png" />
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Currently devstack doesn&#8217;t support deploying DVR on GRE tunnel <a class="footnote-reference" href="#id5" id="id2">[2]</a> , and tunnel type has been hard coded to vxlan mode, the following is a part of devstack&#8217;s code <code class="docutils literal"><span class="pre">lib/neutron_plugins/ml2</span></code>:</p>
+</div>
+<img alt="../../_images/image2.png" src="../../_images/image2.png" />
+<div class="line-block">
+<div class="line">With DVR, floating IPs can be accessed directly from each compute node, but SNAT still need to be centralized to network node.</div>
+<div class="line"><br /></div>
+</div>
+<img alt="../../_images/image3.png" src="../../_images/image3.png" />
+</div>
+<div class="section" id="configure-network-node">
+<h2>Configure Network Node<a class="headerlink" href="#configure-network-node" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">Here&#8217;s the neutron configuration part of <code class="docutils literal"><span class="pre">local.conf</span></code> on network node.</div>
+<div class="line"><br /></div>
+</div>
+<div class="highlight-shell"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># Neutron-vxlan-tunnel-DVR</span>
+<span class="c">##########################</span>
+ENABLED_SERVICES+<span class="o">=</span>,q-svc,q-agt,q-dhcp,q-l3,q-meta,neutron
+<span class="nv">Q_FLOATING_ALLOCATION_POOL</span><span class="o">=</span><span class="nv">start</span><span class="o">=</span>192.168.137.166,end<span class="o">=</span>192.168.137.253
+<span class="nv">Q_ROUTER_NAME</span><span class="o">=</span>default_router
+<span class="nv">PUBLIC_NETWORK_GATEWAY</span><span class="o">=</span>192.168.137.254
+<span class="nv">FLOATING_RANGE</span><span class="o">=</span>192.168.0.0/16
+
+<span class="nv">FIXED_RANGE</span><span class="o">=</span>10.1.1.0/24
+<span class="nv">FIXED_NETWORK_SIZE</span><span class="o">=</span>256
+<span class="nv">NETWORK_GATEWAY</span><span class="o">=</span>10.1.1.1
+
+<span class="nv">Q_PLUGIN</span><span class="o">=</span>ml2
+<span class="nv">Q_ML2_TENANT_NETWORK_TYPE</span><span class="o">=</span>vxlan
+<span class="nv">TUNNEL_ENDPOINT_IP</span><span class="o">=</span>192.168.1.37
+<span class="hll"><span class="nv">Q_DVR_MODE</span><span class="o">=</span>dvr_snat
+</span><span class="hll"><span class="nv">Q_SERVICE_PLUGIN_CLASSES</span><span class="o">=</span>neutron.services.l3_router.l3_router_plugin.L3RouterPlugin
+</span><span class="hll"><span class="nv">Q_ML2_PLUGIN_MECHANISM_DRIVERS</span><span class="o">=</span>openvswitch,linuxbridge,l2population
+</span></pre></div>
+</td></tr></table></div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">DVR mode can be <strong>dvr_snat</strong> , <strong>dvr</strong> or <strong>legacy</strong>. <em>Legacy</em> is Q_DVR_MODE &#8216;s default value, <em>dvr_snat</em> is for network node which enables snat router, and <em>dvr</em> mode is for compute node.</p>
+</div>
+<div class="line-block">
+<div class="line"><strong>L2population</strong> is needed by DVR. The L2 Population driver enables broadcast, multicast, and unicast traffic to scale out on large overlay networks. This traffic is sent to the relevant agent via encapsulation as a targeted unicast. <a class="footnote-reference" href="#id6" id="id3">[3]</a></div>
+<div class="line"><br /></div>
+</div>
+<img alt="../../_images/image4.png" src="../../_images/image4.png" />
+<div class="line-block">
+<div class="line">After Installation you might see 3 bridges and 4 namespaces on network node.</div>
+<div class="line"><br /></div>
+</div>
+<img alt="../../_images/image5.png" src="../../_images/image5.png" />
+<img alt="../../_images/image6.png" src="../../_images/image6.png" />
+<div class="line-block">
+<div class="line">Namespace fip* is for floating IP accessing. qdhcp* is for allocating IP addresses. snat* is for SNAT function. qrouter* only serves VM in current host.</div>
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="configure-compute-node">
+<h2>Configure Compute Node<a class="headerlink" href="#configure-compute-node" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">The following is the neutron configuration part of <code class="docutils literal"><span class="pre">local.conf</span></code> on compute node</div>
+<div class="line"><br /></div>
+</div>
+<div class="highlight-shell"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># Neutron-vxlan-tunnel-DVR</span>
+<span class="c">##########################</span>
+ENABLED_SERVICES+<span class="o">=</span> q-agt,q-l3,q-meta, neutron
+<span class="nv">Q_PLUGIN</span><span class="o">=</span>ml2
+<span class="nv">Q_ML2_TENANT_NETWORK_TYPE</span><span class="o">=</span>vxlan
+<span class="nv">TUNNEL_ENDPOINT_IP</span><span class="o">=</span>192.168.1.34
+<span class="hll"><span class="nv">Q_DVR_MODE</span><span class="o">=</span>dvr
+</span><span class="hll"><span class="nv">Q_SERVICE_PLUGIN_CLASSES</span><span class="o">=</span>neutron.services.l3_router.l3_router_plugin.L3RouterPlugin
+</span><span class="hll"><span class="nv">Q_ML2_PLUGIN_MECHANISM_DRIVERS</span><span class="o">=</span>openvswitch,linuxbridge,l2population
+</span></pre></div>
+</td></tr></table></div>
+<div class="line-block">
+<div class="line">After installation you might see 3 bridges and 2 namespaces.</div>
+<div class="line"><br /></div>
+</div>
+<img alt="../../_images/image7.png" src="../../_images/image7.png" />
+<img alt="../../_images/image8.png" src="../../_images/image8.png" />
+<div class="line-block">
+<div class="line">fip* and qrouter* did the same job as two virtual devices on network node.</div>
+<div class="line">We still need to do some configurations manually.</div>
+<div class="line"><br /></div>
 </div>
 <ol class="arabic simple">
-<li>Install pip</li>
+<li>Add an free physical device(NIC) to br-ex</li>
 </ol>
-<div class="highlight-shell"><div class="highlight"><pre>sudo easy_install pip
-sudo apt-get install python-pip
-sudo yum install python-pip
+<div class="highlight-shell"><div class="highlight"><pre><span class="nv">$ </span>sudo ovs-vsctl add-port br-ex eth1
 </pre></div>
 </div>
 <ol class="arabic simple" start="2">
-<li>Upgrade pip</li>
+<li>Allocate an IP for br-ex as a gateway</li>
 </ol>
-<div class="highlight-shell"><div class="highlight"><pre>sudo pip install -U pip
-sudo pip install -U <span class="nv">pip</span><span class="o">==</span>6.0.8
-sudo easy_install -U pip
+<div class="highlight-shell"><div class="highlight"><pre><span class="nv">$ </span>sudo ifconfig br-ex 192.168.137.253
 </pre></div>
 </div>
 <ol class="arabic simple" start="3">
-<li>Remove pip</li>
-</ol>
-<div class="highlight-shell"><div class="highlight"><pre>sudo easy_install remove pip
-sudo pip uninstall pip
-sudo apt-get remove python-pip
-sudo yum remove python-pip
-</pre></div>
-</div>
-<ol class="arabic simple" start="4">
-<li>Check pip version</li>
-</ol>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">pip</span> <span class="o">-</span><span class="n">V</span>
-</pre></div>
-</div>
-<ol class="arabic simple" start="5">
-<li>Config pip</li>
-</ol>
-<div class="sidebar">
-<p class="first sidebar-title">Note</p>
-<ul class="last simple">
-<li>if not add <strong>trusted-host</strong> to conf file, some pkgs might not be able install</li>
-<li>sometimes official mirror not available, try some other <a class="reference external" href="http://www.pypi-mirrors.org">mirrors</a></li>
-</ul>
-</div>
-<div class="line-block">
-<div class="line">global conf file <code class="docutils literal"><span class="pre">/etc/pip.conf</span></code></div>
-<div class="line">user conf file <code class="docutils literal"><span class="pre">~/.pip/pip.conf</span></code></div>
-<div class="line"><br /></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre>[global]
-default-timeout = 60
-respect-virtualenv = true
-build = /tmp/.pip/build
-download-cache = /tmp/.pip/cache
-index_url = http://pypi.python.org/simple/
-trusted-host = pypi.python.org
-
-[install]
-use-mirrors = true
-mirrors = http://pypi.python.org
-</pre></div>
-</div>
-<ol class="arabic simple" start="6">
-<li>wheel Multiple .disk-info directiries</li>
+<li>Add a route to floating network via fip*</li>
 </ol>
 <div class="line-block">
-<div class="line"><strong>Solutions</strong></div>
+<div class="line">Before we adding this route, we need to know fip&#8217;s IP address.</div>
 <div class="line"><br /></div>
 </div>
-<ul>
-<li><p class="first">not use wheel:</p>
-<div class="highlight-python"><div class="highlight"><pre>sudo pip uninstall pkgname
-sudo rm -rf pip_build_folder
-sudo pip instll pkgname --no-use-wheel
-</pre></div>
-</div>
-</li>
-<li><p class="first">use tmp build dir:</p>
-<div class="highlight-python"><div class="highlight"><pre>sudo pip install -U pkgname --build==$(mktemp -d)
-</pre></div>
-</div>
-</li>
-<li><p class="first">comment one line in /usr/local/lib/python2.7/dist-packages/pip/wheel.py:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">subdirs</span><span class="p">:</span>
-    <span class="n">destsubdir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dest</span><span class="p">,</span> <span class="n">basedir</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">is_base</span> <span class="ow">and</span> <span class="n">basedir</span> <span class="o">==</span> <span class="s">&#39;&#39;</span> <span class="ow">and</span> <span class="n">destsubdir</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&#39;.data&#39;</span><span class="p">):</span>
-        <span class="n">data_dirs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-        <span class="k">continue</span>
-    <span class="k">elif</span> <span class="p">(</span><span class="n">is_base</span> <span class="ow">and</span>
-            <span class="n">s</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&#39;.dist-info&#39;</span><span class="p">)</span> <span class="ow">and</span>
-            <span class="c"># is self.req.project_name case preserving?</span>
-            <span class="n">s</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span>
-                <span class="n">req</span><span class="o">.</span><span class="n">project_name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;-&#39;</span><span class="p">,</span> <span class="s">&#39;_&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">())):</span>
-        <span class="c"># comment this line</span>
-        <span class="c"># assert not info_dir, &#39;Multiple .dist-info directories&#39;</span>
-        <span class="n">info_dir</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">destsubdir</span><span class="p">)</span>
-</pre></div>
-</div>
-</li>
-</ul>
-</div>
-<div class="section" id="python-issues">
-<h2>Python issues<a class="headerlink" href="#python-issues" title="Permalink to this headline">¶</a></h2>
-<ol class="arabic">
-<li><dl class="first docutils">
-<dt>importError</dt>
-<dd><ul class="first last">
-<li><p class="first">No module named MySQLdb:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install python-mysqldb
-</pre></div>
-</div>
-</li>
-<li><p class="first">No module named libvirt:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get remove python-libvirt
-$ sudo apt-get install python-libvirt
-</pre></div>
-</div>
-</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ol>
-</div>
-<div class="section" id="rabbit-issues">
-<h2>Rabbit issues<a class="headerlink" href="#rabbit-issues" title="Permalink to this headline">¶</a></h2>
-<p>1. unable to connect to node <a class="reference external" href="mailto:rabbit&#37;&#52;&#48;upstream">rabbit<span>&#64;</span>upstream</a>: nodedown</p>
-<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get remove rabbit-server
-$ sudo apt-get install rabbit-server
-</pre></div>
-</div>
-<p>2. Failed to set rabbitmq password</p>
-<div class="highlight-python"><div class="highlight"><pre>$ sudo service rabbit-server restart
-</pre></div>
-</div>
-<ol class="arabic simple" start="3">
-<li>Failed to start rabbitmq-server</li>
-</ol>
+<img alt="../../_images/image9.png" src="../../_images/image9.png" />
 <div class="line-block">
-<div class="line">Check the log file at <code class="docutils literal"><span class="pre">/var/log/rabbitmq/startup_log</span></code></div>
-<div class="line">If error type is “eaddrinuse”, which mean the listen port had been in use.</div>
-<div class="line">We can change parameters in <code class="docutils literal"><span class="pre">/etc/rabbitmq/rabbitmq-env.conf</span></code></div>
-<div class="line">Following are it’s default values:</div>
+<div class="line">We use the IP on fg* .</div>
 <div class="line"><br /></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">NODENAME</span><span class="o">=</span><span class="n">rabbit</span>
-<span class="n">NODE_PORT</span><span class="o">=</span><span class="mi">5632</span>
+<div class="highlight-shell"><div class="highlight"><pre><span class="nv">$ </span>sudo ip route add 192.168.0.0/16 via 192.168.137.171
 </pre></div>
 </div>
-<div class="line-block">
-<div class="line">then we can restart it.</div>
-<div class="line"><br /></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre>$sudo service rabbit-server restart
-</pre></div>
-</div>
-</div>
-<div class="section" id="other-issues">
-<h2>Other issues<a class="headerlink" href="#other-issues" title="Permalink to this headline">¶</a></h2>
-<p>1. screen cannot open</p>
-<div class="highlight-python"><div class="highlight"><pre>Cannot open your terminal &#39;/dev/pts/0&#39; - please check
-</pre></div>
-</div>
-<div class="line-block">
-<div class="line"><strong>Solution</strong></div>
-<div class="line"><br /></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre>$ sudo chown stack:stack /dev/pts/0
-</pre></div>
-</div>
-<p>2. mysql server failed to start</p>
-<div class="highlight-python"><div class="highlight"><pre>Setting up mysql-server-5.5 (5.5.43-0ubuntu0.14.04.1) ...
-start: Job failed to start
-invoke-rc.d: initscript mysql, action &quot;start&quot; failed.
-dpkg: error processing package mysql-server-5.5 (--configure):
- subprocess installed post-installation script returned error exit status 1
-dpkg: dependency problems prevent configuration of mysql-server:
- mysql-server depends on mysql-server-5.5; however:
-  Package mysql-server-5.5 is not configured yet.
-
-dpkg: error processing package mysql-server (--configure):
- dependency problems - leaving unconfigured
-Errors were encountered while processing:
- mysql-server-5.5
- mysql-server
-E: Sub-process /usr/bin/dpkg returned an error code (1)
-</pre></div>
-</div>
-<div class="line-block">
-<div class="line"><strong>Solution :</strong> change tmp dir <a class="footnote-reference" href="#id3" id="id1">[1]</a> <a class="footnote-reference" href="#id4" id="id2">[2]</a></div>
-<div class="line"><br /></div>
-</div>
-<div class="line-block">
-<div class="line">Edit /etc/mysql/my.cnf</div>
-<div class="line">Change: <code class="docutils literal"><span class="pre">tmpdir</span> <span class="pre">=</span> <span class="pre">/tmp</span></code> To: <code class="docutils literal"><span class="pre">tmpdir</span> <span class="pre">=</span> <span class="pre">/var/tmp/mysql</span></code></div>
-<div class="line"><br /></div>
-<div class="line">And make sure you create that directory and set the permissions appropriately:</div>
-<div class="line"><br /></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre>sudo mkdir -m 0770 /var/tmp/mysql
-sudo chown mysql:mysql /var/tmp/mysql
-</pre></div>
-</div>
-<div class="line-block">
-<div class="line">Then you can try a reinstall and it should work :</div>
-<div class="line"><br /></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre>sudo apt-get install -f
-</pre></div>
-</div>
-<table class="docutils footnote" frame="void" id="id3" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://bugs.launchpad.net/ubuntu/+source/mysql-dfsg-5.1/+bug/375371">https://bugs.launchpad.net/ubuntu/+source/mysql-dfsg-5.1/+bug/375371</a></td></tr>
-</tbody>
-</table>
 <table class="docutils footnote" frame="void" id="id4" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="https://bugs.launchpad.net/ubuntu/+source/mysql-dfsg-5.0/+bug/227615">https://bugs.launchpad.net/ubuntu/+source/mysql-dfsg-5.0/+bug/227615</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://wiki.openstack.org/wiki/Neutron/DVR/HowTo">https://wiki.openstack.org/wiki/Neutron/DVR/HowTo</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id5" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="https://blueprints.launchpad.net/neutron/+spec/neutron-ovs-dvr">https://blueprints.launchpad.net/neutron/+spec/neutron-ovs-dvr</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference external" href="https://wiki.openstack.org/wiki/Neutron/DVR_L2_Agent">https://wiki.openstack.org/wiki/Neutron/DVR_L2_Agent</a></td></tr>
 </tbody>
 </table>
 </div>
@@ -536,10 +472,10 @@ sudo chown mysql:mysql /var/tmp/mysql
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../openstack/index.html" class="btn btn-neutral float-right" title="OpenStack" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../devstack_t13g/index.html" class="btn btn-neutral float-right" title="DevStack Trouble Shooting" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../enable_dvr_with_devstack/index.html" class="btn btn-neutral" title="Enable DVR with DevStack" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../devstack_quickstart/index.html" class="btn btn-neutral" title="OpenStack installation with DevStack" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

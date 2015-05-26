@@ -45,6 +45,13 @@ Install Docker::
 
 * `Kubernetes <http://kubernetes.io>`_ is an open source orchestration system for Docker containers
 
+Ceph
+====
+
+.. image:: images/ceph.png
+    :align: right
+
+Ceph is a free software storage platform designed to present object, block, and file storage from a single distributed computer cluster [#]_
 
 Terminologies
 =============
@@ -59,7 +66,8 @@ Terminologies
 | **l10n** -- localization
 | **k8s** -- kubernetes
 | **HBA** -- Host Bus Adapter, HBA card opposite to RAID card
-
+| **IMGO** --In My Humble Opinion
+| **volume** -- detachable block storage device
 
 |
 |
@@ -67,3 +75,4 @@ Terminologies
 |
 
 .. [#] http://www.emc.com/collateral/analyst-reports/idc-extracting-value-from-chaos-ar.pdf
+.. [#] http://en.wikipedia.org/wiki/Ceph_(software)

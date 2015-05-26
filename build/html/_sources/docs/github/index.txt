@@ -5,9 +5,11 @@ GitHub -- Git repository hosting service
 github.com
 ==========
 
+| Download: `windows <https://windows.github.com>`_
 | `JetChars' HomePage <https://github.com/JetChars>`_
 | `GitCafe <https://gitcafe.com>`_ -- substitue for github
 | `CODING <https://coding.net>`_ -- another substitue
+
 
 shortcuts
 ---------

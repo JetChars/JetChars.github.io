@@ -46,7 +46,7 @@ Pip Issues
   
     pip -V
 
-4. Config pip
+5. Config pip
 
 .. sidebar:: Note
 
@@ -70,6 +70,36 @@ Pip Issues
     [install]
     use-mirrors = true
     mirrors = http://pypi.python.org
+
+6. wheel Multiple .disk-info directiries
+
+| **Solutions** 
+|
+* not use wheel::
+
+    sudo pip uninstall pkgname
+    sudo rm -rf pip_build_folder
+    sudo pip instll pkgname --no-use-wheel
+
+* use tmp build dir::
+
+    sudo pip install -U pkgname --build==$(mktemp -d)
+
+* comment one line in /usr/local/lib/python2.7/dist-packages/pip/wheel.py::
+
+    for s in subdirs:
+        destsubdir = os.path.join(dest, basedir, s)
+        if is_base and basedir == '' and destsubdir.endswith('.data'):
+            data_dirs.append(s)
+            continue
+        elif (is_base and
+                s.endswith('.dist-info') and
+                # is self.req.project_name case preserving?
+                s.lower().startswith(
+                    req.project_name.replace('-', '_').lower())):
+            # comment this line
+            # assert not info_dir, 'Multiple .dist-info directories'
+            info_dir.append(destsubdir)
 
 
 Python issues
@@ -102,7 +132,10 @@ Rabbit issues
 
 3. Failed to start rabbitmq-server
 
-| Check the log file at ``/var/log/rabbitmq/startup_log`` , If error type is “eaddrinuse”, which mean the listen port had been in use. We can change parameters in ``/etc/rabbitmq/rabbitmq-env.conf`` , following are it’s default values:
+| Check the log file at ``/var/log/rabbitmq/startup_log`` 
+| If error type is “eaddrinuse”, which mean the listen port had been in use.
+| We can change parameters in ``/etc/rabbitmq/rabbitmq-env.conf`` 
+| Following are it’s default values:
 |
 ::
 
@@ -150,6 +183,25 @@ Other issues
      mysql-server
     E: Sub-process /usr/bin/dpkg returned an error code (1)
 
-| **Solution :** uninstall thoroughly.
+| **Solution :** change tmp dir [#]_ [#]_
 |
+
+| Edit /etc/mysql/my.cnf
+| Change: ``tmpdir = /tmp`` To: ``tmpdir = /var/tmp/mysql``
 |
+| And make sure you create that directory and set the permissions appropriately:
+|
+::
+
+    sudo mkdir -m 0770 /var/tmp/mysql
+    sudo chown mysql:mysql /var/tmp/mysql
+
+| Then you can try a reinstall and it should work :
+|
+::
+
+    sudo apt-get install -f
+
+
+.. [#] https://bugs.launchpad.net/ubuntu/+source/mysql-dfsg-5.1/+bug/375371
+.. [#] https://bugs.launchpad.net/ubuntu/+source/mysql-dfsg-5.0/+bug/227615
