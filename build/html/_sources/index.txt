@@ -4,8 +4,8 @@
    contain the root `toctree` directive.
 
 
-Welcome to JetChars's Documentation!
-====================================
+Welcome to JetChars' Documentation!
+===================================
 
 .. toctree::
     :maxdepth: 1
