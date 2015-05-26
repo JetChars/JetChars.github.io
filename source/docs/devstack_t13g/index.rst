@@ -3,48 +3,52 @@ DevStack Trouble Shooting
 =========================
 
 
-Pip Issues
-==========
+Pip
+===
 
 .. sidebar:: Note
 
     - pip 7.0.1 seems not work well with ubuntu 14.04 (trusty)
     - apt's python-pip version is 1.5.4
     - pip can be upgrade to designated version use opt ``-U pip==version``
-    - if pip installed by apt, then remove have to use it, too.
+    - if pip installed by apt, then remove pip have to use apt, too.
 
 
 1. Install pip
-
-.. code-block:: shell
-
-    sudo easy_install pip
-    sudo apt-get install python-pip
-    sudo yum install python-pip
+    - ``sudo easy_install pip``
+    - ``sudo apt-get install python-pip``
+    - ``sudo yum install python-pip``
 
 2. Upgrade pip
-
-.. code-block:: shell
-
-    sudo pip install -U pip
-    sudo pip install -U pip==6.0.8
-    sudo easy_install -U pip
+    - ``sudo pip install -U pip``
+    - ``sudo pip install -U pip==6.0.8``
+    - ``sudo easy_install -U pip``
    
 
 3. Remove pip
+    - ``sudo easy_install remove pip``
+    - ``sudo pip uninstall pip``
+    - ``sudo apt-get remove python-pip``
+    - ``sudo yum remove python-pip``
 
-.. code-block:: shell
-
-    sudo easy_install remove pip
-    sudo pip uninstall pip
-    sudo apt-get remove python-pip
-    sudo yum remove python-pip
-
-4. Check pip version
+4. Check pip & module version
 
 ::
   
-    pip -V
+    $ pip -V
+    pip 6.1.1 from /Library/Python/2.7/site-packages/pip-6.1.1-py2.7.egg (python 2.7)
+
+    $ pip show six #pkgname
+    Metadata-Version: 1.1
+    Name: six
+    Version: 1.4.1
+    Summary: Python 2 and 3 compatibility utilities
+    Home-page: http://pypi.python.org/pypi/six/
+    Author: Benjamin Peterson
+    Author-email: benjamin@python.org
+    License: UNKNOWN
+    Location: /System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python
+
 
 5. Config pip
 
@@ -52,6 +56,7 @@ Pip Issues
 
     - if not add **trusted-host** to conf file, some pkgs might not be able install
     - sometimes official mirror not available, try some other `mirrors <http://www.pypi-mirrors.org>`_
+    - build folder should be writeable for all users.
 
 | global conf file ``/etc/pip.conf``
 | user conf file ``~/.pip/pip.conf``
@@ -71,7 +76,15 @@ Pip Issues
     use-mirrors = true
     mirrors = http://pypi.python.org
 
+::
+
+    $ sudo chmod +x /tmp/.pip/build
+
 6. wheel Multiple .disk-info directiries
+
+.. sidebar:: What's wheel
+
+    Wheel is a built-package format, and offers the advantage of not recompiling your software during every install. [#]_
 
 | **Solutions** 
 |
@@ -102,8 +115,14 @@ Pip Issues
             info_dir.append(destsubdir)
 
 
-Python issues
-=============
+Python
+======
+
+.. sidebar:: Note
+
+    - most **import error** caused by module not installed or not installed properly
+    - **attribute cannot be found** probably caused by module's integrity issue or version not compatible.
+    - some weird issue caused by module virsion, eg: ``python-cinderclient==1.2.1`` , ``django-openstack-auth=1.20.0`` , ``python-openstack==1.0.4`` might cause compatible issues
 
 1. importError
     - No module named MySQLdb::
@@ -115,9 +134,36 @@ Python issues
         $ sudo apt-get remove python-libvirt
         $ sudo apt-get install python-libvirt
 
+2. attribute cannot be found
+    - 'module' object has no attribute 'IPOpt'
+::
 
-Rabbit issues
-=============
+        Traceback (most recent call last):
+          File "/usr/local/bin/neutron-openvswitch-agent", line 6, in <module>
+            from neutron.plugins.openvswitch.agent.ovs_neutron_agent import main
+          File "/opt/stack/neutron/neutron/plugins/openvswitch/agent/ovs_neutron_agent.py", line 53, in <module>
+            cfg.CONF.import_group('AGENT', 'neutron.plugins.openvswitch.common.config')
+          File "/usr/lib/python2.7/dist-packages/oslo/config/cfg.py", line 1810, in import_group
+            __import__(module_str)
+          File "/opt/stack/neutron/neutron/plugins/openvswitch/common/config.py", line 38, in <module>
+            cfg.IPOpt('local_ip', version=4,
+        AttributeError: 'module' object has no attribute 'IPOpt'
+
+| Open file "/opt/stack/neutron/neutron/plugins/openvswitch/common/config.py", we can easily find that cfg is a component of oslo.config.
+|
+::
+
+    from oslo.config import cfg
+
+| Apparently, this issue caused by oslo.config’s integrity.
+|
+::
+
+    $ sudo apt-get remove python-oslo.config
+    $ sudo apt-get install python-oslo.config
+
+Rabbit
+======
 
 1. unable to connect to node rabbit@upstream: nodedown 
 ::
@@ -183,25 +229,19 @@ Other issues
      mysql-server
     E: Sub-process /usr/bin/dpkg returned an error code (1)
 
-| **Solution :** change tmp dir [#]_ [#]_
+| **Solution : change tmp dir** [#]_ [#]_
 |
 
-| Edit /etc/mysql/my.cnf
-| Change: ``tmpdir = /tmp`` To: ``tmpdir = /var/tmp/mysql``
-|
-| And make sure you create that directory and set the permissions appropriately:
-|
-::
+-  Edit **/etc/mysql/my.cnf**, Change: ``tmpdir = /tmp`` To: ``tmpdir = /var/tmp/mysql``
+-  And make sure you create that directory and set the permissions appropriately::
 
     sudo mkdir -m 0770 /var/tmp/mysql
     sudo chown mysql:mysql /var/tmp/mysql
 
-| Then you can try a reinstall and it should work :
-|
-::
+- Then you can try a reinstall and it should work ::
 
     sudo apt-get install -f
 
-
+.. [#] https://pip.pypa.io/en/latest/reference/pip_wheel.html
 .. [#] https://bugs.launchpad.net/ubuntu/+source/mysql-dfsg-5.1/+bug/375371
 .. [#] https://bugs.launchpad.net/ubuntu/+source/mysql-dfsg-5.0/+bug/227615

@@ -31,8 +31,8 @@
 
   
     <link rel="top" title="JetChars 0.1 documentation" href="../../index.html"/>
-        <link rel="next" title="OpenStack" href="../openstack/index.html"/>
-        <link rel="prev" title="Enable DVR with DevStack" href="../enable_dvr_with_devstack/index.html"/> 
+        <link rel="next" title="KVM Optimization" href="../kvm_optimization/index.html"/>
+        <link rel="prev" title="Enable DVR with DevStack" href="../devstack_dvr/index.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -71,31 +71,24 @@
         
           
           
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="../cloud_computing/index.html">Docker</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cloud_computing/index.html#terminologies">Terminologies</a></li>
+              <ul class="simple">
 </ul>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../devstack_quickstart/index.html">OpenStack installation with DevStack</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../enable_dvr_with_devstack/index.html">Enable DVR with DevStack</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#brief-intro">Brief Intro</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#configure-network-node">Configure Network Node</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#configure-compute-node">Configure Compute Node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devstack_dvr/index.html">Enable DVR with DevStack</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_dvr/index.html#brief-intro">Brief Intro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_dvr/index.html#configure-network-node">Configure Network Node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_dvr/index.html#configure-compute-node">Configure Compute Node</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">DevStack Trouble Shooting</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#pip-issues">Pip Issues</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#python-issues">Python issues</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#rabbit-issues">Rabbit issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pip">Pip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#python">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rabbit">Rabbit</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#other-issues">Other issues</a></li>
 </ul>
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../openstack/index.html">OpenStack</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#id1">nova-docker</a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="../kvm_optimization/index.html">KVM Optimization</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../kvm_optimization/index.html#disk">Disk</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../kvm_optimization/index.html#asynchronous-io">Asynchronous IO</a></li>
@@ -297,46 +290,65 @@
             
   <div class="section" id="devstack-trouble-shooting">
 <h1>DevStack Trouble Shooting<a class="headerlink" href="#devstack-trouble-shooting" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="pip-issues">
-<h2>Pip Issues<a class="headerlink" href="#pip-issues" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="pip">
+<h2>Pip<a class="headerlink" href="#pip" title="Permalink to this headline">¶</a></h2>
 <div class="sidebar">
 <p class="first sidebar-title">Note</p>
 <ul class="last simple">
 <li>pip 7.0.1 seems not work well with ubuntu 14.04 (trusty)</li>
 <li>apt&#8217;s python-pip version is 1.5.4</li>
 <li>pip can be upgrade to designated version use opt <code class="docutils literal"><span class="pre">-U</span> <span class="pre">pip==version</span></code></li>
-<li>if pip installed by apt, then remove have to use it, too.</li>
+<li>if pip installed by apt, then remove pip have to use apt, too.</li>
 </ul>
 </div>
-<ol class="arabic simple">
-<li>Install pip</li>
+<ol class="arabic">
+<li><dl class="first docutils">
+<dt>Install pip</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">easy_install</span> <span class="pre">pip</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">python-pip</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">yum</span> <span class="pre">install</span> <span class="pre">python-pip</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Upgrade pip</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-U</span> <span class="pre">pip</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-U</span> <span class="pre">pip==6.0.8</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">easy_install</span> <span class="pre">-U</span> <span class="pre">pip</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Remove pip</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">easy_install</span> <span class="pre">remove</span> <span class="pre">pip</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">pip</span> <span class="pre">uninstall</span> <span class="pre">pip</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">remove</span> <span class="pre">python-pip</span></code></li>
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">yum</span> <span class="pre">remove</span> <span class="pre">python-pip</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Check pip &amp; module version</p>
+</li>
 </ol>
-<div class="highlight-shell"><div class="highlight"><pre>sudo easy_install pip
-sudo apt-get install python-pip
-sudo yum install python-pip
-</pre></div>
-</div>
-<ol class="arabic simple" start="2">
-<li>Upgrade pip</li>
-</ol>
-<div class="highlight-shell"><div class="highlight"><pre>sudo pip install -U pip
-sudo pip install -U <span class="nv">pip</span><span class="o">==</span>6.0.8
-sudo easy_install -U pip
-</pre></div>
-</div>
-<ol class="arabic simple" start="3">
-<li>Remove pip</li>
-</ol>
-<div class="highlight-shell"><div class="highlight"><pre>sudo easy_install remove pip
-sudo pip uninstall pip
-sudo apt-get remove python-pip
-sudo yum remove python-pip
-</pre></div>
-</div>
-<ol class="arabic simple" start="4">
-<li>Check pip version</li>
-</ol>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">pip</span> <span class="o">-</span><span class="n">V</span>
+<div class="highlight-python"><div class="highlight"><pre>$ pip -V
+pip 6.1.1 from /Library/Python/2.7/site-packages/pip-6.1.1-py2.7.egg (python 2.7)
+
+$ pip show six #pkgname
+Metadata-Version: 1.1
+Name: six
+Version: 1.4.1
+Summary: Python 2 and 3 compatibility utilities
+Home-page: http://pypi.python.org/pypi/six/
+Author: Benjamin Peterson
+Author-email: benjamin@python.org
+License: UNKNOWN
+Location: /System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python
 </pre></div>
 </div>
 <ol class="arabic simple" start="5">
@@ -347,6 +359,7 @@ sudo yum remove python-pip
 <ul class="last simple">
 <li>if not add <strong>trusted-host</strong> to conf file, some pkgs might not be able install</li>
 <li>sometimes official mirror not available, try some other <a class="reference external" href="http://www.pypi-mirrors.org">mirrors</a></li>
+<li>build folder should be writeable for all users.</li>
 </ul>
 </div>
 <div class="line-block">
@@ -367,9 +380,16 @@ use-mirrors = true
 mirrors = http://pypi.python.org
 </pre></div>
 </div>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo chmod +x /tmp/.pip/build
+</pre></div>
+</div>
 <ol class="arabic simple" start="6">
 <li>wheel Multiple .disk-info directiries</li>
 </ol>
+<div class="sidebar">
+<p class="first sidebar-title">What&#8217;s wheel</p>
+<p class="last">Wheel is a built-package format, and offers the advantage of not recompiling your software during every install. <a class="footnote-reference" href="#id4" id="id1">[1]</a></p>
+</div>
 <div class="line-block">
 <div class="line"><strong>Solutions</strong></div>
 <div class="line"><br /></div>
@@ -406,8 +426,16 @@ sudo pip instll pkgname --no-use-wheel
 </li>
 </ul>
 </div>
-<div class="section" id="python-issues">
-<h2>Python issues<a class="headerlink" href="#python-issues" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="python">
+<h2>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h2>
+<div class="sidebar">
+<p class="first sidebar-title">Note</p>
+<ul class="last simple">
+<li>most <strong>import error</strong> caused by module not installed or not installed properly</li>
+<li><strong>attribute cannot be found</strong> probably caused by module&#8217;s integrity issue or version not compatible.</li>
+<li>some weird issue caused by module virsion, eg: <code class="docutils literal"><span class="pre">python-cinderclient==1.2.1</span></code> , <code class="docutils literal"><span class="pre">django-openstack-auth=1.20.0</span></code> , <code class="docutils literal"><span class="pre">python-openstack==1.0.4</span></code> might cause compatible issues</li>
+</ul>
+</div>
 <ol class="arabic">
 <li><dl class="first docutils">
 <dt>importError</dt>
@@ -427,10 +455,45 @@ $ sudo apt-get install python-libvirt
 </dd>
 </dl>
 </li>
+<li><dl class="first docutils">
+<dt>attribute cannot be found</dt>
+<dd><ul class="first last simple">
+<li>&#8216;module&#8217; object has no attribute &#8216;IPOpt&#8217;</li>
+</ul>
+</dd>
+</dl>
+</li>
 </ol>
+<div class="highlight-python"><div class="highlight"><pre>Traceback (most recent call last):
+  File &quot;/usr/local/bin/neutron-openvswitch-agent&quot;, line 6, in &lt;module&gt;
+    from neutron.plugins.openvswitch.agent.ovs_neutron_agent import main
+  File &quot;/opt/stack/neutron/neutron/plugins/openvswitch/agent/ovs_neutron_agent.py&quot;, line 53, in &lt;module&gt;
+    cfg.CONF.import_group(&#39;AGENT&#39;, &#39;neutron.plugins.openvswitch.common.config&#39;)
+  File &quot;/usr/lib/python2.7/dist-packages/oslo/config/cfg.py&quot;, line 1810, in import_group
+    __import__(module_str)
+  File &quot;/opt/stack/neutron/neutron/plugins/openvswitch/common/config.py&quot;, line 38, in &lt;module&gt;
+    cfg.IPOpt(&#39;local_ip&#39;, version=4,
+AttributeError: &#39;module&#39; object has no attribute &#39;IPOpt&#39;
+</pre></div>
 </div>
-<div class="section" id="rabbit-issues">
-<h2>Rabbit issues<a class="headerlink" href="#rabbit-issues" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">Open file &#8220;/opt/stack/neutron/neutron/plugins/openvswitch/common/config.py&#8221;, we can easily find that cfg is a component of oslo.config.</div>
+<div class="line"><br /></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">oslo.config</span> <span class="kn">import</span> <span class="n">cfg</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">Apparently, this issue caused by oslo.config’s integrity.</div>
+<div class="line"><br /></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get remove python-oslo.config
+$ sudo apt-get install python-oslo.config
+</pre></div>
+</div>
+</div>
+<div class="section" id="rabbit">
+<h2>Rabbit<a class="headerlink" href="#rabbit" title="Permalink to this headline">¶</a></h2>
 <p>1. unable to connect to node <a class="reference external" href="mailto:rabbit&#37;&#52;&#48;upstream">rabbit<span>&#64;</span>upstream</a>: nodedown</p>
 <div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get remove rabbit-server
 $ sudo apt-get install rabbit-server
@@ -494,37 +557,40 @@ E: Sub-process /usr/bin/dpkg returned an error code (1)
 </pre></div>
 </div>
 <div class="line-block">
-<div class="line"><strong>Solution :</strong> change tmp dir <a class="footnote-reference" href="#id3" id="id1">[1]</a> <a class="footnote-reference" href="#id4" id="id2">[2]</a></div>
+<div class="line"><strong>Solution : change tmp dir</strong> <a class="footnote-reference" href="#id5" id="id2">[2]</a> <a class="footnote-reference" href="#id6" id="id3">[3]</a></div>
 <div class="line"><br /></div>
 </div>
-<div class="line-block">
-<div class="line">Edit /etc/mysql/my.cnf</div>
-<div class="line">Change: <code class="docutils literal"><span class="pre">tmpdir</span> <span class="pre">=</span> <span class="pre">/tmp</span></code> To: <code class="docutils literal"><span class="pre">tmpdir</span> <span class="pre">=</span> <span class="pre">/var/tmp/mysql</span></code></div>
-<div class="line"><br /></div>
-<div class="line">And make sure you create that directory and set the permissions appropriately:</div>
-<div class="line"><br /></div>
-</div>
+<ul>
+<li><p class="first">Edit <strong>/etc/mysql/my.cnf</strong>, Change: <code class="docutils literal"><span class="pre">tmpdir</span> <span class="pre">=</span> <span class="pre">/tmp</span></code> To: <code class="docutils literal"><span class="pre">tmpdir</span> <span class="pre">=</span> <span class="pre">/var/tmp/mysql</span></code></p>
+</li>
+<li><p class="first">And make sure you create that directory and set the permissions appropriately:</p>
 <div class="highlight-python"><div class="highlight"><pre>sudo mkdir -m 0770 /var/tmp/mysql
 sudo chown mysql:mysql /var/tmp/mysql
 </pre></div>
 </div>
-<div class="line-block">
-<div class="line">Then you can try a reinstall and it should work :</div>
-<div class="line"><br /></div>
-</div>
+</li>
+<li><p class="first">Then you can try a reinstall and it should work</p>
 <div class="highlight-python"><div class="highlight"><pre>sudo apt-get install -f
 </pre></div>
 </div>
-<table class="docutils footnote" frame="void" id="id3" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://bugs.launchpad.net/ubuntu/+source/mysql-dfsg-5.1/+bug/375371">https://bugs.launchpad.net/ubuntu/+source/mysql-dfsg-5.1/+bug/375371</a></td></tr>
-</tbody>
-</table>
+</li>
+</ul>
 <table class="docutils footnote" frame="void" id="id4" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="https://bugs.launchpad.net/ubuntu/+source/mysql-dfsg-5.0/+bug/227615">https://bugs.launchpad.net/ubuntu/+source/mysql-dfsg-5.0/+bug/227615</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://pip.pypa.io/en/latest/reference/pip_wheel.html">https://pip.pypa.io/en/latest/reference/pip_wheel.html</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id5" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="https://bugs.launchpad.net/ubuntu/+source/mysql-dfsg-5.1/+bug/375371">https://bugs.launchpad.net/ubuntu/+source/mysql-dfsg-5.1/+bug/375371</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference external" href="https://bugs.launchpad.net/ubuntu/+source/mysql-dfsg-5.0/+bug/227615">https://bugs.launchpad.net/ubuntu/+source/mysql-dfsg-5.0/+bug/227615</a></td></tr>
 </tbody>
 </table>
 </div>
@@ -536,10 +602,10 @@ sudo chown mysql:mysql /var/tmp/mysql
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../openstack/index.html" class="btn btn-neutral float-right" title="OpenStack" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../kvm_optimization/index.html" class="btn btn-neutral float-right" title="KVM Optimization" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../enable_dvr_with_devstack/index.html" class="btn btn-neutral" title="Enable DVR with DevStack" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../devstack_dvr/index.html" class="btn btn-neutral" title="Enable DVR with DevStack" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
