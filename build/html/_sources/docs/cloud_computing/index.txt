@@ -53,6 +53,9 @@ Ceph
 
 Ceph is a free software storage platform designed to present object, block, and file storage from a single distributed computer cluster [#]_
 
+.. image:: images/ceph_components.svg
+
+
 Terminologies
 =============
 

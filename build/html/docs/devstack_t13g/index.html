@@ -84,6 +84,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#pip">Pip</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#python">Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rabbit">Rabbit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mysql">MySQL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#other-issues">Other issues</a></li>
 </ul>
 </li>
@@ -290,20 +291,26 @@
             
   <div class="section" id="devstack-trouble-shooting">
 <h1>DevStack Trouble Shooting<a class="headerlink" href="#devstack-trouble-shooting" title="Permalink to this headline">¶</a></h1>
+<p>Strongly recommend use following command combo to debug devstack</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># /tmp/.pip/{build,cache} can be replaced to your own pip build &amp; cache folder</span>
+sudo chown stack.stack /opt/stack/ -R <span class="o">&amp;&amp;</span> ./unstack.sh <span class="o">&amp;&amp;</span> sudo rm -rf /tmp/.pip/<span class="o">{</span>build,cache<span class="o">}</span>/* <span class="o">&amp;&amp;</span> ./stack.sh
+</pre></div>
+</td></tr></table></div>
 <div class="section" id="pip">
 <h2>Pip<a class="headerlink" href="#pip" title="Permalink to this headline">¶</a></h2>
 <div class="sidebar">
 <p class="first sidebar-title">Note</p>
 <ul class="last simple">
 <li>pip 7.0.1 seems not work well with ubuntu 14.04 (trusty)</li>
-<li>apt&#8217;s python-pip version is 1.5.4</li>
+<li>apt and yum&#8217;s python-pip versions both not up-to-date, apt is 1.5.4, yum is 1.5.6</li>
 <li>pip can be upgrade to designated version use opt <code class="docutils literal"><span class="pre">-U</span> <span class="pre">pip==version</span></code></li>
 <li>if pip installed by apt, then remove pip have to use apt, too.</li>
 </ul>
 </div>
 <ol class="arabic">
 <li><dl class="first docutils">
-<dt>Install pip</dt>
+<dt>Install python module</dt>
 <dd><ul class="first last simple">
 <li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">easy_install</span> <span class="pre">pip</span></code></li>
 <li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">python-pip</span></code></li>
@@ -313,7 +320,7 @@
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt>Upgrade pip</dt>
+<dt>Upgrade or downgrade module</dt>
 <dd><ul class="first last simple">
 <li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-U</span> <span class="pre">pip</span></code></li>
 <li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-U</span> <span class="pre">pip==6.0.8</span></code></li>
@@ -323,7 +330,7 @@
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt>Remove pip</dt>
+<dt>Remove module</dt>
 <dd><ul class="first last simple">
 <li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">easy_install</span> <span class="pre">remove</span> <span class="pre">pip</span></code></li>
 <li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">pip</span> <span class="pre">uninstall</span> <span class="pre">pip</span></code></li>
@@ -380,14 +387,14 @@ use-mirrors = true
 mirrors = http://pypi.python.org
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>$ sudo chmod +x /tmp/.pip/build
+<div class="highlight-python"><div class="highlight"><pre>$ sudo chmod a+w /tmp/.pip/build
 </pre></div>
 </div>
 <ol class="arabic simple" start="6">
 <li>wheel Multiple .disk-info directiries</li>
 </ol>
 <div class="sidebar">
-<p class="first sidebar-title">What&#8217;s wheel</p>
+<p class="first sidebar-title">What&#8217;s wheel ?</p>
 <p class="last">Wheel is a built-package format, and offers the advantage of not recompiling your software during every install. <a class="footnote-reference" href="#id4" id="id1">[1]</a></p>
 </div>
 <div class="line-block">
@@ -425,17 +432,17 @@ sudo pip instll pkgname --no-use-wheel
 </div>
 </li>
 </ul>
-</div>
-<div class="section" id="python">
-<h2>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h2>
 <div class="sidebar">
 <p class="first sidebar-title">Note</p>
 <ul class="last simple">
 <li>most <strong>import error</strong> caused by module not installed or not installed properly</li>
 <li><strong>attribute cannot be found</strong> probably caused by module&#8217;s integrity issue or version not compatible.</li>
-<li>some weird issue caused by module virsion, eg: <code class="docutils literal"><span class="pre">python-cinderclient==1.2.1</span></code> , <code class="docutils literal"><span class="pre">django-openstack-auth=1.20.0</span></code> , <code class="docutils literal"><span class="pre">python-openstack==1.0.4</span></code> might cause compatible issues</li>
+<li>some weird issue caused by module virsion, which might cause compatible issues; known trouble versions: <code class="docutils literal"><span class="pre">python-cinderclient==1.2.1</span></code> <code class="docutils literal"><span class="pre">python-swiftclient==2.3.1</span></code> <code class="docutils literal"><span class="pre">django-openstack-auth=1.20.0</span></code> <code class="docutils literal"><span class="pre">python-openstack==1.0.4</span></code></li>
 </ul>
 </div>
+</div>
+<div class="section" id="python">
+<h2>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
 <li><dl class="first docutils">
 <dt>importError</dt>
@@ -455,6 +462,15 @@ $ sudo apt-get install python-libvirt
 </dd>
 </dl>
 </li>
+</ol>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<ol class="arabic" start="2">
 <li><dl class="first docutils">
 <dt>attribute cannot be found</dt>
 <dd><ul class="first last simple">
@@ -525,20 +541,46 @@ $ sudo apt-get install rabbit-server
 </pre></div>
 </div>
 </div>
-<div class="section" id="other-issues">
-<h2>Other issues<a class="headerlink" href="#other-issues" title="Permalink to this headline">¶</a></h2>
-<p>1. screen cannot open</p>
-<div class="highlight-python"><div class="highlight"><pre>Cannot open your terminal &#39;/dev/pts/0&#39; - please check
+<div class="section" id="mysql">
+<h2>MySQL<a class="headerlink" href="#mysql" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Reset MySQL password</li>
+</ol>
+<ul class="simple">
+<li>change password via reconfig mysql-server</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre>sudo dpkg-reconfigure mysql-server-5.5
 </pre></div>
 </div>
-<div class="line-block">
-<div class="line"><strong>Solution</strong></div>
-<div class="line"><br /></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre>$ sudo chown stack:stack /dev/pts/0
+<ul class="simple">
+<li>change password in safemode, &#8216;password&#8217; should be changed into your own password.</li>
+</ul>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre>sudo service mysql stop
+sudo mysqld_safe <span class="p">&amp;</span>
+mysql -uroot <span class="s">&lt;&lt; EOF</span>
+<span class="s">UPDATE mysql.user SET Password=PASSWORD(&#39;password&#39;) WHERE User=&#39;root&#39;;</span>
+<span class="s">EOF</span>
+sudo pkill -9 mysqld_safe
+sudo service mysql start
 </pre></div>
-</div>
-<p>2. mysql server failed to start</p>
+</td></tr></table></div>
+<ol class="arabic simple" start="2">
+<li>Uninstall MySQL</li>
+</ol>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre>sudo apt-get remove -y --purge mysql*
+sudo apt-get autoremove
+sudo apt-get autoclean
+</pre></div>
+</td></tr></table></div>
+<p>3. MySQL server failed to start</p>
 <div class="highlight-python"><div class="highlight"><pre>Setting up mysql-server-5.5 (5.5.43-0ubuntu0.14.04.1) ...
 start: Job failed to start
 invoke-rc.d: initscript mysql, action &quot;start&quot; failed.
@@ -575,6 +617,53 @@ sudo chown mysql:mysql /var/tmp/mysql
 </div>
 </li>
 </ul>
+</div>
+<div class="section" id="other-issues">
+<h2>Other issues<a class="headerlink" href="#other-issues" title="Permalink to this headline">¶</a></h2>
+<p>1. screen cannot open</p>
+<div class="highlight-python"><div class="highlight"><pre>Cannot open your terminal &#39;/dev/pts/0&#39; - please check
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><strong>Solution</strong></div>
+<div class="line"><br /></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo chown stack:stack /dev/pts/0
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li>tempest</li>
+</ol>
+<p>If <strong>./stack.sh</strong> stuck at this step.</p>
+<div class="highlight-python"><div class="highlight"><pre>++ local test_req=tox/test-requirements.txt
+++ [[ -e tox/test-requirements.txt ]]
+++ pushd /opt/stack/tempest
+~/tempest ~/devstack
+++ tox --notest -efull
+full create: /opt/stack/tempest/.tox/full
+full installdeps: setuptools, -r/opt/stack/tempest/requirements.txt
+</pre></div>
+</div>
+<p>comment one line in devstack/lib/tempest</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">function</span> install_tempest <span class="o">{</span>
+    git_clone <span class="nv">$TEMPEST_REPO</span> <span class="nv">$TEMPEST_DIR</span> <span class="nv">$TEMPEST_BRANCH</span>
+    pip_install tox
+    <span class="nb">pushd</span> <span class="nv">$TEMPEST_DIR</span>
+    <span class="c"># tox --notest -efull</span>
+    PROJECT_VENV<span class="o">[</span><span class="s2">&quot;tempest&quot;</span><span class="o">]=</span><span class="si">${</span><span class="nv">TEMPEST_DIR</span><span class="si">}</span>/.tox/full
+    install_tempest_lib
+    <span class="nb">popd</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
 <table class="docutils footnote" frame="void" id="id4" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">

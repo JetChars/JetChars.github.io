@@ -2,6 +2,15 @@
 DevStack Trouble Shooting
 =========================
 
+Strongly recommend use following command combo to debug devstack
+
+.. code-block:: bash
+    :linenos:
+
+    # /tmp/.pip/{build,cache} can be replaced to your own pip build & cache folder
+    sudo chown stack.stack /opt/stack/ -R && ./unstack.sh && sudo rm -rf /tmp/.pip/{build,cache}/* && ./stack.sh
+
+
 
 Pip
 ===
@@ -9,23 +18,23 @@ Pip
 .. sidebar:: Note
 
     - pip 7.0.1 seems not work well with ubuntu 14.04 (trusty)
-    - apt's python-pip version is 1.5.4
+    - apt and yum's python-pip versions both not up-to-date, apt is 1.5.4, yum is 1.5.6
     - pip can be upgrade to designated version use opt ``-U pip==version``
     - if pip installed by apt, then remove pip have to use apt, too.
 
 
-1. Install pip
+1. Install python module
     - ``sudo easy_install pip``
     - ``sudo apt-get install python-pip``
     - ``sudo yum install python-pip``
 
-2. Upgrade pip
+2. Upgrade or downgrade module
     - ``sudo pip install -U pip``
     - ``sudo pip install -U pip==6.0.8``
     - ``sudo easy_install -U pip``
    
 
-3. Remove pip
+3. Remove module
     - ``sudo easy_install remove pip``
     - ``sudo pip uninstall pip``
     - ``sudo apt-get remove python-pip``
@@ -78,11 +87,11 @@ Pip
 
 ::
 
-    $ sudo chmod +x /tmp/.pip/build
+    $ sudo chmod a+w /tmp/.pip/build
 
 6. wheel Multiple .disk-info directiries
 
-.. sidebar:: What's wheel
+.. sidebar:: What's wheel ?
 
     Wheel is a built-package format, and offers the advantage of not recompiling your software during every install. [#]_
 
@@ -115,14 +124,14 @@ Pip
             info_dir.append(destsubdir)
 
 
-Python
-======
-
 .. sidebar:: Note
 
     - most **import error** caused by module not installed or not installed properly
     - **attribute cannot be found** probably caused by module's integrity issue or version not compatible.
-    - some weird issue caused by module virsion, eg: ``python-cinderclient==1.2.1`` , ``django-openstack-auth=1.20.0`` , ``python-openstack==1.0.4`` might cause compatible issues
+    - some weird issue caused by module virsion, which might cause compatible issues; known trouble versions: ``python-cinderclient==1.2.1`` ``python-swiftclient==2.3.1`` ``django-openstack-auth=1.20.0`` ``python-openstack==1.0.4``
+
+Python
+======
 
 1. importError
     - No module named MySQLdb::
@@ -133,6 +142,11 @@ Python
 
         $ sudo apt-get remove python-libvirt
         $ sudo apt-get install python-libvirt
+|
+|
+|
+|
+|
 
 2. attribute cannot be found
     - 'module' object has no attribute 'IPOpt'
@@ -194,23 +208,41 @@ Rabbit
 
     $sudo service rabbit-server restart
 
+MySQL
+=====
 
+1. Reset MySQL password
 
-Other issues
-============
-
-1. screen cannot open
+- change password via reconfig mysql-server
 ::
 
-    Cannot open your terminal '/dev/pts/0' - please check
+    sudo dpkg-reconfigure mysql-server-5.5
 
-| **Solution**
-|
-::
+- change password in safemode, 'password' should be changed into your own password.
 
-    $ sudo chown stack:stack /dev/pts/0
+.. code-block:: bash
+    :linenos:
 
-2. mysql server failed to start
+    sudo service mysql stop
+    sudo mysqld_safe &
+    mysql -uroot << EOF
+    UPDATE mysql.user SET Password=PASSWORD('password') WHERE User='root';
+    EOF
+    sudo pkill -9 mysqld_safe
+    sudo service mysql start
+
+2. Uninstall MySQL
+
+.. code-block:: bash
+    :linenos:
+
+    sudo apt-get remove -y --purge mysql*
+    sudo apt-get autoremove               
+    sudo apt-get autoclean
+
+
+
+3. MySQL server failed to start
 ::
 
     Setting up mysql-server-5.5 (5.5.43-0ubuntu0.14.04.1) ...
@@ -241,6 +273,50 @@ Other issues
 - Then you can try a reinstall and it should work ::
 
     sudo apt-get install -f
+
+
+Other issues
+============
+
+
+1. screen cannot open
+::
+
+    Cannot open your terminal '/dev/pts/0' - please check
+
+| **Solution**
+|
+::
+
+    $ sudo chown stack:stack /dev/pts/0
+
+2. tempest
+
+If **./stack.sh** stuck at this step.
+::
+
+    ++ local test_req=tox/test-requirements.txt
+    ++ [[ -e tox/test-requirements.txt ]]
+    ++ pushd /opt/stack/tempest
+    ~/tempest ~/devstack
+    ++ tox --notest -efull
+    full create: /opt/stack/tempest/.tox/full
+    full installdeps: setuptools, -r/opt/stack/tempest/requirements.txt
+
+comment one line in devstack/lib/tempest
+
+.. code-block:: bash
+    :linenos:
+
+    function install_tempest {
+        git_clone $TEMPEST_REPO $TEMPEST_DIR $TEMPEST_BRANCH
+        pip_install tox
+        pushd $TEMPEST_DIR
+        # tox --notest -efull
+        PROJECT_VENV["tempest"]=${TEMPEST_DIR}/.tox/full
+        install_tempest_lib
+        popd
+    }
 
 .. [#] https://pip.pypa.io/en/latest/reference/pip_wheel.html
 .. [#] https://bugs.launchpad.net/ubuntu/+source/mysql-dfsg-5.1/+bug/375371
