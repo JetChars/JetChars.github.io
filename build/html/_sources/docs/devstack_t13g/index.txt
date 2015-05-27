@@ -2,14 +2,22 @@
 DevStack Trouble Shooting
 =========================
 
-Strongly recommend use following command combo to debug devstack
+Recommend using the following command combo to debug devstack
 
 .. code-block:: bash
     :linenos:
 
-    # /tmp/.pip/{build,cache} can be replaced to your own pip build & cache folder
-    sudo chown stack.stack /opt/stack/ -R && ./unstack.sh && sudo rm -rf /tmp/.pip/{build,cache}/* && ./stack.sh
+    # /tmp/.pip/build can be replaced to your own pip build folder
+    sudo chown stack.stack /opt/stack/ -R && ./unstack.sh && sudo rm -rf /tmp/.pip/build/* && ./stack.sh
 
+Also recomment using the following command to check trace error.
+
+.. code-block:: bash
+    :linenos:
+
+    grep -B10 -i error /opt/stack/logs/stack.sh.log | less
+
+Once you have passed the '**git clone**' phase you can turn ``RECLONE=False`` to enhance debugging speed.
 
 
 Pip
@@ -89,7 +97,7 @@ Pip
 
     $ sudo chmod a+w /tmp/.pip/build
 
-6. wheel Multiple .disk-info directiries
+6. Wheel: Multiple .disk-info directiries
 
 .. sidebar:: What's wheel ?
 
@@ -97,17 +105,17 @@ Pip
 
 | **Solutions** 
 |
-* not use wheel::
+* Not use wheel::
 
     sudo pip uninstall pkgname
     sudo rm -rf pip_build_folder
     sudo pip instll pkgname --no-use-wheel
 
-* use tmp build dir::
+* Use tmp build dir::
 
     sudo pip install -U pkgname --build==$(mktemp -d)
 
-* comment one line in /usr/local/lib/python2.7/dist-packages/pip/wheel.py::
+* Comment one line in /usr/local/lib/python2.7/dist-packages/pip/wheel.py::
 
     for s in subdirs:
         destsubdir = os.path.join(dest, basedir, s)
@@ -123,17 +131,32 @@ Pip
             # assert not info_dir, 'Multiple .dist-info directories'
             info_dir.append(destsubdir)
 
+7. No distributions have been found for pip in /usr/local/lib/python2.7/dist-packages
+
+| This issue cause by stack.sh override pip incorrectly, in order to avoid this issue, comment following 3 lines
+|
+::
+
+    if [[ "$OFFLINE" != "True" ]]; then
+        PYPI_ALTERNATIVE_URL=$PYPI_ALTERNATIVE_URL $TOP_DIR/tools/install_pip.sh
+    fi
+
+|
+|
+
 
 .. sidebar:: Note
 
-    - most **import error** caused by module not installed or not installed properly
+    - Most **import error** caused by module not installed or not installed properly
     - **attribute cannot be found** probably caused by module's integrity issue or version not compatible.
-    - some weird issue caused by module virsion, which might cause compatible issues; known trouble versions: ``python-cinderclient==1.2.1`` ``python-swiftclient==2.3.1`` ``django-openstack-auth=1.20.0`` ``python-openstack==1.0.4``
+    - Some weird issue caused by module virsion, which might cause compatible issues; known trouble modules: ``python-{cinder,swift,glance}client`` ``django-openstack-auth`` ``python-openstack``
+
+
 
 Python
 ======
 
-1. importError
+1. ImportError
     - No module named MySQLdb::
 
         $ sudo apt-get install python-mysqldb
@@ -148,7 +171,7 @@ Python
 |
 |
 
-2. attribute cannot be found
+2. Attribute cannot be found
     - 'module' object has no attribute 'IPOpt'
 ::
 
@@ -169,17 +192,20 @@ Python
 
     from oslo.config import cfg
 
-| Apparently, this issue caused by oslo.config’s integrity.
+| Apparently, this issue was caused by oslo.config’s integrity.
 |
 ::
 
     $ sudo apt-get remove python-oslo.config
     $ sudo apt-get install python-oslo.config
 
+
+
+
 Rabbit
 ======
 
-1. unable to connect to node rabbit@upstream: nodedown 
+1. Unable to connect to node rabbit@upstream: nodedown 
 ::
 
     $ sudo apt-get remove rabbit-server
@@ -213,21 +239,19 @@ MySQL
 
 1. Reset MySQL password
 
-- change password via reconfig mysql-server
+- Change password via reconfig mysql-server
 ::
 
     sudo dpkg-reconfigure mysql-server-5.5
 
-- change password in safemode, 'password' should be changed into your own password.
+- Change password in safemode, 'password' should be changed into your own password.
 
 .. code-block:: bash
     :linenos:
 
     sudo service mysql stop
     sudo mysqld_safe &
-    mysql -uroot << EOF
-    UPDATE mysql.user SET Password=PASSWORD('password') WHERE User='root';
-    EOF
+    mysql -uroot -e "UPDATE mysql.user SET Password=PASSWORD('password') WHERE User='root';"
     sudo pkill -9 mysqld_safe
     sudo service mysql start
 
@@ -239,7 +263,7 @@ MySQL
     sudo apt-get remove -y --purge mysql*
     sudo apt-get autoremove               
     sudo apt-get autoclean
-
+    sudo rm -rf /var/lib/mysql /etc/apparmor.d/abstraction/mysql /etc/mysql /run/mysql
 
 
 3. MySQL server failed to start
@@ -274,14 +298,43 @@ MySQL
 
     sudo apt-get install -f
 
+Apache
+======
+
+1. Module version does not exist!
+::
+
+    $ sudo a2enmod version
+    ERROR: Module version does not exist!
+
+| This error was caused by apache2 and its config file corrupt, it can be solved by uninstalling apache2 thoroughly.
+|
+::
+
+    sudo apt-get purge -y apache* libapache*
+    sudo rm -rf /etc/apache2 /usr/lib/apache2 /run/apache2
+    sudo autoremove -y
+    sudo autoclean -y
+
+2. Could not determine the server's fully qualified domain name
+
+::
+
+    $ echo "ServerName localhost" | sudo tee /etc/apache2/conf-available/fqdn.conf
+    $ sudo a2enconf fqdn
+
+3. Openstack Service Unavailable (HTTP 503)
+
+| Reinstall apache2 can solve this issue
 
 Other issues
 ============
 
 
-1. screen cannot open
+1. Screen cannot open
 ::
 
+    $ screen -x stack
     Cannot open your terminal '/dev/pts/0' - please check
 
 | **Solution**
@@ -290,9 +343,10 @@ Other issues
 
     $ sudo chown stack:stack /dev/pts/0
 
-2. tempest
+2. Tempest
 
-If **./stack.sh** stuck at this step.
+| If **./stack.sh** stuck at this step.
+|
 ::
 
     ++ local test_req=tox/test-requirements.txt
@@ -303,7 +357,8 @@ If **./stack.sh** stuck at this step.
     full create: /opt/stack/tempest/.tox/full
     full installdeps: setuptools, -r/opt/stack/tempest/requirements.txt
 
-comment one line in devstack/lib/tempest
+| Comment one line in devstack/lib/tempest
+|
 
 .. code-block:: bash
     :linenos:
@@ -317,6 +372,20 @@ comment one line in devstack/lib/tempest
         install_tempest_lib
         popd
     }
+
+3. Dashboard issue
+
+* Authorization error::
+
+    Unauthorized at /admin/
+    Unauthorized (HTTP 401) (Request-ID: req-a7ef8ee1-3ce6-4082-b91b-4876208164c6)
+
+| This error occurs when restarting controller node. Clearing web browser’s cookie can solve this problem.
+|
+|
+|
+|
+
 
 .. [#] https://pip.pypa.io/en/latest/reference/pip_wheel.html
 .. [#] https://bugs.launchpad.net/ubuntu/+source/mysql-dfsg-5.1/+bug/375371

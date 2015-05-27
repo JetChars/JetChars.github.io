@@ -85,6 +85,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#python">Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rabbit">Rabbit</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#mysql">MySQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#apache">Apache</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#other-issues">Other issues</a></li>
 </ul>
 </li>
@@ -291,12 +292,17 @@
             
   <div class="section" id="devstack-trouble-shooting">
 <h1>DevStack Trouble Shooting<a class="headerlink" href="#devstack-trouble-shooting" title="Permalink to this headline">¶</a></h1>
-<p>Strongly recommend use following command combo to debug devstack</p>
+<p>Recommend using the following command combo to debug devstack</p>
 <div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># /tmp/.pip/{build,cache} can be replaced to your own pip build &amp; cache folder</span>
-sudo chown stack.stack /opt/stack/ -R <span class="o">&amp;&amp;</span> ./unstack.sh <span class="o">&amp;&amp;</span> sudo rm -rf /tmp/.pip/<span class="o">{</span>build,cache<span class="o">}</span>/* <span class="o">&amp;&amp;</span> ./stack.sh
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># /tmp/.pip/build can be replaced to your own pip build folder</span>
+sudo chown stack.stack /opt/stack/ -R <span class="o">&amp;&amp;</span> ./unstack.sh <span class="o">&amp;&amp;</span> sudo rm -rf /tmp/.pip/build/* <span class="o">&amp;&amp;</span> ./stack.sh
 </pre></div>
 </td></tr></table></div>
+<p>Also recomment using the following command to check trace error.</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre>grep -B10 -i error /opt/stack/logs/stack.sh.log <span class="p">|</span> less
+</pre></div>
+</td></tr></table></div>
+<p>Once you have passed the &#8216;<strong>git clone</strong>&#8216; phase you can turn <code class="docutils literal"><span class="pre">RECLONE=False</span></code> to enhance debugging speed.</p>
 <div class="section" id="pip">
 <h2>Pip<a class="headerlink" href="#pip" title="Permalink to this headline">¶</a></h2>
 <div class="sidebar">
@@ -391,7 +397,7 @@ mirrors = http://pypi.python.org
 </pre></div>
 </div>
 <ol class="arabic simple" start="6">
-<li>wheel Multiple .disk-info directiries</li>
+<li>Wheel: Multiple .disk-info directiries</li>
 </ol>
 <div class="sidebar">
 <p class="first sidebar-title">What&#8217;s wheel ?</p>
@@ -402,19 +408,19 @@ mirrors = http://pypi.python.org
 <div class="line"><br /></div>
 </div>
 <ul>
-<li><p class="first">not use wheel:</p>
+<li><p class="first">Not use wheel:</p>
 <div class="highlight-python"><div class="highlight"><pre>sudo pip uninstall pkgname
 sudo rm -rf pip_build_folder
 sudo pip instll pkgname --no-use-wheel
 </pre></div>
 </div>
 </li>
-<li><p class="first">use tmp build dir:</p>
+<li><p class="first">Use tmp build dir:</p>
 <div class="highlight-python"><div class="highlight"><pre>sudo pip install -U pkgname --build==$(mktemp -d)
 </pre></div>
 </div>
 </li>
-<li><p class="first">comment one line in /usr/local/lib/python2.7/dist-packages/pip/wheel.py:</p>
+<li><p class="first">Comment one line in /usr/local/lib/python2.7/dist-packages/pip/wheel.py:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">subdirs</span><span class="p">:</span>
     <span class="n">destsubdir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dest</span><span class="p">,</span> <span class="n">basedir</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">is_base</span> <span class="ow">and</span> <span class="n">basedir</span> <span class="o">==</span> <span class="s">&#39;&#39;</span> <span class="ow">and</span> <span class="n">destsubdir</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&#39;.data&#39;</span><span class="p">):</span>
@@ -432,12 +438,28 @@ sudo pip instll pkgname --no-use-wheel
 </div>
 </li>
 </ul>
+<ol class="arabic simple" start="7">
+<li>No distributions have been found for pip in /usr/local/lib/python2.7/dist-packages</li>
+</ol>
+<div class="line-block">
+<div class="line">This issue cause by stack.sh override pip incorrectly, in order to avoid this issue, comment following 3 lines</div>
+<div class="line"><br /></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>if [[ &quot;$OFFLINE&quot; != &quot;True&quot; ]]; then
+    PYPI_ALTERNATIVE_URL=$PYPI_ALTERNATIVE_URL $TOP_DIR/tools/install_pip.sh
+fi
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
 <div class="sidebar">
 <p class="first sidebar-title">Note</p>
 <ul class="last simple">
-<li>most <strong>import error</strong> caused by module not installed or not installed properly</li>
+<li>Most <strong>import error</strong> caused by module not installed or not installed properly</li>
 <li><strong>attribute cannot be found</strong> probably caused by module&#8217;s integrity issue or version not compatible.</li>
-<li>some weird issue caused by module virsion, which might cause compatible issues; known trouble versions: <code class="docutils literal"><span class="pre">python-cinderclient==1.2.1</span></code> <code class="docutils literal"><span class="pre">python-swiftclient==2.3.1</span></code> <code class="docutils literal"><span class="pre">django-openstack-auth=1.20.0</span></code> <code class="docutils literal"><span class="pre">python-openstack==1.0.4</span></code></li>
+<li>Some weird issue caused by module virsion, which might cause compatible issues; known trouble modules: <code class="docutils literal"><span class="pre">python-{cinder,swift,glance}client</span></code> <code class="docutils literal"><span class="pre">django-openstack-auth</span></code> <code class="docutils literal"><span class="pre">python-openstack</span></code></li>
 </ul>
 </div>
 </div>
@@ -445,7 +467,7 @@ sudo pip instll pkgname --no-use-wheel
 <h2>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
 <li><dl class="first docutils">
-<dt>importError</dt>
+<dt>ImportError</dt>
 <dd><ul class="first last">
 <li><p class="first">No module named MySQLdb:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install python-mysqldb
@@ -472,7 +494,7 @@ $ sudo apt-get install python-libvirt
 </div>
 <ol class="arabic" start="2">
 <li><dl class="first docutils">
-<dt>attribute cannot be found</dt>
+<dt>Attribute cannot be found</dt>
 <dd><ul class="first last simple">
 <li>&#8216;module&#8217; object has no attribute &#8216;IPOpt&#8217;</li>
 </ul>
@@ -500,7 +522,7 @@ AttributeError: &#39;module&#39; object has no attribute &#39;IPOpt&#39;
 </pre></div>
 </div>
 <div class="line-block">
-<div class="line">Apparently, this issue caused by oslo.config’s integrity.</div>
+<div class="line">Apparently, this issue was caused by oslo.config’s integrity.</div>
 <div class="line"><br /></div>
 </div>
 <div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get remove python-oslo.config
@@ -510,7 +532,7 @@ $ sudo apt-get install python-oslo.config
 </div>
 <div class="section" id="rabbit">
 <h2>Rabbit<a class="headerlink" href="#rabbit" title="Permalink to this headline">¶</a></h2>
-<p>1. unable to connect to node <a class="reference external" href="mailto:rabbit&#37;&#52;&#48;upstream">rabbit<span>&#64;</span>upstream</a>: nodedown</p>
+<p>1. Unable to connect to node <a class="reference external" href="mailto:rabbit&#37;&#52;&#48;upstream">rabbit<span>&#64;</span>upstream</a>: nodedown</p>
 <div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get remove rabbit-server
 $ sudo apt-get install rabbit-server
 </pre></div>
@@ -547,25 +569,21 @@ $ sudo apt-get install rabbit-server
 <li>Reset MySQL password</li>
 </ol>
 <ul class="simple">
-<li>change password via reconfig mysql-server</li>
+<li>Change password via reconfig mysql-server</li>
 </ul>
 <div class="highlight-python"><div class="highlight"><pre>sudo dpkg-reconfigure mysql-server-5.5
 </pre></div>
 </div>
 <ul class="simple">
-<li>change password in safemode, &#8216;password&#8217; should be changed into your own password.</li>
+<li>Change password in safemode, &#8216;password&#8217; should be changed into your own password.</li>
 </ul>
 <div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4
-5
-6
-7</pre></div></td><td class="code"><div class="highlight"><pre>sudo service mysql stop
+5</pre></div></td><td class="code"><div class="highlight"><pre>sudo service mysql stop
 sudo mysqld_safe <span class="p">&amp;</span>
-mysql -uroot <span class="s">&lt;&lt; EOF</span>
-<span class="s">UPDATE mysql.user SET Password=PASSWORD(&#39;password&#39;) WHERE User=&#39;root&#39;;</span>
-<span class="s">EOF</span>
+mysql -uroot -e <span class="s2">&quot;UPDATE mysql.user SET Password=PASSWORD(&#39;password&#39;) WHERE User=&#39;root&#39;;&quot;</span>
 sudo pkill -9 mysqld_safe
 sudo service mysql start
 </pre></div>
@@ -575,9 +593,11 @@ sudo service mysql start
 </ol>
 <div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="highlight"><pre>sudo apt-get remove -y --purge mysql*
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre>sudo apt-get remove -y --purge mysql*
 sudo apt-get autoremove
 sudo apt-get autoclean
+sudo rm -rf /var/lib/mysql /etc/apparmor.d/abstraction/mysql /etc/mysql /run/mysql
 </pre></div>
 </td></tr></table></div>
 <p>3. MySQL server failed to start</p>
@@ -618,10 +638,42 @@ sudo chown mysql:mysql /var/tmp/mysql
 </li>
 </ul>
 </div>
+<div class="section" id="apache">
+<h2>Apache<a class="headerlink" href="#apache" title="Permalink to this headline">¶</a></h2>
+<p>1. Module version does not exist!</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo a2enmod version
+ERROR: Module version does not exist!
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">This error was caused by apache2 and its config file corrupt, it can be solved by uninstalling apache2 thoroughly.</div>
+<div class="line"><br /></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>sudo apt-get purge -y apache* libapache*
+sudo rm -rf /etc/apache2 /usr/lib/apache2 /run/apache2
+sudo autoremove -y
+sudo autoclean -y
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li>Could not determine the server&#8217;s fully qualified domain name</li>
+</ol>
+<div class="highlight-python"><div class="highlight"><pre>$ echo &quot;ServerName localhost&quot; | sudo tee /etc/apache2/conf-available/fqdn.conf
+$ sudo a2enconf fqdn
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li>Openstack Service Unavailable (HTTP 503)</li>
+</ol>
+<div class="line-block">
+<div class="line">Reinstall apache2 can solve this issue</div>
+</div>
+</div>
 <div class="section" id="other-issues">
 <h2>Other issues<a class="headerlink" href="#other-issues" title="Permalink to this headline">¶</a></h2>
-<p>1. screen cannot open</p>
-<div class="highlight-python"><div class="highlight"><pre>Cannot open your terminal &#39;/dev/pts/0&#39; - please check
+<p>1. Screen cannot open</p>
+<div class="highlight-python"><div class="highlight"><pre>$ screen -x stack
+Cannot open your terminal &#39;/dev/pts/0&#39; - please check
 </pre></div>
 </div>
 <div class="line-block">
@@ -632,9 +684,12 @@ sudo chown mysql:mysql /var/tmp/mysql
 </pre></div>
 </div>
 <ol class="arabic simple" start="2">
-<li>tempest</li>
+<li>Tempest</li>
 </ol>
-<p>If <strong>./stack.sh</strong> stuck at this step.</p>
+<div class="line-block">
+<div class="line">If <strong>./stack.sh</strong> stuck at this step.</div>
+<div class="line"><br /></div>
+</div>
 <div class="highlight-python"><div class="highlight"><pre>++ local test_req=tox/test-requirements.txt
 ++ [[ -e tox/test-requirements.txt ]]
 ++ pushd /opt/stack/tempest
@@ -644,7 +699,10 @@ full create: /opt/stack/tempest/.tox/full
 full installdeps: setuptools, -r/opt/stack/tempest/requirements.txt
 </pre></div>
 </div>
-<p>comment one line in devstack/lib/tempest</p>
+<div class="line-block">
+<div class="line">Comment one line in devstack/lib/tempest</div>
+<div class="line"><br /></div>
+</div>
 <div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -664,6 +722,24 @@ full installdeps: setuptools, -r/opt/stack/tempest/requirements.txt
 <span class="o">}</span>
 </pre></div>
 </td></tr></table></div>
+<ol class="arabic simple" start="3">
+<li>Dashboard issue</li>
+</ol>
+<ul>
+<li><p class="first">Authorization error:</p>
+<div class="highlight-python"><div class="highlight"><pre>Unauthorized at /admin/
+Unauthorized (HTTP 401) (Request-ID: req-a7ef8ee1-3ce6-4082-b91b-4876208164c6)
+</pre></div>
+</div>
+</li>
+</ul>
+<div class="line-block">
+<div class="line">This error occurs when restarting controller node. Clearing web browser’s cookie can solve this problem.</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
 <table class="docutils footnote" frame="void" id="id4" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
