@@ -74,22 +74,48 @@
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../cloud_computing/index.html">Cloud Computing</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../cloud_computing/index.html#docker">Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cloud_computing/index.html#id2">Ceph</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cloud_computing/index.html#terminologies">Terminologies</a></li>
 </ul>
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../devstack_quickstart/index.html">OpenStack installation with DevStack</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../enable_dvr_with_devstack/index.html">Enable DVR with DevStack</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#brief-intro">Brief Intro</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#configure-network-node">Configure Network Node</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../enable_dvr_with_devstack/index.html#configure-compute-node">Configure Compute Node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devstack_quickstart/index.html">OpenStack installation with DevStack</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_quickstart/index.html#quick-start">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_quickstart/index.html#config-file">Config file</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../devstack_quickstart/index.html#switches">Switches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../devstack_quickstart/index.html#multi-host">Multi Host</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../devstack_quickstart/index.html#log">Log</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../devstack_quickstart/index.html#cinder">Cinder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../devstack_quickstart/index.html#swift">Swift</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../devstack_quickstart/index.html#sahara">Sahara</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_quickstart/index.html#post-script-file">Post Script file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../devstack_dvr/index.html">Enable DVR with DevStack</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_dvr/index.html#brief-intro">Brief Intro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_dvr/index.html#configure-network-node">Configure Network Node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_dvr/index.html#configure-compute-node">Configure Compute Node</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../devstack_t13g/index.html">DevStack Trouble Shooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#pip">Pip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#python">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#rabbit">Rabbit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#mysql">MySQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#apache">Apache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#other-issues">Other issues</a></li>
 </ul>
 </li>
 </ul>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../openstack/index.html">OpenStack</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#id1">nova-docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#id1">nova-docker</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#id2">Cinder</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">KVM Optimization</a><ul>
@@ -381,6 +407,47 @@ qcow2 belongs to <em>file backend</em>.</p>
 <li>cinder volume</li>
 <li>local lvm</li>
 </ul>
+<div class="highlight-xml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="highlight"><pre><span class="nt">&lt;disk</span> <span class="na">type=</span><span class="s">&#39;file&#39;</span> <span class="na">device=</span><span class="s">&#39;disk&#39;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;driver</span> <span class="na">name=</span><span class="s">&#39;qemu&#39;</span> <span class="na">type=</span><span class="s">&#39;qcow2&#39;</span> <span class="na">cache=</span><span class="s">&#39;none&#39;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;source</span> <span class="na">file=</span><span class="s">&#39;/opt/stack/data/nova/instances/2f1ed2ce-a466-4dfc-afbe-9029e58fc0ca/disk&#39;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;target</span> <span class="na">dev=</span><span class="s">&#39;vda&#39;</span> <span class="na">bus=</span><span class="s">&#39;virtio&#39;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">type=</span><span class="s">&#39;pci&#39;</span> <span class="na">domain=</span><span class="s">&#39;0x0000&#39;</span> <span class="na">bus=</span><span class="s">&#39;0x00&#39;</span> <span class="na">slot=</span><span class="s">&#39;0x04&#39;</span> <span class="na">function=</span><span class="s">&#39;0x0&#39;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/disk&gt;</span>
+<span class="nt">&lt;disk</span> <span class="na">type=</span><span class="s">&#39;block&#39;</span> <span class="na">device=</span><span class="s">&#39;disk&#39;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;driver</span> <span class="na">name=</span><span class="s">&#39;qemu&#39;</span> <span class="na">type=</span><span class="s">&#39;raw&#39;</span> <span class="na">cache=</span><span class="s">&#39;none&#39;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;source</span> <span class="na">dev=</span><span class="s">&#39;/dev/disk/by-path/ip-192.168.16.12:3260-iscsi-iqn.2010-10.org.openstack:volume-c86ee1fc-0881-4b85-aa8a-432f8ad1c9cb-lun-1&#39;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;target</span> <span class="na">dev=</span><span class="s">&#39;vdb&#39;</span> <span class="na">bus=</span><span class="s">&#39;virtio&#39;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;serial&gt;</span>c86ee1fc-0881-4b85-aa8a-432f8ad1c9cb<span class="nt">&lt;/serial&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">type=</span><span class="s">&#39;pci&#39;</span> <span class="na">domain=</span><span class="s">&#39;0x0000&#39;</span> <span class="na">bus=</span><span class="s">&#39;0x00&#39;</span> <span class="na">slot=</span><span class="s">&#39;0x06&#39;</span> <span class="na">function=</span><span class="s">&#39;0x0&#39;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/disk&gt;</span>
+<span class="nt">&lt;disk</span> <span class="na">type=</span><span class="s">&#39;file&#39;</span> <span class="na">device=</span><span class="s">&#39;cdrom&#39;</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;driver</span> <span class="na">name=</span><span class="s">&#39;qemu&#39;</span> <span class="na">type=</span><span class="s">&#39;raw&#39;</span> <span class="na">cache=</span><span class="s">&#39;none&#39;</span><span class="nt">/&gt;</span>
+   <span class="nt">&lt;source</span> <span class="na">file=</span><span class="s">&#39;/opt/stack/data/nova/instances/2f1ed2ce-a466-4dfc-afbe-9029e58fc0ca/disk.config&#39;</span><span class="nt">/&gt;</span>
+   <span class="nt">&lt;target</span> <span class="na">dev=</span><span class="s">&#39;hdd&#39;</span> <span class="na">bus=</span><span class="s">&#39;ide&#39;</span><span class="nt">/&gt;</span>
+   <span class="nt">&lt;readonly/&gt;</span>
+   <span class="nt">&lt;address</span> <span class="na">type=</span><span class="s">&#39;drive&#39;</span> <span class="na">controller=</span><span class="s">&#39;0&#39;</span> <span class="na">bus=</span><span class="s">&#39;1&#39;</span> <span class="na">target=</span><span class="s">&#39;0&#39;</span> <span class="na">unit=</span><span class="s">&#39;1&#39;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/disk&gt;</span>
+</pre></div>
+</td></tr></table></div>
 </div>
 </div>
 <div class="section" id="memory">

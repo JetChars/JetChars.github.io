@@ -59,6 +59,8 @@ Linux Tools
     docs/documentation_tools/index
     docs/network_tools/index
     docs/virtualization/index
+    docs/vim/index
+    docs/mac/index
 
 Git
 ===

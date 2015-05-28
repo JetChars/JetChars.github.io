@@ -115,7 +115,7 @@ Default Values::
     VOLUME_NAME_PREFIX="volume-"
     VOLUME_BACKING_FILE_SIZE=10250M
 
-**CINDER_DRIVER :** default driver means lvm, other options are ``glusterfs`` ``nfs`` ``sheepdog`` ``vsphere`` ``XenAPINFS``
+**CINDER_DRIVER :** default driver means lvm, other options are ``glusterfs`` ``nfs`` ``sheepdog`` ``vsphere`` ``XenAPINFS``, contains ``function configure_cinder_driver``
 
 Swift
 -----

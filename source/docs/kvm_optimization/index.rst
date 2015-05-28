@@ -76,6 +76,30 @@ qcow2 belongs to *file backend*.
 * cinder volume
 * local lvm
 
+.. code-block:: xml
+    :linenos:
+
+    <disk type='file' device='disk'>
+      <driver name='qemu' type='qcow2' cache='none'/>
+      <source file='/opt/stack/data/nova/instances/2f1ed2ce-a466-4dfc-afbe-9029e58fc0ca/disk'/>
+      <target dev='vda' bus='virtio'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x04' function='0x0'/>
+    </disk>
+    <disk type='block' device='disk'>
+      <driver name='qemu' type='raw' cache='none'/>
+      <source dev='/dev/disk/by-path/ip-192.168.16.12:3260-iscsi-iqn.2010-10.org.openstack:volume-c86ee1fc-0881-4b85-aa8a-432f8ad1c9cb-lun-1'/>
+      <target dev='vdb' bus='virtio'/>
+      <serial>c86ee1fc-0881-4b85-aa8a-432f8ad1c9cb</serial>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x06' function='0x0'/>
+    </disk>
+    <disk type='file' device='cdrom'>
+       <driver name='qemu' type='raw' cache='none'/>
+       <source file='/opt/stack/data/nova/instances/2f1ed2ce-a466-4dfc-afbe-9029e58fc0ca/disk.config'/>
+       <target dev='hdd' bus='ide'/>
+       <readonly/>
+       <address type='drive' controller='0' bus='1' target='0' unit='1'/>
+    </disk>
+
 Memory
 ======
 
