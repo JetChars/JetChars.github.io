@@ -2,22 +2,27 @@
 DevStack Trouble Shooting
 =========================
 
-Recommend using the following command combo to debug devstack
+| Recommend using the following command combo to debug devstack
+|
 
 .. code-block:: bash
-    :linenos:
 
     # /tmp/.pip/build can be replaced to your own pip build folder
     sudo chown stack.stack /opt/stack/ -R && ./unstack.sh && sudo rm -rf /tmp/.pip/build/* && ./stack.sh
 
-Also recomment using the following command to check trace error.
+| And using the following command to trace error.
+|
 
 .. code-block:: bash
-    :linenos:
 
     grep -B10 -i error /opt/stack/logs/stack.sh.log | less
 
-Once you have passed the '**git clone**' phase you can turn ``RECLONE=False`` to enhance debugging speed.
+| Once you have passed the '**git clone**' phase you can turn ``RECLONE=False`` to enhance debugging speed. we can check 'stack.sh' in which phase via viewing ``stack.sh.log.summary``
+|
+
+.. code-block:: bash
+
+    cat /opt/stack/logs/stack.sh.log.summary
 
 
 Pip
@@ -111,7 +116,8 @@ Pip
     sudo rm -rf pip_build_folder
     sudo pip instll pkgname --no-use-wheel
 
-* Use tmp build dir::
+* Use temporary build dir::
+
 
     sudo pip install -U pkgname --build==$(mktemp -d)
 
@@ -133,7 +139,7 @@ Pip
 
 7. No distributions have been found for pip in /usr/local/lib/python2.7/dist-packages
 
-| This issue cause by stack.sh override pip incorrectly, in order to avoid this issue, comment following 3 lines
+| **Solution :** This issue cause by stack.sh override pip incorrectly, in order to avoid this issue, comment following 3 lines
 |
 ::
 
@@ -186,7 +192,7 @@ Python
             cfg.IPOpt('local_ip', version=4,
         AttributeError: 'module' object has no attribute 'IPOpt'
 
-| Open file "/opt/stack/neutron/neutron/plugins/openvswitch/common/config.py", we can easily find that cfg is a component of oslo.config.
+| **Solution :** Open file "/opt/stack/neutron/neutron/plugins/openvswitch/common/config.py", we can easily find that cfg is a component of oslo.config.
 |
 ::
 
@@ -218,7 +224,7 @@ Rabbit
 
 3. Failed to start rabbitmq-server
 
-| Check the log file at ``/var/log/rabbitmq/startup_log`` 
+| **Solution :** Check the log file at ``/var/log/rabbitmq/startup_log`` 
 | If error type is “eaddrinuse”, which mean the listen port had been in use.
 | We can change parameters in ``/etc/rabbitmq/rabbitmq-env.conf`` 
 | Following are it’s default values:
@@ -301,14 +307,7 @@ MySQL
 Apache
 ======
 
-1. Module version does not exist!
-::
-
-    $ sudo a2enmod version
-    ERROR: Module version does not exist!
-
-| This error was caused by apache2 and its config file corrupt, it can be solved by uninstalling apache2 thoroughly.
-|
+1. Uninstall apache2
 ::
 
     sudo apt-get purge -y apache* libapache*
@@ -325,7 +324,19 @@ Apache
 
 3. Openstack Service Unavailable (HTTP 503)
 
-| Reinstall apache2 can solve this issue
+| **Solution :** Reinstall apache2 can solve this issue
+|
+|
+|
+
+4. Module version does not exist!
+::
+
+    $ sudo a2enmod version
+    ERROR: Module version does not exist!
+
+| This error can be ignored
+|
 
 Other issues
 ============
@@ -337,7 +348,7 @@ Other issues
     $ screen -x stack
     Cannot open your terminal '/dev/pts/0' - please check
 
-| **Solution**
+| **Solution** : Change screen owner to current user.
 |
 ::
 
@@ -357,7 +368,7 @@ Other issues
     full create: /opt/stack/tempest/.tox/full
     full installdeps: setuptools, -r/opt/stack/tempest/requirements.txt
 
-| Comment one line in devstack/lib/tempest
+| **Solution :** Comment one line in devstack/lib/tempest
 |
 
 .. code-block:: bash
@@ -380,7 +391,7 @@ Other issues
     Unauthorized at /admin/
     Unauthorized (HTTP 401) (Request-ID: req-a7ef8ee1-3ce6-4082-b91b-4876208164c6)
 
-| This error occurs when restarting controller node. Clearing web browser’s cookie can solve this problem.
+| **Solution :** This error occurs when restarting controller node. Clearing web browser’s cookie can solve this problem.
 |
 |
 |

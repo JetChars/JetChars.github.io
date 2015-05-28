@@ -11,7 +11,7 @@ Welcome to JetChars' Documentation!
     :maxdepth: 1
 
     #docs/resume/index
-    #docs/cloud_computing/index
+    docs/cloud_computing/index
  
 
 
@@ -21,7 +21,7 @@ DevStack Hacking
 .. toctree::
     :maxdepth: 1
 
-    #docs/devstack_quickstart/index
+    docs/devstack_quickstart/index
     docs/devstack_dvr/index
     docs/devstack_t13g/index
 
@@ -32,7 +32,7 @@ OpenStack Customization
 .. toctree::
     :maxdepth: 1
     
-    #docs/openstack/index
+    docs/openstack/index
     docs/kvm_optimization/index
 
 Hadoop Tuning

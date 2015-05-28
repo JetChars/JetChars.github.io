@@ -4,6 +4,7 @@ Enable DVR with DevStack
 ========================
 
 | DVR is short for distributed virtual router, with this feature enabled packets flow with floating IP will no longer send to network node. It helps to alleviate network node's pressure greatly when large amount of north-south data flow occurs. [#]_
+| But, SNAT packets still need 
 |
 
 

@@ -32,7 +32,7 @@
   
     <link rel="top" title="JetChars 0.1 documentation" href="../../index.html"/>
         <link rel="next" title="DevStack Trouble Shooting" href="../devstack_t13g/index.html"/>
-        <link rel="prev" title="OpenStack installation with DevStack" href="../devstack_quickstart/index.html"/> 
+        <link rel="prev" title="Welcome to JetChars’ Documentation!" href="../../index.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -71,16 +71,9 @@
         
           
           
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="../cloud_computing/index.html">Cloud Computing</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../cloud_computing/index.html#docker">Docker</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cloud_computing/index.html#ceph">Ceph</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cloud_computing/index.html#terminologies">Terminologies</a></li>
-</ul>
-</li>
+              <ul class="simple">
 </ul>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../devstack_quickstart/index.html">OpenStack installation with DevStack</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Enable DVR with DevStack</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#brief-intro">Brief Intro</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#configure-network-node">Configure Network Node</a></li>
@@ -88,18 +81,16 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../devstack_t13g/index.html">DevStack Trouble Shooting</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#pip-issues">Pip Issues</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#python-issues">Python issues</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#rabbit-issues">Rabbit issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#pip">Pip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#python">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#rabbit">Rabbit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#mysql">MySQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#apache">Apache</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#other-issues">Other issues</a></li>
 </ul>
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../openstack/index.html">OpenStack</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#id1">nova-docker</a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="../kvm_optimization/index.html">KVM Optimization</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../kvm_optimization/index.html#disk">Disk</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../kvm_optimization/index.html#asynchronous-io">Asynchronous IO</a></li>
@@ -303,6 +294,7 @@
 <h1>Enable DVR with DevStack<a class="headerlink" href="#enable-dvr-with-devstack" title="Permalink to this headline">¶</a></h1>
 <div class="line-block">
 <div class="line">DVR is short for distributed virtual router, with this feature enabled packets flow with floating IP will no longer send to network node. It helps to alleviate network node&#8217;s pressure greatly when large amount of north-south data flow occurs. <a class="footnote-reference" href="#id4" id="id1">[1]</a></div>
+<div class="line">But, SNAT packets still need</div>
 <div class="line"><br /></div>
 </div>
 <div class="section" id="brief-intro">
@@ -479,7 +471,7 @@ ENABLED_SERVICES+<span class="o">=</span> q-agt,q-l3,q-meta, neutron
         <a href="../devstack_t13g/index.html" class="btn btn-neutral float-right" title="DevStack Trouble Shooting" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../devstack_quickstart/index.html" class="btn btn-neutral" title="OpenStack installation with DevStack" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../../index.html" class="btn btn-neutral" title="Welcome to JetChars’ Documentation!" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

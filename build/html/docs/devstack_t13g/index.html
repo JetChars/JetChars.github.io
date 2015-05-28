@@ -292,17 +292,28 @@
             
   <div class="section" id="devstack-trouble-shooting">
 <h1>DevStack Trouble Shooting<a class="headerlink" href="#devstack-trouble-shooting" title="Permalink to this headline">¶</a></h1>
-<p>Recommend using the following command combo to debug devstack</p>
-<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># /tmp/.pip/build can be replaced to your own pip build folder</span>
+<div class="line-block">
+<div class="line">Recommend using the following command combo to debug devstack</div>
+<div class="line"><br /></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c"># /tmp/.pip/build can be replaced to your own pip build folder</span>
 sudo chown stack.stack /opt/stack/ -R <span class="o">&amp;&amp;</span> ./unstack.sh <span class="o">&amp;&amp;</span> sudo rm -rf /tmp/.pip/build/* <span class="o">&amp;&amp;</span> ./stack.sh
 </pre></div>
-</td></tr></table></div>
-<p>Also recomment using the following command to check trace error.</p>
-<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre>grep -B10 -i error /opt/stack/logs/stack.sh.log <span class="p">|</span> less
+</div>
+<div class="line-block">
+<div class="line">And using the following command to trace error.</div>
+<div class="line"><br /></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre>grep -B10 -i error /opt/stack/logs/stack.sh.log <span class="p">|</span> less
 </pre></div>
-</td></tr></table></div>
-<p>Once you have passed the &#8216;<strong>git clone</strong>&#8216; phase you can turn <code class="docutils literal"><span class="pre">RECLONE=False</span></code> to enhance debugging speed.</p>
+</div>
+<div class="line-block">
+<div class="line">Once you have passed the &#8216;<strong>git clone</strong>&#8216; phase you can turn <code class="docutils literal"><span class="pre">RECLONE=False</span></code> to enhance debugging speed. we can check &#8216;stack.sh&#8217; in which phase via viewing <code class="docutils literal"><span class="pre">stack.sh.log.summary</span></code></div>
+<div class="line"><br /></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre>cat /opt/stack/logs/stack.sh.log.summary
+</pre></div>
+</div>
 <div class="section" id="pip">
 <h2>Pip<a class="headerlink" href="#pip" title="Permalink to this headline">¶</a></h2>
 <div class="sidebar">
@@ -415,7 +426,7 @@ sudo pip instll pkgname --no-use-wheel
 </pre></div>
 </div>
 </li>
-<li><p class="first">Use tmp build dir:</p>
+<li><p class="first">Use temporary build dir:</p>
 <div class="highlight-python"><div class="highlight"><pre>sudo pip install -U pkgname --build==$(mktemp -d)
 </pre></div>
 </div>
@@ -442,7 +453,7 @@ sudo pip instll pkgname --no-use-wheel
 <li>No distributions have been found for pip in /usr/local/lib/python2.7/dist-packages</li>
 </ol>
 <div class="line-block">
-<div class="line">This issue cause by stack.sh override pip incorrectly, in order to avoid this issue, comment following 3 lines</div>
+<div class="line"><strong>Solution :</strong> This issue cause by stack.sh override pip incorrectly, in order to avoid this issue, comment following 3 lines</div>
 <div class="line"><br /></div>
 </div>
 <div class="highlight-python"><div class="highlight"><pre>if [[ &quot;$OFFLINE&quot; != &quot;True&quot; ]]; then
@@ -515,7 +526,7 @@ AttributeError: &#39;module&#39; object has no attribute &#39;IPOpt&#39;
 </pre></div>
 </div>
 <div class="line-block">
-<div class="line">Open file &#8220;/opt/stack/neutron/neutron/plugins/openvswitch/common/config.py&#8221;, we can easily find that cfg is a component of oslo.config.</div>
+<div class="line"><strong>Solution :</strong> Open file &#8220;/opt/stack/neutron/neutron/plugins/openvswitch/common/config.py&#8221;, we can easily find that cfg is a component of oslo.config.</div>
 <div class="line"><br /></div>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">oslo.config</span> <span class="kn">import</span> <span class="n">cfg</span>
@@ -545,7 +556,7 @@ $ sudo apt-get install rabbit-server
 <li>Failed to start rabbitmq-server</li>
 </ol>
 <div class="line-block">
-<div class="line">Check the log file at <code class="docutils literal"><span class="pre">/var/log/rabbitmq/startup_log</span></code></div>
+<div class="line"><strong>Solution :</strong> Check the log file at <code class="docutils literal"><span class="pre">/var/log/rabbitmq/startup_log</span></code></div>
 <div class="line">If error type is “eaddrinuse”, which mean the listen port had been in use.</div>
 <div class="line">We can change parameters in <code class="docutils literal"><span class="pre">/etc/rabbitmq/rabbitmq-env.conf</span></code></div>
 <div class="line">Following are it’s default values:</div>
@@ -640,15 +651,7 @@ sudo chown mysql:mysql /var/tmp/mysql
 </div>
 <div class="section" id="apache">
 <h2>Apache<a class="headerlink" href="#apache" title="Permalink to this headline">¶</a></h2>
-<p>1. Module version does not exist!</p>
-<div class="highlight-python"><div class="highlight"><pre>$ sudo a2enmod version
-ERROR: Module version does not exist!
-</pre></div>
-</div>
-<div class="line-block">
-<div class="line">This error was caused by apache2 and its config file corrupt, it can be solved by uninstalling apache2 thoroughly.</div>
-<div class="line"><br /></div>
-</div>
+<p>1. Uninstall apache2</p>
 <div class="highlight-python"><div class="highlight"><pre>sudo apt-get purge -y apache* libapache*
 sudo rm -rf /etc/apache2 /usr/lib/apache2 /run/apache2
 sudo autoremove -y
@@ -666,7 +669,19 @@ $ sudo a2enconf fqdn
 <li>Openstack Service Unavailable (HTTP 503)</li>
 </ol>
 <div class="line-block">
-<div class="line">Reinstall apache2 can solve this issue</div>
+<div class="line"><strong>Solution :</strong> Reinstall apache2 can solve this issue</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<p>4. Module version does not exist!</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo a2enmod version
+ERROR: Module version does not exist!
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">This error can be ignored</div>
+<div class="line"><br /></div>
 </div>
 </div>
 <div class="section" id="other-issues">
@@ -677,7 +692,7 @@ Cannot open your terminal &#39;/dev/pts/0&#39; - please check
 </pre></div>
 </div>
 <div class="line-block">
-<div class="line"><strong>Solution</strong></div>
+<div class="line"><strong>Solution</strong> : Change screen owner to current user.</div>
 <div class="line"><br /></div>
 </div>
 <div class="highlight-python"><div class="highlight"><pre>$ sudo chown stack:stack /dev/pts/0
@@ -700,7 +715,7 @@ full installdeps: setuptools, -r/opt/stack/tempest/requirements.txt
 </pre></div>
 </div>
 <div class="line-block">
-<div class="line">Comment one line in devstack/lib/tempest</div>
+<div class="line"><strong>Solution :</strong> Comment one line in devstack/lib/tempest</div>
 <div class="line"><br /></div>
 </div>
 <div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -734,7 +749,7 @@ Unauthorized (HTTP 401) (Request-ID: req-a7ef8ee1-3ce6-4082-b91b-4876208164c6)
 </li>
 </ul>
 <div class="line-block">
-<div class="line">This error occurs when restarting controller node. Clearing web browser’s cookie can solve this problem.</div>
+<div class="line"><strong>Solution :</strong> This error occurs when restarting controller node. Clearing web browser’s cookie can solve this problem.</div>
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 <div class="line"><br /></div>

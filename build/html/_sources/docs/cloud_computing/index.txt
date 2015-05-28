@@ -45,7 +45,7 @@ Install Docker::
 
 * `Kubernetes <http://kubernetes.io>`_ is an open source orchestration system for Docker containers
 
-Ceph
+`Ceph <http://ceph.com>`_
 ====
 
 .. image:: images/ceph.png
