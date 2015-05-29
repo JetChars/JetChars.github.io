@@ -17,6 +17,7 @@ So we need to change nova's libvirt config file manually.
 
 .. code-block:: python
     :linenos:
+    :emphasize-lines: 10,24,25
 
     class LibvirtConfigGuestDisk(LibvirtConfigGuestDevice):
     
@@ -56,7 +57,10 @@ Here's the location of configuration file.
 
 Disk Cache Mode
 ---------------
-disk_cachemodes: ``writethrough`` ``writeback`` ``none(default)`` ``directsync`` ``unsafe`` ::
+disk_cachemodes: ``writethrough`` ``writeback`` ``none(default)`` ``directsync`` ``unsafe`` 
+
+.. code-block:: ini
+    :emphasize-lines: 6
 
     [libvirt]
     vif_driver = nova.virt.libvirt.vif.LibvirtGenericVIFDriver inject_partition = -2
@@ -78,6 +82,7 @@ qcow2 belongs to *file backend*.
 
 .. code-block:: xml
     :linenos:
+    :emphasize-lines: 1,7,14
 
     <disk type='file' device='disk'>
       <driver name='qemu' type='qcow2' cache='none'/>
