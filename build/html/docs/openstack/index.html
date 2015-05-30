@@ -86,7 +86,11 @@
 <li class="toctree-l3"><a class="reference internal" href="../devstack_quickstart/index.html#switches">Switches</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../devstack_quickstart/index.html#multi-host">Multi Host</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../devstack_quickstart/index.html#log">Log</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../devstack_quickstart/index.html#cinder">Cinder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../devstack_quickstart/index.html#cinder">Cinder</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../devstack_quickstart/index.html#dependency">Dependency</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../devstack_quickstart/index.html#default-values">Default Values</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../devstack_quickstart/index.html#swift">Swift</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../devstack_quickstart/index.html#sahara">Sahara</a></li>
 </ul>
@@ -112,10 +116,12 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="">OpenStack</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id1">nova-docker</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">Cinder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nova">Nova</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">nova-docker</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#horizon">Horizon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">Cinder</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../kvm_optimization/index.html">KVM Optimization</a><ul>
@@ -235,6 +241,27 @@
 <li class="toctree-l2"><a class="reference internal" href="../virtualization/index.html#docker">Docker</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../vim/index.html">Vim - My Favourite Editor</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../vim/index.html#fisa-vim-config-popular-vim-config-file">fisa-vim-config &#8211; popular vim config file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../mac/index.html">Mac as Main OS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../mac/index.html#visual-studio-code-asp-net-5">Visual Studio Code &amp; ASP.NET 5 </a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../linux_disk/index.html">LVM &#8211; Logical volume management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#management">Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#check-lvm-infos">Check lvm infos</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#terminologies">Terminologies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../linux_disk/index.html#raid">RAID</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux_disk/index.html#disk-performance">Disk Performance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#dd-convert-and-copy-a-file">dd &#8211; convert and copy a file</a></li>
+</ul>
+</li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git &#8211; Extraordinary version contrl software</a><ul>
@@ -320,30 +347,59 @@
   <div class="section" id="openstack">
 <h1>OpenStack<a class="headerlink" href="#openstack" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://wiki.openstack.org/wiki/Main_Page">wiki</a></p>
+<div class="section" id="nova">
+<h2>Nova<a class="headerlink" href="#nova" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id1">
-<h2><a class="reference external" href="https://wiki.openstack.org/wiki/Docker">nova-docker</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id2">
-<h3><a class="reference external" href="https://wiki.openstack.org/wiki/Cinder">Cinder</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<h3><a class="reference external" href="https://wiki.openstack.org/wiki/Docker">nova-docker</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="horizon">
+<h2>Horizon<a class="headerlink" href="#horizon" title="Permalink to this headline">¶</a></h2>
+<div class="sidebar">
+<p class="first sidebar-title">Overview</p>
+<ul class="last simple">
+<li>PTL: Gabriel Hurley (Nebula)</li>
+<li>OpenStack web dashboard service</li>
+</ul>
+</div>
 <ol class="arabic simple">
-<li>Overview</li>
+<li>Dependency</li>
 </ol>
-<p>Program Team Leader: Mike Perez</p>
-<p>Since Folsom, Cinder has replaced Nova-Volume as default block storage service.</p>
+<ul class="simple">
+<li><strong>apache2</strong> &#8211; apache web server</li>
+<li><strong>memcache</strong> &#8211; mem-cache-d，is a free memory caching system, speed up dynamic database-driven website by caching data in RAM</li>
+<li><strong>django</strong> &#8211; python based web framework</li>
+</ul>
 <ol class="arabic simple" start="2">
+<li>Refresh horizon</li>
+</ol>
+<div class="highlight-bash"><div class="highlight"><pre>sudo service <span class="o">{</span>apache2,memcached<span class="o">}</span> restart
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2><a class="reference external" href="https://wiki.openstack.org/wiki/Cinder">Cinder</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="sidebar">
+<p class="first sidebar-title">Overview</p>
+<ul class="last simple">
+<li>PTL: Mike Perez</li>
+<li>Since Folsom, Cinder has replaced Nova-Volume as default block storage service.</li>
+</ul>
+</div>
+<ol class="arabic simple">
 <li>Storage backend</li>
 </ol>
 <ul class="simple">
 <li>Local: lvm</li>
 <li>Network: NFS, ceph RBD (RADOS), sheepdog</li>
 </ul>
-<ol class="arabic simple" start="3">
+<ol class="arabic simple" start="2">
 <li>Terminologies</li>
 </ol>
 <div class="line-block">
 <div class="line"><strong>volume type</strong> &#8211; a type or label can be selected at vol creation time, maps to a set of capabilities of the storage back-end driver to be used for this vol</div>
 <div class="line"><strong>sheepdog</strong> &#8211; opensourcs project, developed by NTT, design for vm&#8217;s storage.</div>
 <div class="line"><br /></div>
-</div>
 </div>
 </div>
 </div>

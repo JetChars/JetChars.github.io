@@ -86,7 +86,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#switches">Switches</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#multi-host">Multi Host</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#log">Log</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#cinder">Cinder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cinder">Cinder</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#dependency">Dependency</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#default-values">Default Values</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#swift">Swift</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#sahara">Sahara</a></li>
 </ul>
@@ -233,6 +237,27 @@
 <li class="toctree-l2"><a class="reference internal" href="../virtualization/index.html#libvirt">Libvirt</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../virtualization/index.html#virsh-virtualization-management-interface">Virsh &#8211; Virtualization Management Interface</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../virtualization/index.html#docker">Docker</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../vim/index.html">Vim - My Favourite Editor</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../vim/index.html#fisa-vim-config-popular-vim-config-file">fisa-vim-config &#8211; popular vim config file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../mac/index.html">Mac as Main OS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../mac/index.html#visual-studio-code-asp-net-5">Visual Studio Code &amp; ASP.NET 5 </a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../linux_disk/index.html">LVM &#8211; Logical volume management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#management">Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#check-lvm-infos">Check lvm infos</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#terminologies">Terminologies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../linux_disk/index.html#raid">RAID</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux_disk/index.html#disk-performance">Disk Performance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#dd-convert-and-copy-a-file">dd &#8211; convert and copy a file</a></li>
 </ul>
 </li>
 </ul>
@@ -424,7 +449,16 @@ SCREEN_LOGDIR=$DEST/logs/screen
 </div>
 <div class="section" id="cinder">
 <h3>Cinder<a class="headerlink" href="#cinder" title="Permalink to this headline">¶</a></h3>
-<p>Default Values:</p>
+<div class="section" id="dependency">
+<h4>Dependency<a class="headerlink" href="#dependency" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><strong>lib/cinder</strong> &#8211; configure cinder service</li>
+<li><strong>lib/lvm</strong> &#8211; default driver</li>
+<li><strong>lib/{glusterfs,nfs,sheepdog,vsphere,XENAPINFS}</strong> &#8211;cinder drivers</li>
+</ul>
+</div>
+<div class="section" id="default-values">
+<h4>Default Values<a class="headerlink" href="#default-values" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-python"><div class="highlight"><pre>CINDER_DRIVER=default
 VOLUME_GROUP=&quot;stack-volumes&quot;
 VOLUME_NAME_PREFIX=&quot;volume-&quot;
@@ -432,6 +466,7 @@ VOLUME_BACKING_FILE_SIZE=10250M
 </pre></div>
 </div>
 <p><strong>CINDER_DRIVER :</strong> default driver means lvm, other options are <code class="docutils literal"><span class="pre">glusterfs</span></code> <code class="docutils literal"><span class="pre">nfs</span></code> <code class="docutils literal"><span class="pre">sheepdog</span></code> <code class="docutils literal"><span class="pre">vsphere</span></code> <code class="docutils literal"><span class="pre">XenAPINFS</span></code>, contains <code class="docutils literal"><span class="pre">function</span> <span class="pre">configure_cinder_driver</span></code></p>
+</div>
 </div>
 <div class="section" id="swift">
 <h3>Swift<a class="headerlink" href="#swift" title="Permalink to this headline">¶</a></h3>

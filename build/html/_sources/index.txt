@@ -20,10 +20,9 @@ DevStack Hacking
 
 .. toctree::
     :maxdepth: 1
+    :glob:
 
-    docs/devstack_quickstart/index
-    docs/devstack_dvr/index
-    docs/devstack_t13g/index
+    docs/devstack_*/index
 
 
 OpenStack Customization
@@ -40,11 +39,11 @@ Hadoop Tuning
 
 .. toctree::
     :maxdepth: 1
+    :glob:
 
-    docs/hibench_intro/index
     docs/centos_tuning/index
     .. docs/linux_kernel_tuning/index
-    docs/hadoop_conf_tuning/index
+    docs/hadoop_*/index
 
 
 Linux Tools
@@ -52,15 +51,15 @@ Linux Tools
 
 .. toctree::
     :maxdepth: 1
+    :glob:
 
     #docs/anaconda_kickstart/index
     docs/screen/index
     docs/string_process/index
     docs/documentation_tools/index
-    docs/network_tools/index
-    docs/virtualization/index
     docs/vim/index
     docs/mac/index
+    docs/linux_*/index
 
 Git
 ===
@@ -82,8 +81,20 @@ Markup Languages
     docs/md/index
     docs/svg/index
 
+Algorithms
+==========
+
+.. toctree::
+    :maxdepth: 1
+    :hidden:
+
+    docs/algorithms/index
+
+
 Indices and tables
 ==================
+
+
 
 * :ref:`genindex`
 * :ref:`modindex`

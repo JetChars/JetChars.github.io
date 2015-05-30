@@ -108,7 +108,16 @@ Log
 Cinder
 ------
 
-Default Values::
+Dependency
+^^^^^^^^^^
+
+- **lib/cinder** -- configure cinder service
+- **lib/lvm** -- default driver
+- **lib/{glusterfs,nfs,sheepdog,vsphere,XENAPINFS}** --cinder drivers
+
+Default Values
+^^^^^^^^^^^^^^
+::
 
     CINDER_DRIVER=default
     VOLUME_GROUP="stack-volumes"

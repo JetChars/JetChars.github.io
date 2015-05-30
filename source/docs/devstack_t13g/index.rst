@@ -55,7 +55,9 @@ Pip
 
 4. Check pip & module version
 
-::
+.. code-block:: shell
+    :linenos:
+    :emphasize-lines: 2,7
   
     $ pip -V
     pip 6.1.1 from /Library/Python/2.7/site-packages/pip-6.1.1-py2.7.egg (python 2.7)
@@ -121,7 +123,11 @@ Pip
 
     sudo pip install -U pkgname --build==$(mktemp -d)
 
-* Comment one line in /usr/local/lib/python2.7/dist-packages/pip/wheel.py::
+* Comment one line in /usr/local/lib/python2.7/dist-packages/pip/wheel.py
+  
+.. code-block:: python
+    :linenos:
+    :emphasize-lines: 12
 
     for s in subdirs:
         destsubdir = os.path.join(dest, basedir, s)
@@ -179,7 +185,9 @@ Python
 
 2. Attribute cannot be found
     - 'module' object has no attribute 'IPOpt'
-::
+.. code-block:: guess
+    :linenos:
+    :emphasize-lines: 9
 
         Traceback (most recent call last):
           File "/usr/local/bin/neutron-openvswitch-agent", line 6, in <module>
@@ -261,6 +269,12 @@ MySQL
     sudo pkill -9 mysqld_safe
     sudo service mysql start
 
+- mysqladmin
+::
+
+    # nova should be replaced to root password
+    mysqladmin -u root -pnova password 'supersecret'
+
 2. Uninstall MySQL
 
 .. code-block:: bash
@@ -272,8 +286,15 @@ MySQL
     sudo rm -rf /var/lib/mysql /etc/apparmor.d/abstraction/mysql /etc/mysql /run/mysql
 
 
-3. MySQL server failed to start
-::
+3. Configure MySQL
+
+Configure file ``/etc/mysql/my.cnf`` ``~/.my.cnf``
+
+4. MySQL server failed to start
+
+.. code-block:: guess
+    :linenos:
+    :emphasize-lines: 8
 
     Setting up mysql-server-5.5 (5.5.43-0ubuntu0.14.04.1) ...
     start: Job failed to start
@@ -373,6 +394,7 @@ Other issues
 
 .. code-block:: bash
     :linenos:
+    :emphasize-lines: 5
 
     function install_tempest {
         git_clone $TEMPEST_REPO $TEMPEST_DIR $TEMPEST_BRANCH

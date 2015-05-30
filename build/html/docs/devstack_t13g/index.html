@@ -235,6 +235,14 @@
 <li class="toctree-l2"><a class="reference internal" href="../virtualization/index.html#docker">Docker</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../vim/index.html">Vim - My Favourite Editor</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../vim/index.html#fisa-vim-config-popular-vim-config-file">fisa-vim-config &#8211; popular vim config file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../mac/index.html">Mac as Main OS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../mac/index.html#visual-studio-code-asp-net-5">Visual Studio Code &amp; ASP.NET 5 </a></li>
+</ul>
+</li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git &#8211; Extraordinary version contrl software</a><ul>
@@ -387,21 +395,33 @@ sudo chown stack.stack /opt/stack/ -R <span class="o">&amp;&amp;</span> ./unstac
 <li><p class="first">Check pip &amp; module version</p>
 </li>
 </ol>
-<div class="highlight-python"><div class="highlight"><pre>$ pip -V
-pip 6.1.1 from /Library/Python/2.7/site-packages/pip-6.1.1-py2.7.egg (python 2.7)
-
-$ pip show six #pkgname
+<div class="highlight-shell"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>pip -V
+<span class="hll">pip 6.1.1 from /Library/Python/2.7/site-packages/pip-6.1.1-py2.7.egg <span class="o">(</span>python 2.7<span class="o">)</span>
+</span>
+<span class="nv">$ </span>pip show six <span class="c">#pkgname</span>
 Metadata-Version: 1.1
 Name: six
-Version: 1.4.1
-Summary: Python 2 and 3 compatibility utilities
+<span class="hll">Version: 1.4.1
+</span>Summary: Python <span class="m">2</span> and <span class="m">3</span> compatibility utilities
 Home-page: http://pypi.python.org/pypi/six/
 Author: Benjamin Peterson
 Author-email: benjamin@python.org
 License: UNKNOWN
 Location: /System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python
 </pre></div>
-</div>
+</td></tr></table></div>
 <ol class="arabic simple" start="5">
 <li>Config pip</li>
 </ol>
@@ -458,8 +478,22 @@ sudo pip instll pkgname --no-use-wheel
 </pre></div>
 </div>
 </li>
-<li><p class="first">Comment one line in /usr/local/lib/python2.7/dist-packages/pip/wheel.py:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">subdirs</span><span class="p">:</span>
+<li><p class="first">Comment one line in /usr/local/lib/python2.7/dist-packages/pip/wheel.py</p>
+</li>
+</ul>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">subdirs</span><span class="p">:</span>
     <span class="n">destsubdir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dest</span><span class="p">,</span> <span class="n">basedir</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">is_base</span> <span class="ow">and</span> <span class="n">basedir</span> <span class="o">==</span> <span class="s">&#39;&#39;</span> <span class="ow">and</span> <span class="n">destsubdir</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&#39;.data&#39;</span><span class="p">):</span>
         <span class="n">data_dirs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
@@ -470,12 +504,10 @@ sudo pip instll pkgname --no-use-wheel
             <span class="n">s</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span>
                 <span class="n">req</span><span class="o">.</span><span class="n">project_name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;-&#39;</span><span class="p">,</span> <span class="s">&#39;_&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">())):</span>
         <span class="c"># comment this line</span>
-        <span class="c"># assert not info_dir, &#39;Multiple .dist-info directories&#39;</span>
-        <span class="n">info_dir</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">destsubdir</span><span class="p">)</span>
+<span class="hll">        <span class="c"># assert not info_dir, &#39;Multiple .dist-info directories&#39;</span>
+</span>        <span class="n">info_dir</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">destsubdir</span><span class="p">)</span>
 </pre></div>
-</div>
-</li>
-</ul>
+</td></tr></table></div>
 <ol class="arabic simple" start="7">
 <li>No distributions have been found for pip in /usr/local/lib/python2.7/dist-packages</li>
 </ol>
@@ -540,18 +572,27 @@ $ sudo apt-get install python-libvirt
 </dl>
 </li>
 </ol>
-<div class="highlight-python"><div class="highlight"><pre>Traceback (most recent call last):
-  File &quot;/usr/local/bin/neutron-openvswitch-agent&quot;, line 6, in &lt;module&gt;
-    from neutron.plugins.openvswitch.agent.ovs_neutron_agent import main
-  File &quot;/opt/stack/neutron/neutron/plugins/openvswitch/agent/ovs_neutron_agent.py&quot;, line 53, in &lt;module&gt;
-    cfg.CONF.import_group(&#39;AGENT&#39;, &#39;neutron.plugins.openvswitch.common.config&#39;)
-  File &quot;/usr/lib/python2.7/dist-packages/oslo/config/cfg.py&quot;, line 1810, in import_group
-    __import__(module_str)
-  File &quot;/opt/stack/neutron/neutron/plugins/openvswitch/common/config.py&quot;, line 38, in &lt;module&gt;
-    cfg.IPOpt(&#39;local_ip&#39;, version=4,
-AttributeError: &#39;module&#39; object has no attribute &#39;IPOpt&#39;
+<div class="highlight-guess"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+      <span class="n">File</span> <span class="s">&quot;/usr/local/bin/neutron-openvswitch-agent&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">6</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+        <span class="kn">from</span> <span class="nn">neutron.plugins.openvswitch.agent.ovs_neutron_agent</span> <span class="kn">import</span> <span class="n">main</span>
+      <span class="n">File</span> <span class="s">&quot;/opt/stack/neutron/neutron/plugins/openvswitch/agent/ovs_neutron_agent.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">53</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+        <span class="n">cfg</span><span class="o">.</span><span class="n">CONF</span><span class="o">.</span><span class="n">import_group</span><span class="p">(</span><span class="s">&#39;AGENT&#39;</span><span class="p">,</span> <span class="s">&#39;neutron.plugins.openvswitch.common.config&#39;</span><span class="p">)</span>
+      <span class="n">File</span> <span class="s">&quot;/usr/lib/python2.7/dist-packages/oslo/config/cfg.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1810</span><span class="p">,</span> <span class="ow">in</span> <span class="n">import_group</span>
+        <span class="nb">__import__</span><span class="p">(</span><span class="n">module_str</span><span class="p">)</span>
+      <span class="n">File</span> <span class="s">&quot;/opt/stack/neutron/neutron/plugins/openvswitch/common/config.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">38</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="hll">        <span class="n">cfg</span><span class="o">.</span><span class="n">IPOpt</span><span class="p">(</span><span class="s">&#39;local_ip&#39;</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+</span>    <span class="ne">AttributeError</span><span class="p">:</span> <span class="s">&#39;module&#39;</span> <span class="nb">object</span> <span class="n">has</span> <span class="n">no</span> <span class="n">attribute</span> <span class="s">&#39;IPOpt&#39;</span>
 </pre></div>
-</div>
+</td></tr></table></div>
 <div class="line-block">
 <div class="line"><strong>Solution :</strong> Open file &#8220;/opt/stack/neutron/neutron/plugins/openvswitch/common/config.py&#8221;, we can easily find that cfg is a component of oslo.config.</div>
 <div class="line"><br /></div>
@@ -626,6 +667,13 @@ sudo pkill -9 mysqld_safe
 sudo service mysql start
 </pre></div>
 </td></tr></table></div>
+<ul class="simple">
+<li>mysqladmin</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre># nova should be replaced to root password
+mysqladmin -u root -pnova password &#39;supersecret&#39;
+</pre></div>
+</div>
 <ol class="arabic simple" start="2">
 <li>Uninstall MySQL</li>
 </ol>
@@ -638,16 +686,36 @@ sudo apt-get autoclean
 sudo rm -rf /var/lib/mysql /etc/apparmor.d/abstraction/mysql /etc/mysql /run/mysql
 </pre></div>
 </td></tr></table></div>
-<p>3. MySQL server failed to start</p>
-<div class="highlight-python"><div class="highlight"><pre>Setting up mysql-server-5.5 (5.5.43-0ubuntu0.14.04.1) ...
+<ol class="arabic simple" start="3">
+<li>Configure MySQL</li>
+</ol>
+<p>Configure file <code class="docutils literal"><span class="pre">/etc/mysql/my.cnf</span></code> <code class="docutils literal"><span class="pre">~/.my.cnf</span></code></p>
+<ol class="arabic simple" start="4">
+<li>MySQL server failed to start</li>
+</ol>
+<div class="highlight-guess"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre>Setting up mysql-server-5.5 (5.5.43-0ubuntu0.14.04.1) ...
 start: Job failed to start
 invoke-rc.d: initscript mysql, action &quot;start&quot; failed.
 dpkg: error processing package mysql-server-5.5 (--configure):
  subprocess installed post-installation script returned error exit status 1
 dpkg: dependency problems prevent configuration of mysql-server:
  mysql-server depends on mysql-server-5.5; however:
-  Package mysql-server-5.5 is not configured yet.
-
+<span class="hll">  Package mysql-server-5.5 is not configured yet.
+</span>
 dpkg: error processing package mysql-server (--configure):
  dependency problems - leaving unconfigured
 Errors were encountered while processing:
@@ -655,7 +723,7 @@ Errors were encountered while processing:
  mysql-server
 E: Sub-process /usr/bin/dpkg returned an error code (1)
 </pre></div>
-</div>
+</td></tr></table></div>
 <div class="line-block">
 <div class="line"><strong>Solution : change tmp dir</strong> <a class="footnote-reference" href="#id5" id="id2">[2]</a> <a class="footnote-reference" href="#id6" id="id3">[3]</a></div>
 <div class="line"><br /></div>
@@ -757,8 +825,8 @@ full installdeps: setuptools, -r/opt/stack/tempest/requirements.txt
     git_clone <span class="nv">$TEMPEST_REPO</span> <span class="nv">$TEMPEST_DIR</span> <span class="nv">$TEMPEST_BRANCH</span>
     pip_install tox
     <span class="nb">pushd</span> <span class="nv">$TEMPEST_DIR</span>
-    <span class="c"># tox --notest -efull</span>
-    PROJECT_VENV<span class="o">[</span><span class="s2">&quot;tempest&quot;</span><span class="o">]=</span><span class="si">${</span><span class="nv">TEMPEST_DIR</span><span class="si">}</span>/.tox/full
+<span class="hll">    <span class="c"># tox --notest -efull</span>
+</span>    PROJECT_VENV<span class="o">[</span><span class="s2">&quot;tempest&quot;</span><span class="o">]=</span><span class="si">${</span><span class="nv">TEMPEST_DIR</span><span class="si">}</span>/.tox/full
     install_tempest_lib
     <span class="nb">popd</span>
 <span class="o">}</span>

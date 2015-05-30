@@ -1,5 +1,5 @@
 ========
-MarkDown
+MarkDown (md)
 ========
 
 `Mou <http://25.io/mou/>`_ -- Markdown editor for Mac OS

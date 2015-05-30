@@ -2,11 +2,14 @@
 Jet Chars's Resume
 ==================
 
+.. image:: images/pku_logo.png
+    :align: right
+
 Contact Me
 ==========
 * Email : calebjay@live.cn
 * Tel : +86 181-0793-5886
-
+* Homepage : http://jetchars.github.io
 
 Education Background
 ====================
@@ -34,3 +37,6 @@ Interested Areas
 ================
 * Cloud Computing: ``OpenStack`` ``Spark`` ``Storm`` ``Docker``
 * Machine Learning: ``Nature Language Processing``
+
+
+.. image:: images/SETI.png

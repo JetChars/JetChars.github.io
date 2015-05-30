@@ -37,6 +37,7 @@ Basic Regular Express
 | \|      |or                              |                                                    |
 +---------+--------------------------------+----------------------------------------------------+
 
+.. image:: images/regex_cn.png
 
 grep -- Globally search a Regular Expression and Print
 ======================================================
