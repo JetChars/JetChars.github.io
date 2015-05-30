@@ -1,6 +1,6 @@
-====================================
+===============================================================================================
 OpenStack installation with `DevStack <http://git.openstack.org/cgit/openstack-dev/devstack/>`_
-====================================
+===============================================================================================
 
 
 Quick Start
@@ -49,16 +49,57 @@ Quick Start
     The password: openstack
     This is your host ip: 192.168.48.134
 
+5. Get admin creds
+   
+.. code-block:: bash
+    :linenos:
+
+    . openrc admin admin
+    . openrc demo demo
+
 
 Config file
 ===========
 
-| The new config file ``local.conf`` is an extended-INI format that introduces a new meta-section header that provides some additional information such as a phase name and destination config filename
+| The new config file ``local.conf`` is an extended-INI format that introduces a new meta-section header that provides some additional information such as a **phase name** and **destination config filename**
 |
+
 ::
 
     [[ <phase> | <config-file-name> ]]
 
+============= ================
+phase         description  
+============= ================
+local         If localrc exists it will be used instead to preserve backward-compatibility
+pre-install   runs after the system packages are installed but before any of the source repositories are installed
+install       runs immediately after the repo installations are complete
+post-config   runs after the layer 2 services are configured and before they are started
+extra         runs after services are started and before any files in extra.d are executed
+post-extra    runs after files in extra.d are executed
+============= ================
+
+
+
+
+
+Service List
+------------
+  
+according to stackrc, if 'ENABLED_SERVICES' it is null, will install all default service.
+
+=========== ====================
+service     components
+=========== ====================
+default     g-api/g-reg/key/n-api/n-crt/n-obj/n-cpu/n-net/n-cond/n-sch/n-novnc/n-xvnc/n-cauth
+nova        n-api/n-crt/n-obj/n-cpu/n-net/n-cond/n-sch/n-novnc/n-xvnc/n-cauth
+cinder      c-sci/c-api/c-vol
+heat        h-eng/h-api/h-api-cfn/h-api-cw
+horizon     horizon
+sahara      sahara
+ceilometer  ceilometer-acompute, ceilometer-acentral, ceilometer-anotification, ceilometer-collector, ceilometer-alarm-evaluator, ceilometer-alarm-notifier, ceilometer-api
+others      rabbit, tempest, mysql
+=========== ====================
 
 
 Switches
@@ -66,8 +107,8 @@ Switches
 
 ::
 
-RECLONE=False
-OFFLINE=False
+    RECLONE=False
+    OFFLINE=False
 
 
 Multi Host
@@ -103,6 +144,25 @@ Log
     SYSLOG_HOST=$SERVICE_HOST
     SCREEN_LOGDIR=$DEST/logs/screen
 
+Neutron
+-------
+
+| Each node need ``q-agt``, Restart q-agt can help reset network settings (ovs).
+|
+
+Congiure file
+^^^^^^^^^^^^^
+
+- **/opt/stack/neutron/openstack_dashboard/settings.py**
+    - ``SESSION_TIMEOUT`` make this val bigger, no need enter password frequently.
+- **/opt/stack/neutron/openstack_dashboard/local_settings**
+    - ``TIME_ZONE`` change defaut time_zone *UTC* to *Asia/Shanghai*
+
+Network Node
+^^^^^^^^^^^^
+
+Compute Nodes
+^^^^^^^^^^^^^
 
 
 Cinder
@@ -113,7 +173,8 @@ Dependency
 
 - **lib/cinder** -- configure cinder service
 - **lib/lvm** -- default driver
-- **lib/{glusterfs,nfs,sheepdog,vsphere,XENAPINFS}** --cinder drivers
+- **lib/cinder_plugins/{glusterfs,nfs,sheepdog,vsphere,XENAPINFS}**
+- **lib/cinder_backends/{ceph,glusterfs,lvm,netapp_iscsi,netapp_nfs,nfs,solidfire,vmdk,xiv}**
 
 Default Values
 ^^^^^^^^^^^^^^
@@ -125,6 +186,15 @@ Default Values
     VOLUME_BACKING_FILE_SIZE=10250M
 
 **CINDER_DRIVER :** default driver means lvm, other options are ``glusterfs`` ``nfs`` ``sheepdog`` ``vsphere`` ``XenAPINFS``, contains ``function configure_cinder_driver``
+
+Nova
+----
+
+Configure file
+^^^^^^^^^^^^^^
+
+- **/etc/nova/nova.conf**
+    - ``default_ephemeral_format`` -- ``ext3``, ``ext4`` or ``xfs``
 
 Swift
 -----

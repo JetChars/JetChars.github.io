@@ -251,7 +251,36 @@ Rabbit
 MySQL
 =====
 
-1. Reset MySQL password
+.. sidebar:: Note 
+
+    - **mariadb** -- Community developed branch of mysql, multi-user, multi-threaded SQL database server
+    - **mysql_secure_installation** -- improve MySQL installation security
+
+1. Configure MySQL
+
+Configure file ``/etc/mysql/my.cnf``--> ``/etc/my.cnf`` ``~/.my.cnf``
+- Configurations
+    - ``bind-address`` -- default ``127.0.0.1`` , change to ``0.0.0.0`` will listen all IPs
+    - ``port`` -- listen port
+- Restart MySQL
+    - ``sudo /etc/init.d/mysql restart``
+    - ``sudo pkill -1 mysqld``
+- Check mysql status::
+
+    mysql -uroot -ppassword -e 'show status;'
+
+| username & password no need seperate from argument u & p)
+| if password not concatenated with -p , will be recognized as database nodename
+|
+
+- Change max connction number::
+
+    mysql -uroot -ppassword -e 'set GLOBAL max_connections=40000;'
+
+| can solve issue 1040 (too many connections).
+|
+
+2. Reset MySQL password
 
 - Change password via reconfig mysql-server
 ::
@@ -275,20 +304,17 @@ MySQL
     # nova should be replaced to root password
     mysqladmin -u root -pnova password 'supersecret'
 
-2. Uninstall MySQL
+3. Uninstall MySQL
 
 .. code-block:: bash
     :linenos:
 
-    sudo apt-get remove -y --purge mysql*
+    sudo apt-get remove -y --purge mysql* mariadb*
     sudo apt-get autoremove               
     sudo apt-get autoclean
-    sudo rm -rf /var/lib/mysql /etc/apparmor.d/abstraction/mysql /etc/mysql /run/mysql
+    sudo rm -rf /var/lib/mysql /etc/apparmor.d/abstraction/mysql /{etc,run}/mysql /usr/{share,include,lib}/mysql
 
 
-3. Configure MySQL
-
-Configure file ``/etc/mysql/my.cnf`` ``~/.my.cnf``
 
 4. MySQL server failed to start
 

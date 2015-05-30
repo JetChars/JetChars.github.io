@@ -10,9 +10,9 @@ Welcome to JetChars' Documentation!
 .. toctree::
     :maxdepth: 1
 
-    #docs/resume/index
     docs/cloud_computing/index
  
+.. docs/resume/index
 
 
 DevStack Hacking
@@ -42,8 +42,7 @@ Hadoop Tuning
     :glob:
 
     docs/centos_tuning/index
-    .. docs/linux_kernel_tuning/index
-    docs/hadoop_*/index
+    docs/hadoop*/index
 
 
 Linux Tools
@@ -53,10 +52,8 @@ Linux Tools
     :maxdepth: 1
     :glob:
 
-    #docs/anaconda_kickstart/index
+    docs/anaconda/index
     docs/screen/index
-    docs/string_process/index
-    docs/documentation_tools/index
     docs/vim/index
     docs/mac/index
     docs/linux_*/index
@@ -101,6 +98,6 @@ Indices and tables
 * :ref:`search`
 
 
-:download:`pdf <../build/latex/JetChars.pdf>`
-:download:`LaTeX <../build/latex/JetChars.tex>`
-:download:`epub <../build/epub/JetChars.epub>`
+.. :download:`pdf <../build/latex/JetChars.pdf>`
+.. :download:`LaTeX <../build/latex/JetChars.tex>`
+.. :download:`epub <../build/epub/JetChars.epub>`

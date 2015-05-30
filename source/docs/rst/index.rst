@@ -51,6 +51,18 @@ Inline mark
     **bold**
     ``inline literal``
 
+
+
+Directives
+==========
+
+.. code-block:: rst
+
+    .. <name>:: <arguments>
+        :<option>: <option values>
+    
+         content
+
 Photos
 ------
 
@@ -126,11 +138,6 @@ rst contents with no titlebar
     
         </div>
 
-
-Maths & Equttions w/ LaTeX
---------------------------
-
-:math:`\alpha > \beta`
 
 
 Sphinx Customized rST
@@ -232,6 +239,17 @@ Download
 .. code-block:: rst
 
     :download:`rst.png <images/rst.png>`
+
+Maths & Equttions w/ LaTeX
+--------------------------
+
+.. sidebar:: Example
+
+    :math:`\alpha > \beta`
+
+.. code-block:: rst
+
+    :math:`\alpha > \beta`
 
 
 

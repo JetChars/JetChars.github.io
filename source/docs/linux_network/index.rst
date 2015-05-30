@@ -45,4 +45,4 @@ Home made proxy setting tool
     export SOCKS_PROXY=$socks_proxy 
     export NO_PROXY=$no_proxy 
     ' > /intel-pxy.sh 
-    chmod +x /intel-pxy.sh 
+    chmod a+x /intel-pxy.sh 

@@ -82,7 +82,7 @@ Management
     :linenos:
 
     pvmove /dev/sda6   #move PE to out of sda6(PV)
-    vgreduce /dev/sda6   #reduce one or more unused PV
+    vgreduce vg0 /dev/sda6   #reduce one or more unused PV
     pvremove /dev/sda6
 
 - Currently we are using **lvm2**
