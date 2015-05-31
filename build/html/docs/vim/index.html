@@ -164,11 +164,8 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../centos_tuning/index.html">CentOS Tuning</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../centos_tuning/index.html#unlimit-non-root-user-s-resources">Unlimit Non-root User&#8217;s Resources</a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="../hadoop/index.html">Hadoop</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hadoop/index.html#unlimit-non-root-user-s-resources">Unlimit Non-root User&#8217;s Resources</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hadoop/index.html#crunch">crunch</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hadoop/index.html#cdap">CDAP</a></li>
 </ul>
@@ -218,6 +215,12 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Vim - My Favourite Editor</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#commnd-mode">Commnd Mode</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#move">Move</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ex-mode">Ex Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#set">Set</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fisa-vim-config-popular-vim-config-file">fisa-vim-config &#8211; popular vim config file</a></li>
 </ul>
 </li>
@@ -324,6 +327,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../md/index.html">MarkDown (md)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../svg/index.html">Scalable Vector Graphics (SVG)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../svg/index.html#inkscape">InkScape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../svg/index.html#gimp">GIMP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../svg/index.html#resources">Resources</a></li>
 </ul>
 </li>
@@ -372,7 +377,70 @@
             
   <div class="section" id="vim-my-favourite-editor">
 <h1>Vim - My Favourite Editor<a class="headerlink" href="#vim-my-favourite-editor" title="Permalink to this headline">¶</a></h1>
-<img src="../../_images/vi-vim-cheat-sheet.svg" /><img src="../../_images/vi-vim-tutorial-1.svg" /><img src="../../_images/vi-vim-tutorial-2.svg" /><img src="../../_images/vi-vim-tutorial-3.svg" /><img src="../../_images/vi-vim-tutorial-4.svg" /><img src="../../_images/vi-vim-tutorial-5.svg" /><img src="../../_images/vi-vim-tutorial-6.svg" /><img src="../../_images/vi-vim-tutorial-7.svg" /><div class="section" id="fisa-vim-config-popular-vim-config-file">
+<img src="../../_images/vi-vim-cheat-sheet.svg" /><ul class="simple">
+<li>save file with sudo privilege: <code class="docutils literal"><span class="pre">:w</span> <span class="pre">!sudo</span> <span class="pre">tee</span> <span class="pre">%</span></code></li>
+</ul>
+<div class="section" id="commnd-mode">
+<h2>Commnd Mode<a class="headerlink" href="#commnd-mode" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="move">
+<h3>Move<a class="headerlink" href="#move" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">key</th>
+<th class="head">description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>j/k/h/l</td>
+<td>left/right/up/down</td>
+</tr>
+<tr class="row-odd"><td>gg/G/nG</td>
+<td>top/button/n row of file</td>
+</tr>
+<tr class="row-even"><td>H/M/L</td>
+<td>top/middle/button row of currnet screen</td>
+</tr>
+<tr class="row-odd"><td>^$(){}</td>
+<td>line/paragraph/section&#8217;s start or end</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="ex-mode">
+<h2>Ex Mode<a class="headerlink" href="#ex-mode" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="set">
+<h2>Set<a class="headerlink" href="#set" title="Permalink to this headline">¶</a></h2>
+<p>mostly stop a switch with <strong>no</strong> in front of it.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">option</th>
+<th class="head">description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>paste/nopaste</td>
+<td>no auto indent for paste</td>
+</tr>
+<tr class="row-odd"><td>nu/nonu</td>
+<td>nu short for number, show line number</td>
+</tr>
+<tr class="row-even"><td>hlsearch</td>
+<td>high light search item</td>
+</tr>
+</tbody>
+</table>
+<img src="../../_images/vi-vim-tutorial-1.svg" /><img src="../../_images/vi-vim-tutorial-2.svg" /><img src="../../_images/vi-vim-tutorial-3.svg" /><img src="../../_images/vi-vim-tutorial-4.svg" /><img src="../../_images/vi-vim-tutorial-5.svg" /><img src="../../_images/vi-vim-tutorial-6.svg" /><img src="../../_images/vi-vim-tutorial-7.svg" /></div>
+<div class="section" id="fisa-vim-config-popular-vim-config-file">
 <h2><a class="reference external" href="https://github.com/fisadev/fisa-vim-config.git">fisa-vim-config</a> &#8211; popular vim config file<a class="headerlink" href="#fisa-vim-config-popular-vim-config-file" title="Permalink to this headline">¶</a></h2>
 <p><strong>require module</strong> <code class="docutils literal"><span class="pre">vim_debug</span></code> <code class="docutils literal"><span class="pre">isort</span></code></p>
 </div>

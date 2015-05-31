@@ -41,7 +41,6 @@ Hadoop Tuning
     :maxdepth: 1
     :glob:
 
-    docs/centos_tuning/index
     docs/hadoop*/index
 
 
@@ -63,9 +62,9 @@ Git
 
 .. toctree::
     :maxdepth: 1
+    :glob:
 
-    docs/git/index
-    docs/github/index
+    docs/git*/index
  
 
 Markup Languages

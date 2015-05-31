@@ -150,14 +150,6 @@ Neutron
 | Each node need ``q-agt``, Restart q-agt can help reset network settings (ovs).
 |
 
-Congiure file
-^^^^^^^^^^^^^
-
-- **/opt/stack/neutron/openstack_dashboard/settings.py**
-    - ``SESSION_TIMEOUT`` make this val bigger, no need enter password frequently.
-- **/opt/stack/neutron/openstack_dashboard/local_settings**
-    - ``TIME_ZONE`` change defaut time_zone *UTC* to *Asia/Shanghai*
-
 Network Node
 ^^^^^^^^^^^^
 

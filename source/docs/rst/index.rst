@@ -68,7 +68,8 @@ Photos
 
 .. sidebar:: Note
 
-    png file not support distortion, so resize it only need to change width or height
+    - png file not support distortion, so resize it only need to change width or height
+    - ``align`` can be ``left`` , `` right`` or ``center``
 
 .. code-block:: rst
 
@@ -78,6 +79,11 @@ Photos
         :height: 100px
         :alt: alternate text
        
+|
+|
+|
+
+
 
 SideBar
 -------

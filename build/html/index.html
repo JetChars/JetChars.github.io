@@ -93,7 +93,6 @@
 <li class="toctree-l3"><a class="reference internal" href="docs/devstack_quickstart/index.html#multi-host">Multi Host</a></li>
 <li class="toctree-l3"><a class="reference internal" href="docs/devstack_quickstart/index.html#log">Log</a></li>
 <li class="toctree-l3"><a class="reference internal" href="docs/devstack_quickstart/index.html#neutron">Neutron</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="docs/devstack_quickstart/index.html#congiure-file">Congiure file</a></li>
 <li class="toctree-l4"><a class="reference internal" href="docs/devstack_quickstart/index.html#network-node">Network Node</a></li>
 <li class="toctree-l4"><a class="reference internal" href="docs/devstack_quickstart/index.html#compute-nodes">Compute Nodes</a></li>
 </ul>
@@ -131,8 +130,23 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="docs/openstack/index.html#heat">Heat</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docs/openstack/index.html#horizon">Horizon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/openstack/index.html#horizon">Horizon</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docs/openstack/index.html#dependency">Dependency</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/openstack/index.html#congiure-file">Congiure file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/openstack/index.html#refresh-horizon">Refresh horizon</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="docs/openstack/index.html#id3">Cinder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/openstack/index.html#architecture">Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docs/openstack/index.html#components">Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/openstack/index.html#storage-backend">Storage backend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/openstack/index.html#work-flow">work flow</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="docs/openstack/index.html#create-cinder-volume">create cinder volume</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="docs/openstack/index.html#terminologies">Terminologies</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="docs/kvm_optimization/index.html">KVM Optimization</a><ul>
@@ -163,11 +177,8 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="docs/centos_tuning/index.html">CentOS Tuning</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="docs/centos_tuning/index.html#unlimit-non-root-user-s-resources">Unlimit Non-root User&#8217;s Resources</a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="docs/hadoop/index.html">Hadoop</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="docs/hadoop/index.html#unlimit-non-root-user-s-resources">Unlimit Non-root User&#8217;s Resources</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docs/hadoop/index.html#crunch">crunch</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docs/hadoop/index.html#cdap">CDAP</a></li>
 </ul>
@@ -217,6 +228,12 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="docs/vim/index.html">Vim - My Favourite Editor</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="docs/vim/index.html#commnd-mode">Commnd Mode</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docs/vim/index.html#move">Move</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="docs/vim/index.html#ex-mode">Ex Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/vim/index.html#set">Set</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docs/vim/index.html#fisa-vim-config-popular-vim-config-file">fisa-vim-config &#8211; popular vim config file</a></li>
 </ul>
 </li>
@@ -323,6 +340,11 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="docs/md/index.html">MarkDown (md)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="docs/svg/index.html">Scalable Vector Graphics (SVG)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="docs/svg/index.html#inkscape">InkScape</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docs/svg/index.html#shortcut-keys">Shortcut keys</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="docs/svg/index.html#gimp">GIMP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docs/svg/index.html#resources">Resources</a></li>
 </ul>
 </li>
@@ -400,7 +422,6 @@
 <h1>Hadoop Tuning<a class="headerlink" href="#hadoop-tuning" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="docs/centos_tuning/index.html">CentOS Tuning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="docs/hadoop/index.html">Hadoop</a></li>
 <li class="toctree-l1"><a class="reference internal" href="docs/hadoop_conf_tuning/index.html">Hadoop Configuration Tuning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="docs/hadoop_hibench/index.html">HiBench - The Hadoop BenchMark Suit</a></li>

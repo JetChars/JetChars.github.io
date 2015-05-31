@@ -94,7 +94,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#multi-host">Multi Host</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#log">Log</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#neutron">Neutron</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#congiure-file">Congiure file</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#network-node">Network Node</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#compute-nodes">Compute Nodes</a></li>
 </ul>
@@ -132,8 +131,23 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#heat">Heat</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#horizon">Horizon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#horizon">Horizon</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#dependency">Dependency</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#congiure-file">Congiure file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#refresh-horizon">Refresh horizon</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#id3">Cinder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#architecture">Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#components">Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#storage-backend">Storage backend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#work-flow">work flow</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../openstack/index.html#create-cinder-volume">create cinder volume</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#terminologies">Terminologies</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../kvm_optimization/index.html">KVM Optimization</a><ul>
@@ -164,8 +178,10 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../centos_tuning/index.html">CentOS Tuning</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../centos_tuning/index.html#unlimit-non-root-user-s-resources">Unlimit Non-root User&#8217;s Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hadoop/index.html">Hadoop</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hadoop/index.html#unlimit-non-root-user-s-resources">Unlimit Non-root User&#8217;s Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hadoop/index.html#crunch">crunch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hadoop/index.html#cdap">CDAP</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../hadoop_conf_tuning/index.html">Hadoop Configuration Tuning</a><ul>
@@ -213,6 +229,12 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../vim/index.html">Vim - My Favourite Editor</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../vim/index.html#commnd-mode">Commnd Mode</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../vim/index.html#move">Move</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../vim/index.html#ex-mode">Ex Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vim/index.html#set">Set</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../vim/index.html#fisa-vim-config-popular-vim-config-file">fisa-vim-config &#8211; popular vim config file</a></li>
 </ul>
 </li>
@@ -319,6 +341,11 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../md/index.html">MarkDown (md)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../svg/index.html">Scalable Vector Graphics (SVG)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../svg/index.html#inkscape">InkScape</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../svg/index.html#shortcut-keys">Shortcut keys</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../svg/index.html#gimp">GIMP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../svg/index.html#resources">Resources</a></li>
 </ul>
 </li>
@@ -556,27 +583,6 @@ SCREEN_LOGDIR=$DEST/logs/screen
 <div class="line-block">
 <div class="line">Each node need <code class="docutils literal"><span class="pre">q-agt</span></code>, Restart q-agt can help reset network settings (ovs).</div>
 <div class="line"><br /></div>
-</div>
-<div class="section" id="congiure-file">
-<h4>Congiure file<a class="headerlink" href="#congiure-file" title="Permalink to this headline">¶</a></h4>
-<ul>
-<li><dl class="first docutils">
-<dt><strong>/opt/stack/neutron/openstack_dashboard/settings.py</strong></dt>
-<dd><ul class="first last simple">
-<li><code class="docutils literal"><span class="pre">SESSION_TIMEOUT</span></code> make this val bigger, no need enter password frequently.</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><strong>/opt/stack/neutron/openstack_dashboard/local_settings</strong></dt>
-<dd><ul class="first last simple">
-<li><code class="docutils literal"><span class="pre">TIME_ZONE</span></code> change defaut time_zone <em>UTC</em> to <em>Asia/Shanghai</em></li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
 </div>
 <div class="section" id="network-node">
 <h4>Network Node<a class="headerlink" href="#network-node" title="Permalink to this headline">¶</a></h4>
