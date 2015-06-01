@@ -69,6 +69,7 @@ Kernnel -- VFS
 --------------
 
 Short for **Virtual File System**, or **Virtual Filesystem Switch**, maintain tree shaped linux filesystem
+
 - It's a glue level between storage media and filesystem, let system calls like ``open()`` ``read()`` ``write()`` don't need to know to realize it in lower level
 - Sometimes short **Stackable Filesystem** , cause it can combine different filesystem seamlessly
 - Use command like ``mount`` to manage filesystem
@@ -76,7 +77,20 @@ Short for **Virtual File System**, or **Virtual Filesystem Switch**, maintain tr
 Devices
 -------
   
-``SAN(Storage Area Network)`` ``RAID/HBA``  ``SATA`` ``SCSI`` ``SAS``
+Storage Cards
+^^^^^^^^^^^^^
+
+``RAID/HBA``  
+
+Serial Devices
+^^^^^^^^^^^^^^
+
+``SATA`` ``SCSI`` ``SAS`` ``USB`` name as ``sd[a-z]``
+
+Network Storage
+^^^^^^^^^^^^^^^
+
+``SAN(Storage Area Network)`` 
 
 
 Mount

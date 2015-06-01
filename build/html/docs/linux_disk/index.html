@@ -247,7 +247,12 @@
 <li class="toctree-l2"><a class="reference internal" href="#filesystem">Filesystem</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#hard-drive-for-different-filesystem">Hard Drive &#8211; For different filesystem</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#kernnel-vfs">Kernnel &#8211; VFS</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#devices">Devices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#devices">Devices</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#storage-cards">Storage Cards</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#serial-devices">Serial Devices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#network-storage">Network Storage</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#mount">Mount</a><ul>
@@ -504,14 +509,27 @@ taken
 </div>
 <div class="section" id="kernnel-vfs">
 <h3>Kernnel &#8211; VFS<a class="headerlink" href="#kernnel-vfs" title="Permalink to this headline">¶</a></h3>
-<p>Short for <strong>Virtual File System</strong>, or <strong>Virtual Filesystem Switch</strong>, maintain tree shaped linux filesystem
-- It&#8217;s a glue level between storage media and filesystem, let system calls like <code class="docutils literal"><span class="pre">open()</span></code> <code class="docutils literal"><span class="pre">read()</span></code> <code class="docutils literal"><span class="pre">write()</span></code> don&#8217;t need to know to realize it in lower level
-- Sometimes short <strong>Stackable Filesystem</strong> , cause it can combine different filesystem seamlessly
-- Use command like <code class="docutils literal"><span class="pre">mount</span></code> to manage filesystem</p>
+<p>Short for <strong>Virtual File System</strong>, or <strong>Virtual Filesystem Switch</strong>, maintain tree shaped linux filesystem</p>
+<ul class="simple">
+<li>It&#8217;s a glue level between storage media and filesystem, let system calls like <code class="docutils literal"><span class="pre">open()</span></code> <code class="docutils literal"><span class="pre">read()</span></code> <code class="docutils literal"><span class="pre">write()</span></code> don&#8217;t need to know to realize it in lower level</li>
+<li>Sometimes short <strong>Stackable Filesystem</strong> , cause it can combine different filesystem seamlessly</li>
+<li>Use command like <code class="docutils literal"><span class="pre">mount</span></code> to manage filesystem</li>
+</ul>
 </div>
 <div class="section" id="devices">
 <h3>Devices<a class="headerlink" href="#devices" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal"><span class="pre">SAN(Storage</span> <span class="pre">Area</span> <span class="pre">Network)</span></code> <code class="docutils literal"><span class="pre">RAID/HBA</span></code>  <code class="docutils literal"><span class="pre">SATA</span></code> <code class="docutils literal"><span class="pre">SCSI</span></code> <code class="docutils literal"><span class="pre">SAS</span></code></p>
+<div class="section" id="storage-cards">
+<h4>Storage Cards<a class="headerlink" href="#storage-cards" title="Permalink to this headline">¶</a></h4>
+<p><code class="docutils literal"><span class="pre">RAID/HBA</span></code></p>
+</div>
+<div class="section" id="serial-devices">
+<h4>Serial Devices<a class="headerlink" href="#serial-devices" title="Permalink to this headline">¶</a></h4>
+<p><code class="docutils literal"><span class="pre">SATA</span></code> <code class="docutils literal"><span class="pre">SCSI</span></code> <code class="docutils literal"><span class="pre">SAS</span></code> <code class="docutils literal"><span class="pre">USB</span></code> name as <code class="docutils literal"><span class="pre">sd[a-z]</span></code></p>
+</div>
+<div class="section" id="network-storage">
+<h4>Network Storage<a class="headerlink" href="#network-storage" title="Permalink to this headline">¶</a></h4>
+<p><code class="docutils literal"><span class="pre">SAN(Storage</span> <span class="pre">Area</span> <span class="pre">Network)</span></code></p>
+</div>
 </div>
 </div>
 <div class="section" id="mount">
