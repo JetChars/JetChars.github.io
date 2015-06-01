@@ -102,7 +102,30 @@ Pip
 
 ::
 
-    $ sudo chmod a+w /tmp/.pip/build
+    $ sudo chmod a+w /tmp/.pip/build   # make build path writeable for all user
+
+| If not make build path writeable, will cause issue like this
+|
+
+::
+
+    ...Installing setuptools, pip, wheel...done.
+    Traceback (most recent call last):
+      File "/bin/virtualenv", line 11, in <module>
+        sys.exit(main())
+      File "/usr/lib/python2.7/site-packages/virtualenv.py", line 832, in main
+        symlink=options.symlink)
+      File "/usr/lib/python2.7/site-packages/virtualenv.py", line 1004, in create_environment
+        install_wheel(to_install, py_executable, search_dirs)
+      File "/usr/lib/python2.7/site-packages/virtualenv.py", line 969, in install_wheel
+        'PIP_NO_INDEX': '1'
+      File "/usr/lib/python2.7/site-packages/virtualenv.py", line 910, in call_subprocess
+        % (cmd_desc, proc.returncode))
+    OSError: Command /opt/stack/devstack/tmp-venv-a6Q3/bin/python -c "import sys, pip; sys...d\"] + sys.argv[1:]))" setuptools pip wheel failed with error code 2
+    +++ err_trap
+    +++ local r=1
+    Error on exit
+
 
 6. Wheel: Multiple .disk-info directiries
 
@@ -110,7 +133,7 @@ Pip
 
     Wheel is a built-package format, and offers the advantage of not recompiling your software during every install. [#]_
 
-| **Solutions** 
+| **Solutions :** 
 |
 * Not use wheel::
 
@@ -177,7 +200,8 @@ Python
 
         $ sudo apt-get remove python-libvirt
         $ sudo apt-get install python-libvirt
-|
+
+
 |
 |
 |
@@ -213,7 +237,31 @@ Python
     $ sudo apt-get remove python-oslo.config
     $ sudo apt-get install python-oslo.config
 
+3. command virtualenv not found
 
+::
+
+    ++ [[ 0 != 0 ]]
+    ++ pip_install virtualenv
+    ++ sudo -H http_proxy=http://proxy-shz.intel.com:911 https_proxy=https://proxy-shz.intel.com:911 'no_proxy=localhost,*intel.com:911,192.168.0.0/16,10.0.0.0/8,127.0.0.0/8' PIP_FIND_LINKS=file:///opt/stack/.wheelhouse /bin/pip install virtualenv
+    DEPRECATION: --download-cache has been deprecated and will be removed in the future. Pip now automatically uses and configures its cache.
+    Requirement already satisfied (use --upgrade to upgrade): virtualenv in /usr/lib/python2.7/site-packages
+    ++ local test_req=virtualenv/test-requirements.txt
+    ++ [[ -e virtualenv/test-requirements.txt ]]
+    +++ mktemp -d tmp-venv-XXXX
+    ++ TMP_VENV_PATH=tmp-venv-3TgB
+    ++ virtualenv tmp-venv-3TgB
+    /opt/stack/devstack/tools/build_wheels.sh: line 58: virtualenv: command not found
+    +++ err_trap
+    +++ local r=127
+    Error on exit
+
+| **Solution :** change to an earlier version can solve this issue.
+|
+
+::
+
+    sudo -E pip install -U virtualenv=12.1.1
 
 
 Rabbit
@@ -253,7 +301,7 @@ MySQL
 
 .. sidebar:: Note 
 
-    - **mariadb** -- Community developed branch of mysql, multi-user, multi-threaded SQL database server
+    - **mariadb** -- Community developed branch of mysql, multi-user, multi-threaded SQL database server ``sudo service mariadb restart``
     - **mysql_secure_installation** -- improve MySQL installation security
 
 1. Configure MySQL
@@ -278,6 +326,7 @@ Configure file ``/etc/mysql/my.cnf``--> ``/etc/my.cnf`` ``~/.my.cnf``
     mysql -uroot -ppassword -e 'set GLOBAL max_connections=40000;'
 
 | can solve issue 1040 (too many connections).
+| if enable too much service in control node, should do it in post-config phase!
 |
 
 2. Reset MySQL password

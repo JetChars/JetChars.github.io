@@ -6,30 +6,15 @@ Linux Disk
 
 .. sidebar:: e2fsprogs
   
-    e2fs programs, toolkits for maintain ext2/3/4 filesystem
+    e2fs programs, toolkits for maintaining ext2/3/4 filesystem
         
     - **mke2fs** - create filesystem
-    
-    ============= ========================= ========================
-    option        description               examples
-    ============= ========================= ========================
-    -t            designate filesys type    mke2fs -t ext4 /dev/sda3
-    -b blocksize  designate block size
-    -c            check when create filesys
-    -L label      designate volume label
-    -j            create journal system     ext2 not contain jornal ext3/4 built-in journal sys
-    ============= ========================= ========================
-    
-    
+   
     - **mkfs.ext{2,3,4}** -- quickly make a filesystem
     
     - **dumpe2fs** -- check filesystem info
     
-    - **e2label** -- tag a device, for partition management
-    
-    ::
-    
-        e2lable /dev/sdb1 wenj
+    - **e2label** -- tag a device, for partition management ``e2lable /dev/sdb1 wenj``
     
     - **e2fsck** -- check filesystem's integrity
     
@@ -49,12 +34,12 @@ Hard Drive -- For different filesystem
 ::
 
     ls /lib/modules/3.10.0-123.el7.x86_64/kernel/fs/
+    binfmt_misc.ko  dlm      fuse   mbcache.ko  pstore
+    btrfs           exofs    gfs2   nfs         squashfs
+    cachefiles      ext4     isofs  nfs_common  udf
+    cifs            fat      jbd2   nfsd        xfs
+    cramfs          fscache  lockd  nls
 
-
-
-
-
-    taken
 
 ============== =======================
 type           items
@@ -65,13 +50,34 @@ cluster        gfs gfs2 ocfs
 distributed    HDFS mfs
 ============== =======================
 
+|
+|
+|
+|
+
+mke2fs  
+^^^^^^
+
+============= ============================ ========================
+option        description                  examples
+============= ============================ ========================
+-t            designate filesys type       mke2fs -t ext4 /dev/sda3
+-b blocksize  designate block size
+-c            check when creating filesys
+-L label      designate volume label
+-j            create journal system        ext2 doesn't contain jornal ext3/4 built-in journal sys
+============= ============================ ========================
+ 
+
+
+
 Kernnel -- VFS
 --------------
 
 Short for **Virtual File System**, or **Virtual Filesystem Switch**, maintain tree shaped linux filesystem
 
 - It's a glue level between storage media and filesystem, let system calls like ``open()`` ``read()`` ``write()`` don't need to know to realize it in lower level
-- Sometimes short **Stackable Filesystem** , cause it can combine different filesystem seamlessly
+- Sometimes short for **Stackable Filesystem** , because it can combine different filesystem seamlessly
 - Use command like ``mount`` to manage filesystem
 
 Devices
@@ -100,15 +106,15 @@ Mount
 
     **mount.ntfs**
 
-    ubuntu built-in NTFS driver, rhel/centos/fedora user need download ``fuse-ntfs``::
+    ubuntu's built-in NTFS driver, rhel/centos/fedora user need download ``fuse-ntfs``::
 
         mount.ntfs /dev/sdd /mnt
 
     **fuser**
 
-    compare to lsof, fuser can check which processe use folder or file exactly
+    compared w/ lsof, fuser can check which process use folder or file exactly
 
-    - ``-v`` show more detail
+    - ``-v`` show more details
     - ``-u`` display user IDs
     - ``-l`` show support signal list
     - ``-k -SIGNAL`` send signal to all processes use this file
@@ -128,7 +134,7 @@ Mount a device
 
 ::
 
-    mount [-t fstype] [-o mount_option] device mountpoint
+    mount [-t fstype] [-o mount_opt] device mountpoint
 
 
 | **Mount Options** -- seperate by comma
@@ -162,19 +168,19 @@ Unmount a device
 
 ::
 
-    umount testlvm/ -f
+    $ umount testlvm/ -f
     umount: /root/testlvm: target is busy.
             (In some cases useful info about processes that use
              the device is found by lsof(8) or fuser(1))
 
-    fuser -m testlvm/
+    $ fuser -m testlvm/
     /root/testlvm:       24572c
 
-    ps aux | grep 24572
+    $ ps aux | grep 24572
     root      24572  0.0  0.0 117056  3924 pts/0    S+   May28   0:01 -bash
     root     210760  0.0  0.0 112644   960 pts/41   S+   09:44   0:00 grep --color=auto 24572c
 
-    kill -9 24572
+    $ kill -9 24572
     umount testlvm/    # umount object can be device or mount point
 
 
@@ -213,6 +219,12 @@ Management
 .. sidebar:: Note
 
     /dev/vg0/lv0 --> /dev/vg0-lv0
+
+    - current version is **lvm2**
+    - check lvm version: ``vgscan``
+    - convert LVMv1 to LVMv2: ``vgconvert -M2 vg0``
+    - rename VG vg0 to vg1: ``vgrename vg0 vg1``
+
 
 - Create a Logic Volume: ``pvcreate`` --> ``vgcreate`` --> ``lvcreate`` --> ``mkfs.ext3`` --> ``mount``
 
@@ -271,10 +283,6 @@ Management
     pvmove /dev/sda6   #move PE to out of sda6(PV)
     vgreduce vg0 /dev/sda6   #reduce one or more unused PV
     pvremove /dev/sda6
-
-- Currently we are using **lvm2**
-    - check lvm version: ``vgscan``
-    - convert lvm1 VG to lvm2 VG: ``vgconvert -M2 vg0``
 
 Check lvm infos
 ---------------
@@ -383,9 +391,31 @@ Check lvm infos
      
 
 
+Loop Device
+===========
 
-RAID
-====
+In Unix-like operating systems, a loop device, vnd (vnode disk), or lofi (loop file interface) is a pseudo-device that makes a file accessible as a block device. [#]_
+
+.. sidebar:: truncate
+
+    shrink or extend the size of a file to the specified size, can be used to create a loop file
+    ``truncate -s size file`` ``sudo losetup -f --show /dev/lo0 file``
+
+- Get info::
+
+    losetup loopdev   # show specified loopdev
+    losetup -l [-a]   # show loopdev list
+    losetup -j file [-o offset]
+    losetup -f   # Print first unused loop device
+
+- Delete loop: ``losetup -d loopdev...``
+
+- Delete all used loop devices: ``losetup -D``
+
+- Setup loop device: ``losetup [-o offset] [--sizelimit size] [-p pfd] [-rP] {-f[--show]|loopdev} file``
+    - ``-show`` will print device name
+
+- Resize loop device: ``losetup -c loopdev``
 
 
 Disk Performance
@@ -411,3 +441,4 @@ count=N  copy only N input blocks
 
 
 .. [#] http://en.wikipedia.org/wiki/Logical_volume_management
+.. [#] http://en.wikipedia.org/wiki/Loop_device

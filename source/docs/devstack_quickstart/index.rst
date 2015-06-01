@@ -176,6 +176,7 @@ Default Values
     VOLUME_GROUP="stack-volumes"
     VOLUME_NAME_PREFIX="volume-"
     VOLUME_BACKING_FILE_SIZE=10250M
+    CINDER_ENABLED_BACKENDS=-lvm:lvmdriver-1,lvm:lvmdriver-2   # enable multi_lvm_backend
 
 **CINDER_DRIVER :** default driver means lvm, other options are ``glusterfs`` ``nfs`` ``sheepdog`` ``vsphere`` ``XenAPINFS``, contains ``function configure_cinder_driver``
 
@@ -187,6 +188,16 @@ Configure file
 
 - **/etc/nova/nova.conf**
     - ``default_ephemeral_format`` -- ``ext3``, ``ext4`` or ``xfs``
+
+**Control node**
+
+
+**Compute node**::
+
+    NOVA_VNC_ENABLED=True
+    NOVNCPROXY_URL="http://${SERVICE_HOST}:6080/vnc_auto.html"
+    VNCSERVER_LISTEN=$HOST_IP
+    VNCSERVER_PROXYCLIENT_ADDRESS=$VNCSERVER_LISTEN
 
 Swift
 -----

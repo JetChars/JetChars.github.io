@@ -245,7 +245,10 @@
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Linux Disk</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#filesystem">Filesystem</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#hard-drive-for-different-filesystem">Hard Drive &#8211; For different filesystem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hard-drive-for-different-filesystem">Hard Drive &#8211; For different filesystem</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mke2fs">mke2fs</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#kernnel-vfs">Kernnel &#8211; VFS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#devices">Devices</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#storage-cards">Storage Cards</a></li>
@@ -266,7 +269,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#check-lvm-infos">Check lvm infos</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#raid">RAID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#loop-device">Loop Device</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#disk-performance">Disk Performance</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#dd-convert-and-copy-a-file">dd &#8211; convert and copy a file</a></li>
 </ul>
@@ -281,10 +284,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../linux_doc/index.html#pandoc-universal-document-converter">Pandoc - Universal document converter</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../linux_network/index.html">Network Tools</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../linux_network/index.html#django-web-framework">Django &#8211; web framework</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_network/index.html#open-vswitch">Open vSwitch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_network/index.html#home-made-proxy-setting-tool">Home made proxy setting tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux_netool/index.html">Network Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../linux_netool/index.html#django-web-framework">Django &#8211; web framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_netool/index.html#open-vswitch">Open vSwitch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_netool/index.html#home-made-proxy-setting-tool">Home made proxy setting tool</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux_regex/index.html">String Processing Tools</a><ul>
@@ -414,54 +417,12 @@
 <h1>Linux Disk<a class="headerlink" href="#linux-disk" title="Permalink to this headline">¶</a></h1>
 <div class="sidebar">
 <p class="first sidebar-title">e2fsprogs</p>
-<p>e2fs programs, toolkits for maintain ext2/3/4 filesystem</p>
-<ul class="simple">
+<p>e2fs programs, toolkits for maintaining ext2/3/4 filesystem</p>
+<ul class="last simple">
 <li><strong>mke2fs</strong> - create filesystem</li>
-</ul>
-<table border="1" class="docutils">
-<colgroup>
-<col width="15%" />
-<col width="28%" />
-<col width="57%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">option</th>
-<th class="head">description</th>
-<th class="head">examples</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>-t</td>
-<td>designate filesys type</td>
-<td>mke2fs -t ext4 /dev/sda3</td>
-</tr>
-<tr class="row-odd"><td>-b blocksize</td>
-<td>designate block size</td>
-<td>&nbsp;</td>
-</tr>
-<tr class="row-even"><td>-c</td>
-<td>check when create filesys</td>
-<td>&nbsp;</td>
-</tr>
-<tr class="row-odd"><td>-L label</td>
-<td>designate volume label</td>
-<td>&nbsp;</td>
-</tr>
-<tr class="row-even"><td>-j</td>
-<td>create journal system</td>
-<td>ext2 not contain jornal ext3/4 built-in journal sys</td>
-</tr>
-</tbody>
-</table>
-<ul class="simple">
 <li><strong>mkfs.ext{2,3,4}</strong> &#8211; quickly make a filesystem</li>
 <li><strong>dumpe2fs</strong> &#8211; check filesystem info</li>
-<li><strong>e2label</strong> &#8211; tag a device, for partition management</li>
-</ul>
-<div class="highlight-python"><div class="highlight"><pre>e2lable /dev/sdb1 wenj
-</pre></div>
-</div>
-<ul class="last simple">
+<li><strong>e2label</strong> &#8211; tag a device, for partition management <code class="docutils literal"><span class="pre">e2lable</span> <span class="pre">/dev/sdb1</span> <span class="pre">wenj</span></code></li>
 <li><strong>e2fsck</strong> &#8211; check filesystem&#8217;s integrity</li>
 <li><strong>resize2fs</strong> &#8211; autoresize filesystem size</li>
 <li><strong>tune2fs</strong> &#8211; change filesystem related parameters</li>
@@ -473,12 +434,11 @@
 <div class="section" id="hard-drive-for-different-filesystem">
 <h3>Hard Drive &#8211; For different filesystem<a class="headerlink" href="#hard-drive-for-different-filesystem" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python"><div class="highlight"><pre>ls /lib/modules/3.10.0-123.el7.x86_64/kernel/fs/
-
-
-
-
-
-taken
+binfmt_misc.ko  dlm      fuse   mbcache.ko  pstore
+btrfs           exofs    gfs2   nfs         squashfs
+cachefiles      ext4     isofs  nfs_common  udf
+cifs            fat      jbd2   nfsd        xfs
+cramfs          fscache  lockd  nls
 </pre></div>
 </div>
 <table border="1" class="docutils">
@@ -506,13 +466,57 @@ taken
 </tr>
 </tbody>
 </table>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<div class="section" id="mke2fs">
+<h4>mke2fs<a class="headerlink" href="#mke2fs" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="29%" />
+<col width="57%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">option</th>
+<th class="head">description</th>
+<th class="head">examples</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>-t</td>
+<td>designate filesys type</td>
+<td>mke2fs -t ext4 /dev/sda3</td>
+</tr>
+<tr class="row-odd"><td>-b blocksize</td>
+<td>designate block size</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>-c</td>
+<td>check when creating filesys</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>-L label</td>
+<td>designate volume label</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>-j</td>
+<td>create journal system</td>
+<td>ext2 doesn&#8217;t contain jornal ext3/4 built-in journal sys</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div class="section" id="kernnel-vfs">
 <h3>Kernnel &#8211; VFS<a class="headerlink" href="#kernnel-vfs" title="Permalink to this headline">¶</a></h3>
 <p>Short for <strong>Virtual File System</strong>, or <strong>Virtual Filesystem Switch</strong>, maintain tree shaped linux filesystem</p>
 <ul class="simple">
 <li>It&#8217;s a glue level between storage media and filesystem, let system calls like <code class="docutils literal"><span class="pre">open()</span></code> <code class="docutils literal"><span class="pre">read()</span></code> <code class="docutils literal"><span class="pre">write()</span></code> don&#8217;t need to know to realize it in lower level</li>
-<li>Sometimes short <strong>Stackable Filesystem</strong> , cause it can combine different filesystem seamlessly</li>
+<li>Sometimes short for <strong>Stackable Filesystem</strong> , because it can combine different filesystem seamlessly</li>
 <li>Use command like <code class="docutils literal"><span class="pre">mount</span></code> to manage filesystem</li>
 </ul>
 </div>
@@ -537,14 +541,14 @@ taken
 <div class="sidebar">
 <p class="first sidebar-title">Note</p>
 <p><strong>mount.ntfs</strong></p>
-<p>ubuntu built-in NTFS driver, rhel/centos/fedora user need download <code class="docutils literal"><span class="pre">fuse-ntfs</span></code>:</p>
+<p>ubuntu&#8217;s built-in NTFS driver, rhel/centos/fedora user need download <code class="docutils literal"><span class="pre">fuse-ntfs</span></code>:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">mount</span><span class="o">.</span><span class="n">ntfs</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sdd</span> <span class="o">/</span><span class="n">mnt</span>
 </pre></div>
 </div>
 <p><strong>fuser</strong></p>
-<p>compare to lsof, fuser can check which processe use folder or file exactly</p>
+<p>compared w/ lsof, fuser can check which process use folder or file exactly</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">-v</span></code> show more detail</li>
+<li><code class="docutils literal"><span class="pre">-v</span></code> show more details</li>
 <li><code class="docutils literal"><span class="pre">-u</span></code> display user IDs</li>
 <li><code class="docutils literal"><span class="pre">-l</span></code> show support signal list</li>
 <li><code class="docutils literal"><span class="pre">-k</span> <span class="pre">-SIGNAL</span></code> send signal to all processes use this file</li>
@@ -577,7 +581,7 @@ taken
 </div>
 <div class="section" id="mount-a-device">
 <h3>Mount a device<a class="headerlink" href="#mount-a-device" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre>mount [-t fstype] [-o mount_option] device mountpoint
+<div class="highlight-python"><div class="highlight"><pre>mount [-t fstype] [-o mount_opt] device mountpoint
 </pre></div>
 </div>
 <div class="line-block">
@@ -627,19 +631,19 @@ taken
 </div>
 <div class="section" id="unmount-a-device">
 <h3>Unmount a device<a class="headerlink" href="#unmount-a-device" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre>umount testlvm/ -f
+<div class="highlight-python"><div class="highlight"><pre>$ umount testlvm/ -f
 umount: /root/testlvm: target is busy.
         (In some cases useful info about processes that use
          the device is found by lsof(8) or fuser(1))
 
-fuser -m testlvm/
+$ fuser -m testlvm/
 /root/testlvm:       24572c
 
-ps aux | grep 24572
+$ ps aux | grep 24572
 root      24572  0.0  0.0 117056  3924 pts/0    S+   May28   0:01 -bash
 root     210760  0.0  0.0 112644   960 pts/41   S+   09:44   0:00 grep --color=auto 24572c
 
-kill -9 24572
+$ kill -9 24572
 umount testlvm/    # umount object can be device or mount point
 </pre></div>
 </div>
@@ -667,13 +671,19 @@ umount testlvm/    # umount object can be device or mount point
 <li><strong>LV</strong> &#8211; Logic Volume</li>
 </ul>
 </div>
-<p>In computer storage, <em>logical volume management</em> or LVM provides a method of <em>allocating space</em> on mass-storage devices that is <em>more flexible</em> than conventional partitioning schemes. In particular, a volume manager can <strong>concatenate</strong>, <strong>stripe together</strong> or otherwise <strong>combine partitions</strong> (or block devices in general) into larger virtual ones that administrators can re-size or move, <em>potentially without interrupting system use</em>. <a class="footnote-reference" href="#id2" id="id1">[1]</a></p>
+<p>In computer storage, <em>logical volume management</em> or LVM provides a method of <em>allocating space</em> on mass-storage devices that is <em>more flexible</em> than conventional partitioning schemes. In particular, a volume manager can <strong>concatenate</strong>, <strong>stripe together</strong> or otherwise <strong>combine partitions</strong> (or block devices in general) into larger virtual ones that administrators can re-size or move, <em>potentially without interrupting system use</em>. <a class="footnote-reference" href="#id3" id="id1">[1]</a></p>
 <div align="center" class="align-center"><img src="../../_images/lvm.svg" /></div>
 <div class="section" id="management">
 <h3>Management<a class="headerlink" href="#management" title="Permalink to this headline">¶</a></h3>
 <div class="sidebar">
 <p class="first sidebar-title">Note</p>
-<p class="last">/dev/vg0/lv0 &#8211;&gt; /dev/vg0-lv0</p>
+<p>/dev/vg0/lv0 &#8211;&gt; /dev/vg0-lv0</p>
+<ul class="last simple">
+<li>current version is <strong>lvm2</strong></li>
+<li>check lvm version: <code class="docutils literal"><span class="pre">vgscan</span></code></li>
+<li>convert LVMv1 to LVMv2: <code class="docutils literal"><span class="pre">vgconvert</span> <span class="pre">-M2</span> <span class="pre">vg0</span></code></li>
+<li>rename VG vg0 to vg1: <code class="docutils literal"><span class="pre">vgrename</span> <span class="pre">vg0</span> <span class="pre">vg1</span></code></li>
+</ul>
 </div>
 <ul class="simple">
 <li>Create a Logic Volume: <code class="docutils literal"><span class="pre">pvcreate</span></code> &#8211;&gt; <code class="docutils literal"><span class="pre">vgcreate</span></code> &#8211;&gt; <code class="docutils literal"><span class="pre">lvcreate</span></code> &#8211;&gt; <code class="docutils literal"><span class="pre">mkfs.ext3</span></code> &#8211;&gt; <code class="docutils literal"><span class="pre">mount</span></code></li>
@@ -741,17 +751,6 @@ vgreduce vg0 /dev/sda6   <span class="c">#reduce one or more unused PV</span>
 pvremove /dev/sda6
 </pre></div>
 </td></tr></table></div>
-<ul>
-<li><dl class="first docutils">
-<dt>Currently we are using <strong>lvm2</strong></dt>
-<dd><ul class="first last simple">
-<li>check lvm version: <code class="docutils literal"><span class="pre">vgscan</span></code></li>
-<li>convert lvm1 VG to lvm2 VG: <code class="docutils literal"><span class="pre">vgconvert</span> <span class="pre">-M2</span> <span class="pre">vg0</span></code></li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
 </div>
 <div class="section" id="check-lvm-infos">
 <h3>Check lvm infos<a class="headerlink" href="#check-lvm-infos" title="Permalink to this headline">¶</a></h3>
@@ -952,8 +951,38 @@ Block device           253:0
 </td></tr></table></div>
 </div>
 </div>
-<div class="section" id="raid">
-<h2>RAID<a class="headerlink" href="#raid" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="loop-device">
+<h2>Loop Device<a class="headerlink" href="#loop-device" title="Permalink to this headline">¶</a></h2>
+<p>In Unix-like operating systems, a loop device, vnd (vnode disk), or lofi (loop file interface) is a pseudo-device that makes a file accessible as a block device. <a class="footnote-reference" href="#id4" id="id2">[2]</a></p>
+<div class="sidebar">
+<p class="first sidebar-title">truncate</p>
+<p class="last">shrink or extend the size of a file to the specified size, can be used to create a loop file
+<code class="docutils literal"><span class="pre">truncate</span> <span class="pre">-s</span> <span class="pre">size</span> <span class="pre">file</span></code> <code class="docutils literal"><span class="pre">sudo</span> <span class="pre">losetup</span> <span class="pre">-f</span> <span class="pre">--show</span> <span class="pre">/dev/lo0</span> <span class="pre">file</span></code></p>
+</div>
+<ul>
+<li><p class="first">Get info:</p>
+<div class="highlight-python"><div class="highlight"><pre>losetup loopdev   # show specified loopdev
+losetup -l [-a]   # show loopdev list
+losetup -j file [-o offset]
+losetup -f   # Print first unused loop device
+</pre></div>
+</div>
+</li>
+<li><p class="first">Delete loop: <code class="docutils literal"><span class="pre">losetup</span> <span class="pre">-d</span> <span class="pre">loopdev...</span></code></p>
+</li>
+<li><p class="first">Delete all used loop devices: <code class="docutils literal"><span class="pre">losetup</span> <span class="pre">-D</span></code></p>
+</li>
+<li><dl class="first docutils">
+<dt>Setup loop device: <code class="docutils literal"><span class="pre">losetup</span> <span class="pre">[-o</span> <span class="pre">offset]</span> <span class="pre">[--sizelimit</span> <span class="pre">size]</span> <span class="pre">[-p</span> <span class="pre">pfd]</span> <span class="pre">[-rP]</span> <span class="pre">{-f[--show]|loopdev}</span> <span class="pre">file</span></code></dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">-show</span></code> will print device name</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Resize loop device: <code class="docutils literal"><span class="pre">losetup</span> <span class="pre">-c</span> <span class="pre">loopdev</span></code></p>
+</li>
+</ul>
 </div>
 <div class="section" id="disk-performance">
 <h2>Disk Performance<a class="headerlink" href="#disk-performance" title="Permalink to this headline">¶</a></h2>
@@ -982,10 +1011,16 @@ Block device           253:0
 <div class="highlight-python"><div class="highlight"><pre>dd if=/dev/zero of=testfile bs=1M count=512 conv=fdatasync
 </pre></div>
 </div>
-<table class="docutils footnote" frame="void" id="id2" rules="none">
+<table class="docutils footnote" frame="void" id="id3" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Logical_volume_management">http://en.wikipedia.org/wiki/Logical_volume_management</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Loop_device">http://en.wikipedia.org/wiki/Loop_device</a></td></tr>
 </tbody>
 </table>
 </div>

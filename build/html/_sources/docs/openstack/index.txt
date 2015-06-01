@@ -24,7 +24,8 @@ Horizon
 
     - PTL: Gabriel Hurley (Nebula)
     - OpenStack web dashboard service
-
+    - horizon can't detect how big volume group is
+      
 
 Dependency
 ----------
