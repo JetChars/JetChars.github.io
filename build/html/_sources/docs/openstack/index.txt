@@ -38,7 +38,7 @@ Congiure file
 
 - **/opt/stack/horizon/openstack_dashboard/settings.py**
     - ``SESSION_TIMEOUT`` make this val bigger, no need enter password frequently.
-- **/opt/stack/horizon/openstack_dashboard/local_settings**
+- **/opt/stack/horizon/openstack_dashboard/local/local_settings**
     - ``TIME_ZONE`` change defaut time_zone *UTC* to *Asia/Shanghai*
 
 
@@ -101,6 +101,12 @@ Terminologies
 | **volume type** -- a type or label can be selected at vol creation time, maps to a set of capabilities of the storage back-end driver to be used for this vol
 | **sheepdog** -- opensourcs project, developed by NTT, design for vm's storage.
 |
+
+
+Resources
+=========
+
+`OpenStack useage statistics <http://superuser.openstack.org/articles/openstack-users-share-how-their-deployments-stack-up>`_
 
 
 .. [#] https://wiki.openstack.org/wiki/Heat

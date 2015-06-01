@@ -2,6 +2,100 @@
 Linux Disk
 ==========
 
+Mount
+=====
+
+.. sidebar:: Note
+
+    **mount.ntfs**
+
+    ubuntu built-in NTFS driver, rhel/centos/fedora user need download ``fuse-ntfs``::
+
+        mount.ntfs /dev/sdd /mnt
+
+    **fuser**
+
+    compare to lsof, fuser can check which processe use folder or file exactly
+
+    - ``-v`` show more detail
+    - ``-u`` display user IDs
+    - ``-l`` show support signal list
+    - ``-k -SIGNAL`` send signal to all processes use this file
+
+    ===== =========
+    flag  meaning
+    ===== =========
+    c     as current folder
+    e     as executable object
+    r     as root
+    s     as shared lib
+    ===== =========
+
+
+Mount a device
+--------------
+
+::
+
+    mount [-t fstype] [-o mount_option] device mountpoint
+
+
+| **Mount Options** -- seperate by comma
+|
+
+======= ======================
+option  description
+======= ======================
+ro      readonly
+rw      read and write
+remount mount -o remount,ro /dev/sdb1 /mnt/
+sync    no use memcache
+async   default option, use memcache
+atime   default option, record access time
+noatime not record access time
+acl     enable acl, must enabled if use acl
+loop    mount iso file
+======= ======================
+
+
+
+.. cede-block:: bash
+
+    mount  # show mount info
+    mkdir /mnt; mke2fs /dev/sda1  # create mountpoint & format filesystem before mount
+    mount /dev/sda1 /mnt  # mount sda1 to /mnt
+
+
+Unmount a device
+----------------
+
+::
+
+    umount testlvm/ -f
+    umount: /root/testlvm: target is busy.
+            (In some cases useful info about processes that use
+             the device is found by lsof(8) or fuser(1))
+
+    fuser -m testlvm/
+    /root/testlvm:       24572c
+
+    ps aux | grep 24572
+    root      24572  0.0  0.0 117056  3924 pts/0    S+   May28   0:01 -bash
+    root     210760  0.0  0.0 112644   960 pts/41   S+   09:44   0:00 grep --color=auto 24572c
+
+    kill -9 24572
+    umount testlvm/    # umount object can be device or mount point
+
+
+Auto Mount
+----------
+
+- configure file ``/etc/fstab`` file system table::
+
+    mount -a  # take effect fstab
+
+
+
 
 LVM -- Logical volume management
 ================================
@@ -54,7 +148,8 @@ Management
 .. code-block:: bash
     :linenos:
 
-    lvextend -L +400M /dev/vg0/lv0 
+    # lvextend -L 1000M /dev/vg0/lv0    # extend to 1G
+    lvextend -L +400M /dev/vg0/lv0     # extend 400M
     resize2fs /mnt
 
 - Reduce Logic Volume: ``umount`` --> ``e2fsck`` --> ``resize2fs`` --> ``lvreduce``
@@ -81,6 +176,7 @@ Management
 .. code-block:: bash
     :linenos:
 
+    # pvmove /dev/sda6:1-20 /dev/sda7   # will on move pe block 1-20 to sda7
     pvmove /dev/sda6   #move PE to out of sda6(PV)
     vgreduce vg0 /dev/sda6   #reduce one or more unused PV
     pvremove /dev/sda6

@@ -103,4 +103,10 @@ Terminologies
 |
 
 
+Resources
+=========
+
+`OpenStack useage statistics <http://superuser.openstack.org/articles/openstack-users-share-how-their-deployments-stack-up>`_
+
+
 .. [#] https://wiki.openstack.org/wiki/Heat

@@ -94,7 +94,6 @@
 <li class="toctree-l3"><a class="reference internal" href="../devstack_quickstart/index.html#multi-host">Multi Host</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../devstack_quickstart/index.html#log">Log</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../devstack_quickstart/index.html#neutron">Neutron</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../devstack_quickstart/index.html#congiure-file">Congiure file</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../devstack_quickstart/index.html#network-node">Network Node</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../devstack_quickstart/index.html#compute-nodes">Compute Nodes</a></li>
 </ul>
@@ -132,8 +131,24 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#heat">Heat</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#horizon">Horizon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#horizon">Horizon</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#dependency">Dependency</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#congiure-file">Congiure file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#refresh-horizon">Refresh horizon</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#id3">Cinder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#architecture">Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#components">Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#storage-backend">Storage backend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#work-flow">work flow</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../openstack/index.html#create-cinder-volume">create cinder volume</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#terminologies">Terminologies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#resources">Resources</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../kvm_optimization/index.html">KVM Optimization</a><ul>
@@ -215,6 +230,12 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../vim/index.html">Vim - My Favourite Editor</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../vim/index.html#commnd-mode">Commnd Mode</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../vim/index.html#move">Move</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../vim/index.html#ex-mode">Ex Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vim/index.html#set">Set</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../vim/index.html#fisa-vim-config-popular-vim-config-file">fisa-vim-config &#8211; popular vim config file</a></li>
 </ul>
 </li>
@@ -223,6 +244,12 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Linux Disk</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#mount">Mount</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mount-a-device">Mount a device</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#unmount-a-device">Unmount a device</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#auto-mount">Auto Mount</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#lvm-logical-volume-management">LVM &#8211; Logical volume management</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#management">Management</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#check-lvm-infos">Check lvm infos</a></li>
@@ -321,7 +348,10 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../md/index.html">MarkDown (md)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../svg/index.html">Scalable Vector Graphics (SVG)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../svg/index.html#inkscape">InkScape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../svg/index.html#inkscape">InkScape</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../svg/index.html#shortcut-keys">Shortcut keys</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../svg/index.html#gimp">GIMP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../svg/index.html#resources">Resources</a></li>
 </ul>
@@ -371,6 +401,129 @@
             
   <div class="section" id="linux-disk">
 <h1>Linux Disk<a class="headerlink" href="#linux-disk" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="mount">
+<h2>Mount<a class="headerlink" href="#mount" title="Permalink to this headline">¶</a></h2>
+<div class="sidebar">
+<p class="first sidebar-title">Note</p>
+<p><strong>mount.ntfs</strong></p>
+<p>ubuntu built-in NTFS driver, rhel/centos/fedora user need download <code class="docutils literal"><span class="pre">fuse-ntfs</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">mount</span><span class="o">.</span><span class="n">ntfs</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sdd</span> <span class="o">/</span><span class="n">mnt</span>
+</pre></div>
+</div>
+<p><strong>fuser</strong></p>
+<p>compare to lsof, fuser can check which processe use folder or file exactly</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">-v</span></code> show more detail</li>
+<li><code class="docutils literal"><span class="pre">-u</span></code> display user IDs</li>
+<li><code class="docutils literal"><span class="pre">-l</span></code> show support signal list</li>
+<li><code class="docutils literal"><span class="pre">-k</span> <span class="pre">-SIGNAL</span></code> send signal to all processes use this file</li>
+</ul>
+<table border="1" class="last docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">flag</th>
+<th class="head">meaning</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>c</td>
+<td>as current folder</td>
+</tr>
+<tr class="row-odd"><td>e</td>
+<td>as executable object</td>
+</tr>
+<tr class="row-even"><td>r</td>
+<td>as root</td>
+</tr>
+<tr class="row-odd"><td>s</td>
+<td>as shared lib</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="mount-a-device">
+<h3>Mount a device<a class="headerlink" href="#mount-a-device" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre>mount [-t fstype] [-o mount_option] device mountpoint
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><strong>Mount Options</strong> &#8211; seperate by comma</div>
+<div class="line"><br /></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="83%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">option</th>
+<th class="head">description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>ro</td>
+<td>readonly</td>
+</tr>
+<tr class="row-odd"><td>rw</td>
+<td>read and write</td>
+</tr>
+<tr class="row-even"><td>remount</td>
+<td>mount -o remount,ro /dev/sdb1 /mnt/</td>
+</tr>
+<tr class="row-odd"><td>sync</td>
+<td>no use memcache</td>
+</tr>
+<tr class="row-even"><td>async</td>
+<td>default option, use memcache</td>
+</tr>
+<tr class="row-odd"><td>atime</td>
+<td>default option, record access time</td>
+</tr>
+<tr class="row-even"><td>noatime</td>
+<td>not record access time</td>
+</tr>
+<tr class="row-odd"><td>acl</td>
+<td>enable acl, must enabled if use acl</td>
+</tr>
+<tr class="row-even"><td>loop</td>
+<td>mount iso file</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="unmount-a-device">
+<h3>Unmount a device<a class="headerlink" href="#unmount-a-device" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre>umount testlvm/ -f
+umount: /root/testlvm: target is busy.
+        (In some cases useful info about processes that use
+         the device is found by lsof(8) or fuser(1))
+
+fuser -m testlvm/
+/root/testlvm:       24572c
+
+ps aux | grep 24572
+root      24572  0.0  0.0 117056  3924 pts/0    S+   May28   0:01 -bash
+root     210760  0.0  0.0 112644   960 pts/41   S+   09:44   0:00 grep --color=auto 24572c
+
+kill -9 24572
+umount testlvm/    # umount object can be device or mount point
+</pre></div>
+</div>
+</div>
+<div class="section" id="auto-mount">
+<h3>Auto Mount<a class="headerlink" href="#auto-mount" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">configure file <code class="docutils literal"><span class="pre">/etc/fstab</span></code> file system table:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">mount</span> <span class="o">-</span><span class="n">a</span>  <span class="c"># take effect fstab</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
 <div class="section" id="lvm-logical-volume-management">
 <h2>LVM &#8211; Logical volume management<a class="headerlink" href="#lvm-logical-volume-management" title="Permalink to this headline">¶</a></h2>
 <div class="sidebar">
@@ -419,7 +572,9 @@ pvremove /dev/sda5 dev/sda6
 <li>Expand Logic Volume: <code class="docutils literal"><span class="pre">lvextend</span></code> &#8211;&gt; <code class="docutils literal"><span class="pre">resize2fs</span></code></li>
 </ul>
 <div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre>lvextend -L +400M /dev/vg0/lv0
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># lvextend -L 1000M /dev/vg0/lv0    # extend to 1G</span>
+lvextend -L +400M /dev/vg0/lv0     <span class="c"># extend 400M</span>
 resize2fs /mnt
 </pre></div>
 </td></tr></table></div>
@@ -448,7 +603,9 @@ vgextend vg0 /dev/sda8
 </ul>
 <div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="highlight"><pre>pvmove /dev/sda6   <span class="c">#move PE to out of sda6(PV)</span>
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># pvmove /dev/sda6:1-20 /dev/sda7   # will on move pe block 1-20 to sda7</span>
+pvmove /dev/sda6   <span class="c">#move PE to out of sda6(PV)</span>
 vgreduce vg0 /dev/sda6   <span class="c">#reduce one or more unused PV</span>
 pvremove /dev/sda6
 </pre></div>

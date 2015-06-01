@@ -71,6 +71,7 @@ Terminologies
 | **HBA** -- Host Bus Adapter, HBA card opposite to RAID card
 | **IMGO** --In My Humble Opinion
 | **volume** -- detachable block storage device
+| **mesos** -- distributed system **for running and building** other distributed system(spark hadoop chronos marathon K8s)
 
 |
 |
