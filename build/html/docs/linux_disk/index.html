@@ -244,6 +244,12 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Linux Disk</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#filesystem">Filesystem</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#hard-drive-for-different-filesystem">Hard Drive &#8211; For different filesystem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#kernnel-vfs">Kernnel &#8211; VFS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#devices">Devices</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#mount">Mount</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#mount-a-device">Mount a device</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#unmount-a-device">Unmount a device</a></li>
@@ -401,6 +407,113 @@
             
   <div class="section" id="linux-disk">
 <h1>Linux Disk<a class="headerlink" href="#linux-disk" title="Permalink to this headline">¶</a></h1>
+<div class="sidebar">
+<p class="first sidebar-title">e2fsprogs</p>
+<p>e2fs programs, toolkits for maintain ext2/3/4 filesystem</p>
+<ul class="simple">
+<li><strong>mke2fs</strong> - create filesystem</li>
+</ul>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="28%" />
+<col width="57%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">option</th>
+<th class="head">description</th>
+<th class="head">examples</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>-t</td>
+<td>designate filesys type</td>
+<td>mke2fs -t ext4 /dev/sda3</td>
+</tr>
+<tr class="row-odd"><td>-b blocksize</td>
+<td>designate block size</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>-c</td>
+<td>check when create filesys</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>-L label</td>
+<td>designate volume label</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>-j</td>
+<td>create journal system</td>
+<td>ext2 not contain jornal ext3/4 built-in journal sys</td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><strong>mkfs.ext{2,3,4}</strong> &#8211; quickly make a filesystem</li>
+<li><strong>dumpe2fs</strong> &#8211; check filesystem info</li>
+<li><strong>e2label</strong> &#8211; tag a device, for partition management</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre>e2lable /dev/sdb1 wenj
+</pre></div>
+</div>
+<ul class="last simple">
+<li><strong>e2fsck</strong> &#8211; check filesystem&#8217;s integrity</li>
+<li><strong>resize2fs</strong> &#8211; autoresize filesystem size</li>
+<li><strong>tune2fs</strong> &#8211; change filesystem related parameters</li>
+<li><strong>debugfs</strong> &#8211; debug a filesystem, can check or change it&#8217;s status</li>
+</ul>
+</div>
+<div class="section" id="filesystem">
+<h2>Filesystem<a class="headerlink" href="#filesystem" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="hard-drive-for-different-filesystem">
+<h3>Hard Drive &#8211; For different filesystem<a class="headerlink" href="#hard-drive-for-different-filesystem" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre>ls /lib/modules/3.10.0-123.el7.x86_64/kernel/fs/
+
+
+
+
+
+taken
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="32%" />
+<col width="68%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">type</th>
+<th class="head">items</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>local</td>
+<td>ext2/3/4</td>
+</tr>
+<tr class="row-odd"><td>network</td>
+<td>sambafs/cifs/nfs/sshfs/gmailfs</td>
+</tr>
+<tr class="row-even"><td>cluster</td>
+<td>gfs gfs2 ocfs</td>
+</tr>
+<tr class="row-odd"><td>distributed</td>
+<td>HDFS mfs</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="kernnel-vfs">
+<h3>Kernnel &#8211; VFS<a class="headerlink" href="#kernnel-vfs" title="Permalink to this headline">¶</a></h3>
+<p>Short for <strong>Virtual File System</strong>, or <strong>Virtual Filesystem Switch</strong>, maintain tree shaped linux filesystem
+- It&#8217;s a glue level between storage media and filesystem, let system calls like <code class="docutils literal"><span class="pre">open()</span></code> <code class="docutils literal"><span class="pre">read()</span></code> <code class="docutils literal"><span class="pre">write()</span></code> don&#8217;t need to know to realize it in lower level
+- Sometimes short <strong>Stackable Filesystem</strong> , cause it can combine different filesystem seamlessly
+- Use command like <code class="docutils literal"><span class="pre">mount</span></code> to manage filesystem</p>
+</div>
+<div class="section" id="devices">
+<h3>Devices<a class="headerlink" href="#devices" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal"><span class="pre">SAN(Storage</span> <span class="pre">Area</span> <span class="pre">Network)</span></code> <code class="docutils literal"><span class="pre">RAID/HBA</span></code>  <code class="docutils literal"><span class="pre">SATA</span></code> <code class="docutils literal"><span class="pre">SCSI</span></code> <code class="docutils literal"><span class="pre">SAS</span></code></p>
+</div>
+</div>
 <div class="section" id="mount">
 <h2>Mount<a class="headerlink" href="#mount" title="Permalink to this headline">¶</a></h2>
 <div class="sidebar">

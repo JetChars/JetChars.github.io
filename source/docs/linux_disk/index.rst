@@ -2,6 +2,83 @@
 Linux Disk
 ==========
 
+
+
+.. sidebar:: e2fsprogs
+  
+    e2fs programs, toolkits for maintain ext2/3/4 filesystem
+        
+    - **mke2fs** - create filesystem
+    
+    ============= ========================= ========================
+    option        description               examples
+    ============= ========================= ========================
+    -t            designate filesys type    mke2fs -t ext4 /dev/sda3
+    -b blocksize  designate block size
+    -c            check when create filesys
+    -L label      designate volume label
+    -j            create journal system     ext2 not contain jornal ext3/4 built-in journal sys
+    ============= ========================= ========================
+    
+    
+    - **mkfs.ext{2,3,4}** -- quickly make a filesystem
+    
+    - **dumpe2fs** -- check filesystem info
+    
+    - **e2label** -- tag a device, for partition management
+    
+    ::
+    
+        e2lable /dev/sdb1 wenj
+    
+    - **e2fsck** -- check filesystem's integrity
+    
+    - **resize2fs** -- autoresize filesystem size
+    
+    - **tune2fs** -- change filesystem related parameters
+    
+    - **debugfs** -- debug a filesystem, can check or change it's status
+
+
+Filesystem
+==========
+
+Hard Drive -- For different filesystem
+--------------------------------------
+
+::
+
+    ls /lib/modules/3.10.0-123.el7.x86_64/kernel/fs/
+
+
+
+
+
+    taken
+
+============== =======================
+type           items
+============== =======================
+local          ext2/3/4
+network        sambafs/cifs/nfs/sshfs/gmailfs
+cluster        gfs gfs2 ocfs
+distributed    HDFS mfs
+============== =======================
+
+Kernnel -- VFS
+--------------
+
+Short for **Virtual File System**, or **Virtual Filesystem Switch**, maintain tree shaped linux filesystem
+- It's a glue level between storage media and filesystem, let system calls like ``open()`` ``read()`` ``write()`` don't need to know to realize it in lower level
+- Sometimes short **Stackable Filesystem** , cause it can combine different filesystem seamlessly
+- Use command like ``mount`` to manage filesystem
+
+Devices
+-------
+  
+``SAN(Storage Area Network)`` ``RAID/HBA``  ``SATA`` ``SCSI`` ``SAS``
+
+
 Mount
 =====
 
