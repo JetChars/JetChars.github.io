@@ -313,9 +313,10 @@ Configure file ``/etc/mysql/my.cnf``--> ``/etc/my.cnf`` ``~/.my.cnf``
 - Restart MySQL
     - ``sudo /etc/init.d/mysql restart``
     - ``sudo pkill -1 mysqld``
-- Check mysql status::
+- Check mysql status & variables::
 
     mysql -uroot -ppassword -e 'show status;'
+    mysql -uroot -ppassword -e 'show variables;'
 
 | username & password no need seperate from argument u & p)
 | if password not concatenated with -p , will be recognized as database nodename
@@ -323,7 +324,7 @@ Configure file ``/etc/mysql/my.cnf``--> ``/etc/my.cnf`` ``~/.my.cnf``
 
 - Change max connction number::
 
-    mysql -uroot -ppassword -e 'set GLOBAL max_connections=40000;'
+    mysql -uroot -ppassword -e 'set global max_connections=40000;'
 
 | can solve issue 1040 (too many connections).
 | if enable too much service in control node, should do it in post-config phase!

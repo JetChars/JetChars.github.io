@@ -245,11 +245,11 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux_disk/index.html">Linux Disk</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#filesystem">Filesystem</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#hard-drive-for-different-filesystem">Hard Drive &#8211; For different filesystem</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#kernnel-vfs">Kernnel &#8211; VFS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#driver">Driver</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../linux_disk/index.html#mke2fs">mke2fs</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#kernnel-vfs">Kernnel &#8211; VFS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#devices">Devices</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../linux_disk/index.html#storage-cards">Storage Cards</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../linux_disk/index.html#serial-devices">Serial Devices</a></li>
@@ -807,8 +807,9 @@ $ sudo apt-get install rabbit-server
 </dd>
 </dl>
 </li>
-<li><p class="first">Check mysql status:</p>
+<li><p class="first">Check mysql status &amp; variables:</p>
 <div class="highlight-python"><div class="highlight"><pre>mysql -uroot -ppassword -e &#39;show status;&#39;
+mysql -uroot -ppassword -e &#39;show variables;&#39;
 </pre></div>
 </div>
 </li>
@@ -820,7 +821,7 @@ $ sudo apt-get install rabbit-server
 </div>
 <ul>
 <li><p class="first">Change max connction number:</p>
-<div class="highlight-python"><div class="highlight"><pre>mysql -uroot -ppassword -e &#39;set GLOBAL max_connections=40000;&#39;
+<div class="highlight-python"><div class="highlight"><pre>mysql -uroot -ppassword -e &#39;set global max_connections=40000;&#39;
 </pre></div>
 </div>
 </li>

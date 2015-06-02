@@ -245,11 +245,11 @@
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Linux Disk</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#filesystem">Filesystem</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#hard-drive-for-different-filesystem">Hard Drive &#8211; For different filesystem</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#kernnel-vfs">Kernnel &#8211; VFS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#driver">Driver</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#mke2fs">mke2fs</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#kernnel-vfs">Kernnel &#8211; VFS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#devices">Devices</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#storage-cards">Storage Cards</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#serial-devices">Serial Devices</a></li>
@@ -267,6 +267,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#lvm-logical-volume-management">LVM &#8211; Logical volume management</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#management">Management</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#check-lvm-infos">Check lvm infos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#issues">Issues</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#loop-device">Loop Device</a></li>
@@ -431,8 +432,17 @@
 </div>
 <div class="section" id="filesystem">
 <h2>Filesystem<a class="headerlink" href="#filesystem" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="hard-drive-for-different-filesystem">
-<h3>Hard Drive &#8211; For different filesystem<a class="headerlink" href="#hard-drive-for-different-filesystem" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="kernnel-vfs">
+<h3>Kernnel &#8211; VFS<a class="headerlink" href="#kernnel-vfs" title="Permalink to this headline">¶</a></h3>
+<p>Short for <strong>Virtual File System</strong>, or <strong>Virtual Filesystem Switch</strong>, maintain tree shaped linux filesystem</p>
+<ul class="simple">
+<li>It&#8217;s a glue level between storage media and filesystem, let system calls like <code class="docutils literal"><span class="pre">open()</span></code> <code class="docutils literal"><span class="pre">read()</span></code> <code class="docutils literal"><span class="pre">write()</span></code> don&#8217;t need to know to realize it in lower level</li>
+<li>Sometimes short for <strong>Stackable Filesystem</strong> , because it can combine different filesystem seamlessly</li>
+<li>Use command like <code class="docutils literal"><span class="pre">mount</span></code> to manage filesystem</li>
+</ul>
+</div>
+<div class="section" id="driver">
+<h3>Driver<a class="headerlink" href="#driver" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python"><div class="highlight"><pre>ls /lib/modules/3.10.0-123.el7.x86_64/kernel/fs/
 binfmt_misc.ko  dlm      fuse   mbcache.ko  pstore
 btrfs           exofs    gfs2   nfs         squashfs
@@ -466,12 +476,6 @@ cramfs          fscache  lockd  nls
 </tr>
 </tbody>
 </table>
-<div class="line-block">
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-</div>
 <div class="section" id="mke2fs">
 <h4>mke2fs<a class="headerlink" href="#mke2fs" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
@@ -510,15 +514,6 @@ cramfs          fscache  lockd  nls
 </tbody>
 </table>
 </div>
-</div>
-<div class="section" id="kernnel-vfs">
-<h3>Kernnel &#8211; VFS<a class="headerlink" href="#kernnel-vfs" title="Permalink to this headline">¶</a></h3>
-<p>Short for <strong>Virtual File System</strong>, or <strong>Virtual Filesystem Switch</strong>, maintain tree shaped linux filesystem</p>
-<ul class="simple">
-<li>It&#8217;s a glue level between storage media and filesystem, let system calls like <code class="docutils literal"><span class="pre">open()</span></code> <code class="docutils literal"><span class="pre">read()</span></code> <code class="docutils literal"><span class="pre">write()</span></code> don&#8217;t need to know to realize it in lower level</li>
-<li>Sometimes short for <strong>Stackable Filesystem</strong> , because it can combine different filesystem seamlessly</li>
-<li>Use command like <code class="docutils literal"><span class="pre">mount</span></code> to manage filesystem</li>
-</ul>
 </div>
 <div class="section" id="devices">
 <h3>Devices<a class="headerlink" href="#devices" title="Permalink to this headline">¶</a></h3>
@@ -949,6 +944,28 @@ Read ahead sectors     auto
 Block device           253:0
 </pre></div>
 </td></tr></table></div>
+</div>
+<div class="section" id="issues">
+<h3>Issues<a class="headerlink" href="#issues" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>remove vg after pv been removed</li>
+</ol>
+<div class="highlight-python"><div class="highlight"><pre>$sudo vgremove r16s03-default
+Incorrect metadata area header checksum on /dev/loop1 at offset 4096
+vg_remove_mdas r16s03-default failed
+
+$ sudo vgremove r16s03-default --force
+/dev/loop1: lseek 4096 failed: Invalid argument
+vg_remove_mdas r16s03-default failed
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><strong>Solution :</strong></div>
+<div class="line"><br /></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>sudo pvremove /dev/loop1 -ff
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="loop-device">

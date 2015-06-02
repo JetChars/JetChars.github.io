@@ -148,6 +148,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#terminologies">Terminologies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#resources">Resources</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../kvm_optimization/index.html">KVM Optimization</a><ul>
@@ -243,13 +244,32 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux_disk/index.html">Linux Disk</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#mount">Mount</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#filesystem">Filesystem</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#kernnel-vfs">Kernnel &#8211; VFS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#driver">Driver</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../linux_disk/index.html#mke2fs">mke2fs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#devices">Devices</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../linux_disk/index.html#storage-cards">Storage Cards</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../linux_disk/index.html#serial-devices">Serial Devices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../linux_disk/index.html#network-storage">Network Storage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#mount">Mount</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#mount-a-device">Mount a device</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#unmount-a-device">Unmount a device</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#auto-mount">Auto Mount</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#lvm-logical-volume-management">LVM &#8211; Logical volume management</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#management">Management</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#check-lvm-infos">Check lvm infos</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#raid">RAID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#loop-device">Loop Device</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#disk-performance">Disk Performance</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#dd-convert-and-copy-a-file">dd &#8211; convert and copy a file</a></li>
 </ul>
@@ -264,10 +284,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../linux_doc/index.html#pandoc-universal-document-converter">Pandoc - Universal document converter</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../linux_network/index.html">Network Tools</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../linux_network/index.html#django-web-framework">Django &#8211; web framework</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_network/index.html#open-vswitch">Open vSwitch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_network/index.html#home-made-proxy-setting-tool">Home made proxy setting tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux_netool/index.html">Network Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../linux_netool/index.html#django-web-framework">Django &#8211; web framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_netool/index.html#open-vswitch">Open vSwitch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_netool/index.html#home-made-proxy-setting-tool">Home made proxy setting tool</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux_regex/index.html">String Processing Tools</a><ul>
@@ -445,7 +465,7 @@
 <p class="first sidebar-title">Note</p>
 <ul class="last simple">
 <li>png file not support distortion, so resize it only need to change width or height</li>
-<li><code class="docutils literal"><span class="pre">align</span></code> can be <code class="docutils literal"><span class="pre">left</span></code> , `` right`` or <code class="docutils literal"><span class="pre">center</span></code></li>
+<li><code class="docutils literal"><span class="pre">align</span></code> can be <code class="docutils literal"><span class="pre">left</span></code> , <code class="docutils literal"><span class="pre">right</span></code> or <code class="docutils literal"><span class="pre">center</span></code></li>
 </ul>
 </div>
 <div class="highlight-rst"><div class="highlight"><pre><span class="p">..</span> <span class="ow">image</span><span class="p">::</span> images/rst.png

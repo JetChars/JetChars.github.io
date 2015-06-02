@@ -28,8 +28,18 @@ Linux Disk
 Filesystem
 ==========
 
-Hard Drive -- For different filesystem
---------------------------------------
+Kernnel -- VFS
+--------------
+
+Short for **Virtual File System**, or **Virtual Filesystem Switch**, maintain tree shaped linux filesystem
+
+- It's a glue level between storage media and filesystem, let system calls like ``open()`` ``read()`` ``write()`` don't need to know to realize it in lower level
+- Sometimes short for **Stackable Filesystem** , because it can combine different filesystem seamlessly
+- Use command like ``mount`` to manage filesystem
+
+
+Driver
+------
 
 ::
 
@@ -50,10 +60,6 @@ cluster        gfs gfs2 ocfs
 distributed    HDFS mfs
 ============== =======================
 
-|
-|
-|
-|
 
 mke2fs  
 ^^^^^^
@@ -70,15 +76,6 @@ option        description                  examples
  
 
 
-
-Kernnel -- VFS
---------------
-
-Short for **Virtual File System**, or **Virtual Filesystem Switch**, maintain tree shaped linux filesystem
-
-- It's a glue level between storage media and filesystem, let system calls like ``open()`` ``read()`` ``write()`` don't need to know to realize it in lower level
-- Sometimes short for **Stackable Filesystem** , because it can combine different filesystem seamlessly
-- Use command like ``mount`` to manage filesystem
 
 Devices
 -------
@@ -388,7 +385,29 @@ Check lvm infos
     Read ahead sectors     auto
     - currently set to     256
     Block device           253:0
-     
+ 
+Issues
+------
+
+1. remove vg after pv been removed
+
+::
+
+    $sudo vgremove r16s03-default
+    Incorrect metadata area header checksum on /dev/loop1 at offset 4096
+    vg_remove_mdas r16s03-default failed
+    
+    $ sudo vgremove r16s03-default --force
+    /dev/loop1: lseek 4096 failed: Invalid argument
+    vg_remove_mdas r16s03-default failed
+
+| **Solution :**
+|
+
+::
+
+    sudo pvremove /dev/loop1 -ff
+
 
 
 Loop Device

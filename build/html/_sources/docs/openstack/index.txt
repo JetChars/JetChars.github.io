@@ -101,6 +101,8 @@ Terminologies
 
 | **volume type** -- a type or label can be selected at vol creation time, maps to a set of capabilities of the storage back-end driver to be used for this vol
 | **sheepdog** -- opensourcs project, developed by NTT, design for vm's storage.
+| **fuel** -- auto deploy openstack enviroment
+| **murano**-- auto install openstack plugin
 |
 
 
