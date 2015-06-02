@@ -404,11 +404,16 @@ Configure file ``/etc/mysql/my.cnf``--> ``/etc/my.cnf`` ``~/.my.cnf``
 Apache
 ======
 
+.. sidebar:: Note
+
+    - **a2enmod**/**a2dismod** -- enable or disable an apache2 module
+    ``/etc/apache2/mods-available`` ``/etc/apache2/mods-enabled``
+
 1. Uninstall apache2
 ::
 
     sudo apt-get purge -y apache* libapache*
-    sudo rm -rf /etc/apache2 /usr/lib/apache2 /run/apache2
+    sudo rm -rf /etc/apache2 /usr/{lib,sbin}/apache2 /run/apache2
     sudo autoremove -y
     sudo autoclean -y
 

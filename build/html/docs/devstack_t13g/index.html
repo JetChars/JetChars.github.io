@@ -219,6 +219,22 @@
 </li>
 </ul>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../pxe/index.html">PXE &#8211; Preboot Execution Enviriment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pxe/index.html#dependency">Dependency</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../pxe/index.html#dhcp-server">DHCP-Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pxe/index.html#tftp-server">tftp-Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pxe/index.html#ftp-server">FTP-Server</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../pxe/index.html#anaconda">Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pxe/index.html#kickstart">kickstart</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../pxe/index.html#command-section">command section</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pxe/index.html#other-sections">other sections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pxe/index.html#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../screen/index.html">Screen - Full-screen window manager</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../screen/index.html#command-list">Command List</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../screen/index.html#commands-out-of-screen">Commands out of screen</a></li>
@@ -267,6 +283,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#lvm-logical-volume-management">LVM &#8211; Logical volume management</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#management">Management</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#check-lvm-infos">Check lvm infos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#issues">Issues</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#loop-device">Loop Device</a></li>
@@ -929,9 +946,16 @@ sudo chown mysql:mysql /var/tmp/mysql
 </div>
 <div class="section" id="apache">
 <h2>Apache<a class="headerlink" href="#apache" title="Permalink to this headline">¶</a></h2>
+<div class="sidebar">
+<p class="first sidebar-title">Note</p>
+<ul class="simple">
+<li><strong>a2enmod</strong>/<strong>a2dismod</strong> &#8211; enable or disable an apache2 module</li>
+</ul>
+<p class="last"><code class="docutils literal"><span class="pre">/etc/apache2/mods-available</span></code> <code class="docutils literal"><span class="pre">/etc/apache2/mods-enabled</span></code></p>
+</div>
 <p>1. Uninstall apache2</p>
 <div class="highlight-python"><div class="highlight"><pre>sudo apt-get purge -y apache* libapache*
-sudo rm -rf /etc/apache2 /usr/lib/apache2 /run/apache2
+sudo rm -rf /etc/apache2 /usr/{lib,sbin}/apache2 /run/apache2
 sudo autoremove -y
 sudo autoclean -y
 </pre></div>

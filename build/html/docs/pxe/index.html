@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Vim - My Favourite Editor &mdash; JetChars 0.1 documentation</title>
+  <title>PXE – Preboot Execution Enviriment &mdash; JetChars 0.1 documentation</title>
   
 
   
@@ -31,8 +31,8 @@
 
   
     <link rel="top" title="JetChars 0.1 documentation" href="../../index.html"/>
-        <link rel="next" title="Mac as Main OS" href="../mac/index.html"/>
-        <link rel="prev" title="Screen - Full-screen window manager" href="../screen/index.html"/> 
+        <link rel="next" title="Screen - Full-screen window manager" href="../screen/index.html"/>
+        <link rel="prev" title="HiBench - The Hadoop BenchMark Suit" href="../hadoop_hibench/index.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -219,18 +219,18 @@
 </li>
 </ul>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../pxe/index.html">PXE &#8211; Preboot Execution Enviriment</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../pxe/index.html#dependency">Dependency</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../pxe/index.html#dhcp-server">DHCP-Server</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../pxe/index.html#tftp-server">tftp-Server</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../pxe/index.html#ftp-server">FTP-Server</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">PXE &#8211; Preboot Execution Enviriment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#dependencies">Dependencies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dhcp-server">DHCP-Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tftp-server">tftp-Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ftp-server">FTP-Server</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../pxe/index.html#anaconda">Anaconda</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../pxe/index.html#kickstart">kickstart</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../pxe/index.html#command-section">command section</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../pxe/index.html#other-sections">other sections</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../pxe/index.html#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#anaconda">Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kickstart">kickstart</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#command-section">command section</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#other-sections">other sections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
 </ul>
 </li>
 </ul>
@@ -245,14 +245,14 @@
 <li class="toctree-l2"><a class="reference internal" href="../screen/index.html#configuration-files">Configuration Files</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Vim - My Favourite Editor</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#commnd-mode">Commnd Mode</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#move">Move</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vim/index.html">Vim - My Favourite Editor</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../vim/index.html#commnd-mode">Commnd Mode</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../vim/index.html#move">Move</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#ex-mode">Ex Mode</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#set">Set</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#fisa-vim-config-popular-vim-config-file">fisa-vim-config &#8211; popular vim config file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vim/index.html#ex-mode">Ex Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vim/index.html#set">Set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vim/index.html#fisa-vim-config-popular-vim-config-file">fisa-vim-config &#8211; popular vim config file</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../mac/index.html">Mac as Main OS</a><ul>
@@ -417,11 +417,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
-    <li>Vim - My Favourite Editor</li>
+    <li>PXE &#8211; Preboot Execution Enviriment</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../../_sources/docs/vim/index.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/docs/pxe/index.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -430,52 +430,115 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="vim-my-favourite-editor">
-<h1>Vim - My Favourite Editor<a class="headerlink" href="#vim-my-favourite-editor" title="Permalink to this headline">¶</a></h1>
-<img src="../../_images/vi-vim-cheat-sheet.svg" /><ul class="simple">
-<li>save file with sudo privilege: <code class="docutils literal"><span class="pre">:w</span> <span class="pre">!sudo</span> <span class="pre">tee</span> <span class="pre">%</span></code></li>
-</ul>
-<div class="section" id="commnd-mode">
-<h2>Commnd Mode<a class="headerlink" href="#commnd-mode" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="move">
-<h3>Move<a class="headerlink" href="#move" title="Permalink to this headline">¶</a></h3>
+  <div class="section" id="pxe-preboot-execution-enviriment">
+<h1>PXE &#8211; Preboot Execution Enviriment<a class="headerlink" href="#pxe-preboot-execution-enviriment" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="dhcp-server">
+<h3>DHCP-Server<a class="headerlink" href="#dhcp-server" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre>sudo apt-get install dhcp3-server
+sudo vi /etc/dhcp3/dhcpd.conf
+<span class="c"># next-server tftp-server&#39;s-IP;</span>
+<span class="c"># filename &quot;pxelinux.0&quot;;</span>
+sudo /etc/init.d/dhcpd restart
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="tftp-server">
+<h3>tftp-Server<a class="headerlink" href="#tftp-server" title="Permalink to this headline">¶</a></h3>
+<div class="sidebar">
+<p class="first sidebar-title">Note</p>
+<p class="last">most pxe files could getting by <code class="docutils literal"><span class="pre">yum</span> <span class="pre">install</span> <span class="pre">syslinux</span></code></p>
+</div>
+<p>This service is used for launch anaconda</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo apt-get install tftpd-hpa
+</pre></div>
+</div>
+<p>vmlinuz &amp; initrd.img from installer&#8217;s iso image.</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="24%" />
-<col width="76%" />
+<col width="37%" />
+<col width="63%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head">key</th>
+<tr class="row-odd"><th class="head">filename</th>
 <th class="head">description</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>j/k/h/l</td>
-<td>left/right/up/down</td>
+<tr class="row-even"><td>pxelinux.0</td>
+<td>startup management programs</td>
 </tr>
-<tr class="row-odd"><td>gg/G/nG</td>
-<td>top/button/n row of file</td>
+<tr class="row-odd"><td>menu.c32/vesamenu.c32</td>
+<td>menu layouts, menu.c32 has darker color</td>
 </tr>
-<tr class="row-even"><td>H/M/L</td>
-<td>top/middle/button row of currnet screen</td>
+<tr class="row-even"><td>pxelinux.cfg/default</td>
+<td>menu items</td>
 </tr>
-<tr class="row-odd"><td>^$(){}</td>
-<td>line/paragraph/section&#8217;s start or end</td>
+<tr class="row-odd"><td>vmlinuz</td>
+<td>kernel file</td>
+</tr>
+<tr class="row-even"><td>initrd.img</td>
+<td>core modules</td>
 </tr>
 </tbody>
 </table>
+<div class="line-block">
+<div class="line"><strong>example</strong></div>
+<div class="line"><br /></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>TIMEOUT=600   # wait 600 x 0.1sec
+
+label CentOS 7 - Devstack &amp; hadoop
+MENU LABEL ^[wenjie]----Install CentOS 7 - testing
+   kernel vmlinuz_centos70
+   ipappend 2
+   append ks=ftp://192.168.164.2/centos70.cfg ksdevice=bootif initrd=initrd_centos70.img ramdisk_size=8192 nodmraid
+</pre></div>
 </div>
 </div>
-<div class="section" id="ex-mode">
-<h2>Ex Mode<a class="headerlink" href="#ex-mode" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="ftp-server">
+<h3>FTP-Server<a class="headerlink" href="#ftp-server" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre>sudo apt-get install vsftp
+</pre></div>
 </div>
-<div class="section" id="set">
-<h2>Set<a class="headerlink" href="#set" title="Permalink to this headline">¶</a></h2>
-<p>mostly stop a switch with <strong>no</strong> in front of it.</p>
+<ul>
+<li><p class="first">mount an iso installation image:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo vi /etc/fstab
+# /imagepath.iso /ftp_root/os/centos70 iso9660 defaults,loop 0 0
+mount -a   # take effect
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="anaconda">
+<h2>Anaconda<a class="headerlink" href="#anaconda" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://fedoraproject.org/wiki/Anaconda">Anaconda</a> is an python based OS installer, some module written w/ C.</p>
+<div class="line-block">
+<div class="line"><a class="reference external" href="https://fedorapeople.org/cgit/karsten/public_git/anaconda.git/">https://fedorapeople.org/cgit/karsten/public_git/anaconda.git/</a></div>
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="kickstart">
+<h2>kickstart<a class="headerlink" href="#kickstart" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://fedoraproject.org/wiki/Anaconda/Kickstart">kickstart(ks)</a> is an installation method/mechanisam</p>
+<div class="line-block">
+<div class="line"><a class="reference external" href="http://www.redhat.com/magazine/024oct06/features/kickstart/">official guide</a></div>
+<div class="line"><a class="reference external" href="http://github.com/rhinstaller/pykickstart">http://github.com/rhinstaller/pykickstart</a></div>
+<div class="line"><br /></div>
+</div>
+<div class="section" id="command-section">
+<h3>command section<a class="headerlink" href="#command-section" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="docutils">
 <colgroup>
-<col width="29%" />
-<col width="71%" />
+<col width="39%" />
+<col width="61%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">option</th>
@@ -483,23 +546,313 @@
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>paste/nopaste</td>
-<td>no auto indent for paste</td>
+<tr class="row-even"><td>install / upgrade</td>
+<td>chose one</td>
 </tr>
-<tr class="row-odd"><td>nu/nonu</td>
-<td>nu short for number, show line number</td>
+<tr class="row-odd"><td>text / graphical</td>
+<td>text mode install faster, but default is graphical</td>
 </tr>
-<tr class="row-even"><td>hlsearch</td>
-<td>high light search item</td>
+<tr class="row-even"><td>zerombr</td>
+<td>any disks whose formatting is unrecognized are initialized</td>
+</tr>
+<tr class="row-odd"><td>clearpart &#8211;drivers=sda &#8211;all</td>
+<td>clear partition table, change all into none will do nothing</td>
+</tr>
+<tr class="row-even"><td><dl class="first last docutils">
+<dt>part /dir &#8211;fstype=ext4 &#8211;size=500</dt>
+<dd>[&#8211;grow] [&#8211;ondisk=sda] [&#8211;asprimary]</dd>
+</dl>
+</td>
+<td>format filesystem, can <strong>grow</strong> from a small <strong>size</strong> like 1</td>
 </tr>
 </tbody>
 </table>
-<img src="../../_images/vi-vim-tutorial-1.svg" /><img src="../../_images/vi-vim-tutorial-2.svg" /><img src="../../_images/vi-vim-tutorial-3.svg" /><img src="../../_images/vi-vim-tutorial-4.svg" /><img src="../../_images/vi-vim-tutorial-5.svg" /><img src="../../_images/vi-vim-tutorial-6.svg" /><img src="../../_images/vi-vim-tutorial-7.svg" /></div>
-<div class="section" id="fisa-vim-config-popular-vim-config-file">
-<h2><a class="reference external" href="https://github.com/fisadev/fisa-vim-config.git">fisa-vim-config</a> &#8211; popular vim config file<a class="headerlink" href="#fisa-vim-config-popular-vim-config-file" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><strong>require module</strong> <code class="docutils literal"><span class="pre">vim_debug</span></code> <code class="docutils literal"><span class="pre">isort</span></code></li>
-</ul>
+</div>
+<div class="section" id="other-sections">
+<h3>other sections<a class="headerlink" href="#other-sections" title="Permalink to this headline">¶</a></h3>
+<p>start section w/ <code class="docutils literal"><span class="pre">%name</span></code> , end w/ <code class="docutils literal"><span class="pre">%end</span></code></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="79%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">name</th>
+<th class="head">description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>packages</td>
+<td>pkg-groups or pkgs, <code class="docutils literal"><span class="pre">yum</span> <span class="pre">grouplist</span></code></td>
+</tr>
+<tr class="row-odd"><td>pre/post</td>
+<td>before/after system installaion, not use &#8216;pre&#8217; by normal</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
+<div class="line-block">
+<div class="line"><strong>centos7</strong></div>
+<div class="line"><br /></div>
+</div>
+<div class="highlight-ks"><div class="highlight"><pre>##################################################
+install
+##################################################
+# start to install centos 7.0.1406
+##################################################
+
+# text installaion mode
+text
+
+#backup installation image url
+#url --url=http://linux-ftp.jf.intel.com/pub/mirrors/centos/7.0.1406/os/x86_64
+url --url=ftp://192.168.164.2/os/centos70
+lang en_US.UTF-8
+keyboard us
+network --device eth0 --bootproto dhcp --gateway 192.168.2.200 --nameserver 10.248.2.1
+
+#root passwd 123456
+rootpw --iscrypted $6$uicFbbbBsSB8hLTL$c18L0LZpPJCg76l4XG8vRK0dOt2KNBwvQz9RPjc4I/TBs.a/a6FgOOMsmFZOuiC386h.TtHSJFcjeZT9L1L0g1
+firewall --disabled
+selinux --disabled
+authconfig --enableshadow --enablemd5
+timezone --utc Asia/Shanghai
+bootloader --location=mbr
+
+#disk allocation
+################
+zerombr
+clearpart --all
+part biosboot --fstype=biosboot --size=1
+part /boot --fstype=ext4 --size=500 --ondisk=sda
+part / --fstype=ext4 --asprimary --grow --ondisk=sda
+
+
+
+##################################################
+%packages
+##################################################
+# install pkg-groups &amp; pkgs during installation
+##################################################
+
+# pkg groups
+############
+@base
+@console-internet
+@core
+@debugging
+@directory-client
+@hardware-monitoring
+@java-platform
+@large-systems
+@network-file-system-client
+@performance
+@perl-runtime
+@virtualization-client
+@virtualization-platform
+
+# pkgs
+######
+pax
+oddjob
+sgpio
+device-mapper-persistent-data
+samba-winbind
+certmonger
+pam_krb5
+krb5-workstation
+perl-DBD-SQLite
+%end
+
+
+##################################################
+%post
+##################################################
+# running scripts after installation
+##################################################
+
+# sync time with gateway
+########################
+cat &gt;&gt; /etc/ntp.conf &lt;&lt; EOF
+server 192.168.2.200
+EOF
+ntpdate 192.168.2.200
+
+# record configuration time
+echo Start configuration at `date +%Y_%m_%d--%H:%M` &gt;&gt; /root/time.txt
+
+
+# default hostname &amp; gateway &amp; dns-servers
+##########################################
+echo devstoop &gt; /etc/hostname
+cat &gt;&gt; /etc/sysconfig/network &lt;&lt; EOF
+HOSTNAME=devstoop
+DNS1=10.248.2.1
+DNS2=10.248.2.5
+DNS3=10.239.27.228
+EOF
+
+
+# adding proxies urls for each bash user
+########################################
+echo &#39;
+export GIT_PROXY_COMMAND=/usr/bin/git-proxy
+export proxyaddr=proxy-shz.intel.com
+export proxyport=911
+export http_proxy=&quot;http://$proxyaddr:$proxyport&quot;
+export https_proxy=&quot;https://$proxyaddr:$proxyport&quot;
+export ftp_proxy=&quot;ftp://$proxyaddr:$proxyport&quot;
+export socks_proxy=&quot;socks://$proxyaddr:$proxyport&quot;
+export no_proxy=&quot;localhost,*intel.com:911,192.168.0.0/16,10.0.0.0/8,127.0.0.0/8&quot;
+export HTTP_PROXY=$http_proxy
+export HTTPS_PROXY=$https_proxy
+export FTP_PROXY=$ftp_proxy
+export SOCKS_PROXY=$socks_proxy
+export NO_PROXY=$no_proxy
+&#39; &gt;&gt; /etc/bashrc
+
+cat &gt;&gt; /etc/bashrc &lt;&lt; EOF
+alias sls=&#39;screen -x&#39;
+EOF
+
+# git&#39;s proxy confs
+###################
+
+#script for git://
+cat &gt;&gt; /usr/bin/git-proxy &lt;&lt; EOF
+#!/bin/sh
+case $1 in
+    *.intel.com|192.168.*|127.0.*|localhost|10.*)
+        METHOD=&quot;-X connect&quot;
+    ;;
+    *)
+        METHOD=&quot;-X 5 -x proxy-shz.intel.com:1080&quot;
+    ;;
+esac
+/bin/nc.openbsd $METHOD $*
+EOF
+
+chmod +x /usr/bin/git-proxy
+
+cat &gt;&gt; /etc/gitconfig &lt;&lt; EOF
+[core]
+gitproxy=/usr/bin/git-proxy
+EOF
+
+# pip&#39;s conf
+############
+cat &gt;&gt; /etc/pip.conf &lt;&lt; EOF
+[global]
+default-timeout = 60
+respect-virtualenv = true
+build = /tmp/.pip/build
+download-cache = /tmp/.pip/cache
+index_url = https://pypi.gocept.com/simple/
+
+[install]
+use-mirrors = true
+mirrors = https://pypi.gocept.com
+EOF
+
+# yum&#39;s confs
+#############
+cat &gt;&gt; /etc/yum.conf &lt;&lt; EOF
+proxy=http://proxy-shz.intel.com:911
+exclude=kernel*
+EOF
+
+# disable gpgcheck
+sed -i s/gpgcheck=1/gpgcheck=0/g /etc/yum.conf
+
+# wget&#39;s
+########
+sed -i s/.yoyodyne.com:18023/-shz.intel.com:911/g /etc/wgetrc
+
+# hosts
+#######
+cat &gt;&gt; /etc/hosts &lt;&lt; EOF
+192.168.2.200 gw
+192.168.164.2 pxe
+192.168.11.166 wenjie
+EOF
+
+#############
+# other confs
+#############
+
+# add ssh keys
+##############
+mkdir -p /root/.ssh
+chmod 700 /root/.ssh
+cat &gt;&gt; /root/.ssh/authorized_keys &lt;&lt; EOF
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC9VSDVLkO0QAuS4AmRHgHrySnpCMD3/vf2boEKO7RDSoA0kuAeIijRuoxkO2HpoZ/RrUgJsohzumsmyDRfJC64HZo+mNRQ0WEfUg7hM4QOy+XrPafaghFmhfTcrSbCm65h6vzZ0OjIs8+h98Hjmb7NgrYsyO5LBh4NLVOXpD5VhbpC/AmgPXeUoAXQAI+8By3irfL8A9vGwBkV7bj044fDE7DFMOujA4uWfTxYrqZ/MGWs0KQtn5J5yMMhUZft/3LNxnhGbXIp6e4J8o+51TidABwXDUMg8w0G1wv1vQbbTJA9mrrGzK3T5h8fM0zEsdOkUKcv8VW5+GFdyBvpQee/ root@prime
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDlBX6kzdnvlic6DgQTiQZun6Cow0x5KMM3LleRoUSGNqkNY1581cYxTTn/bwdLjChyR/BTCa9IdAD0oGZ18C6hwao2SvHTDi61ceHLwVcXxzc441fYUx1e913tljWKKaNayMppsYIx92BAmw1/YlxjghXoR3A1vqTyAAZGqOLKu/Bbqt4jb2FPHZ1V4IQyeLB5JO55+NyxCebQkRloFCA4E5BNG+rF562O4VjfAZkOec8vmOjWMZCxH5L+f6oOX/JgV7rYnSZGuvEPnvYZCENWVUTPb0ddm7i8hf3AWUIKgqk63X+L2sHrQovSF9F1LHNbtGenMQI6h7Ph5D7qGFRR root@wenjie
+EOF
+chmod 644 /root/.ssh/authorized_keys
+chown root.root /root -R
+
+# add tab view for screen
+#########################
+cat &gt;&gt; /etc/screenrc &lt;&lt; EOF
+caption always &#39;%{=b cw}%-w%{=rb db}%&gt;%n %t%{-}%+w%{-b}%&lt; %{= kG}%-=%D %c%{-}&#39;
+shelltitle &#39;$ |bash&#39;
+EOF
+
+# unlimit normal users
+######################
+cat &gt;&gt; /etc/security/limits.conf &lt;&lt; EOF
+*                -       nproc           100000
+*                -       nofile          100000
+*                -       memlock         unlimited
+EOF
+
+
+##########################
+# add stack &amp; hadoop users
+##########################
+
+# add user stack with devstack
+##############################
+groupadd stack
+useradd -g stack -s /bin/bash -d /opt/stack -m stack
+echo &quot;stack ALL=(ALL) NOPASSWD: ALL&quot; &gt;&gt; /etc/sudoers
+passwd stack --stdin &lt;&lt; EOF
+123456
+EOF
+
+# add user hadoop with hadoop-2.6.0
+###################################
+groupadd hadoop
+useradd -g hadoop -s /bin/bash -d /home/hadoop -m hadoop
+echo &quot;hadoop ALL=(ALL) NOPASSWD: ALL&quot; &gt;&gt; /etc/sudoers
+passwd hadoop --stdin &lt;&lt; EOF
+123456
+EOF
+
+# script for changing hostname
+##############################
+echo &#39;#!/bin/bash
+hostname $1
+echo $1 &gt; /etc/hostname
+#echo &quot;127.0.0.1 $1&quot; &gt;&gt; /etc/hosts
+sed -i s/HOSTNAME=.*/HOSTNAME=$1/g /etc/sysconfig/network
+&#39; &gt; /root/changehost.sh
+chmod +x /root/changehost.sh
+
+##########################
+# record installation time
+##########################
+
+echo Finish configuration at `date +%Y_%m_%d--%H:%M` &gt;&gt; /root/time.txt
+
+%end
+
+reboot
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 
@@ -509,10 +862,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../mac/index.html" class="btn btn-neutral float-right" title="Mac as Main OS" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../screen/index.html" class="btn btn-neutral float-right" title="Screen - Full-screen window manager" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../screen/index.html" class="btn btn-neutral" title="Screen - Full-screen window manager" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../hadoop_hibench/index.html" class="btn btn-neutral" title="HiBench - The Hadoop BenchMark Suit" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

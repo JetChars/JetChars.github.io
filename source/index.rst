@@ -51,7 +51,7 @@ Linux Tools
     :maxdepth: 1
     :glob:
 
-    docs/anaconda/index
+    docs/pxe/index
     docs/screen/index
     docs/vim/index
     docs/mac/index
