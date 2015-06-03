@@ -147,7 +147,11 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#glance">Glance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#sahara">Sahara</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#neutron">Neutron</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#terminologies">Terminologies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#resources">Resources</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../kvm_optimization/index.html">KVM Optimization</a><ul>
@@ -181,7 +185,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="">Hadoop</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#unlimit-non-root-user-s-resources">Unlimit Non-root User&#8217;s Resources</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#crunch">crunch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#cdap">CDAP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">CDAP</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../hadoop_conf_tuning/index.html">Hadoop Configuration Tuning</a><ul>
@@ -218,6 +222,22 @@
 </li>
 </ul>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../pxe/index.html">PXE &#8211; Preboot Execution Enviriment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pxe/index.html#dependencies">Dependencies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../pxe/index.html#dhcp-server">DHCP-Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pxe/index.html#tftp-server">tftp-Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pxe/index.html#ftp-server">FTP-Server</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../pxe/index.html#anaconda">Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pxe/index.html#kickstart">kickstart</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../pxe/index.html#command-section">command section</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pxe/index.html#other-sections">other sections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pxe/index.html#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../screen/index.html">Screen - Full-screen window manager</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../screen/index.html#command-list">Command List</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../screen/index.html#commands-out-of-screen">Commands out of screen</a></li>
@@ -243,13 +263,33 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux_disk/index.html">Linux Disk</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#mount">Mount</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#filesystem">Filesystem</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#kernnel-vfs">Kernnel &#8211; VFS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#driver">Driver</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../linux_disk/index.html#mke2fs">mke2fs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#devices">Devices</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../linux_disk/index.html#storage-cards">Storage Cards</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../linux_disk/index.html#serial-devices">Serial Devices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../linux_disk/index.html#network-storage">Network Storage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#mount">Mount</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#mount-a-device">Mount a device</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#unmount-a-device">Unmount a device</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#auto-mount">Auto Mount</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#lvm-logical-volume-management">LVM &#8211; Logical volume management</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#management">Management</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#check-lvm-infos">Check lvm infos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#issues">Issues</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#raid">RAID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#loop-device">Loop Device</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#disk-performance">Disk Performance</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#dd-convert-and-copy-a-file">dd &#8211; convert and copy a file</a></li>
 </ul>
@@ -264,10 +304,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../linux_doc/index.html#pandoc-universal-document-converter">Pandoc - Universal document converter</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../linux_network/index.html">Network Tools</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../linux_network/index.html#django-web-framework">Django &#8211; web framework</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_network/index.html#open-vswitch">Open vSwitch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_network/index.html#home-made-proxy-setting-tool">Home made proxy setting tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux_netool/index.html">Network Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../linux_netool/index.html#django-web-framework">Django &#8211; web framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_netool/index.html#open-vswitch">Open vSwitch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_netool/index.html#home-made-proxy-setting-tool">Home made proxy setting tool</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux_regex/index.html">String Processing Tools</a><ul>
@@ -300,7 +340,11 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git &#8211; Extraordinary version contrl software</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../git/index.html#git-proxy-command">Git Proxy Command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../git/index.html#configuration">Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../git/index.html#git-config">git_config</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../git/index.html#git-proxy-command">Git Proxy Command</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../github/index.html">GitHub &#8211; Git repository hosting service</a><ul>
@@ -393,8 +437,9 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="hadoop">
-<h1>Hadoop<a class="headerlink" href="#hadoop" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="id1">
+<h1><a class="reference external" href="http://hadoop.apache.org">Hadoop</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="http://wiki.apache.org/hadoop/">wiki</a></p>
 <div class="section" id="unlimit-non-root-user-s-resources">
 <h2>Unlimit Non-root User&#8217;s Resources<a class="headerlink" href="#unlimit-non-root-user-s-resources" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-shell"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -414,8 +459,8 @@ sudo cat &gt;&gt; /etc/security/limits.conf <span class="s">&lt;&lt; EOF</span>
 <div class="section" id="crunch">
 <h2>crunch<a class="headerlink" href="#crunch" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="cdap">
-<h2>CDAP<a class="headerlink" href="#cdap" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h2><a class="reference external" href="http://cdap.io">CDAP</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 

@@ -1,3 +1,6 @@
+.. image:: images/devstack.png
+    :align: right
+
 ===============================================================================================
 OpenStack installation with `DevStack <http://git.openstack.org/cgit/openstack-dev/devstack/>`_
 ===============================================================================================

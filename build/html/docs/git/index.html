@@ -94,7 +94,6 @@
 <li class="toctree-l3"><a class="reference internal" href="../devstack_quickstart/index.html#multi-host">Multi Host</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../devstack_quickstart/index.html#log">Log</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../devstack_quickstart/index.html#neutron">Neutron</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../devstack_quickstart/index.html#congiure-file">Congiure file</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../devstack_quickstart/index.html#network-node">Network Node</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../devstack_quickstart/index.html#compute-nodes">Compute Nodes</a></li>
 </ul>
@@ -132,8 +131,27 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#heat">Heat</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#horizon">Horizon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#horizon">Horizon</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#dependency">Dependency</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#congiure-file">Congiure file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#refresh-horizon">Refresh horizon</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#id3">Cinder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#architecture">Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#components">Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#storage-backend">Storage backend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#work-flow">work flow</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../openstack/index.html#create-cinder-volume">create cinder volume</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#glance">Glance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#sahara">Sahara</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#neutron">Neutron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#terminologies">Terminologies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#resources">Resources</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../kvm_optimization/index.html">KVM Optimization</a><ul>
@@ -167,7 +185,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../hadoop/index.html">Hadoop</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../hadoop/index.html#unlimit-non-root-user-s-resources">Unlimit Non-root User&#8217;s Resources</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hadoop/index.html#crunch">crunch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../hadoop/index.html#cdap">CDAP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hadoop/index.html#cdap-http-cdap-io"><cite>CDAP &lt;http://cdap.io&gt;</cite></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../hadoop_conf_tuning/index.html">Hadoop Configuration Tuning</a><ul>
@@ -204,6 +222,22 @@
 </li>
 </ul>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../pxe/index.html">PXE &#8211; Preboot Execution Enviriment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pxe/index.html#dependencies">Dependencies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../pxe/index.html#dhcp-server">DHCP-Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pxe/index.html#tftp-server">tftp-Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pxe/index.html#ftp-server">FTP-Server</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../pxe/index.html#anaconda">Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pxe/index.html#kickstart">kickstart</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../pxe/index.html#command-section">command section</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pxe/index.html#other-sections">other sections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pxe/index.html#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../screen/index.html">Screen - Full-screen window manager</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../screen/index.html#command-list">Command List</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../screen/index.html#commands-out-of-screen">Commands out of screen</a></li>
@@ -215,6 +249,12 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../vim/index.html">Vim - My Favourite Editor</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../vim/index.html#commnd-mode">Commnd Mode</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../vim/index.html#move">Move</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../vim/index.html#ex-mode">Ex Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vim/index.html#set">Set</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../vim/index.html#fisa-vim-config-popular-vim-config-file">fisa-vim-config &#8211; popular vim config file</a></li>
 </ul>
 </li>
@@ -223,12 +263,33 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux_disk/index.html">Linux Disk</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#filesystem">Filesystem</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#kernnel-vfs">Kernnel &#8211; VFS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#driver">Driver</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../linux_disk/index.html#mke2fs">mke2fs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#devices">Devices</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../linux_disk/index.html#storage-cards">Storage Cards</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../linux_disk/index.html#serial-devices">Serial Devices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../linux_disk/index.html#network-storage">Network Storage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#mount">Mount</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#mount-a-device">Mount a device</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#unmount-a-device">Unmount a device</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#auto-mount">Auto Mount</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#lvm-logical-volume-management">LVM &#8211; Logical volume management</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#management">Management</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#check-lvm-infos">Check lvm infos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#issues">Issues</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#raid">RAID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#loop-device">Loop Device</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#disk-performance">Disk Performance</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#dd-convert-and-copy-a-file">dd &#8211; convert and copy a file</a></li>
 </ul>
@@ -243,10 +304,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../linux_doc/index.html#pandoc-universal-document-converter">Pandoc - Universal document converter</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../linux_network/index.html">Network Tools</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../linux_network/index.html#django-web-framework">Django &#8211; web framework</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_network/index.html#open-vswitch">Open vSwitch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_network/index.html#home-made-proxy-setting-tool">Home made proxy setting tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux_netool/index.html">Network Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../linux_netool/index.html#django-web-framework">Django &#8211; web framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_netool/index.html#open-vswitch">Open vSwitch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_netool/index.html#home-made-proxy-setting-tool">Home made proxy setting tool</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux_regex/index.html">String Processing Tools</a><ul>
@@ -279,7 +340,11 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="">Git &#8211; Extraordinary version contrl software</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#git-proxy-command">Git Proxy Command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#git-config">git_config</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#git-proxy-command">Git Proxy Command</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../github/index.html">GitHub &#8211; Git repository hosting service</a><ul>
@@ -321,7 +386,10 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../md/index.html">MarkDown (md)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../svg/index.html">Scalable Vector Graphics (SVG)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../svg/index.html#inkscape">InkScape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../svg/index.html#inkscape">InkScape</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../svg/index.html#shortcut-keys">Shortcut keys</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../svg/index.html#gimp">GIMP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../svg/index.html#resources">Resources</a></li>
 </ul>
@@ -375,8 +443,73 @@
 <ul class="simple">
 <li>CVS/SVN(SubVersion) both need need web connection, while git don&#8217;t</li>
 </ul>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="git-config">
+<h3>git_config<a class="headerlink" href="#git-config" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">--global</span> <span class="pre">section_name.param</span> <span class="pre">value</span></code></p>
+<div class="highlight-python"><div class="highlight"><pre>git config --global user.email &quot;calebjay@live.cn&quot;
+git config --global user.name &quot;JetChars&quot;
+</pre></div>
+</div>
+<ul class="simple">
+<li>global configuration: <code class="docutils literal"><span class="pre">~/.gitconfig</span></code> , ini format. (<code class="docutils literal"><span class="pre">/etc/gitconfig</span></code> for all user)</li>
+</ul>
+<div class="highlight-ini"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">[core]</span>
+    <span class="na">gitproxy</span> <span class="o">=</span> <span class="s">/usr/bin/git-proxy</span>
+<span class="k">[http]</span>
+    <span class="na">proxy</span> <span class="o">=</span> <span class="s">http://proxy-shz.intel.com:911</span>
+<span class="s">    sslverify = false</span>
+<span class="k">[user]</span>
+    <span class="na">name</span> <span class="o">=</span> <span class="s">JetChars</span>
+<span class="s">    email = calebjay@live.cn</span>
+<span class="k">[alias]</span>
+    <span class="na">df</span> <span class="o">=</span> <span class="s">diff</span>
+<span class="s">    st = status</span>
+<span class="s">    co = checkout</span>
+<span class="s">    ci = commit</span>
+<span class="s">    br = branch</span>
+<span class="s">    last = log -3</span>
+<span class="s">    lg = log --color --graph --abbrev-commit --pretty=format:&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s%Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39;</span>
+<span class="k">[filter &quot;lfs&quot;]</span>
+    <span class="na">clean</span> <span class="o">=</span> <span class="s">git lfs clean %f</span>
+<span class="s">    smudge = git lfs smudge %f</span>
+<span class="s">    required = true</span>
+</pre></div>
+</td></tr></table></div>
+<ul>
+<li><dl class="first docutils">
+<dt>Project configuration:</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">.git/config</span></code> storage project info, <code class="docutils literal"><span class="pre">url</span> <span class="pre">=</span> <span class="pre">http://username:passwd&#64;url.git</span></code> can help avoid passwd input</li>
+<li><code class="docutils literal"><span class="pre">.gitignore</span></code> store files exclude from project.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
 <div class="section" id="git-proxy-command">
-<h2>Git Proxy Command<a class="headerlink" href="#git-proxy-command" title="Permalink to this headline">¶</a></h2>
+<h3>Git Proxy Command<a class="headerlink" href="#git-proxy-command" title="Permalink to this headline">¶</a></h3>
 <div class="line-block">
 <div class="line">Git need extra configuration for url with “git://” scheme. Configure proxy command with netcat (/usr/bin/git-proxy) and add its link to the environment.</div>
 <div class="line"><br /></div>
@@ -433,6 +566,7 @@ cat &gt;&gt; /etc/gitconfig <span class="s">&lt;&lt; EOF</span>
 <span class="s">EOF</span>
 </pre></div>
 </td></tr></table></div>
+</div>
 </div>
 </div>
 

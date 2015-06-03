@@ -53,6 +53,8 @@ Refresh horizon
 `Cinder <https://wiki.openstack.org/wiki/Cinder>`_
 ==================================================
 
+.. image:: images/cinder_locations.png
+
 .. sidebar:: Overview
 
     - PTL: Mike Perez
@@ -60,7 +62,6 @@ Refresh horizon
     - compare to swift, cinder could provide real time read/write, like a mobile disk
     - it's much cheaper to create a volume than an instance
     - severely rely on RabbitMQ
-
 
 
 Architecture
@@ -94,6 +95,23 @@ create cinder volume
 4. create volume, then return volume status
 5. scheduler return volume status to api node
 6. api return volume status to client
+
+Glance
+======
+
+.. image:: images/glance_image_status_transition.png
+
+
+Sahara
+======
+
+.. image:: images/sahara_fake_nodetemplate.png
+
+
+Neutron
+=======
+
+.. image:: images/secgroup.png
 
 
 Terminologies

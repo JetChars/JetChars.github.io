@@ -1,6 +1,8 @@
-======
-Hadoop
-======
+====================================
+`Hadoop <http://hadoop.apache.org>`_
+====================================
+
+`wiki <http://wiki.apache.org/hadoop/>`_
 
 
 Unlimit Non-root User's Resources
@@ -21,7 +23,7 @@ Unlimit Non-root User's Resources
 crunch
 ======
 
-CDAP
-====
+`CDAP <http://cdap.io>`_
+========================
 
 
