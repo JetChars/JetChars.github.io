@@ -3,7 +3,7 @@ OpenStack
 =========
 
 `wiki <https://wiki.openstack.org/wiki/Main_Page>`_
-
+`Developer's Guide <http://docs.openstack.org/infra/manual/developers.html>`_
 
 Nova
 ====

@@ -57,12 +57,12 @@ Pip
 
 .. code-block:: shell
     :linenos:
-    :emphasize-lines: 2,7
+    :emphasize-lines: 1,4,15
   
     $ pip -V
     pip 6.1.1 from /Library/Python/2.7/site-packages/pip-6.1.1-py2.7.egg (python 2.7)
 
-    $ pip show six #pkgname
+    $ pip show six #module_name
     Metadata-Version: 1.1
     Name: six
     Version: 1.4.1
@@ -72,6 +72,9 @@ Pip
     Author-email: benjamin@python.org
     License: UNKNOWN
     Location: /System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python
+
+    $ python -c "import module_name; print(module_name.__version__.)"
+    1.3.1   # this is real version which python imported
 
 
 5. Config pip
@@ -100,7 +103,8 @@ Pip
     use-mirrors = true
     mirrors = http://pypi.python.org
 
-::
+.. code-block:: bash
+    :linenos:
 
     $ sudo chmod a+w /tmp/.pip/build   # make build path writeable for all user
 
@@ -135,7 +139,7 @@ Pip
 
 | **Solutions :** 
 |
-* Not use wheel::
+* **Not use wheel** (prefered)::
 
     sudo pip uninstall pkgname
     sudo rm -rf pip_build_folder
@@ -170,7 +174,8 @@ Pip
 
 | **Solution :** This issue cause by stack.sh override pip incorrectly, in order to avoid this issue, comment following 3 lines
 |
-::
+.. code-block:: bash
+    :linenos:
 
     if [[ "$OFFLINE" != "True" ]]; then
         PYPI_ALTERNATIVE_URL=$PYPI_ALTERNATIVE_URL $TOP_DIR/tools/install_pip.sh

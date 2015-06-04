@@ -19,7 +19,7 @@ git_config
 
     git config --global user.email "calebjay@live.cn"
     git config --global user.name "JetChars"
-
+    git config --list   # check git configuration
 
 * global configuration: ``~/.gitconfig`` , ini format. (``/etc/gitconfig`` for all user)
 
@@ -46,7 +46,14 @@ git_config
     	clean = git lfs clean %f
     	smudge = git lfs smudge %f
     	required = true
-    
+    [gitreview]
+        username = gerrit_user_name
+        scheme = https
+        port = 443
+
+
+
+
 * Project configuration: 
     * ``.git/config`` storage project info, ``url = http://username:passwd@url.git`` can help avoid passwd input
     * ``.gitignore`` store files exclude from project.

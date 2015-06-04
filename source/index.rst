@@ -51,11 +51,12 @@ Linux Tools
     :maxdepth: 1
     :glob:
 
+    docs/linux_*/index
     docs/pxe/index
     docs/screen/index
     docs/vim/index
     docs/mac/index
-    docs/linux_*/index
+    docs/ovs/index
 
 Git
 ===

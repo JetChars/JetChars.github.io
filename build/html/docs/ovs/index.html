@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Hadoop &mdash; JetChars 0.1 documentation</title>
+  <title>Open vSwitch &mdash; JetChars 0.1 documentation</title>
   
 
   
@@ -30,9 +30,7 @@
   
 
   
-    <link rel="top" title="JetChars 0.1 documentation" href="../../index.html"/>
-        <link rel="next" title="Hadoop Configuration Tuning" href="../hadoop_conf_tuning/index.html"/>
-        <link rel="prev" title="KVM Optimization" href="../kvm_optimization/index.html"/> 
+    <link rel="top" title="JetChars 0.1 documentation" href="../../index.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -181,11 +179,11 @@
 </ul>
 </li>
 </ul>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">Hadoop</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#unlimit-non-root-user-s-resources">Unlimit Non-root User&#8217;s Resources</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#crunch">crunch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">CDAP</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hadoop/index.html">Hadoop</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hadoop/index.html#unlimit-non-root-user-s-resources">Unlimit Non-root User&#8217;s Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hadoop/index.html#crunch">crunch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hadoop/index.html#id2">CDAP</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../hadoop_conf_tuning/index.html">Hadoop Configuration Tuning</a><ul>
@@ -424,11 +422,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
-    <li>Hadoop</li>
+    <li>Open vSwitch</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../../_sources/docs/hadoop/index.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/docs/ovs/index.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -437,46 +435,14 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="id1">
-<h1><a class="reference external" href="http://hadoop.apache.org">Hadoop</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="http://wiki.apache.org/hadoop/">wiki</a></p>
-<img alt="../../_images/hadoop_evolve.jpg" src="../../_images/hadoop_evolve.jpg" />
-<div class="section" id="unlimit-non-root-user-s-resources">
-<h2>Unlimit Non-root User&#8217;s Resources<a class="headerlink" href="#unlimit-non-root-user-s-resources" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-shell"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6</pre></div></td><td class="code"><div class="highlight"><pre>sudo rm -rf /etc/security/limits.d
-sudo cat &gt;&gt; /etc/security/limits.conf <span class="s">&lt;&lt; EOF</span>
-<span class="s">*                -       nproc           100000</span>
-<span class="s">*                -       nofile          100000</span>
-<span class="s">*                -       memlock         unlimited</span>
-<span class="s">EOF</span>
-</pre></div>
-</td></tr></table></div>
-</div>
-<div class="section" id="crunch">
-<h2>crunch<a class="headerlink" href="#crunch" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="id2">
-<h2><a class="reference external" href="http://cdap.io">CDAP</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-</div>
+  <div class="section" id="open-vswitch">
+<h1>Open vSwitch<a class="headerlink" href="#open-vswitch" title="Permalink to this headline">¶</a></h1>
+<img alt="../../_images/2host-4vm-2nic-tunnel.png" src="../../_images/2host-4vm-2nic-tunnel.png" />
 </div>
 
 
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../hadoop_conf_tuning/index.html" class="btn btn-neutral float-right" title="Hadoop Configuration Tuning" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="../kvm_optimization/index.html" class="btn btn-neutral" title="KVM Optimization" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>

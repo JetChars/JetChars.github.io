@@ -185,7 +185,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../hadoop/index.html">Hadoop</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../hadoop/index.html#unlimit-non-root-user-s-resources">Unlimit Non-root User&#8217;s Resources</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hadoop/index.html#crunch">crunch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../hadoop/index.html#cdap-http-cdap-io"><cite>CDAP &lt;http://cdap.io&gt;</cite></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hadoop/index.html#id2">CDAP</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../hadoop_conf_tuning/index.html">Hadoop Configuration Tuning</a><ul>
@@ -450,6 +450,7 @@
 <p><code class="docutils literal"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">--global</span> <span class="pre">section_name.param</span> <span class="pre">value</span></code></p>
 <div class="highlight-python"><div class="highlight"><pre>git config --global user.email &quot;calebjay@live.cn&quot;
 git config --global user.name &quot;JetChars&quot;
+git config --list   # check git configuration
 </pre></div>
 </div>
 <ul class="simple">
@@ -474,7 +475,11 @@ git config --global user.name &quot;JetChars&quot;
 17
 18
 19
-20</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">[core]</span>
+20
+21
+22
+23
+24</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">[core]</span>
     <span class="na">gitproxy</span> <span class="o">=</span> <span class="s">/usr/bin/git-proxy</span>
 <span class="k">[http]</span>
     <span class="na">proxy</span> <span class="o">=</span> <span class="s">http://proxy-shz.intel.com:911</span>
@@ -494,6 +499,10 @@ git config --global user.name &quot;JetChars&quot;
     <span class="na">clean</span> <span class="o">=</span> <span class="s">git lfs clean %f</span>
 <span class="s">    smudge = git lfs smudge %f</span>
 <span class="s">    required = true</span>
+<span class="k">[gitreview]</span>
+    <span class="na">username</span> <span class="o">=</span> <span class="s">gerrit_user_name</span>
+<span class="s">    scheme = https</span>
+<span class="s">    port = 443</span>
 </pre></div>
 </td></tr></table></div>
 <ul>

@@ -4,6 +4,7 @@
 
 `wiki <http://wiki.apache.org/hadoop/>`_
 
+.. image:: images/hadoop_evolve.jpg
 
 Unlimit Non-root User's Resources
 =================================

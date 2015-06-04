@@ -147,6 +147,9 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#glance">Glance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#sahara">Sahara</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#neutron">Neutron</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#terminologies">Terminologies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#resources">Resources</a></li>
 </ul>
@@ -182,7 +185,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../hadoop/index.html">Hadoop</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../hadoop/index.html#unlimit-non-root-user-s-resources">Unlimit Non-root User&#8217;s Resources</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hadoop/index.html#crunch">crunch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../hadoop/index.html#cdap">CDAP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hadoop/index.html#id2">CDAP</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../hadoop_conf_tuning/index.html">Hadoop Configuration Tuning</a><ul>
@@ -220,7 +223,7 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../pxe/index.html">PXE &#8211; Preboot Execution Enviriment</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../pxe/index.html#dependency">Dependency</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pxe/index.html#dependencies">Dependencies</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../pxe/index.html#dhcp-server">DHCP-Server</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../pxe/index.html#tftp-server">tftp-Server</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../pxe/index.html#ftp-server">FTP-Server</a></li>
@@ -337,7 +340,11 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git &#8211; Extraordinary version contrl software</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../git/index.html#git-proxy-command">Git Proxy Command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../git/index.html#configuration">Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../git/index.html#git-config">git_config</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../git/index.html#git-proxy-command">Git Proxy Command</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../github/index.html">GitHub &#8211; Git repository hosting service</a><ul>
@@ -512,19 +519,25 @@ sudo chown stack.stack /opt/stack/ -R <span class="o">&amp;&amp;</span> ./unstac
 10
 11
 12
-13</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>pip -V
-<span class="hll">pip 6.1.1 from /Library/Python/2.7/site-packages/pip-6.1.1-py2.7.egg <span class="o">(</span>python 2.7<span class="o">)</span>
-</span>
-<span class="nv">$ </span>pip show six <span class="c">#pkgname</span>
-Metadata-Version: 1.1
+13
+14
+15
+16</pre></div></td><td class="code"><div class="highlight"><pre><span class="hll"><span class="nv">$ </span>pip -V
+</span>pip 6.1.1 from /Library/Python/2.7/site-packages/pip-6.1.1-py2.7.egg <span class="o">(</span>python 2.7<span class="o">)</span>
+
+<span class="hll"><span class="nv">$ </span>pip show six <span class="c">#module_name</span>
+</span>Metadata-Version: 1.1
 Name: six
-<span class="hll">Version: 1.4.1
-</span>Summary: Python <span class="m">2</span> and <span class="m">3</span> compatibility utilities
+Version: 1.4.1
+Summary: Python <span class="m">2</span> and <span class="m">3</span> compatibility utilities
 Home-page: http://pypi.python.org/pypi/six/
 Author: Benjamin Peterson
 Author-email: benjamin@python.org
 License: UNKNOWN
 Location: /System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python
+
+<span class="hll"><span class="nv">$ </span>python -c <span class="s2">&quot;import module_name; print(module_name.__version__.)&quot;</span>
+</span>1.3.1   <span class="c"># this is real version which python imported</span>
 </pre></div>
 </td></tr></table></div>
 <ol class="arabic simple" start="5">
@@ -556,9 +569,9 @@ use-mirrors = true
 mirrors = http://pypi.python.org
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>$ sudo chmod a+w /tmp/.pip/build   # make build path writeable for all user
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>sudo chmod a+w /tmp/.pip/build   <span class="c"># make build path writeable for all user</span>
 </pre></div>
-</div>
+</td></tr></table></div>
 <div class="line-block">
 <div class="line">If not make build path writeable, will cause issue like this</div>
 <div class="line"><br /></div>
@@ -593,7 +606,7 @@ Error on exit
 <div class="line"><br /></div>
 </div>
 <ul>
-<li><p class="first">Not use wheel:</p>
+<li><p class="first"><strong>Not use wheel</strong> (prefered):</p>
 <div class="highlight-python"><div class="highlight"><pre>sudo pip uninstall pkgname
 sudo rm -rf pip_build_folder
 sudo pip instll pkgname --no-use-wheel
@@ -642,11 +655,13 @@ sudo pip instll pkgname --no-use-wheel
 <div class="line"><strong>Solution :</strong> This issue cause by stack.sh override pip incorrectly, in order to avoid this issue, comment following 3 lines</div>
 <div class="line"><br /></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>if [[ &quot;$OFFLINE&quot; != &quot;True&quot; ]]; then
-    PYPI_ALTERNATIVE_URL=$PYPI_ALTERNATIVE_URL $TOP_DIR/tools/install_pip.sh
-fi
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">if</span> <span class="o">[[</span> <span class="s2">&quot;</span><span class="nv">$OFFLINE</span><span class="s2">&quot;</span> !<span class="o">=</span> <span class="s2">&quot;True&quot;</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="nv">PYPI_ALTERNATIVE_URL</span><span class="o">=</span><span class="nv">$PYPI_ALTERNATIVE_URL</span> <span class="nv">$TOP_DIR</span>/tools/install_pip.sh
+<span class="k">fi</span>
 </pre></div>
-</div>
+</td></tr></table></div>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
