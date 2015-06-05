@@ -11,6 +11,44 @@ Nova
 `nova-docker <https://wiki.openstack.org/wiki/Docker>`_
 -----------
 
+
+
+Management
+----------
+
+SecGroup
+^^^^^^^^
+
+* check infos
+
+.. code-block:: bash
+    :linenos:
+
+    nova secgroup-list
+    nova secgroup-list-rules <name/id>
+
+* add a rule
+
+.. code-block:: bash
+    :linenos:
+
+    nova secgroup-add-rule <secgroup> <ip-proto> <from-port> <to-port> <cidr>
+    nova secgroup-add-rule default icmp -1 -1 0.0.0.0/0
+    nova secgroup-add-rule default tcp 1 65535 0.0.0.0/0
+    nova secgroup-add-rule default udp 1 65535 0.0.0.0/0
+
+.. image:: images/secgroup.png
+
+KeyPair
+^^^^^^^
+
+.. code-block:: bash
+    :linenos:
+
+    nova keypair-add --pub_key=file <keyname>
+
+
+
 Heat
 ====
 
@@ -111,7 +149,6 @@ Sahara
 Neutron
 =======
 
-.. image:: images/secgroup.png
 
 
 Terminologies

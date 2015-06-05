@@ -422,21 +422,31 @@ Apache
     sudo autoremove -y
     sudo autoclean -y
 
-2. Could not determine the server's fully qualified domain name
+2. AH00558: Could not determine the server's fully qualified domain name
 
 ::
 
     $ echo "ServerName localhost" | sudo tee /etc/apache2/conf-available/fqdn.conf
     $ sudo a2enconf fqdn
 
-3. Openstack Service Unavailable (HTTP 503)
+3. AH00072: address in use
+
+::
+
+    apache no listen socket
+
+| **Solution :** ``rm -rf /run/apache2* /run/lock/apache2*``
+|
+|
+
+4. Openstack Service Unavailable (HTTP 503)
 
 | **Solution :** Reinstall apache2 can solve this issue
 |
 |
 |
 
-4. Module version does not exist!
+5. Module version does not exist!
 ::
 
     $ sudo a2enmod version
@@ -444,6 +454,8 @@ Apache
 
 | This error can be ignored
 |
+
+
 
 Other issues
 ============

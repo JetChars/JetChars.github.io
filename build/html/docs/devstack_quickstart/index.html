@@ -88,7 +88,8 @@
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">OpenStack installation with DevStack</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#quick-start">Quick Start</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#config-file">Config file</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#executable-files">Executable files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#config-files">Config files</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#service-list">Service List</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#switches">Switches</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#multi-host">Multi Host</a></li>
@@ -147,6 +148,9 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#glance">Glance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#sahara">Sahara</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#neutron">Neutron</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#terminologies">Terminologies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#resources">Resources</a></li>
 </ul>
@@ -182,7 +186,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../hadoop/index.html">Hadoop</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../hadoop/index.html#unlimit-non-root-user-s-resources">Unlimit Non-root User&#8217;s Resources</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hadoop/index.html#crunch">crunch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../hadoop/index.html#cdap">CDAP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hadoop/index.html#id2">CDAP</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../hadoop_conf_tuning/index.html">Hadoop Configuration Tuning</a><ul>
@@ -219,46 +223,6 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../pxe/index.html">PXE &#8211; Preboot Execution Enviriment</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../pxe/index.html#dependencies">Dependencies</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../pxe/index.html#dhcp-server">DHCP-Server</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../pxe/index.html#tftp-server">tftp-Server</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../pxe/index.html#ftp-server">FTP-Server</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../pxe/index.html#anaconda">Anaconda</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../pxe/index.html#kickstart">kickstart</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../pxe/index.html#command-section">command section</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../pxe/index.html#other-sections">other sections</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../pxe/index.html#examples">Examples</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../screen/index.html">Screen - Full-screen window manager</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../screen/index.html#command-list">Command List</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../screen/index.html#commands-out-of-screen">Commands out of screen</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../screen/index.html#commands-inside-screen">Commands inside screen</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../screen/index.html#shortcuts-keys">Shortcuts Keys</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../screen/index.html#configuration-files">Configuration Files</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../vim/index.html">Vim - My Favourite Editor</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../vim/index.html#commnd-mode">Commnd Mode</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../vim/index.html#move">Move</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../vim/index.html#ex-mode">Ex Mode</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../vim/index.html#set">Set</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../vim/index.html#fisa-vim-config-popular-vim-config-file">fisa-vim-config &#8211; popular vim config file</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../mac/index.html">Mac as Main OS</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../mac/index.html#visual-studio-code-asp-net-5">Visual Studio Code &amp; ASP.NET 5 </a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="../linux_disk/index.html">Linux Disk</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#filesystem">Filesystem</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#kernnel-vfs">Kernnel &#8211; VFS</a></li>
@@ -334,10 +298,55 @@
 <li class="toctree-l2"><a class="reference internal" href="../linux_virt/index.html#docker">Docker</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../pxe/index.html">PXE &#8211; Preboot Execution Enviriment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pxe/index.html#dependencies">Dependencies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../pxe/index.html#dhcp-server">DHCP-Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pxe/index.html#tftp-server">tftp-Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pxe/index.html#ftp-server">FTP-Server</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../pxe/index.html#anaconda">Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pxe/index.html#kickstart">kickstart</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../pxe/index.html#command-section">command section</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pxe/index.html#other-sections">other sections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pxe/index.html#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../screen/index.html">Screen - Full-screen window manager</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../screen/index.html#command-list">Command List</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../screen/index.html#commands-out-of-screen">Commands out of screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../screen/index.html#commands-inside-screen">Commands inside screen</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../screen/index.html#shortcuts-keys">Shortcuts Keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../screen/index.html#configuration-files">Configuration Files</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../vim/index.html">Vim - My Favourite Editor</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../vim/index.html#commnd-mode">Commnd Mode</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../vim/index.html#move">Move</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../vim/index.html#ex-mode">Ex Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vim/index.html#set">Set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vim/index.html#fisa-vim-config-popular-vim-config-file">fisa-vim-config &#8211; popular vim config file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../mac/index.html">Mac as Main OS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../mac/index.html#visual-studio-code-asp-net-5">Visual Studio Code &amp; ASP.NET 5 </a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ovs/index.html">Open vSwitch</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git &#8211; Extraordinary version contrl software</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../git/index.html#git-proxy-command">Git Proxy Command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../git/index.html#configuration">Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../git/index.html#git-config">git_config</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../git/index.html#git-proxy-command">Git Proxy Command</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../github/index.html">GitHub &#8211; Git repository hosting service</a><ul>
@@ -494,8 +503,27 @@ This is your host ip: 192.168.48.134
 </pre></div>
 </td></tr></table></div>
 </div>
-<div class="section" id="config-file">
-<h2>Config file<a class="headerlink" href="#config-file" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="executable-files">
+<h2>Executable files<a class="headerlink" href="#executable-files" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first"><strong>stack.sh</strong> &#8211; main script, will read <em>stackrc</em>, then <em>localrc</em>, will create <em>.localrc.auto</em></p>
+</li>
+<li><dl class="first docutils">
+<dt><strong>local.sh</strong> &#8211; user made script, will run at the end of stack.sh</dt>
+<dd><p class="first last">for i in <cite>seq 4 10</cite>; do nova-manage fixed reserve 10.1.1.$i; done   # reserve IPs for management</p>
+</dd>
+</dl>
+</li>
+<li><p class="first"><strong>rejoin-stack.sh</strong> &#8211; rejoin stack after restart server</p>
+</li>
+<li><p class="first"><strong>unstack.sh</strong> &#8211; uninstall openstack, but not remove dependent packages</p>
+</li>
+<li><p class="first"><strong>clean.sh</strong> &#8211; uninstall openstack (will run <em>unstack.sh</em> within it), and remove all dependent packages</p>
+</li>
+</ul>
+</div>
+<div class="section" id="config-files">
+<h2>Config files<a class="headerlink" href="#config-files" title="Permalink to this headline">¶</a></h2>
 <div class="line-block">
 <div class="line">The new config file <code class="docutils literal"><span class="pre">local.conf</span></code> is an extended-INI format that introduces a new meta-section header that provides some additional information such as a <strong>phase name</strong> and <strong>destination config filename</strong></div>
 <div class="line"><br /></div>
@@ -643,6 +671,21 @@ SCREEN_LOGDIR=$DEST/logs/screen
 </div>
 <div class="section" id="default-values">
 <h4>Default Values<a class="headerlink" href="#default-values" title="Permalink to this headline">¶</a></h4>
+<div class="sidebar">
+<p class="first sidebar-title">Warning</p>
+<p>volume group in host should named as <code class="docutils literal"><span class="pre">${VOLUME_GROUP}-${be_name}</span></code>
+eg: <code class="docutils literal"><span class="pre">stack-volumes-lvmdriver-1</span></code></p>
+<ul class="last">
+<li><p class="first">lib/cinder:</p>
+<div class="highlight-python"><div class="highlight"><pre>for be in ${CINDER_ENABLED_BACKENDS//,/ }; do
+    be_type=${be%%:*}
+    be_name=${be##*:}
+done
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
 <div class="highlight-python"><div class="highlight"><pre>CINDER_DRIVER=default
 VOLUME_GROUP=&quot;stack-volumes&quot;
 VOLUME_NAME_PREFIX=&quot;volume-&quot;

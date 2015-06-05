@@ -60,9 +60,18 @@ Quick Start
     . openrc admin admin
     . openrc demo demo
 
+Executable files
+================
 
-Config file
-===========
+* **stack.sh** -- main script, will read *stackrc*, then *localrc*, will create *.localrc.auto*
+* **local.sh** -- user made script, will run at the end of stack.sh
+    for i in `seq 4 10`; do nova-manage fixed reserve 10.1.1.$i; done   # reserve IPs for management
+* **rejoin-stack.sh** -- rejoin stack after restart server
+* **unstack.sh** -- uninstall openstack, but not remove dependent packages
+* **clean.sh** -- uninstall openstack (will run *unstack.sh* within it), and remove all dependent packages
+
+Config files
+============
 
 | The new config file ``local.conf`` is an extended-INI format that introduces a new meta-section header that provides some additional information such as a **phase name** and **destination config filename**
 |
@@ -173,6 +182,20 @@ Dependency
 
 Default Values
 ^^^^^^^^^^^^^^
+
+.. sidebar:: Warning
+
+    volume group in host should named as ``${VOLUME_GROUP}-${be_name}``
+    eg: ``stack-volumes-lvmdriver-1``
+
+    * lib/cinder::
+
+        for be in ${CINDER_ENABLED_BACKENDS//,/ }; do
+            be_type=${be%%:*}
+            be_name=${be##*:}
+        done
+
+
 ::
 
     CINDER_DRIVER=default

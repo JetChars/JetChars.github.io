@@ -21,6 +21,46 @@ Cloud Computing
 +-----+---------------+
 
 
+AWS -- Amazon Web Services
+==========================
+
+
+Data Pipeline
+-------------
+
+* **Pipeline** -- specifies the business logic for data processing(graphical, more complex situation can be edit w/ sdk)
+    * can be export as a json file
+    * status -- Active/Pending
+    * need a task runner(ec2?)
+* **Activities** -- the work to perform (HadoopActivity, PigActivity, EmrActivity,ShellCommandActivity...)
+* **Data nodes** -- the locations and type of data (input/output)
+* **Scheduler** -- time & frequency to run a job(Activity)
+* **Resources** -- ec2resources, emrcluster
+* **Precondiction**  -- if file exist or any other situation mathches will run disgnated job.
+
+
+
+EMR -- Managed Hadoop Framework
+-------------------------------
+
+
+.. sidebar:: Terms
+
+    * Nodes
+        * Master Node -- N&J
+        * Core Nodes -- C&D
+        * Task Nodes(optional) -- C
+    * Cluster
+    * Steps -- EMR's working logic
+
+* **EMR** -- Elastic MapReduce, managed hadoop framework
+    * can integration w/ other amazon services
+    * can be scale up
+    * use mins to provisioning cluster
+
+
+
+
 Docker
 ======
 
@@ -46,7 +86,7 @@ Install Docker::
 * `Kubernetes <http://kubernetes.io>`_ is an open source orchestration system for Docker containers
 
 `Ceph <http://ceph.com>`_
-====
+=========================
 
 .. image:: images/ceph.png
     :align: right
@@ -72,6 +112,7 @@ Terminologies
 | **IMGO** --In My Humble Opinion
 | **volume** -- detachable block storage device
 | **mesos** -- distributed system **for running and building** other distributed system(spark hadoop chronos marathon K8s)
+| **ML as a Service** -- Training a model first(input csv files), then predict.
 
 |
 |
