@@ -2,6 +2,65 @@
 Mac as Main OS
 ==============
 
+ShortCuts
+=========
+
+* Mac Featured
+
+
+==================== ==============================
+commands                 description
+==================== ==============================
+cmd + ?              help
+cmd + space          spotlight(can work as calc & dict)
+hold alt             see hidden options
+hold cmd             toggle icons in upright corner
+space                quick preview
+==================== ==============================
+
+
+* MS Windows replacement
+
+======================== ==============================
+commands                 description
+======================== ==============================
+fn + up/down/left/right  pgup/pgdn/home/end
+fn + delete              delete
+cmd + enter              insert
+cmd                      win
+======================== ==============================
+
+
+* Window Management
+
+====================== ==============================
+commands               description
+====================== ==============================
+cmd + t/w/z/Z          create/close/resume/redo tab
+cmd + n/m/^f           new/min/max window
+cmd + click/shiftclick open/open and turn to new tab
+cmd + {/}              prev/next tab
+cmd + 0/-/+            default/smaller/bigger font
+cmd + q                quit software(w/ all windows & tabs)
+====================== ==============================
+
+* Safari
+
+============================ ==============================
+commands                     description
+============================ ==============================
+cmd + r                      refresh
+cmd + B                      show favorite
+cmd + l                      address bar
+cmd + L                      side bar
+cmd + D (shift + rightclick) add to readlist
+cmd + alt + 2                history
+cmd + alt + b                bookmark management
+cmd + tab/ shifttab          next/prev tab
+============================ ==============================
+
+
+
 Softwares
 =========
 
