@@ -15,24 +15,18 @@ Welcome to JetChars' Documentation!
 .. docs/resume/index
 
 
-DevStack Hacking
-================
-
-.. toctree::
-    :maxdepth: 1
-    :glob:
-
-    docs/devstack_*/index
-
 
 OpenStack Customization
 =======================
 
 .. toctree::
     :maxdepth: 1
-    
+    :glob:
+
     docs/openstack/index
     docs/kvm_optimization/index
+    docs/devstack_*/index
+    
 
 Hadoop Tuning
 =============

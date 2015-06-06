@@ -26,6 +26,34 @@
        orient="auto"
        refY="0.0"
        refX="0.0"
+       id="marker4338"
+       style="overflow:visible;"
+       inkscape:isstock="true">
+      <path
+         id="path4340"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         transform="scale(0.4) rotate(180) translate(10,0)" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker4286"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mstart">
+      <path
+         transform="scale(0.4) translate(10,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path4288" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
        id="marker5229"
        style="overflow:visible;"
        inkscape:isstock="true">
@@ -116,7 +144,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2"
-     inkscape:cx="248.1509"
+     inkscape:cx="166.9009"
      inkscape:cy="850.19584"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -128,7 +156,7 @@
      inkscape:window-width="1920"
      inkscape:window-height="1058"
      inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-y="777"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata7">
@@ -206,7 +234,7 @@
        inkscape:connector-curvature="0"
        inkscape:connector-type="polyline"
        id="path5187"
-       d="m 225.87315,200.32351 55.73976,-0.0201"
+       d="m 226.87315,149.82351 55.73976,-0.0201"
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.92557967;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker5189);marker-end:url(#marker5229)" />
     <rect
        style="fill:#ff0000;fill-opacity:0;stroke:#000000;stroke-width:2.24421191;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
@@ -631,25 +659,25 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.43340111px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="226.63623"
-       y="187.79207"
+       x="227.63623"
+       y="137.29207"
        id="text6032"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan6034"
-         x="226.63623"
-         y="187.79207">Streaming</tspan></text>
+         x="227.63623"
+         y="137.29207">Streaming</tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text6036"
-       y="187.29207"
-       x="367.63623"
+       y="188.29207"
+       x="381.63623"
        style="font-style:normal;font-weight:normal;font-size:10.43340111px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"><tspan
-         y="187.29207"
-         x="367.63623"
+         y="188.29207"
+         x="381.63623"
          id="tspan6038"
-         sodipodi:role="line">Streaming</tspan></text>
+         sodipodi:role="line">Copy</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:12.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;writing-mode:tb-rl;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -731,5 +759,22 @@
          id="tspan4270"
          x="79"
          y="342.36221">Shared Storage</tspan></text>
+    <path
+       inkscape:connector-curvature="0"
+       inkscape:connector-type="polyline"
+       id="path4280"
+       d="m 226.37278,253.27237 55.73976,-0.0201"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.92557967;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker4286);marker-end:url(#marker4338)" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.43340111px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="240.13623"
+       y="242.29207"
+       id="text4282"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4284"
+         x="240.13623"
+         y="242.29207">Copy</tspan></text>
   </g>
 </svg>

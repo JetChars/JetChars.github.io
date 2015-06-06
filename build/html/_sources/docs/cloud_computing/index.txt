@@ -99,7 +99,6 @@ Ceph is a free software storage platform designed to present object, block, and 
 Terminologies
 =============
 
-| **BM** -- BareMetal == Physical Machine
 | **UX** -- User Experence
 | **repo** -- Repository
 | **ETL** -- Extract Transfer Load
@@ -110,7 +109,6 @@ Terminologies
 | **k8s** -- kubernetes
 | **HBA** -- Host Bus Adapter, HBA card opposite to RAID card
 | **IMGO** --In My Humble Opinion
-| **volume** -- detachable block storage device
 | **mesos** -- distributed system **for running and building** other distributed system(spark hadoop chronos marathon K8s)
 | **ML as a Service** -- Training a model first(input csv files), then predict.
 

@@ -8,6 +8,10 @@ OpenStack
 Nova
 ====
 
+.. sidebar:: Terms
+
+    | **BM, BareMetal** -- Physical Machine
+
 `nova-docker <https://wiki.openstack.org/wiki/Docker>`_
 -----------
 
@@ -102,6 +106,7 @@ Refresh horizon
     - severely rely on RabbitMQ
 
 
+
 Architecture
 ============
 
@@ -110,7 +115,7 @@ Components
 
 - **API node** -- provide RESTful API
 - **Schedule node** -- communicate between API node & volume node, API node & schedule node normally in same host
-- **Volume node** -- provede storage space
+- **Volume node** -- provide detachable block storage
 
 Storage backend
 ---------------

@@ -276,6 +276,15 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux_netool/index.html">Network Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../linux_netool/index.html#network-trouble-shooting">Network Trouble Shooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux_netool/index.html#ping">Ping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_netool/index.html#check-dns">Check DNS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../linux_netool/index.html#nslookup">nslookup</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_netool/index.html#ip-commands">IP commands</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_netool/index.html#django-web-framework">Django &#8211; web framework</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_netool/index.html#open-vswitch">Open vSwitch</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_netool/index.html#home-made-proxy-setting-tool">Home made proxy setting tool</a></li>
@@ -345,8 +354,10 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../mac/index.html">Mac as Main OS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../mac/index.html#shortcuts">ShortCuts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../mac/index.html#softwares">Softwares</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../mac/index.html#brew-package-management-software">brew &#8211; package management software</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mac/index.html#glims-safari-enhancement">glims &#8211; safari enhancement</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../mac/index.html#visual-studio-code-asp-net-5">Visual Studio Code &amp; ASP.NET 5 </a></li>
 </ul>
 </li>
@@ -459,6 +470,12 @@
 <a class="reference external" href="http://docs.openstack.org/infra/manual/developers.html">Developer&#8217;s Guide</a></p>
 <div class="section" id="nova">
 <h2>Nova<a class="headerlink" href="#nova" title="Permalink to this headline">¶</a></h2>
+<div class="sidebar">
+<p class="first sidebar-title">Terms</p>
+<div class="last line-block">
+<div class="line"><strong>BM, BareMetal</strong> &#8211; Physical Machine</div>
+</div>
+</div>
 <div class="section" id="id1">
 <h3><a class="reference external" href="https://wiki.openstack.org/wiki/Docker">nova-docker</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 </div>
@@ -567,7 +584,7 @@ nova secgroup-add-rule default udp <span class="m">1</span> <span class="m">6553
 <ul class="simple">
 <li><strong>API node</strong> &#8211; provide RESTful API</li>
 <li><strong>Schedule node</strong> &#8211; communicate between API node &amp; volume node, API node &amp; schedule node normally in same host</li>
-<li><strong>Volume node</strong> &#8211; provede storage space</li>
+<li><strong>Volume node</strong> &#8211; provide detachable block storage</li>
 </ul>
 </div>
 <div class="section" id="storage-backend">

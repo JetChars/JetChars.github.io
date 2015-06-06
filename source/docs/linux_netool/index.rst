@@ -2,6 +2,64 @@
 Network Tools
 =============
 
+
+Network Trouble Shooting
+========================
+
+Ping
+----
+
+``ping [-c count] [-w deadline] [-i interval] [-s packetsize]``
+
+* other options
+
+========= ======================
+option    description
+========= ======================
+f         flood ping, will cause network jam.
+b         allow pinging a broadcast address
+========= ======================
+
+
+.. code-block:: bash
+
+    # Find out occupied IPs within 192.168.1.0/24
+    for i in `seq 1 255`; do ping -c1 -w1 192.168.1.$i;done | grep ttl
+
+Check DNS
+---------
+
+nslookup
+^^^^^^^^
+
+.. sidebar:: Alternatives
+
+    - ``host domain_name``
+    - ``dig domain_name``
+
+
+This tool can be use as a command ``nslookup domain_name``, or in a interactive mode
+
+.. code-block:: bash
+
+    server dns_ip    # change dns
+    set q=ns         # change query type: a, cname, ns
+    domain_name      # query directly
+
+
+
+
+
+
+
+IP commands
+===========
+
+
+
+
+
+
 .. image:: images/django_logo.svg
     :align: right
 
@@ -46,3 +104,6 @@ Home made proxy setting tool
     export NO_PROXY=$no_proxy 
     ' > /intel-pxy.sh 
     chmod a+x /intel-pxy.sh 
+
+
+

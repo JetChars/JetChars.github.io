@@ -53,13 +53,24 @@ author    designate author at commits's url ``author=JetChars``
 github.io -- github pages
 =========================
 
+.. sidebar:: `Domain Name Terms <http://en.wikipedia.org/wiki/Domain_Name_System>`_
+
+    * **A/ANAME/ALIAS** -- Fixed IP
+    * **CNAME** -- Canonical Name
+    * **MX** -- Mail service server
+    * **URL** -- jump to other site
+    * **SRV** -- build dns server
+
+
 * 300M free space
 * Steps
     * create project at github, name as username.github.io
     * create empty file ``.nojerky`` at root if any folder start with '_'
     * create `404.html <http://www.qq.com/404/>`_ at root for customized 404 page
+    * create `CNAME <https://help.github.com/articles/adding-a-cname-file-to-your-repository/>`_ at root record one of your own domain name
+        * `A Record <https://help.github.com/articles/tips-for-configuring-an-a-record-with-your-dns-provider/>`_
+        * `CNAME Record <https://help.github.com/articles/tips-for-configuring-a-cname-record-with-your-dns-provider/>`_
 * official recomment build with `jekyll <http://jekyllrb.com>`_
-* 
 
 
 `git.io <http://git.io>`_ -- short addr service

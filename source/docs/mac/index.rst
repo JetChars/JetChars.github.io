@@ -54,6 +54,7 @@ cmd + B                      show favorite
 cmd + l                      address bar
 cmd + L                      side bar
 cmd + D (shift + rightclick) add to readlist
+cmd + 1~9                    quick open bookmark
 cmd + alt + 2                history
 cmd + alt + b                bookmark management
 cmd + tab/ shifttab          next/prev tab
@@ -72,6 +73,10 @@ brew -- package management software
     curl -LsSf http://github.com/mxcl/homebrew/tarball/master | sudo tar xvz -C/usr/local --strip 1 
 
 
+glims -- safari enhancement
+---------------------------
+
+`official site <http://www.machangout.com>`_
 
 
 
