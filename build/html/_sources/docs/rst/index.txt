@@ -1,6 +1,6 @@
-========================
-ReStructured Text (reST)
-========================
+=======================
+reStructured Text (rst)
+=======================
 
 .. image:: images/rst.png
     :align: right

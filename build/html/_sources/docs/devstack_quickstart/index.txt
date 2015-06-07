@@ -107,6 +107,7 @@ default     g-api/g-reg/key/n-api/n-crt/n-obj/n-cpu/n-net/n-cond/n-sch/n-novnc/n
 nova        n-api/n-crt/n-obj/n-cpu/n-net/n-cond/n-sch/n-novnc/n-xvnc/n-cauth
 cinder      c-sci/c-api/c-vol
 heat        h-eng/h-api/h-api-cfn/h-api-cw
+neutron     neutron/q-l3/q-agt/q-dhcp/q-api/q-svc/q-meta/q-fwaas/q-lbaas/q-vpn/q-metering/q-domua
 horizon     horizon
 sahara      sahara
 ceilometer  ceilometer-acompute, ceilometer-acentral, ceilometer-anotification, ceilometer-collector, ceilometer-alarm-evaluator, ceilometer-alarm-notifier, ceilometer-api
@@ -159,8 +160,14 @@ Log
 Neutron
 -------
 
-| Each node need ``q-agt``, Restart q-agt can help reset network settings (ovs).
-|
+Components
+^^^^^^^^^^
+
+* **q-agt** -- Each node need ``q-agt``, Restart q-agt can help reset network settings (ovs).
+* **q-dhcp** -- OpenStack Networking agent that provides DHCP services for virtual networks
+* **q-l3** -- OpenStack Networking agent that provides layer-3 (routing) services for virtual networks.
+
+
 
 Network Node
 ^^^^^^^^^^^^

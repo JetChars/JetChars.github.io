@@ -32,7 +32,7 @@
   
     <link rel="top" title="JetChars 0.1 documentation" href="../../index.html"/>
         <link rel="next" title="KVM Optimization" href="../kvm_optimization/index.html"/>
-        <link rel="prev" title="DevStack Trouble Shooting" href="../devstack_t13g/index.html"/> 
+        <link rel="prev" title="Cloud Computing" href="../cloud_computing/index.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -84,52 +84,6 @@
 </ul>
 </li>
 </ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../devstack_dvr/index.html">Enable DVR with DevStack</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../devstack_dvr/index.html#brief-intro">Brief Intro</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../devstack_dvr/index.html#configure-network-node">Configure Network Node</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../devstack_dvr/index.html#configure-compute-node">Configure Compute Node</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../devstack_quickstart/index.html">OpenStack installation with DevStack</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../devstack_quickstart/index.html#quick-start">Quick Start</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../devstack_quickstart/index.html#executable-files">Executable files</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../devstack_quickstart/index.html#config-files">Config files</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../devstack_quickstart/index.html#service-list">Service List</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../devstack_quickstart/index.html#switches">Switches</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../devstack_quickstart/index.html#multi-host">Multi Host</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../devstack_quickstart/index.html#log">Log</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../devstack_quickstart/index.html#neutron">Neutron</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../devstack_quickstart/index.html#network-node">Network Node</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../devstack_quickstart/index.html#compute-nodes">Compute Nodes</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../devstack_quickstart/index.html#cinder">Cinder</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../devstack_quickstart/index.html#dependency">Dependency</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../devstack_quickstart/index.html#default-values">Default Values</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../devstack_quickstart/index.html#nova">Nova</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../devstack_quickstart/index.html#configure-file">Configure file</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../devstack_quickstart/index.html#swift">Swift</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../devstack_quickstart/index.html#sahara">Sahara</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../devstack_quickstart/index.html#post-script-file">Post Script file</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../devstack_t13g/index.html">DevStack Trouble Shooting</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#pip">Pip</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#python">Python</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#rabbit">Rabbit</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#mysql">MySQL</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#apache">Apache</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#other-issues">Other issues</a></li>
-</ul>
-</li>
-</ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="">OpenStack</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#nova">Nova</a><ul>
@@ -137,6 +91,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#management">Management</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#secgroup">SecGroup</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#keypair">KeyPair</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#flavor">Flavor</a></li>
 </ul>
 </li>
 </ul>
@@ -159,8 +114,14 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#glance">Glance</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#sahara">Sahara</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#neutron">Neutron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sahara">Sahara</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#sahara-cluster-status">Sahara Cluster Status</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#neutron">Neutron</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#congiuration-files">Congiuration Files</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#terminologies">Terminologies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#resources">Resources</a></li>
 </ul>
@@ -189,6 +150,51 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../kvm_optimization/index.html#improve-instance-s-launch-speed">Improve Instance&#8217;s Launch Speed</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../devstack_dvr/index.html">Enable DVR with DevStack</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_dvr/index.html#brief-intro">Brief Intro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_dvr/index.html#configure-network-node">Configure Network Node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_dvr/index.html#configure-compute-node">Configure Compute Node</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../devstack_quickstart/index.html">OpenStack installation with DevStack</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_quickstart/index.html#quick-start">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_quickstart/index.html#executable-files">Executable files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_quickstart/index.html#config-files">Config files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../devstack_quickstart/index.html#service-list">Service List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../devstack_quickstart/index.html#switches">Switches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../devstack_quickstart/index.html#multi-host">Multi Host</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../devstack_quickstart/index.html#log">Log</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../devstack_quickstart/index.html#neutron">Neutron</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../devstack_quickstart/index.html#components">Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../devstack_quickstart/index.html#network-node">Network Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../devstack_quickstart/index.html#compute-nodes">Compute Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../devstack_quickstart/index.html#cinder">Cinder</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../devstack_quickstart/index.html#dependency">Dependency</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../devstack_quickstart/index.html#default-values">Default Values</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../devstack_quickstart/index.html#nova">Nova</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../devstack_quickstart/index.html#configure-file">Configure file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../devstack_quickstart/index.html#swift">Swift</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../devstack_quickstart/index.html#sahara">Sahara</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_quickstart/index.html#post-script-file">Post Script file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../devstack_t13g/index.html">DevStack Trouble Shooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#pip">Pip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#python">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#rabbit">Rabbit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#mysql">MySQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#apache">Apache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#other-issues">Other issues</a></li>
 </ul>
 </li>
 </ul>
@@ -290,24 +296,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../linux_netool/index.html#home-made-proxy-setting-tool">Home made proxy setting tool</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../linux_regex/index.html">String Processing Tools</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../linux_regex/index.html#regular-expression">Regular Expression</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../linux_regex/index.html#basic-regular-express">Basic Regular Express</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_regex/index.html#grep-globally-search-a-regular-expression-and-print">grep &#8211; Globally search a Regular Expression and Print</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_regex/index.html#awk-pattern-directed-scanning-and-processing">awk &#8211; pattern-directed scanning and processing</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../linux_regex/index.html#synopsis">Synopsis</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../linux_regex/index.html#predefined-variables">Predefined variables</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../linux_regex/index.html#examples">Examples</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_regex/index.html#sed-stream-editor">sed &#8211; stream editor</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../linux_regex/index.html#id1">Synopsis</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../linux_regex/index.html#functions">Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../linux_regex/index.html#id2">Examples</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../linux_pkg/index.html">Linux Package Management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../linux_pkg/index.html#check-install">Check Install</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux_virt/index.html">Virtualization</a><ul>
@@ -387,7 +377,43 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../rst/index.html">ReStructured Text (reST)</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../regex/index.html">Regular Expression</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../regex/index.html#intro">Intro</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../regex/index.html#basic-regular-express">Basic Regular Express</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../regex/index.html#grep-globally-search-a-regular-expression-and-print">grep &#8211; Globally search a Regular Expression and Print</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../regex/index.html#awk-pattern-directed-scanning-and-processing">awk &#8211; pattern-directed scanning and processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../regex/index.html#synopsis">Synopsis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../regex/index.html#predefined-variables">Predefined variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../regex/index.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../regex/index.html#sed-stream-editor">sed &#8211; stream editor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../regex/index.html#id1">Synopsis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../regex/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../regex/index.html#id2">Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../sql/index.html">SQL &#8211; Structured Query Language</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../sql/index.html#grammar">Grammar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sql/index.html#data-manipulation-language-dml">Data Manipulation Language (DML)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sql/index.html#insert">INSERT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sql/index.html#update">UPDATE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sql/index.html#data-definition-language-ddl">Data Definition Language (DDL)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sql/index.html#create">CREATE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sql/index.html#drop">DROP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sql/index.html#use">USE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sql/index.html#dql">DQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sql/index.html#dcl">DCL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sql/index.html#mysql">MySQL</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../rst/index.html">reStructured Text (rst)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../rst/index.html#standard-rst">Standard rST</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../rst/index.html#inline-mark">Inline mark</a></li>
 </ul>
@@ -511,6 +537,14 @@ nova secgroup-add-rule default udp <span class="m">1</span> <span class="m">6553
 </pre></div>
 </td></tr></table></div>
 </div>
+<div class="section" id="flavor">
+<h4>Flavor<a class="headerlink" href="#flavor" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre>flavor-create &lt;name&gt; &lt;id&gt; &lt;ram&gt; &lt;disk&gt; &lt;vcpus&gt;
+flavor-create testflavor <span class="m">6</span> <span class="m">128</span> <span class="m">0</span> 1
+</pre></div>
+</td></tr></table></div>
+</div>
 </div>
 </div>
 <div class="section" id="heat">
@@ -574,6 +608,7 @@ nova secgroup-add-rule default udp <span class="m">1</span> <span class="m">6553
 <li>compare to swift, cinder could provide real time read/write, like a mobile disk</li>
 <li>it&#8217;s much cheaper to create a volume than an instance</li>
 <li>severely rely on RabbitMQ</li>
+<li><strong>volume type</strong> &#8211; a type or label can be selected at vol creation time, maps to a set of capabilities of the storage back-end driver to be used for this vol</li>
 </ul>
 </div>
 </div>
@@ -617,14 +652,86 @@ nova secgroup-add-rule default udp <span class="m">1</span> <span class="m">6553
 <div class="section" id="sahara">
 <h2>Sahara<a class="headerlink" href="#sahara" title="Permalink to this headline">¶</a></h2>
 <img alt="../../_images/sahara_fake_nodetemplate.png" src="../../_images/sahara_fake_nodetemplate.png" />
+<div class="sidebar">
+<p class="first sidebar-title">Terms</p>
+<ul class="last simple">
+<li><strong>PTL</strong> &#8211; surgey lukjanov</li>
+<li><strong>HaaS</strong> &#8211; Hadoop as a Service</li>
+<li><strong>autoscaling</strong> &#8211; scaling depends on system loads</li>
+<li><strong>anti affinity</strong> &#8211; avoid put datanode on same host</li>
+</ul>
+</div>
+<div class="section" id="sahara-cluster-status">
+<h3>Sahara Cluster Status<a class="headerlink" href="#sahara-cluster-status" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="91%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">phase</th>
+<th class="head">description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Validating</td>
+<td>check all necessary fields not violate, topology validation, or other validation before provisioning a cluster</td>
+</tr>
+<tr class="row-odd"><td>Spawning</td>
+<td>create VMs Volumes Floating IPs(need check default quota, hypervisor resources)</td>
+</tr>
+<tr class="row-even"><td>Waiting</td>
+<td>waits while VM&#8217;s operating system boot up &amp; internal infrastructure like net and volumes are attached</td>
+</tr>
+<tr class="row-odd"><td>Preparing</td>
+<td>generating /etc/hosts, authorized_keys for VMs communication</td>
+</tr>
+<tr class="row-even"><td>Starting</td>
+<td>starting hadoop services on VMs</td>
+</tr>
+<tr class="row-odd"><td>Active</td>
+<td>cluster has started successfully</td>
+</tr>
+<tr class="row-even"><td>Error</td>
+<td>cluster creation fails</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div class="section" id="neutron">
 <h2>Neutron<a class="headerlink" href="#neutron" title="Permalink to this headline">¶</a></h2>
+<div class="sidebar">
+<p class="first sidebar-title">Terms</p>
+<ul class="last simple">
+<li><strong>dnsmasq</strong> &#8211; Daemon that provides DNS, DHCP, BOOTP, and TFTP services for virtual networks.</li>
+</ul>
+</div>
+<div class="section" id="congiuration-files">
+<h3>Congiuration Files<a class="headerlink" href="#congiuration-files" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><dl class="first docutils">
+<dt><strong>/etc/neutron/dhcp_agent.ini</strong> &#8211; configuation file for dhcp_agent service</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">dnsmasq_config_file</span> <span class="pre">=</span> <span class="pre">/etc/neutron/dnsmasq-neutron.conf</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><strong>/etc/neutron/dnsmasq-neutron.conf</strong> &#8211; self assigned dnsmasq conf file</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">dhcp-option-force=26,1400</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
 </div>
 <div class="section" id="terminologies">
 <h2>Terminologies<a class="headerlink" href="#terminologies" title="Permalink to this headline">¶</a></h2>
 <div class="line-block">
-<div class="line"><strong>volume type</strong> &#8211; a type or label can be selected at vol creation time, maps to a set of capabilities of the storage back-end driver to be used for this vol</div>
 <div class="line"><strong>sheepdog</strong> &#8211; opensourcs project, developed by NTT, design for vm&#8217;s storage.</div>
 <div class="line"><strong>fuel</strong> &#8211; auto deploy openstack enviroment</div>
 <div class="line"><strong>murano</strong>&#8211; auto install openstack plugin</div>
@@ -652,7 +759,7 @@ nova secgroup-add-rule default udp <span class="m">1</span> <span class="m">6553
         <a href="../kvm_optimization/index.html" class="btn btn-neutral float-right" title="KVM Optimization" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../devstack_t13g/index.html" class="btn btn-neutral" title="DevStack Trouble Shooting" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../cloud_computing/index.html" class="btn btn-neutral" title="Cloud Computing" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

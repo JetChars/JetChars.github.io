@@ -51,6 +51,14 @@ KeyPair
 
     nova keypair-add --pub_key=file <keyname>
 
+Flavor
+^^^^^^
+
+.. code-block:: bash
+    :linenos:
+
+    flavor-create <name> <id> <ram> <disk> <vcpus>
+    flavor-create testflavor 6 128 0 1
 
 
 Heat
@@ -104,6 +112,7 @@ Refresh horizon
     - compare to swift, cinder could provide real time read/write, like a mobile disk
     - it's much cheaper to create a volume than an instance
     - severely rely on RabbitMQ
+    - **volume type** -- a type or label can be selected at vol creation time, maps to a set of capabilities of the storage back-end driver to be used for this vol
 
 
 
@@ -150,16 +159,52 @@ Sahara
 
 .. image:: images/sahara_fake_nodetemplate.png
 
+.. sidebar:: Terms
 
+    - **PTL** -- surgey lukjanov
+    - **HaaS** -- Hadoop as a Service
+    - **autoscaling** -- scaling depends on system loads
+    - **anti affinity** -- avoid put datanode on same host
+
+
+Sahara Cluster Status
+---------------------
+
+=========== ===========================
+phase       description
+=========== ===========================
+Validating  check all necessary fields not violate, topology validation, or other validation before provisioning a cluster
+Spawning    create VMs Volumes Floating IPs(need check default quota, hypervisor resources)
+Waiting     waits while VM's operating system boot up & internal infrastructure like net and volumes are attached
+Preparing   generating /etc/hosts, authorized_keys for VMs communication 
+Starting    starting hadoop services on VMs
+Active      cluster has started successfully
+Error       cluster creation fails
+=========== ===========================
+
+
+     
 Neutron
 =======
+
+.. sidebar:: Terms
+
+    * **dnsmasq** -- Daemon that provides DNS, DHCP, BOOTP, and TFTP services for virtual networks.
+
+Congiuration Files
+------------------
+
+* **/etc/neutron/dhcp_agent.ini** -- configuation file for dhcp_agent service
+    * ``dnsmasq_config_file = /etc/neutron/dnsmasq-neutron.conf``
+* **/etc/neutron/dnsmasq-neutron.conf** -- self assigned dnsmasq conf file
+    * ``dhcp-option-force=26,1400``
+
 
 
 
 Terminologies
 =============
 
-| **volume type** -- a type or label can be selected at vol creation time, maps to a set of capabilities of the storage back-end driver to be used for this vol
 | **sheepdog** -- opensourcs project, developed by NTT, design for vm's storage.
 | **fuel** -- auto deploy openstack enviroment
 | **murano**-- auto install openstack plugin

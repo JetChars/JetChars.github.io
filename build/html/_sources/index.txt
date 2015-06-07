@@ -62,6 +62,19 @@ Git
     docs/git*/index
  
 
+Declarative Programing
+======================
+
+.. toctree::
+    :maxdepth: 1
+    :glob:
+
+    docs/regex/index
+    docs/sql/index
+
+
+
+
 Markup Languages
 ================
 
