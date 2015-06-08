@@ -109,6 +109,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#storage-backend">Storage backend</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#work-flow">work flow</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#create-cinder-volume">create cinder volume</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#delete-cinder-volume">delete cinder volume</a></li>
 </ul>
 </li>
 </ul>
@@ -267,6 +268,10 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#loop-device">Loop Device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#raid">RAID</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#raid10">raid10</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#disk-performance">Disk Performance</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#dd-convert-and-copy-a-file">dd &#8211; convert and copy a file</a></li>
 </ul>
@@ -643,11 +648,21 @@ flavor-create testflavor <span class="m">6</span> <span class="m">128</span> <sp
 <li>api return volume status to client</li>
 </ol>
 </div>
+<div class="section" id="delete-cinder-volume">
+<h4>delete cinder volume<a class="headerlink" href="#delete-cinder-volume" title="Permalink to this headline">¶</a></h4>
+<p>It will cost lots of time, since wipe data permanently is required before remove a volume.
+If change volume size manually (not w/ cinder) will cause error deleting.</p>
+</div>
 </div>
 </div>
 <div class="section" id="glance">
 <h2>Glance<a class="headerlink" href="#glance" title="Permalink to this headline">¶</a></h2>
 <img alt="../../_images/glance_image_status_transition.png" src="../../_images/glance_image_status_transition.png" />
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre>glance image-create --name<span class="o">=</span>&lt;NAME&gt; --store<span class="o">=</span>&lt;STORE&gt; --disk-format<span class="o">=</span>&lt;DISK_FORMAT&gt; <span class="se">\</span>
+    --container-format<span class="o">=</span>&lt;CONTAINER_FORMAT&gt; --file<span class="o">=</span>&lt;FILE&gt; --is-public<span class="o">=</span>True
+</pre></div>
+</td></tr></table></div>
 </div>
 <div class="section" id="sahara">
 <h2>Sahara<a class="headerlink" href="#sahara" title="Permalink to this headline">¶</a></h2>
@@ -721,7 +736,7 @@ flavor-create testflavor <span class="m">6</span> <span class="m">128</span> <sp
 <li><dl class="first docutils">
 <dt><strong>/etc/neutron/dnsmasq-neutron.conf</strong> &#8211; self assigned dnsmasq conf file</dt>
 <dd><ul class="first last simple">
-<li><code class="docutils literal"><span class="pre">dhcp-option-force=26,1400</span></code></li>
+<li><code class="docutils literal"><span class="pre">dhcp-option-force=26,1400</span></code>    # this change will not affect cirros instance&#8217;s mtu size</li>
 </ul>
 </dd>
 </dl>

@@ -148,10 +148,23 @@ create cinder volume
 5. scheduler return volume status to api node
 6. api return volume status to client
 
+delete cinder volume
+^^^^^^^^^^^^^^^^^^^^
+
+It will cost lots of time, since wipe data permanently is required before remove a volume.
+If change volume size manually (not w/ cinder) will cause error deleting.
+
+
 Glance
 ======
 
 .. image:: images/glance_image_status_transition.png
+
+.. code-block:: bash
+    :linenos:
+
+    glance image-create --name=<NAME> --store=<STORE> --disk-format=<DISK_FORMAT> \
+        --container-format=<CONTAINER_FORMAT> --file=<FILE> --is-public=True
 
 
 Sahara
@@ -197,7 +210,7 @@ Congiuration Files
 * **/etc/neutron/dhcp_agent.ini** -- configuation file for dhcp_agent service
     * ``dnsmasq_config_file = /etc/neutron/dnsmasq-neutron.conf``
 * **/etc/neutron/dnsmasq-neutron.conf** -- self assigned dnsmasq conf file
-    * ``dhcp-option-force=26,1400``
+    * ``dhcp-option-force=26,1400``    # this change will not affect cirros instance's mtu size
 
 
 

@@ -408,6 +408,16 @@ Issues
 
     sudo pvremove /dev/loop1 -ff
 
+2. lvremove: Logical volume in use
+
+.. code-block:: bash
+
+    $ sudo lvremove /dev/r16s11-lvmdriver-1/volume-daffbf30-30b9-4da3-9d34-de1c658ee38c
+    Logical volume r16s11-lvmdriver-1/volume-daffbf30-30b9-4da3-9d34-de1c658ee38c in use.
+    $ sudo fuser /dev/r16s11-lvmdriver-1/volume-daffbf30-30b9-4da3-9d34-de1c658ee38c
+    /dev/dm-0:           159892
+    $ sudo kill -9 159892
+    $ sudo umount /dev/r16s11-lvmdriver-1/volume-daffbf30-30b9-4da3-9d34-de1c658ee38c
 
 
 Loop Device
@@ -435,6 +445,17 @@ In Unix-like operating systems, a loop device, vnd (vnode disk), or lofi (loop f
     - ``-show`` will print device name
 
 - Resize loop device: ``losetup -c loopdev``
+
+RAID
+====
+
+raid10
+------
+
+.. image:: images/raid10.jpg
+    :align: right
+
+Also called raid1+0, build raid1 first then use two raid 1 to build a raid0. different from raid 01.
 
 
 Disk Performance
