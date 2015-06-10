@@ -16,6 +16,17 @@ Nova
 -----------
 
 
+nova-rootwrap
+-------------
+
+Root wrapper, provide nova an option other than sudo, make sure nova can only able run cmds matches specified filters::
+
+    nova-rootwrap conf-file cmd
+
+
+- conf file: ``/etc/nova/rootwrap.conf`` ``/etc/sudoers.d/nova-rootwrap``
+- filters: ``/etc/nova/rootwrap.d/*.filters
+
 
 Management
 ----------
@@ -148,6 +159,7 @@ create cinder volume
 5. scheduler return volume status to api node
 6. api return volume status to client
 
+
 delete cinder volume
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -159,6 +171,7 @@ Glance
 ======
 
 .. image:: images/glance_image_status_transition.png
+    :width: 350px
 
 .. code-block:: bash
     :linenos:
@@ -169,33 +182,6 @@ Glance
 
 Sahara
 ======
-
-.. image:: images/sahara_fake_nodetemplate.png
-
-.. sidebar:: Terms
-
-    - **PTL** -- surgey lukjanov
-    - **HaaS** -- Hadoop as a Service
-    - **autoscaling** -- scaling depends on system loads
-    - **anti affinity** -- avoid put datanode on same host
-
-
-Sahara Cluster Status
----------------------
-
-=========== ===========================
-phase       description
-=========== ===========================
-Validating  check all necessary fields not violate, topology validation, or other validation before provisioning a cluster
-Spawning    create VMs Volumes Floating IPs(need check default quota, hypervisor resources)
-Waiting     waits while VM's operating system boot up & internal infrastructure like net and volumes are attached
-Preparing   generating /etc/hosts, authorized_keys for VMs communication 
-Starting    starting hadoop services on VMs
-Active      cluster has started successfully
-Error       cluster creation fails
-=========== ===========================
-
-
      
 Neutron
 =======
@@ -213,6 +199,28 @@ Congiuration Files
     * ``dhcp-option-force=26,1400``    # this change will not affect cirros instance's mtu size
 
 
+
+
+Developers
+==========
+
+Launchpad bug status
+--------------------
+
+================== ================================
+Name               Description
+================== ================================
+New                Not looked at yet.
+Incomplete         Cannot be verified, the reporter needs to give more info.
+Opinion            Doesn't fit with the project, but can be discussed.
+Invalid            Not a bug. May be a support request or spam.
+Won't Fix          Doesn't fit with the project plans, sorry.
+Confirmed          Verified by someone other than the reporter.
+Triaged            Verified by the bug supervisor.
+In Progress        The assigned person is working on it.
+Fix Committed      Fixed, but not available until next release.
+Fix Released       The fix was released.
+================== ================================
 
 
 Terminologies

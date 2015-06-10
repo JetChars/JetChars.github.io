@@ -5,6 +5,13 @@
 OpenStack installation with `DevStack <http://git.openstack.org/cgit/openstack-dev/devstack/>`_
 ===============================================================================================
 
+.. sidebar:: Note
+
+
+    | `devstack git review <https://review.openstack.org/gitweb?p=openstack-dev/devstack.git;a=summary>`_    
+    | `Core Members <https://review.openstack.org/#/admin/groups/50,members>`_
+    | One of devstack core members, **Dean Troyer** write 8 issues, none approved and 7 of 8 got -1!
+
 
 Quick Start
 ===========
@@ -12,6 +19,9 @@ Quick Start
 1. Create stack user
 
 | stack.sh is DevStack's main function, it should run with stack user with sudo privileges. and have privileges to all nodes.
+|
+|
+|
 |
 
 .. code-block:: bash
@@ -66,6 +76,7 @@ Executable files
 * **stack.sh** -- main script, will read *stackrc*, then *localrc*, will create *.localrc.auto*
 * **local.sh** -- user made script, will run at the end of stack.sh
     for i in `seq 4 10`; do nova-manage fixed reserve 10.1.1.$i; done   # reserve IPs for management
+    sudo service firewalld stop   # firewalld need to be disabled for cinder & neutron
 * **rejoin-stack.sh** -- rejoin stack after restart server
 * **unstack.sh** -- uninstall openstack, but not remove dependent packages
 * **clean.sh** -- uninstall openstack (will run *unstack.sh* within it), and remove all dependent packages
@@ -147,15 +158,19 @@ Multi Host
 Log
 ---
 
+.. sidebar:: Note
+
+    ``SCREEN_LOGDIR`` is now deprecated, although will create this folder, but log files stores in ``LOGDIR``, soft link to files in SCREEN_LOGDIR
+
 ::
 
     LOGDIR=$DEST/logs
-    LOGFILE=$DEST/logs/stack.sh.log
+    LOGFILE=$LOGDIR/stack.sh.log
     LOGDAYS=7
     LOGCOLOR=False
     SYSLOG=True
     SYSLOG_HOST=$SERVICE_HOST
-    SCREEN_LOGDIR=$DEST/logs/screen
+    SCREEN_LOGDIR=$LOGDIR/screen
 
 Neutron
 -------

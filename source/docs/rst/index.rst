@@ -27,6 +27,18 @@ reStructuredText is an easy-to-read, what-you-see-is-what-you-get plaintext mark
 Standard rST
 ============
 
+Headings
+--------
+
+- \# with overline, for parts
+- \* with overline, for chapters
+- \= for sections
+- \- for subsections
+- \^ for subsubsections
+- \" for paragraphs
+
+
+
 Inline mark
 -----------
 
@@ -68,6 +80,7 @@ Photos
 
 .. sidebar:: Note
 
+    - suffix of image is required
     - png file not support distortion, so resize it only need to change width or height
     - ``align`` can be ``left`` , ``right`` or ``center``
 
@@ -79,6 +92,7 @@ Photos
         :height: 100px
         :alt: alternate text
        
+|
 |
 |
 |

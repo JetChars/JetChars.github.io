@@ -49,8 +49,9 @@ Linux Tools
     docs/pxe/index
     docs/screen/index
     docs/vim/index
-    docs/mac/index
     docs/ovs/index
+    docs/amqp/index
+    docs/mac/index
 
 Git
 ===
@@ -94,6 +95,8 @@ Algorithms
 
     docs/algorithms/index
 
+    
+ 
 
 Indices and tables
 ==================

@@ -96,6 +96,58 @@ Ceph is a free software storage platform designed to present object, block, and 
 .. image:: images/ceph_components.svg
 
 
+Mesos
+=====
+
+
+DCOS -- One command control of data center services
+---------------------------------------------------
+
+Mesosphere Data Center Operating System (DCOS), A new kind of operating system that spans all the servers in a physical or cloud-based data center, and runs on top of any Linux distribution [#]_
+
+`docs <https://docs.mesosphere.com/>`_
+
+Data-center management systems, which is what most data centers now use, focus on controlling physical systems. DCOSs are the next evolutionary step, in that DCOSs can control a data center's logical and physical systems. The University of California, Berkeley research paper `The Datacenter Needs an Operating System (PDF) <http://people.csail.mit.edu/matei/papers/2011/hotcloud_datacenter_os.pdf#ftag=YHF87e0214>`_ describes what a DCOS brings to the table.
+- Resource sharing: DCOS can multiplex resources between users of an application and across applications.
+- Data sharing: Besides resources, DCOSs traffic data between the necessary applications.
+- Programming abstractions: DCOSs provide user interfaces that hide the intricacies of hardware and simplify application development.
+- Debugging: Figuring out what massively parallel applications are doing remains one of the hardest challenges in cluster computing: DCOSs use correctness and performance debugging to address the challenges.
+
+
+.. code-block:: guess
+    :linenos:
+
+    dcos   # show available cmds
+    dcos marathon start ./demo/rails-app.json
+    dcos marathon scale rails-app 15
+    docs install hdfs   # other options are kafca, cassandra, spark...
+    dcos kafka add 10
+    dcos cassandra add 7
+    dcos spark run ./demo/spark-job.json    # job in json format
+    dcos chaos 5   # kill 5 nodes
+    dcos resize 50   # resize cluster to specified size, add nodes in real time
+
+
+
+
+- can run python jave or even container.
+- Website is mix w/ cmd lines.
+- self healing
+- easy to resize
+- application can be drag to cmdline(More Services)
+- marathon & chronos are preinstalled
+    - marathon is netservice, have restful api
+    - chronos is shedule service
+- kafca -- distributed message queue
+
+
+
+
+
+
+
+
+
 Terminologies
 =============
 
@@ -119,3 +171,4 @@ Terminologies
 
 .. [#] http://www.emc.com/collateral/analyst-reports/idc-extracting-value-from-chaos-ar.pdf
 .. [#] http://en.wikipedia.org/wiki/Ceph_(software)
+.. [#] https://in.news.yahoo.com/mesosphere-dcos-one-command-control-140004850.html

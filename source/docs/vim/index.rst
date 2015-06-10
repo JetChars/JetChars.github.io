@@ -52,3 +52,18 @@ hlsearch        high light search item
 
 - **require module** ``vim_debug`` ``isort``
 
+
+`Sublime Text <http://www.sublimetext.com/>`_
+=============================================
+
+Can be run in vi mode.
+
+.. code-block:: json
+    :linenos:
+
+    {
+      "font_size": 19,
+      "update_check": false,
+      "ignored_packages": []
+    }
+
