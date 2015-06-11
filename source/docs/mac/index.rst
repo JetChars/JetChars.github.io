@@ -58,12 +58,20 @@ cmd + 1~9                    quick open bookmark
 cmd + alt + 2                history
 cmd + alt + b                bookmark management
 cmd + tab/ shifttab          next/prev tab
+cmd + f1                     swith screen mode
 ============================ ==============================
 
 
 
 Softwares
 =========
+
+PopClip -- rightclick enhancement tool
+--------------------------------------
+
+It can install various of plugins, like `Paste and Match Stype <http://pilotmoon.com/popclip/extensions/page/PasteAndMatch>`_ , it can help mac to **Paste as Plain Text**
+
+
 
 brew -- package management software
 -----------------------------------
@@ -77,7 +85,7 @@ glims -- safari enhancement
 ---------------------------
 
 `official site <http://www.machangout.com>`_
-
+not compatible w/ latest version safari
 
 
 Visual Studio Code & ASP.NET 5 [#]_

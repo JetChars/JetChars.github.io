@@ -44,6 +44,12 @@ vncdisplay vm    create a vnc link for vm
 console vm       connect the pty console of vm
 ================ ======================================================
 
+.. code-block:: guess
+
+    virsh edit instanceid
+
+
+
 
 
 Docker
