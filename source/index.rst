@@ -11,6 +11,7 @@ Welcome to JetChars' Documentation!
     :maxdepth: 1
 
     docs/cloud_computing/index
+    docs/aws/index
  
 .. docs/resume/index
 

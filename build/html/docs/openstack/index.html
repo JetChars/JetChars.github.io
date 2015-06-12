@@ -312,6 +312,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_netool/index.html#ip-commands">IP commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_netool/index.html#dnsmasq">dnsmasq</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_netool/index.html#django-web-framework">Django &#8211; web framework</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_netool/index.html#open-vswitch">Open vSwitch</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_netool/index.html#home-made-proxy-setting-tool">Home made proxy setting tool</a></li>
@@ -373,6 +374,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../mac/index.html">Mac as Main OS</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../mac/index.html#shortcuts">ShortCuts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../mac/index.html#softwares">Softwares</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../mac/index.html#popclip-rightclick-enhancement-tool">PopClip &#8211; rightclick enhancement tool</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../mac/index.html#brew-package-management-software">brew &#8211; package management software</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../mac/index.html#glims-safari-enhancement">glims &#8211; safari enhancement</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../mac/index.html#visual-studio-code-asp-net-5">Visual Studio Code &amp; ASP.NET 5 </a></li>
@@ -692,8 +694,10 @@ If change volume size manually (not w/ cinder) will cause error deleting.</p>
 <h2>Glance<a class="headerlink" href="#glance" title="Permalink to this headline">¶</a></h2>
 <a class="reference internal image-reference" href="../../_images/glance_image_status_transition.png"><img alt="../../_images/glance_image_status_transition.png" src="../../_images/glance_image_status_transition.png" style="width: 350px;" /></a>
 <div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre>glance image-create --name<span class="o">=</span>&lt;NAME&gt; --store<span class="o">=</span>&lt;STORE&gt; --disk-format<span class="o">=</span>&lt;DISK_FORMAT&gt; <span class="se">\</span>
-    --container-format<span class="o">=</span>&lt;CONTAINER_FORMAT&gt; --file<span class="o">=</span>&lt;FILE&gt; --is-public<span class="o">=</span>True
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre>glance image-create --name<span class="o">=</span>&lt;NAME&gt; --store<span class="o">=</span>&lt;STORE&gt; --disk-format<span class="o">=</span>&lt;DISK_FORMAT&gt; <span class="se">\</span>
+    --container-format<span class="o">=</span>&lt;CONTAINER_FORMAT&gt; --file<span class="o">=</span>&lt;FILE&gt; --is-public<span class="o">=</span>True <span class="o">[</span>--min-disk<span class="o">=</span>&lt;DISK_GB&gt;<span class="o">]</span>
+glance image-download --file<span class="o">=</span>&lt;OUTPUT_FILE&gt; <span class="o">[</span>--progress<span class="o">]</span> &lt;ImageID&gt;
 </pre></div>
 </td></tr></table></div>
 </div>

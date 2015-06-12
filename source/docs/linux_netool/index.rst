@@ -26,8 +26,11 @@ b         allow pinging a broadcast address
     # Find out occupied IPs within 192.168.1.0/24
     for i in `seq 1 255`; do ping -c1 -w1 192.168.1.$i;done | grep ttl
 
-Check DNS
----------
+Check DNS connectivity
+----------------------
+
+DNS management
+==============
 
 nslookup
 ^^^^^^^^
@@ -47,6 +50,10 @@ This tool can be use as a command ``nslookup domain_name``, or in a interactive 
     domain_name      # query directly
 
 
+
+
+Route Management
+================
 
 
 

@@ -177,7 +177,8 @@ Glance
     :linenos:
 
     glance image-create --name=<NAME> --store=<STORE> --disk-format=<DISK_FORMAT> \
-        --container-format=<CONTAINER_FORMAT> --file=<FILE> --is-public=True
+        --container-format=<CONTAINER_FORMAT> --file=<FILE> --is-public=True [--min-disk=<DISK_GB>]
+    glance image-download --file=<OUTPUT_FILE> [--progress] <ImageID>
 
 
 Sahara

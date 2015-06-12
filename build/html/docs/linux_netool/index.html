@@ -87,6 +87,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../cloud_computing/index.html#terminologies">Terminologies</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../aws/index.html">AWS &#8211; Amazon Web Services</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../aws/index.html#storage">Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aws/index.html#compute">Compute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aws/index.html#database">Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aws/index.html#terms">Terms</a></li>
+</ul>
+</li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../openstack/index.html">OpenStack</a><ul>
@@ -305,13 +312,13 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="">Network Tools</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#network-trouble-shooting">Network Trouble Shooting</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#ping">Ping</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#check-dns">Check DNS</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#nslookup">nslookup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#check-dns-connectivity">Check DNS connectivity</a></li>
 </ul>
 </li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#dns-management">DNS management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#route-management">Route Management</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ip-commands">IP commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dnsmasq">dnsmasq</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#django-web-framework">Django &#8211; web framework</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#open-vswitch">Open vSwitch</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#home-made-proxy-setting-tool">Home made proxy setting tool</a></li>
@@ -373,6 +380,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../mac/index.html">Mac as Main OS</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../mac/index.html#shortcuts">ShortCuts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../mac/index.html#softwares">Softwares</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../mac/index.html#popclip-rightclick-enhancement-tool">PopClip &#8211; rightclick enhancement tool</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../mac/index.html#brew-package-management-software">brew &#8211; package management software</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../mac/index.html#glims-safari-enhancement">glims &#8211; safari enhancement</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../mac/index.html#visual-studio-code-asp-net-5">Visual Studio Code &amp; ASP.NET 5 </a></li>
@@ -551,10 +559,12 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="check-dns">
-<h3>Check DNS<a class="headerlink" href="#check-dns" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="nslookup">
-<h4>nslookup<a class="headerlink" href="#nslookup" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="check-dns-connectivity">
+<h3>Check DNS connectivity<a class="headerlink" href="#check-dns-connectivity" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="dns-management">
+<h2>DNS management<a class="headerlink" href="#dns-management" title="Permalink to this headline">¶</a></h2>
 <div class="sidebar">
 <p class="first sidebar-title">Alternatives</p>
 <ul class="last simple">
@@ -569,10 +579,74 @@ domain_name      <span class="c"># query directly</span>
 </pre></div>
 </div>
 </div>
-</div>
+<div class="section" id="route-management">
+<h2>Route Management<a class="headerlink" href="#route-management" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="ip-commands">
 <h2>IP commands<a class="headerlink" href="#ip-commands" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="dnsmasq">
+<h2>dnsmasq<a class="headerlink" href="#dnsmasq" title="Permalink to this headline">¶</a></h2>
+<p>Can provide both dhcp &amp; dns server services. use port 53(ipv4&amp;6,tcp&amp;udp)</p>
+<p>configure files:
+- <code class="docutils literal"><span class="pre">/etc/dnsmasq.conf</span></code> &#8211; storage dnsmasq&#8217;s configure, all this can use as arguments in cmdline w/ prefix &#8216;&#8211;&#8217;</p>
+<blockquote>
+<div><ul class="simple">
+<li>can&#8217;t reload conf file via hup signal</li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">/etc/resolv.dnsmasq.conf</span></code> &#8211; dnsmasq&#8217;s resolve file</li>
+</ul>
+<table border="1" class="docutils">
+<colgroup>
+<col width="36%" />
+<col width="64%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">options</th>
+<th class="head">description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>conf-dir=&lt;dir&gt;</td>
+<td>read all conf files in this dir</td>
+</tr>
+<tr class="row-odd"><td>conf-file=&lt;path&gt;</td>
+<td>specify configure file</td>
+</tr>
+<tr class="row-even"><td>resolv-file=/etc/resolv.dnsmasq.conf</td>
+<td>specify path to resolv.conf</td>
+</tr>
+<tr class="row-odd"><td>strict-order, -o</td>
+<td>search in oredr (each line in /etc/hosts &#8211;&gt; /etc/resolv.dnsmasq.conf)</td>
+</tr>
+<tr class="row-even"><td>no-hosts, -h</td>
+<td>not read /etc/hosts</td>
+</tr>
+<tr class="row-odd"><td>listen-address=127.0.0.1,192.168.11.166</td>
+<td>seperate each ip w/ comma</td>
+</tr>
+<tr class="row-even"><td>address=/&lt;domain&gt;/&lt;ipaddr&gt;</td>
+<td>set aname</td>
+</tr>
+<tr class="row-odd"><td>bind-interfaces</td>
+<td>listen to all interfaces</td>
+</tr>
+<tr class="row-even"><td>except-interfaces</td>
+<td>specify interface(s) NOT to listen on</td>
+</tr>
+<tr class="row-odd"><td>dhcp-option-force</td>
+<td>DHCP option sent even if the client does not request it</td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li>Examples</li>
+</ul>
+<div class="highlight-guess"><div class="highlight"><pre>dhcp-option-force=26,1400    # 26 means mtu, 1400 is mtusize
+</pre></div>
+</div>
 <div align="right" class="align-right"><img src="../../_images/django_logo.svg" /></div>
 </div>
 <div class="section" id="django-web-framework">

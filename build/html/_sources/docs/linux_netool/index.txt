@@ -26,8 +26,11 @@ b         allow pinging a broadcast address
     # Find out occupied IPs within 192.168.1.0/24
     for i in `seq 1 255`; do ping -c1 -w1 192.168.1.$i;done | grep ttl
 
-Check DNS
----------
+Check DNS connectivity
+----------------------
+
+DNS management
+==============
 
 nslookup
 ^^^^^^^^
@@ -49,6 +52,10 @@ This tool can be use as a command ``nslookup domain_name``, or in a interactive 
 
 
 
+Route Management
+================
+
+
 
 
 
@@ -56,8 +63,37 @@ IP commands
 ===========
 
 
+dnsmasq
+=======
+
+Can provide both dhcp & dns server services. use port 53(ipv4&6,tcp&udp)
+
+configure files:
+- ``/etc/dnsmasq.conf`` -- storage dnsmasq's configure, all this can use as arguments in cmdline w/ prefix '--'
+    - can't reload conf file via hup signal
+- ``/etc/resolv.dnsmasq.conf`` -- dnsmasq's resolve file
+
+======================================= =====================================
+options                                 description
+======================================= =====================================
+conf-dir=<dir>                          read all conf files in this dir
+conf-file=<path>                        specify configure file
+resolv-file=/etc/resolv.dnsmasq.conf    specify path to resolv.conf
+strict-order, -o                        search in oredr (each line in /etc/hosts --> /etc/resolv.dnsmasq.conf)
+no-hosts, -h                            not read /etc/hosts
+listen-address=127.0.0.1,192.168.11.166 seperate each ip w/ comma
+address=/<domain>/<ipaddr>              set aname
+bind-interfaces                         listen to all interfaces
+except-interfaces                       specify interface(s) NOT to listen on
+dhcp-option-force                       DHCP option sent even if the client does not request it
+======================================= =====================================
 
 
+- Examples
+
+.. code-block:: guess
+
+    dhcp-option-force=26,1400    # 26 means mtu, 1400 is mtusize
 
 
 .. image:: images/django_logo.svg
