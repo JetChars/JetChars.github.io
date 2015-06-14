@@ -93,6 +93,8 @@ Install Docker::
 
 Ceph is a free software storage platform designed to present object, block, and file storage from a single distributed computer cluster [#]_
 
+`doc <http://docs.ceph.com/docs/master/>`_
+
 .. image:: images/ceph_components.svg
 
 
@@ -164,7 +166,7 @@ Terminologies
 | **mesos** -- distributed system **for running and building** other distributed system(spark hadoop chronos marathon K8s)
 | **ML as a Service** -- Training a model first(input csv files), then predict.
 
-|
+| `aliyun <http://www.aliyun.com>`_
 |
 |
 |

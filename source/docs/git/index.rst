@@ -7,11 +7,15 @@
 * CVS/SVN(SubVersion) both need need web connection, while git don't
 
 
+`doc <http://git-scm.com/doc>`_
+
 Configuration
 =============
 
 git_config
 ----------
+
+`git-congfig Manual Page <https://www.kernel.org/pub/software/scm/git/docs/git-config.html>`_
 
 ``git config --global section_name.param value``
 

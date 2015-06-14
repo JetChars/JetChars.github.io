@@ -230,6 +230,7 @@ Terminologies
 | **sheepdog** -- opensourcs project, developed by NTT, design for vm's storage.
 | **fuel** -- auto deploy openstack enviroment
 | **murano**-- auto install openstack plugin
+| `ceilometer quick start <https://www.rdoproject.org/CeilometerQuickStart>`_
 |
 
 

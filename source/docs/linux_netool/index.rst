@@ -32,6 +32,8 @@ Check DNS connectivity
 DNS management
 ==============
 
+`oray <http://www.oray.com/>`_
+
 nslookup
 ^^^^^^^^
 
