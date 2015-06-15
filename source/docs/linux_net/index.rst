@@ -33,6 +33,7 @@ DNS management
 ==============
 
 `oray <http://www.oray.com/>`_
+totally 13 logical root servers all over the world, but there is no one in china. It's a strategic resource.
 
 nslookup
 ^^^^^^^^
@@ -41,9 +42,10 @@ nslookup
 
     - ``host domain_name``
     - ``dig domain_name``
+    - ``ping domain_name``
 
 
-This tool can be use as a command ``nslookup domain_name``, or in a interactive mode
+This tool can be use as a command ``nslookup domain_name``, or interactive mode
 
 .. code-block:: bash
 
@@ -51,7 +53,16 @@ This tool can be use as a command ``nslookup domain_name``, or in a interactive 
     set q=ns         # change query type: a, cname, ns
     domain_name      # query directly
 
+bind -- main stream dns server
+====
 
+.. sidebar:: Terms
+
+    | **router** is not a cached name server
+    | baidu use godaddy's dns service??
+
+
+For old systems ``bind`` and ``caching-nameserver`` both required, latter one for obtaining config file **/etc/named.conf**, by default bind's named.conf is caching name server, so no need to install caching-nameserver in latest systems.
 
 
 Route Management
@@ -144,4 +155,7 @@ Home made proxy setting tool
     chmod a+x /intel-pxy.sh 
 
 
+Terms
+=====
 
+- **CDN** -- Content Delivery Network, Delivery data according to client's ip or location, to assure fast and stable network.

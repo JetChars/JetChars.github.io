@@ -67,10 +67,10 @@ mke2fs
 ============= ============================ ========================
 option        description                  examples
 ============= ============================ ========================
--t            designate filesys type       mke2fs -t ext4 /dev/sda3
--b blocksize  designate block size
+-t            specify filesys type         mke2fs -t ext4 /dev/sda3
+-b blocksize  specify block size
 -c            check when creating filesys
--L label      designate volume label
+-L label      specify volume label
 -j            create journal system        ext2 doesn't contain jornal ext3/4 built-in journal sys
 ============= ============================ ========================
  
