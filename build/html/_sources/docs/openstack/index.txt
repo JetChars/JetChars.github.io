@@ -27,6 +27,12 @@ Root wrapper, provide nova an option other than sudo, make sure nova can only ab
 - conf file: ``/etc/nova/rootwrap.conf`` ``/etc/sudoers.d/nova-rootwrap``
 - filters: ``/etc/nova/rootwrap.d/*.filters
 
+.. sidebar:: `Storage <http://docs.openstack.org/openstack-ops/content/storage_decision.html>`_
+
+    - **Ephemeral Storage** -- meaning that (from the user's point of view) they effectively disappear when a virtual machine is terminated.
+    - **Persistent Storage** --  means that the storage resource outlives any other resource and is always available, regardless of the state of a running instance.
+        - Object Storage --  users access binary objects through a REST API
+        - Block Storage --  provides users with access to block-storage devices
 
 Management
 ----------
@@ -125,11 +131,6 @@ Refresh horizon
     - severely rely on RabbitMQ
     - **volume type** -- a type or label can be selected at vol creation time, maps to a set of capabilities of the storage back-end driver to be used for this vol
 
-
-
-Architecture
-============
-
 Components
 ----------
 
@@ -159,6 +160,9 @@ create cinder volume
 5. scheduler return volume status to api node
 6. api return volume status to client
 
+.. code-block:: bash
+    
+    cinder create --hint local_to_instance=instance_uuid --display_name=instance_name SIZE
 
 delete cinder volume
 ^^^^^^^^^^^^^^^^^^^^
@@ -183,7 +187,8 @@ Glance
 
 Sahara
 ======
-     
+ 
+
 Neutron
 =======
 

@@ -15,6 +15,9 @@ AMQP -- Advanced Message Queuing Protocol
 RabbitMQ
 ========
 
+.. image:: images/flow1.png
+    :align: right
+
 Nova is main user of rabbitmq in openstack projects
 
 has 2 types of rpc call, rpc.call & rpc.cast, to request/response
@@ -33,4 +36,15 @@ has 2 types of rpc call, rpc.call & rpc.cast, to request/response
     - Direct Publisher
     - Topic Exchange
     - Direct Exchange
+
+
+.. code-block:: bash
+    :linenos:
+
+    sudo rabbitmqctl list_exchanges name
+    sudo rabbitmqctl list_queues name
+
+
+
+
 

@@ -13,6 +13,8 @@ OpenStack installation with `DevStack <http://git.openstack.org/cgit/openstack-d
     | One of devstack core members, **Dean Troyer** write 8 issues, none approved and 7 of 8 got -1!
 
 
+Currently, DevStack is openstack developers' official installation method, but mainstream tool is packstack.
+
 Quick Start
 ===========
 

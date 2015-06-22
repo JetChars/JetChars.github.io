@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>AMQP – Advanced Message Queuing Protocol &mdash; JetChars 0.1 documentation</title>
+  <title>gnuplot &mdash; JetChars 0.1 documentation</title>
   
 
   
@@ -30,9 +30,7 @@
   
 
   
-    <link rel="top" title="JetChars 0.1 documentation" href="../../index.html"/>
-        <link rel="next" title="Mac as Main OS" href="../mac/index.html"/>
-        <link rel="prev" title="Open vSwitch" href="../ovs/index.html"/> 
+    <link rel="top" title="JetChars 0.1 documentation" href="../../index.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -216,7 +214,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../hadoop/index.html#unlimit-non-root-user-s-resources">Unlimit Non-root User&#8217;s Resources</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hadoop/index.html#crunch">crunch</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hadoop/index.html#id2">CDAP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../hadoop/index.html#issues">Issues</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../hadoop_conf_tuning/index.html">Hadoop Configuration Tuning</a><ul>
@@ -252,7 +249,7 @@
 </ul>
 </li>
 </ul>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../linux_disk/index.html">Linux Disk</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#filesystem">Filesystem</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#kernnel-vfs">Kernnel &#8211; VFS</a></li>
@@ -375,8 +372,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../ovs/index.html">Open vSwitch</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">AMQP &#8211; Advanced Message Queuing Protocol</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#rabbitmq">RabbitMQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../amqp/index.html">AMQP &#8211; Advanced Message Queuing Protocol</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../amqp/index.html#rabbitmq">RabbitMQ</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../mac/index.html">Mac as Main OS</a><ul>
@@ -515,11 +512,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
-    <li>AMQP &#8211; Advanced Message Queuing Protocol</li>
+    <li>gnuplot</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../../_sources/docs/amqp/index.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/docs/gnuplot/index.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -528,87 +525,13 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="amqp-advanced-message-queuing-protocol">
-<h1>AMQP &#8211; Advanced Message Queuing Protocol<a class="headerlink" href="#amqp-advanced-message-queuing-protocol" title="Permalink to this headline">¶</a></h1>
-<ul>
-<li><p class="first">binary application layer protocol</p>
-</li>
-<li><p class="first">Asynchronos communiction between processes, 松耦合性, managed by a middle ware, no need to know the location of other nodes.</p>
-</li>
-<li><p class="first">message format &#8211; bare-message?, contains ID, theme, create time, data.</p>
-</li>
-<li><dl class="first docutils">
-<dt>extensible ability</dt>
-<dd><ul class="first last simple">
-<li>don&#8217;t need to konw location of sender and receiver. and don&#8217;t need know how.</li>
-<li>can choose to reclient or accept message</li>
-<li>multiple subscriber, can take strategy of competition or non-competition to determine which one to handle it.</li>
-<li>can add/del nodes</li>
-<li>can add filter to choose subscriptions</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-<div class="section" id="rabbitmq">
-<h2>RabbitMQ<a class="headerlink" href="#rabbitmq" title="Permalink to this headline">¶</a></h2>
-<img alt="../../_images/flow1.png" class="align-right" src="../../_images/flow1.png" />
-<p>Nova is main user of rabbitmq in openstack projects</p>
-<p>has 2 types of rpc call, rpc.call &amp; rpc.cast, to request/response</p>
-<ul>
-<li><dl class="first docutils">
-<dt>rpc.call</dt>
-<dd><ul class="first last">
-<li><p class="first">Direct Exchange &#8211; server send ack message, one queue each exchanger</p>
-</li>
-<li><dl class="first docutils">
-<dt>Topic Exchange  &#8211; client start request, multi-queue each exchanger</dt>
-<dd><ul class="first last simple">
-<li>topic/topic.host &#8211; two types of theme, later one can designate which host to response</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><p class="first">rpc.cast &#8211; no response needed.</p>
-</li>
-<li><dl class="first docutils">
-<dt>Components</dt>
-<dd><ul class="first last simple">
-<li>Topic Publisher</li>
-<li>Direct Consumer</li>
-<li>Topic Consuer</li>
-<li>Direct Publisher</li>
-<li>Topic Exchange</li>
-<li>Direct Exchange</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre>sudo rabbitmqctl list_exchanges name
-sudo rabbitmqctl list_queues name
-</pre></div>
-</td></tr></table></div>
-</div>
+  <div class="section" id="gnuplot">
+<h1>gnuplot<a class="headerlink" href="#gnuplot" title="Permalink to this headline">¶</a></h1>
 </div>
 
 
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../mac/index.html" class="btn btn-neutral float-right" title="Mac as Main OS" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="../ovs/index.html" class="btn btn-neutral" title="Open vSwitch" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>

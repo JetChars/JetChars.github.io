@@ -9,6 +9,15 @@
 
 `doc <http://git-scm.com/doc>`_
 
+Commit
+======
+
+.. code-block:: bash
+
+    git commit --amend -m "New commit message"
+
+
+
 Configuration
 =============
 

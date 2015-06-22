@@ -54,6 +54,13 @@ The vanilla plugin is a reference implementation which allows users to operate a
     CentOS 6.5    cloud-user
     ============= ===========
 
+CDH
+---
+
+.. image:: images/cdh.png
+
+
+
 Sahara Optimizaion Angles
 =========================
 

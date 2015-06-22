@@ -52,6 +52,8 @@ Issues
     export LC_ALL=es_ES.UTF-8
     export LANG=es_ES.UTF-8
 
+2. avoid loading intersphinx inventory
+    
 
 `Pandoc <http://pandoc.org>`_ - Universal document converter
 =================================================================================
