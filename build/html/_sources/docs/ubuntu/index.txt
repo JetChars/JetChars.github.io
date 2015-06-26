@@ -1,0 +1,97 @@
+======
+Ubuntu
+======
+
+Installation
+============
+
+ubuntu 14.10 boot w/ syslinux, but ultraISO not support it. [#]_
+
+Termial Mode Configuration
+--------------------------
+
+.. code-block:: bash
+
+    # can change encode, font size, keyboard layout
+    sudo dpkg-reconfigure console-setup
+
+Configure Wireless NIC
+----------------------
+
+.. sidebar:: Note
+
+    iwconfig not support PSK encryption::
+
+        iwconfig wlan0 key helloworld
+        Error for wireless request "Set Encode" (8B2A) :
+            SET failed on device eth1 ; Invalid argument.
+
+    in this situation, we can use wpa_supplicant::
+
+        echo '
+        ctrl_interface=/var/run/wpa_supplicant
+        # make sure only root user can access conf-file
+        ctrl_interface_group=0
+        # it can be change into 0 or 2, but ony mode 1 works
+        ap_scan=1
+        network={
+           ssid="ssidname"
+           psk="passwd" 
+        }' > /etc/wpa_supplicant.conf
+
+        # take effect configurations
+        wpa_supplicant -B -Dnl80211 -iwlan0 -c/etc/wpa_supplicant.conf
+
+.. code-block:: bash
+
+    # power on wnic
+    iwconfig wlan0 txpower on
+    # get ssid list
+    iwlist wlan0 scan | grep -i ssid
+    # connet to a ssid, password come after 'key'
+    iwconfig wlan0 essid ChinaNet
+    iwconfig wlan0 essid ChinaNet key <password>
+    # enable wnic after configuration
+    ifconfig wlan0 up
+    dhclient wlan0
+
+Install gnome
+-------------
+
+.. code-block:: bash
+    :linenos:
+
+    # Personal Package Archives(short for ppa, provided by ubuntu)
+    sudo add-apt-repository ppa:gnome3-team/gnome3
+    sudo apt-get update
+    sudo apt-get install gnome-shell ubuntu-gnome-desktop
+
+    # unity desktop
+    sudo apt-get install ubuntu-desktop
+
+    # kde desktop
+    sudo apt-get install kubuntu-desktop
+    sudo apt-get install language-pack-kde-zh language-pack-kde-zh-base language-pack-zh language-pack-zh-base language-support-zh
+
+APT
+===
+
+(Advanced Package Tool) is the command-line tool for handling packages
+
+Configuration files
+-------------------
+
+1. ``/etc/apt/source.list`` Repositories list::
+
+    DebType AddressType://Hostaddress/Ubuntu Distribution Component1 Component2 ...
+
+  - DebType: 'deb' means binary, deb-src means source-codes
+  - AddrType: http/file/ftp/cdrom/ssh
+  - Distribution: dapper/feisty/trusty(14.04)
+
+
+
+
+
+
+.. [#] https://bugs.launchpad.net/ubuntu/+source/usb-creator/+bug/1325801

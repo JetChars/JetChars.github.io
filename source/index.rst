@@ -7,6 +7,8 @@
 Welcome to JetChars' Documentation!
 ===================================
 
+Since 5/1/2015
+
 .. toctree::
     :maxdepth: 1
 
