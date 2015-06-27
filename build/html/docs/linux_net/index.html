@@ -115,8 +115,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#refresh-horizon">Refresh horizon</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#id7">Cinder</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#architecture">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#id7">Cinder</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#components">Components</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#storage-backend">Storage backend</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#work-flow">work flow</a><ul>
@@ -217,6 +216,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../hadoop/index.html#unlimit-non-root-user-s-resources">Unlimit Non-root User&#8217;s Resources</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hadoop/index.html#crunch">crunch</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hadoop/index.html#id2">CDAP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hadoop/index.html#issues">Issues</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../hadoop_conf_tuning/index.html">Hadoop Configuration Tuning</a><ul>
@@ -310,9 +310,11 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Network Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#configurations">Configurations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#network-trouble-shooting">Network Trouble Shooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#website-errs">WebSite Errs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ping">Ping</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#check-dns-connectivity">Check DNS connectivity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#check-nic">Check NIC</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#dns-management">DNS management</a></li>
@@ -382,6 +384,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../mac/index.html">Mac as Main OS</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../mac/index.html#shortcuts">ShortCuts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../mac/index.html#softwares">Softwares</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../mac/index.html#safari">Safari</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../mac/index.html#popclip-rightclick-enhancement-tool">PopClip &#8211; rightclick enhancement tool</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../mac/index.html#brew-package-management-software">brew &#8211; package management software</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../mac/index.html#glims-safari-enhancement">glims &#8211; safari enhancement</a></li>
@@ -393,6 +396,7 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git &#8211; Extraordinary version contrl software</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../git/index.html#commit">Commit</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../git/index.html#configuration">Configuration</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../git/index.html#git-config">git_config</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../git/index.html#git-proxy-command">Git Proxy Command</a></li>
@@ -529,8 +533,149 @@
             
   <div class="section" id="network-tools">
 <h1>Network Tools<a class="headerlink" href="#network-tools" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="configurations">
+<h2>Configurations<a class="headerlink" href="#configurations" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">/etc/network/interfaces</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre>auto eth0
+iface eth0 inet static
+    address 192.168.11.66
+    netmask 255.255.0.0
+    gateway 192.168.2.200
+</pre></div>
+</div>
+<ul class="simple">
+<li>auto eth0 means auto-open</li>
+</ul>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">/etc/resolv.conf</span></code> &#8211; dns servers</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">/etc/hostname</span></code> <code class="docutils literal"><span class="pre">/etc/hosts</span></code> &#8211; host names</p>
+</li>
+</ul>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c"># restart network service to enable configurations</span>
+service networking restart
+</pre></div>
+</div>
+</div>
 <div class="section" id="network-trouble-shooting">
 <h2>Network Trouble Shooting<a class="headerlink" href="#network-trouble-shooting" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Principle of fault investigation &#8211; bottom up, from inside to outside</p>
+</li>
+<li><dl class="first docutils">
+<dt>Check basic configuration</dt>
+<dd><ul class="first last simple">
+<li>check connectivity &#8211; <code class="docutils literal"><span class="pre">ping</span> <span class="pre">gateway</span></code> <code class="docutils literal"><span class="pre">ping</span> <span class="pre">g.cn</span></code> <code class="docutils literal"><span class="pre">nslookup</span></code></li>
+<li>check ip/netmask/gateway &#8211; <code class="docutils literal"><span class="pre">ip</span> <span class="pre">a</span></code> <code class="docutils literal"><span class="pre">ip</span> <span class="pre">r</span></code></li>
+<li>check nic &#8211; <code class="docutils literal"><span class="pre">ethtool</span> <span class="pre">eth0</span></code></li>
+<li>check configuration files</li>
+<li>check enabled standard ports</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Network quality testing</dt>
+<dd><ul class="first last">
+<li><p class="first">check weakness node <code class="docutils literal"><span class="pre">mtr</span> <span class="pre">g.cn</span></code></p>
+</li>
+<li><p class="first">check bandwidth &#8211; <code class="docutils literal"><span class="pre">iperf</span></code></p>
+</li>
+<li><dl class="first docutils">
+<dt>check trace route&amp;path</dt>
+<dd><ul class="first last simple">
+<li>check which nodes will go through &#8211; <code class="docutils literal"><span class="pre">traceroute</span></code></li>
+<li>check the mtu size of this path &#8211; <code class="docutils literal"><span class="pre">tracepath</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Website stress testing</dt>
+<dd><ul class="first last">
+<li><p class="first">apache bench:</p>
+<div class="highlight-python"><div class="highlight"><pre>apt-get install apache2-utils
+ab -c 100 -n 10000 http://z.cn/  # 100 concurrency, totally 10000 requests
+</pre></div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="section" id="website-errs">
+<h3>WebSite Errs<a class="headerlink" href="#website-errs" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="27%" />
+<col width="73%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Error NO.</th>
+<th class="head">Definition</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>400</td>
+<td>BAD_REQUEST</td>
+</tr>
+<tr class="row-odd"><td>401</td>
+<td>UNAUTHORIZED</td>
+</tr>
+<tr class="row-even"><td>403</td>
+<td>FORBIDDEN</td>
+</tr>
+<tr class="row-odd"><td>404</td>
+<td>NOT_FOUND</td>
+</tr>
+<tr class="row-even"><td>405</td>
+<td>METHOD_NOT_ALLOWED</td>
+</tr>
+<tr class="row-odd"><td>408</td>
+<td>REQUEST_TIME_OUT</td>
+</tr>
+<tr class="row-even"><td>410</td>
+<td>GONE</td>
+</tr>
+<tr class="row-odd"><td>411</td>
+<td>LENGTH_REQUIRED</td>
+</tr>
+<tr class="row-even"><td>412</td>
+<td>PRECONDITION_FAILED</td>
+</tr>
+<tr class="row-odd"><td>413</td>
+<td>REQUEST_ENTITY_TOO_LARGE</td>
+</tr>
+<tr class="row-even"><td>414</td>
+<td>REQUEST_URI_TOO_LARGE</td>
+</tr>
+<tr class="row-odd"><td>415</td>
+<td>UNSUPPORTED_MEDIA_TYPE</td>
+</tr>
+<tr class="row-even"><td>500</td>
+<td>INTERNAL_SERVER_ERROR</td>
+</tr>
+<tr class="row-odd"><td>501</td>
+<td>NOT_IMPLEMENTED</td>
+</tr>
+<tr class="row-even"><td>502</td>
+<td>BAD_GATEWAY</td>
+</tr>
+<tr class="row-odd"><td>503</td>
+<td>SERVICE_UNAVAILABLE</td>
+</tr>
+<tr class="row-even"><td>506</td>
+<td>VARIANT_ALSO_VARIES</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="section" id="ping">
 <h3>Ping<a class="headerlink" href="#ping" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal"><span class="pre">ping</span> <span class="pre">[-c</span> <span class="pre">count]</span> <span class="pre">[-w</span> <span class="pre">deadline]</span> <span class="pre">[-i</span> <span class="pre">interval]</span> <span class="pre">[-s</span> <span class="pre">packetsize]</span></code></p>
@@ -561,8 +706,13 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="check-dns-connectivity">
-<h3>Check DNS connectivity<a class="headerlink" href="#check-dns-connectivity" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="check-nic">
+<h3>Check NIC<a class="headerlink" href="#check-nic" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">#</span> ethtool eth0
+<span class="go">Settings for eth0:</span>
+<span class="go">    Link detected: yes</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="dns-management">

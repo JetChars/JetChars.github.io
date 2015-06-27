@@ -2,6 +2,14 @@
 Ubuntu
 ======
 
+Shortcuts
+=========
+
+
+
+
+
+
 Installation
 ============
 
@@ -83,17 +91,129 @@ APT
 Configuration files
 -------------------
 
-#. ``/etc/apt/source.list`` Repositories list::
+.. sidebar:: aliyun's trusty(14.04) source
+
+    .. code-block:: guess
+
+        # deb cdrom:[Ubuntu 14.04.1 LTS _Trusty Tahr_ - Release amd64 (20140722.2)]/ trusty main restricted
+
+        # See http://help.ubuntu.com/community/UpgradeNotes for how to upgrade to
+        # newer versions of the distribution.
+        deb http://mirrors.aliyun.com/ubuntu/ trusty main restricted
+        deb-src http://mirrors.aliyun.com/ubuntu/ trusty main restricted
+
+        ## Major bug fix updates produced after the final release of the
+        ## distribution.
+        deb http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted
+        deb-src http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted
+
+        ## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu
+        ## team. Also, please note that software in universe WILL NOT receive any
+        ## review or updates from the Ubuntu security team.
+        deb http://mirrors.aliyun.com/ubuntu/ trusty universe
+        deb-src http://mirrors.aliyun.com/ubuntu/ trusty universe
+        deb http://mirrors.aliyun.com/ubuntu/ trusty-updates universe
+        deb-src http://mirrors.aliyun.com/ubuntu/ trusty-updates universe
+
+        ## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu 
+        ## team, and may not be under a free licence. Please satisfy yourself as to 
+        ## your rights to use the software. Also, please note that software in 
+        ## multiverse WILL NOT receive any review or updates from the Ubuntu
+        ## security team.
+        deb http://mirrors.aliyun.com/ubuntu/ trusty multiverse
+        deb-src http://mirrors.aliyun.com/ubuntu/ trusty multiverse
+        deb http://mirrors.aliyun.com/ubuntu/ trusty-updates multiverse
+        deb-src http://mirrors.aliyun.com/ubuntu/ trusty-updates multiverse
+
+        ## N.B. software from this repository may not have been tested as
+        ## extensively as that contained in the main release, although it includes
+        ## newer versions of some applications which may provide useful features.
+        ## Also, please note that software in backports WILL NOT receive any review
+        ## or updates from the Ubuntu security team.
+        deb http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse
+        deb-src http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse
+
+        deb http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted
+        deb-src http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted
+        deb http://mirrors.aliyun.com/ubuntu/ trusty-security universe
+        deb-src http://mirrors.aliyun.com/ubuntu/ trusty-security universe
+        deb http://mirrors.aliyun.com/ubuntu/ trusty-security multiverse
+        deb-src http://mirrors.aliyun.com/ubuntu/ trusty-security multiverse
+
+        ## Uncomment the following two lines to add software from Canonical's
+        ## 'partner' repository.
+        ## This software is not part of Ubuntu, but is offered by Canonical and the
+        ## respective vendors as a service to Ubuntu users.
+        # deb http://archive.canonical.com/ubuntu trusty partner
+        # deb-src http://archive.canonical.com/ubuntu trusty partner
+
+        ## This software is not part of Ubuntu, but is offered by third-party
+        ## developers who want to ship their latest software.
+        deb http://extras.ubuntu.com/ubuntu trusty main
+        deb-src http://extras.ubuntu.com/ubuntu trusty main
+
+
+    
+
+1. ``/etc/apt/source.list`` Repositories list::
 
     DebType AddressType://Hostaddress/Ubuntu Distribution Component1 Component2 ...
-
   - DebType: 'deb' means binary, 'deb-src' means source-codes
   - AddrType: http/file/ftp/cdrom/ssh
   - Distribution: dapper/feisty/trusty(14.04)
+2. ``/etc/apt/apt.conf`` overall conf-file::
 
-#. ``/etc/apt/apt.conf`` overall conf-file
+    Acquire::http::Proxy::linux-ftp.sc.intel.com "DIRECT";
+    Acquire::http::Proxy "http://proxy-shz.intel.com:911/";
+    Acquire::https::Proxy "https://proxy-shz.intel.com:911/";
+    Acquire::ftp::Proxy "ftp://proxy-shz.intel.com:911/";
+    Acquire::socks::Proxy "socks://proxy-shz.intel.com:911/";
 
 
+apt-get
+-------
+
+- install
+
+.. code-block:: bash
+
+    apt-get install <pkg>  # multiple pkgs seperated by space
+    apt-get install --reinstall <pkg>
+    apt-get install -f <pkg>  # fix pkg and dependencies
+
+
+- uninstall
+
+.. code-block:: bash
+
+    apt-get remove --purge -y <pkg>
+    apt-get autoremove -y  # remove obsolete pkgs
+    apt-get autoclean -y  # clean removed pkg's dependencies
+
+
+- others
+
+.. code-block:: bash
+
+    apt-get source [-d] <pkg>    # download src code to current folder, compile src code w/ -d
+    apt-get download <pkg>   # download binary to current folder
+    apt-get build-dep <pkg>  # make pkg's dependencies
+    apt-get update  # update repo
+    apt-get dist-update  # upgrade os
+    apt-get clean  # remove downloaded pkgs ``/var/cache/apt/archives``
+
+
+apt-cache
+---------
+
+.. code-block:: bash
+
+    apt-cache search <pkg>   # search w/ regex
+    pkgnames  # list all installed pkgnames
+    apt-cache stats    # list statistic infos
+    apt-cache show <pkg>   # show pkg's detail online
+    apt-cache depends <pkg>  # show pkg's dependencies
+    apt-cache rdepends <pkg>  # show pkgs depends on this pkg
 
 
 

@@ -310,9 +310,10 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux_net/index.html">Network Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#configurations">Configurations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#network-trouble-shooting">Network Trouble Shooting</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../linux_net/index.html#ping">Ping</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../linux_net/index.html#check-dns-connectivity">Check DNS connectivity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_net/index.html#check-nic">Check NIC</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#dns-management">DNS management</a></li>
@@ -382,6 +383,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../mac/index.html">Mac as Main OS</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../mac/index.html#shortcuts">ShortCuts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../mac/index.html#softwares">Softwares</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../mac/index.html#safari">Safari</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../mac/index.html#popclip-rightclick-enhancement-tool">PopClip &#8211; rightclick enhancement tool</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../mac/index.html#brew-package-management-software">brew &#8211; package management software</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../mac/index.html#glims-safari-enhancement">glims &#8211; safari enhancement</a></li>
@@ -548,26 +550,26 @@
 <div class="line">This error occurs in my <strong>Macbook Air</strong> (2011, OS X Yosemite)</div>
 <div class="line"><br /></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>sphinx-build -b html -d build/doctrees   source build/html
-Traceback (most recent call last):
-  File &quot;/usr/local/bin/sphinx-build&quot;, line 11, in &lt;module&gt;
-    sys.exit(main())
-  File &quot;/Library/Python/2.7/site-packages/sphinx/__init__.py&quot;, line 51, in main
-    sys.exit(build_main(argv))
-  File &quot;/Library/Python/2.7/site-packages/sphinx/__init__.py&quot;, line 61, in build_main
-    from sphinx import cmdline
-  File &quot;/Library/Python/2.7/site-packages/sphinx/cmdline.py&quot;, line 19, in &lt;module&gt;
-    from docutils.utils import SystemMessage
-  File &quot;/Library/Python/2.7/site-packages/docutils/utils/__init__.py&quot;, line 20, in &lt;module&gt;
-    import docutils.io
-  File &quot;/Library/Python/2.7/site-packages/docutils/io.py&quot;, line 18, in &lt;module&gt;
-    from docutils.utils.error_reporting import locale_encoding, ErrorString, ErrorOutput
-  File &quot;/Library/Python/2.7/site-packages/docutils/utils/error_reporting.py&quot;, line 47, in &lt;module&gt;
-    locale_encoding = locale.getlocale()[1] or locale.getdefaultlocale()[1]
-  File &quot;/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/locale.py&quot;, line 511, in getdefaultlocale
-    return _parse_localename(localename)
-  File &quot;/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/locale.py&quot;, line 443, in _parse_localename
-    raise ValueError, &#39;unknown locale: %s&#39; % localename
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">#</span> sphinx-build -b html -d build/doctrees <span class="nb">source </span>build/html
+<span class="go">Traceback (most recent call last):</span>
+<span class="go">  File &quot;/usr/local/bin/sphinx-build&quot;, line 11, in &lt;module&gt;</span>
+<span class="go">    sys.exit(main())</span>
+<span class="go">  File &quot;/Library/Python/2.7/site-packages/sphinx/__init__.py&quot;, line 51, in main</span>
+<span class="go">    sys.exit(build_main(argv))</span>
+<span class="go">  File &quot;/Library/Python/2.7/site-packages/sphinx/__init__.py&quot;, line 61, in build_main</span>
+<span class="go">    from sphinx import cmdline</span>
+<span class="go">  File &quot;/Library/Python/2.7/site-packages/sphinx/cmdline.py&quot;, line 19, in &lt;module&gt;</span>
+<span class="go">    from docutils.utils import SystemMessage</span>
+<span class="go">  File &quot;/Library/Python/2.7/site-packages/docutils/utils/__init__.py&quot;, line 20, in &lt;module&gt;</span>
+<span class="go">    import docutils.io</span>
+<span class="go">  File &quot;/Library/Python/2.7/site-packages/docutils/io.py&quot;, line 18, in &lt;module&gt;</span>
+<span class="go">    from docutils.utils.error_reporting import locale_encoding, ErrorString, ErrorOutput</span>
+<span class="go">  File &quot;/Library/Python/2.7/site-packages/docutils/utils/error_reporting.py&quot;, line 47, in &lt;module&gt;</span>
+<span class="go">    locale_encoding = locale.getlocale()[1] or locale.getdefaultlocale()[1]</span>
+<span class="go">  File &quot;/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/locale.py&quot;, line 511, in getdefaultlocale</span>
+<span class="go">    return _parse_localename(localename)</span>
+<span class="go">  File &quot;/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/locale.py&quot;, line 443, in _parse_localename</span>
+<span class="go">    raise ValueError, &#39;unknown locale: %s&#39; % localename</span>
 </pre></div>
 </div>
 <div class="line-block">

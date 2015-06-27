@@ -61,10 +61,26 @@ cmd + tab/ shifttab          next/prev tab
 cmd + f1                     swith screen mode
 ============================ ==============================
 
+* Xcode
+
+================== ============
+commands           description
+================== ============
+cmd + r            run
+cmd + s            save
+================== ============
+
 
 
 Softwares
 =========
+
+Safari
+------
+
+enable inspection mode: ``preferences --> advance --> developer``
+
+
 
 PopClip -- rightclick enhancement tool
 --------------------------------------

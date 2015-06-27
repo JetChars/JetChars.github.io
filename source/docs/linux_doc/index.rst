@@ -20,9 +20,10 @@ Issues
 
 | This error occurs in my **Macbook Air** (2011, OS X Yosemite)
 |
-::
 
-    sphinx-build -b html -d build/doctrees   source build/html
+.. code-block:: console
+
+    # sphinx-build -b html -d build/doctrees source build/html
     Traceback (most recent call last):
       File "/usr/local/bin/sphinx-build", line 11, in <module>
         sys.exit(main())

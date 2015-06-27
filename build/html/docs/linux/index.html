@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Ubuntu &mdash; JetChars 0.1 documentation</title>
+  <title>Linux &mdash; JetChars 0.1 documentation</title>
   
 
   
@@ -308,10 +308,11 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux_net/index.html">Network Tools</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#configurations">Configurations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#network-trouble-shooting">Network Trouble Shooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux_net/index.html#website-errs">WebSite Errs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../linux_net/index.html#ping">Ping</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../linux_net/index.html#check-dns-connectivity">Check DNS connectivity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_net/index.html#check-nic">Check NIC</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#dns-management">DNS management</a></li>
@@ -515,11 +516,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
-    <li>Ubuntu</li>
+    <li>Linux</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../../_sources/docs/ubuntu/index.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/docs/linux/index.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -528,233 +529,11 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="ubuntu">
-<h1>Ubuntu<a class="headerlink" href="#ubuntu" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="shortcuts">
-<h2>Shortcuts<a class="headerlink" href="#shortcuts" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<p>ubuntu 14.10 boot w/ syslinux, but ultraISO not support it. <a class="footnote-reference" href="#id2" id="id1">[1]</a></p>
-<div class="section" id="termial-mode-configuration">
-<h3>Termial Mode Configuration<a class="headerlink" href="#termial-mode-configuration" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-bash"><div class="highlight"><pre><span class="c"># can change encode, font size, keyboard layout</span>
-sudo dpkg-reconfigure console-setup
-</pre></div>
-</div>
-</div>
-<div class="section" id="configure-wireless-nic">
-<h3>Configure Wireless NIC<a class="headerlink" href="#configure-wireless-nic" title="Permalink to this headline">¶</a></h3>
-<div class="sidebar">
-<p class="first sidebar-title">Note</p>
-<p>iwconfig not support PSK encryption:</p>
-<div class="highlight-python"><div class="highlight"><pre>iwconfig wlan0 key helloworld
-Error for wireless request &quot;Set Encode&quot; (8B2A) :
-    SET failed on device eth1 ; Invalid argument.
-</pre></div>
-</div>
-<p>in this situation, we can use wpa_supplicant:</p>
-<div class="last highlight-python"><div class="highlight"><pre>echo &#39;
-ctrl_interface=/var/run/wpa_supplicant
-# make sure only root user can access conf-file
-ctrl_interface_group=0
-# it can be change into 0 or 2, but ony mode 1 works
-ap_scan=1
-network={
-   ssid=&quot;ssidname&quot;
-   psk=&quot;passwd&quot;
-}&#39; &gt; /etc/wpa_supplicant.conf
-
-# take effect configurations
-wpa_supplicant -B -Dnl80211 -iwlan0 -c/etc/wpa_supplicant.conf
-</pre></div>
-</div>
-</div>
-<div class="highlight-bash"><div class="highlight"><pre><span class="c"># power on wnic</span>
-iwconfig wlan0 txpower on
-<span class="c"># get ssid list</span>
-iwlist wlan0 scan <span class="p">|</span> grep -i ssid
-<span class="c"># connet to a ssid, password come after &#39;key&#39;</span>
-iwconfig wlan0 essid ChinaNet
-iwconfig wlan0 essid ChinaNet key &lt;password&gt;
-<span class="c"># enable wnic after configuration</span>
-ifconfig wlan0 up
-dhclient wlan0
-</pre></div>
-</div>
-</div>
-<div class="section" id="install-gnome">
-<h3>Install gnome<a class="headerlink" href="#install-gnome" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># Personal Package Archives(short for ppa, provided by ubuntu)</span>
-sudo add-apt-repository ppa:gnome3-team/gnome3
-sudo apt-get update
-sudo apt-get install gnome-shell ubuntu-gnome-desktop
-
-<span class="c"># unity desktop</span>
-sudo apt-get install ubuntu-desktop
-
-<span class="c"># kde desktop</span>
-sudo apt-get install kubuntu-desktop
-sudo apt-get install language-pack-kde-zh language-pack-kde-zh-base language-pack-zh language-pack-zh-base language-support-zh
-
-<span class="c"># change font size, get tweak tool</span>
-sudo apt-get install unity-tweak-tool
-</pre></div>
-</td></tr></table></div>
-</div>
-</div>
-<div class="section" id="apt">
-<h2>APT<a class="headerlink" href="#apt" title="Permalink to this headline">¶</a></h2>
-<p>(Advanced Package Tool) is the command-line tool for handling packages</p>
-<div class="section" id="configuration-files">
-<h3>Configuration files<a class="headerlink" href="#configuration-files" title="Permalink to this headline">¶</a></h3>
-<div class="sidebar">
-<p class="first sidebar-title">aliyun&#8217;s trusty(14.04) source</p>
-<div class="last highlight-guess"><div class="highlight"><pre><span class="c"># deb cdrom:[Ubuntu 14.04.1 LTS _Trusty Tahr_ - Release amd64 (20140722.2)]/ trusty main restricted</span>
-
-<span class="c"># See http://help.ubuntu.com/community/UpgradeNotes for how to upgrade to</span>
-<span class="c"># newer versions of the distribution.</span>
-<span class="k">deb</span> <span class="s">http://mirrors.aliyun.com/ubuntu/</span> <span class="kp">trusty</span> <span class="kp">main</span> <span class="kp">restricted</span>
-<span class="k">deb-src</span> <span class="s">http://mirrors.aliyun.com/ubuntu/</span> <span class="kp">trusty</span> <span class="kp">main</span> <span class="kp">restricted</span>
-
-<span class="c">## Major bug fix updates produced after the final release of the</span>
-<span class="c">## distribution.</span>
-<span class="k">deb</span> <span class="s">http://mirrors.aliyun.com/ubuntu/</span> <span class="kp">trusty-updates</span> <span class="kp">main</span> <span class="kp">restricted</span>
-<span class="k">deb-src</span> <span class="s">http://mirrors.aliyun.com/ubuntu/</span> <span class="kp">trusty-updates</span> <span class="kp">main</span> <span class="kp">restricted</span>
-
-<span class="c">## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu</span>
-<span class="c">## team. Also, please note that software in universe WILL NOT receive any</span>
-<span class="c">## review or updates from the Ubuntu security team.</span>
-<span class="k">deb</span> <span class="s">http://mirrors.aliyun.com/ubuntu/</span> <span class="kp">trusty</span> <span class="kp">universe</span>
-<span class="k">deb-src</span> <span class="s">http://mirrors.aliyun.com/ubuntu/</span> <span class="kp">trusty</span> <span class="kp">universe</span>
-<span class="k">deb</span> <span class="s">http://mirrors.aliyun.com/ubuntu/</span> <span class="kp">trusty-updates</span> <span class="kp">universe</span>
-<span class="k">deb-src</span> <span class="s">http://mirrors.aliyun.com/ubuntu/</span> <span class="kp">trusty-updates</span> <span class="kp">universe</span>
-
-<span class="c">## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu</span>
-<span class="c">## team, and may not be under a free licence. Please satisfy yourself as to</span>
-<span class="c">## your rights to use the software. Also, please note that software in</span>
-<span class="c">## multiverse WILL NOT receive any review or updates from the Ubuntu</span>
-<span class="c">## security team.</span>
-<span class="k">deb</span> <span class="s">http://mirrors.aliyun.com/ubuntu/</span> <span class="kp">trusty</span> <span class="kp">multiverse</span>
-<span class="k">deb-src</span> <span class="s">http://mirrors.aliyun.com/ubuntu/</span> <span class="kp">trusty</span> <span class="kp">multiverse</span>
-<span class="k">deb</span> <span class="s">http://mirrors.aliyun.com/ubuntu/</span> <span class="kp">trusty-updates</span> <span class="kp">multiverse</span>
-<span class="k">deb-src</span> <span class="s">http://mirrors.aliyun.com/ubuntu/</span> <span class="kp">trusty-updates</span> <span class="kp">multiverse</span>
-
-<span class="c">## N.B. software from this repository may not have been tested as</span>
-<span class="c">## extensively as that contained in the main release, although it includes</span>
-<span class="c">## newer versions of some applications which may provide useful features.</span>
-<span class="c">## Also, please note that software in backports WILL NOT receive any review</span>
-<span class="c">## or updates from the Ubuntu security team.</span>
-<span class="k">deb</span> <span class="s">http://mirrors.aliyun.com/ubuntu/</span> <span class="kp">trusty-backports</span> <span class="kp">main</span> <span class="kp">restricted</span> <span class="kp">universe</span> <span class="kp">multiverse</span>
-<span class="k">deb-src</span> <span class="s">http://mirrors.aliyun.com/ubuntu/</span> <span class="kp">trusty-backports</span> <span class="kp">main</span> <span class="kp">restricted</span> <span class="kp">universe</span> <span class="kp">multiverse</span>
-
-<span class="k">deb</span> <span class="s">http://mirrors.aliyun.com/ubuntu/</span> <span class="kp">trusty-security</span> <span class="kp">main</span> <span class="kp">restricted</span>
-<span class="k">deb-src</span> <span class="s">http://mirrors.aliyun.com/ubuntu/</span> <span class="kp">trusty-security</span> <span class="kp">main</span> <span class="kp">restricted</span>
-<span class="k">deb</span> <span class="s">http://mirrors.aliyun.com/ubuntu/</span> <span class="kp">trusty-security</span> <span class="kp">universe</span>
-<span class="k">deb-src</span> <span class="s">http://mirrors.aliyun.com/ubuntu/</span> <span class="kp">trusty-security</span> <span class="kp">universe</span>
-<span class="k">deb</span> <span class="s">http://mirrors.aliyun.com/ubuntu/</span> <span class="kp">trusty-security</span> <span class="kp">multiverse</span>
-<span class="k">deb-src</span> <span class="s">http://mirrors.aliyun.com/ubuntu/</span> <span class="kp">trusty-security</span> <span class="kp">multiverse</span>
-
-<span class="c">## Uncomment the following two lines to add software from Canonical&#39;s</span>
-<span class="c">## &#39;partner&#39; repository.</span>
-<span class="c">## This software is not part of Ubuntu, but is offered by Canonical and the</span>
-<span class="c">## respective vendors as a service to Ubuntu users.</span>
-<span class="c"># deb http://archive.canonical.com/ubuntu trusty partner</span>
-<span class="c"># deb-src http://archive.canonical.com/ubuntu trusty partner</span>
-
-<span class="c">## This software is not part of Ubuntu, but is offered by third-party</span>
-<span class="c">## developers who want to ship their latest software.</span>
-<span class="k">deb</span> <span class="s">http://extras.ubuntu.com/ubuntu</span> <span class="kp">trusty</span> <span class="kp">main</span>
-<span class="k">deb-src</span> <span class="s">http://extras.ubuntu.com/ubuntu</span> <span class="kp">trusty</span> <span class="kp">main</span>
-</pre></div>
-</div>
-</div>
-<ol class="arabic">
-<li><p class="first"><code class="docutils literal"><span class="pre">/etc/apt/source.list</span></code> Repositories list:</p>
-<div class="highlight-python"><div class="highlight"><pre>DebType AddressType://Hostaddress/Ubuntu Distribution Component1 Component2 ...
-</pre></div>
-</div>
-</li>
-</ol>
-<blockquote>
-<div><ul class="simple">
-<li>DebType: &#8216;deb&#8217; means binary, &#8216;deb-src&#8217; means source-codes</li>
-<li>AddrType: http/file/ftp/cdrom/ssh</li>
-<li>Distribution: dapper/feisty/trusty(14.04)</li>
-</ul>
-</div></blockquote>
-<ol class="arabic" start="2">
-<li><p class="first"><code class="docutils literal"><span class="pre">/etc/apt/apt.conf</span></code> overall conf-file:</p>
-<div class="highlight-python"><div class="highlight"><pre>Acquire::http::Proxy::linux-ftp.sc.intel.com &quot;DIRECT&quot;;
-Acquire::http::Proxy &quot;http://proxy-shz.intel.com:911/&quot;;
-Acquire::https::Proxy &quot;https://proxy-shz.intel.com:911/&quot;;
-Acquire::ftp::Proxy &quot;ftp://proxy-shz.intel.com:911/&quot;;
-Acquire::socks::Proxy &quot;socks://proxy-shz.intel.com:911/&quot;;
-</pre></div>
-</div>
-</li>
-</ol>
-</div>
-<div class="section" id="apt-get">
-<h3>apt-get<a class="headerlink" href="#apt-get" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li>install</li>
-</ul>
-<div class="highlight-bash"><div class="highlight"><pre>apt-get install &lt;pkg&gt;  <span class="c"># multiple pkgs seperated by space</span>
-apt-get install --reinstall &lt;pkg&gt;
-apt-get install -f &lt;pkg&gt;  <span class="c"># fix pkg and dependencies</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li>uninstall</li>
-</ul>
-<div class="highlight-bash"><div class="highlight"><pre>apt-get remove --purge -y &lt;pkg&gt;
-apt-get autoremove -y  <span class="c"># remove obsolete pkgs</span>
-apt-get autoclean -y  <span class="c"># clean removed pkg&#39;s dependencies</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li>others</li>
-</ul>
-<div class="highlight-bash"><div class="highlight"><pre>apt-get <span class="nb">source</span> <span class="o">[</span>-d<span class="o">]</span> &lt;pkg&gt;    <span class="c"># download src code to current folder, compile src code w/ -d</span>
-apt-get download &lt;pkg&gt;   <span class="c"># download binary to current folder</span>
-apt-get build-dep &lt;pkg&gt;  <span class="c"># make pkg&#39;s dependencies</span>
-apt-get update  <span class="c"># update repo</span>
-apt-get dist-update  <span class="c"># upgrade os</span>
-apt-get clean  <span class="c"># remove downloaded pkgs ``/var/cache/apt/archives``</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="apt-cache">
-<h3>apt-cache<a class="headerlink" href="#apt-cache" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-bash"><div class="highlight"><pre>apt-cache search &lt;pkg&gt;   <span class="c"># search w/ regex</span>
-pkgnames  <span class="c"># list all installed pkgnames</span>
-apt-cache stats    <span class="c"># list statistic infos</span>
-apt-cache show &lt;pkg&gt;   <span class="c"># show pkg&#39;s detail online</span>
-apt-cache depends &lt;pkg&gt;  <span class="c"># show pkg&#39;s dependencies</span>
-apt-cache rdepends &lt;pkg&gt;  <span class="c"># show pkgs depends on this pkg</span>
-</pre></div>
-</div>
-<table class="docutils footnote" frame="void" id="id2" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://bugs.launchpad.net/ubuntu/+source/usb-creator/+bug/1325801">https://bugs.launchpad.net/ubuntu/+source/usb-creator/+bug/1325801</a></td></tr>
-</tbody>
-</table>
-</div>
+  <div class="section" id="linux">
+<h1>Linux<a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="configuration-file">
+<h2>Configuration file<a class="headerlink" href="#configuration-file" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal"><span class="pre">/etc/rc.local</span></code> executed at the end of each multiuser runlevel</p>
 </div>
 </div>
 

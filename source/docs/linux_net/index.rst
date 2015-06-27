@@ -2,9 +2,75 @@
 Network Tools
 =============
 
+Configurations
+==============
+
+- ``/etc/network/interfaces``::
+
+    auto eth0
+    iface eth0 inet static
+        address 192.168.11.66
+        netmask 255.255.0.0
+        gateway 192.168.2.200
+
+  - auto eth0 means auto-open
+- ``/etc/resolv.conf`` -- dns servers
+- ``/etc/hostname`` ``/etc/hosts`` -- host names
+
+.. code-block:: bash
+
+    # restart network service to enable configurations
+    service networking restart
+
 
 Network Trouble Shooting
 ========================
+
+- Principle of fault investigation -- bottom up, from inside to outside
+- Check basic configuration
+    - check connectivity -- ``ping gateway`` ``ping g.cn`` ``nslookup``
+    - check ip/netmask/gateway -- ``ip a`` ``ip r``
+    - check nic -- ``ethtool eth0``
+    - check configuration files
+    - check enabled standard ports
+- Network quality testing
+    - check weakness node ``mtr g.cn``
+    - check bandwidth -- ``iperf``
+    - check trace route&path
+        - check which nodes will go through -- ``traceroute``
+        - check the mtu size of this path -- ``tracepath``
+- Website stress testing
+    - apache bench::
+  
+        apt-get install apache2-utils
+        ab -c 100 -n 10000 http://z.cn/  # 100 concurrency, totally 10000 requests
+
+WebSite Errs
+------------
+
+========= =======================
+Error NO. Definition
+========= =======================
+400       BAD_REQUEST
+401       UNAUTHORIZED
+403       FORBIDDEN
+404       NOT_FOUND
+405       METHOD_NOT_ALLOWED
+408       REQUEST_TIME_OUT
+410       GONE
+411       LENGTH_REQUIRED
+412       PRECONDITION_FAILED
+413       REQUEST_ENTITY_TOO_LARGE
+414       REQUEST_URI_TOO_LARGE
+415       UNSUPPORTED_MEDIA_TYPE
+500       INTERNAL_SERVER_ERROR
+501       NOT_IMPLEMENTED
+502       BAD_GATEWAY
+503       SERVICE_UNAVAILABLE
+506       VARIANT_ALSO_VARIES
+========= =======================
+
+
 
 Ping
 ----
@@ -26,8 +92,14 @@ b         allow pinging a broadcast address
     # Find out occupied IPs within 192.168.1.0/24
     for i in `seq 1 255`; do ping -c1 -w1 192.168.1.$i;done | grep ttl
 
-Check DNS connectivity
-----------------------
+Check NIC
+---------
+
+.. code-block:: console
+
+    # ethtool eth0
+    Settings for eth0:
+        Link detected: yes
 
 DNS management
 ==============

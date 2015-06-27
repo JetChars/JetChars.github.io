@@ -311,8 +311,8 @@ MySQL
 
 1. Configure MySQL
 
-Configure file ``/etc/mysql/my.cnf``--> ``/etc/my.cnf`` ``~/.my.cnf``
-- Configurations
+- Set root password ``mysqladmin -uroot password $MYSQL_ROOT_PASSWD``
+- Configuration priority ``/etc/mysql/my.cnf``--> ``/etc/my.cnf`` ``~/.my.cnf``
     - ``bind-address`` -- default ``127.0.0.1`` , change to ``0.0.0.0`` will listen all IPs
     - ``port`` -- listen port
 - Restart MySQL
@@ -365,8 +365,8 @@ Configure file ``/etc/mysql/my.cnf``--> ``/etc/my.cnf`` ``~/.my.cnf``
     :linenos:
 
     sudo apt-get remove -y --purge mysql* mariadb*
-    sudo apt-get autoremove               
-    sudo apt-get autoclean
+    sudo apt-get autoremove -y
+    sudo apt-get autoclean -y
     sudo rm -rf /var/lib/mysql /etc/apparmor.d/abstraction/mysql /{etc,run}/mysql /usr/{share,include,lib}/mysql
 
 
@@ -419,8 +419,8 @@ Apache
 
     sudo apt-get purge -y apache* libapache*
     sudo rm -rf /etc/apache2 /usr/{lib,sbin}/apache2 /run/apache2
-    sudo autoremove -y
-    sudo autoclean -y
+    sudo apt-get autoremove -y
+    sudo apt-get autoclean -y
 
 2. AH00558: Could not determine the server's fully qualified domain name
 
