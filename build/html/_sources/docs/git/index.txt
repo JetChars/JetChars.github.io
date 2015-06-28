@@ -7,24 +7,17 @@
 * CVS/SVN(SubVersion) both need need web connection, while git don't
 
 
-`doc <http://git-scm.com/doc>`_
-
-Commit
-======
-
-.. code-block:: bash
-
-    git commit --amend -m "New commit message"
+`Official Doc <http://git-scm.com/doc>`_
 
 
 
 Configuration
 =============
 
-git_config
-----------
+Config -- Get and set repository or global options
+--------------------------------------------------
 
-`git-congfig Manual Page <https://www.kernel.org/pub/software/scm/git/docs/git-config.html>`_
+`git-congfig guide <https://www.kernel.org/pub/software/scm/git/docs/git-config.html>`_
 
 ``git config --global section_name.param value``
 
@@ -63,14 +56,17 @@ git_config
         username = gerrit_user_name
         scheme = https
         port = 443
-
+    [push]
+        default = simple
 
 
 
 * Project configuration: 
     * ``.git/config`` storage project info, ``url = http://username:passwd@url.git`` can help avoid passwd input
     * ``.gitignore`` store files exclude from project.
-
+    * ``push.default`` specifies push mode
+        * matching mode -- git will push local branches to the remote branches that already exist with same name
+        * simple mode -- only pushes the current branch to the corresponding remote branch that 'git pull' uses to update the current branch
 
 Git Proxy Command
 -----------------
@@ -109,4 +105,102 @@ Git Proxy Command
     [core]
     gitproxy=/usr/bin/git-proxy
     EOF
+
+
+Clone -- Clone a repository into a new directory
+================================================
+
+::
+
+    git clone [-o <name>] [uname:passwd@]<repository> [<directory>]
+
+git supports various of scheme::
+
+    git clone http[s]://example.com/path/to/repo.git/
+    git clone ssh://example.com/path/to/repo.git/
+    git clone git://example.com/path/to/repo.git/
+    git clone /opt/git/project.git 
+    git clone file:///opt/git/project.git
+    git clone ftp[s]://example.com/path/to/repo.git/
+    git clone rsync://example.com/path/to/repo.git/
+
+Branch Management
+=================
+
+
+Branch -- List, create, or delete branches
+------------------------------------------
+
+.. code-block:: bash
+
+    git branch  # show local branch info when no option selected
+    git branch <branchname> [<start-point>]  # copy start point into a new branch, default is current branch
+
+
+====== =====================
+option description
+====== =====================
+-a     List both remote-tracking branches and local branches
+-r     List or delete (if used with -d) the remote-tracking branches
+-d     delete a branch
+====== =====================
+
+Merge -- Join two or more development histories together
+--------------------------------------------------------
+
+.. code-block:: bash
+
+    git merge anotherbanch  # merge another branch into current branch
+
+
+Submit
+======
+
+Add/rm -- Add file contents to the index (stage files)
+------------------------------------------------------
+
+.. code-block:: bash
+
+    git add -A  # can replaced w/ --all, stage all changes, include removed files
+    git add '*.txt'  # remove all files have suffix .txt, within this project
+
+Reset -- Reset current HEAD to the specified state (unstage files)
+------------------------------------------------------------------
+
+.. code-block:: bash
+
+    git reset [-q] [<tree-ish>] [--] <paths>...
+    git reset (--patch | -p) [<tree-ish>] [--] [<paths>...]
+    git reset [--soft | --mixed | --hard | --merge | --keep] [-q] [<commit>]
+
+======== ======================
+options  descripton
+======== ======================
+hard     Resets the index and working tree
+soft     This leaves all your changed files "Changes to be committed"
+mixed    Resets the index but not the working tree (keep changed codes)
+======== ======================
+
+
+
+.. code-block:: bash
+
+    git commit --amend -m "New commit message"  # change commit message
+
+Push -- Update remote refs along with associated objects
+--------------------------------------------------------
+
+
+Check Infos
+===========
+
+.. code-block:: bash
+
+    git status -sb  # 's' means shot output, 'b' shows branch info
+    git log  # show commit log
+    git diff  # show changes between commits
+    git diff HEAD  # show recent changes
+    git diff --staged  # show local changes
+
+
 
