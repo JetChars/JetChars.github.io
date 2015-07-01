@@ -401,19 +401,26 @@
 <li class="toctree-l3"><a class="reference internal" href="#git-proxy-command">Git Proxy Command</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#clone-clone-a-repository-into-a-new-directory">Clone &#8211; Clone a repository into a new directory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#repository-management">Repository Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#clone-clone-a-repository-into-a-new-directory">Clone &#8211; Clone a repository into a new directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#remote-manage-set-of-tracked-repositories">Remote &#8211; Manage set of tracked repositories</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#branch-management">Branch Management</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#branch-list-create-or-delete-branches">Branch &#8211; List, create, or delete branches</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#merge-join-two-or-more-development-histories-together">Merge &#8211; Join two or more development histories together</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#checkout-checkout-a-branch-or-paths-to-the-working-tree">Checkout &#8211; Checkout a branch or paths to the working tree</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#submit">Submit</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#add-rm-add-file-contents-to-the-index-stage-files">Add/rm &#8211; Add file contents to the index (stage files)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#reset-reset-current-head-to-the-specified-state-unstage-files">Reset &#8211; Reset current HEAD to the specified state (unstage files)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#push-update-remote-refs-along-with-associated-objects">Push &#8211; Update remote refs along with associated objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#review-the-tool-to-submit-code-patches">Review &#8211; The tool to submit code patches</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#check-infos">Check Infos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#init-a-project">Init a project</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../github/index.html">GitHub &#8211; Git repository hosting service</a><ul>
@@ -490,7 +497,11 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../md/index.html">MarkDown (md)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../md/index.html">MarkDown (md)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../md/index.html#symbols">Symbols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../md/index.html#gitbub-flavored">Gitbub Flavored</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../svg/index.html">Scalable Vector Graphics (SVG)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../svg/index.html#inkscape">InkScape</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../svg/index.html#shortcut-keys">Shortcut keys</a></li>
@@ -700,8 +711,10 @@ cat &gt;&gt; /etc/gitconfig <span class="s">&lt;&lt; EOF</span>
 </td></tr></table></div>
 </div>
 </div>
+<div class="section" id="repository-management">
+<h2>Repository Management<a class="headerlink" href="#repository-management" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="clone-clone-a-repository-into-a-new-directory">
-<h2>Clone &#8211; Clone a repository into a new directory<a class="headerlink" href="#clone-clone-a-repository-into-a-new-directory" title="Permalink to this headline">¶</a></h2>
+<h3>Clone &#8211; Clone a repository into a new directory<a class="headerlink" href="#clone-clone-a-repository-into-a-new-directory" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python"><div class="highlight"><pre>git clone [-o &lt;name&gt;] [uname:passwd@]&lt;repository&gt; [&lt;directory&gt;]
 </pre></div>
 </div>
@@ -714,6 +727,16 @@ git clone file:///opt/git/project.git
 git clone ftp[s]://example.com/path/to/repo.git/
 git clone rsync://example.com/path/to/repo.git/
 </pre></div>
+</div>
+</div>
+<div class="section" id="remote-manage-set-of-tracked-repositories">
+<h3>Remote &#8211; Manage set of tracked repositories<a class="headerlink" href="#remote-manage-set-of-tracked-repositories" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash"><div class="highlight"><pre>git remote show &lt;host&gt;
+git remote add &lt;host&gt; &lt;addr&gt;
+git remote rm &lt;host&gt;
+git remote rename &lt;old_host&gt; &lt;new_host&gt;
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="branch-management">
@@ -750,6 +773,13 @@ git branch &lt;branchname&gt; <span class="o">[</span>&lt;start-point&gt;<span c
 <div class="section" id="merge-join-two-or-more-development-histories-together">
 <h3>Merge &#8211; Join two or more development histories together<a class="headerlink" href="#merge-join-two-or-more-development-histories-together" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-bash"><div class="highlight"><pre>git merge anotherbanch  <span class="c"># merge another branch into current branch</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="checkout-checkout-a-branch-or-paths-to-the-working-tree">
+<h3>Checkout &#8211; Checkout a branch or paths to the working tree<a class="headerlink" href="#checkout-checkout-a-branch-or-paths-to-the-working-tree" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash"><div class="highlight"><pre>git checkout   <span class="c"># show current stat, M means changes brought from old branch</span>
+git checkout -  <span class="c"># switch to previous branch</span>
 </pre></div>
 </div>
 </div>
@@ -792,21 +822,52 @@ git reset <span class="o">[</span>--soft <span class="p">|</span> --mixed <span 
 </tr>
 </tbody>
 </table>
-<div class="highlight-bash"><div class="highlight"><pre>git commit --amend -m <span class="s2">&quot;New commit message&quot;</span>  <span class="c"># change commit message</span>
+<div class="highlight-bash"><div class="highlight"><pre>git reset filename  <span class="c"># unstage a file</span>
+</pre></div>
+</div>
+<p>Commit &#8211; Record changes to the repository</p>
+<div class="highlight-bash"><div class="highlight"><pre>git commit -am <span class="s1">&#39;commit message&#39;</span>  <span class="c"># -a means stage all changed files, but not new file</span>
+git commit --amend -m <span class="s2">&quot;New commit message&quot;</span>  <span class="c"># change commit message</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="push-update-remote-refs-along-with-associated-objects">
 <h3>Push &#8211; Update remote refs along with associated objects<a class="headerlink" href="#push-update-remote-refs-along-with-associated-objects" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash"><div class="highlight"><pre>git push  <span class="c"># submit code to default server</span>
+git push --set-upstream origin wenjie  <span class="c"># update branch bind info</span>
+git push origin branch-name  <span class="c"># add upstream reference</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="review-the-tool-to-submit-code-patches">
+<h3>Review &#8211; The tool to submit code patches<a class="headerlink" href="#review-the-tool-to-submit-code-patches" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
 <div class="section" id="check-infos">
 <h2>Check Infos<a class="headerlink" href="#check-infos" title="Permalink to this headline">¶</a></h2>
+<div class="sidebar">
+<p class="first sidebar-title">Note</p>
+<div class="last line-block">
+<div class="line"><strong>HEAD</strong> &#8211; latest commit</div>
+<div class="line"><strong>HEAD^</strong> &#8211; commit before latest one</div>
+</div>
+</div>
 <div class="highlight-bash"><div class="highlight"><pre>git status -sb  <span class="c"># &#39;s&#39; means shot output, &#39;b&#39; shows branch info</span>
 git log  <span class="c"># show commit log</span>
 git diff  <span class="c"># show changes between commits</span>
 git diff HEAD  <span class="c"># show recent changes</span>
 git diff --staged  <span class="c"># show local changes</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="init-a-project">
+<h2>Init a project<a class="headerlink" href="#init-a-project" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">echo</span> <span class="s2">&quot;# myho&quot;</span> &gt;&gt; README.md
+git init
+git add README.md
+git commit -m <span class="s2">&quot;first commit&quot;</span>
+git remote add origin https://github.com/JetChars/myho.git
+git push -u origin master  <span class="c"># -u tells git to remember the parameters</span>
 </pre></div>
 </div>
 </div>

@@ -107,8 +107,11 @@ Git Proxy Command
     EOF
 
 
+Repository Management
+=====================
+
 Clone -- Clone a repository into a new directory
-================================================
+------------------------------------------------
 
 ::
 
@@ -123,6 +126,18 @@ git supports various of scheme::
     git clone file:///opt/git/project.git
     git clone ftp[s]://example.com/path/to/repo.git/
     git clone rsync://example.com/path/to/repo.git/
+
+Remote -- Manage set of tracked repositories
+--------------------------------------------
+
+.. code-block:: bash
+
+    git remote show <host>
+    git remote add <host> <addr>
+    git remote rm <host>
+    git remote rename <old_host> <new_host>
+
+
 
 Branch Management
 =================
@@ -151,6 +166,17 @@ Merge -- Join two or more development histories together
 .. code-block:: bash
 
     git merge anotherbanch  # merge another branch into current branch
+
+
+Checkout -- Checkout a branch or paths to the working tree
+----------------------------------------------------------
+
+.. code-block:: bash
+
+    git checkout   # show current stat, M means changes brought from old branch
+    git checkout -  # switch to previous branch
+
+
 
 
 Submit
@@ -182,17 +208,40 @@ mixed    Resets the index but not the working tree (keep changed codes)
 ======== ======================
 
 
+.. code-block:: bash
+
+   git reset filename  # unstage a file
+
+
+Commit -- Record changes to the repository
 
 .. code-block:: bash
 
+    git commit -am 'commit message'  # -a means stage all changed files, but not new file
     git commit --amend -m "New commit message"  # change commit message
 
 Push -- Update remote refs along with associated objects
 --------------------------------------------------------
 
 
+.. code-block:: bash
+
+    git push  # submit code to default server
+    git push --set-upstream origin wenjie  # update branch bind info
+    git push origin branch-name  # add upstream reference
+
+
+Review -- The tool to submit code patches
+-----------------------------------------
+
+
 Check Infos
 ===========
+
+.. sidebar:: Note
+
+    | **HEAD** -- latest commit
+    | **HEAD^** -- commit before latest one
 
 .. code-block:: bash
 
@@ -201,6 +250,20 @@ Check Infos
     git diff  # show changes between commits
     git diff HEAD  # show recent changes
     git diff --staged  # show local changes
+
+
+
+Init a project
+==============
+
+.. code-block:: bash
+
+    echo "# myho" >> README.md
+    git init
+    git add README.md
+    git commit -m "first commit"
+    git remote add origin https://github.com/JetChars/myho.git
+    git push -u origin master  # -u tells git to remember the parameters
 
 
 
