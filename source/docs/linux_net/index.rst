@@ -1,11 +1,14 @@
 =============
-Network Tools
+Linux Network
 =============
 
 Configurations
 ==============
 
-- ``/etc/network/interfaces``::
+- ``/etc/network/interfaces``
+    - auto eth0 means auto-open
+
+.. code-block:: guess
 
     auto eth0
     iface eth0 inet static
@@ -13,7 +16,6 @@ Configurations
         netmask 255.255.0.0
         gateway 192.168.2.200
 
-  - auto eth0 means auto-open
 - ``/etc/resolv.conf`` -- dns servers
 - ``/etc/hostname`` ``/etc/hosts`` -- host names
 
@@ -21,6 +23,41 @@ Configurations
 
     # restart network service to enable configurations
     service networking restart
+
+
+Home made proxy setting tool
+----------------------------
+
+.. code-block:: shell
+    :linenos:
+
+    echo ' 
+    #!/bin/bash 
+     
+    # Use script like this 
+    #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
+    # source /intel-pxy.sh proxy-ir.intel.com 
+    # source /intel-pxy.sh proxy-ir.intel.com 912 
+    #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
+     
+    proxyaddr=$1 
+    proxyport=$2 
+    export GIT_PROXY_COMMAND=/usr/bin/git-proxy 
+    export proxyaddr=${proxyaddr:-proxy-shz.intel.com} 
+    export proxyport=${proxyport:-911} 
+    export http_proxy="http://$proxyaddr:$proxyport" 
+    export https_proxy="https://$proxyaddr:$proxyport" 
+    export ftp_proxy="ftp://$proxyaddr:$proxyport" 
+    export socks_proxy="socks://$proxyaddr:$proxyport" 
+    export no_proxy="localhost,*intel.com:911,192.168.0.0/16,10.0.0.0/8,127.0.0.0/8" 
+    export HTTP_PROXY=$http_proxy 
+    export HTTPS_PROXY=$https_proxy 
+    export FTP_PROXY=$ftp_proxy 
+    export SOCKS_PROXY=$socks_proxy 
+    export NO_PROXY=$no_proxy 
+    ' > /intel-pxy.sh 
+    chmod a+x /intel-pxy.sh 
+
 
 
 Network Trouble Shooting
@@ -126,7 +163,7 @@ This tool can be use as a command ``nslookup domain_name``, or interactive mode
     domain_name      # query directly
 
 bind -- main stream dns server
-====
+------------------------------
 
 .. sidebar:: Terms
 
@@ -137,32 +174,22 @@ bind -- main stream dns server
 For old systems ``bind`` and ``caching-nameserver`` both required, latter one for obtaining config file **/etc/named.conf**, by default bind's named.conf is caching name server, so no need to install caching-nameserver in latest systems.
 
 
-Route Management
-================
-
-
-
-
-
-IP commands
-===========
-
-
 dnsmasq
 =======
 
 Can provide both dhcp & dns server services. use port 53(ipv4&6,tcp&udp)
 
 configure files:
-- ``/etc/dnsmasq.conf`` -- storage dnsmasq's configure, all this can use as arguments in cmdline w/ prefix '--'
+- ``/etc/dnsmasq.conf`` -- storage dnsmasq's configure
+    - all arguments can be used in cmdline w/ prefix '-'
     - can't reload conf file via hup signal
 - ``/etc/resolv.dnsmasq.conf`` -- dnsmasq's resolve file
 
 ======================================= =====================================
 options                                 description
 ======================================= =====================================
-conf-dir=<dir>                          read all conf files in this dir
-conf-file=<path>                        specify configure file
+conf-dir=<dir> , -7                     read all conf files in this dir
+conf-file=<path> , -c                   specify configure file
 resolv-file=/etc/resolv.dnsmasq.conf    specify path to resolv.conf
 strict-order, -o                        search in oredr (each line in /etc/hosts --> /etc/resolv.dnsmasq.conf)
 no-hosts, -h                            not read /etc/hosts
@@ -181,6 +208,18 @@ dhcp-option-force                       DHCP option sent even if the client does
     dhcp-option-force=26,1400    # 26 means mtu, 1400 is mtusize
 
 
+Route Management
+================
+
+
+
+
+
+IP commands
+===========
+
+
+
 .. image:: images/django_logo.svg
     :align: right
 
@@ -193,38 +232,6 @@ Django -- web framework
 Open vSwitch
 ============
 
-Home made proxy setting tool
-============================
-
-.. code-block:: shell
-    :linenos:
-
-    echo ' 
-    #!/bin/bash 
-     
-    # Use script like this 
-    #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
-    # source /intel-pxy.sh proxy-ir.intel.com 
-    # source /intel-pxy.sh proxy-ir.intel.com 912 
-    #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
-     
-    proxyaddr=$1 
-    proxyport=$2 
-    export GIT_PROXY_COMMAND=/usr/bin/git-proxy 
-    export proxyaddr=${proxyaddr:-proxy-shz.intel.com} 
-    export proxyport=${proxyport:-911} 
-    export http_proxy="http://$proxyaddr:$proxyport" 
-    export https_proxy="https://$proxyaddr:$proxyport" 
-    export ftp_proxy="ftp://$proxyaddr:$proxyport" 
-    export socks_proxy="socks://$proxyaddr:$proxyport" 
-    export no_proxy="localhost,*intel.com:911,192.168.0.0/16,10.0.0.0/8,127.0.0.0/8" 
-    export HTTP_PROXY=$http_proxy 
-    export HTTPS_PROXY=$https_proxy 
-    export FTP_PROXY=$ftp_proxy 
-    export SOCKS_PROXY=$socks_proxy 
-    export NO_PROXY=$no_proxy 
-    ' > /intel-pxy.sh 
-    chmod a+x /intel-pxy.sh 
 
 
 Terms

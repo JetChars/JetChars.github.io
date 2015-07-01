@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>OpenStack installation with DevStack &mdash; JetChars 0.1 documentation</title>
+  <title>DevStack &mdash; JetChars 0.1 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
     <link rel="top" title="JetChars 0.1 documentation" href="../../index.html"/>
         <link rel="next" title="DevStack Trouble Shooting" href="../devstack_t13g/index.html"/>
-        <link rel="prev" title="Enable DVR with DevStack" href="../devstack_dvr/index.html"/> 
+        <link rel="prev" title="DevStack with DVR" href="../devstack_dvr/index.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -165,13 +165,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../kvm_optimization/index.html#improve-instance-s-launch-speed">Improve Instance&#8217;s Launch Speed</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../devstack_dvr/index.html">Enable DVR with DevStack</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../devstack_dvr/index.html">DevStack with DVR</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../devstack_dvr/index.html#brief-intro">Brief Intro</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../devstack_dvr/index.html#configure-network-node">Configure Network Node</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../devstack_dvr/index.html#configure-compute-node">Configure Compute Node</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">OpenStack installation with DevStack</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="">DevStack</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#quick-start">Quick Start</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#executable-files">Executable files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#config-files">Config files</a><ul>
@@ -416,6 +416,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../git/index.html#add-rm-add-file-contents-to-the-index-stage-files">Add/rm &#8211; Add file contents to the index (stage files)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../git/index.html#reset-reset-current-head-to-the-specified-state-unstage-files">Reset &#8211; Reset current HEAD to the specified state (unstage files)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../git/index.html#push-update-remote-refs-along-with-associated-objects">Push &#8211; Update remote refs along with associated objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../git/index.html#review-the-tool-to-submit-code-patches">Review &#8211; The tool to submit code patches</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../git/index.html#check-infos">Check Infos</a></li>
@@ -496,7 +497,11 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../md/index.html">MarkDown (md)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../md/index.html">MarkDown (md)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../md/index.html#symbols">Symbols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../md/index.html#gitbub-flavored">Gitbub Flavored</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../svg/index.html">Scalable Vector Graphics (SVG)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../svg/index.html#inkscape">InkScape</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../svg/index.html#shortcut-keys">Shortcut keys</a></li>
@@ -536,7 +541,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
-    <li>OpenStack installation with DevStack</li>
+    <li>DevStack</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -550,8 +555,8 @@
           <div role="main" class="document">
             
   <img alt="../../_images/devstack.png" class="align-right" src="../../_images/devstack.png" />
-<div class="section" id="openstack-installation-with-devstack">
-<h1>OpenStack installation with <a class="reference external" href="http://git.openstack.org/cgit/openstack-dev/devstack/">DevStack</a><a class="headerlink" href="#openstack-installation-with-devstack" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h1><a class="reference external" href="http://git.openstack.org/cgit/openstack-dev/devstack/">DevStack</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <div class="sidebar">
 <p class="first sidebar-title">Note</p>
 <div class="last line-block">
@@ -740,7 +745,7 @@ sudo service firewalld stop   # firewalld need to be disabled for cinder &amp; n
 <h3>Multi Host<a class="headerlink" href="#multi-host" title="Permalink to this headline">¶</a></h3>
 <div class="line-block">
 <div class="line">Default: <code class="docutils literal"><span class="pre">MULTI_HOST=False</span></code></div>
-<div class="line">Running DevStack with multiple hosts requires a custom local.conf section for each host. The master is the same as a single host installation with MULTI_HOST=True. The slaves have fewer services enabled and a couple of host variables pointing to the master. <a class="footnote-reference" href="#id2" id="id1">[1]</a></div>
+<div class="line">Running DevStack with multiple hosts requires a custom local.conf section for each host. The master is the same as a single host installation with MULTI_HOST=True. The slaves have fewer services enabled and a couple of host variables pointing to the master. <a class="footnote-reference" href="#id3" id="id2">[1]</a></div>
 <div class="line"><br /></div>
 </div>
 <ul>
@@ -834,16 +839,6 @@ CINDER_ENABLED_BACKENDS=-lvm:lvmdriver-1,lvm:lvmdriver-2   # enable multi_lvm_ba
 <h3>Nova<a class="headerlink" href="#nova" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="configure-file">
 <h4>Configure file<a class="headerlink" href="#configure-file" title="Permalink to this headline">¶</a></h4>
-<ul>
-<li><dl class="first docutils">
-<dt><strong>/etc/nova/nova.conf</strong></dt>
-<dd><ul class="first last simple">
-<li><code class="docutils literal"><span class="pre">default_ephemeral_format</span></code> &#8211; <code class="docutils literal"><span class="pre">ext3</span></code>, <code class="docutils literal"><span class="pre">ext4</span></code> or <code class="docutils literal"><span class="pre">xfs</span></code></li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
 <p><strong>Control node</strong></p>
 <p><strong>Compute node</strong>:</p>
 <div class="highlight-python"><div class="highlight"><pre>NOVA_VNC_ENABLED=True
@@ -874,10 +869,10 @@ EXTRA_OPTS=(auto_assign_floating_ip=True)
 </div>
 <div class="section" id="post-script-file">
 <h2>Post Script file<a class="headerlink" href="#post-script-file" title="Permalink to this headline">¶</a></h2>
-<table class="docutils footnote" frame="void" id="id2" rules="none">
+<table class="docutils footnote" frame="void" id="id3" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://github.com/openstack-dev/devstack/blob/edfcb5f0bd9faa3c55ad1691465a45b7ef221789/doc/source/configuration.rst">https://github.com/openstack-dev/devstack/blob/edfcb5f0bd9faa3c55ad1691465a45b7ef221789/doc/source/configuration.rst</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td><a class="reference external" href="https://github.com/openstack-dev/devstack/blob/edfcb5f0bd9faa3c55ad1691465a45b7ef221789/doc/source/configuration.rst">https://github.com/openstack-dev/devstack/blob/edfcb5f0bd9faa3c55ad1691465a45b7ef221789/doc/source/configuration.rst</a></td></tr>
 </tbody>
 </table>
 </div>
@@ -892,7 +887,7 @@ EXTRA_OPTS=(auto_assign_floating_ip=True)
         <a href="../devstack_t13g/index.html" class="btn btn-neutral float-right" title="DevStack Trouble Shooting" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../devstack_dvr/index.html" class="btn btn-neutral" title="Enable DVR with DevStack" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../devstack_dvr/index.html" class="btn btn-neutral" title="DevStack with DVR" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -165,13 +165,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../kvm_optimization/index.html#improve-instance-s-launch-speed">Improve Instance&#8217;s Launch Speed</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../devstack_dvr/index.html">Enable DVR with DevStack</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../devstack_dvr/index.html">DevStack with DVR</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../devstack_dvr/index.html#brief-intro">Brief Intro</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../devstack_dvr/index.html#configure-network-node">Configure Network Node</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../devstack_dvr/index.html#configure-compute-node">Configure Compute Node</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../devstack_quickstart/index.html">OpenStack installation with DevStack</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../devstack_quickstart/index.html">DevStack</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../devstack_quickstart/index.html#quick-start">Quick Start</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../devstack_quickstart/index.html#executable-files">Executable files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../devstack_quickstart/index.html#config-files">Config files</a><ul>
@@ -416,6 +416,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../git/index.html#add-rm-add-file-contents-to-the-index-stage-files">Add/rm &#8211; Add file contents to the index (stage files)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../git/index.html#reset-reset-current-head-to-the-specified-state-unstage-files">Reset &#8211; Reset current HEAD to the specified state (unstage files)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../git/index.html#push-update-remote-refs-along-with-associated-objects">Push &#8211; Update remote refs along with associated objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../git/index.html#review-the-tool-to-submit-code-patches">Review &#8211; The tool to submit code patches</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../git/index.html#check-infos">Check Infos</a></li>
@@ -496,7 +497,11 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../md/index.html">MarkDown (md)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../md/index.html">MarkDown (md)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../md/index.html#symbols">Symbols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../md/index.html#gitbub-flavored">Gitbub Flavored</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../svg/index.html">Scalable Vector Graphics (SVG)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../svg/index.html#inkscape">InkScape</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../svg/index.html#shortcut-keys">Shortcut keys</a></li>
@@ -570,8 +575,36 @@
 <div class="highlight-python"><div class="highlight"><pre>nova-rootwrap conf-file cmd
 </pre></div>
 </div>
+<ul>
+<li><dl class="first docutils">
+<dt>conf file:</dt>
+<dd><ul class="first last">
+<li><p class="first"><code class="docutils literal"><span class="pre">/etc/nova/rootwrap.conf</span></code></p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">/etc/sudoers.d/nova-rootwrap</span></code></p>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">/etc/nova/nova.conf</span></code></dt>
+<dd><ul class="first last simple">
+<li>enable <strong>lvm backend</strong> (block) instead of <strong>file backend</strong> by add <code class="docutils literal"><span class="pre">images_type</span></code> &amp; <code class="docutils literal"><span class="pre">images_volume_group</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="highlight-ini"><div class="highlight"><pre><span class="k">[default]</span>
+<span class="na">default_ephemeral_format</span> <span class="o">=</span> <span class="s">ext4</span>
+
+<span class="k">[libvirt]</span>
+<span class="na">images_type</span> <span class="o">=</span> <span class="s">lvm</span>
+<span class="na">images_volume_group</span> <span class="o">=</span> <span class="s">vgname</span>
+</pre></div>
+</div>
 <ul class="simple">
-<li>conf file: <code class="docutils literal"><span class="pre">/etc/nova/rootwrap.conf</span></code> <code class="docutils literal"><span class="pre">/etc/sudoers.d/nova-rootwrap</span></code></li>
 <li>filters: <a href="#id2"><span class="problematic" id="id3">``</span></a>/etc/nova/rootwrap.d/<a href="#id4"><span class="problematic" id="id5">*</span></a>.filters</li>
 </ul>
 <div class="sidebar">

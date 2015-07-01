@@ -24,7 +24,22 @@ Root wrapper, provide nova an option other than sudo, make sure nova can only ab
     nova-rootwrap conf-file cmd
 
 
-- conf file: ``/etc/nova/rootwrap.conf`` ``/etc/sudoers.d/nova-rootwrap``
+- conf file:
+    - ``/etc/nova/rootwrap.conf``
+    - ``/etc/sudoers.d/nova-rootwrap``
+    - ``/etc/nova/nova.conf``
+        - enable **lvm backend** (block) instead of **file backend** by add ``images_type`` & ``images_volume_group``
+
+.. code-block:: ini
+
+      [default]
+      default_ephemeral_format = ext4
+
+      [libvirt]
+      images_type = lvm
+      images_volume_group = vgname
+
+
 - filters: ``/etc/nova/rootwrap.d/*.filters
 
 .. sidebar:: `Storage <http://docs.openstack.org/openstack-ops/content/storage_decision.html>`_

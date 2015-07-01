@@ -284,25 +284,25 @@ Management
 Check lvm infos
 ---------------
 
-.. code-block:: bash
+.. code-block:: console
     :linenos:
     :emphasize-lines: 1,6,11,15,38,81
  
-    $ pvs
+    # pvs
     PV         VG                        Fmt  Attr PSize  PFree 
     /dev/loop1 stack-volumes-default     lvm2 a--  10.01g 10.01g
     /dev/loop2 stack-volumes-lvmdriver-1 lvm2 a--  10.01g  8.00m
 
-    $ vgs
+    # vgs
     VG                        #PV #LV #SN Attr   VSize  VFree 
     stack-volumes-default       1   0   0 wz--n- 10.01g 10.01g
     stack-volumes-lvmdriver-1   1   1   0 wz--n- 10.01g  8.00m
 
-    $ lvs
+    # lvs
     LV                                          VG                        Attr       LSize  Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
     volume-c86ee1fc-0881-4b85-aa8a-432f8ad1c9cb stack-volumes-lvmdriver-1 -wi-ao---- 10.00g                                                 
 
-    $ pvdisplay
+    # pvdisplay
     --- Physical volume ---
     PV Name               /dev/loop1
     VG Name               stack-volumes-default
@@ -325,7 +325,7 @@ Check lvm infos
     Allocated PE          2560
     PV UUID               UdQnN2-ddmJ-w3az-Gzp3-b7pf-tIFS-IB8Pho
      
-    $ vgdisplay
+    # vgdisplay
     --- Volume group ---
     VG Name               stack-volumes-default
     System ID             
@@ -368,7 +368,7 @@ Check lvm infos
     Free  PE / Size       2 / 8.00 MiB
     VG UUID               5TTHgC-LXzV-7i9u-YXnG-KQTY-HXmD-SFocsq
 
-    $ lvdisplay    
+    # lvdisplay    
     --- Logical volume ---
     LV Path                /dev/stack-volumes-lvmdriver-1/volume-c86ee1fc-0881-4b85-aa8a-432f8ad1c9cb
     LV Name                volume-c86ee1fc-0881-4b85-aa8a-432f8ad1c9cb
@@ -377,7 +377,7 @@ Check lvm infos
     LV Write Access        read/write
     LV Creation host, time r16s12, 2015-05-28 16:35:27 +0800
     LV Status              available
-    # open                 1
+      open                 1
     LV Size                10.00 GiB
     Current LE             2560
     Segments               1

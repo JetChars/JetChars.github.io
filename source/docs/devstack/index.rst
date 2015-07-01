@@ -1,9 +1,12 @@
 .. image:: images/devstack.png
     :align: right
 
-===============================================================================================
-OpenStack installation with `DevStack <http://git.openstack.org/cgit/openstack-dev/devstack/>`_
-===============================================================================================
+===================================================================
+`DevStack <http://git.openstack.org/cgit/openstack-dev/devstack/>`_
+===================================================================
+
+
+Currently, DevStack is openstack developers' official installation method, but mainstream installation tool still packstack.
 
 .. sidebar:: Note
 
@@ -13,10 +16,9 @@ OpenStack installation with `DevStack <http://git.openstack.org/cgit/openstack-d
     | One of devstack core members, **Dean Troyer** write 8 issues, none approved and 7 of 8 got -1!
 
 
-Currently, DevStack is openstack developers' official installation method, but mainstream tool is packstack.
-
 Quick Start
 ===========
+
 
 1. Create stack user
 
@@ -235,9 +237,6 @@ Nova
 
 Configure file
 ^^^^^^^^^^^^^^
-
-- **/etc/nova/nova.conf**
-    - ``default_ephemeral_format`` -- ``ext3``, ``ext4`` or ``xfs``
 
 **Control node**
 
