@@ -309,22 +309,26 @@
 <li class="toctree-l2"><a class="reference internal" href="../linux_info/index.html#enviroments">Enviroments</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../linux_net/index.html">Network Tools</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#configurations">Configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux_net/index.html">Linux Network</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#configurations">Configurations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux_net/index.html#home-made-proxy-setting-tool">Home made proxy setting tool</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#network-trouble-shooting">Network Trouble Shooting</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../linux_net/index.html#website-errs">WebSite Errs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../linux_net/index.html#ping">Ping</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../linux_net/index.html#check-nic">Check NIC</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#dns-management">DNS management</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#bind-main-stream-dns-server">bind &#8211; main stream dns server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#dns-management">DNS management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux_net/index.html#bind-main-stream-dns-server">bind &#8211; main stream dns server</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#dnsmasq">dnsmasq</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#route-management">Route Management</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#ip-commands">IP commands</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#dnsmasq">dnsmasq</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#django-web-framework">Django &#8211; web framework</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#open-vswitch">Open vSwitch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#home-made-proxy-setting-tool">Home made proxy setting tool</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#terms">Terms</a></li>
 </ul>
 </li>
@@ -807,6 +811,9 @@ umount testlvm/    # umount object can be device or mount point
 </ul>
 </div>
 <p>In computer storage, <em>logical volume management</em> or LVM provides a method of <em>allocating space</em> on mass-storage devices that is <em>more flexible</em> than conventional partitioning schemes. In particular, a volume manager can <strong>concatenate</strong>, <strong>stripe together</strong> or otherwise <strong>combine partitions</strong> (or block devices in general) into larger virtual ones that administrators can re-size or move, <em>potentially without interrupting system use</em>. <a class="footnote-reference" href="#id3" id="id1">[1]</a></p>
+<ul class="simple">
+<li>Conf-file &#8211; <code class="docutils literal"><span class="pre">/etc/lvm/lvm.conf</span></code></li>
+</ul>
 <div align="center" class="align-center"><img src="../../_images/lvm.svg" /></div>
 <div class="section" id="management">
 <h3>Management<a class="headerlink" href="#management" title="Permalink to this headline">¶</a></h3>

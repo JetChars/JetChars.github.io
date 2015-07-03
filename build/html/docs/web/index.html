@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Cloud Computing &mdash; JetChars 0.1 documentation</title>
+  <title>Web Server &mdash; JetChars 0.1 documentation</title>
   
 
   
@@ -30,9 +30,7 @@
   
 
   
-    <link rel="top" title="JetChars 0.1 documentation" href="../../index.html"/>
-        <link rel="next" title="AWS – Amazon Web Services" href="../aws/index.html"/>
-        <link rel="prev" title="Welcome to JetChars’ Documentation!" href="../../index.html"/> 
+    <link rel="top" title="JetChars 0.1 documentation" href="../../index.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -71,20 +69,20 @@
         
           
           
-              <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">Cloud Computing</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#aws-amazon-web-services">AWS &#8211; Amazon Web Services</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#data-pipeline">Data Pipeline</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#emr-managed-hadoop-framework">EMR &#8211; Managed Hadoop Framework</a></li>
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../cloud_computing/index.html">Cloud Computing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cloud_computing/index.html#aws-amazon-web-services">AWS &#8211; Amazon Web Services</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cloud_computing/index.html#data-pipeline">Data Pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloud_computing/index.html#emr-managed-hadoop-framework">EMR &#8211; Managed Hadoop Framework</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#docker">Docker</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">Ceph</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#mesos">Mesos</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#dcos-one-command-control-of-data-center-services">DCOS &#8211; One command control of data center services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cloud_computing/index.html#docker">Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cloud_computing/index.html#id2">Ceph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cloud_computing/index.html#mesos">Mesos</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cloud_computing/index.html#dcos-one-command-control-of-data-center-services">DCOS &#8211; One command control of data center services</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#terminologies">Terminologies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cloud_computing/index.html#terminologies">Terminologies</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../aws/index.html">AWS &#8211; Amazon Web Services</a><ul>
@@ -326,9 +324,13 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#dnsmasq">dnsmasq</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#route-management">Route Management</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#ip-commands">IP commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#ip-commands">IP commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux_net/index.html#network-namespace">network namespace</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#django-web-framework">Django &#8211; web framework</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#open-vswitch">Open vSwitch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#macvlan">macvlan</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#terms">Terms</a></li>
 </ul>
 </li>
@@ -545,11 +547,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
-    <li>Cloud Computing</li>
+    <li>Web Server</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../../_sources/docs/cloud_computing/index.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/docs/web/index.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -558,273 +560,17 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="cloud-computing">
-<h1>Cloud Computing<a class="headerlink" href="#cloud-computing" title="Permalink to this headline">¶</a></h1>
-<ul>
-<li><p class="first">High value data must be structured data, can be transfer from low value data</p>
-</li>
-<li><p class="first">Data stored worldwide has been exploded, growing by a factor of 9 in five years (2006~2011) <a class="footnote-reference" href="#id5" id="id1">[1]</a></p>
-</li>
-<li><dl class="first docutils">
-<dt>Classification</dt>
-<dd><ul class="first last simple">
-<li>Saas, Software as a Service</li>
-<li>Paas, Software as a Service</li>
-<li>Iaas, Software as a Service (old name HaaS)</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-<table border="1" class="docutils">
-<colgroup>
-<col width="25%" />
-<col width="75%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Type</th>
-<th class="head">Implementations</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>SaaS</td>
-<td>&nbsp;</td>
-</tr>
-<tr class="row-odd"><td>PaaS</td>
-<td>Docker, GAE</td>
-</tr>
-<tr class="row-even"><td>IaaS</td>
-<td>OpenStack</td>
-</tr>
-</tbody>
-</table>
-<div class="section" id="aws-amazon-web-services">
-<h2>AWS &#8211; Amazon Web Services<a class="headerlink" href="#aws-amazon-web-services" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="data-pipeline">
-<h3>Data Pipeline<a class="headerlink" href="#data-pipeline" title="Permalink to this headline">¶</a></h3>
-<ul>
-<li><dl class="first docutils">
-<dt><strong>Pipeline</strong> &#8211; specifies the business logic for data processing(graphical, more complex situation can be edit w/ sdk)</dt>
-<dd><ul class="first last simple">
-<li>can be export as a json file</li>
-<li>status &#8211; Active/Pending</li>
-<li>need a task runner(ec2?)</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><p class="first"><strong>Activities</strong> &#8211; the work to perform (HadoopActivity, PigActivity, EmrActivity,ShellCommandActivity...)</p>
-</li>
-<li><p class="first"><strong>Data nodes</strong> &#8211; the locations and type of data (input/output)</p>
-</li>
-<li><p class="first"><strong>Scheduler</strong> &#8211; time &amp; frequency to run a job(Activity)</p>
-</li>
-<li><p class="first"><strong>Resources</strong> &#8211; ec2resources, emrcluster</p>
-</li>
-<li><p class="first"><strong>Precondiction</strong>  &#8211; if file exist or any other situation mathches will run disgnated job.</p>
-</li>
-</ul>
-</div>
-<div class="section" id="emr-managed-hadoop-framework">
-<h3>EMR &#8211; Managed Hadoop Framework<a class="headerlink" href="#emr-managed-hadoop-framework" title="Permalink to this headline">¶</a></h3>
-<div class="sidebar">
-<p class="first sidebar-title">Terms</p>
-<ul class="last">
-<li><dl class="first docutils">
-<dt>Nodes</dt>
-<dd><ul class="first last simple">
-<li>Master Node &#8211; N&amp;J</li>
-<li>Core Nodes &#8211; C&amp;D</li>
-<li>Task Nodes(optional) &#8211; C</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><p class="first">Cluster</p>
-</li>
-<li><p class="first">Steps &#8211; EMR&#8217;s working logic</p>
-</li>
-</ul>
-</div>
-<ul>
-<li><dl class="first docutils">
-<dt><strong>EMR</strong> &#8211; Elastic MapReduce, managed hadoop framework</dt>
-<dd><ul class="first last simple">
-<li>can integration w/ other amazon services</li>
-<li>can be scale up</li>
-<li>use mins to provisioning cluster</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</div>
-</div>
-<div class="section" id="docker">
-<h2>Docker<a class="headerlink" href="#docker" title="Permalink to this headline">¶</a></h2>
-<ul>
-<li><p class="first">Use go language</p>
-</li>
-<li><p class="first">Use native cpu/syscall/kernel</p>
-</li>
-<li><p class="first">Use <code class="docutils literal"><span class="pre">namespace/capabilities/ctrl</span> <span class="pre">group/apparmor/netfilter</span></code></p>
-</li>
-<li><p class="first">Use ipc namespace communicate between containers</p>
-</li>
-<li><p class="first">Require <code class="docutils literal"><span class="pre">libcontainer/lxc/libvirt/systemd-nspawn</span></code></p>
-</li>
-<li><p class="first">Managed by DGAB (Docker Governance Advisory Board)</p>
-</li>
-<li><dl class="first docutils">
-<dt>Advangtages</dt>
-<dd><ul class="first last simple">
-<li>compare to kvm use virtio, docker use AUFS, which is better.</li>
-<li>light weight &#8216;vm&#8217;, use less mem than kvm, closer to BM</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>Constrains</dt>
-<dd><ul class="first last simple">
-<li>must have same OS kernel</li>
-<li>kernel 3.8 is minimal, except rhel 2.6.32, 3.10 or higher is recommended</li>
-<li>can&#8217;t over commitment</li>
-<li>v1.10 can&#8217;t modify files under /etc, v1.20 solved this issue (mount | grep etc)</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-<p>Install Docker:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ wget -qO- https://get.docker.com/ | sh
-</pre></div>
-</div>
-<ul class="simple">
-<li><a class="reference external" href="http://kubernetes.io">Kubernetes</a> is an open source orchestration system for Docker containers</li>
-</ul>
-</div>
-<div class="section" id="id2">
-<h2><a class="reference external" href="http://ceph.com">Ceph</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<img alt="../../_images/ceph.png" class="align-right" src="../../_images/ceph.png" />
-<p>Ceph is a free software storage platform designed to present object, block, and file storage from a single distributed computer cluster <a class="footnote-reference" href="#id6" id="id3">[2]</a></p>
-<p><a class="reference external" href="http://docs.ceph.com/docs/master/">doc</a></p>
-<img src="../../_images/ceph_components.svg" /><ul class="simple">
-<li>rbd &#8211; utility for manipulating rados block device(RBD) images.</li>
-<li>osd &#8211; Object Storage Device, a physical or logical storage unit(eg. LUN), ceph use &#8216;OSD&#8217; to refer to Ceph OSD Daemon</li>
-<li>radosgw &#8211; HTTP_REST gateway for RADOS object store</li>
-</ul>
-</div>
-<div class="section" id="mesos">
-<h2>Mesos<a class="headerlink" href="#mesos" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="dcos-one-command-control-of-data-center-services">
-<h3>DCOS &#8211; One command control of data center services<a class="headerlink" href="#dcos-one-command-control-of-data-center-services" title="Permalink to this headline">¶</a></h3>
-<p>Mesosphere Data Center Operating System (DCOS), A new kind of operating system that spans all the servers in a physical or cloud-based data center, and runs on top of any Linux distribution <a class="footnote-reference" href="#id7" id="id4">[3]</a></p>
-<p><a class="reference external" href="https://docs.mesosphere.com/">docs</a></p>
-<p>Data-center management systems, which is what most data centers now use, focus on controlling physical systems. DCOSs are the next evolutionary step, in that DCOSs can control a data center&#8217;s logical and physical systems. The University of California, Berkeley research paper <a class="reference external" href="http://people.csail.mit.edu/matei/papers/2011/hotcloud_datacenter_os.pdf#ftag=YHF87e0214">The Datacenter Needs an Operating System (PDF)</a> describes what a DCOS brings to the table.
-- Resource sharing: DCOS can multiplex resources between users of an application and across applications.
-- Data sharing: Besides resources, DCOSs traffic data between the necessary applications.
-- Programming abstractions: DCOSs provide user interfaces that hide the intricacies of hardware and simplify application development.
-- Debugging: Figuring out what massively parallel applications are doing remains one of the hardest challenges in cluster computing: DCOSs use correctness and performance debugging to address the challenges.</p>
-<div class="highlight-guess"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9</pre></div></td><td class="code"><div class="highlight"><pre>dcos   # show available cmds
-dcos marathon start ./demo/rails-app.json
-dcos marathon scale rails-app 15
-docs install hdfs   # other options are kafca, cassandra, spark...
-dcos kafka add 10
-dcos cassandra add 7
-dcos spark run ./demo/spark-job.json    # job in json format
-dcos chaos 5   # kill 5 nodes
-dcos resize 50   # resize cluster to specified size, add nodes in real time
-</pre></div>
-</td></tr></table></div>
-<ul>
-<li><p class="first">can run python jave or even container.</p>
-</li>
-<li><p class="first">Website is mix w/ cmd lines.</p>
-</li>
-<li><p class="first">self healing</p>
-</li>
-<li><p class="first">easy to resize</p>
-</li>
-<li><p class="first">application can be drag to cmdline(More Services)</p>
-</li>
-<li><dl class="first docutils">
-<dt>marathon &amp; chronos are preinstalled</dt>
-<dd><ul class="first last simple">
-<li>marathon is netservice, have restful api</li>
-<li>chronos is shedule service</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><p class="first">kafca &#8211; distributed message queue</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="section" id="terminologies">
-<h2>Terminologies<a class="headerlink" href="#terminologies" title="Permalink to this headline">¶</a></h2>
-<div class="line-block">
-<div class="line"><strong>UX</strong> &#8211; User Experence</div>
-<div class="line"><strong>repo</strong> &#8211; Repository</div>
-<div class="line"><strong>ETL</strong> &#8211; Extract Transfer Load</div>
-<div class="line"><strong>BI</strong> &#8211; Business Intelligent</div>
-<div class="line"><strong>JBOD</strong> &#8211; Just a Bunch of Disks</div>
-<div class="line"><strong>i18n</strong> &#8211; internationalization</div>
-<div class="line"><strong>l10n</strong> &#8211; localization</div>
-<div class="line"><strong>k8s</strong> &#8211; kubernetes</div>
-<div class="line"><strong>HBA</strong> &#8211; Host Bus Adapter, HBA card opposite to RAID card</div>
-<div class="line"><strong>IMGO</strong> &#8211;In My Humble Opinion</div>
-<div class="line"><strong>mesos</strong> &#8211; distributed system <strong>for running and building</strong> other distributed system(spark hadoop chronos marathon K8s)</div>
-<div class="line"><strong>ML as a Service</strong> &#8211; Training a model first(input csv files), then predict.</div>
-</div>
-<div class="line-block">
-<div class="line"><a class="reference external" href="http://www.aliyun.com">aliyun</a></div>
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-</div>
-<table class="docutils footnote" frame="void" id="id5" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://www.emc.com/collateral/analyst-reports/idc-extracting-value-from-chaos-ar.pdf">http://www.emc.com/collateral/analyst-reports/idc-extracting-value-from-chaos-ar.pdf</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id6" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Ceph_(software">http://en.wikipedia.org/wiki/Ceph_(software</a>)</td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id7" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id4">[3]</a></td><td><a class="reference external" href="https://in.news.yahoo.com/mesosphere-dcos-one-command-control-140004850.html">https://in.news.yahoo.com/mesosphere-dcos-one-command-control-140004850.html</a></td></tr>
-</tbody>
-</table>
+  <div class="section" id="web-server">
+<h1>Web Server<a class="headerlink" href="#web-server" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="nginx">
+<h2>nginx<a class="headerlink" href="#nginx" title="Permalink to this headline">¶</a></h2>
+<p>engine x, is a high performance http server.</p>
 </div>
 </div>
 
 
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../aws/index.html" class="btn btn-neutral float-right" title="AWS – Amazon Web Services" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="../../index.html" class="btn btn-neutral" title="Welcome to JetChars’ Documentation!" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>

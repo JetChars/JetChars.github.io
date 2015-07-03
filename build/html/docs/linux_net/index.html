@@ -326,9 +326,13 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#dnsmasq">dnsmasq</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#route-management">Route Management</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ip-commands">IP commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ip-commands">IP commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#network-namespace">network namespace</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#django-web-framework">Django &#8211; web framework</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#open-vswitch">Open vSwitch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#macvlan">macvlan</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#terms">Terms</a></li>
 </ul>
 </li>
@@ -856,7 +860,7 @@ domain_name      <span class="c"># query directly</span>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>conf-dir=&lt;dir&gt;</td>
+<tr class="row-even"><td>conf-dir=&lt;dir&gt; , -7</td>
 <td>read all conf files in this dir</td>
 </tr>
 <tr class="row-odd"><td>conf-file=&lt;path&gt; , -c</td>
@@ -900,7 +904,16 @@ domain_name      <span class="c"># query directly</span>
 </div>
 <div class="section" id="ip-commands">
 <h2>IP commands<a class="headerlink" href="#ip-commands" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="network-namespace">
+<h3>network namespace<a class="headerlink" href="#network-namespace" title="Permalink to this headline">¶</a></h3>
+<p>default namespace &#8216;global&#8217;</p>
+<div class="highlight-bash"><div class="highlight"><pre>ip netns add ns1
+ip link <span class="nb">set </span>dev eth1 netns ns1  <span class="c"># allocate physical nic to namespace</span>
+ip netns <span class="nb">exec </span>ns1 CMD_UNDET_NETNS
+</pre></div>
+</div>
 <div align="right" class="align-right"><img src="../../_images/django_logo.svg" /></div>
+</div>
 </div>
 <div class="section" id="django-web-framework">
 <h2>Django &#8211; web framework<a class="headerlink" href="#django-web-framework" title="Permalink to this headline">¶</a></h2>
@@ -908,6 +921,16 @@ domain_name      <span class="c"># query directly</span>
 </div>
 <div class="section" id="open-vswitch">
 <h2>Open vSwitch<a class="headerlink" href="#open-vswitch" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="macvlan">
+<h2>macvlan<a class="headerlink" href="#macvlan" title="Permalink to this headline">¶</a></h2>
+<p>virtualize a nic into several virtual nic, each one owns a mac addr.
+maximun 254 virtual nic, current over 10 vnic will cause unstable</p>
+<p>4 modes
+- bridge &#8211; have a virtual bridge within host
+- vepa &#8211; comm via physical bridge
+- private &#8211; cann&#8217;t comm via internal bridge
+- passthru &#8211; let vm use host&#8217;s nic</p>
 </div>
 <div class="section" id="terms">
 <h2>Terms<a class="headerlink" href="#terms" title="Permalink to this headline">¶</a></h2>

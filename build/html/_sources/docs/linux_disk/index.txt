@@ -206,6 +206,8 @@ LVM -- Logical volume management
 
 In computer storage, *logical volume management* or LVM provides a method of *allocating space* on mass-storage devices that is *more flexible* than conventional partitioning schemes. In particular, a volume manager can **concatenate**, **stripe together** or otherwise **combine partitions** (or block devices in general) into larger virtual ones that administrators can re-size or move, *potentially without interrupting system use*. [#]_
 
+- Conf-file -- ``/etc/lvm/lvm.conf``
+
 .. image:: images/lvm.svg
     :align: center
 

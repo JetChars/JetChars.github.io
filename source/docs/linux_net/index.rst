@@ -218,6 +218,19 @@ Route Management
 IP commands
 ===========
 
+network namespace
+-----------------
+
+default namespace 'global'
+
+
+.. code-block:: bash
+
+    ip netns add ns1
+    ip link set dev eth1 netns ns1  # allocate physical nic to namespace
+    ip netns exec ns1 CMD_UNDET_NETNS
+
+
 
 
 .. image:: images/django_logo.svg
@@ -231,6 +244,23 @@ Django -- web framework
 
 Open vSwitch
 ============
+
+
+macvlan
+=======
+
+virtualize a nic into several virtual nic, each one owns a mac addr.
+maximun 254 virtual nic, current over 10 vnic will cause unstable
+
+
+4 modes
+- bridge -- have a virtual bridge within host
+- vepa -- comm via physical bridge
+- private -- cann't comm via internal bridge
+- passthru -- let vm use host's nic
+
+
+
 
 
 

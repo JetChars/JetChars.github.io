@@ -98,6 +98,12 @@ Ceph is a free software storage platform designed to present object, block, and 
 .. image:: images/ceph_components.svg
 
 
+- rbd -- utility for manipulating rados block device(RBD) images.
+- osd -- Object Storage Device, a physical or logical storage unit(eg. LUN), ceph use 'OSD' to refer to Ceph OSD Daemon
+- radosgw -- HTTP_REST gateway for RADOS object store
+
+
+
 Mesos
 =====
 
