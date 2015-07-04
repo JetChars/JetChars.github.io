@@ -13,6 +13,20 @@ With this tool, we can extract manual from our python project's source code, con
 |
 |
 
+
+Configuration
+-------------
+
+`Built-in themes <http://sphinx-doc.org/theming.html>`_
+^^^^^^^^^^^^^^^
+
+
+- sphinx_rtd_theme -- mobile friendly theme, design for `readthedocs <http://docs.readthedocs.org/en/latest/>`_
+
+
+
+
+
 Issues
 ------
 

@@ -71,6 +71,20 @@ cmd + s            save
 ================== ============
 
 
+Issues
+======
+
+Cannot find bluetooth device
+----------------------------
+
+1. shutdown
+2. reset **power management unit** : ``shift+ctrl+option+cmd`` 5sec
+3. reset **NVRAM** : ``option+cmd+p+r`` 4 times bibi
+
+
+
+
+
 
 Softwares
 =========
