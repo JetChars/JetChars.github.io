@@ -331,10 +331,13 @@
 <li class="toctree-l2"><a class="reference internal" href="#dnsmasq">dnsmasq</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#route-management">Route Management</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ip-commands">IP commands</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#network-namespace">network namespace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#addr-address">addr/address</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#link-network-device">link &#8211; network device</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#route-routing-table-management">route &#8211; routing table management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#netns-network-namespace">netns &#8211; network namespace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rule-routing-policy-database-management">rule &#8211; routing policy database management</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#django-web-framework">Django &#8211; web framework</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#open-vswitch">Open vSwitch</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#macvlan">macvlan</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#terms">Terms</a></li>
@@ -593,7 +596,14 @@ iface eth0 inet static
 </div>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">/etc/resolv.conf</span></code> &#8211; dns servers</li>
-<li><code class="docutils literal"><span class="pre">/etc/hostname</span></code> <code class="docutils literal"><span class="pre">/etc/hosts</span></code> &#8211; host names</li>
+<li><code class="docutils literal"><span class="pre">/etc/hostname</span></code> <code class="docutils literal"><span class="pre">/etc/sysconfig/network</span></code></li>
+</ul>
+<div class="highlight-bash"><div class="highlight"><pre>hostname   <span class="c"># check current hostname</span>
+hostname newname   <span class="c"># change hostname temporary</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">/etc/hosts</span></code> &#8211; host names</li>
 </ul>
 <div class="highlight-bash"><div class="highlight"><pre><span class="c"># restart network service to enable configurations</span>
 service networking restart
@@ -801,6 +811,8 @@ ab -c 100 -n 10000 http://z.cn/  # 100 concurrency, totally 10000 requests
 </table>
 <div class="highlight-bash"><div class="highlight"><pre><span class="c"># Find out occupied IPs within 192.168.1.0/24</span>
 <span class="k">for</span> i in <span class="sb">`</span>seq <span class="m">1</span> 255<span class="sb">`</span><span class="p">;</span> <span class="k">do</span> ping -c1 -w1 192.168.1.<span class="nv">$i</span><span class="p">;</span><span class="k">done</span> <span class="p">|</span> grep ttl
+<span class="c"># all pinged or other connected addrs will preserve mac addrs</span>
+arp -a
 </pre></div>
 </div>
 </div>
@@ -909,23 +921,74 @@ domain_name      <span class="c"># query directly</span>
 </div>
 <div class="section" id="route-management">
 <h2>Route Management<a class="headerlink" href="#route-management" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>zebra &#8211; route management software</li>
+</ul>
 </div>
 <div class="section" id="ip-commands">
 <h2>IP commands<a class="headerlink" href="#ip-commands" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="network-namespace">
-<h3>network namespace<a class="headerlink" href="#network-namespace" title="Permalink to this headline">¶</a></h3>
-<p>default namespace &#8216;global&#8217;</p>
-<div class="highlight-bash"><div class="highlight"><pre>ip netns add ns1
-ip link <span class="nb">set </span>dev eth1 netns ns1  <span class="c"># allocate physical nic to namespace</span>
-ip netns <span class="nb">exec </span>ns1 CMD_UNDET_NETNS
+<p>show / manipulate routing, devices, policy routing and tunnels</p>
+<div class="section" id="addr-address">
+<h3>addr/address<a class="headerlink" href="#addr-address" title="Permalink to this headline">¶</a></h3>
+<div class="sidebar">
+<p class="first sidebar-title">Note</p>
+<ul class="last simple">
+<li>NO-CARRIER &#8211; no network connected</li>
+<li>inet/inet6 &#8211; ipv4/ipv6 addr</li>
+</ul>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre>ip a<span class="o">[</span>ddr<span class="o">]</span>  <span class="c"># show all address info</span>
+ip a del &lt;cidr&gt; dev &lt;devname&gt;  <span class="c"># rm a cidr in devname</span>
+ip addr del 192.168.58.101/24 dev eth2  <span class="c"># rm cidr in eth2</span>
 </pre></div>
 </div>
-<div align="right" class="align-right"><img src="../../_images/django_logo.svg" /></div>
+</div>
+<div class="section" id="link-network-device">
+<h3>link &#8211; network device<a class="headerlink" href="#link-network-device" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash"><div class="highlight"><pre>ip link show <span class="o">[</span>device<span class="o">]</span>  <span class="c"># show network devices&#39; info</span>
+ip link <span class="nb">set </span>device <span class="o">[</span>options<span class="o">]</span>  <span class="c"># change device&#39;s configuration</span>
+ip link <span class="nb">set </span>p2p1 mtu 1400
+</pre></div>
 </div>
 </div>
-<div class="section" id="django-web-framework">
-<h2>Django &#8211; web framework<a class="headerlink" href="#django-web-framework" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="http://django-chinese-docs.readthedocs.org/en/latest/index.html">cn version doc</a></p>
+<div class="section" id="route-routing-table-management">
+<h3>route &#8211; routing table management<a class="headerlink" href="#route-routing-table-management" title="Permalink to this headline">¶</a></h3>
+<p>local area network route management, at most 250+ route entries</p>
+<div class="sidebar">
+<p class="first sidebar-title">Note</p>
+<ul class="last">
+<li><dl class="first docutils">
+<dt>SIOCADDRT: File exists &#8211; route entriy already exists</dt>
+<dd><ul class="first last simple">
+<li>SIOC &#8211; Serial Input Output Controller</li>
+<li>ADD &#8211; addition</li>
+<li>RT &#8211; routing</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre>ip r<span class="o">[</span>oute<span class="o">]</span>   <span class="c"># show route table</span>
+ip r a<span class="o">[</span>dd<span class="o">]</span> cidr via ip <span class="o">[</span>dev devname<span class="o">]</span>   <span class="c"># add a route entry</span>
+ip r d<span class="o">[</span>el<span class="o">]</span> cidr   <span class="c"># del a route entry</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="netns-network-namespace">
+<h3>netns &#8211; network namespace<a class="headerlink" href="#netns-network-namespace" title="Permalink to this headline">¶</a></h3>
+<p>network namespace is logically another copy of the network stack, with its own route, firewall rules, and network devices
+default namespace &#8216;global&#8217;</p>
+<div class="highlight-bash"><div class="highlight"><pre>ip netns <span class="o">[</span>list<span class="o">]</span>  <span class="c"># show net namespace list</span>
+ip netns add ns1  <span class="c"># add a namespace</span>
+ip link <span class="nb">set </span>dev eth1 netns ns1  <span class="c"># allocate physical nic to namespace</span>
+ip netns <span class="nb">exec </span>ns1 CMD_UNDET_NETNS  <span class="c"># execute cmd within namespace ns1</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="rule-routing-policy-database-management">
+<h3>rule &#8211; routing policy database management<a class="headerlink" href="#rule-routing-policy-database-management" title="Permalink to this headline">¶</a></h3>
+</div>
 </div>
 <div class="section" id="open-vswitch">
 <h2>Open vSwitch<a class="headerlink" href="#open-vswitch" title="Permalink to this headline">¶</a></h2>

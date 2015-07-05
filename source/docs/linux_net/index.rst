@@ -17,7 +17,14 @@ Configurations
         gateway 192.168.2.200
 
 - ``/etc/resolv.conf`` -- dns servers
-- ``/etc/hostname`` ``/etc/hosts`` -- host names
+- ``/etc/hostname`` ``/etc/sysconfig/network``
+
+.. code-block:: bash
+
+    hostname   # check current hostname
+    hostname newname   # change hostname temporary
+
+- ``/etc/hosts`` -- host names
 
 .. code-block:: bash
 
@@ -128,6 +135,9 @@ b         allow pinging a broadcast address
 
     # Find out occupied IPs within 192.168.1.0/24
     for i in `seq 1 255`; do ping -c1 -w1 192.168.1.$i;done | grep ttl
+    # all pinged or other connected addrs will preserve mac addrs
+    arp -a
+
 
 Check NIC
 ---------
@@ -211,35 +221,83 @@ dhcp-option-force                       DHCP option sent even if the client does
 Route Management
 ================
 
-
+- zebra -- route management software
 
 
 
 IP commands
 ===========
 
-network namespace
------------------
+show / manipulate routing, devices, policy routing and tunnels
 
+addr/address
+------------
+
+.. sidebar:: Note
+
+    - NO-CARRIER -- no network connected
+    - inet/inet6 -- ipv4/ipv6 addr
+
+.. code-block:: bash
+
+    ip a[ddr]  # show all address info
+    ip a del <cidr> dev <devname>  # rm a cidr in devname
+    ip addr del 192.168.58.101/24 dev eth2  # rm cidr in eth2
+
+
+
+
+link -- network device
+----------------------
+
+.. code-block:: bash
+
+    ip link show [device]  # show network devices' info
+    ip link set device [options]  # change device's configuration
+    ip link set p2p1 mtu 1400
+
+
+route -- routing table management
+---------------------------------
+
+local area network route management, at most 250+ route entries
+
+.. sidebar:: Note
+
+    - SIOCADDRT: File exists -- route entriy already exists
+        - SIOC -- Serial Input Output Controller
+        - ADD -- addition
+        - RT -- routing
+
+
+.. code-block:: bash
+
+    ip r[oute]   # show route table
+    ip r a[dd] cidr via ip [dev devname]   # add a route entry
+    ip r d[el] cidr   # del a route entry
+
+
+netns -- network namespace
+--------------------------
+
+network namespace is logically another copy of the network stack, with its own route, firewall rules, and network devices
 default namespace 'global'
 
 
 .. code-block:: bash
 
-    ip netns add ns1
+    ip netns [list]  # show net namespace list
+    ip netns add ns1  # add a namespace
     ip link set dev eth1 netns ns1  # allocate physical nic to namespace
-    ip netns exec ns1 CMD_UNDET_NETNS
+    ip netns exec ns1 CMD_UNDET_NETNS  # execute cmd within namespace ns1
 
 
 
+rule -- routing policy database management
+------------------------------------------
 
-.. image:: images/django_logo.svg
-    :align: right
 
-Django -- web framework
-=======================
 
-`cn version doc <http://django-chinese-docs.readthedocs.org/en/latest/index.html>`_
 
 
 Open vSwitch
