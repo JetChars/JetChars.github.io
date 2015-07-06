@@ -29,6 +29,8 @@ Root wrapper, provide nova an option other than sudo, make sure nova can only ab
     - ``/etc/sudoers.d/nova-rootwrap``
     - ``/etc/nova/nova.conf``
         - enable **lvm backend** (block) instead of **file backend** by add ``images_type`` & ``images_volume_group``
+        - diable dd remove block device -- ``volume_clear = none``
+
 
 .. code-block:: ini
 
@@ -38,6 +40,7 @@ Root wrapper, provide nova an option other than sudo, make sure nova can only ab
       [libvirt]
       images_type = lvm
       images_volume_group = vgname
+      volume_clear = none
 
 
 - filters: ``/etc/nova/rootwrap.d/*.filters
@@ -159,6 +162,18 @@ Storage backend
 - Local: lvm
 - Network: NFS, ceph RBD (RADOS), sheepdog
 
+Configuation
+------------
+
+- ``/etc/cinder/cinder.conf``
+    - diable dd remove block device -- ``volume_clear = none`` , same configuation as nova' libvirt meta-section
+
+.. code-block:: ini
+
+    [lvmdriver-1]
+    volume_clear = none
+
+
 work flow
 ---------
 
@@ -198,6 +213,12 @@ Glance
     glance image-create --name=<NAME> --store=<STORE> --disk-format=<DISK_FORMAT> \
         --container-format=<CONTAINER_FORMAT> --file=<FILE> --is-public=True [--min-disk=<DISK_GB>]
     glance image-download --file=<OUTPUT_FILE> [--progress] <ImageID>
+
+
+Mete-data
+---------
+
+hw_scsi_model = virtio-scsi or virtio-blk
 
 
 Sahara
