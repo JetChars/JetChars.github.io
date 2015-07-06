@@ -28,8 +28,9 @@ F4                        draw rectangle
 F8                        add text
 ========================= ============================
 
-- `RGB colors<http://www.114la.com/other/rgb.htm>`_
+`RGB colors <http://www.114la.com/other/rgb.htm>`_
 
+.. image:: images/colors.gif
 
 GIMP
 ====
