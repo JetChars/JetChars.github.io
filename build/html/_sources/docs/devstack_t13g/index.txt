@@ -406,6 +406,13 @@ MySQL
 
     sudo apt-get install -f
 
+5. dump database
+
+.. code-block:: bash
+
+    mysqldump -hip -uuname -p database > dump.sql
+
+
 Apache
 ======
 

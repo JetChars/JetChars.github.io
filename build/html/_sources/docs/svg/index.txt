@@ -25,7 +25,11 @@ cs + f                    fill & stroke
 cs + s                    save as different file
 cs + e                    export to png
 F4                        draw rectangle
+F8                        add text
 ========================= ============================
+
+- `RGB colors<http://www.114la.com/other/rgb.htm>`_
+
 
 GIMP
 ====
