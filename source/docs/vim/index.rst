@@ -5,7 +5,8 @@ Vim - My Favourite Editor
 .. image:: images/vi-vim-cheat-sheet.svg
 
 - save file with sudo privilege: ``:w !sudo tee %``
-
+- in windows ^v(paste) has been changed to ^p
+- down vim vindows version -- http://www.vim.org/download.php
 
 Commnd Mode
 ===========
