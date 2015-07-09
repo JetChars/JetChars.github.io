@@ -47,8 +47,17 @@ EBS -- Elastic Block Storage
 Compute
 =======
 
-EC2 -- Elastic Computer Cloud
-EMR -- Elastic MapReduce
+- EC2 -- Elastic Computer Cloud
+    - high storage instance, have 48TB
+    - price competition instance(spot mode), at most 50% price off, will be take by force
+    - nic opts -- low, medium, high, 10G
+- EMR -- Elastic MapReduce
+    - Components -- Master, Core, Task Node
+    - Master/Core nodes cannot reduce.
+    - Task Node not storage data for reason
+    - src data in s3, intermedia data in hdfs, dst data in s3
+    - ec2 support centos, emr not support it.
+    - log to s3
 
 
 Database
@@ -59,6 +68,14 @@ DynamoDB -- noSQL dataBase
 apis: CreateTable, DeleteTable, UpdateTable, PutItem, GetItem, UpdateItem, DeleteItem, BatchGetItem, BatchWriteItem,Query, Scan (when no index exists, can use this to search all table)
 
 RDB -- Relational DataBase
+
+
+Commercial Case
+===============
+
+- NetFlix -- All services run in amazon, 1/3 of US network dataflow.
+
+
 
 
 Terms
