@@ -104,6 +104,8 @@
 <li class="toctree-l4"><a class="reference internal" href="#secgroup">SecGroup</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#keypair">KeyPair</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#flavor">Flavor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#instances">Instances</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#services">Services</a></li>
 </ul>
 </li>
 </ul>
@@ -118,14 +120,19 @@
 <li class="toctree-l2"><a class="reference internal" href="#id7">Cinder</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#components">Components</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#storage-backend">Storage backend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configuation">Configuation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#work-flow">work flow</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#create-cinder-volume">create cinder volume</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#delete-cinder-volume">delete cinder volume</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#service-management">service management</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#glance">Glance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#glance">Glance</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mete-data">Mete-data</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#sahara">Sahara</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#neutron">Neutron</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#congiuration-files">Congiuration Files</a></li>
@@ -331,10 +338,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#dnsmasq">dnsmasq</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#route-management">Route Management</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#ip-commands">IP commands</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../linux_net/index.html#network-namespace">network namespace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_net/index.html#addr-address">addr/address</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_net/index.html#link-network-device">link &#8211; network device</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_net/index.html#route-routing-table-management">route &#8211; routing table management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_net/index.html#netns-network-namespace">netns &#8211; network namespace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_net/index.html#rule-routing-policy-database-management">rule &#8211; routing policy database management</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#django-web-framework">Django &#8211; web framework</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#open-vswitch">Open vSwitch</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#macvlan">macvlan</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#terms">Terms</a></li>
@@ -603,6 +613,7 @@
 <dt><code class="docutils literal"><span class="pre">/etc/nova/nova.conf</span></code></dt>
 <dd><ul class="first last simple">
 <li>enable <strong>lvm backend</strong> (block) instead of <strong>file backend</strong> by add <code class="docutils literal"><span class="pre">images_type</span></code> &amp; <code class="docutils literal"><span class="pre">images_volume_group</span></code></li>
+<li>diable dd remove block device &#8211; <code class="docutils literal"><span class="pre">volume_clear</span> <span class="pre">=</span> <span class="pre">none</span></code></li>
 </ul>
 </dd>
 </dl>
@@ -618,6 +629,7 @@
 <span class="k">[libvirt]</span>
 <span class="na">images_type</span> <span class="o">=</span> <span class="s">lvm</span>
 <span class="na">images_volume_group</span> <span class="o">=</span> <span class="s">vgname</span>
+<span class="na">volume_clear</span> <span class="o">=</span> <span class="s">none</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -677,6 +689,37 @@ nova secgroup-add-rule default udp <span class="m">1</span> <span class="m">6553
 <div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="highlight"><pre>flavor-create &lt;name&gt; &lt;id&gt; &lt;ram&gt; &lt;disk&gt; &lt;vcpus&gt;
 flavor-create testflavor <span class="m">6</span> <span class="m">128</span> <span class="m">0</span> 1
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="instances">
+<h4>Instances<a class="headerlink" href="#instances" title="Permalink to this headline">¶</a></h4>
+<div class="sidebar">
+<p class="first sidebar-title">Note</p>
+<p class="last">&#8211;min/max-count : start multiple instances
+&#8211;poll : will show progress, only for 1st instance, not for multiple instances</p>
+</div>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre>nova boot <span class="o">[</span>--poll<span class="o">]</span> <span class="o">[</span>--min-count &lt;num&gt;<span class="o">]</span> <span class="o">[</span>--max-count &lt;num&gt;<span class="o">]</span> --flavor &lt;flavor&gt; --image &lt;image&gt; &lt;instance name&gt;
+<span class="c"># boot from cinder</span>
+nova volume-create <span class="m">40</span> --image-id<span class="o">=</span>&lt;image_id&gt;
+nova boot --flavor &lt;flavor&gt; --block-device-mapping <span class="nv">vda</span><span class="o">=</span>&lt;volume_uuid&gt;:::0 &lt;instance name&gt;
+nova boot --flavor &lt;flavor&gt; --block-device <span class="nb">source</span><span class="o">=</span>image,id<span class="o">=</span>&lt;image_id&gt;,dest<span class="o">=</span>volume,size<span class="o">=</span>&lt;disk_size,unit G&gt;,shutdown<span class="o">=</span>preserve,bootindex<span class="o">=</span><span class="m">0</span> &lt;instance name&gt;
+<span class="c"># check failure instances</span>
+<span class="k">for</span> i in <span class="sb">`</span>nova list <span class="p">|</span> grep bootbench <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span><span class="sb">`</span><span class="p">;</span><span class="k">do</span> nova console-log <span class="nv">$i</span> <span class="p">|</span> grep login: 1&gt;/dev/null <span class="o">||</span> <span class="nb">echo</span> <span class="nv">$i</span><span class="p">;</span><span class="k">done</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="services">
+<h4>Services<a class="headerlink" href="#services" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># disable services</span>
+<span class="k">for</span> i in <span class="sb">`</span>seq <span class="m">10</span> 15<span class="sb">`</span><span class="p">;</span><span class="k">do</span> nova service-disable --reason<span class="o">=</span>testboot r16s<span class="nv">$i</span> nova-compute<span class="p">;</span><span class="k">done</span>
 </pre></div>
 </td></tr></table></div>
 </div>
@@ -761,6 +804,26 @@ flavor-create testflavor <span class="m">6</span> <span class="m">128</span> <sp
 <li>Network: NFS, ceph RBD (RADOS), sheepdog</li>
 </ul>
 </div>
+<div class="section" id="configuation">
+<h3>Configuation<a class="headerlink" href="#configuation" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">/etc/cinder/cinder.conf</span></code></dt>
+<dd><ul class="first last simple">
+<li>diable dd remove block device &#8211; <code class="docutils literal"><span class="pre">volume_clear</span> <span class="pre">=</span> <span class="pre">none</span></code> , same configuation as nova&#8217; libvirt meta-section</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="highlight-ini"><div class="highlight"><pre><span class="k">[lvmdriver-1]</span>
+<span class="na">volume_clear</span> <span class="o">=</span> <span class="s">none</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">cinder/setup.cfg</span></code> &#8211; stores all Filters&#8217; full path</li>
+</ul>
+</div>
 <div class="section" id="work-flow">
 <h3>work flow<a class="headerlink" href="#work-flow" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="create-cinder-volume">
@@ -783,6 +846,14 @@ flavor-create testflavor <span class="m">6</span> <span class="m">128</span> <sp
 <p>It will cost lots of time, since wipe data permanently is required before remove a volume.
 If change volume size manually (not w/ cinder) will cause error deleting.</p>
 </div>
+<div class="section" id="service-management">
+<h4>service management<a class="headerlink" href="#service-management" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash"><div class="highlight"><pre>cinder service-list
+cinder service-enable &lt;hostname&gt; &lt;binary&gt;
+cinder service-disable <span class="o">[</span>--reason &lt;reason&gt;<span class="o">]</span> &lt;hostname&gt; &lt;binary&gt;
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="glance">
@@ -795,9 +866,22 @@ If change volume size manually (not w/ cinder) will cause error deleting.</p>
 glance image-download --file<span class="o">=</span>&lt;OUTPUT_FILE&gt; <span class="o">[</span>--progress<span class="o">]</span> &lt;ImageID&gt;
 </pre></div>
 </td></tr></table></div>
+<div class="section" id="mete-data">
+<h3>Mete-data<a class="headerlink" href="#mete-data" title="Permalink to this headline">¶</a></h3>
+<p>hw_scsi_model = virtio-scsi or virtio-blk</p>
+</div>
 </div>
 <div class="section" id="sahara">
 <h2>Sahara<a class="headerlink" href="#sahara" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>It&#8217;s a PaaS solution by openstack</li>
+<li>provide an abstract implementation layer of BigData Services(hadoop/spark/storm) through 3rd-party plugins(vanilla,cdh,hdp,mapr,spark...)</li>
+</ul>
+<img alt="../../_images/sahara_components.png" src="../../_images/sahara_components.png" />
+<img alt="../../_images/sahara_workflow.png" src="../../_images/sahara_workflow.png" />
+<img alt="../../_images/sahara_data_access.png" src="../../_images/sahara_data_access.png" />
+<img alt="../../_images/sahara_cluster_create.png" src="../../_images/sahara_cluster_create.png" />
+<img alt="../../_images/sahara_edp_exec.png" src="../../_images/sahara_edp_exec.png" />
 </div>
 <div class="section" id="neutron">
 <h2>Neutron<a class="headerlink" href="#neutron" title="Permalink to this headline">¶</a></h2>

@@ -95,6 +95,37 @@ Flavor
     flavor-create <name> <id> <ram> <disk> <vcpus>
     flavor-create testflavor 6 128 0 1
 
+Instances
+^^^^^^^^^
+
+.. sidebar:: Note
+
+    --min/max-count : start multiple instances
+    --poll : will show progress, only for 1st instance, not for multiple instances
+
+
+.. code-block:: bash
+    :linenos:
+
+    nova boot [--poll] [--min-count <num>] [--max-count <num>] --flavor <flavor> --image <image> <instance name>
+    # boot from cinder
+    nova volume-create 40 --image-id=<image_id>
+    nova boot --flavor <flavor> --block-device-mapping vda=<volume_uuid>:::0 <instance name>
+    nova boot --flavor <flavor> --block-device source=image,id=<image_id>,dest=volume,size=<disk_size,unit G>,shutdown=preserve,bootindex=0 <instance name>
+    # check failure instances
+    for i in `nova list | grep bootbench | awk '{print $2}'`;do nova console-log $i | grep login: 1>/dev/null || echo $i;done
+
+
+Services
+^^^^^^^^
+
+.. code-block:: bash
+    :linenos:
+
+    # disable services
+    for i in `seq 10 15`;do nova service-disable --reason=testboot r16s$i nova-compute;done
+
+
 
 Heat
 ====
@@ -173,6 +204,12 @@ Configuation
     [lvmdriver-1]
     volume_clear = none
 
+- ``cinder/setup.cfg`` -- stores all Filters' full path
+
+
+
+
+
 
 work flow
 ---------
@@ -201,6 +238,23 @@ It will cost lots of time, since wipe data permanently is required before remove
 If change volume size manually (not w/ cinder) will cause error deleting.
 
 
+service management
+^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+    
+    cinder service-list
+    cinder service-enable <hostname> <binary>
+    cinder service-disable [--reason <reason>] <hostname> <binary>
+
+    
+
+
+
+
+
+
+
 Glance
 ======
 
@@ -224,6 +278,17 @@ hw_scsi_model = virtio-scsi or virtio-blk
 Sahara
 ======
  
+- It's a PaaS solution by openstack
+- provide an abstract implementation layer of BigData Services(hadoop/spark/storm) through 3rd-party plugins(vanilla,cdh,hdp,mapr,spark...)
+
+
+.. image:: images/sahara_components.png
+.. image:: images/sahara_workflow.png
+.. image:: images/sahara_data_access.png
+.. image:: images/sahara_cluster_create.png
+.. image:: images/sahara_edp_exec.png
+
+
 
 Neutron
 =======
