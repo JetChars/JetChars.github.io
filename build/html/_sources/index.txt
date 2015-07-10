@@ -39,6 +39,7 @@ Hadoop Tuning
     :glob:
 
     docs/hadoop*/index
+    docs/doopshot/index
 
 
 Linux Tools

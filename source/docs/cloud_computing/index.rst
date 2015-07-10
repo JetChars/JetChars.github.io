@@ -79,9 +79,20 @@ Docker
     * can't over commitment
     * v1.10 can't modify files under /etc, v1.20 solved this issue (mount | grep etc)
 
-Install Docker::
+.. sidebar:: Note
 
-    $ wget -qO- https://get.docker.com/ | sh
+    docker not work well w/ proxy, so here is a workaround
+    ``service docker stop; docker -d &``
+
+- Getting started
+
+.. code-block:: bash
+
+    # Install Docker
+    wget -qO- https://get.docker.com/ | sh
+    # run docker jobs
+    docker run hello-world
+    docker run -it ubuntu bash
 
 * `Kubernetes <http://kubernetes.io>`_ is an open source orchestration system for Docker containers
 
