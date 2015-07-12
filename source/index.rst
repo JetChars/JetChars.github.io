@@ -14,6 +14,9 @@ Since 5/1/2015
 
     docs/cloud_computing/index
     docs/aws/index
+    docs/aws_vpn/index
+    docs/docker/index
+
  
 .. docs/resume/index
 

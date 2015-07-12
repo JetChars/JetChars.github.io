@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>AWS – Amazon Web Services &mdash; JetChars alpha documentation</title>
+  <title>Create a Self Defined VPN via AWS &mdash; JetChars alpha documentation</title>
   
 
   
@@ -30,9 +30,7 @@
   
 
   
-    <link rel="top" title="JetChars alpha documentation" href="../../index.html"/>
-        <link rel="next" title="OpenStack" href="../openstack/index.html"/>
-        <link rel="prev" title="Cloud Computing" href="../cloud_computing/index.html"/> 
+    <link rel="top" title="JetChars alpha documentation" href="../../index.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -71,7 +69,7 @@
         
           
           
-              <ul class="current">
+              <ul>
 <li class="toctree-l1"><a class="reference internal" href="../cloud_computing/index.html">Cloud Computing</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../cloud_computing/index.html#aws-amazon-web-services">AWS &#8211; Amazon Web Services</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../cloud_computing/index.html#data-pipeline">Data Pipeline</a></li>
@@ -86,12 +84,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../cloud_computing/index.html#terminologies">Terminologies</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">AWS &#8211; Amazon Web Services</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#storage">Storage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#compute">Compute</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#database">Database</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#commercial-case">Commercial Case</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#terms">Terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aws/index.html">AWS &#8211; Amazon Web Services</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../aws/index.html#storage">Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aws/index.html#compute">Compute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aws/index.html#database">Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aws/index.html#commercial-case">Commercial Case</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aws/index.html#terms">Terms</a></li>
 </ul>
 </li>
 </ul>
@@ -567,11 +565,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
-    <li>AWS &#8211; Amazon Web Services</li>
+    <li>Create a Self Defined VPN via AWS</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../../_sources/docs/aws/index.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/docs/aws_vpn/index.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -580,108 +578,133 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="aws-amazon-web-services">
-<h1>AWS &#8211; Amazon Web Services<a class="headerlink" href="#aws-amazon-web-services" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="http://aws.amazon.bokecc.com">Amazon Video Center</a></p>
-<p><a class="reference external" href="http://aws.amazon.com/cn/training">AWS CN Training</a></p>
-<p><a class="reference external" href="https://china-run.qwiklabs.com">Hands-on (cn server)</a></p>
-<p><a class="reference external" href="https://qwiklabs.com">Hands-on</a></p>
-<ul>
-<li><dl class="first docutils">
-<dt>Free Courses</dt>
-<dd><ul class="first last simple">
-<li>Introduction to Amazon DynamoDB</li>
-<li>Amazon Elastic Block Store (Amazon EBS) Introductory</li>
-<li>Amazon Elastic Compute Cloud (EC2) Introductory</li>
-<li>Amazon Elastic MapReduce Introductory</li>
-<li>Amazon Relational Database Service (Amazon RDS) Introductory</li>
-<li>Amazon Simple Storage Service (S3) Introductory</li>
-<li>Introduction to AWS Elastic Beanstalk</li>
-<li>AWS Identity and Access Management (IAM) Introductory</li>
-<li>Amazon Elastic Load Balancer (Amazon ELB) Introductory</li>
-<li>Introduction to AWS CloudFormation</li>
-<li>Introduction to Amazon ElastiCache</li>
-<li>Amazon Virtual Private Cloud (VPC) Introductory</li>
-<li>Introduction to AWS OpsWorks</li>
-<li>Introduction to Amazon CloudFront</li>
-<li>Introduction to AWS CodeDeploy</li>
-<li>Introduction to EC2 Spot Instances</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-<p>BKM should be turned into script, let people doing job more creatively.</p>
-<div class="section" id="storage">
-<h2>Storage<a class="headerlink" href="#storage" title="Permalink to this headline">¶</a></h2>
-<p>S3 &#8211; Amazon Simple Storage Service
-- first create an bucket, can contain unlimit amount of file
-- each file size from 1B to 5TB
-- compare to EBS, no need resize bucket size
-EBS &#8211; Elastic Block Storage</p>
-</div>
-<div class="section" id="compute">
-<h2>Compute<a class="headerlink" href="#compute" title="Permalink to this headline">¶</a></h2>
-<ul>
-<li><dl class="first docutils">
-<dt>EC2 &#8211; Elastic Computer Cloud</dt>
-<dd><ul class="first last simple">
-<li>high storage instance, have 48TB</li>
-<li>price competition instance(spot mode), at most 50% price off, will be take by force</li>
-<li>nic opts &#8211; low, medium, high, 10G</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>EMR &#8211; Elastic MapReduce</dt>
-<dd><ul class="first last simple">
-<li>Components &#8211; Master, Core, Task Node</li>
-<li>Master/Core nodes cannot reduce.</li>
-<li>Task Node not storage data for reason</li>
-<li>src data in s3, intermedia data in hdfs, dst data in s3</li>
-<li>ec2 support centos, emr not support it.</li>
-<li>log to s3</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</div>
-<div class="section" id="database">
-<h2>Database<a class="headerlink" href="#database" title="Permalink to this headline">¶</a></h2>
-<p>DynamoDB &#8211; noSQL dataBase</p>
-<p>apis: CreateTable, DeleteTable, UpdateTable, PutItem, GetItem, UpdateItem, DeleteItem, BatchGetItem, BatchWriteItem,Query, Scan (when no index exists, can use this to search all table)</p>
-<p>RDB &#8211; Relational DataBase</p>
-</div>
-<div class="section" id="commercial-case">
-<h2>Commercial Case<a class="headerlink" href="#commercial-case" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="create-a-self-defined-vpn-via-aws">
+<h1>Create a Self Defined VPN via AWS<a class="headerlink" href="#create-a-self-defined-vpn-via-aws" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what-s-vpn">
+<h2>What&#8217;s VPN<a class="headerlink" href="#what-s-vpn" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>NetFlix &#8211; All services run in amazon, 1/3 of US network dataflow.</li>
+<li>TCP(1723) is required for PPTP packets</li>
+<li>TCP(1701) is required for L2TP packets</li>
+<li>compare to proxy, vpn provide ...</li>
 </ul>
 </div>
-<div class="section" id="terms">
-<h2>Terms<a class="headerlink" href="#terms" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>APN &#8211; AWS Partner Network</li>
-<li>ELB &#8211; Elastic Load Balance</li>
-<li>Elastic &#8211; AutoScalable?</li>
+<div class="section" id="deployment">
+<h2>Deployment<a class="headerlink" href="#deployment" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="pptp-vpn">
+<h3>PPTP VPN<a class="headerlink" href="#pptp-vpn" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-shell"><div class="highlight"><pre>sudo yum install -y ppp
+sudo rpm -ivh http://static.ucloud.cn/pptpd-1.3.4-2.el6.x86_64.rpm
+</pre></div>
+</div>
+<ul>
+<li><p class="first">Edit <code class="docutils literal"><span class="pre">/etc/pptp.conf</span></code> &#8211; config localip &amp; guestip:</p>
+<div class="highlight-python"><div class="highlight"><pre>localip 172.31.5.164
+remoteip 172.31.5.165-180
+</pre></div>
+</div>
+</li>
+<li><p class="first">Edit <code class="docutils literal"><span class="pre">/etc/ppp/options.pptpd</span></code> &#8211; config dns server for pptp server</p>
+<div class="highlight-python"><div class="highlight"><pre># require local dns
+ms-dns 172.31.0.2
+</pre></div>
+</div>
+</li>
+<li><p class="first">Edit <code class="docutils literal"><span class="pre">/etc/ppp/chap-secrets</span></code> &#8211; add pptp client account:</p>
+<div class="highlight-python"><div class="highlight"><pre># client        server      secret            IP addresses
+  account       pptpd       password          *
+</pre></div>
+</div>
+</li>
+<li><p class="first">Edit <code class="docutils literal"><span class="pre">/etc/sysctl.conf</span></code> then apply the changes <code class="docutils literal"><span class="pre">sysctl</span> <span class="pre">-p</span></code></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">net</span><span class="o">.</span><span class="n">ipv4</span><span class="o">.</span><span class="n">ip_forward</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">finish configuration</p>
+</li>
 </ul>
+<div class="highlight-shell"><div class="highlight"><pre>iptables -t nat -A POSTROUTING -s 172.31.5.0/24 -o eth0 -j MASQUERADE
+iptables-save &gt; /etc/sysconfig/iptables
+service pptpd start
+<span class="c"># startup automatically</span>
+chkconfig pptpd on
+chkconfig iptables on
+</pre></div>
+</div>
+</div>
+<div class="section" id="script-for-quick-deployment">
+<h3>Script for quick deployment<a class="headerlink" href="#script-for-quick-deployment" title="Permalink to this headline">¶</a></h3>
+<p>following script should run as root user</p>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># prepare</span>
+<span class="c"># -------</span>
+<span class="nv">LOCALIP</span><span class="o">=</span>172.31.5.164
+<span class="nv">REMOTEIP</span><span class="o">=</span>172.31.5.165-180
+MS-DNS<span class="o">=</span>172.31.0.2
+<span class="nv">CIDR</span><span class="o">=</span>172.31.5.0/24
+<span class="nv">NIC</span><span class="o">=</span><span class="si">${</span><span class="nv">NIC</span><span class="k">:-</span><span class="nv">eth0</span><span class="si">}</span>
+<span class="nv">ACCOUNT</span><span class="o">=</span><span class="si">${</span><span class="nv">ACCOUNT</span><span class="k">:-</span><span class="nv">account</span><span class="si">}</span>
+<span class="nv">PASSWD</span><span class="o">=</span><span class="si">${</span><span class="nv">PASSWD</span><span class="k">:-</span><span class="nv">passwd</span><span class="si">}</span>
+
+<span class="c"># install</span>
+<span class="c"># -------</span>
+yum install -y ppp
+rpm -ivh http://static.ucloud.cn/pptpd-1.3.4-2.el6.x86_64.rpm
+
+<span class="c"># config</span>
+<span class="c"># ------</span>
+<span class="nb">echo</span> <span class="s2">&quot;localip </span><span class="nv">$LOCALIP</span><span class="s2"></span>
+<span class="s2">remoteip </span><span class="nv">$REMOTEIP</span><span class="s2">&quot;</span> &gt;&gt; /etc/pptpd.conf
+<span class="nb">echo</span> <span class="s2">&quot;ms-dns </span><span class="nv">$MS</span><span class="s2">-DNS&quot;</span> &gt;&gt; /etc/ppp/options.pptpd
+<span class="nb">echo</span> <span class="s2">&quot;net.ipv4.ip_forward = 1&quot;</span> &gt;&gt; /etc/sysctl.conf
+<span class="c"># sysctl -w net.ipv4.ip_forward=1</span>
+<span class="nb">echo</span> <span class="s2">&quot;  ACCOUNT       pptpd       passwd          *&quot;</span> &gt;&gt; /etc/ppp/chap-secrets
+iptables -t nat -A POSTROUTING -s <span class="nv">$CIDR</span> -o <span class="nv">$NIC</span> -j MASQUERADE
+iptables-save &gt; /etc/sysconfig/iptables
+
+<span class="c"># startup &amp; auto-startup</span>
+<span class="c"># ----------------------</span>
+service pptpd start
+chkconfig pptpd on
+chkconfig iptables on
+</pre></div>
+</td></tr></table></div>
+</div>
 </div>
 </div>
 
 
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../openstack/index.html" class="btn btn-neutral float-right" title="OpenStack" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="../cloud_computing/index.html" class="btn btn-neutral" title="Cloud Computing" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>

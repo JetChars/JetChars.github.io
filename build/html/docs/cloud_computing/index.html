@@ -78,7 +78,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#emr-managed-hadoop-framework">EMR &#8211; Managed Hadoop Framework</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#docker">Docker</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id2">Ceph</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#mesos">Mesos</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#dcos-one-command-control-of-data-center-services">DCOS &#8211; One command control of data center services</a></li>
@@ -91,6 +90,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../aws/index.html#storage">Storage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aws/index.html#compute">Compute</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aws/index.html#database">Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aws/index.html#commercial-case">Commercial Case</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aws/index.html#terms">Terms</a></li>
 </ul>
 </li>
@@ -104,6 +104,8 @@
 <li class="toctree-l4"><a class="reference internal" href="../openstack/index.html#secgroup">SecGroup</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../openstack/index.html#keypair">KeyPair</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../openstack/index.html#flavor">Flavor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../openstack/index.html#instances">Instances</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../openstack/index.html#services">Services</a></li>
 </ul>
 </li>
 </ul>
@@ -118,14 +120,19 @@
 <li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#id7">Cinder</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#components">Components</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#storage-backend">Storage backend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#configuation">Configuation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#work-flow">work flow</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../openstack/index.html#create-cinder-volume">create cinder volume</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../openstack/index.html#delete-cinder-volume">delete cinder volume</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../openstack/index.html#service-management">service management</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#glance">Glance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#glance">Glance</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#mete-data">Mete-data</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#sahara">Sahara</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#neutron">Neutron</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#congiuration-files">Congiuration Files</a></li>
@@ -331,10 +338,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#dnsmasq">dnsmasq</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#route-management">Route Management</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#ip-commands">IP commands</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../linux_net/index.html#network-namespace">network namespace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_net/index.html#addr-address">addr/address</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_net/index.html#link-network-device">link &#8211; network device</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_net/index.html#route-routing-table-management">route &#8211; routing table management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_net/index.html#netns-network-namespace">netns &#8211; network namespace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_net/index.html#rule-routing-policy-database-management">rule &#8211; routing policy database management</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#django-web-framework">Django &#8211; web framework</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#open-vswitch">Open vSwitch</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#macvlan">macvlan</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#terms">Terms</a></li>
@@ -671,50 +681,6 @@
 </li>
 </ul>
 </div>
-</div>
-<div class="section" id="docker">
-<h2>Docker<a class="headerlink" href="#docker" title="Permalink to this headline">¶</a></h2>
-<ul>
-<li><p class="first">Use go language</p>
-</li>
-<li><p class="first">Use native cpu/syscall/kernel</p>
-</li>
-<li><p class="first">Use <code class="docutils literal"><span class="pre">namespace/capabilities/ctrl</span> <span class="pre">group/apparmor/netfilter</span></code></p>
-</li>
-<li><p class="first">Use ipc namespace communicate between containers</p>
-</li>
-<li><p class="first">Require <code class="docutils literal"><span class="pre">libcontainer/lxc/libvirt/systemd-nspawn</span></code></p>
-</li>
-<li><p class="first">Managed by DGAB (Docker Governance Advisory Board)</p>
-</li>
-<li><dl class="first docutils">
-<dt>Advangtages</dt>
-<dd><ul class="first last simple">
-<li>compare to kvm use virtio, docker use AUFS, which is better.</li>
-<li>light weight &#8216;vm&#8217;, use less mem than kvm, closer to BM</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>Constrains</dt>
-<dd><ul class="first last simple">
-<li>must have same OS kernel</li>
-<li>kernel 3.8 is minimal, except rhel 2.6.32, 3.10 or higher is recommended</li>
-<li>can&#8217;t over commitment</li>
-<li>v1.10 can&#8217;t modify files under /etc, v1.20 solved this issue (mount | grep etc)</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-<p>Install Docker:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ wget -qO- https://get.docker.com/ | sh
-</pre></div>
-</div>
-<ul class="simple">
-<li><a class="reference external" href="http://kubernetes.io">Kubernetes</a> is an open source orchestration system for Docker containers</li>
-</ul>
 </div>
 <div class="section" id="id2">
 <h2><a class="reference external" href="http://ceph.com">Ceph</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
