@@ -61,46 +61,6 @@ EMR -- Managed Hadoop Framework
 
 
 
-<<<<<<< HEAD
-Docker
-======
-
-- Since March 2014
-* Use go language
-* Use native cpu/syscall/kernel
-* Use ``namespace/capabilities/ctrl group/apparmor/netfilter``
-* Use ipc namespace communicate between containers
-* Require ``libcontainer/lxc/libvirt/systemd-nspawn``
-* Managed by DGAB (Docker Governance Advisory Board)
-* Advangtages
-    * compare to kvm use virtio, docker use AUFS, which is better.
-    * light weight 'vm', use less mem than kvm, closer to BM
-* Constrains
-    * must have same OS kernel
-    * kernel 3.8 is minimal, except rhel 2.6.32, 3.10 or higher is recommended
-    * can't over commitment
-    * v1.10 can't modify files under /etc, v1.20 solved this issue (mount | grep etc)
-
-.. sidebar:: Note
-
-    docker not work well w/ proxy, so here is a workaround
-    ``service docker stop; docker -d &``
-
-- Getting started
-
-.. code-block:: bash
-
-    # Install Docker
-    wget -qO- https://get.docker.com/ | sh
-    # run docker jobs
-    docker run hello-world
-    docker run -it ubuntu bash
-
-* `Kubernetes <http://kubernetes.io>`_ is an open source orchestration system for Docker containers
-=======
-
->>>>>>> 1f5ee770c73329947a13b162b05bb34cafeac0ba
-
 `Ceph <http://ceph.com>`_
 =========================
 

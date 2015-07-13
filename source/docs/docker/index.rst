@@ -18,6 +18,37 @@ Docker
     * can't over commitment
     * v1.10 can't modify files under /etc, v1.20 solved this issue (mount | grep etc)
 
+
+Underlying Technologies
+-----------------------
+
+Namespaces
+
+============ ========== ======================
+namespace    kernel     isolation
+============ ========== ======================
+mount        2.4.19     mount point / fs
+uts          2.6.19     host name & NIS domain name
+ipc          2.6.19     ipc resources
+pid          2.6.24     process id space
+network      2.6.29     network resources
+user         3.8        user & group id
+============ ========== ======================
+
+
+
+
+    
+Getting started
+---------------
+
+.. sidebar:: Note
+
+    - docker not work well w/ proxy, so here is a workaround: ``service docker stop; docker -d &``
+    - docker container not work well w/ proxy, ``add key-values of proxy server before cmds which need proxy``
+
+
+
 Install Docker::
 
     wget -qO- https://get.docker.com/ | sh
@@ -58,7 +89,7 @@ Commands
     cid=$(docker run -itd)
     # clean docker containers
     docker kill $(docker ps -q)
-    docker rm $(docker images -qa)
+    docker rm $(docker ps -qa)
     # exec cmd one time through container
     docker run --rm --volumes-from john1 -v $(pwd):/backup busybox tar cvf /backup/john2.tar /john1
 

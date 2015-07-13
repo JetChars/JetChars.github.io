@@ -104,6 +104,7 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Docker</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#commands">Commands</a></li>
 </ul>
 </li>
@@ -271,6 +272,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../doopshot/index.html">DoopShot</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../linux_disk/index.html">Linux Disk</a><ul>
@@ -428,6 +430,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../mac/index.html#brew-package-management-software">brew &#8211; package management software</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../mac/index.html#glims-safari-enhancement">glims &#8211; safari enhancement</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../mac/index.html#visual-studio-code-asp-net-5">Visual Studio Code &amp; ASP.NET 5 </a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mac/index.html#other-good-softwares">Other Good Softwares</a></li>
 </ul>
 </li>
 </ul>
@@ -632,6 +635,15 @@
 </dl>
 </li>
 </ul>
+<div class="section" id="getting-started">
+<h2>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<div class="sidebar">
+<p class="first sidebar-title">Note</p>
+<ul class="last simple">
+<li>docker not work well w/ proxy, so here is a workaround: <code class="docutils literal"><span class="pre">service</span> <span class="pre">docker</span> <span class="pre">stop;</span> <span class="pre">docker</span> <span class="pre">-d</span> <span class="pre">&amp;</span></code></li>
+<li>docker container not work well w/ proxy, <code class="docutils literal"><span class="pre">add</span> <span class="pre">key-values</span> <span class="pre">of</span> <span class="pre">proxy</span> <span class="pre">server</span> <span class="pre">before</span> <span class="pre">cmds</span> <span class="pre">which</span> <span class="pre">need</span> <span class="pre">proxy</span></code></li>
+</ul>
+</div>
 <p>Install Docker:</p>
 <div class="highlight-python"><div class="highlight"><pre>wget -qO- https://get.docker.com/ | sh
 wget -qO- https://test.docker.com/ | sh   # test verison
@@ -646,6 +658,7 @@ sudo chmod a+x /usr/bin/docker
 adding your user to the &#8220;docker&#8221; group with something like:</p>
 <blockquote>
 <div>sudo usermod -aG docker your-user</div></blockquote>
+</div>
 <div class="section" id="commands">
 <h2>Commands<a class="headerlink" href="#commands" title="Permalink to this headline">¶</a></h2>
 <div class="sidebar">
@@ -678,7 +691,7 @@ docker search &lt;image&gt;
 <span class="nv">cid</span><span class="o">=</span><span class="k">$(</span>docker run -itd<span class="k">)</span>
 <span class="c"># clean docker containers</span>
 docker <span class="nb">kill</span> <span class="k">$(</span>docker ps -q<span class="k">)</span>
-docker rm <span class="k">$(</span>docker images -qa<span class="k">)</span>
+docker rm <span class="k">$(</span>docker ps -qa<span class="k">)</span>
 <span class="c"># exec cmd one time through container</span>
 docker run --rm --volumes-from john1 -v <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/backup busybox tar cvf /backup/john2.tar /john1
 </pre></div>

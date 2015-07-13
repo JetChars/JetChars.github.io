@@ -61,8 +61,6 @@ EMR -- Managed Hadoop Framework
 
 
 
-
-
 `Ceph <http://ceph.com>`_
 =========================
 
