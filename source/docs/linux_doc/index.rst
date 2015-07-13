@@ -6,7 +6,10 @@ Documentation Tools
 `Sphinx <http://sphinx-doc.org>`_ - Python Document Generator
 ==================================================================================
 
+
 With this tool, we can extract manual from our python project's source code, convert rst file into html tex or pdf files, and so on ... 
+
+.. warning:: html can be build with **svg**, but latex need to be converted into **png**
 
 | `Chinese Documentation <http://www.pythondoc.com/sphinx/index.html>`_
 | `Another Chinese Documentation <http://zh-sphinx-doc.readthedocs.org/en/latest/>`_

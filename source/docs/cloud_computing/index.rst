@@ -61,6 +61,7 @@ EMR -- Managed Hadoop Framework
 
 
 
+<<<<<<< HEAD
 Docker
 ======
 
@@ -96,6 +97,9 @@ Docker
     docker run -it ubuntu bash
 
 * `Kubernetes <http://kubernetes.io>`_ is an open source orchestration system for Docker containers
+=======
+
+>>>>>>> 1f5ee770c73329947a13b162b05bb34cafeac0ba
 
 `Ceph <http://ceph.com>`_
 =========================

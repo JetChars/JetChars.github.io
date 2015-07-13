@@ -2,6 +2,8 @@
 Vim - My Favourite Editor
 =========================
 
+vi's full name is visual editor
+
 .. image:: images/vi-vim-cheat-sheet.svg
 
 - save file with sudo privilege: ``:w !sudo tee %``

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>AWS – Amazon Web Services &mdash; JetChars alpha documentation</title>
+  <title>Docker &mdash; JetChars alpha documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
     <link rel="top" title="JetChars alpha documentation" href="../../index.html"/>
         <link rel="next" title="OpenStack" href="../openstack/index.html"/>
-        <link rel="prev" title="Cloud Computing" href="../cloud_computing/index.html"/> 
+        <link rel="prev" title="Create a Self Defined VPN via AWS" href="../aws_vpn/index.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -86,12 +86,25 @@
 <li class="toctree-l2"><a class="reference internal" href="../cloud_computing/index.html#terminologies">Terminologies</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">AWS &#8211; Amazon Web Services</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#storage">Storage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#compute">Compute</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#database">Database</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#commercial-case">Commercial Case</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#terms">Terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aws/index.html">AWS &#8211; Amazon Web Services</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../aws/index.html#storage">Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aws/index.html#compute">Compute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aws/index.html#database">Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aws/index.html#commercial-case">Commercial Case</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aws/index.html#terms">Terms</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../aws_vpn/index.html">Create a Self Defined VPN via AWS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../aws_vpn/index.html#what-s-vpn">What&#8217;s VPN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aws_vpn/index.html#deployment">Deployment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../aws_vpn/index.html#pptp-vpn">PPTP VPN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../aws_vpn/index.html#script-for-quick-deployment">Script for quick deployment</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Docker</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#commands">Commands</a></li>
 </ul>
 </li>
 </ul>
@@ -567,11 +580,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
-    <li>AWS &#8211; Amazon Web Services</li>
+    <li>Docker</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../../_sources/docs/aws/index.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/docs/docker/index.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -580,92 +593,98 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="aws-amazon-web-services">
-<h1>AWS &#8211; Amazon Web Services<a class="headerlink" href="#aws-amazon-web-services" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="http://aws.amazon.bokecc.com">Amazon Video Center</a></p>
-<p><a class="reference external" href="http://aws.amazon.com/cn/training">AWS CN Training</a></p>
-<p><a class="reference external" href="https://china-run.qwiklabs.com">Hands-on (cn server)</a></p>
-<p><a class="reference external" href="https://qwiklabs.com">Hands-on</a></p>
-<ul>
-<li><dl class="first docutils">
-<dt>Free Courses</dt>
-<dd><ul class="first last simple">
-<li>Introduction to Amazon DynamoDB</li>
-<li>Amazon Elastic Block Store (Amazon EBS) Introductory</li>
-<li>Amazon Elastic Compute Cloud (EC2) Introductory</li>
-<li>Amazon Elastic MapReduce Introductory</li>
-<li>Amazon Relational Database Service (Amazon RDS) Introductory</li>
-<li>Amazon Simple Storage Service (S3) Introductory</li>
-<li>Introduction to AWS Elastic Beanstalk</li>
-<li>AWS Identity and Access Management (IAM) Introductory</li>
-<li>Amazon Elastic Load Balancer (Amazon ELB) Introductory</li>
-<li>Introduction to AWS CloudFormation</li>
-<li>Introduction to Amazon ElastiCache</li>
-<li>Amazon Virtual Private Cloud (VPC) Introductory</li>
-<li>Introduction to AWS OpsWorks</li>
-<li>Introduction to Amazon CloudFront</li>
-<li>Introduction to AWS CodeDeploy</li>
-<li>Introduction to EC2 Spot Instances</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-<p>BKM should be turned into script, let people doing job more creatively.</p>
-<div class="section" id="storage">
-<h2>Storage<a class="headerlink" href="#storage" title="Permalink to this headline">¶</a></h2>
-<p>S3 &#8211; Amazon Simple Storage Service
-- first create an bucket, can contain unlimit amount of file
-- each file size from 1B to 5TB
-- compare to EBS, no need resize bucket size
-EBS &#8211; Elastic Block Storage</p>
-</div>
-<div class="section" id="compute">
-<h2>Compute<a class="headerlink" href="#compute" title="Permalink to this headline">¶</a></h2>
-<ul>
-<li><dl class="first docutils">
-<dt>EC2 &#8211; Elastic Computer Cloud</dt>
-<dd><ul class="first last simple">
-<li>high storage instance, have 48TB</li>
-<li>price competition instance(spot mode), at most 50% price off, will be take by force</li>
-<li>nic opts &#8211; low, medium, high, 10G</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>EMR &#8211; Elastic MapReduce</dt>
-<dd><ul class="first last simple">
-<li>Components &#8211; Master, Core, Task Node</li>
-<li>Master/Core nodes cannot reduce.</li>
-<li>Task Node not storage data for reason</li>
-<li>src data in s3, intermedia data in hdfs, dst data in s3</li>
-<li>ec2 support centos, emr not support it.</li>
-<li>log to s3</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</div>
-<div class="section" id="database">
-<h2>Database<a class="headerlink" href="#database" title="Permalink to this headline">¶</a></h2>
-<p>DynamoDB &#8211; noSQL dataBase</p>
-<p>apis: CreateTable, DeleteTable, UpdateTable, PutItem, GetItem, UpdateItem, DeleteItem, BatchGetItem, BatchWriteItem,Query, Scan (when no index exists, can use this to search all table)</p>
-<p>RDB &#8211; Relational DataBase</p>
-</div>
-<div class="section" id="commercial-case">
-<h2>Commercial Case<a class="headerlink" href="#commercial-case" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="docker">
+<h1>Docker<a class="headerlink" href="#docker" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
-<li>NetFlix &#8211; All services run in amazon, 1/3 of US network dataflow.</li>
+<li>Since March 2014</li>
+</ul>
+<ul>
+<li><p class="first">Use go language</p>
+</li>
+<li><p class="first">Use native cpu/syscall/kernel</p>
+</li>
+<li><p class="first">Use <code class="docutils literal"><span class="pre">namespace/capabilities/ctrl</span> <span class="pre">group/apparmor/netfilter</span></code></p>
+</li>
+<li><p class="first">Use ipc namespace communicate between containers</p>
+</li>
+<li><p class="first">Require <code class="docutils literal"><span class="pre">libcontainer/lxc/libvirt/systemd-nspawn</span></code></p>
+</li>
+<li><p class="first">Managed by DGAB (Docker Governance Advisory Board)</p>
+</li>
+<li><dl class="first docutils">
+<dt>Advangtages</dt>
+<dd><ul class="first last simple">
+<li>compare to kvm use virtio, docker use AUFS, which is better.</li>
+<li>light weight &#8216;vm&#8217;, use less mem than kvm, closer to BM</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Constrains</dt>
+<dd><ul class="first last simple">
+<li>must have same OS kernel</li>
+<li>kernel 3.8 is minimal, except rhel 2.6.32, 3.10 or higher is recommended</li>
+<li>can&#8217;t over commitment</li>
+<li>v1.10 can&#8217;t modify files under /etc, v1.20 solved this issue (mount | grep etc)</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Install Docker:</p>
+<div class="highlight-python"><div class="highlight"><pre>wget -qO- https://get.docker.com/ | sh
+wget -qO- https://test.docker.com/ | sh   # test verison
+</pre></div>
+</div>
+<p>Update Dockera:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo wget https://get.docker.com/builds/Linux/x86_64/docker-latest -O /usr/bin/docker
+sudo chmod a+x /usr/bin/docker
+</pre></div>
+</div>
+<p>If you would like to use Docker as a non-root user, you should now consider
+adding your user to the &#8220;docker&#8221; group with something like:</p>
+<blockquote>
+<div>sudo usermod -aG docker your-user</div></blockquote>
+<div class="section" id="commands">
+<h2>Commands<a class="headerlink" href="#commands" title="Permalink to this headline">¶</a></h2>
+<div class="sidebar">
+<p class="first sidebar-title">Note</p>
+<ul class="last simple">
+<li>detach a instance <code class="docutils literal"><span class="pre">^p^q</span></code></li>
 </ul>
 </div>
-<div class="section" id="terms">
-<h2>Terms<a class="headerlink" href="#terms" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-shell"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre>docker run <span class="o">[</span>-v <span class="o">[</span>hostpath:<span class="o">]</span>path<span class="o">[</span>:mountopts<span class="o">]]</span> <span class="o">[</span>-itd<span class="o">]</span> <span class="o">[</span>--rm<span class="o">]</span> <span class="o">[</span>--name cname<span class="o">]</span> <span class="o">[</span>--volumes-from &lt;container&gt;<span class="o">]</span> &lt;image&gt; CMD
+docker images <span class="o">[</span>-aq<span class="o">]</span>
+docker ps <span class="o">[</span>-aq<span class="o">]</span> <span class="o">[</span>--no-trunc<span class="o">]</span>
+docker <span class="nb">kill</span>/stop/inspect/rm &lt;container&gt;
+docker <span class="nb">exec</span> &lt;container&gt; CMD
+docker attach &lt;container&gt;
+docker search &lt;image&gt;
+<span class="c"># get backgound container id</span>
+<span class="nv">cid</span><span class="o">=</span><span class="k">$(</span>docker run -itd<span class="k">)</span>
+<span class="c"># clean docker containers</span>
+docker <span class="nb">kill</span> <span class="k">$(</span>docker ps -q<span class="k">)</span>
+docker rm <span class="k">$(</span>docker images -qa<span class="k">)</span>
+<span class="c"># exec cmd one time through container</span>
+docker run --rm --volumes-from john1 -v <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/backup busybox tar cvf /backup/john2.tar /john1
+</pre></div>
+</td></tr></table></div>
 <ul class="simple">
-<li>APN &#8211; AWS Partner Network</li>
-<li>ELB &#8211; Elastic Load Balance</li>
-<li>Elastic &#8211; AutoScalable?</li>
+<li><a class="reference external" href="http://kubernetes.io">Kubernetes</a> is an open source orchestration system for Docker containers</li>
 </ul>
 </div>
 </div>
@@ -679,7 +698,7 @@ EBS &#8211; Elastic Block Storage</p>
         <a href="../openstack/index.html" class="btn btn-neutral float-right" title="OpenStack" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../cloud_computing/index.html" class="btn btn-neutral" title="Cloud Computing" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../aws_vpn/index.html" class="btn btn-neutral" title="Create a Self Defined VPN via AWS" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

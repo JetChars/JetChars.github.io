@@ -124,4 +124,16 @@ Visual Studio Code & ASP.NET 5 [#]_
 .. code-block:: bash
     :linenos:
 
+
+
+Other Good Softwares
+--------------------
+
+- bartender -- mini icons management(upright corner)
+- hyperdock -- windows like dock preview & screen split
+- aircontrol -- graphical recognition for music ctrl
+
+
+
+
 .. [#] http://www.itworld.com/article/2917266/development/how-to-install-and-use-visual-studio-code-and-aspnet-5-on-mac-os-x.html
