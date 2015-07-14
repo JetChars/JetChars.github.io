@@ -32,7 +32,7 @@
   
     <link rel="top" title="JetChars alpha documentation" href="../../index.html"/>
         <link rel="next" title="OpenStack" href="../openstack/index.html"/>
-        <link rel="prev" title="Create a Self Defined VPN via AWS" href="../aws_vpn/index.html"/> 
+        <link rel="prev" title="Build VPN with AWS" href="../aws_vpn/index.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -94,7 +94,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../aws/index.html#terms">Terms</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../aws_vpn/index.html">Create a Self Defined VPN via AWS</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../aws_vpn/index.html">Build VPN with AWS</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../aws_vpn/index.html#what-s-vpn">What&#8217;s VPN</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aws_vpn/index.html#deployment">Deployment</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../aws_vpn/index.html#pptp-vpn">PPTP VPN</a></li>
@@ -104,8 +104,17 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Docker</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting started</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#commands">Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#underlying-technologies">Underlying Technologies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#basic-commands">Basic Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#container-management">Container Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#image-management">Image Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#applicaitons">Applicaitons</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dockerfile">Dockerfile</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -327,6 +336,12 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux_info/index.html">Get System Infos</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../linux_info/index.html#intro">Intro</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux_info/index.html#linux-get-system-version-info">linux get system version info</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../linux_info/index.html#for-any-os">For any os</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../linux_info/index.html#for-ubuntu">For Ubuntu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../linux_info/index.html#for-centos">For Centos</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../linux_info/index.html#tar-folder-etc">tar folder /etc</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../linux_info/index.html#print-infos">print infos</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../linux_info/index.html#proc-infos">proc infos</a></li>
@@ -598,22 +613,19 @@
             
   <div class="section" id="docker">
 <h1>Docker<a class="headerlink" href="#docker" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
+<div class="sidebar">
+<p class="first sidebar-title">about</p>
+<ul class="last simple">
 <li>Since March 2014</li>
+<li>Use go language</li>
+<li>Use native cpu/syscall/kernel</li>
+<li>Use namespace/capabilities/ctrlgroup/apparmor/netfilter</li>
+<li>Use ipc namespace communicate between containers</li>
+<li>Require libcontainer/lxc/libvirt/systemd-nspawn</li>
+<li>Managed by DGAB (Docker Governance Advisory Board)</li>
 </ul>
+</div>
 <ul>
-<li><p class="first">Use go language</p>
-</li>
-<li><p class="first">Use native cpu/syscall/kernel</p>
-</li>
-<li><p class="first">Use <code class="docutils literal"><span class="pre">namespace/capabilities/ctrl</span> <span class="pre">group/apparmor/netfilter</span></code></p>
-</li>
-<li><p class="first">Use ipc namespace communicate between containers</p>
-</li>
-<li><p class="first">Require <code class="docutils literal"><span class="pre">libcontainer/lxc/libvirt/systemd-nspawn</span></code></p>
-</li>
-<li><p class="first">Managed by DGAB (Docker Governance Advisory Board)</p>
-</li>
 <li><dl class="first docutils">
 <dt>Advangtages</dt>
 <dd><ul class="first last simple">
@@ -625,27 +637,77 @@
 </li>
 <li><dl class="first docutils">
 <dt>Constrains</dt>
-<dd><ul class="first last simple">
+<dd><ul class="first simple">
+<li>x64 only</li>
+</ul>
+<ul class="last simple">
 <li>must have same OS kernel</li>
-<li>kernel 3.8 is minimal, except rhel 2.6.32, 3.10 or higher is recommended</li>
+<li>kernel 3.8 is minimal, except rhel <strong>2.6.32</strong> . So, 3.10(ubuntu 1404 trusty) or higher is recommended</li>
 <li>can&#8217;t over commitment</li>
 <li>v1.10 can&#8217;t modify files under /etc, v1.20 solved this issue (mount | grep etc)</li>
+<li>network buttleneck</li>
+<li>no time namespace</li>
 </ul>
 </dd>
 </dl>
 </li>
 </ul>
+<div class="section" id="underlying-technologies">
+<h2>Underlying Technologies<a class="headerlink" href="#underlying-technologies" title="Permalink to this headline">¶</a></h2>
+<p>Namespaces</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="20%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">namespace</th>
+<th class="head">kernel</th>
+<th class="head">isolation</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>mount</td>
+<td>2.4.19</td>
+<td>mount point / fs</td>
+</tr>
+<tr class="row-odd"><td>uts</td>
+<td>2.6.19</td>
+<td>host name &amp; NIS domain name</td>
+</tr>
+<tr class="row-even"><td>ipc</td>
+<td>2.6.19</td>
+<td>ipc resources</td>
+</tr>
+<tr class="row-odd"><td>pid</td>
+<td>2.6.24</td>
+<td>process id space</td>
+</tr>
+<tr class="row-even"><td>network</td>
+<td>2.6.29</td>
+<td>network resources</td>
+</tr>
+<tr class="row-odd"><td>user</td>
+<td>3.8</td>
+<td>user &amp; group id</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="section" id="getting-started">
 <h2>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
 <div class="sidebar">
 <p class="first sidebar-title">Note</p>
 <ul class="last simple">
 <li>docker not work well w/ proxy, so here is a workaround: <code class="docutils literal"><span class="pre">service</span> <span class="pre">docker</span> <span class="pre">stop;</span> <span class="pre">docker</span> <span class="pre">-d</span> <span class="pre">&amp;</span></code></li>
-<li>docker container not work well w/ proxy, <code class="docutils literal"><span class="pre">add</span> <span class="pre">key-values</span> <span class="pre">of</span> <span class="pre">proxy</span> <span class="pre">server</span> <span class="pre">before</span> <span class="pre">cmds</span> <span class="pre">which</span> <span class="pre">need</span> <span class="pre">proxy</span></code></li>
+<li>docker container not work well w/ proxy, add <strong>key-values</strong> of proxy server before cmds which need proxy</li>
 </ul>
 </div>
 <p>Install Docker:</p>
-<div class="highlight-python"><div class="highlight"><pre>wget -qO- https://get.docker.com/ | sh
+<div class="highlight-python"><div class="highlight"><pre># require root user
+wget -qO- https://get.docker.com/ | sh
+curl -sSL https://get.docker.com/ | sh
 wget -qO- https://test.docker.com/ | sh   # test verison
 </pre></div>
 </div>
@@ -658,9 +720,12 @@ sudo chmod a+x /usr/bin/docker
 adding your user to the &#8220;docker&#8221; group with something like:</p>
 <blockquote>
 <div>sudo usermod -aG docker your-user</div></blockquote>
+<div class="section" id="basic-commands">
+<h3>Basic Commands<a class="headerlink" href="#basic-commands" title="Permalink to this headline">¶</a></h3>
 </div>
-<div class="section" id="commands">
-<h2>Commands<a class="headerlink" href="#commands" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="container-management">
+<h2>Container Management<a class="headerlink" href="#container-management" title="Permalink to this headline">¶</a></h2>
 <div class="sidebar">
 <p class="first sidebar-title">Note</p>
 <ul class="last simple">
@@ -676,29 +741,63 @@ adding your user to the &#8220;docker&#8221; group with something like:</p>
  7
  8
  9
-10
-11
-12
-13
-14</pre></div></td><td class="code"><div class="highlight"><pre>docker run <span class="o">[</span>-v <span class="o">[</span>hostpath:<span class="o">]</span>path<span class="o">[</span>:mountopts<span class="o">]]</span> <span class="o">[</span>-itd<span class="o">]</span> <span class="o">[</span>--rm<span class="o">]</span> <span class="o">[</span>--name cname<span class="o">]</span> <span class="o">[</span>--volumes-from &lt;container&gt;<span class="o">]</span> &lt;image&gt; CMD
-docker images <span class="o">[</span>-aq<span class="o">]</span>
+10</pre></div></td><td class="code"><div class="highlight"><pre>docker run <span class="o">[</span>-v <span class="o">[</span>hostpath:<span class="o">]</span>path<span class="o">[</span>:mountopts<span class="o">]]</span> <span class="o">[</span>-itd<span class="o">]</span> <span class="o">[</span>--rm<span class="o">]</span> <span class="o">[</span>--name cname<span class="o">]</span> <span class="o">[</span>--volumes-from &lt;container&gt;<span class="o">]</span> &lt;image&gt; CMD
 docker ps <span class="o">[</span>-aq<span class="o">]</span> <span class="o">[</span>--no-trunc<span class="o">]</span>
-docker <span class="nb">kill</span>/stop/inspect/rm &lt;container&gt;
+docker <span class="nb">kill</span> &lt;container&gt;
+docker stop&lt;container&gt;
+docker inspect &lt;container&gt;
+docker rm &lt;container&gt;
 docker <span class="nb">exec</span> &lt;container&gt; CMD
 docker attach &lt;container&gt;
+docker stats &lt;container&gt;
+docker top &lt;container&gt;
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="image-management">
+<h2>Image Management<a class="headerlink" href="#image-management" title="Permalink to this headline">¶</a></h2>
+<div class="sidebar">
+<p class="first sidebar-title">Note</p>
+<p class="last">same image can have multiple tags, eg:
+ubuntu, ubuntu:trusty, ubuntu:latest</p>
+</div>
+<div class="highlight-shell"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre>docker images <span class="o">[</span>-aq<span class="o">]</span> &lt;image&gt;
 docker search &lt;image&gt;
-<span class="c"># get backgound container id</span>
+docker rmi &lt;image&gt;
+docker <span class="nb">history</span> <span class="o">[</span>-q<span class="o">]</span> <span class="o">[</span>--no-trunc<span class="o">]</span> &lt;image&gt;
+docker build <span class="o">[</span>-f build-file<span class="o">]</span> <span class="o">[</span>-t tag<span class="o">]</span> .
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="applicaitons">
+<h2>Applicaitons<a class="headerlink" href="#applicaitons" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-shell"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># get backgound container id</span>
 <span class="nv">cid</span><span class="o">=</span><span class="k">$(</span>docker run -itd<span class="k">)</span>
+<span class="nv">nid</span><span class="o">=</span><span class="k">$(</span>docker inspect --format <span class="s1">&#39;{{.NetworkSettings.IPAddress}}&#39;</span> <span class="nv">$cid</span><span class="k">)</span>
+docker <span class="nb">exec</span> <span class="nv">$cid</span> &lt;CMD&gt;
 <span class="c"># clean docker containers</span>
-docker <span class="nb">kill</span> <span class="k">$(</span>docker ps -q<span class="k">)</span>
-docker rm <span class="k">$(</span>docker ps -qa<span class="k">)</span>
+docker <span class="nb">kill</span> <span class="k">$(</span>docker ps -q<span class="k">)</span> <span class="o">&amp;&amp;</span> docker rm <span class="k">$(</span>docker ps -qa<span class="k">)</span>
 <span class="c"># exec cmd one time through container</span>
 docker run --rm --volumes-from john1 -v <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/backup busybox tar cvf /backup/john2.tar /john1
 </pre></div>
 </td></tr></table></div>
+<div class="section" id="dockerfile">
+<h3>Dockerfile<a class="headerlink" href="#dockerfile" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><a class="reference external" href="http://kubernetes.io">Kubernetes</a> is an open source orchestration system for Docker containers</li>
 </ul>
+</div>
 </div>
 </div>
 
@@ -711,7 +810,7 @@ docker run --rm --volumes-from john1 -v <span class="k">$(</span><span class="nb
         <a href="../openstack/index.html" class="btn btn-neutral float-right" title="OpenStack" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../aws_vpn/index.html" class="btn btn-neutral" title="Create a Self Defined VPN via AWS" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../aws_vpn/index.html" class="btn btn-neutral" title="Build VPN with AWS" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -1,6 +1,6 @@
-=================================
-Create a Self Defined VPN via AWS
-=================================
+==================
+Build VPN with AWS
+==================
 
 
 What's VPN
@@ -42,7 +42,7 @@ PPTP VPN
 
     net.ipv4.ip_forward = 1
 
-- finish configuration
+- Start pptp daemon
 
 .. code-block:: shell
 
@@ -68,7 +68,7 @@ following script should run as root user
     # -------
     LOCALIP=172.31.5.164
     REMOTEIP=172.31.5.165-180
-    MS-DNS=172.31.0.2
+    MSDNS=172.31.0.2
     CIDR=172.31.5.0/24
     NIC=${NIC:-eth0}
     ACCOUNT=${ACCOUNT:-account}
@@ -83,7 +83,7 @@ following script should run as root user
     # ------
     echo "localip $LOCALIP
     remoteip $REMOTEIP" >> /etc/pptpd.conf
-    echo "ms-dns $MS-DNS" >> /etc/ppp/options.pptpd
+    echo "ms-dns $MSDNS" >> /etc/ppp/options.pptpd
     echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf
     # sysctl -w net.ipv4.ip_forward=1
     echo "  ACCOUNT       pptpd       passwd          *" >> /etc/ppp/chap-secrets

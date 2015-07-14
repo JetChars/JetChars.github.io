@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Create a Self Defined VPN via AWS &mdash; JetChars alpha documentation</title>
+  <title>Build VPN with AWS &mdash; JetChars alpha documentation</title>
   
 
   
@@ -94,7 +94,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../aws/index.html#terms">Terms</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Create a Self Defined VPN via AWS</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Build VPN with AWS</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#what-s-vpn">What&#8217;s VPN</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#deployment">Deployment</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#pptp-vpn">PPTP VPN</a></li>
@@ -104,6 +104,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../docker/index.html#underlying-technologies">Underlying Technologies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../docker/index.html#getting-started">Getting started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../docker/index.html#commands">Commands</a></li>
 </ul>
@@ -327,6 +328,12 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux_info/index.html">Get System Infos</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../linux_info/index.html#intro">Intro</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux_info/index.html#linux-get-system-version-info">linux get system version info</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../linux_info/index.html#for-any-os">For any os</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../linux_info/index.html#for-ubuntu">For Ubuntu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../linux_info/index.html#for-centos">For Centos</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../linux_info/index.html#tar-folder-etc">tar folder /etc</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../linux_info/index.html#print-infos">print infos</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../linux_info/index.html#proc-infos">proc infos</a></li>
@@ -583,7 +590,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
-    <li>Create a Self Defined VPN via AWS</li>
+    <li>Build VPN with AWS</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -596,8 +603,8 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="create-a-self-defined-vpn-via-aws">
-<h1>Create a Self Defined VPN via AWS<a class="headerlink" href="#create-a-self-defined-vpn-via-aws" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="build-vpn-with-aws">
+<h1>Build VPN with AWS<a class="headerlink" href="#build-vpn-with-aws" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="what-s-vpn">
 <h2>What&#8217;s VPN<a class="headerlink" href="#what-s-vpn" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
@@ -638,7 +645,7 @@ ms-dns 172.31.0.2
 </pre></div>
 </div>
 </li>
-<li><p class="first">finish configuration</p>
+<li><p class="first">Start pptp daemon</p>
 </li>
 </ul>
 <div class="highlight-shell"><div class="highlight"><pre>iptables -t nat -A POSTROUTING -s 172.31.5.0/24 -o eth0 -j MASQUERADE
@@ -687,7 +694,7 @@ chkconfig iptables on
 <span class="c"># -------</span>
 <span class="nv">LOCALIP</span><span class="o">=</span>172.31.5.164
 <span class="nv">REMOTEIP</span><span class="o">=</span>172.31.5.165-180
-MS-DNS<span class="o">=</span>172.31.0.2
+<span class="nv">MSDNS</span><span class="o">=</span>172.31.0.2
 <span class="nv">CIDR</span><span class="o">=</span>172.31.5.0/24
 <span class="nv">NIC</span><span class="o">=</span><span class="si">${</span><span class="nv">NIC</span><span class="k">:-</span><span class="nv">eth0</span><span class="si">}</span>
 <span class="nv">ACCOUNT</span><span class="o">=</span><span class="si">${</span><span class="nv">ACCOUNT</span><span class="k">:-</span><span class="nv">account</span><span class="si">}</span>
@@ -702,7 +709,7 @@ rpm -ivh http://static.ucloud.cn/pptpd-1.3.4-2.el6.x86_64.rpm
 <span class="c"># ------</span>
 <span class="nb">echo</span> <span class="s2">&quot;localip </span><span class="nv">$LOCALIP</span><span class="s2"></span>
 <span class="s2">remoteip </span><span class="nv">$REMOTEIP</span><span class="s2">&quot;</span> &gt;&gt; /etc/pptpd.conf
-<span class="nb">echo</span> <span class="s2">&quot;ms-dns </span><span class="nv">$MS</span><span class="s2">-DNS&quot;</span> &gt;&gt; /etc/ppp/options.pptpd
+<span class="nb">echo</span> <span class="s2">&quot;ms-dns </span><span class="nv">$MSDNS</span><span class="s2">&quot;</span> &gt;&gt; /etc/ppp/options.pptpd
 <span class="nb">echo</span> <span class="s2">&quot;net.ipv4.ip_forward = 1&quot;</span> &gt;&gt; /etc/sysctl.conf
 <span class="c"># sysctl -w net.ipv4.ip_forward=1</span>
 <span class="nb">echo</span> <span class="s2">&quot;  ACCOUNT       pptpd       passwd          *&quot;</span> &gt;&gt; /etc/ppp/chap-secrets
