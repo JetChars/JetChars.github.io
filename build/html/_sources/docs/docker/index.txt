@@ -109,7 +109,7 @@ Image Management
 .. sidebar:: Note
 
     same image can have multiple tags, eg:
-    ubuntu, ubuntu:trusty, ubuntu:latest
+    ubuntu, ubuntu:trusty, ubuntu:latest, ubuntu:14.04
 
 .. code-block:: shell
     :linenos:
@@ -142,10 +142,28 @@ Applicaitons
 Dockerfile
 ==========
 
+- ``FROM``
+- ``RUN`` -- commad to change the base image, can exec multiple cmds via \\ and && ::
+
+    RUN \
+      apt-get update && \
+      apt-get -y install apache2
 
 
+- ``CMD`` -- default commands when container launched
+- ``ADD``
 
+Caching
+-------
 
+by default build use cache
+
+.. code-block:: shell
+    :linenos:
+
+    docker build -f <dockerfile> -t <tag> .
+    docker build --no-cache=true -f <dockerfile> -t <tag> .
+    
 
 
 

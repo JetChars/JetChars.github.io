@@ -3,6 +3,19 @@ Linux
 =====
 
 
+Getting Helps
+=============
+
+.. code-block:: bash
+
+    apropos <key>   # search all available help for key
+    man -k <key>   # search all available man's help for key
+    man -n <key>   # show level-n's help for key
+    info <key>
+    help <key>    # for built-in cmds
+
+
+
 Configuration file
 ==================
 
@@ -28,3 +41,9 @@ User Managemanet
     userdel -r <username>   # del everything about user
     gpasswd -a <user> <group>
     gpasswd -d <user> <group>
+
+
+
+
+
+

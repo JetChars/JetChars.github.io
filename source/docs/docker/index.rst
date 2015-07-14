@@ -95,7 +95,7 @@ Container Management
     docker ps [-aq] [--no-trunc]
     docker kill <container>
     docker stop<container>
-    docker inspect <container>
+    docker inspect [-f, --format <format>] <container>
     docker rm <container>
     docker exec <container> CMD
     docker attach <container>
@@ -109,7 +109,7 @@ Image Management
 .. sidebar:: Note
 
     same image can have multiple tags, eg:
-    ubuntu, ubuntu:trusty, ubuntu:latest
+    ubuntu, ubuntu:trusty, ubuntu:latest, ubuntu:14.04
 
 .. code-block:: shell
     :linenos:
@@ -129,7 +129,7 @@ Applicaitons
 
     # get backgound container id
     cid=$(docker run -itd)
-    nid=$(docker inspect --format '{{.NetworkSettings.IPAddress}}' $cid)
+    nid=$(docker inspect -f '{{.NetworkSettings.IPAddress}}' $cid)
     docker exec $cid <CMD>
     # clean docker containers
     docker kill $(docker ps -q) && docker rm $(docker ps -qa)
@@ -142,10 +142,49 @@ Applicaitons
 Dockerfile
 ==========
 
+Instructions
+------------
+
+- ``FROM``
+- ``RUN`` -- commad to change the base image, can exec multiple cmds via \\ and && ::
+
+    RUN \
+      apt-get update && \
+      apt-get -y install apache2
+
+
+- ``CMD`` -- default commands when container launched
+- ``ADD`` -- move copy file from current dir to container ::
+
+    ADD index.html /var/www/html/index.html
+
+- ``EXPOSE`` -- container's port to be exposed ::
+
+    EXPOSE 80
+
+- ``VOLUME`` ["/data"]-- create a mount point ::
+
+    VOLUME ["/var/www/html"]
+
+- ``MAINTAINER``
+- ``ENV REFRESHED_AT``
+- ``ENTRYPOINT``
+    
 
 
 
 
+Caching
+-------
+
+by default build use cache
+
+.. code-block:: shell
+    :linenos:
+
+    docker build -f <dockerfile> -t <tag> .
+    docker build --no-cache=true -f <dockerfile> -t <tag> .
+    
 
 
 

@@ -115,6 +115,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#dockerfile">Dockerfile</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#caching">Caching</a></li>
 </ul>
 </li>
 </ul>
@@ -759,7 +760,7 @@ docker top &lt;container&gt;
 <div class="sidebar">
 <p class="first sidebar-title">Note</p>
 <p class="last">same image can have multiple tags, eg:
-ubuntu, ubuntu:trusty, ubuntu:latest</p>
+ubuntu, ubuntu:trusty, ubuntu:latest, ubuntu:14.04</p>
 </div>
 <div class="highlight-shell"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -794,10 +795,34 @@ docker run --rm --volumes-from john1 -v <span class="k">$(</span><span class="nb
 </td></tr></table></div>
 <div class="section" id="dockerfile">
 <h3>Dockerfile<a class="headerlink" href="#dockerfile" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">FROM</span></code></p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">RUN</span></code> &#8211; commad to change the base image, can exec multiple cmds via \ and &amp;&amp;</p>
+<div class="highlight-python"><div class="highlight"><pre>RUN \
+  apt-get update &amp;&amp; \
+  apt-get -y install apache2
+</pre></div>
+</div>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">CMD</span></code> &#8211; default commands when container launched</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">ADD</span></code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="caching">
+<h2>Caching<a class="headerlink" href="#caching" title="Permalink to this headline">¶</a></h2>
+<p>by default build use cache</p>
+<div class="highlight-shell"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre>docker build -f &lt;dockerfile&gt; -t &lt;tag&gt; .
+docker build --no-cache<span class="o">=</span><span class="nb">true</span> -f &lt;dockerfile&gt; -t &lt;tag&gt; .
+</pre></div>
+</td></tr></table></div>
 <ul class="simple">
 <li><a class="reference external" href="http://kubernetes.io">Kubernetes</a> is an open source orchestration system for Docker containers</li>
 </ul>
-</div>
 </div>
 </div>
 
