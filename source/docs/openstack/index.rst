@@ -114,7 +114,8 @@ Instances
     nova boot --flavor <flavor> --block-device source=image,id=<image_id>,dest=volume,size=<disk_size,unit G>,shutdown=preserve,bootindex=0 <instance name>
     # check failure instances
     for i in `nova list | grep bootbench | awk '{print $2}'`;do nova console-log $i | grep login: 1>/dev/null || echo $i;done
-
+    # boot instance at specified host
+    nova boot --image <uuid/name> --flavor <uuid/name> --key-name <kname> --availability-zone nova:server2
 
 Services
 ^^^^^^^^

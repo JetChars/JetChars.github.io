@@ -32,6 +32,7 @@ OpenStack Customization
     docs/openstack/index
     docs/kvm_optimization/index
     docs/devstack*/index
+    docs/o7k_docker/index
     
 
 Hadoop Tuning

@@ -78,12 +78,12 @@
 <li class="toctree-l3"><a class="reference internal" href="../cloud_computing/index.html#emr-managed-hadoop-framework">EMR &#8211; Managed Hadoop Framework</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../cloud_computing/index.html#docker">Docker</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cloud_computing/index.html#id2">Ceph</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cloud_computing/index.html#mesos">Mesos</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../cloud_computing/index.html#dcos-one-command-control-of-data-center-services">DCOS &#8211; One command control of data center services</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../cloud_computing/index.html#bluedata">bluedata</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cloud_computing/index.html#terminologies">Terminologies</a></li>
 </ul>
 </li>
@@ -91,7 +91,52 @@
 <li class="toctree-l2"><a class="reference internal" href="../aws/index.html#storage">Storage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aws/index.html#compute">Compute</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aws/index.html#database">Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aws/index.html#commercial-case">Commercial Case</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aws/index.html#terms">Terms</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../aws_vpn/index.html">Build VPN with AWS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../aws_vpn/index.html#what-s-vpn">What&#8217;s VPN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aws_vpn/index.html#deployment">Deployment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../aws_vpn/index.html#pptp-vpn">PPTP VPN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../aws_vpn/index.html#script-for-quick-deployment">Script for quick deployment</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../docker/index.html#why-docker">Why docker</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#underlying-technologies">Underlying Technologies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#getting-started">Getting started</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../docker/index.html#configuration-files">Configuration files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../docker/index.html#install-docker">Install Docker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../docker/index.html#update-dockera">Update Dockera</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../docker/index.html#docker-users">Docker users</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/index.html#basic-commands">Basic Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#container-management">Container Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#image-management">Image Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#tricks">tricks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/index.html#dockerfile">Dockerfile</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#instructions">Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#caching">Caching</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/index.html#network-management">Network Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#libswarm-https-github-com-docker-swarm"><cite>libswarm &lt;https://github.com/docker/swarm&gt;</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#id1">pipwork</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/index.html#container-in-kvm">container in kvm</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#id2">CoreOS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#id3">Kubernetes</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -104,6 +149,8 @@
 <li class="toctree-l4"><a class="reference internal" href="../openstack/index.html#secgroup">SecGroup</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../openstack/index.html#keypair">KeyPair</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../openstack/index.html#flavor">Flavor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../openstack/index.html#instances">Instances</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../openstack/index.html#services">Services</a></li>
 </ul>
 </li>
 </ul>
@@ -118,14 +165,19 @@
 <li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#id7">Cinder</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#components">Components</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#storage-backend">Storage backend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#configuation">Configuation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#work-flow">work flow</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../openstack/index.html#create-cinder-volume">create cinder volume</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../openstack/index.html#delete-cinder-volume">delete cinder volume</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../openstack/index.html#service-management">service management</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#glance">Glance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#glance">Glance</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#mete-data">Mete-data</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#sahara">Sahara</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#neutron">Neutron</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#congiuration-files">Congiuration Files</a></li>
@@ -208,6 +260,27 @@
 <li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#mysql">MySQL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#apache">Apache</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#other-issues">Other issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#after-installation">After Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../devstack_t13g/index.html#restart-n-cpu-need-passwd">Restart n-cpu need passwd</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../o7k_docker/index.html">OpenStack &amp; Docker</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../o7k_docker/index.html#nova-docker">Nova Docker</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../o7k_docker/index.html#nstall-docker-nova-docker">nstall docker&amp;nova-docker</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../o7k_docker/index.html#install-latest-docker">Install latest docker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../o7k_docker/index.html#prepare-nova-docker">Prepare Nova-Docker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../o7k_docker/index.html#config-local-conf">Config local.conf</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../o7k_docker/index.html#testing-nova-docker">Testing Nova-Docker</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../o7k_docker/index.html#copy-the-fileter">copy the fileter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../o7k_docker/index.html#start-a-container">start a Container</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -251,6 +324,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../doopshot/index.html">DoopShot</a></li>
 </ul>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../linux_disk/index.html">Linux Disk</a><ul>
@@ -305,6 +379,12 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux_info/index.html">Get System Infos</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../linux_info/index.html#intro">Intro</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux_info/index.html#linux-get-system-version-info">linux get system version info</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../linux_info/index.html#for-any-os">For any os</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../linux_info/index.html#for-ubuntu">For Ubuntu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../linux_info/index.html#for-centos">For Centos</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../linux_info/index.html#tar-folder-etc">tar folder /etc</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../linux_info/index.html#print-infos">print infos</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../linux_info/index.html#proc-infos">proc infos</a></li>
@@ -331,17 +411,26 @@
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#dnsmasq">dnsmasq</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#route-management">Route Management</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#ip-commands">IP commands</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../linux_net/index.html#network-namespace">network namespace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_net/index.html#addr-address">addr/address</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_net/index.html#link-network-device">link &#8211; network device</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_net/index.html#route-routing-table-management">route &#8211; routing table management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_net/index.html#netns-network-namespace">netns &#8211; network namespace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_net/index.html#rule-routing-policy-database-management">rule &#8211; routing policy database management</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#django-web-framework">Django &#8211; web framework</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#open-vswitch">Open vSwitch</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#macvlan">macvlan</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#terms">Terms</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Linux Package Management</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#check-install">Check Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#apt">apt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#yum">yum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rpm">rpm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#applications">Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#check-install">Check Install</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux_virt/index.html">Virtualization</a><ul>
@@ -405,6 +494,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../mac/index.html#brew-package-management-software">brew &#8211; package management software</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../mac/index.html#glims-safari-enhancement">glims &#8211; safari enhancement</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../mac/index.html#visual-studio-code-asp-net-5">Visual Studio Code &amp; ASP.NET 5 </a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mac/index.html#other-good-softwares">Other Good Softwares</a></li>
 </ul>
 </li>
 </ul>
@@ -572,8 +662,29 @@
             
   <div class="section" id="linux-package-management">
 <h1>Linux Package Management<a class="headerlink" href="#linux-package-management" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="apt">
+<h2>apt<a class="headerlink" href="#apt" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="yum">
+<h2>yum<a class="headerlink" href="#yum" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># Find what package provides the given value (online)</span>
+yum provides SOME_STRING   <span class="c"># str can be a cmd</span>
+yum provides lsb_release
+yum install redhat-lsb-core
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="rpm">
+<h2>rpm<a class="headerlink" href="#rpm" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="applications">
+<h2>Applications<a class="headerlink" href="#applications" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="check-install">
-<h2>Check Install<a class="headerlink" href="#check-install" title="Permalink to this headline">¶</a></h2>
+<h3>Check Install<a class="headerlink" href="#check-install" title="Permalink to this headline">¶</a></h3>
+</div>
 </div>
 </div>
 

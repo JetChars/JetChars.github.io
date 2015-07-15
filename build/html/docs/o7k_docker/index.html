@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Linux &mdash; JetChars alpha documentation</title>
+  <title>OpenStack &amp; Docker &mdash; JetChars alpha documentation</title>
   
 
   
@@ -30,7 +30,9 @@
   
 
   
-    <link rel="top" title="JetChars alpha documentation" href="../../index.html"/> 
+    <link rel="top" title="JetChars alpha documentation" href="../../index.html"/>
+        <link rel="next" title="Hadoop" href="../hadoop/index.html"/>
+        <link rel="prev" title="DevStack Trouble Shooting" href="../devstack_t13g/index.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -103,42 +105,23 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../docker/index.html#why-docker">Why docker</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#underlying-technologies">Underlying Technologies</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#getting-started">Getting started</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../docker/index.html#configuration-files">Configuration files</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../docker/index.html#install-docker">Install Docker</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../docker/index.html#update-dockera">Update Dockera</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../docker/index.html#docker-users">Docker users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/index.html#underlying-technologies">Underlying Technologies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/index.html#getting-started">Getting started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#basic-commands">Basic Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/index.html#container-management">Container Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/index.html#image-management">Image Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/index.html#applicaitons">Applicaitons</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#dockerfile">Dockerfile</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/index.html#instructions">Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/index.html#caching">Caching</a></li>
 </ul>
 </li>
 </ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../docker/index.html#basic-commands">Basic Commands</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#container-management">Container Management</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#image-management">Image Management</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#tricks">tricks</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../docker/index.html#dockerfile">Dockerfile</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#instructions">Instructions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#caching">Caching</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../docker/index.html#network-management">Network Management</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#libswarm-https-github-com-docker-swarm"><cite>libswarm &lt;https://github.com/docker/swarm&gt;</cite></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#id1">pipwork</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../docker/index.html#container-in-kvm">container in kvm</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#id2">CoreOS</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#id3">Kubernetes</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../openstack/index.html">OpenStack</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#nova">Nova</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#id1">nova-docker</a></li>
@@ -264,17 +247,17 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../o7k_docker/index.html">OpenStack &amp; Docker</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../o7k_docker/index.html#nova-docker">Nova Docker</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../o7k_docker/index.html#nstall-docker-nova-docker">nstall docker&amp;nova-docker</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../o7k_docker/index.html#install-latest-docker">Install latest docker</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../o7k_docker/index.html#prepare-nova-docker">Prepare Nova-Docker</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../o7k_docker/index.html#config-local-conf">Config local.conf</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">OpenStack &amp; Docker</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#nova-docker">Nova Docker</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nstall-docker-nova-docker">nstall docker&amp;nova-docker</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#install-latest-docker">Install latest docker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prepare-nova-docker">Prepare Nova-Docker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#config-local-conf">Config local.conf</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../o7k_docker/index.html#testing-nova-docker">Testing Nova-Docker</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../o7k_docker/index.html#copy-the-fileter">copy the fileter</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../o7k_docker/index.html#start-a-container">start a Container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#testing-nova-docker">Testing Nova-Docker</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#copy-the-fileter">copy the fileter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#start-a-container">start a Container</a></li>
 </ul>
 </li>
 </ul>
@@ -422,13 +405,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux_pkg/index.html">Linux Package Management</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../linux_pkg/index.html#apt">apt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_pkg/index.html#yum">yum</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_pkg/index.html#rpm">rpm</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_pkg/index.html#applications">Applications</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../linux_pkg/index.html#check-install">Check Install</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_pkg/index.html#check-install">Check Install</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux_virt/index.html">Virtualization</a><ul>
@@ -645,11 +622,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
-    <li>Linux</li>
+    <li>OpenStack &amp; Docker</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../../_sources/docs/linux/index.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/docs/o7k_docker/index.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -658,58 +635,105 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="linux">
-<h1>Linux<a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="getting-helps">
-<h2>Getting Helps<a class="headerlink" href="#getting-helps" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash"><div class="highlight"><pre>apropos &lt;key&gt;   <span class="c"># search all available help for key</span>
-man -k &lt;key&gt;   <span class="c"># search all available man&#39;s help for key</span>
-man -n &lt;key&gt;   <span class="c"># show level-n&#39;s help for key</span>
-info &lt;key&gt;
-<span class="nb">help</span> &lt;key&gt;    <span class="c"># for built-in cmds</span>
+  <div class="section" id="openstack-docker">
+<h1>OpenStack &amp; Docker<a class="headerlink" href="#openstack-docker" title="Permalink to this headline">¶</a></h1>
+<p>Docker can work in different ways at openstack, eg: nova-docker, kubernetes, ...</p>
+<div class="section" id="nova-docker">
+<h2>Nova Docker<a class="headerlink" href="#nova-docker" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="nstall-docker-nova-docker">
+<h3>nstall docker&amp;nova-docker<a class="headerlink" href="#nstall-docker-nova-docker" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash"><div class="highlight"><pre>usermod -G docker nova
+pip install -e git+https://github.com/stackforge/nova-docker#egg<span class="o">=</span>novadocker
+<span class="nb">cd </span>src/novadocker/
+python setup.py install
+</pre></div>
+</div>
+<div class="section" id="install-latest-docker">
+<h4>Install latest docker<a class="headerlink" href="#install-latest-docker" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash"><div class="highlight"><pre>curl -sSL http://get.docker.com <span class="p">|</span> sh
+systemctl start docker
+systemctl <span class="nb">enable </span>docker
+<span class="c"># test whether docker is available</span>
+docker run -it busybox
 </pre></div>
 </div>
 </div>
-<div class="section" id="configuration-file">
-<h2>Configuration file<a class="headerlink" href="#configuration-file" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal"><span class="pre">/etc/rc.local</span></code> executed at the end of each multiuser runlevel</p>
-<div class="section" id="pseudo-filesystem">
-<h3>Pseudo-filesystem<a class="headerlink" href="#pseudo-filesystem" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><code class="docutils literal"><span class="pre">/proc</span></code> &#8211; process infomation pseudo-filesystem</li>
-<li><code class="docutils literal"><span class="pre">/dev/zero</span></code> &#8211; echo endless zeros</li>
-<li><code class="docutils literal"><span class="pre">/dev/null</span></code>  &#8211; black hole, devour everything</li>
-</ul>
+<div class="section" id="prepare-nova-docker">
+<h4>Prepare Nova-Docker<a class="headerlink" href="#prepare-nova-docker" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash"><div class="highlight"><pre>sudo apt-get update
+sudo apt-get install -y python-pip python-dev
+
+rm -rf /opt/stack/nova-docker
+sudo mkdir -p /opt/stack
+sudo git clone https://git.openstack.org/stackforge/nova-docker /opt/stack/nova-docker
+<span class="nb">cd</span> /opt/stack/nova-docker
+<span class="c"># Check out a different version if not using master, i.e:</span>
+<span class="c"># sudo git checkout stable/kilo &amp;&amp; sudo git pull --ff-only origin stable/kilo</span>
+sudo pip install .  <span class="c"># The linecache2 error appears to be benign</span>
+</pre></div>
 </div>
 </div>
-<div class="section" id="user-managemanet">
-<h2>User Managemanet<a class="headerlink" href="#user-managemanet" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="highlight"><pre>id &lt;username&gt;
-useradd &lt;username&gt;
-userdel -r &lt;username&gt;   <span class="c"># del everything about user</span>
-gpasswd -a &lt;user&gt; &lt;group&gt;
-gpasswd -d &lt;user&gt; &lt;group&gt;
+<div class="section" id="config-local-conf">
+<h4>Config local.conf<a class="headerlink" href="#config-local-conf" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-ini"><div class="highlight"><pre><span class="k">[[local|localrc]]</span>
+<span class="na">VIRT_DRIVER</span><span class="o">=</span><span class="s">novadocker.virt.docker.DockerDriver</span>
+
+
+<span class="k">[[post-config|$NOVA_CONF]]</span>
+<span class="k">[DEFAULT]</span>
+<span class="na">compute_driver</span><span class="o">=</span><span class="s">novadocker.virt.docker.DockerDriver</span>
+
+
+<span class="k">[[post-config|$GLANCE_API_CONF]]</span>
+<span class="k">[DEFAULT]</span>
+<span class="na">container_formats</span><span class="o">=</span><span class="s">ami,ari,aki,bare,ovf,ova,docker</span>
 </pre></div>
-</td></tr></table></div>
-<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4</pre></div></td><td class="code"><div class="highlight"><pre>usermod -G &lt;group&gt; &lt;user&gt;   <span class="c"># add user to group</span>
-usermod -l &lt;old&gt; &lt;new&gt;   <span class="c"># change username</span>
-usermod -L &lt;user&gt;   <span class="c"># lock user&#39;s account</span>
-usermod -U &lt;user&gt;   <span class="c"># unlock user&#39;s account</span>
+</div>
+</div>
+</div>
+<div class="section" id="testing-nova-docker">
+<h3>Testing Nova-Docker<a class="headerlink" href="#testing-nova-docker" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="copy-the-fileter">
+<h4>copy the fileter<a class="headerlink" href="#copy-the-fileter" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash"><div class="highlight"><pre>sudo cp novadocker/etc/nova/rootwrap.d/docker.filters /etc/nova/rootwrap.d/
 </pre></div>
-</td></tr></table></div>
+</div>
+</div>
+<div class="section" id="start-a-container">
+<h4>start a Container<a class="headerlink" href="#start-a-container" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash"><div class="highlight"><pre>. openrc admin
+
+<span class="nv">INSTANCE</span><span class="o">=</span>d1
+<span class="nv">IMAGE</span><span class="o">=</span>cirros
+
+docker pull cirros
+docker save cirros <span class="p">|</span>
+    glance image-create --name <span class="si">${</span><span class="nv">IMAGE</span><span class="si">}</span> --is-public <span class="nb">true</span> <span class="se">\</span>
+    --container-format docker --disk-format raw
+
+nova boot --image <span class="si">${</span><span class="nv">IMAGE</span><span class="si">}</span> --flavor m1.tiny <span class="si">${</span><span class="nv">INSTANCE</span><span class="si">}</span>
+sleep 10
+nova list
+nova show <span class="si">${</span><span class="nv">INSTANCE</span><span class="si">}</span>
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 </div>
 
 
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../hadoop/index.html" class="btn btn-neutral float-right" title="Hadoop" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../devstack_t13g/index.html" class="btn btn-neutral" title="DevStack Trouble Shooting" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

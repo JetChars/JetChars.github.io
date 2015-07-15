@@ -10,15 +10,17 @@ Cloud Computing
     * Iaas, Software as a Service (old name HaaS)
 
 
-+-----+---------------+
-|Type |Implementations|
-+=====+===============+
-|SaaS |               |
-+-----+---------------+
-|PaaS |Docker, GAE    |
-+-----+---------------+
-|IaaS |OpenStack      |
-+-----+---------------+
++-----+------------------------+
+|Type |Implementations         |
++=====+========================+
+|BDaaS|BlueData,Sahara,EMR     |
++-----+------------------------+
+|SaaS |Murano                  |
++-----+------------------------+
+|PaaS |Docker, GAE             |
++-----+------------------------+
+|IaaS |Nova,EC2                |
++-----+------------------------+
 
 
 AWS -- Amazon Web Services
@@ -127,7 +129,20 @@ Data-center management systems, which is what most data centers now use, focus o
 
 
 
+bluedata
+========
 
+ -- Infrastructure complexity is a real problem that slows down Big Data success. BlueData offers a cloud-like consumption model on-premises. 
+
+when create a cluster, users can't determine services on which instace.
+
+- worker -- can depoly hadoop cluster on it
+- Clusters -- can be hadoop(CDH)/spark/utility(centos purity image)
+- DataTap --
+    - HDFS abstraction to run any Big Data application unmodified
+    - Optimized, high performance connectivity to NFS, HDFS, Swift API, Gluster and Ceph
+    - Faster time-to-results, faster time-to-value for Big Data
+- virtualnodes -- instances
 
 
 

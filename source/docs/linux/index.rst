@@ -44,6 +44,16 @@ User Managemanet
 
 
 
+usermod
+^^^^^^^
+
+.. code-block:: bash
+    :linenos:
+
+    usermod -G <group> <user>   # add user to group
+    usermod -l <old> <new>   # change username
+    usermod -L <user>   # lock user's account
+    usermod -U <user>   # unlock user's account
 
 
 

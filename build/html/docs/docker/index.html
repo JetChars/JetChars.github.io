@@ -83,6 +83,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../cloud_computing/index.html#dcos-one-command-control-of-data-center-services">DCOS &#8211; One command control of data center services</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../cloud_computing/index.html#bluedata">bluedata</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cloud_computing/index.html#terminologies">Terminologies</a></li>
 </ul>
 </li>
@@ -104,18 +105,38 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Docker</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#underlying-technologies">Underlying Technologies</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting started</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#basic-commands">Basic Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#why-docker">Why docker</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#underlying-technologies">Underlying Technologies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getting-started">Getting started</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#configuration-files">Configuration files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#install-docker">Install Docker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#update-dockera">Update Dockera</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#docker-users">Docker users</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#container-management">Container Management</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#image-management">Image Management</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#applicaitons">Applicaitons</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#dockerfile">Dockerfile</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#caching">Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#basic-commands">Basic Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#container-management">Container Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#image-management">Image Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tricks">tricks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dockerfile">Dockerfile</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#instructions">Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#caching">Caching</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#network-management">Network Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">libswarm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">pipwork</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#container-in-kvm">container in kvm</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">CoreOS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Kubernetes</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -239,6 +260,27 @@
 <li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#mysql">MySQL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#apache">Apache</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#other-issues">Other issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#after-installation">After Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../devstack_t13g/index.html#restart-n-cpu-need-passwd">Restart n-cpu need passwd</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../o7k_docker/index.html">OpenStack &amp; Docker</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../o7k_docker/index.html#nova-docker">Nova Docker</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../o7k_docker/index.html#nstall-docker-nova-docker">nstall docker&amp;nova-docker</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../o7k_docker/index.html#install-latest-docker">Install latest docker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../o7k_docker/index.html#prepare-nova-docker">Prepare Nova-Docker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../o7k_docker/index.html#config-local-conf">Config local.conf</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../o7k_docker/index.html#testing-nova-docker">Testing Nova-Docker</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../o7k_docker/index.html#copy-the-fileter">copy the fileter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../o7k_docker/index.html#start-a-container">start a Container</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -382,7 +424,13 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux_pkg/index.html">Linux Package Management</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../linux_pkg/index.html#check-install">Check Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_pkg/index.html#apt">apt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_pkg/index.html#yum">yum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_pkg/index.html#rpm">rpm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_pkg/index.html#applications">Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux_pkg/index.html#check-install">Check Install</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux_virt/index.html">Virtualization</a><ul>
@@ -612,8 +660,11 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="docker">
+  <img alt="../../_images/docker.png" class="align-right" src="../../_images/docker.png" />
+<div class="section" id="docker">
 <h1>Docker<a class="headerlink" href="#docker" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="why-docker">
+<h2>Why docker<a class="headerlink" href="#why-docker" title="Permalink to this headline">¶</a></h2>
 <div class="sidebar">
 <p class="first sidebar-title">about</p>
 <ul class="last simple">
@@ -624,6 +675,7 @@
 <li>Use ipc namespace communicate between containers</li>
 <li>Require libcontainer/lxc/libvirt/systemd-nspawn</li>
 <li>Managed by DGAB (Docker Governance Advisory Board)</li>
+<li>Containers don&#8217;t aim to be a replacement for VMs, they are complementary in the sense that they are better for specific use cases.</li>
 </ul>
 </div>
 <ul>
@@ -632,6 +684,8 @@
 <dd><ul class="first last simple">
 <li>compare to kvm use virtio, docker use AUFS, which is better.</li>
 <li>light weight &#8216;vm&#8217;, use less mem than kvm, closer to BM</li>
+<li>will not be install into host OS</li>
+<li>each container owns a set of env</li>
 </ul>
 </dd>
 </dl>
@@ -639,7 +693,7 @@
 <li><dl class="first docutils">
 <dt>Constrains</dt>
 <dd><ul class="first simple">
-<li>x64 only</li>
+<li>64bit platform</li>
 </ul>
 <ul class="last simple">
 <li>must have same OS kernel</li>
@@ -654,7 +708,7 @@
 </li>
 </ul>
 <div class="section" id="underlying-technologies">
-<h2>Underlying Technologies<a class="headerlink" href="#underlying-technologies" title="Permalink to this headline">¶</a></h2>
+<h3>Underlying Technologies<a class="headerlink" href="#underlying-technologies" title="Permalink to this headline">¶</a></h3>
 <p>Namespaces</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -697,36 +751,67 @@
 </table>
 </div>
 <div class="section" id="getting-started">
-<h2>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<h3>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h3>
 <div class="sidebar">
 <p class="first sidebar-title">Note</p>
 <ul class="last simple">
 <li>docker not work well w/ proxy, so here is a workaround: <code class="docutils literal"><span class="pre">service</span> <span class="pre">docker</span> <span class="pre">stop;</span> <span class="pre">docker</span> <span class="pre">-d</span> <span class="pre">&amp;</span></code></li>
 <li>docker container not work well w/ proxy, add <strong>key-values</strong> of proxy server before cmds which need proxy</li>
+<li>wrapped up in a function so that we have some protection against only getting half the file during &#8220;curl | sh&#8221;</li>
 </ul>
 </div>
-<p>Install Docker:</p>
-<div class="highlight-python"><div class="highlight"><pre># require root user
-wget -qO- https://get.docker.com/ | sh
-curl -sSL https://get.docker.com/ | sh
-wget -qO- https://test.docker.com/ | sh   # test verison
+<div class="section" id="configuration-files">
+<h4>Configuration files<a class="headerlink" href="#configuration-files" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">/etc/default/docker</span></code> &#8211; Docker Upstart and SysVinit configuration file(ubuntu)</dt>
+<dd><ul class="first last simple">
+<li>location of docker binary, daemon startup opts, proxy, tmpdir</li>
+<li>can work with export or any other cmds</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">/etc/sysconfig/docker</span></code> &#8211; Docker configuration file for centos/fedora/redhat</dt>
+<dd><ul class="first last simple">
+<li>parameters(key-value pair) only</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="install-docker">
+<h4>Install Docker<a class="headerlink" href="#install-docker" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c"># require root user</span>
+wget -qO- https://get.docker.com/ <span class="p">|</span> sh
+curl -sSL https://get.docker.com/ <span class="p">|</span> sh
+wget -qO- https://test.docker.com/ <span class="p">|</span> sh   <span class="c"># test verison</span>
 </pre></div>
 </div>
-<p>Update Dockera:</p>
-<div class="highlight-python"><div class="highlight"><pre>sudo wget https://get.docker.com/builds/Linux/x86_64/docker-latest -O /usr/bin/docker
+</div>
+<div class="section" id="update-dockera">
+<h4>Update Dockera<a class="headerlink" href="#update-dockera" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash"><div class="highlight"><pre>sudo wget https://get.docker.com/builds/Linux/x86_64/docker-latest -O /usr/bin/docker
 sudo chmod a+x /usr/bin/docker
 </pre></div>
 </div>
+</div>
+<div class="section" id="docker-users">
+<h4>Docker users<a class="headerlink" href="#docker-users" title="Permalink to this headline">¶</a></h4>
 <p>If you would like to use Docker as a non-root user, you should now consider
 adding your user to the &#8220;docker&#8221; group with something like:</p>
-<blockquote>
-<div>sudo usermod -aG docker your-user</div></blockquote>
+<div class="highlight-python"><div class="highlight"><pre>sudo usermod -aG docker your-user
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 <div class="section" id="basic-commands">
-<h3>Basic Commands<a class="headerlink" href="#basic-commands" title="Permalink to this headline">¶</a></h3>
-</div>
-</div>
+<h2>Basic Commands<a class="headerlink" href="#basic-commands" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="container-management">
-<h2>Container Management<a class="headerlink" href="#container-management" title="Permalink to this headline">¶</a></h2>
+<h3>Container Management<a class="headerlink" href="#container-management" title="Permalink to this headline">¶</a></h3>
 <div class="sidebar">
 <p class="first sidebar-title">Note</p>
 <ul class="last simple">
@@ -746,7 +831,7 @@ adding your user to the &#8220;docker&#8221; group with something like:</p>
 docker ps <span class="o">[</span>-aq<span class="o">]</span> <span class="o">[</span>--no-trunc<span class="o">]</span>
 docker <span class="nb">kill</span> &lt;container&gt;
 docker stop&lt;container&gt;
-docker inspect &lt;container&gt;
+docker inspect <span class="o">[</span>-f, --format &lt;format&gt;<span class="o">]</span> &lt;container&gt;
 docker rm &lt;container&gt;
 docker <span class="nb">exec</span> &lt;container&gt; CMD
 docker attach &lt;container&gt;
@@ -756,7 +841,7 @@ docker top &lt;container&gt;
 </td></tr></table></div>
 </div>
 <div class="section" id="image-management">
-<h2>Image Management<a class="headerlink" href="#image-management" title="Permalink to this headline">¶</a></h2>
+<h3>Image Management<a class="headerlink" href="#image-management" title="Permalink to this headline">¶</a></h3>
 <div class="sidebar">
 <p class="first sidebar-title">Note</p>
 <p class="last">same image can have multiple tags, eg:
@@ -774,8 +859,8 @@ docker build <span class="o">[</span>-f build-file<span class="o">]</span> <span
 </pre></div>
 </td></tr></table></div>
 </div>
-<div class="section" id="applicaitons">
-<h2>Applicaitons<a class="headerlink" href="#applicaitons" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="tricks">
+<h3>tricks<a class="headerlink" href="#tricks" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-shell"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -785,7 +870,7 @@ docker build <span class="o">[</span>-f build-file<span class="o">]</span> <span
 7
 8</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># get backgound container id</span>
 <span class="nv">cid</span><span class="o">=</span><span class="k">$(</span>docker run -itd<span class="k">)</span>
-<span class="nv">nid</span><span class="o">=</span><span class="k">$(</span>docker inspect --format <span class="s1">&#39;{{.NetworkSettings.IPAddress}}&#39;</span> <span class="nv">$cid</span><span class="k">)</span>
+<span class="nv">nid</span><span class="o">=</span><span class="k">$(</span>docker inspect -f <span class="s1">&#39;{{.NetworkSettings.IPAddress}}&#39;</span> <span class="nv">$cid</span><span class="k">)</span>
 docker <span class="nb">exec</span> <span class="nv">$cid</span> &lt;CMD&gt;
 <span class="c"># clean docker containers</span>
 docker <span class="nb">kill</span> <span class="k">$(</span>docker ps -q<span class="k">)</span> <span class="o">&amp;&amp;</span> docker rm <span class="k">$(</span>docker ps -qa<span class="k">)</span>
@@ -793,8 +878,12 @@ docker <span class="nb">kill</span> <span class="k">$(</span>docker ps -q<span c
 docker run --rm --volumes-from john1 -v <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/backup busybox tar cvf /backup/john2.tar /john1
 </pre></div>
 </td></tr></table></div>
+</div>
+</div>
 <div class="section" id="dockerfile">
-<h3>Dockerfile<a class="headerlink" href="#dockerfile" title="Permalink to this headline">¶</a></h3>
+<h2>Dockerfile<a class="headerlink" href="#dockerfile" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="instructions">
+<h3>Instructions<a class="headerlink" href="#instructions" title="Permalink to this headline">¶</a></h3>
 <ul>
 <li><p class="first"><code class="docutils literal"><span class="pre">FROM</span></code></p>
 </li>
@@ -807,22 +896,68 @@ docker run --rm --volumes-from john1 -v <span class="k">$(</span><span class="nb
 </li>
 <li><p class="first"><code class="docutils literal"><span class="pre">CMD</span></code> &#8211; default commands when container launched</p>
 </li>
-<li><p class="first"><code class="docutils literal"><span class="pre">ADD</span></code></p>
+<li><p class="first"><code class="docutils literal"><span class="pre">ADD</span></code> &#8211; move copy file from current dir to container</p>
+<div class="highlight-python"><div class="highlight"><pre>ADD index.html /var/www/html/index.html
+</pre></div>
+</div>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">EXPOSE</span></code> &#8211; container&#8217;s port to be exposed</p>
+<div class="highlight-python"><div class="highlight"><pre>EXPOSE 80
+</pre></div>
+</div>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">VOLUME</span></code> [&#8220;/data&#8221;]&#8211; create a mount point</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">VOLUME</span> <span class="p">[</span><span class="s">&quot;/var/www/html&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">MAINTAINER</span></code></p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">ENV</span> <span class="pre">REFRESHED_AT</span></code></p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">ENTRYPOINT</span></code></p>
 </li>
 </ul>
 </div>
-</div>
 <div class="section" id="caching">
-<h2>Caching<a class="headerlink" href="#caching" title="Permalink to this headline">¶</a></h2>
+<h3>Caching<a class="headerlink" href="#caching" title="Permalink to this headline">¶</a></h3>
 <p>by default build use cache</p>
 <div class="highlight-shell"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="highlight"><pre>docker build -f &lt;dockerfile&gt; -t &lt;tag&gt; .
 docker build --no-cache<span class="o">=</span><span class="nb">true</span> -f &lt;dockerfile&gt; -t &lt;tag&gt; .
 </pre></div>
 </td></tr></table></div>
+</div>
+</div>
+<div class="section" id="network-management">
+<h2>Network Management<a class="headerlink" href="#network-management" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3><a class="reference external" href="https://github.com/docker/swarm">libswarm</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>It&#8217;s a small toolkit, for docker network settings. Defines a standard service interface, for communications between service module in distributed operation system.</p>
+</div>
+<div class="section" id="id2">
+<h3><a class="reference external" href="https://github.com/jpetazzo/pipework">pipwork</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>Software-Defined Networking for Linux Containers</p>
+</div>
+</div>
+<div class="section" id="container-in-kvm">
+<h2>container in kvm<a class="headerlink" href="#container-in-kvm" title="Permalink to this headline">¶</a></h2>
+<p>like coreos, intel clear linux or any other light weight linux work with container in hybrid mode.
+- can take both the advangtages of kvm and container</p>
+<img alt="../../_images/coreos.png" class="align-right" src="../../_images/coreos.png" />
+<div class="section" id="id3">
+<h3><a class="reference external" href="https://coreos.com">CoreOS</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><a class="reference external" href="http://kubernetes.io">Kubernetes</a> is an open source orchestration system for Docker containers</li>
+<li>Open Source project for linux containers</li>
+<li>Linux for massive server deployment</li>
 </ul>
+<img alt="../../_images/coreos_docker.png" src="../../_images/coreos_docker.png" />
+<img alt="../../_images/coreos_etcd.png" src="../../_images/coreos_etcd.png" />
+</div>
+<div class="section" id="id4">
+<h3><a class="reference external" href="http://kubernetes.io">Kubernetes</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>It&#8217;s an open source orchestration system for Docker containers, open-sourced by google</p>
+</div>
 </div>
 </div>
 

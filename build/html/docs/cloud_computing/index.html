@@ -83,6 +83,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#dcos-one-command-control-of-data-center-services">DCOS &#8211; One command control of data center services</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#bluedata">bluedata</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#terminologies">Terminologies</a></li>
 </ul>
 </li>
@@ -94,7 +95,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../aws/index.html#terms">Terms</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../aws_vpn/index.html">Create a Self Defined VPN via AWS</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../aws_vpn/index.html">Build VPN with AWS</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../aws_vpn/index.html#what-s-vpn">What&#8217;s VPN</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aws_vpn/index.html#deployment">Deployment</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../aws_vpn/index.html#pptp-vpn">PPTP VPN</a></li>
@@ -105,8 +106,18 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../docker/index.html#underlying-technologies">Underlying Technologies</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../docker/index.html#getting-started">Getting started</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../docker/index.html#commands">Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/index.html#getting-started">Getting started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#basic-commands">Basic Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/index.html#container-management">Container Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/index.html#image-management">Image Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/index.html#applicaitons">Applicaitons</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#dockerfile">Dockerfile</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/index.html#instructions">Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/index.html#caching">Caching</a></li>
 </ul>
 </li>
 </ul>
@@ -230,6 +241,27 @@
 <li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#mysql">MySQL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#apache">Apache</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#other-issues">Other issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../devstack_t13g/index.html#after-installation">After Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../devstack_t13g/index.html#restart-n-cpu-need-passwd">Restart n-cpu need passwd</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../o7k_docker/index.html">OpenStack &amp; Docker</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../o7k_docker/index.html#nova-docker">Nova Docker</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../o7k_docker/index.html#nstall-docker-nova-docker">nstall docker&amp;nova-docker</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../o7k_docker/index.html#install-latest-docker">Install latest docker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../o7k_docker/index.html#prepare-nova-docker">Prepare Nova-Docker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../o7k_docker/index.html#config-local-conf">Config local.conf</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../o7k_docker/index.html#testing-nova-docker">Testing Nova-Docker</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../o7k_docker/index.html#copy-the-fileter">copy the fileter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../o7k_docker/index.html#start-a-container">start a Container</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -623,8 +655,8 @@
 </ul>
 <table border="1" class="docutils">
 <colgroup>
-<col width="25%" />
-<col width="75%" />
+<col width="17%" />
+<col width="83%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Type</th>
@@ -632,14 +664,17 @@
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>SaaS</td>
-<td>&nbsp;</td>
+<tr class="row-even"><td>BDaaS</td>
+<td>BlueData,Sahara,EMR</td>
 </tr>
-<tr class="row-odd"><td>PaaS</td>
+<tr class="row-odd"><td>SaaS</td>
+<td>Murano</td>
+</tr>
+<tr class="row-even"><td>PaaS</td>
 <td>Docker, GAE</td>
 </tr>
-<tr class="row-even"><td>IaaS</td>
-<td>OpenStack</td>
+<tr class="row-odd"><td>IaaS</td>
+<td>Nova,EC2</td>
 </tr>
 </tbody>
 </table>
@@ -770,6 +805,30 @@ dcos resize 50   # resize cluster to specified size, add nodes in real time
 </li>
 </ul>
 </div>
+</div>
+<div class="section" id="bluedata">
+<h2>bluedata<a class="headerlink" href="#bluedata" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div>&#8211; Infrastructure complexity is a real problem that slows down Big Data success. BlueData offers a cloud-like consumption model on-premises.</div></blockquote>
+<p>when create a cluster, users can&#8217;t determine services on which instace.</p>
+<ul>
+<li><p class="first">worker &#8211; can depoly hadoop cluster on it</p>
+</li>
+<li><p class="first">Clusters &#8211; can be hadoop(CDH)/spark/utility(centos purity image)</p>
+</li>
+<li><dl class="first docutils">
+<dt>DataTap &#8211;</dt>
+<dd><ul class="first last simple">
+<li>HDFS abstraction to run any Big Data application unmodified</li>
+<li>Optimized, high performance connectivity to NFS, HDFS, Swift API, Gluster and Ceph</li>
+<li>Faster time-to-results, faster time-to-value for Big Data</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">virtualnodes &#8211; instances</p>
+</li>
+</ul>
 </div>
 <div class="section" id="terminologies">
 <h2>Terminologies<a class="headerlink" href="#terminologies" title="Permalink to this headline">¶</a></h2>

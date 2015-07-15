@@ -31,7 +31,7 @@
 
   
     <link rel="top" title="JetChars alpha documentation" href="../../index.html"/>
-        <link rel="next" title="Create a Self Defined VPN via AWS" href="../aws_vpn/index.html"/>
+        <link rel="next" title="Build VPN with AWS" href="../aws_vpn/index.html"/>
         <link rel="prev" title="Cloud Computing" href="../cloud_computing/index.html"/> 
 
   
@@ -94,7 +94,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#terms">Terms</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../aws_vpn/index.html">Create a Self Defined VPN via AWS</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../aws_vpn/index.html">Build VPN with AWS</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../aws_vpn/index.html#what-s-vpn">What&#8217;s VPN</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aws_vpn/index.html#deployment">Deployment</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../aws_vpn/index.html#pptp-vpn">PPTP VPN</a></li>
@@ -104,8 +104,19 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../docker/index.html#getting-started">Getting started</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../docker/index.html#commands">Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/index.html#underlying-technologies">Underlying Technologies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/index.html#getting-started">Getting started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#basic-commands">Basic Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/index.html#container-management">Container Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/index.html#image-management">Image Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/index.html#applicaitons">Applicaitons</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#dockerfile">Dockerfile</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/index.html#instructions">Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/index.html#caching">Caching</a></li>
 </ul>
 </li>
 </ul>
@@ -327,6 +338,12 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux_info/index.html">Get System Infos</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../linux_info/index.html#intro">Intro</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux_info/index.html#linux-get-system-version-info">linux get system version info</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../linux_info/index.html#for-any-os">For any os</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../linux_info/index.html#for-ubuntu">For Ubuntu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../linux_info/index.html#for-centos">For Centos</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../linux_info/index.html#tar-folder-etc">tar folder /etc</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../linux_info/index.html#print-infos">print infos</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../linux_info/index.html#proc-infos">proc infos</a></li>
@@ -598,26 +615,31 @@
             
   <div class="section" id="aws-amazon-web-services">
 <h1>AWS &#8211; Amazon Web Services<a class="headerlink" href="#aws-amazon-web-services" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="http://aws.amazon.bokecc.com">Amazon Video Center</a></p>
-<p><a class="reference external" href="http://aws.amazon.com/cn/training">AWS CN Training</a></p>
-<p><a class="reference external" href="https://china-run.qwiklabs.com">Hands-on (cn server)</a></p>
-<p><a class="reference external" href="https://qwiklabs.com">Hands-on</a></p>
 <ul>
+<li><p class="first"><a class="reference external" href="http://aws.amazon.bokecc.com">Amazon Video Center</a></p>
+</li>
+<li><p class="first"><a class="reference external" href="http://aws.amazon.com/cn/training">AWS CN Training</a></p>
+</li>
 <li><dl class="first docutils">
-<dt>Free Courses</dt>
+<dt>Hands-on</dt>
+<dd><ul class="first last">
+<li><p class="first"><a class="reference external" href="https://china-run.qwiklabs.com">CN Version</a> , <a class="reference external" href="https://qwiklabs.com">EN Version</a></p>
+</li>
+<li><dl class="first docutils">
+<dt>Free Courses (16 ordered by myself)</dt>
 <dd><ul class="first last simple">
-<li>Introduction to Amazon DynamoDB</li>
-<li>Amazon Elastic Block Store (Amazon EBS) Introductory</li>
+<li>AWS Identity and Access Management (IAM) Introductory</li>
 <li>Amazon Elastic Compute Cloud (EC2) Introductory</li>
+<li>Amazon Simple Storage Service (S3) Introductory</li>
+<li>Amazon Elastic Block Store (Amazon EBS) Introductory</li>
 <li>Amazon Elastic MapReduce Introductory</li>
 <li>Amazon Relational Database Service (Amazon RDS) Introductory</li>
-<li>Amazon Simple Storage Service (S3) Introductory</li>
-<li>Introduction to AWS Elastic Beanstalk</li>
-<li>AWS Identity and Access Management (IAM) Introductory</li>
+<li>Amazon Virtual Private Cloud (VPC) Introductory</li>
 <li>Amazon Elastic Load Balancer (Amazon ELB) Introductory</li>
+<li>Introduction to Amazon DynamoDB</li>
+<li>Introduction to AWS Elastic Beanstalk</li>
 <li>Introduction to AWS CloudFormation</li>
 <li>Introduction to Amazon ElastiCache</li>
-<li>Amazon Virtual Private Cloud (VPC) Introductory</li>
 <li>Introduction to AWS OpsWorks</li>
 <li>Introduction to Amazon CloudFront</li>
 <li>Introduction to AWS CodeDeploy</li>
@@ -627,14 +649,27 @@
 </dl>
 </li>
 </ul>
+</dd>
+</dl>
+</li>
+</ul>
 <p>BKM should be turned into script, let people doing job more creatively.</p>
 <div class="section" id="storage">
 <h2>Storage<a class="headerlink" href="#storage" title="Permalink to this headline">¶</a></h2>
-<p>S3 &#8211; Amazon Simple Storage Service
-- first create an bucket, can contain unlimit amount of file
-- each file size from 1B to 5TB
-- compare to EBS, no need resize bucket size
-EBS &#8211; Elastic Block Storage</p>
+<ul>
+<li><dl class="first docutils">
+<dt>S3 &#8211; Amazon Simple Storage Service</dt>
+<dd><ul class="first last simple">
+<li>first create an bucket, can contain unlimit amount of file</li>
+<li>each file size from 1B to 5TB</li>
+<li>compare to EBS, no need resize bucket size</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">EBS &#8211; Elastic Block Storage</p>
+</li>
+</ul>
 </div>
 <div class="section" id="compute">
 <h2>Compute<a class="headerlink" href="#compute" title="Permalink to this headline">¶</a></h2>
@@ -692,7 +727,7 @@ EBS &#8211; Elastic Block Storage</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../aws_vpn/index.html" class="btn btn-neutral float-right" title="Create a Self Defined VPN via AWS" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../aws_vpn/index.html" class="btn btn-neutral float-right" title="Build VPN with AWS" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../cloud_computing/index.html" class="btn btn-neutral" title="Cloud Computing" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>

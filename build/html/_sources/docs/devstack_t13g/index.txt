@@ -525,6 +525,38 @@ Other issues
 |
 
 
+
+
+After Installation
+==================
+
+Restart n-cpu need passwd
+-------------------------
+
+change nova driver might cause this err
+
+.. code-block:: console
+
+    stack@ubuntu1204-51-105:~/devstack$ cd /opt/stack/nova && sg libvirtd '/usr/local/bin/nova-compute --config-file /etc/nova/nova.conf' & echo $! >/opt/stack/status/stack/n-cpu.pid; fg || echo "n-cpu failed to start" | tee "/opt/stack/status/stack/n-cpu.failure"
+    [1] 1730
+    cd /opt/stack/nova && sg libvirtd '/usr/local/bin/nova-compute --config-file /etc/nova/nova.conf'
+    Password:
+
+Solution
+
+.. code-block:: bash
+
+    # add stack back to libvirtd group
+    sudo usermod -G libvirtd stack
+    # or add this info in /etc/group
+    libvirtd:x:1002:stack
+
+
+
+
+
+
+
 .. [#] https://pip.pypa.io/en/latest/reference/pip_wheel.html
 .. [#] https://bugs.launchpad.net/ubuntu/+source/mysql-dfsg-5.1/+bug/375371
 .. [#] https://bugs.launchpad.net/ubuntu/+source/mysql-dfsg-5.0/+bug/227615

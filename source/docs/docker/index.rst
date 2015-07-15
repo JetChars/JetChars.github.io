@@ -1,6 +1,12 @@
+.. image:: images/docker.png
+    :align: right
+
 ======
 Docker
 ======
+
+Why docker
+==========
 
 .. sidebar:: about
 
@@ -11,13 +17,17 @@ Docker
     - Use ipc namespace communicate between containers
     - Require libcontainer/lxc/libvirt/systemd-nspawn
     - Managed by DGAB (Docker Governance Advisory Board)
+    - Containers don't aim to be a replacement for VMs, they are complementary in the sense that they are better for specific use cases.
+
 
 
 * Advangtages
-    * compare to kvm use virtio, docker use AUFS, which is better.
-    * light weight 'vm', use less mem than kvm, closer to BM
+    - compare to kvm use virtio, docker use AUFS, which is better.
+    - light weight 'vm', use less mem than kvm, closer to BM
+    - will not be install into host OS
+    - each container owns a set of env
 * Constrains
-    - x64 only
+    - 64bit platform
     * must have same OS kernel
     * kernel 3.8 is minimal, except rhel **2.6.32** . So, 3.10(ubuntu 1404 trusty) or higher is recommended
     * can't over commitment
@@ -52,25 +62,46 @@ Getting started
 
     - docker not work well w/ proxy, so here is a workaround: ``service docker stop; docker -d &``
     - docker container not work well w/ proxy, add **key-values** of proxy server before cmds which need proxy
+    - wrapped up in a function so that we have some protection against only getting half the file during "curl | sh"
+
+
+Configuration files
+^^^^^^^^^^^^^^^^^^^
+
+- ``/etc/default/docker`` -- Docker Upstart and SysVinit configuration file(ubuntu)
+    - location of docker binary, daemon startup opts, proxy, tmpdir
+    - can work with export or any other cmds
+- ``/etc/sysconfig/docker`` -- Docker configuration file for centos/fedora/redhat
+    - parameters(key-value pair) only 
 
 
 
-Install Docker::
-    
+
+Install Docker
+^^^^^^^^^^^^^^
+
+.. code-block:: bash
+        
     # require root user
     wget -qO- https://get.docker.com/ | sh
     curl -sSL https://get.docker.com/ | sh
     wget -qO- https://test.docker.com/ | sh   # test verison
 
 
-Update Dockera::
+Update Dockera
+^^^^^^^^^^^^^^
+
+.. code-block:: bash
 
     sudo wget https://get.docker.com/builds/Linux/x86_64/docker-latest -O /usr/bin/docker
     sudo chmod a+x /usr/bin/docker
 
 
+Docker users
+^^^^^^^^^^^^
+
 If you would like to use Docker as a non-root user, you should now consider
-adding your user to the "docker" group with something like:
+adding your user to the "docker" group with something like::
 
     sudo usermod -aG docker your-user
 
@@ -121,8 +152,8 @@ Image Management
     docker build [-f build-file] [-t tag] .
 
 
-Applicaitons
-------------
+tricks
+------
 
 .. code-block:: shell
     :linenos:
@@ -184,9 +215,45 @@ by default build use cache
 
     docker build -f <dockerfile> -t <tag> .
     docker build --no-cache=true -f <dockerfile> -t <tag> .
-    
+
+
+Network Management
+==================
+
+`libswarm <https://github.com/docker/swarm>`_
+-------------------------------------------
+
+It's a small toolkit, for docker network settings. Defines a standard service interface, for communications between service module in distributed operation system.
+
+
+`pipwork <https://github.com/jpetazzo/pipework>`_
+-------------------------------------------------
+
+Software-Defined Networking for Linux Containers
 
 
 
+container in kvm
+================
 
-* `Kubernetes <http://kubernetes.io>`_ is an open source orchestration system for Docker containers
+like coreos, intel clear linux or any other light weight linux work with container in hybrid mode.
+- can take both the advangtages of kvm and container
+
+.. image:: images/coreos.png
+    :align: right
+
+`CoreOS <https://coreos.com>`_
+-----------------------------
+
+- Open Source project for linux containers
+- Linux for massive server deployment
+
+.. image:: images/coreos_docker.png
+.. image:: images/coreos_etcd.png
+
+
+`Kubernetes <http://kubernetes.io>`_
+------------------------------------
+
+It's an open source orchestration system for Docker containers, open-sourced by google
+
