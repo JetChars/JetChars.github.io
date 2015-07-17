@@ -36,6 +36,12 @@ Install latest docker
 Prepare Nova-Docker
 ^^^^^^^^^^^^^^^^^^^
 
+.. sidebar:: Warn
+
+    nova-docker's version should as same as the current version of nova
+
+
+
 .. code-block:: bash
 
     sudo apt-get update
@@ -45,6 +51,7 @@ Prepare Nova-Docker
     sudo mkdir -p /opt/stack
     sudo git clone https://git.openstack.org/stackforge/nova-docker /opt/stack/nova-docker
     cd /opt/stack/nova-docker
+    git checkout stable/kilo   # change to same branch as nova
     # Check out a different version if not using master, i.e:
     # sudo git checkout stable/kilo && sudo git pull --ff-only origin stable/kilo
     sudo pip install .  # The linecache2 error appears to be benign

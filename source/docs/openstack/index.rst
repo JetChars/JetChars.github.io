@@ -308,6 +308,34 @@ Congiuration Files
 
 
 
+Magnum
+======
+
+magnum, murano both can manage kubernetes
+nova-docker talks directly to docker
+
+
+- container -- isolated runtime for processess
+- services -- tcp port routing to multiple containers
+- pod -- grouping of related containers
+- bay -- grouping of nodes that run a COE (container orchestration engine like k8s,swarm,etc.)
+- baymodel -- template for creating bay
+
+.. sidebar:: Note
+
+    every circle in 'stacks' is a configuration step
+
+.. code-block:: bash
+    magnum baymodel-list
+    magnum baymodel-show <baymodel>
+    magnum bay-create --name k8s_bay --baymodel kubernetes --node-count 2
+    magnum bay-list   # created bay list, can be found at horizon/orchestration/stacks
+    magnum pod-create --bay k8s_bay --manifest kubernetes/examples/walkthrough/v1beta3/pod1.yaml
+    magnum pod-list
+    magnum pod-show <pod>
+    magnum container-create --json demo.json
+    docker logs -f <container>
+
 
 Developers
 ==========

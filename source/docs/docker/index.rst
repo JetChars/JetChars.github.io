@@ -1,5 +1,6 @@
 .. image:: images/docker.png
     :align: right
+    :width: 250px
 
 ======
 Docker
@@ -19,6 +20,7 @@ Why docker
     - Managed by DGAB (Docker Governance Advisory Board)
     - Containers don't aim to be a replacement for VMs, they are complementary in the sense that they are better for specific use cases.
 
+It's an open source container application engine. Portable and easy to deployment.
 
 
 * Advangtages
@@ -137,7 +139,7 @@ Container Management
 Image Management
 ----------------
 
-.. sidebar:: Note
+.. sidebar:: About tags
 
     same image can have multiple tags, eg:
     ubuntu, ubuntu:trusty, ubuntu:latest, ubuntu:14.04
@@ -220,6 +222,10 @@ by default build use cache
 Network Management
 ==================
 
+.. image:: images/docker_swarm.png
+    :align: right
+    :width: 200px
+
 `libswarm <https://github.com/docker/swarm>`_
 -------------------------------------------
 
@@ -247,6 +253,7 @@ like coreos, intel clear linux or any other light weight linux work with contain
 
 - Open Source project for linux containers
 - Linux for massive server deployment
+- Started a project **rocket** , claimed simpler, lighter and much secure than docker
 
 .. image:: images/coreos_docker.png
 .. image:: images/coreos_etcd.png
@@ -256,4 +263,27 @@ like coreos, intel clear linux or any other light weight linux work with contain
 ------------------------------------
 
 It's an open source orchestration system for Docker containers, open-sourced by google
+
+
+
+
+
+Issues
+======
+
+
+1. FATA[0000] -- permission denied
+
+.. code-block:: console
+
+    FATA[0000] Get http:///var/run/docker.sock/v1.18/containers/json: dial unix /var/run/docker.sock: permission denied. Are you trying to connect to a TLS-enabled daemon without TLS? 
+
+| **solution**
+
+.. code-block:: bash
+
+    sudo groupadd docker
+    sudo usermod -aG docker stack   # stack is our current user
+    then relog in to current user
+
 
