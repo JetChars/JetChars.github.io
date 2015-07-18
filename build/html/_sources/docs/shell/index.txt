@@ -58,8 +58,8 @@ xshell
 
 
 
-cygwin
-------
+`cygwin <https://www.cygwin.com/>`_
+-----------------------------------
 
 
 
@@ -73,6 +73,9 @@ cygwin
 
 config sshd
 ^^^^^^^^^^^
+
+- before running sshd at windows, cygwin need run as admin for sshd configuration.
+
 
 .. code-block:: console
     :linenos:

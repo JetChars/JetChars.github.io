@@ -58,8 +58,8 @@ xshell
 
 
 
-cygwin
-------
+`cygwin <https://www.cygwin.com/>`_
+-----------------------------------
 
 
 
