@@ -2,8 +2,58 @@
 OpenStack
 =========
 
-`wiki <https://wiki.openstack.org/wiki/Main_Page>`_
 `Developer's Guide <http://docs.openstack.org/infra/manual/developers.html>`_
+
+
+
+Intro
+=====
+
+The OpenStack Mission: to produce the ubiquitous Open Source Cloud Computing platform that will meet the needs of public and private clouds regardless of size, by being simple to implement and massively scalable. [#]_
+
+OpenStack is open source, openly designed, openly developed by an open community.
+
+
+Now(July 18, 2015) openstack have 19 main services
+
+- Main services
+    - Identity (Keystone)
+    - Compute (Nova)
+    - Image service (Glance)
+    - Networking (Neutron)
+    - Object Storage (Swift)
+    - Block Storage (Cinder)
+    - Orchestration (Heat)
+    - Database Service (Trove)
+    - Bare Metal (Ironic)
+    - Data processing (Sahara)
+    - Message service (Zaqar)
+    - Key management (Barbican)
+    - DNS (Designate)
+    - Shared Filesystems (Manila)
+    - Containers service (Magnum)
+    - Application catalog (Murano)
+    - Governance service (Congress)
+    - Workflow service (Mistral)
+    - Key-value store as a Service (MagnetoDB)
+- Supporting services
+    - Dashboard (Horizon)
+    - Telemetry (Ceilometer)
+    - Common Libraries (Oslo)
+    - Deployment (TripleO)
+    - Command-line client (OpenStackClient)
+    - Benchmark service (Rally)
+    - Puppet modules (PuppetOpenStack)
+
+
+
+
+
+
+
+
+
+
 
 Nova
 ====
@@ -283,12 +333,6 @@ Sahara
 - provide an abstract implementation layer of BigData Services(hadoop/spark/storm) through 3rd-party plugins(vanilla,cdh,hdp,mapr,spark...)
 
 
-.. image:: images/sahara_components.png
-.. image:: images/sahara_workflow.png
-.. image:: images/sahara_data_access.png
-.. image:: images/sahara_cluster_create.png
-.. image:: images/sahara_edp_exec.png
-
 
 
 Neutron
@@ -326,6 +370,7 @@ nova-docker talks directly to docker
     every circle in 'stacks' is a configuration step
 
 .. code-block:: bash
+
     magnum baymodel-list
     magnum baymodel-show <baymodel>
     magnum bay-create --name k8s_bay --baymodel kubernetes --node-count 2
@@ -375,4 +420,5 @@ Resources
 `OpenStack useage statistics <http://superuser.openstack.org/articles/openstack-users-share-how-their-deployments-stack-up>`_
 
 
+.. [#] https://wiki.openstack.org/wiki/Main_Page
 .. [#] https://wiki.openstack.org/wiki/Heat

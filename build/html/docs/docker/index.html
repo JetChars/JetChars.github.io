@@ -137,6 +137,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#id4">Kubernetes</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#issues">Issues</a></li>
 </ul>
 </li>
 </ul>
@@ -183,6 +184,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#congiuration-files">Congiuration Files</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#magnum">Magnum</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#developers">Developers</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#launchpad-bug-status">Launchpad bug status</a></li>
 </ul>
@@ -667,18 +669,26 @@
 <h2>Why docker<a class="headerlink" href="#why-docker" title="Permalink to this headline">¶</a></h2>
 <div class="sidebar">
 <p class="first sidebar-title">about</p>
-<ul class="last simple">
-<li>Since March 2014</li>
-<li>Use go language</li>
-<li>Use native cpu/syscall/kernel</li>
-<li>Use namespace/capabilities/ctrlgroup/apparmor/netfilter</li>
+<ul class="last">
+<li><p class="first">Since March 2014(2013?) , Managed by DGAB (Docker Governance Advisory Board)</p>
+</li>
+<li><p class="first">It&#8217;s an open source container application engine. Portable and easy to deployment.</p>
+</li>
+<li><p class="first">Use go language</p>
+</li>
+<li><dl class="first docutils">
+<dt>Use native cpu/syscall/kernel (namespace/capabilities/ctrlgroup/apparmor/netfilter)</dt>
+<dd><ul class="first last simple">
 <li>Use ipc namespace communicate between containers</li>
 <li>Require libcontainer/lxc/libvirt/systemd-nspawn</li>
-<li>Managed by DGAB (Docker Governance Advisory Board)</li>
-<li>Containers don&#8217;t aim to be a replacement for VMs, they are complementary in the sense that they are better for specific use cases.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Containers don&#8217;t aim to be a replacement for VMs, they are complementary in the sense that they are better for specific use cases.</p>
+</li>
 </ul>
 </div>
-<p>It&#8217;s an open source container application engine. Portable and easy to deployment.</p>
 <ul>
 <li><dl class="first docutils">
 <dt>Advangtages</dt>
@@ -960,6 +970,23 @@ docker build --no-cache<span class="o">=</span><span class="nb">true</span> -f &
 <div class="section" id="id4">
 <h3><a class="reference external" href="http://kubernetes.io">Kubernetes</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p>It&#8217;s an open source orchestration system for Docker containers, open-sourced by google</p>
+</div>
+</div>
+<div class="section" id="issues">
+<h2>Issues<a class="headerlink" href="#issues" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>FATA[0000] &#8211; permission denied</li>
+</ol>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">FATA[0000] Get http:///var/run/docker.sock/v1.18/containers/json: dial unix /var/run/docker.sock: permission denied. Are you trying to connect to a TLS-enabled daemon without TLS?</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><strong>solution</strong></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre>sudo groupadd docker
+sudo usermod -aG docker stack   <span class="c"># stack is our current user</span>
+<span class="k">then</span> relog in to current user
+</pre></div>
 </div>
 </div>
 </div>

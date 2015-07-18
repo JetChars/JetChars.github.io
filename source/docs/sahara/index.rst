@@ -9,7 +9,6 @@ About
 `Red Hat's doc of Deploying sahara <http://www.redhat.com/en/resources/deploying-sahara-analytics-service-red-hat-enterprise-linux-openstack-platform-5>`_
 
 
-.. image:: images/sahara_fake_nodetemplate.png
 
 .. sidebar:: Terms
 
@@ -19,6 +18,19 @@ About
     - **anti affinity** -- avoid put datanode on same host 
     
 .. note:: cinder volume not created locally according to instances' loaction
+
+.. image:: images/sahara_components.png
+.. image:: images/sahara_workflow.png
+.. image:: images/sahara_data_access.png
+.. image:: images/sahara_cluster_create.png
+.. image:: images/sahara_edp_exec.png
+.. image:: images/sahara_architecture.png
+.. image:: images/sahara_interop.png
+
+
+
+.. image:: images/sahara_fake_nodetemplate.png
+
 
 Sahara Cluster Status
 ---------------------
@@ -96,5 +108,5 @@ Sahara Optimizaion Angles
 sahara image
 ============
 
-`sahara-image-elements <https://github.com/openstack/sahara-image-elements>`_
-`diskimage-builder <https://github.com/openstack/diskimage-builder>`_
+- `sahara-image-elements <https://github.com/openstack/sahara-image-elements>`_
+- `diskimage-builder <https://github.com/openstack/diskimage-builder>`_

@@ -14,6 +14,8 @@ Libvirt
 
 libvirt is an open source API, daemon and management tool for managing platform virtualization. It can be used to manage KVM, Xen, VMware ESX, QEMU and other virtualization technologies. These APIs are widely used in the orchestration layer of hypervisors in the development of a cloud-based solution. [#]_
 
+It will create a linuxbridge **virbr0** , counterpart is **xenbr0** for xen, **vif0.0** for xen guest, **peth0** for xen kernel.
+
 
 * ``/usr/sbin/libivirtd -d`` is a background process
 * ``/var/log/libvirt/libvirtd.log`` default log file

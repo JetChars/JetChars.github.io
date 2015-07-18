@@ -11,16 +11,14 @@ Why docker
 
 .. sidebar:: about
 
-    - Since March 2014
+    - Since March 2014(2013?) , Managed by DGAB (Docker Governance Advisory Board)
+    - It's an open source container application engine. Portable and easy to deployment.
     - Use go language
-    - Use native cpu/syscall/kernel
-    - Use namespace/capabilities/ctrlgroup/apparmor/netfilter
-    - Use ipc namespace communicate between containers
-    - Require libcontainer/lxc/libvirt/systemd-nspawn
-    - Managed by DGAB (Docker Governance Advisory Board)
+    - Use native cpu/syscall/kernel (namespace/capabilities/ctrlgroup/apparmor/netfilter)
+        - Use ipc namespace communicate between containers
+        - Require libcontainer/lxc/libvirt/systemd-nspawn
     - Containers don't aim to be a replacement for VMs, they are complementary in the sense that they are better for specific use cases.
 
-It's an open source container application engine. Portable and easy to deployment.
 
 
 * Advangtages

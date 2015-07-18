@@ -128,22 +128,24 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../docker/index.html#network-management">Network Management</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#libswarm-https-github-com-docker-swarm"><cite>libswarm &lt;https://github.com/docker/swarm&gt;</cite></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#id1">pipwork</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#id1">libswarm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#id2">pipwork</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../docker/index.html#container-in-kvm">container in kvm</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#id2">CoreOS</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#id3">Kubernetes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#id3">CoreOS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#id4">Kubernetes</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/index.html#issues">Issues</a></li>
 </ul>
 </li>
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="">OpenStack</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#intro">Intro</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#nova">Nova</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">nova-docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">nova-docker</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nova-rootwrap">nova-rootwrap</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#management">Management</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#secgroup">SecGroup</a></li>
@@ -162,7 +164,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#refresh-horizon">Refresh horizon</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id7">Cinder</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id8">Cinder</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#components">Components</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#storage-backend">Storage backend</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#configuation">Configuation</a></li>
@@ -183,6 +185,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#congiuration-files">Congiuration Files</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#magnum">Magnum</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#developers">Developers</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#launchpad-bug-status">Launchpad bug status</a></li>
 </ul>
@@ -662,8 +665,55 @@
             
   <div class="section" id="openstack">
 <h1>OpenStack<a class="headerlink" href="#openstack" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="https://wiki.openstack.org/wiki/Main_Page">wiki</a>
-<a class="reference external" href="http://docs.openstack.org/infra/manual/developers.html">Developer&#8217;s Guide</a></p>
+<p><a class="reference external" href="http://docs.openstack.org/infra/manual/developers.html">Developer&#8217;s Guide</a></p>
+<div class="section" id="intro">
+<h2>Intro<a class="headerlink" href="#intro" title="Permalink to this headline">¶</a></h2>
+<p>The OpenStack Mission: to produce the ubiquitous Open Source Cloud Computing platform that will meet the needs of public and private clouds regardless of size, by being simple to implement and massively scalable. <a class="footnote-reference" href="#id9" id="id1">[1]</a></p>
+<p>OpenStack is open source, openly designed, openly developed by an open community.</p>
+<p>Now(July 18, 2015) openstack have 19 main services</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Main services</dt>
+<dd><ul class="first last simple">
+<li>Identity (Keystone)</li>
+<li>Compute (Nova)</li>
+<li>Image service (Glance)</li>
+<li>Networking (Neutron)</li>
+<li>Object Storage (Swift)</li>
+<li>Block Storage (Cinder)</li>
+<li>Orchestration (Heat)</li>
+<li>Database Service (Trove)</li>
+<li>Bare Metal (Ironic)</li>
+<li>Data processing (Sahara)</li>
+<li>Message service (Zaqar)</li>
+<li>Key management (Barbican)</li>
+<li>DNS (Designate)</li>
+<li>Shared Filesystems (Manila)</li>
+<li>Containers service (Magnum)</li>
+<li>Application catalog (Murano)</li>
+<li>Governance service (Congress)</li>
+<li>Workflow service (Mistral)</li>
+<li>Key-value store as a Service (MagnetoDB)</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Supporting services</dt>
+<dd><ul class="first last simple">
+<li>Dashboard (Horizon)</li>
+<li>Telemetry (Ceilometer)</li>
+<li>Common Libraries (Oslo)</li>
+<li>Deployment (TripleO)</li>
+<li>Command-line client (OpenStackClient)</li>
+<li>Benchmark service (Rally)</li>
+<li>Puppet modules (PuppetOpenStack)</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
 <div class="section" id="nova">
 <h2>Nova<a class="headerlink" href="#nova" title="Permalink to this headline">¶</a></h2>
 <div class="sidebar">
@@ -672,8 +722,8 @@
 <div class="line"><strong>BM, BareMetal</strong> &#8211; Physical Machine</div>
 </div>
 </div>
-<div class="section" id="id1">
-<h3><a class="reference external" href="https://wiki.openstack.org/wiki/Docker">nova-docker</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id2">
+<h3><a class="reference external" href="https://wiki.openstack.org/wiki/Docker">nova-docker</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="nova-rootwrap">
 <h3>nova-rootwrap<a class="headerlink" href="#nova-rootwrap" title="Permalink to this headline">¶</a></h3>
@@ -713,7 +763,7 @@
 </pre></div>
 </div>
 <ul class="simple">
-<li>filters: <a href="#id2"><span class="problematic" id="id3">``</span></a>/etc/nova/rootwrap.d/<a href="#id4"><span class="problematic" id="id5">*</span></a>.filters</li>
+<li>filters: <a href="#id3"><span class="problematic" id="id4">``</span></a>/etc/nova/rootwrap.d/<a href="#id5"><span class="problematic" id="id6">*</span></a>.filters</li>
 </ul>
 <div class="sidebar">
 <p class="first sidebar-title"><a class="reference external" href="http://docs.openstack.org/openstack-ops/content/storage_decision.html">Storage</a></p>
@@ -811,7 +861,7 @@ nova boot --image &lt;uuid/name&gt; --flavor &lt;uuid/name&gt; --key-name &lt;kn
 </div>
 <div class="section" id="heat">
 <h2>Heat<a class="headerlink" href="#heat" title="Permalink to this headline">¶</a></h2>
-<p>Heat is the main project in the OpenStack Orchestration program. It implements an orchestration engine to launch multiple composite cloud applications based on templates in the form of text files that can be treated like code. A native Heat template format is evolving, but Heat also endeavours to provide compatibility with the AWS CloudFormation template format, so that many existing CloudFormation templates can be launched on OpenStack. Heat provides both an OpenStack-native ReST API and a CloudFormation-compatible Query API. <a class="footnote-reference" href="#id8" id="id6">[1]</a></p>
+<p>Heat is the main project in the OpenStack Orchestration program. It implements an orchestration engine to launch multiple composite cloud applications based on templates in the form of text files that can be treated like code. A native Heat template format is evolving, but Heat also endeavours to provide compatibility with the AWS CloudFormation template format, so that many existing CloudFormation templates can be launched on OpenStack. Heat provides both an OpenStack-native ReST API and a CloudFormation-compatible Query API. <a class="footnote-reference" href="#id10" id="id7">[2]</a></p>
 </div>
 <div class="section" id="horizon">
 <h2>Horizon<a class="headerlink" href="#horizon" title="Permalink to this headline">¶</a></h2>
@@ -859,8 +909,8 @@ nova boot --image &lt;uuid/name&gt; --flavor &lt;uuid/name&gt; --key-name &lt;kn
 </div>
 </div>
 </div>
-<div class="section" id="id7">
-<h2><a class="reference external" href="https://wiki.openstack.org/wiki/Cinder">Cinder</a><a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id8">
+<h2><a class="reference external" href="https://wiki.openstack.org/wiki/Cinder">Cinder</a><a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
 <img alt="../../_images/cinder_locations.png" src="../../_images/cinder_locations.png" />
 <div class="sidebar">
 <p class="first sidebar-title">Overview</p>
@@ -961,11 +1011,6 @@ glance image-download --file<span class="o">=</span>&lt;OUTPUT_FILE&gt; <span cl
 <li>It&#8217;s a PaaS solution by openstack</li>
 <li>provide an abstract implementation layer of BigData Services(hadoop/spark/storm) through 3rd-party plugins(vanilla,cdh,hdp,mapr,spark...)</li>
 </ul>
-<img alt="../../_images/sahara_components.png" src="../../_images/sahara_components.png" />
-<img alt="../../_images/sahara_workflow.png" src="../../_images/sahara_workflow.png" />
-<img alt="../../_images/sahara_data_access.png" src="../../_images/sahara_data_access.png" />
-<img alt="../../_images/sahara_cluster_create.png" src="../../_images/sahara_cluster_create.png" />
-<img alt="../../_images/sahara_edp_exec.png" src="../../_images/sahara_edp_exec.png" />
 </div>
 <div class="section" id="neutron">
 <h2>Neutron<a class="headerlink" href="#neutron" title="Permalink to this headline">¶</a></h2>
@@ -995,6 +1040,33 @@ glance image-download --file<span class="o">=</span>&lt;OUTPUT_FILE&gt; <span cl
 </dl>
 </li>
 </ul>
+</div>
+</div>
+<div class="section" id="magnum">
+<h2>Magnum<a class="headerlink" href="#magnum" title="Permalink to this headline">¶</a></h2>
+<p>magnum, murano both can manage kubernetes
+nova-docker talks directly to docker</p>
+<ul class="simple">
+<li>container &#8211; isolated runtime for processess</li>
+<li>services &#8211; tcp port routing to multiple containers</li>
+<li>pod &#8211; grouping of related containers</li>
+<li>bay &#8211; grouping of nodes that run a COE (container orchestration engine like k8s,swarm,etc.)</li>
+<li>baymodel &#8211; template for creating bay</li>
+</ul>
+<div class="sidebar">
+<p class="first sidebar-title">Note</p>
+<p class="last">every circle in &#8216;stacks&#8217; is a configuration step</p>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre>magnum baymodel-list
+magnum baymodel-show &lt;baymodel&gt;
+magnum bay-create --name k8s_bay --baymodel kubernetes --node-count 2
+magnum bay-list   <span class="c"># created bay list, can be found at horizon/orchestration/stacks</span>
+magnum pod-create --bay k8s_bay --manifest kubernetes/examples/walkthrough/v1beta3/pod1.yaml
+magnum pod-list
+magnum pod-show &lt;pod&gt;
+magnum container-create --json demo.json
+docker logs -f &lt;container&gt;
+</pre></div>
 </div>
 </div>
 <div class="section" id="developers">
@@ -1059,10 +1131,16 @@ glance image-download --file<span class="o">=</span>&lt;OUTPUT_FILE&gt; <span cl
 <div class="section" id="resources">
 <h2>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="http://superuser.openstack.org/articles/openstack-users-share-how-their-deployments-stack-up">OpenStack useage statistics</a></p>
-<table class="docutils footnote" frame="void" id="id8" rules="none">
+<table class="docutils footnote" frame="void" id="id9" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id6">[1]</a></td><td><a class="reference external" href="https://wiki.openstack.org/wiki/Heat">https://wiki.openstack.org/wiki/Heat</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://wiki.openstack.org/wiki/Main_Page">https://wiki.openstack.org/wiki/Main_Page</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id10" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id7">[2]</a></td><td><a class="reference external" href="https://wiki.openstack.org/wiki/Heat">https://wiki.openstack.org/wiki/Heat</a></td></tr>
 </tbody>
 </table>
 </div>
