@@ -141,8 +141,9 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../openstack/index.html">OpenStack</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#intro">Intro</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#nova">Nova</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#id1">nova-docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#id2">nova-docker</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#nova-rootwrap">nova-rootwrap</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#management">Management</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../openstack/index.html#secgroup">SecGroup</a></li>
@@ -161,7 +162,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#refresh-horizon">Refresh horizon</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#id7">Cinder</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#id8">Cinder</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#components">Components</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#storage-backend">Storage backend</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#configuation">Configuation</a></li>
@@ -483,13 +484,19 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../mac/index.html">Mac as Main OS</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../mac/index.html#shortcuts">ShortCuts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mac/index.html#shortcuts">ShortCuts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../mac/index.html#mac-featured">Mac Featured</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mac/index.html#safari">Safari</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mac/index.html#xcode">Xcode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mac/index.html#special-keys">Special keys</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../mac/index.html#issues">Issues</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../mac/index.html#cannot-find-bluetooth-device">Cannot find bluetooth device</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../mac/index.html#softwares">Softwares</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../mac/index.html#safari">Safari</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mac/index.html#id1">Safari</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../mac/index.html#popclip-rightclick-enhancement-tool">PopClip &#8211; rightclick enhancement tool</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../mac/index.html#brew-package-management-software">brew &#8211; package management software</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../mac/index.html#glims-safari-enhancement">glims &#8211; safari enhancement</a></li>
@@ -574,6 +581,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../sql/index.html#dql">DQL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../sql/index.html#dcl">DCL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../sql/index.html#mysql">MySQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sql/index.html#postgresql">PostgreSQL</a></li>
 </ul>
 </li>
 </ul>
@@ -706,6 +714,19 @@
 <span class="nv">FTP_PROXY</span><span class="o">=</span><span class="s2">&quot;ftp://child-prc.intel.com:913&quot;</span>
 <span class="nv">SOCKS_PROXY</span><span class="o">=</span><span class="s2">&quot;socks://child-prc.intel.com:913&quot;</span>
 <span class="nv">NO_PROXY</span><span class="o">=</span><span class="s2">&quot;localhost,*intel.com:913,172.16.0.0/16,10.0.0.0/8,127.0.0.0/8&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="access-intel-proxy-from-mac-at-home">
+<h3>access intel proxy from mac at home<a class="headerlink" href="#access-intel-proxy-from-mac-at-home" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c"># Privileged ports can only be forwarded by root.</span>
+<span class="c"># can&#39;t use domain because of dns can&#39;t resolve internal domain</span>
+<span class="c"># web browser should use http as proxy protocol</span>
+<span class="c"># because of firewall tunnel can&#39;t built at working laptop</span>
+<span class="c"># minimal configuration</span>
+sudo ssh -N -L 913:172.16.213.225:913 wenjieca@192.168.199.116
+<span class="c"># compress and run in background</span>
+sudo ssh -fgCNL 913:172.16.213.225:913 wenjieca@192.168.199.116
 </pre></div>
 </div>
 </div>

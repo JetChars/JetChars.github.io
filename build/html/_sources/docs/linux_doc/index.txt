@@ -28,6 +28,10 @@ Configuration
 
 
 
+Tips
+----
+
+- add ``?highlight=keywords`` at the end of url can **highlight** the keywords
 
 
 Issues

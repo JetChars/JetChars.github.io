@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Secure Shell &mdash; JetChars alpha documentation</title>
+  <title>Magnum &mdash; JetChars alpha documentation</title>
   
 
   
@@ -372,6 +372,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../linux_doc/index.html#id1">Built-in themes</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_doc/index.html#tips">Tips</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../linux_doc/index.html#issues">Issues</a></li>
 </ul>
 </li>
@@ -655,11 +656,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
-    <li>Secure Shell</li>
+    <li>Magnum</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../../_sources/docs/ssh/index.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/docs/magnum/index.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -668,26 +669,189 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="secure-shell">
-<h1>Secure Shell<a class="headerlink" href="#secure-shell" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="magnum">
+<h1>Magnum<a class="headerlink" href="#magnum" title="Permalink to this headline">¶</a></h1>
+<p>Magnum is an OpenStack project which offers container orchestration engines for deploying and managing containers as first class resources in OpenStack.[#]_</p>
 <ul class="simple">
-<li>config file: <code class="docutils literal"><span class="pre">~/.ssh/config</span></code></li>
+<li>Bay: A collection of node objects where work is scheduled</li>
+<li>BayModel: An object stores template information about the bay which is used to create new bays consistently</li>
+<li>Node: A baremetal or virtual machine where work executes</li>
+<li>Pod: A collection of containers running on one physical or virtual machine</li>
+<li>Service: An abstraction which defines a logical set of pods and a policy by which to access them</li>
+<li>ReplicationController: An abstraction for managing a group of pods to ensure a specified number of resources are running</li>
+<li>Container: A Docker container</li>
 </ul>
-<div class="highlight-guess"><div class="highlight"><pre>Host    alias
-    HostName        ipaddr
-    Port            port
-    User            username
-    IdentityFile    keypath
+<div class="highlight-bash"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># Configure</span>
+<span class="c"># ---------</span>
+<span class="nv">ADMIN_PASSWORD</span><span class="o">=</span>123456
+
+<span class="c"># Get Admin Credit</span>
+<span class="c"># ----------------</span>
+<span class="nb">source</span> ~/devstack/openrc admin admin
+<span class="c"># Magnum has been tested with the Fedora Atomic micro-OS and CoreOS. Magnum will likely work with other micro-OS platforms, but each requires individual support in the heat template.</span>
+<span class="c"># Store the Fedora Atomic micro-OS in glance. (The steps for updating Fedora Atomic images are a bit detailed. Fortunately one of the core developers has made Atomic images available at https://fedorapeople.org/groups/magnum):</span>
+
+<span class="nb">cd</span> ~
+wget https://fedorapeople.org/groups/magnum/fedora-21-atomic-3.qcow2
+glance image-create --name fedora-21-atomic-3 <span class="se">\</span>
+                    --is-public True <span class="se">\</span>
+                    --disk-format qcow2 <span class="se">\</span>
+                    --property <span class="nv">os_distro</span><span class="o">=</span><span class="s1">&#39;fedora-atomic&#39;</span><span class="se">\</span>
+                    --container-format bare &lt; fedora-21-atomic-3.qcow2
+
+<span class="c"># Create a keypair for use with the baymodel:</span>
+<span class="c"># -------------------------------------------</span>
+<span class="nb">test</span> -f ~/.ssh/id_rsa.pub <span class="o">||</span> ssh-keygen -t rsa -N <span class="s2">&quot;&quot;</span> -f ~/.ssh/id_rsa
+nova keypair-add --pub-key ~/.ssh/id_rsa.pub testkey
+
+<span class="c"># Create a database in MySQL for magnum:</span>
+<span class="c"># --------------------------------------</span>
+mysql -h 127.0.0.1 -u root -p<span class="nv">$ADMIN_PASSWORD</span> mysql <span class="s">&lt;&lt;EOF</span>
+<span class="s">CREATE DATABASE IF NOT EXISTS magnum DEFAULT CHARACTER SET utf8;</span>
+<span class="s">GRANT ALL PRIVILEGES ON magnum.* TO</span>
+<span class="s">    &#39;root&#39;@&#39;%&#39; IDENTIFIED BY &quot;$ADMIN_PASSWORD&quot;</span>
+<span class="s">EOF</span>
+
+<span class="c"># Clone and install magnum:</span>
+<span class="c"># -------------------------</span>
+<span class="nb">cd</span> ~
+git clone https://git.openstack.org/openstack/magnum
+<span class="nb">cd </span>magnum
+git checkout stable/kilo   <span class="c"># should use same branch as current openstack</span>
+sudo -E pip install -e .
+
+<span class="c"># Configure magnum:</span>
+<span class="c"># -----------------</span>
+sudo mkdir -p /etc/magnum   <span class="c"># create the magnum conf directory</span>
+sudo cp etc/magnum/magnum.conf.sample /etc/magnum/magnum.conf   <span class="c"># copy sample config and modify it as necessary</span>
+sudo sed -i <span class="s2">&quot;s/#debug\s*=.*/debug=true/&quot;</span> /etc/magnum/magnum.conf   <span class="c"># enable debugging output</span>
+sudo sed -i <span class="s2">&quot;s/#verbose\s*=.*/verbose=true/&quot;</span> /etc/magnum/magnum.conf   <span class="c"># enable more verbose output</span>
+sudo sed -i <span class="s2">&quot;s/#rabbit_userid\s*=.*/rabbit_userid=stackrabbit/&quot;</span> <span class="se">\</span>
+         /etc/magnum/magnum.conf   <span class="c"># set RabbitMQ userid</span>
+sudo sed -i <span class="s2">&quot;s/#rabbit_password\s*=.*/rabbit_password=</span><span class="nv">$ADMIN_PASSWORD</span><span class="s2">/&quot;</span> <span class="se">\</span>
+         /etc/magnum/magnum.conf   <span class="c"># set RabbitMQ password</span>
+sudo sed -i <span class="s2">&quot;s/#connection\s*=.*/connection=mysql:\/\/root:</span><span class="nv">$ADMIN_PASSWORD</span><span class="s2">@localhost\/magnum/&quot;</span> <span class="se">\</span>
+         /etc/magnum/magnum.conf   <span class="c"># set SQLAlchemy connection string to connect to MySQL</span>
+sudo sed -i <span class="s2">&quot;s/#admin_user\s*=.*/admin_user=admin/&quot;</span> <span class="se">\</span>
+         /etc/magnum/magnum.conf   <span class="c"># set Keystone account username</span>
+sudo sed -i <span class="s2">&quot;s/#admin_password\s*=.*/admin_password=</span><span class="nv">$ADMIN_PASSWORD</span><span class="s2">/&quot;</span> <span class="se">\</span>
+         /etc/magnum/magnum.conf   <span class="c"># set Keystone account password</span>
+sudo sed -i <span class="s2">&quot;s/#identity_uri\s*=.*/identity_uri=http:\/\/127.0.0.1:35357/&quot;</span> <span class="se">\</span>
+         /etc/magnum/magnum.conf   <span class="c"># set admin Identity API endpoint</span>
+sudo sed -i <span class="s2">&quot;s/#auth_uri\s*=.*/auth_uri=http:\/\/127.0.0.1:5000\/v2.0/&quot;</span> <span class="se">\</span>
+         /etc/magnum/magnum.conf   <span class="c"># set public Identity API endpoint</span>
+
+<span class="c"># Clone and install the magnum client:</span>
+<span class="c"># ------------------------------------</span>
+<span class="nb">cd</span> ~
+git clone https://git.openstack.org/openstack/python-magnumclient
+<span class="nb">cd </span>python-magnumclient
+git checkout stable/kilo   <span class="c"># should use same branch as current openstack</span>
+sudo -E pip install -e .
+
+<span class="c"># Configure the database for use with magnum:</span>
+<span class="c"># -------------------------------------------</span>
+magnum-db-manage upgrade
+
+<span class="c"># Configure the keystone endpoint:</span>
+<span class="c"># --------------------------------</span>
+keystone service-create --name<span class="o">=</span>magnum <span class="se">\</span>
+                        --type<span class="o">=</span>container <span class="se">\</span>
+                        --description<span class="o">=</span><span class="s2">&quot;magnum Container Service&quot;</span>
+keystone endpoint-create --service<span class="o">=</span>magnum <span class="se">\</span>
+                         --publicurl<span class="o">=</span>http://127.0.0.1:9511/v1 <span class="se">\</span>
+                         --internalurl<span class="o">=</span>http://127.0.0.1:9511/v1 <span class="se">\</span>
+                         --adminurl<span class="o">=</span>http://127.0.0.1:9511/v1 <span class="se">\</span>
+                         --region RegionOne
 </pre></div>
-</div>
-<div class="section" id="most-powerful-ssh-tunnel">
-<h2>3 most powerful ssh tunnel<a class="headerlink" href="#most-powerful-ssh-tunnel" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash"><div class="highlight"><pre>ssh -C -f -N -g -L listen_port:DST_Host:DST_port user@Tunnel_Host
-ssh -C -f -N -g -R listen_port:DST_Host:DST_port user@Tunnel_Host
-ssh -C -f -N -g -D listen_port user@Tunnel_Host
-</pre></div>
-</div>
-</div>
+</td></tr></table></div>
+<table class="docutils footnote" frame="void" id="id1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[1]</td><td><a class="reference external" href="http://docs.openstack.org/developer/magnum/index.html">http://docs.openstack.org/developer/magnum/index.html</a></td></tr>
+</tbody>
+</table>
 </div>
 
 

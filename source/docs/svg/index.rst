@@ -12,6 +12,9 @@ Open Source svg editor for all platform.
     - if one end of line is the center of an object, it keeps tracking the object's movement.
 - create rectange & squares
     - two circle in upper right will help shape the edge of it
+- RGBA -- red green blue alpha
+    - alpha mean degree of transparency
+
 
 Shortcut keys
 -------------

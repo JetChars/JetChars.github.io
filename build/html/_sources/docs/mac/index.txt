@@ -5,8 +5,8 @@ Mac as Main OS
 ShortCuts
 =========
 
-* Mac Featured
-
+Mac Featured
+------------
 
 ==================== ==============================
 commands                 description
@@ -44,7 +44,8 @@ cmd + 0/-/+            default/smaller/bigger font
 cmd + q                quit software(w/ all windows & tabs)
 ====================== ==============================
 
-* Safari
+Safari
+------
 
 ============================ ==============================
 commands                     description
@@ -61,7 +62,8 @@ cmd + tab/ shifttab          next/prev tab
 cmd + f1                     swith screen mode
 ============================ ==============================
 
-* Xcode
+Xcode
+-----
 
 ================== ============
 commands           description
@@ -69,6 +71,22 @@ commands           description
 cmd + r            run
 cmd + s            save
 ================== ============
+
+
+Special keys
+------------
+
+alt + [0-9a-z] or other symbols can create special symbols
+
+============== ==================
+combo          symbols
+============== ==================
+1234567890-=   ¡™£¢∞§¶•ªº–≠
+!@#$%^&*()_+   ⁄€‹›ﬁﬂ‡°·‚—±
+qwertyuiop[]\  œ∑´®†\¨ˆøπ“‘«
+QWERTYUIOP{}|  Œ„´‰ˇÁ¨ˆØ∏”’»
+============== ==================
+
 
 
 Issues

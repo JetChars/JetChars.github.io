@@ -106,4 +106,13 @@ MySQL
     help keyword   # show more detail about cmd
 
 
+PostgreSQL
+==========
+
+
+Developed by UC Berkely, is an ORDBMS, support most of SQL standards.
+
+- using command ``psql``
+
+- `PostgreSQL 8.1 manual_cn <http://www.php100.com/manual/PostgreSQL8/>`_
 
