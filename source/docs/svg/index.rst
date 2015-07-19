@@ -8,6 +8,11 @@ InkScape
 Open Source svg editor for all platform.
 `Official Guide <http://tavmjong.free.fr/INKSCAPE/MANUAL/html/index.php>`_
 
+- connect -- create lines
+    - if one end of line is the center of an object, it keeps tracking the object's movement.
+- create rectange & squares
+    - two circle in upper right will help shape the edge of it
+
 Shortcut keys
 -------------
 
@@ -17,7 +22,7 @@ Shortcut keys
 ========================= ============================
 key                       description
 ========================= ============================
--/+                       change canvas size
+-/+                       change canvas' size
 cmd/^ + direction         move object slightly
 ^ + object's direction    keep ratio when change size
 shift + right click       select multiple object

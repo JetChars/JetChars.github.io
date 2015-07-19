@@ -17,4 +17,11 @@ Secure Shell
 
 
 
+3 most powerful ssh tunnel
+--------------------------
 
+.. code-block:: bash
+    
+    ssh -C -f -N -g -L listen_port:DST_Host:DST_port user@Tunnel_Host 
+    ssh -C -f -N -g -R listen_port:DST_Host:DST_port user@Tunnel_Host 
+    ssh -C -f -N -g -D listen_port user@Tunnel_Host

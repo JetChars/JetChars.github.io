@@ -41,7 +41,19 @@ proxy arguments
     NO_PROXY="localhost,*intel.com:913,172.16.0.0/16,10.0.0.0/8,127.0.0.0/8"
 
 
+access intel proxy from mac at home
+-----------------------------------
 
+.. code-block:: bash
+
+    # Privileged ports can only be forwarded by root.
+    # can't use domain because of dns can't resolve internal domain
+    # web browser should use http as proxy protocol
+    # because of firewall tunnel can't built at working laptop
+    # minimal configuration
+    sudo ssh -N -L 913:172.16.213.225:913 wenjieca@192.168.199.116
+    # compress and run in background
+    sudo ssh -fgCNL 913:172.16.213.225:913 wenjieca@192.168.199.116
 
 
 

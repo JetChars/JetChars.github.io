@@ -365,6 +365,10 @@ nova-docker talks directly to docker
 - bay -- grouping of nodes that run a COE (container orchestration engine like k8s,swarm,etc.)
 - baymodel -- template for creating bay
 
+.. image:: images/magnum_architecture.png
+
+
+
 .. sidebar:: Note
 
     every circle in 'stacks' is a configuration step
