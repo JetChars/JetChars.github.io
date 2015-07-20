@@ -133,6 +133,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#container-in-kvm">container in kvm</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tier-of-competition">3 tier of competition</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id3">CoreOS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id4">Kubernetes</a></li>
 </ul>
@@ -143,8 +144,9 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../openstack/index.html">OpenStack</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#intro">Intro</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#nova">Nova</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#id1">nova-docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#id2">nova-docker</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#nova-rootwrap">nova-rootwrap</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#management">Management</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../openstack/index.html#secgroup">SecGroup</a></li>
@@ -163,7 +165,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#refresh-horizon">Refresh horizon</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#id7">Cinder</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../openstack/index.html#id8">Cinder</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#components">Components</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#storage-backend">Storage backend</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../openstack/index.html#configuation">Configuation</a></li>
@@ -373,6 +375,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../linux_doc/index.html#id1">Built-in themes</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_doc/index.html#tips">Tips</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../linux_doc/index.html#issues">Issues</a></li>
 </ul>
 </li>
@@ -485,13 +488,19 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../mac/index.html">Mac as Main OS</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../mac/index.html#shortcuts">ShortCuts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mac/index.html#shortcuts">ShortCuts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../mac/index.html#mac-featured">Mac Featured</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mac/index.html#safari">Safari</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mac/index.html#xcode">Xcode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mac/index.html#special-keys">Special keys</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../mac/index.html#issues">Issues</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../mac/index.html#cannot-find-bluetooth-device">Cannot find bluetooth device</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../mac/index.html#softwares">Softwares</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../mac/index.html#safari">Safari</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mac/index.html#id1">Safari</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../mac/index.html#popclip-rightclick-enhancement-tool">PopClip &#8211; rightclick enhancement tool</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../mac/index.html#brew-package-management-software">brew &#8211; package management software</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../mac/index.html#glims-safari-enhancement">glims &#8211; safari enhancement</a></li>
@@ -576,6 +585,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../sql/index.html#dql">DQL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../sql/index.html#dcl">DCL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../sql/index.html#mysql">MySQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sql/index.html#postgresql">PostgreSQL</a></li>
 </ul>
 </li>
 </ul>
@@ -862,11 +872,13 @@ ubuntu, ubuntu:trusty, ubuntu:latest, ubuntu:14.04</p>
 2
 3
 4
-5</pre></div></td><td class="code"><div class="highlight"><pre>docker images <span class="o">[</span>-aq<span class="o">]</span> &lt;image&gt;
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre>docker images <span class="o">[</span>-aq<span class="o">]</span> &lt;image&gt;
 docker search &lt;image&gt;
 docker rmi &lt;image&gt;
 docker <span class="nb">history</span> <span class="o">[</span>-q<span class="o">]</span> <span class="o">[</span>--no-trunc<span class="o">]</span> &lt;image&gt;
 docker build <span class="o">[</span>-f build-file<span class="o">]</span> <span class="o">[</span>-t tag<span class="o">]</span> .
+cat ubuntu.tar.gz <span class="p">|</span> docker import ubuntu:ubuntu14
 </pre></div>
 </td></tr></table></div>
 </div>
@@ -956,7 +968,32 @@ docker build --no-cache<span class="o">=</span><span class="nb">true</span> -f &
 <h2>container in kvm<a class="headerlink" href="#container-in-kvm" title="Permalink to this headline">¶</a></h2>
 <p>like coreos, intel clear linux or any other light weight linux work with container in hybrid mode.
 - can take both the advangtages of kvm and container</p>
+<div class="section" id="tier-of-competition">
+<h3>3 tier of competition<a class="headerlink" href="#tier-of-competition" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="52%" />
+<col width="48%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">tiers</th>
+<th class="head">items</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>container management</td>
+<td>ECS,k8s,swarm,mesos,magnum</td>
+</tr>
+<tr class="row-odd"><td>computing engines</td>
+<td>EC2,GCE,Nova/Heat,mesos,magnum</td>
+</tr>
+<tr class="row-even"><td>kvm images</td>
+<td>fedora-atomic,coreos,clearos</td>
+</tr>
+</tbody>
+</table>
 <img alt="../../_images/coreos.png" class="align-right" src="../../_images/coreos.png" />
+</div>
 <div class="section" id="id3">
 <h3><a class="reference external" href="https://coreos.com">CoreOS</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
@@ -969,7 +1006,12 @@ docker build --no-cache<span class="o">=</span><span class="nb">true</span> -f &
 </div>
 <div class="section" id="id4">
 <h3><a class="reference external" href="http://kubernetes.io">Kubernetes</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://github.com/GoogleCloudPlatform/kubernetes">https://github.com/GoogleCloudPlatform/kubernetes</a></p>
 <p>It&#8217;s an open source orchestration system for Docker containers, open-sourced by google</p>
+<ul class="simple">
+<li>kubelet manage all containers(aprserver, schedule, proxy)</li>
+</ul>
+<img alt="../../_images/k8s-singlenode-docker.png" src="../../_images/k8s-singlenode-docker.png" />
 </div>
 </div>
 <div class="section" id="issues">
@@ -988,6 +1030,33 @@ sudo usermod -aG docker stack   <span class="c"># stack is our current user</spa
 <span class="k">then</span> relog in to current user
 </pre></div>
 </div>
+<ol class="arabic simple" start="2">
+<li>FATA[0020] &#8211; Error response from daemon</li>
+</ol>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">stack@r16s01:~/stacker$</span> docker run --net<span class="o">=</span>host -d gcr.io/google_containers/etcd:2.0.9 /usr/local/bin/etcd --addr<span class="o">=</span>127.0.0.1:4001 --bind-addr<span class="o">=</span>0.0.0.0:4001 --data-dir<span class="o">=</span>/var/etcd/data
+<span class="go">Unable to find image &#39;gcr.io/google_containers/etcd:2.0.9&#39; locally</span>
+<span class="go">FATA[0020] Error response from daemon: v1 ping attempt failed with error: Get https://gcr.io/v1/_ping: read tcp 10.239.4.160:913: i/o timeout. If this private registry supports only HTTP or HTTPS with an unknown CA certificate, please add `--insecure-registry gcr.io` to the daemon&#39;s arguments. In the case of HTTPS, if you have access to the registry&#39;s CA certificate, no need for the flag; simply place the CA certificate at /etc/docker/certs.d/gcr.io/ca.crt</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>solution: add <code class="docutils literal"><span class="pre">OPTIONS=--insecure-registry</span> <span class="pre">gcr.io</span></code> to /etc/sysconfig/docker</li>
+</ul>
+<ol class="arabic simple" start="3">
+<li>FATA[0040] &#8211; Error response from daemon</li>
+</ol>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">FATA[0040] Error response from daemon: v1 ping attempt failed with error: Get http://gcr.io/v1/_ping: read tcp 10.239.4.80:913: i/o timeout</span>
+</pre></div>
+</div>
+<ul>
+<li><dl class="first docutils">
+<dt>solution: this personal repository is unreachable.</dt>
+<dd><ul class="first last simple">
+<li>gcr.io means google container repository</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
 </div>
 </div>
 

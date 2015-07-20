@@ -131,6 +131,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../docker/index.html#container-in-kvm">container in kvm</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#tier-of-competition">3 tier of competition</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../docker/index.html#id3">CoreOS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../docker/index.html#id4">Kubernetes</a></li>
 </ul>
@@ -846,12 +847,19 @@ keystone endpoint-create --service<span class="o">=</span>magnum <span class="se
                          --region RegionOne
 </pre></div>
 </td></tr></table></div>
+<div class="section" id="use-magnum">
+<h2>use magnum<a class="headerlink" href="#use-magnum" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c"># infact it will create 3 nodes, include a swarm master node</span>
+magnum bay-create --name swarmbay --baymodel swarmbaymodel --node-count 2
+</pre></div>
+</div>
 <table class="docutils footnote" frame="void" id="id1" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label">[1]</td><td><a class="reference external" href="http://docs.openstack.org/developer/magnum/index.html">http://docs.openstack.org/developer/magnum/index.html</a></td></tr>
 </tbody>
 </table>
+</div>
 </div>
 
 

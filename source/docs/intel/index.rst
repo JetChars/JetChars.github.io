@@ -5,8 +5,8 @@ Work at Intel
 
 
 
-intel-proxies
-=============
+Networking
+==========
 
 available proxy list
 --------------------
@@ -41,8 +41,8 @@ proxy arguments
     NO_PROXY="localhost,*intel.com:913,172.16.0.0/16,10.0.0.0/8,127.0.0.0/8"
 
 
-access intel proxy from mac at home
------------------------------------
+use intel proxy from mac at home
+--------------------------------
 
 .. code-block:: bash
 
@@ -51,9 +51,15 @@ access intel proxy from mac at home
     # web browser should use http as proxy protocol
     # because of firewall tunnel can't built at working laptop
     # minimal configuration
-    sudo ssh -N -L 913:172.16.213.225:913 wenjieca@192.168.199.116
+    sudo ssh -N -L 0.0.0.0:913:172.16.213.225:913 wenjieca@192.168.199.116
     # compress and run in background
-    sudo ssh -fgCNL 913:172.16.213.225:913 wenjieca@192.168.199.116
+    sudo ssh -fgCNL 0.0.0.0:913:172.16.213.225:913 wenjieca@192.168.199.116
 
 
+Find out occupied IPs
+---------------------
 
+.. code-block:: bash
+
+    >ip_occupied;for i in `seq 1 6`;do for j in `seq 1 255`;do bash -c "ping -w1 -c1 172.16.$i.$j | grep ttl | cut -d' ' -f4 | cut -d: -f1 | tee -a ip_occupied &" ;done;done
+    arp-scan -I eth0 -l   # will check every IP eth0 can access locally

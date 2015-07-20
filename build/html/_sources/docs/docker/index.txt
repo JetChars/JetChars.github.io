@@ -150,7 +150,7 @@ Image Management
     docker rmi <image>
     docker history [-q] [--no-trunc] <image>
     docker build [-f build-file] [-t tag] .
-
+    cat ubuntu.tar.gz | docker import ubuntu:ubuntu14
 
 tricks
 ------
@@ -243,6 +243,19 @@ container in kvm
 like coreos, intel clear linux or any other light weight linux work with container in hybrid mode.
 - can take both the advangtages of kvm and container
 
+
+3 tier of competition
+---------------------
+
+================================= ========================
+tiers                             items
+================================= ========================
+container management              ECS,k8s,swarm,mesos,magnum
+computing engines                 EC2,GCE,Nova/Heat,mesos,magnum
+kvm images                        fedora-atomic,coreos,clearos
+================================= ========================
+
+
 .. image:: images/coreos.png
     :align: right
 
@@ -260,9 +273,14 @@ like coreos, intel clear linux or any other light weight linux work with contain
 `Kubernetes <http://kubernetes.io>`_
 ------------------------------------
 
+
+https://github.com/GoogleCloudPlatform/kubernetes
+
 It's an open source orchestration system for Docker containers, open-sourced by google
 
+- kubelet manage all containers(aprserver, schedule, proxy)
 
+.. image:: images/k8s-singlenode-docker.png
 
 
 
@@ -283,5 +301,30 @@ Issues
     sudo groupadd docker
     sudo usermod -aG docker stack   # stack is our current user
     then relog in to current user
+
+
+2. FATA[0020] -- Error response from daemon
+
+.. code-block:: console
+
+    stack@r16s01:~/stacker$ docker run --net=host -d gcr.io/google_containers/etcd:2.0.9 /usr/local/bin/etcd --addr=127.0.0.1:4001 --bind-addr=0.0.0.0:4001 --data-dir=/var/etcd/data
+    Unable to find image 'gcr.io/google_containers/etcd:2.0.9' locally
+    FATA[0020] Error response from daemon: v1 ping attempt failed with error: Get https://gcr.io/v1/_ping: read tcp 10.239.4.160:913: i/o timeout. If this private registry supports only HTTP or HTTPS with an unknown CA certificate, please add `--insecure-registry gcr.io` to the daemon's arguments. In the case of HTTPS, if you have access to the registry's CA certificate, no need for the flag; simply place the CA certificate at /etc/docker/certs.d/gcr.io/ca.crt 
+
+
+- solution: add ``OPTIONS=--insecure-registry gcr.io`` to /etc/sysconfig/docker
+
+
+3. FATA[0040] -- Error response from daemon
+
+
+.. code-block:: console
+
+    FATA[0040] Error response from daemon: v1 ping attempt failed with error: Get http://gcr.io/v1/_ping: read tcp 10.239.4.80:913: i/o timeout
+
+- solution: this personal repository is unreachable.
+    - gcr.io means google container repository
+
+
 
 

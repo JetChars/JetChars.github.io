@@ -105,4 +105,17 @@ Magnum is an OpenStack project which offers container orchestration engines for 
 
 
 
+
+
+
+use magnum
+==========
+
+.. code-block:: bash
+
+    # infact it will create 3 nodes, include a swarm master node
+    magnum bay-create --name swarmbay --baymodel swarmbaymodel --node-count 2
+
+
+
 .. [#] http://docs.openstack.org/developer/magnum/index.html

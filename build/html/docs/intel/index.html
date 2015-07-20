@@ -131,6 +131,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../docker/index.html#container-in-kvm">container in kvm</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#tier-of-competition">3 tier of competition</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../docker/index.html#id3">CoreOS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../docker/index.html#id4">Kubernetes</a></li>
 </ul>
@@ -372,6 +373,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../linux_doc/index.html#id1">Built-in themes</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_doc/index.html#tips">Tips</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../linux_doc/index.html#issues">Issues</a></li>
 </ul>
 </li>
@@ -670,8 +672,8 @@
             
   <div class="section" id="work-at-intel">
 <h1>Work at Intel<a class="headerlink" href="#work-at-intel" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="intel-proxies">
-<h2>intel-proxies<a class="headerlink" href="#intel-proxies" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="networking">
+<h2>Networking<a class="headerlink" href="#networking" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="available-proxy-list">
 <h3>available proxy list<a class="headerlink" href="#available-proxy-list" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="docutils">
@@ -717,16 +719,23 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="access-intel-proxy-from-mac-at-home">
-<h3>access intel proxy from mac at home<a class="headerlink" href="#access-intel-proxy-from-mac-at-home" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="use-intel-proxy-from-mac-at-home">
+<h3>use intel proxy from mac at home<a class="headerlink" href="#use-intel-proxy-from-mac-at-home" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-bash"><div class="highlight"><pre><span class="c"># Privileged ports can only be forwarded by root.</span>
 <span class="c"># can&#39;t use domain because of dns can&#39;t resolve internal domain</span>
 <span class="c"># web browser should use http as proxy protocol</span>
 <span class="c"># because of firewall tunnel can&#39;t built at working laptop</span>
 <span class="c"># minimal configuration</span>
-sudo ssh -N -L 913:172.16.213.225:913 wenjieca@192.168.199.116
+sudo ssh -N -L 0.0.0.0:913:172.16.213.225:913 wenjieca@192.168.199.116
 <span class="c"># compress and run in background</span>
-sudo ssh -fgCNL 913:172.16.213.225:913 wenjieca@192.168.199.116
+sudo ssh -fgCNL 0.0.0.0:913:172.16.213.225:913 wenjieca@192.168.199.116
+</pre></div>
+</div>
+</div>
+<div class="section" id="find-out-occupied-ips">
+<h3>Find out occupied IPs<a class="headerlink" href="#find-out-occupied-ips" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash"><div class="highlight"><pre>&gt;ip_occupied<span class="p">;</span><span class="k">for</span> i in <span class="sb">`</span>seq <span class="m">1</span> 6<span class="sb">`</span><span class="p">;</span><span class="k">do</span> <span class="k">for</span> j in <span class="sb">`</span>seq <span class="m">1</span> 255<span class="sb">`</span><span class="p">;</span><span class="k">do</span> bash -c <span class="s2">&quot;ping -w1 -c1 172.16.</span><span class="nv">$i</span><span class="s2">.</span><span class="nv">$j</span><span class="s2"> | grep ttl | cut -d&#39; &#39; -f4 | cut -d: -f1 | tee -a ip_occupied &amp;&quot;</span> <span class="p">;</span><span class="k">done</span><span class="p">;</span><span class="k">done</span>
+arp-scan -I eth0 -l   <span class="c"># will check every IP eth0 can access locally</span>
 </pre></div>
 </div>
 </div>
