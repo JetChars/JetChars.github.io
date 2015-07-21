@@ -41,10 +41,13 @@ Pip
     - ``sudo apt-get install python-pip``
     - ``sudo yum install python-pip``
 
-2. Upgrade or downgrade module
-    - ``sudo pip install -U pip``
-    - ``sudo pip install -U pip==6.0.8``
-    - ``sudo easy_install -U pip``
+2. Upgrade or downgrade module::
+
+    sudo pip install -U pip
+    sudo pip install -U pip==6.0.8
+    # install all the packages listed in the given requirements file. -r can be used multiple times.
+    sudo pip install -r requirements.txt   
+    sudo easy_install -U pip
    
 
 3. Remove module

@@ -118,6 +118,7 @@ Container Management
 .. sidebar:: Note
 
     - detach a instance ``^p^q``
+    - docker can auto complete uuid, only need to provide an unique prefix
 
 .. code-block:: shell
     :linenos:
@@ -279,6 +280,8 @@ https://github.com/GoogleCloudPlatform/kubernetes
 It's an open source orchestration system for Docker containers, open-sourced by google
 
 - kubelet manage all containers(aprserver, schedule, proxy)
+- kubernetes pilot run at GAE
+
 
 .. image:: images/k8s-singlenode-docker.png
 

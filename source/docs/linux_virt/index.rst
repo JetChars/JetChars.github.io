@@ -51,6 +51,11 @@ console vm       connect the pty console of vm
     virsh edit instanceid
 
 
+`TI Calculators <http://www.ticalc.org/basics/calculators/index.html>`
+=====================================================================
+
+
+buntch of TI's calculators can run in emulators at mac/linux/windows.
 
 
 
