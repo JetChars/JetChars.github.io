@@ -26,6 +26,7 @@ Pseudo-filesystem
 -----------------
 
 - ``/proc`` -- process infomation pseudo-filesystem
+    - only files under ``proc/sys`` can be changed via ``echo >``
 - ``/dev/zero`` -- echo endless zeros
 - ``/dev/null``  -- black hole, devour everything
 

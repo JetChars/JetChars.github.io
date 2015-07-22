@@ -442,6 +442,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../linux_virt/index.html#hypervisors">Hypervisors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_virt/index.html#libvirt">Libvirt</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_virt/index.html#virsh-virtualization-management-interface">Virsh &#8211; Virtualization Management Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_virt/index.html#ti-calculators-http-www-ticalc-org-basics-calculators-index-html"><cite>TI Calculators &lt;http://www.ticalc.org/basics/calculators/index.html&gt;</cite></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_virt/index.html#docker">Docker</a></li>
 </ul>
 </li>
@@ -801,6 +802,8 @@
 </dd>
 </dl>
 </li>
+<li><p class="first">docker will copy host&#8217;s <code class="docutils literal"><span class="pre">resolv.conf</span></code></p>
+</li>
 </ul>
 </div>
 <div class="section" id="install-docker">
@@ -836,7 +839,10 @@ adding your user to the &#8220;docker&#8221; group with something like:</p>
 <div class="sidebar">
 <p class="first sidebar-title">Note</p>
 <ul class="last simple">
+<li>docker daemon receives the commands</li>
 <li>detach a instance <code class="docutils literal"><span class="pre">^p^q</span></code></li>
+<li>64-character long id, twice the length of uuid(32char)</li>
+<li>docker can auto complete id, only need to provide an unique prefix</li>
 </ul>
 </div>
 <div class="highlight-shell"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -849,7 +855,7 @@ adding your user to the &#8220;docker&#8221; group with something like:</p>
  8
  9
 10</pre></div></td><td class="code"><div class="highlight"><pre>docker run <span class="o">[</span>-v <span class="o">[</span>hostpath:<span class="o">]</span>path<span class="o">[</span>:mountopts<span class="o">]]</span> <span class="o">[</span>-itd<span class="o">]</span> <span class="o">[</span>--rm<span class="o">]</span> <span class="o">[</span>--name cname<span class="o">]</span> <span class="o">[</span>--volumes-from &lt;container&gt;<span class="o">]</span> &lt;image&gt; CMD
-docker ps <span class="o">[</span>-aq<span class="o">]</span> <span class="o">[</span>--no-trunc<span class="o">]</span>
+docker ps <span class="o">[</span>-aq<span class="o">]</span> <span class="o">[</span>--no-trunc<span class="o">]</span>   <span class="c"># only have running/exited 2 stats</span>
 docker <span class="nb">kill</span> &lt;container&gt;
 docker stop&lt;container&gt;
 docker inspect <span class="o">[</span>-f, --format &lt;format&gt;<span class="o">]</span> &lt;container&gt;
@@ -873,12 +879,14 @@ ubuntu, ubuntu:trusty, ubuntu:latest, ubuntu:14.04</p>
 3
 4
 5
-6</pre></div></td><td class="code"><div class="highlight"><pre>docker images <span class="o">[</span>-aq<span class="o">]</span> &lt;image&gt;
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre>docker images <span class="o">[</span>-aq<span class="o">]</span> &lt;image&gt;
 docker search &lt;image&gt;
 docker rmi &lt;image&gt;
 docker <span class="nb">history</span> <span class="o">[</span>-q<span class="o">]</span> <span class="o">[</span>--no-trunc<span class="o">]</span> &lt;image&gt;
 docker build <span class="o">[</span>-f build-file<span class="o">]</span> <span class="o">[</span>-t tag<span class="o">]</span> .
-cat ubuntu.tar.gz <span class="p">|</span> docker import ubuntu:ubuntu14
+docker save ubuntu &gt; ubuntu.tar.gz
+docker load &lt; ubuntu.tar.gz
 </pre></div>
 </td></tr></table></div>
 </div>
@@ -940,7 +948,34 @@ docker run --rm --volumes-from john1 -v <span class="k">$(</span><span class="nb
 </li>
 <li><p class="first"><code class="docutils literal"><span class="pre">ENTRYPOINT</span></code></p>
 </li>
+<li><p class="first"><code class="docutils literal"><span class="pre">ENV</span></code></p>
+</li>
 </ul>
+<div class="highlight-guess"><div class="highlight"><pre>ENV http_proxy=&quot;http://10.239.4.80:913&quot;
+ENV https_proxy=&quot;https://10.239.4.80:913&quot;
+ENV ftp_proxy=&quot;ftp://10.239.4.80:913&quot;
+ENV socks_proxy=&quot;socks://10.239.4.80:913&quot;
+ENV no_proxy=&quot;localhost,*intel.com:913,172.16.0.0/16,10.0.0.0/8,127.0.0.0/8&quot;
+ENV HTTP_PROXY=&quot;http://10.239.4.80:913&quot;
+ENV HTTPS_PROXY=&quot;https://10.239.4.80:913&quot;
+ENV FTP_PROXY=&quot;ftp://10.239.4.80:913&quot;
+ENV SOCKS_PROXY=&quot;socks://10.239.4.80:913&quot;
+ENV NO_PROXY=&quot;localhost,*intel.com:913,172.16.0.0/16,10.0.0.0/8,127.0.0.0/8&quot;
+</pre></div>
+</div>
+<p>configurationfs like below will not take effect!</p>
+<div class="highlight-guess"><div class="highlight"><pre>RUN export http_proxy=&quot;http://10.239.4.80:913&quot;
+RUN export https_proxy=&quot;https://10.239.4.80:913&quot;
+RUN export ftp_proxy=&quot;ftp://10.239.4.80:913&quot;
+RUN export socks_proxy=&quot;socks://10.239.4.80:913&quot;
+RUN export no_proxy=&quot;localhost,*intel.com:913,172.16.0.0/16,10.0.0.0/8,127.0.0.0/8&quot;
+RUN export HTTP_PROXY=&quot;http://10.239.4.80:913&quot;
+RUN export HTTPS_PROXY=&quot;https://10.239.4.80:913&quot;
+RUN export FTP_PROXY=&quot;ftp://10.239.4.80:913&quot;
+RUN export SOCKS_PROXY=&quot;socks://10.239.4.80:913&quot;
+RUN export NO_PROXY=&quot;localhost,*intel.com:913,172.16.0.0/16,10.0.0.0/8,127.0.0.0/8&quot;
+</pre></div>
+</div>
 </div>
 <div class="section" id="caching">
 <h3>Caching<a class="headerlink" href="#caching" title="Permalink to this headline">¶</a></h3>
@@ -972,8 +1007,8 @@ docker build --no-cache<span class="o">=</span><span class="nb">true</span> -f &
 <h3>3 tier of competition<a class="headerlink" href="#tier-of-competition" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="docutils">
 <colgroup>
-<col width="52%" />
-<col width="48%" />
+<col width="37%" />
+<col width="63%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">tiers</th>
@@ -981,13 +1016,16 @@ docker build --no-cache<span class="o">=</span><span class="nb">true</span> -f &
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>container management</td>
-<td>ECS,k8s,swarm,mesos,magnum</td>
+<tr class="row-even"><td>application container provider</td>
+<td>lxc,docker,rocket(rkt)</td>
 </tr>
-<tr class="row-odd"><td>computing engines</td>
-<td>EC2,GCE,Nova/Heat,mesos,magnum</td>
+<tr class="row-odd"><td>container management</td>
+<td>ECS,k8s,swarm,mesos,magnum/k8s|swarm|mesos</td>
 </tr>
-<tr class="row-even"><td>kvm images</td>
+<tr class="row-even"><td>computing engines</td>
+<td>EC2,GCE,Nova/Heat,mesos,magnum,vagrant/virtualbox/vmware</td>
+</tr>
+<tr class="row-odd"><td>kvm images</td>
 <td>fedora-atomic,coreos,clearos</td>
 </tr>
 </tbody>
@@ -1010,6 +1048,7 @@ docker build --no-cache<span class="o">=</span><span class="nb">true</span> -f &
 <p>It&#8217;s an open source orchestration system for Docker containers, open-sourced by google</p>
 <ul class="simple">
 <li>kubelet manage all containers(aprserver, schedule, proxy)</li>
+<li>kubernetes pilot run at GAE</li>
 </ul>
 <img alt="../../_images/k8s-singlenode-docker.png" src="../../_images/k8s-singlenode-docker.png" />
 </div>

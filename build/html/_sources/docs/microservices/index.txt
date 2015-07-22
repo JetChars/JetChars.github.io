@@ -10,10 +10,24 @@ The microservice architectural style [1] is an approach to developing a single a
 I think the style 'microservices' is a good architechture  for distributed software.
 
 - default style for building enterprise applications
-
-
 - RESTful api for client/server communications
 - AMQP for communications between services
+- different language would be better for diff platform/problem
+
+
+
+
+monolith vs. microservices
+
+======================= =========================
+monolith                microservices
+======================= =========================
+simple                  partial deployment
+                        availability
+======================= =========================
+
+
+
 
 
 .. [mar2014] http://martinfowler.com/articles/microservices.html

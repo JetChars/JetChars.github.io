@@ -73,7 +73,7 @@ Configuration files
     - can work with export or any other cmds
 - ``/etc/sysconfig/docker`` -- Docker configuration file for centos/fedora/redhat
     - parameters(key-value pair) only 
-
+- docker will copy host's ``resolv.conf``
 
 
 
@@ -117,13 +117,16 @@ Container Management
 
 .. sidebar:: Note
 
+    - docker daemon receives the commands
     - detach a instance ``^p^q``
+    - 64-character long id, twice the length of uuid(32char)
+    - docker can auto complete id, only need to provide an unique prefix
 
 .. code-block:: shell
     :linenos:
 
     docker run [-v [hostpath:]path[:mountopts]] [-itd] [--rm] [--name cname] [--volumes-from <container>] <image> CMD
-    docker ps [-aq] [--no-trunc]
+    docker ps [-aq] [--no-trunc]   # only have running/exited 2 stats
     docker kill <container>
     docker stop<container>
     docker inspect [-f, --format <format>] <container>
@@ -150,7 +153,9 @@ Image Management
     docker rmi <image>
     docker history [-q] [--no-trunc] <image>
     docker build [-f build-file] [-t tag] .
-    cat ubuntu.tar.gz | docker import ubuntu:ubuntu14
+    docker save ubuntu > ubuntu.tar.gz
+    docker load < ubuntu.tar.gz
+
 
 tricks
 ------
@@ -202,6 +207,40 @@ Instructions
 - ``ENTRYPOINT``
     
 
+- ``ENV`` 
+  
+.. code-block:: guess
+
+    ENV http_proxy="http://10.239.4.80:913"
+    ENV https_proxy="https://10.239.4.80:913"
+    ENV ftp_proxy="ftp://10.239.4.80:913"
+    ENV socks_proxy="socks://10.239.4.80:913"
+    ENV no_proxy="localhost,*intel.com:913,172.16.0.0/16,10.0.0.0/8,127.0.0.0/8"
+    ENV HTTP_PROXY="http://10.239.4.80:913"
+    ENV HTTPS_PROXY="https://10.239.4.80:913"
+    ENV FTP_PROXY="ftp://10.239.4.80:913"
+    ENV SOCKS_PROXY="socks://10.239.4.80:913"
+    ENV NO_PROXY="localhost,*intel.com:913,172.16.0.0/16,10.0.0.0/8,127.0.0.0/8"
+
+
+configurationfs like below will not take effect!
+
+.. code-block:: guess
+
+    RUN export http_proxy="http://10.239.4.80:913"
+    RUN export https_proxy="https://10.239.4.80:913"
+    RUN export ftp_proxy="ftp://10.239.4.80:913"
+    RUN export socks_proxy="socks://10.239.4.80:913"
+    RUN export no_proxy="localhost,*intel.com:913,172.16.0.0/16,10.0.0.0/8,127.0.0.0/8"
+    RUN export HTTP_PROXY="http://10.239.4.80:913"
+    RUN export HTTPS_PROXY="https://10.239.4.80:913"
+    RUN export FTP_PROXY="ftp://10.239.4.80:913"
+    RUN export SOCKS_PROXY="socks://10.239.4.80:913"
+    RUN export NO_PROXY="localhost,*intel.com:913,172.16.0.0/16,10.0.0.0/8,127.0.0.0/8"
+
+
+
+
 
 
 
@@ -250,8 +289,9 @@ like coreos, intel clear linux or any other light weight linux work with contain
 ================================= ========================
 tiers                             items
 ================================= ========================
-container management              ECS,k8s,swarm,mesos,magnum
-computing engines                 EC2,GCE,Nova/Heat,mesos,magnum
+application container provider    lxc,docker,rocket(rkt)
+container management              ECS,k8s,swarm,mesos,magnum/k8s|swarm|mesos
+computing engines                 EC2,GCE,Nova/Heat,mesos,magnum,vagrant/virtualbox/vmware
 kvm images                        fedora-atomic,coreos,clearos
 ================================= ========================
 
@@ -279,6 +319,8 @@ https://github.com/GoogleCloudPlatform/kubernetes
 It's an open source orchestration system for Docker containers, open-sourced by google
 
 - kubelet manage all containers(aprserver, schedule, proxy)
+- kubernetes pilot run at GAE
+
 
 .. image:: images/k8s-singlenode-docker.png
 

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Virtualization &mdash; JetChars alpha documentation</title>
+  <title>Windows &mdash; JetChars alpha documentation</title>
   
 
   
@@ -30,9 +30,7 @@
   
 
   
-    <link rel="top" title="JetChars alpha documentation" href="../../index.html"/>
-        <link rel="next" title="PXE – Preboot Execution Enviriment" href="../pxe/index.html"/>
-        <link rel="prev" title="Linux Package Management" href="../linux_pkg/index.html"/> 
+    <link rel="top" title="JetChars alpha documentation" href="../../index.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -330,7 +328,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../doopshot/index.html">DoopShot</a></li>
 </ul>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../linux_disk/index.html">Linux Disk</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#filesystem">Filesystem</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#kernnel-vfs">Kernnel &#8211; VFS</a></li>
@@ -438,12 +436,12 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Virtualization</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#hypervisors">Hypervisors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#libvirt">Libvirt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#virsh-virtualization-management-interface">Virsh &#8211; Virtualization Management Interface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ti-calculators-http-www-ticalc-org-basics-calculators-index-html"><cite>TI Calculators &lt;http://www.ticalc.org/basics/calculators/index.html&gt;</cite></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#docker">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux_virt/index.html">Virtualization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../linux_virt/index.html#hypervisors">Hypervisors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_virt/index.html#libvirt">Libvirt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_virt/index.html#virsh-virtualization-management-interface">Virsh &#8211; Virtualization Management Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_virt/index.html#ti-calculators-http-www-ticalc-org-basics-calculators-index-html"><cite>TI Calculators &lt;http://www.ticalc.org/basics/calculators/index.html&gt;</cite></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_virt/index.html#docker">Docker</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../pxe/index.html">PXE &#8211; Preboot Execution Enviriment</a><ul>
@@ -660,11 +658,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
-    <li>Virtualization</li>
+    <li>Windows</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../../_sources/docs/linux_virt/index.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/docs/windows/index.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -673,114 +671,49 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="virtualization">
-<h1>Virtualization<a class="headerlink" href="#virtualization" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="hypervisors">
-<h2>Hypervisors<a class="headerlink" href="#hypervisors" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="libvirt">
-<h2>Libvirt<a class="headerlink" href="#libvirt" title="Permalink to this headline">¶</a></h2>
-<p>libvirt is an open source API, daemon and management tool for managing platform virtualization. It can be used to manage KVM, Xen, VMware ESX, QEMU and other virtualization technologies. These APIs are widely used in the orchestration layer of hypervisors in the development of a cloud-based solution. <a class="footnote-reference" href="#id2" id="id1">[1]</a></p>
-<p>It will create a linuxbridge <strong>virbr0</strong> , counterpart is <strong>xenbr0</strong> for xen, <strong>vif0.0</strong> for xen guest, <strong>peth0</strong> for xen kernel.</p>
+  <div class="section" id="windows">
+<h1>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="applications">
+<h2>Applications<a class="headerlink" href="#applications" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="ms-applications">
+<h3>MS Applications<a class="headerlink" href="#ms-applications" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="onenote">
+<h4>OneNote<a class="headerlink" href="#onenote" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">/usr/sbin/libivirtd</span> <span class="pre">-d</span></code> is a background process</li>
-<li><code class="docutils literal"><span class="pre">/var/log/libvirt/libvirtd.log</span></code> default log file</li>
-<li><code class="docutils literal"><span class="pre">libvirt.xml</span></code> every instance has a conf file</li>
-<li>hvm (hardware virtual machine)</li>
-<li>pvm (parallel virtual machine)</li>
+<li>surface compatible</li>
+<li>Audio recording &amp; hand writing simultaniously</li>
+<li>math-addon</li>
 </ul>
-<img src="../../_images/libvirt_support.svg" /></div>
-<div class="section" id="virsh-virtualization-management-interface">
-<h2>Virsh &#8211; Virtualization Management Interface<a class="headerlink" href="#virsh-virtualization-management-interface" title="Permalink to this headline">¶</a></h2>
-<table border="1" class="docutils">
-<colgroup>
-<col width="23%" />
-<col width="77%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">command</th>
-<th class="head">description</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>create</td>
-<td>create an domain from xml(direct into running state)</td>
-</tr>
-<tr class="row-odd"><td>define/undefine</td>
-<td>define or undefine won&#8217;t into running state</td>
-</tr>
-<tr class="row-even"><td>destroy</td>
-<td>stop vm immediately, but not delete domain</td>
-</tr>
-<tr class="row-odd"><td>shutdown</td>
-<td>soft stop vm</td>
-</tr>
-<tr class="row-even"><td>list</td>
-<td>show active domain list, &#8211;all (show include inactive)</td>
-</tr>
-<tr class="row-odd"><td>edit &lt;ID/name&gt;</td>
-<td>modify guest&#8217;s xml file</td>
-</tr>
-<tr class="row-even"><td>dumpxml xxx.xml</td>
-<td>output guest&#8217;s xml</td>
-</tr>
-<tr class="row-odd"><td>connect</td>
-<td>connect vm</td>
-</tr>
-<tr class="row-even"><td>vncdisplay vm</td>
-<td>create a vnc link for vm</td>
-</tr>
-<tr class="row-odd"><td>console vm</td>
-<td>connect the pty console of vm</td>
-</tr>
-</tbody>
-</table>
-<div class="highlight-guess"><div class="highlight"><pre>virsh edit instanceid
+</div>
+</div>
+<div class="section" id="legacy-applications">
+<h3>legacy Applications<a class="headerlink" href="#legacy-applications" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="metro-applications">
+<h3>Metro Applications<a class="headerlink" href="#metro-applications" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="drawboard">
+<h4>drawboard<a class="headerlink" href="#drawboard" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>free &amp; support surface hand writing notes.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="bash-commands">
+<h2>Bash Commands<a class="headerlink" href="#bash-commands" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="network-tools">
+<h3>network tools<a class="headerlink" href="#network-tools" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bat"><div class="highlight"><pre>ping
+pathping
 </pre></div>
 </div>
 </div>
-<div class="section" id="ti-calculators-http-www-ticalc-org-basics-calculators-index-html">
-<h2><cite>TI Calculators &lt;http://www.ticalc.org/basics/calculators/index.html&gt;</cite><a class="headerlink" href="#ti-calculators-http-www-ticalc-org-basics-calculators-index-html" title="Permalink to this headline">¶</a></h2>
-<p>buntch of TI&#8217;s calculators can run in emulators at mac/linux/windows.</p>
-</div>
-<div class="section" id="docker">
-<h2>Docker<a class="headerlink" href="#docker" title="Permalink to this headline">¶</a></h2>
-<ul>
-<li><dl class="first docutils">
-<dt>Concept</dt>
-<dd><ul class="first last simple">
-<li>must have same os kernel</li>
-<li>native CPU/syscall/kernel</li>
-<li>use go language</li>
-<li>can&#8217;t over commitment</li>
-<li>lightweight &#8216;vm&#8217;</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-<p><a class="reference external" href="https://www.docker.com/tryit/">Interactive Tutorial</a></p>
-<table class="docutils footnote" frame="void" id="id2" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Libvirt">http://en.wikipedia.org/wiki/Libvirt</a></td></tr>
-</tbody>
-</table>
 </div>
 </div>
 
 
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../pxe/index.html" class="btn btn-neutral float-right" title="PXE – Preboot Execution Enviriment" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="../linux_pkg/index.html" class="btn btn-neutral" title="Linux Package Management" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>

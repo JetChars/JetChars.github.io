@@ -170,6 +170,9 @@ Instances
 Services
 ^^^^^^^^
 
+- multiple nova compute backends need multiple n-cpu daemons
+    - https://blueprints.launchpad.net/nova/+spec/multi-back-ends-for-nova-compute
+
 .. code-block:: bash
     :linenos:
 
