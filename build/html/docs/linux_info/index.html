@@ -116,7 +116,12 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/index.html#core-techs">Core techs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#storage">storage</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../docker/index.html#basic-commands">Basic Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#infos">Infos</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../docker/index.html#container-management">Container Management</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../docker/index.html#image-management">Image Management</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../docker/index.html#tricks">tricks</a></li>
@@ -358,7 +363,16 @@
 <li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#issues">Issues</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#loop-device">Loop Device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#loop-device">Loop Device</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#sparse-file">Sparse File</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../linux_disk/index.html#copying-w-cp">copying w/ &#8216;cp&#8217;</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../linux_disk/index.html#archiving-w-tar">Archiving w/ `tar&#8217;</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../linux_disk/index.html#mount-sparse-file">Mount sparse file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#create-loop-device">Create Loop Device</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#raid">RAID</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#raid10">raid10</a></li>
 </ul>
@@ -396,6 +410,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#enviroments">Enviroments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lscommands">lscommands</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux_net/index.html">Linux Network</a><ul>
@@ -483,7 +498,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../vim/index.html#id1">Sublime Text</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../ovs/index.html">Open vSwitch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../amqp/index.html">AMQP &#8211; Advanced Message Queuing Protocol</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../amqp/index.html#rabbitmq">RabbitMQ</a></li>
 </ul>
@@ -722,6 +736,15 @@ rpm -q centos-release
 <li><code class="docutils literal"><span class="pre">printenv</span></code> - print all or part of environment</li>
 </ul>
 <p>w/ no parameters these too cmds gave same results.</p>
+</div>
+<div class="section" id="lscommands">
+<h2>lscommands<a class="headerlink" href="#lscommands" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash"><div class="highlight"><pre>lscpu
+lsmod
+lspci <span class="p">|</span> grep net   <span class="c"># check nic model&amp;vendor</span>
+sudo lshw -C network <span class="p">|</span> grep -i xg -A10 -B1
+</pre></div>
+</div>
 </div>
 </div>
 

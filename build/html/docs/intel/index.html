@@ -114,7 +114,12 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/index.html#core-techs">Core techs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#storage">storage</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../docker/index.html#basic-commands">Basic Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#infos">Infos</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../docker/index.html#container-management">Container Management</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../docker/index.html#image-management">Image Management</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../docker/index.html#tricks">tricks</a></li>
@@ -671,7 +676,8 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="work-at-intel">
+  <a class="reference internal image-reference" href="../../_images/intel_logo.png"><img alt="../../_images/intel_logo.png" class="align-right" src="../../_images/intel_logo.png" style="width: 250px;" /></a>
+<div class="section" id="work-at-intel">
 <h1>Work at Intel<a class="headerlink" href="#work-at-intel" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="networking">
 <h2>Networking<a class="headerlink" href="#networking" title="Permalink to this headline">¶</a></h2>
@@ -717,6 +723,36 @@
 <span class="nv">FTP_PROXY</span><span class="o">=</span><span class="s2">&quot;ftp://child-prc.intel.com:913&quot;</span>
 <span class="nv">SOCKS_PROXY</span><span class="o">=</span><span class="s2">&quot;socks://child-prc.intel.com:913&quot;</span>
 <span class="nv">NO_PROXY</span><span class="o">=</span><span class="s2">&quot;localhost,*intel.com:913,172.16.0.0/16,10.0.0.0/8,127.0.0.0/8&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="export-proxies">
+<h3>export proxies<a class="headerlink" href="#export-proxies" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bat"><div class="highlight"><pre>export http_proxy<span class="o">=</span>http:<span class="n">//10.239.4.80:913</span>
+export https_proxy<span class="o">=</span>https:<span class="n">//10.239.4.80:913</span>
+export ftp_proxy<span class="o">=</span>ftp:<span class="n">//10.239.4.80:913</span>
+export socks_proxy<span class="o">=</span>socks:<span class="n">//10.239.4.80:913</span>
+export no_proxy<span class="o">=</span>localhost<span class="p">,</span>*intel.com:913<span class="p">,</span><span class="m">172</span>.<span class="m">16</span>.<span class="m">0</span>.<span class="m">0</span><span class="n">/16,10.0.0.0/8,127.0.0.0/8</span>
+export HTTP_PROXY<span class="o">=</span>http:<span class="n">//10.239.4.80:913</span>
+export HTTPS_PROXY<span class="o">=</span>https:<span class="n">//10.239.4.80:913</span>
+export FTP_PROXY<span class="o">=</span>ftp:<span class="n">//10.239.4.80:913</span>
+export SOCKS_PROXY<span class="o">=</span>socks:<span class="n">//10.239.4.80:913</span>
+export NO_PROXY<span class="o">=</span>localhost<span class="p">,</span>*intel.com:913<span class="p">,</span><span class="m">172</span>.<span class="m">16</span>.<span class="m">0</span>.<span class="m">0</span><span class="n">/16,10.0.0.0/8,127.0.0.0/8</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="command-prompt-proxies">
+<h3>command-prompt proxies<a class="headerlink" href="#command-prompt-proxies" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bat"><div class="highlight"><pre><span class="k">set</span> <span class="nv">http_proxy</span><span class="o">=</span>http:<span class="n">//10.239.4.80:913</span>
+<span class="k">set</span> <span class="nv">https_proxy</span><span class="o">=</span>https:<span class="n">//10.239.4.80:913</span>
+<span class="k">set</span> <span class="nv">ftp_proxy</span><span class="o">=</span>ftp:<span class="n">//10.239.4.80:913</span>
+<span class="k">set</span> <span class="nv">socks_proxy</span><span class="o">=</span>socks:<span class="n">//10.239.4.80:913</span>
+<span class="k">set</span> <span class="nv">no_proxy</span><span class="o">=</span>localhost<span class="p">,</span>*intel.com:913<span class="p">,</span><span class="m">172</span>.<span class="m">16</span>.<span class="m">0</span>.<span class="m">0</span><span class="n">/16,10.0.0.0/8,127.0.0.0/8</span>
+<span class="k">set</span> <span class="nv">HTTP_PROXY</span><span class="o">=</span>http:<span class="n">//10.239.4.80:913</span>
+<span class="k">set</span> <span class="nv">HTTPS_PROXY</span><span class="o">=</span>https:<span class="n">//10.239.4.80:913</span>
+<span class="k">set</span> <span class="nv">FTP_PROXY</span><span class="o">=</span>ftp:<span class="n">//10.239.4.80:913</span>
+<span class="k">set</span> <span class="nv">SOCKS_PROXY</span><span class="o">=</span>socks:<span class="n">//10.239.4.80:913</span>
+<span class="k">set</span> <span class="nv">NO_PROXY</span><span class="o">=</span>localhost<span class="p">,</span>*intel.com:913<span class="p">,</span><span class="m">172</span>.<span class="m">16</span>.<span class="m">0</span>.<span class="m">0</span><span class="n">/16,10.0.0.0/8,127.0.0.0/8</span>
 </pre></div>
 </div>
 </div>

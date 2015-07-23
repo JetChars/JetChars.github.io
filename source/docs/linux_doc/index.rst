@@ -32,7 +32,7 @@ Tips
 ----
 
 - add ``?highlight=keywords`` at the end of url can **highlight** the keywords
-
+- add ``id{num}`` after ``?highlight=keywords`` can goto reference line
 
 Issues
 ------

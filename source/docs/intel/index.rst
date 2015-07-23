@@ -1,3 +1,8 @@
+.. image:: images/intel_logo.png
+    :align: right
+    :width: 250px
+
+
 =============
 Work at Intel
 =============

@@ -227,6 +227,17 @@ MTU Size
 --------
 When using tunnel network (GRE, vxlan) , set the MTU in the Guest to 1400, this will allow for the GRE/vxlan header and no packet fragmentation.
 
+
+In general, the performance may vary based on the underlying hardware used when VXLAN is configured in Open vSwitch.  But worry not, the ixgbe Linux driver features VXLAN Overlay HW Offloading support and is enabled in the driver by default. [#]_
+
+
+This command enables/disables VXLAN support in the driver:
+
+.. code-block:: bash
+
+    ethtool -K ethX tx-udp_tnl-segmentation [off|on]
+
+
 * change default dnsmasq conf file at **/etc/neutron/dhcp_agent.ini** ::
 
 .. code-block:: guess
@@ -290,4 +301,5 @@ Improve Instance's Launch Speed
 
 
 .. [#] https://blueprints.launchpad.net/nova/+spec/improve-nova-kvm-io-support
+.. [#] https://software.intel.com/en-us/blogs/2015/01/29/optimizing-the-virtual-networks-with-vxlan-overlay-offloading
 .. [#] https://www.rdoproject.org/Using_GRE_tenant_networks

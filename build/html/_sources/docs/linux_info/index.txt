@@ -60,3 +60,14 @@ Enviroments
 - ``printenv`` - print all or part of environment
 
 w/ no parameters these too cmds gave same results.
+
+
+lscommands
+==========
+
+.. code-block:: bash
+
+    lscpu
+    lsmod
+    lspci | grep net   # check nic model&vendor
+    sudo lshw -C network | grep -i xg -A10 -B1

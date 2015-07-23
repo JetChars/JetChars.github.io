@@ -116,7 +116,12 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/index.html#core-techs">Core techs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#storage">storage</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../docker/index.html#basic-commands">Basic Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#infos">Infos</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../docker/index.html#container-management">Container Management</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../docker/index.html#image-management">Image Management</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../docker/index.html#tricks">tricks</a></li>
@@ -358,7 +363,16 @@
 <li class="toctree-l3"><a class="reference internal" href="#issues">Issues</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#loop-device">Loop Device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#loop-device">Loop Device</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#sparse-file">Sparse File</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#copying-w-cp">copying w/ &#8216;cp&#8217;</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#archiving-w-tar">Archiving w/ `tar&#8217;</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mount-sparse-file">Mount sparse file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#create-loop-device">Create Loop Device</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#raid">RAID</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#raid10">raid10</a></li>
 </ul>
@@ -396,6 +410,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_info/index.html#enviroments">Enviroments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_info/index.html#lscommands">lscommands</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux_net/index.html">Linux Network</a><ul>
@@ -483,7 +498,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../vim/index.html#id1">Sublime Text</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../ovs/index.html">Open vSwitch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../amqp/index.html">AMQP &#8211; Advanced Message Queuing Protocol</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../amqp/index.html#rabbitmq">RabbitMQ</a></li>
 </ul>
@@ -925,7 +939,7 @@ umount testlvm/    # umount object can be device or mount point
 <li><strong>LV</strong> &#8211; Logic Volume</li>
 </ul>
 </div>
-<p>In computer storage, <em>logical volume management</em> or LVM provides a method of <em>allocating space</em> on mass-storage devices that is <em>more flexible</em> than conventional partitioning schemes. In particular, a volume manager can <strong>concatenate</strong>, <strong>stripe together</strong> or otherwise <strong>combine partitions</strong> (or block devices in general) into larger virtual ones that administrators can re-size or move, <em>potentially without interrupting system use</em>. <a class="footnote-reference" href="#id3" id="id1">[1]</a></p>
+<p>In computer storage, <em>logical volume management</em> or LVM provides a method of <em>allocating space</em> on mass-storage devices that is <em>more flexible</em> than conventional partitioning schemes. In particular, a volume manager can <strong>concatenate</strong>, <strong>stripe together</strong> or otherwise <strong>combine partitions</strong> (or block devices in general) into larger virtual ones that administrators can re-size or move, <em>potentially without interrupting system use</em>. <a class="footnote-reference" href="#id8" id="id1">[1]</a></p>
 <ul class="simple">
 <li>Conf-file &#8211; <code class="docutils literal"><span class="pre">/etc/lvm/lvm.conf</span></code></li>
 </ul>
@@ -1239,29 +1253,80 @@ Logical volume r16s11-lvmdriver-1/volume-daffbf30-30b9-4da3-9d34-de1c658ee38c in
 <span class="nv">$ </span>sudo umount /dev/r16s11-lvmdriver-1/volume-daffbf30-30b9-4da3-9d34-de1c658ee38c
 </pre></div>
 </div>
+<ol class="arabic simple" start="3">
+<li>Disk is apparently in use by the system</li>
+</ol>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">#</span> mkfs.ext3 /dev/sdb1
+<span class="go">mke2fs 1.39 (29-May-2006)</span>
+<span class="go">/dev/sdb1 is apparently in use by the system; will not make a filesystem here!</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Solution: remove the disk</li>
+</ul>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c"># dmsetup — low level logical volume management</span>
+dmsetup remove /dev/sdb1
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="loop-device">
 <h2>Loop Device<a class="headerlink" href="#loop-device" title="Permalink to this headline">¶</a></h2>
-<p>In Unix-like operating systems, a loop device, vnd (vnode disk), or lofi (loop file interface) is a pseudo-device that makes a file accessible as a block device. <a class="footnote-reference" href="#id4" id="id2">[2]</a></p>
-<div class="sidebar">
-<p class="first sidebar-title">truncate</p>
-<p class="last">shrink or extend the size of a file to the specified size, can be used to create a loop file
-<code class="docutils literal"><span class="pre">truncate</span> <span class="pre">-s</span> <span class="pre">size</span> <span class="pre">file</span></code> <code class="docutils literal"><span class="pre">sudo</span> <span class="pre">losetup</span> <span class="pre">-f</span> <span class="pre">--show</span> <span class="pre">/dev/lo0</span> <span class="pre">file</span></code></p>
-</div>
-<ul>
-<li><p class="first">Get info:</p>
-<div class="highlight-python"><div class="highlight"><pre>losetup loopdev   # show specified loopdev
-losetup -l [-a]   # show loopdev list
-losetup -j file [-o offset]
-losetup -f   # Print first unused loop device
+<p>In Unix-like operating systems, a loop device, vnd (vnode disk), or lofi (loop file interface) is a pseudo-device that makes a file accessible as a block device. <a class="footnote-reference" href="#id9" id="id2">[2]</a></p>
+<div class="section" id="sparse-file">
+<h3>Sparse File<a class="headerlink" href="#sparse-file" title="Permalink to this headline">¶</a></h3>
+<p>Sparse file is a type of computer file that attempts to use file system space more efficiently when blocks allocated to the file are mostly empty. <a class="footnote-reference" href="#id10" id="id3">[3]</a></p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> truncate -s 512M file1.img
+<span class="gp">$</span> dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span>file2.img <span class="nv">bs</span><span class="o">=</span><span class="m">1</span> <span class="nv">count</span><span class="o">=</span><span class="m">0</span> <span class="nv">seek</span><span class="o">=</span>512M
+<span class="go">0+0 records in</span>
+<span class="go">0+0 records out</span>
+<span class="go">0 bytes (0 B) copied, 0.000173649 s, 0.0 kB/s</span>
+
+<span class="gp">$</span> du -h file*   <span class="c"># real size</span>
+<span class="go">0       file1.img</span>
+<span class="go">0       file2.img</span>
+<span class="gp">$</span> du -h --apparent-size file*
+<span class="go">512M    file1.img</span>
+<span class="go">512M    file2.img</span>
+<span class="gp">$</span> ll -h file*
+<span class="go">-rw-r--r-- 1 root root 512M Jul 23 15:15 file1.img</span>
+<span class="go">-rw-r--r-- 1 root root 512M Jul 23 15:15 file2.img</span>
 </pre></div>
 </div>
-</li>
-<li><p class="first">Delete loop: <code class="docutils literal"><span class="pre">losetup</span> <span class="pre">-d</span> <span class="pre">loopdev...</span></code></p>
-</li>
-<li><p class="first">Delete all used loop devices: <code class="docutils literal"><span class="pre">losetup</span> <span class="pre">-D</span></code></p>
-</li>
+<div class="section" id="copying-w-cp">
+<h4>copying w/ &#8216;cp&#8217;<a class="headerlink" href="#copying-w-cp" title="Permalink to this headline">¶</a></h4>
+<p>Normally, <a href="#id4"><span class="problematic" id="id5">`</span></a>cp&#8217; is good at detecting whether a file is sparse, so it suffices to run:</p>
+<div class="highlight-python"><div class="highlight"><pre>cp file.img new_file.img   # will create sparse file if src file is in sparse state
+cp --sparse=always new_file.img recovered_file.img   # useful if a sparse-file has somehow become non-sparse
+</pre></div>
+</div>
+</div>
+<div class="section" id="archiving-w-tar">
+<h4>Archiving w/ <a href="#id6"><span class="problematic" id="id7">`</span></a>tar&#8217;<a class="headerlink" href="#archiving-w-tar" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">#</span> tar -Scf file.tar file.img   <span class="c"># w/o &#39;-S&#39;, it will be 512M</span>
+<span class="gp">#</span> du -h file.tar
+<span class="go">12K     file.tar</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="mount-sparse-file">
+<h4>Mount sparse file<a class="headerlink" href="#mount-sparse-file" title="Permalink to this headline">¶</a></h4>
+<p>It can be either <strong>mounted as a loop device</strong>, or <strong>pretend to be an loop device</strong>.</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">#</span> mkfs.reiserfs -f -q file.img
+<span class="go">mkfs.reiserfs 3.6.21 (2009 www.namesys.com)</span>
+<span class="gp">#</span> du -h file.img
+<span class="go">33M     file.img</span>
+<span class="gp">#</span> du -h --apparent-size file.img
+<span class="go">512M    file.img</span>
+<span class="gp">#</span> mkdir folder
+<span class="gp">#</span> mount -o loop file.img folder
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="create-loop-device">
+<h3>Create Loop Device<a class="headerlink" href="#create-loop-device" title="Permalink to this headline">¶</a></h3>
+<ul>
 <li><dl class="first docutils">
 <dt>Setup loop device: <code class="docutils literal"><span class="pre">losetup</span> <span class="pre">[-o</span> <span class="pre">offset]</span> <span class="pre">[--sizelimit</span> <span class="pre">size]</span> <span class="pre">[-p</span> <span class="pre">pfd]</span> <span class="pre">[-rP]</span> <span class="pre">{-f[--show]|loopdev}</span> <span class="pre">file</span></code></dt>
 <dd><ul class="first last simple">
@@ -1270,9 +1335,21 @@ losetup -f   # Print first unused loop device
 </dd>
 </dl>
 </li>
-<li><p class="first">Resize loop device: <code class="docutils literal"><span class="pre">losetup</span> <span class="pre">-c</span> <span class="pre">loopdev</span></code></p>
-</li>
 </ul>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c"># Get infos</span>
+<span class="c"># ---------</span>
+losetup loopdev   <span class="c"># show specified loopdev</span>
+losetup -l <span class="o">[</span>-a<span class="o">]</span>   <span class="c"># show loopdev list</span>
+losetup -j file <span class="o">[</span>-o offset<span class="o">]</span>
+losetup -f   <span class="c"># Print first unused loop device</span>
+<span class="c"># management</span>
+<span class="c"># ----------</span>
+losetup -d loopdev...   <span class="c"># Delete loop</span>
+losetup -D   <span class="c"># Delete all used loop devices</span>
+losetup -c loopdev   <span class="c"># Resize loop device</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="raid">
 <h2>RAID<a class="headerlink" href="#raid" title="Permalink to this headline">¶</a></h2>
@@ -1309,16 +1386,22 @@ losetup -f   # Print first unused loop device
 <div class="highlight-python"><div class="highlight"><pre>dd if=/dev/zero of=testfile bs=1M count=512 conv=fdatasync
 </pre></div>
 </div>
-<table class="docutils footnote" frame="void" id="id3" rules="none">
+<table class="docutils footnote" frame="void" id="id8" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Logical_volume_management">http://en.wikipedia.org/wiki/Logical_volume_management</a></td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id4" rules="none">
+<table class="docutils footnote" frame="void" id="id9" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Loop_device">http://en.wikipedia.org/wiki/Loop_device</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id10" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference external" href="https://wiki.archlinux.org/index.php/Sparse_file">https://wiki.archlinux.org/index.php/Sparse_file</a></td></tr>
 </tbody>
 </table>
 </div>

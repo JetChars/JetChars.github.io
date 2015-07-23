@@ -106,9 +106,33 @@ adding your user to the "docker" group with something like::
     sudo usermod -aG docker your-user
 
 
+Core techs
+==========
+
+
+storage
+-------
+
+If you're using Docker on CentOS, RHEL, Fedora, or any other distro that doesn't ship by default with **AUFS** support, you are probably using the **Device Mapper storage plugin**. By default, this plugin will store all your containers in a 100 GB sparse file, and each container will be limited to 10 GB.
+
+
+
+
 
 Basic Commands
 ==============
+
+Infos
+-----
+
+.. code-block:: bash
+
+    # Shows containers/images/storage infos
+    # /execution driver/kernel/os/cpus/mem
+    # /hostname/id/proxies
+    docker info
+    docker version
+
 
 
 Container Management
@@ -208,8 +232,11 @@ Instructions
     
 
 - ``ENV`` 
+    - ``ENV <key> <value>``
+    - ``ENV <key>=<value> ...``
   
 .. code-block:: guess
+
 
     ENV http_proxy="http://10.239.4.80:913"
     ENV https_proxy="https://10.239.4.80:913"

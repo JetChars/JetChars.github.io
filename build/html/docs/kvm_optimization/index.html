@@ -116,7 +116,12 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/index.html#core-techs">Core techs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#storage">storage</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../docker/index.html#basic-commands">Basic Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#infos">Infos</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../docker/index.html#container-management">Container Management</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../docker/index.html#image-management">Image Management</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../docker/index.html#tricks">tricks</a></li>
@@ -358,7 +363,16 @@
 <li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#issues">Issues</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#loop-device">Loop Device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#loop-device">Loop Device</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#sparse-file">Sparse File</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../linux_disk/index.html#copying-w-cp">copying w/ &#8216;cp&#8217;</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../linux_disk/index.html#archiving-w-tar">Archiving w/ `tar&#8217;</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../linux_disk/index.html#mount-sparse-file">Mount sparse file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#create-loop-device">Create Loop Device</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#raid">RAID</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#raid10">raid10</a></li>
 </ul>
@@ -396,6 +410,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_info/index.html#enviroments">Enviroments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_info/index.html#lscommands">lscommands</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux_net/index.html">Linux Network</a><ul>
@@ -483,7 +498,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../vim/index.html#id1">Sublime Text</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../ovs/index.html">Open vSwitch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../amqp/index.html">AMQP &#8211; Advanced Message Queuing Protocol</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../amqp/index.html#rabbitmq">RabbitMQ</a></li>
 </ul>
@@ -681,7 +695,7 @@
 <div class="section" id="asynchronous-io">
 <h3>Asynchronous IO<a class="headerlink" href="#asynchronous-io" title="Permalink to this headline">¶</a></h3>
 <p>AIO is not enabled by defalut, default value is io=&#8217;threads&#8217;, when AIO enabled, io=&#8217;native&#8217;.
-There is no available option to enable AIO, cause &#8216;threads&#8217; mode will improve network storage(cinder)&#8217;s performance <a class="footnote-reference" href="#id3" id="id1">[1]</a>.
+There is no available option to enable AIO, cause &#8216;threads&#8217; mode will improve network storage(cinder)&#8217;s performance <a class="footnote-reference" href="#id4" id="id1">[1]</a>.
 So we need to change nova&#8217;s libvirt config file manually.</p>
 <div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -932,6 +946,11 @@ sudo <span class="nb">echo </span>madvise &gt; /sys/kernel/mm/transparent_hugepa
 <div class="section" id="mtu-size">
 <h3>MTU Size<a class="headerlink" href="#mtu-size" title="Permalink to this headline">¶</a></h3>
 <p>When using tunnel network (GRE, vxlan) , set the MTU in the Guest to 1400, this will allow for the GRE/vxlan header and no packet fragmentation.</p>
+<p>In general, the performance may vary based on the underlying hardware used when VXLAN is configured in Open vSwitch.  But worry not, the ixgbe Linux driver features VXLAN Overlay HW Offloading support and is enabled in the driver by default. <a class="footnote-reference" href="#id5" id="id2">[2]</a></p>
+<p>This command enables/disables VXLAN support in the driver:</p>
+<div class="highlight-bash"><div class="highlight"><pre>ethtool -K ethX tx-udp_tnl-segmentation <span class="o">[</span>off<span class="p">|</span>on<span class="o">]</span>
+</pre></div>
+</div>
 <ul class="simple">
 <li>change default dnsmasq conf file at <strong>/etc/neutron/dhcp_agent.ini</strong></li>
 </ul>
@@ -954,7 +973,7 @@ service neutron-dhcp-agent restart
 </div>
 <div class="section" id="turn-off-nic-s-offloads">
 <h3>Turn off NIC&#8217;s offloads<a class="headerlink" href="#turn-off-nic-s-offloads" title="Permalink to this headline">¶</a></h3>
-<p>Turn <strong>TSO/LRO</strong> and <strong>GRO/GSO</strong> off on the instance physical machine for traffic to work, will help improve instance&#8217;s performance greatly, especially <strong>GRO</strong> . <a class="footnote-reference" href="#id4" id="id2">[2]</a></p>
+<p>Turn <strong>TSO/LRO</strong> and <strong>GRO/GSO</strong> off on the instance physical machine for traffic to work, will help improve instance&#8217;s performance greatly, especially <strong>GRO</strong> . <a class="footnote-reference" href="#id6" id="id3">[3]</a></p>
 <ul>
 <li><p class="first">Check offloads&#8217; status</p>
 <div class="highlight-python"><div class="highlight"><pre>$ ethtool -k enp6s0f1
@@ -997,16 +1016,22 @@ virt-resize -d --expand /dev/sda1 src_image dst_image
 qemu-img info dst_image
 </pre></div>
 </td></tr></table></div>
-<table class="docutils footnote" frame="void" id="id3" rules="none">
+<table class="docutils footnote" frame="void" id="id4" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://blueprints.launchpad.net/nova/+spec/improve-nova-kvm-io-support">https://blueprints.launchpad.net/nova/+spec/improve-nova-kvm-io-support</a></td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id4" rules="none">
+<table class="docutils footnote" frame="void" id="id5" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="https://www.rdoproject.org/Using_GRE_tenant_networks">https://www.rdoproject.org/Using_GRE_tenant_networks</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="https://software.intel.com/en-us/blogs/2015/01/29/optimizing-the-virtual-networks-with-vxlan-overlay-offloading">https://software.intel.com/en-us/blogs/2015/01/29/optimizing-the-virtual-networks-with-vxlan-overlay-offloading</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference external" href="https://www.rdoproject.org/Using_GRE_tenant_networks">https://www.rdoproject.org/Using_GRE_tenant_networks</a></td></tr>
 </tbody>
 </table>
 </div>

@@ -422,31 +422,111 @@ Issues
     $ sudo umount /dev/r16s11-lvmdriver-1/volume-daffbf30-30b9-4da3-9d34-de1c658ee38c
 
 
+3. Disk is apparently in use by the system
+
+.. code-block:: console
+
+    # mkfs.ext3 /dev/sdb1
+    mke2fs 1.39 (29-May-2006)
+    /dev/sdb1 is apparently in use by the system; will not make a filesystem here!
+
+
+- Solution: remove the disk
+
+.. code-block:: bash
+
+    # dmsetup — low level logical volume management
+    dmsetup remove /dev/sdb1
+
+
 Loop Device
 ===========
 
 In Unix-like operating systems, a loop device, vnd (vnode disk), or lofi (loop file interface) is a pseudo-device that makes a file accessible as a block device. [#]_
 
-.. sidebar:: truncate
 
-    shrink or extend the size of a file to the specified size, can be used to create a loop file
-    ``truncate -s size file`` ``sudo losetup -f --show /dev/lo0 file``
+Sparse File
+-----------
 
-- Get info::
+Sparse file is a type of computer file that attempts to use file system space more efficiently when blocks allocated to the file are mostly empty. [#]_
 
-    losetup loopdev   # show specified loopdev
-    losetup -l [-a]   # show loopdev list
-    losetup -j file [-o offset]
-    losetup -f   # Print first unused loop device
 
-- Delete loop: ``losetup -d loopdev...``
+.. code-block:: console
 
-- Delete all used loop devices: ``losetup -D``
+    $ truncate -s 512M file1.img
+    $ dd if=/dev/zero of=file2.img bs=1 count=0 seek=512M
+    0+0 records in
+    0+0 records out
+    0 bytes (0 B) copied, 0.000173649 s, 0.0 kB/s
+
+    $ du -h file*   # real size
+    0       file1.img
+    0       file2.img
+    $ du -h --apparent-size file*
+    512M    file1.img
+    512M    file2.img
+    $ ll -h file*
+    -rw-r--r-- 1 root root 512M Jul 23 15:15 file1.img
+    -rw-r--r-- 1 root root 512M Jul 23 15:15 file2.img
+
+copying w/ 'cp'
+^^^^^^^^^^^^^^^
+
+Normally, `cp' is good at detecting whether a file is sparse, so it suffices to run::
+
+    cp file.img new_file.img   # will create sparse file if src file is in sparse state
+    cp --sparse=always new_file.img recovered_file.img   # useful if a sparse-file has somehow become non-sparse
+
+
+Archiving w/ `tar'
+^^^^^^^^^^^^^^^^^^
+
+.. code-block:: console
+
+    # tar -Scf file.tar file.img   # w/o '-S', it will be 512M
+    # du -h file.tar
+    12K     file.tar
+
+
+
+Mount sparse file
+^^^^^^^^^^^^^^^^^
+
+It can be either **mounted as a loop device**, or **pretend to be an loop device**.
+
+.. code-block:: console
+
+    # mkfs.reiserfs -f -q file.img
+    mkfs.reiserfs 3.6.21 (2009 www.namesys.com)
+    # du -h file.img
+    33M     file.img
+    # du -h --apparent-size file.img
+    512M    file.img
+    # mkdir folder
+    # mount -o loop file.img folder
+
+
+
+Create Loop Device
+------------------
 
 - Setup loop device: ``losetup [-o offset] [--sizelimit size] [-p pfd] [-rP] {-f[--show]|loopdev} file``
     - ``-show`` will print device name
 
-- Resize loop device: ``losetup -c loopdev``
+.. code-block:: bash
+
+    # Get infos
+    # ---------
+    losetup loopdev   # show specified loopdev
+    losetup -l [-a]   # show loopdev list
+    losetup -j file [-o offset]
+    losetup -f   # Print first unused loop device
+    # management
+    # ----------
+    losetup -d loopdev...   # Delete loop
+    losetup -D   # Delete all used loop devices
+    losetup -c loopdev   # Resize loop device
+
 
 RAID
 ====
@@ -484,3 +564,4 @@ count=N  copy only N input blocks
 
 .. [#] http://en.wikipedia.org/wiki/Logical_volume_management
 .. [#] http://en.wikipedia.org/wiki/Loop_device
+.. [#] https://wiki.archlinux.org/index.php/Sparse_file

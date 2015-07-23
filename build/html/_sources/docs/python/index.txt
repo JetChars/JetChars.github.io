@@ -2,6 +2,13 @@
 Python
 ======
 
+
+https://docs.python.org/3/
+
+
+
+
+
 PEPs -- Python Enhancement Proposals
 ====================================
 
@@ -15,10 +22,19 @@ bandersnatch -- Mirroring tool that implements the client (mirror) side of PEP 3
 Applications
 ============
 
+pip
+---
+
+https://bootstrap.pypa.io/get-pip.py
+
+
 flask -- py based web framework
 -------------------------------
 
 
 http://flask.pocoo.org/
 
+sphinx
+------
 
+http://sphinx-doc.org/latest/index.html
