@@ -361,7 +361,16 @@
 <li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#issues">Issues</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#loop-device">Loop Device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#loop-device">Loop Device</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#sparse-file">Sparse File</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../linux_disk/index.html#copying-w-cp">copying w/ &#8216;cp&#8217;</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../linux_disk/index.html#archiving-w-tar">Archiving w/ `tar&#8217;</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../linux_disk/index.html#mount-sparse-file">Mount sparse file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#create-loop-device">Create Loop Device</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#raid">RAID</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#raid10">raid10</a></li>
 </ul>
@@ -399,6 +408,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_info/index.html#enviroments">Enviroments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_info/index.html#lscommands">lscommands</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux_net/index.html">Linux Network</a><ul>
@@ -486,7 +496,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../vim/index.html#id1">Sublime Text</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../ovs/index.html">Open vSwitch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../amqp/index.html">AMQP &#8211; Advanced Message Queuing Protocol</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../amqp/index.html#rabbitmq">RabbitMQ</a></li>
 </ul>
@@ -756,8 +765,11 @@ export NO_PROXY<span class="o">=</span>localhost<span class="p">,</span>*intel.c
 </pre></div>
 </div>
 </div>
-<div class="section" id="use-intel-proxy-from-mac-at-home">
-<h3>use intel proxy from mac at home<a class="headerlink" href="#use-intel-proxy-from-mac-at-home" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="use-intel-proxy">
+<h3>use intel proxy<a class="headerlink" href="#use-intel-proxy" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>use ssh as http proxy</li>
+</ul>
 <div class="highlight-bash"><div class="highlight"><pre><span class="c"># Privileged ports can only be forwarded by root.</span>
 <span class="c"># can&#39;t use domain because of dns can&#39;t resolve internal domain</span>
 <span class="c"># web browser should use http as proxy protocol</span>
@@ -766,6 +778,24 @@ export NO_PROXY<span class="o">=</span>localhost<span class="p">,</span>*intel.c
 sudo ssh -N -L 0.0.0.0:913:172.16.213.225:913 wenjieca@192.168.199.116
 <span class="c"># compress and run in background</span>
 sudo ssh -fgCNL 0.0.0.0:913:172.16.213.225:913 wenjieca@192.168.199.116
+</pre></div>
+</div>
+<ul>
+<li><dl class="first docutils">
+<dt>use command-prompt  as socks5 proxy</dt>
+<dd><ul class="first last simple">
+<li>can&#8217;t access lots of sites, eg: google,youtube ...</li>
+<li>can access facebook,z.cn ...</li>
+<li>not work w/ ios</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="highlight-cmd"><div class="highlight"><pre>netsh interface portproxy add v4tov4 listenport=1080 connectaddress=10.239.4.80 connectport=1080
+netsh interface portproxy show all
+netsh interface portproxy set v4tov4 listenport=8080 connectaddress=10.239.4.80 connectport=1080
+netsh interface portproxy delete v4tov4 listenport=8080
 </pre></div>
 </div>
 </div>

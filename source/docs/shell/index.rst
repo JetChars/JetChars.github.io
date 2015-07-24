@@ -62,6 +62,8 @@ xshell
 -----------------------------------
 
 
+- run as admin will become a sudoer. cygwin have no sudo/su command.
+
 
 .. code-block:: bash
 

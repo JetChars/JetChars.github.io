@@ -87,8 +87,12 @@ command-prompt proxies
 
 
 
-use intel proxy from mac at home
---------------------------------
+use intel proxy 
+----------------
+
+
+- use ssh as http proxy
+
 
 .. code-block:: bash
 
@@ -100,6 +104,20 @@ use intel proxy from mac at home
     sudo ssh -N -L 0.0.0.0:913:172.16.213.225:913 wenjieca@192.168.199.116
     # compress and run in background
     sudo ssh -fgCNL 0.0.0.0:913:172.16.213.225:913 wenjieca@192.168.199.116
+
+
+- use command-prompt  as socks5 proxy
+    - can't access lots of sites, eg: google,youtube ...
+    - can access facebook,z.cn ...
+    - not work w/ ios
+
+.. code-block:: cmd
+
+    netsh interface portproxy add v4tov4 listenport=1080 connectaddress=10.239.4.80 connectport=1080
+    netsh interface portproxy show all
+    netsh interface portproxy set v4tov4 listenport=8080 connectaddress=10.239.4.80 connectport=1080
+    netsh interface portproxy delete v4tov4 listenport=8080
+
 
 
 Find out occupied IPs
