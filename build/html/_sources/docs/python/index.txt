@@ -25,7 +25,7 @@ Applications
 pip
 ---
 
-https://bootstrap.pypa.io/get-pip.py
+`get-pip.py <https://bootstrap.pypa.io/get-pip.py>`_
 
 
 flask -- py based web framework
