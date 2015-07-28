@@ -27,7 +27,9 @@ Config -- Get and set repository or global options
     git config --global user.name "JetChars"
     git config --list   # check git configuration
 
-* global configuration: ``~/.gitconfig`` , ini format. (``/etc/gitconfig`` for all user)
+- global configuration: ``~/.gitconfig`` , ini format. (``/etc/gitconfig`` for all user)
+- On Windows, Git stores its configuration file ``.gitconfig`` in the directory ``%HOMEDRIVE%%HOMEPATH%`` 
+    - eg: ``C:\Users\Jet\.gitconfig``
 
 .. code-block:: ini
     :linenos:

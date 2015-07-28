@@ -94,6 +94,7 @@ Root wrapper, provide nova an option other than sudo, make sure nova can only ab
 
 
 - filters: ``/etc/nova/rootwrap.d/*.filters
+    - take effect as soon as imported to this folder
 
 .. sidebar:: `Storage <http://docs.openstack.org/openstack-ops/content/storage_decision.html>`_
 

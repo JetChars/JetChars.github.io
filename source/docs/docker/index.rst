@@ -115,6 +115,11 @@ storage
 
 If you're using Docker on CentOS, RHEL, Fedora, or any other distro that doesn't ship by default with **AUFS** support, you are probably using the **Device Mapper storage plugin**. By default, this plugin will store all your containers in a 100 GB sparse file, and each container will be limited to 10 GB.
 
+- `AUFS <http://aufs.sourceforge.net/>`_
+
+| In the early days, aufs was entirely re-designed and re-implemented Unionfs Version 1.x series. Adding many original ideas, approaches, improvements and implementations, it becomes totally different from Unionfs while keeping the basic features. [#]_
+
+
 
 
 
@@ -397,3 +402,4 @@ Issues
 
 
 
+.. [#] http://aufs.sourceforge.net/

@@ -116,7 +116,12 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/index.html#core-techs">Core techs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#storage">storage</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../docker/index.html#basic-commands">Basic Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#infos">Infos</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../docker/index.html#container-management">Container Management</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../docker/index.html#image-management">Image Management</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../docker/index.html#tricks">tricks</a></li>
@@ -128,14 +133,14 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../docker/index.html#network-management">Network Management</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#id1">libswarm</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#id2">pipwork</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#id2">libswarm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#id3">pipwork</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../docker/index.html#container-in-kvm">container in kvm</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../docker/index.html#tier-of-competition">3 tier of competition</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#id3">CoreOS</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#id4">Kubernetes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#id4">CoreOS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#id5">Kubernetes</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../docker/index.html#issues">Issues</a></li>
@@ -272,7 +277,7 @@
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">OpenStack &amp; Docker</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#nova-docker">Nova Docker</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#nstall-docker-nova-docker">nstall docker&amp;nova-docker</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#install-docker-nova-docker">install docker&amp;nova-docker</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#install-latest-docker">Install latest docker</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#prepare-nova-docker">Prepare Nova-Docker</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#config-local-conf">Config local.conf</a></li>
@@ -358,7 +363,16 @@
 <li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#issues">Issues</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#loop-device">Loop Device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#loop-device">Loop Device</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#sparse-file">Sparse File</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../linux_disk/index.html#copying-w-cp">copying w/ &#8216;cp&#8217;</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../linux_disk/index.html#archiving-w-tar">Archiving w/ `tar&#8217;</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../linux_disk/index.html#mount-sparse-file">Mount sparse file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#create-loop-device">Create Loop Device</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#raid">RAID</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#raid10">raid10</a></li>
 </ul>
@@ -396,6 +410,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_info/index.html#enviroments">Enviroments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_info/index.html#lscommands">lscommands</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux_net/index.html">Linux Network</a><ul>
@@ -483,7 +498,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../vim/index.html#id1">Sublime Text</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../ovs/index.html">Open vSwitch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../amqp/index.html">AMQP &#8211; Advanced Message Queuing Protocol</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../amqp/index.html#rabbitmq">RabbitMQ</a></li>
 </ul>
@@ -678,14 +692,8 @@
 <p>Docker can work in different ways at openstack, eg: nova-docker, kubernetes, ...</p>
 <div class="section" id="nova-docker">
 <h2>Nova Docker<a class="headerlink" href="#nova-docker" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="nstall-docker-nova-docker">
-<h3>nstall docker&amp;nova-docker<a class="headerlink" href="#nstall-docker-nova-docker" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-bash"><div class="highlight"><pre>usermod -G docker nova
-pip install -e git+https://github.com/stackforge/nova-docker#egg<span class="o">=</span>novadocker
-<span class="nb">cd </span>src/novadocker/
-python setup.py install
-</pre></div>
-</div>
+<div class="section" id="install-docker-nova-docker">
+<h3>install docker&amp;nova-docker<a class="headerlink" href="#install-docker-nova-docker" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="install-latest-docker">
 <h4>Install latest docker<a class="headerlink" href="#install-latest-docker" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-bash"><div class="highlight"><pre>curl -sSL http://get.docker.com <span class="p">|</span> sh
@@ -709,10 +717,18 @@ rm -rf /opt/stack/nova-docker
 sudo mkdir -p /opt/stack
 sudo git clone https://git.openstack.org/stackforge/nova-docker /opt/stack/nova-docker
 <span class="nb">cd</span> /opt/stack/nova-docker
-git checkout stable/kilo   <span class="c"># change to same branch as nova</span>
 <span class="c"># Check out a different version if not using master, i.e:</span>
 <span class="c"># sudo git checkout stable/kilo &amp;&amp; sudo git pull --ff-only origin stable/kilo</span>
+git checkout stable/kilo   <span class="c"># change to the same branch as nova</span>
 sudo pip install .  <span class="c"># The linecache2 error appears to be benign</span>
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre>groupadd docker   <span class="c"># docker group not created by default</span>
+usermod -G docker nova
+pip install -e git+https://github.com/stackforge/nova-docker#egg<span class="o">=</span>novadocker
+<span class="nb">cd </span>src/novadocker/
+git checkout stable/kilo   <span class="c"># change to the same branch as nova.</span>
+python setup.py install
 </pre></div>
 </div>
 </div>

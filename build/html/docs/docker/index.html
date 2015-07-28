@@ -133,14 +133,14 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#network-management">Network Management</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">libswarm</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">pipwork</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">libswarm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">pipwork</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#container-in-kvm">container in kvm</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#tier-of-competition">3 tier of competition</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">CoreOS</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">Kubernetes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">CoreOS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Kubernetes</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#issues">Issues</a></li>
@@ -277,7 +277,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../o7k_docker/index.html">OpenStack &amp; Docker</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../o7k_docker/index.html#nova-docker">Nova Docker</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../o7k_docker/index.html#nstall-docker-nova-docker">nstall docker&amp;nova-docker</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../o7k_docker/index.html#install-docker-nova-docker">install docker&amp;nova-docker</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../o7k_docker/index.html#install-latest-docker">Install latest docker</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../o7k_docker/index.html#prepare-nova-docker">Prepare Nova-Docker</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../o7k_docker/index.html#config-local-conf">Config local.conf</a></li>
@@ -363,7 +363,16 @@
 <li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#issues">Issues</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#loop-device">Loop Device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#loop-device">Loop Device</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#sparse-file">Sparse File</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../linux_disk/index.html#copying-w-cp">copying w/ &#8216;cp&#8217;</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../linux_disk/index.html#archiving-w-tar">Archiving w/ `tar&#8217;</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../linux_disk/index.html#mount-sparse-file">Mount sparse file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#create-loop-device">Create Loop Device</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#raid">RAID</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#raid10">raid10</a></li>
 </ul>
@@ -401,6 +410,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_info/index.html#enviroments">Enviroments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_info/index.html#lscommands">lscommands</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux_net/index.html">Linux Network</a><ul>
@@ -488,7 +498,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../vim/index.html#id1">Sublime Text</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../ovs/index.html">Open vSwitch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../amqp/index.html">AMQP &#8211; Advanced Message Queuing Protocol</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../amqp/index.html#rabbitmq">RabbitMQ</a></li>
 </ul>
@@ -842,6 +851,12 @@ adding your user to the &#8220;docker&#8221; group with something like:</p>
 <div class="section" id="storage">
 <h3>storage<a class="headerlink" href="#storage" title="Permalink to this headline">¶</a></h3>
 <p>If you&#8217;re using Docker on CentOS, RHEL, Fedora, or any other distro that doesn&#8217;t ship by default with <strong>AUFS</strong> support, you are probably using the <strong>Device Mapper storage plugin</strong>. By default, this plugin will store all your containers in a 100 GB sparse file, and each container will be limited to 10 GB.</p>
+<ul class="simple">
+<li><a class="reference external" href="http://aufs.sourceforge.net/">AUFS</a></li>
+</ul>
+<div class="line-block">
+<div class="line">In the early days, aufs was entirely re-designed and re-implemented Unionfs Version 1.x series. Adding many original ideas, approaches, improvements and implementations, it becomes totally different from Unionfs while keeping the basic features. <a class="footnote-reference" href="#id6" id="id1">[1]</a></div>
+</div>
 </div>
 </div>
 <div class="section" id="basic-commands">
@@ -1019,12 +1034,12 @@ docker build --no-cache<span class="o">=</span><span class="nb">true</span> -f &
 <div class="section" id="network-management">
 <h2>Network Management<a class="headerlink" href="#network-management" title="Permalink to this headline">¶</a></h2>
 <a class="reference internal image-reference" href="../../_images/docker_swarm.png"><img alt="../../_images/docker_swarm.png" class="align-right" src="../../_images/docker_swarm.png" style="width: 200px;" /></a>
-<div class="section" id="id1">
-<h3><a class="reference external" href="https://github.com/docker/swarm">libswarm</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id2">
+<h3><a class="reference external" href="https://github.com/docker/swarm">libswarm</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p>It&#8217;s a small toolkit, for docker network settings. Defines a standard service interface, for communications between service module in distributed operation system.</p>
 </div>
-<div class="section" id="id2">
-<h3><a class="reference external" href="https://github.com/jpetazzo/pipework">pipwork</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id3">
+<h3><a class="reference external" href="https://github.com/jpetazzo/pipework">pipwork</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p>Software-Defined Networking for Linux Containers</p>
 </div>
 </div>
@@ -1061,8 +1076,8 @@ docker build --no-cache<span class="o">=</span><span class="nb">true</span> -f &
 </table>
 <img alt="../../_images/coreos.png" class="align-right" src="../../_images/coreos.png" />
 </div>
-<div class="section" id="id3">
-<h3><a class="reference external" href="https://coreos.com">CoreOS</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id4">
+<h3><a class="reference external" href="https://coreos.com">CoreOS</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Open Source project for linux containers</li>
 <li>Linux for massive server deployment</li>
@@ -1071,8 +1086,8 @@ docker build --no-cache<span class="o">=</span><span class="nb">true</span> -f &
 <img alt="../../_images/coreos_docker.png" src="../../_images/coreos_docker.png" />
 <img alt="../../_images/coreos_etcd.png" src="../../_images/coreos_etcd.png" />
 </div>
-<div class="section" id="id4">
-<h3><a class="reference external" href="http://kubernetes.io">Kubernetes</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id5">
+<h3><a class="reference external" href="http://kubernetes.io">Kubernetes</a><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://github.com/GoogleCloudPlatform/kubernetes">https://github.com/GoogleCloudPlatform/kubernetes</a></p>
 <p>It&#8217;s an open source orchestration system for Docker containers, open-sourced by google</p>
 <ul class="simple">
@@ -1125,6 +1140,12 @@ sudo usermod -aG docker stack   <span class="c"># stack is our current user</spa
 </dl>
 </li>
 </ul>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://aufs.sourceforge.net/">http://aufs.sourceforge.net/</a></td></tr>
+</tbody>
+</table>
 </div>
 </div>
 
