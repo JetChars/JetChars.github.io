@@ -952,9 +952,44 @@ docker run --rm --volumes-from john1 -v <span class="k">$(</span><span class="nb
 <h2>Dockerfile<a class="headerlink" href="#dockerfile" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="instructions">
 <h3>Instructions<a class="headerlink" href="#instructions" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="85%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">instructions</th>
+<th class="head">description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>FROM</td>
+<td>sets the Base Image for subsequent instructions</td>
+</tr>
+<tr class="row-odd"><td>MAINTAINER</td>
+<td>set the Author field of the generated images</td>
+</tr>
+<tr class="row-even"><td>LABEL</td>
+<td>adds metadata to an image, use <code class="docutils literal"><span class="pre">docker</span> <span class="pre">inspect</span></code> view an image&#8217;s labels</td>
+</tr>
+<tr class="row-odd"><td>ENV</td>
+<td>sets the environment in container, same as <code class="docutils literal"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">--env</span> <span class="pre">&lt;key&gt;=&lt;value&gt;</span></code></td>
+</tr>
+<tr class="row-even"><td>ADD</td>
+<td>copies new files, directories or remote file URLs to container</td>
+</tr>
+<tr class="row-odd"><td>COPY</td>
+<td>copies new files or directories to container</td>
+</tr>
+<tr class="row-even"><td>RUN</td>
+<td>execute any commands in a new layer on top of the current image and commit the results</td>
+</tr>
+<tr class="row-odd"><td>CMD</td>
+<td>provide defaults for an executing container, There can only be one CMD instruction in a Dockerfile</td>
+</tr>
+</tbody>
+</table>
 <ul>
-<li><p class="first"><code class="docutils literal"><span class="pre">FROM</span></code></p>
-</li>
 <li><p class="first"><code class="docutils literal"><span class="pre">RUN</span></code> &#8211; commad to change the base image, can exec multiple cmds via \ and &amp;&amp;</p>
 <div class="highlight-python"><div class="highlight"><pre>RUN \
   apt-get update &amp;&amp; \
@@ -978,8 +1013,6 @@ docker run --rm --volumes-from john1 -v <span class="k">$(</span><span class="nb
 <div class="highlight-python"><div class="highlight"><pre><span class="n">VOLUME</span> <span class="p">[</span><span class="s">&quot;/var/www/html&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
-</li>
-<li><p class="first"><code class="docutils literal"><span class="pre">MAINTAINER</span></code></p>
 </li>
 <li><p class="first"><code class="docutils literal"><span class="pre">ENV</span> <span class="pre">REFRESHED_AT</span></code></p>
 </li>

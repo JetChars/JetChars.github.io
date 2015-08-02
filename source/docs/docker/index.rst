@@ -210,7 +210,25 @@ Dockerfile
 Instructions
 ------------
 
-- ``FROM``
+
+================= =========================================
+instructions      description
+================= =========================================
+FROM              sets the Base Image for subsequent instructions
+MAINTAINER        set the Author field of the generated images
+LABEL             adds metadata to an image, use ``docker inspect`` view an image's labels
+ENV               sets the environment in container, same as ``docker run --env <key>=<value>``
+ADD               copies new files, directories or remote file URLs to container
+COPY              copies new files or directories to container
+RUN               execute any commands in a new layer on top of the current image and commit the results
+CMD               provide defaults for an executing container, There can only be one CMD instruction in a Dockerfile
+================= =========================================
+
+
+
+
+
+
 - ``RUN`` -- commad to change the base image, can exec multiple cmds via \\ and && ::
 
     RUN \
@@ -231,7 +249,6 @@ Instructions
 
     VOLUME ["/var/www/html"]
 
-- ``MAINTAINER``
 - ``ENV REFRESHED_AT``
 - ``ENTRYPOINT``
     
