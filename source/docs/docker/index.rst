@@ -200,6 +200,8 @@ tricks
     docker kill $(docker ps -q) && docker rm $(docker ps -qa)
     # exec cmd one time through container
     docker run --rm --volumes-from john1 -v $(pwd):/backup busybox tar cvf /backup/john2.tar /john1
+    # remove failure images
+    docker rmi -f `docker images |  grep none | awk '{print $3}'`
 
 
 

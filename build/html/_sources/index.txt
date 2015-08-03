@@ -30,6 +30,8 @@ OpenStack Customization
     :glob:
 
     docs/openstack/index
+    docs/nova/index
+    docs/sahara/index
     docs/kvm_optimization/index
     docs/devstack*/index
     docs/o7k_docker/index
