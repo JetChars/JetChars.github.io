@@ -200,6 +200,8 @@ tricks
     docker kill $(docker ps -q) && docker rm $(docker ps -qa)
     # exec cmd one time through container
     docker run --rm --volumes-from john1 -v $(pwd):/backup busybox tar cvf /backup/john2.tar /john1
+    # remove failure images
+    docker rmi -f `docker images |  grep none | awk '{print $3}'`
 
 
 
@@ -415,6 +417,16 @@ Issues
 
 - solution: this personal repository is unreachable.
     - gcr.io means google container repository
+
+
+4. centos image not provide binary ``service``, and ``systemctl`` failed to work.
+
+.. code-block:: console
+
+    RUN systemctl start sshd
+    Failed to get D-Bus connection: No connection to service manager
+
+- solution: ``/usr/sbin/sshd``
 
 
 

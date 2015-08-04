@@ -38,8 +38,8 @@ drawboard
 
 
 
-Bash Commands
-=============
+Command Prompt
+==============
 
 
 network tools
@@ -49,7 +49,8 @@ network tools
 
     ping
     pathping
-
+    netsh interface portproxy add v4tov4 listenport=1080 connectaddress=10.239.4.80 connectport=1080
+    netsh interface portproxy show all
 
 
 

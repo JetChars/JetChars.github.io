@@ -47,19 +47,6 @@ Now(July 18, 2015) openstack have 19 main services
 
 
 
-
-
-
-
-
-
-
-
-Nova
-====
-
-
-
 Heat
 ====
 

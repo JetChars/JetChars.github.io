@@ -58,3 +58,30 @@ usermod
 
 
 
+Kernel Management
+=================
+
+
+sysctl
+------
+
+configure kernel parameters at runtime
+
+.. code-block:: bash
+
+    # take effect /etc/sysctl.conf
+    sysctl -p
+    # tack effect specified config file
+    sysctl -f sysctl.conf -p
+    # print all current sysctl variables.
+    sysctl -a
+    # change kernel variable once, only write into /etc/sysctl.conf will take effect permantly
+    # ip forward is used to forward packets from one interface to another.
+    sysctl -w net.ipv4.ip_forward=1
+    # will not response pinging
+    sysctl -w net.ipv4.icmp_echo_ignore_all=1
+    # will not response broadcasts, defaut 0 since rhel5
+    sysctl -w net.ipv4.icmp_echo_ignore_broadcasts=1
+
+
+

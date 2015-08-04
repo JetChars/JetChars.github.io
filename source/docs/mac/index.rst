@@ -112,6 +112,13 @@ Safari
 
 enable inspection mode: ``preferences --> advance --> developer``
 
+glims -- safari enhancement
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+`official site <http://www.machangout.com>`_
+not compatible w/ latest version safari
+
+
 
 
 PopClip -- rightclick enhancement tool
@@ -129,11 +136,19 @@ brew -- package management software
     curl -LsSf http://github.com/mxcl/homebrew/tarball/master | sudo tar xvz -C/usr/local --strip 1 
 
 
-glims -- safari enhancement
----------------------------
+Chrome
+------
 
-`official site <http://www.machangout.com>`_
-not compatible w/ latest version safari
+.. code-block:: bash
+
+    # assign proxy manually
+    open -a /Applications/Google Chrome.app --args --proxy-server=host#:port#
+
+    # ignore certificate errors
+    /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --ignore-certificate-errors &> /dev/null &
+    # or
+    open -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --ignore-certificate-errors
+
 
 
 Visual Studio Code & ASP.NET 5 [#]_

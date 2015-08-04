@@ -71,3 +71,9 @@ lscommands
     lsmod
     lspci | grep net   # check nic model&vendor
     sudo lshw -C network | grep -i xg -A10 -B1
+
+
+.. code-block:: console
+
+    [root@r16s12 ~]# lshw -c network | grep 192
+    configuration: autonegotiation=off broadcast=yes driver=ixgbe driverversion=3.15.1-k duplex=full firmware=0x5e0b0001 ip=192.168.16.12 latency=0 link=yes multicast=yes speed=10Gbit/s

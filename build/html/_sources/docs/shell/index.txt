@@ -46,6 +46,19 @@ operator            description                    sequence
 =================== =============================  ========
 
 
+set
+===
+
+Set or unset values of shell options and positional parameters (``help set``)
+
+============= ============
+options       descriptions
+============= ============
+-e, errexit   Exit immediately if a command exits with a non-zero status
+-E, errtrace  
+============= ============
+
+
 
 
 

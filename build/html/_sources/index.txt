@@ -105,7 +105,14 @@ Algorithms
 
     docs/algorithms/index
 
-    
+Related
+=======
+
+.. toctree::
+    :maxdepth: 1
+
+    docs/kickstart/index
+
  
 
 Indices and tables

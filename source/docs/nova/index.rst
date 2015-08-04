@@ -131,3 +131,17 @@ Services
     # disable services
     for i in `seq 10 15`;do nova service-disable --reason=testboot r16s$i nova-compute;done
 
+
+issues
+======
+
+1. user xxx is unauthorized for tenent yyy
+
+.. code-block:: console
+
+    stack@r16s01:~/devstack$ nova boot --image ${IMAGE} --flavor m1.tiny ${INSTANCE} --    availability-zone nova:r16s03
+    ERROR (Unauthorized): User d8b90ec35da147ac8ca608253504a089 is unauthorized for tenant     2638cc4008a149a58c7a23df282af954 (Disable debug mode to suppress these details.) (HTTP 401) (Request-ID: req-32404359-fb4b-414f-b635-2f5451d1ebe0)
+
+- Solution: add **demo** to project **admin**
+
+

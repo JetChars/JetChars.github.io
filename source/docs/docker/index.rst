@@ -419,6 +419,45 @@ Issues
     - gcr.io means google container repository
 
 
+4. centos image not provide binary ``service``, and ``systemctl`` failed to work.
+
+.. code-block:: console
+
+    RUN systemctl start sshd
+    Failed to get D-Bus connection: No connection to service manager
+
+- solution: ``/usr/sbin/sshd``
+
+
+5. service docker failed to start
+
+.. code-block:: console
+
+[root@r3s1 ~]# service docker status
+docker.service - Docker Application Container Engine
+   Loaded: loaded (/usr/lib/systemd/system/docker.service; enabled)
+   Active: failed (Result: start-limit) since Mon 2015-08-03 22:53:15 CST; 56s ago
+     Docs: https://docs.docker.com
+  Process: 53392 ExecStart=/usr/bin/docker -d -H fd:// (code=exited, status=127)
+ Main PID: 53392 (code=exited, status=127)
+
+Aug 03 22:53:15 r3s1 systemd[1]: Started Docker Application Container Engine.
+Aug 03 22:53:15 r3s1 docker[53392]: /usr/bin/docker: relocation error: /usr/bin/docker: symbol d...ence
+Aug 03 22:53:15 r3s1 systemd[1]: docker.service: main process exited, code=exited, status=127/n/a
+Aug 03 22:53:15 r3s1 systemd[1]: Unit docker.service entered failed state.
+Aug 03 22:53:15 r3s1 systemd[1]: Starting Docker Application Container Engine...
+Aug 03 22:53:15 r3s1 systemd[1]: docker.service start request repeated too quickly, refusing to start.
+Aug 03 22:53:15 r3s1 systemd[1]: Failed to start Docker Application Container Engine.
+Hint: Some lines were ellipsized, use -l to show in full.
+
+[root@r3s1 ~]# docker -d
+INFO[0000] Listening for HTTP on unix (/var/run/docker.sock) 
+docker: relocation error: docker: symbol dm_task_get_info_with_deferred_remove, version Base not defined in file libdevmapper.so.1.02 with link time reference
+
+- Solution: ``yum update -y device-mapper``
+    - `docker require proper device-mapper <https://github.com/docker/docker/issues/12108>`_
+
+
 
 
 .. [#] http://aufs.sourceforge.net/
