@@ -109,9 +109,11 @@ adding your user to the "docker" group with something like::
 Core techs
 ==========
 
+Docker in Docker is available
 
-storage
--------
+storage - rely on mnt namespace
+-------------------------------
+
 
 If you're using Docker on CentOS, RHEL, Fedora, or any other distro that doesn't ship by default with **AUFS** support, you are probably using the **Device Mapper storage plugin**. By default, this plugin will store all your containers in a 100 GB sparse file, and each container will be limited to 10 GB.
 
@@ -119,7 +121,41 @@ If you're using Docker on CentOS, RHEL, Fedora, or any other distro that doesn't
 
 | In the early days, aufs was entirely re-designed and re-implemented Unionfs Version 1.x series. Adding many original ideas, approaches, improvements and implementations, it becomes totally different from Unionfs while keeping the basic features. [#]_
 
+- DeviceMapper
+    ``/etc/sysconfig/docker`` or ``/etc/default/docker`` :OPTs="-s devicemapper"
+    - will create data/metadata file if not exists
 
+| just create the files(data/metadata) for Docker, before starting it! 1% of the data pool would be a good idea.
+
+By default devicemapper uses loopback device for development.
+
+.. code-block:: console
+
+    Usage of loopback devices is strongly discouraged for production use. Either use `--storage-opt dm.thinpooldev` or use `--storage-opt dm.no_warn_on_loop_devices=true` to suppress this warning.
+
+
+.. code-block:: console
+
+    [root@r16s01 ~]# sudo ls -l /dev/mapper/docker-8\:3-34473575-pool 
+    lrwxrwxrwx 1 root root 7 Jul 20 19:30 /dev/mapper/docker-8:3-34473575-pool -> ../dm-0
+    [root@r16s01 ~]# dmsetup table docker-8:3-34473575-pool
+    0 209715200 thin-pool 7:4 7:3 128 32768 1 skip_block_zeroing 
+    [root@r16s01 ~]# echo $((209715200*512/1024/1024/1024))
+    100
+    [root@r16s01 ~]# echo 0 88080384 thin 254:0 7 | dmsetup load docker-0:37-1471009-4ab0bdde0a0dd663d35993e401055ee0a66c63892ba960680b3386938bda3603
+
+Hostname -- UTS("UNIX Time-sharing System"
+------------------------------------------
+
+
+Conclusion
+----------
+
+- If you do PaaS or other high-density environment:
+    - AUFS (if available on your kernel) 
+    - overlayfs (otherwise)
+If you put big writable files on the CoW filesystem:
+    - BTRFS or Device Mapper
 
 
 

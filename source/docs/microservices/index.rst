@@ -16,6 +16,19 @@ I think the style 'microservices' is a good architechture  for distributed softw
 
 
 
+- subset of SOA
+- componentization via serveces (can be upgrade independently, c/s comm via RESTful)
+- organized around business capabilities(we're the users)
+- smart endpoints and dumb pipes(comm between services via amqp)
+- decentralization management
+- decentralization database(each service have own datastore?)
+
+chaos monkey(netflix) and k8s(google) are major users of microservices
+
+
+
+
+
 
 monolith vs. microservices
 

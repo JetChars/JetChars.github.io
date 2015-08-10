@@ -37,6 +37,7 @@ Pip
 
 
 1. Install python module
+    - install pip: ``wget https://bootstrap.pypa.io/get-pip.py && sudo -E python get-pip.py --trusted-host pypi.python.org``
     - ``sudo easy_install pip``
     - ``sudo apt-get install python-pip``
     - ``sudo yum install python-pip``

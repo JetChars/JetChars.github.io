@@ -3,6 +3,8 @@ Magnum
 ======
 
 Magnum is an OpenStack project which offers container orchestration engines for deploying and managing containers as first class resources in OpenStack.[#]_
+Containers started by Magnum are run on top of Nova instances that are created using Heat.
+Pack applications together more tightly than would be possible using Virtual Machines.
 
 
 

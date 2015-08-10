@@ -6,6 +6,20 @@
 
 .. image:: images/hadoop_evolve.jpg
 
+
+Distro
+======
+
+============ ================
+distro       users
+============ ================
+apache       sahara, aws
+hdp          sahara, windows azure
+cdh          sahara
+============ ================
+
+
+
 Unlimit Non-root User's Resources
 =================================
 

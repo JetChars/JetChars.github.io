@@ -109,9 +109,11 @@ adding your user to the "docker" group with something like::
 Core techs
 ==========
 
+Docker in Docker is available
 
-storage
--------
+storage - rely on mnt namespace
+-------------------------------
+
 
 If you're using Docker on CentOS, RHEL, Fedora, or any other distro that doesn't ship by default with **AUFS** support, you are probably using the **Device Mapper storage plugin**. By default, this plugin will store all your containers in a 100 GB sparse file, and each container will be limited to 10 GB.
 
@@ -119,7 +121,41 @@ If you're using Docker on CentOS, RHEL, Fedora, or any other distro that doesn't
 
 | In the early days, aufs was entirely re-designed and re-implemented Unionfs Version 1.x series. Adding many original ideas, approaches, improvements and implementations, it becomes totally different from Unionfs while keeping the basic features. [#]_
 
+- DeviceMapper
+    ``/etc/sysconfig/docker`` or ``/etc/default/docker`` :OPTs="-s devicemapper"
+    - will create data/metadata file if not exists
 
+| just create the files(data/metadata) for Docker, before starting it! 1% of the data pool would be a good idea.
+
+By default devicemapper uses loopback device for development.
+
+.. code-block:: console
+
+    Usage of loopback devices is strongly discouraged for production use. Either use `--storage-opt dm.thinpooldev` or use `--storage-opt dm.no_warn_on_loop_devices=true` to suppress this warning.
+
+
+.. code-block:: console
+
+    [root@r16s01 ~]# sudo ls -l /dev/mapper/docker-8\:3-34473575-pool 
+    lrwxrwxrwx 1 root root 7 Jul 20 19:30 /dev/mapper/docker-8:3-34473575-pool -> ../dm-0
+    [root@r16s01 ~]# dmsetup table docker-8:3-34473575-pool
+    0 209715200 thin-pool 7:4 7:3 128 32768 1 skip_block_zeroing 
+    [root@r16s01 ~]# echo $((209715200*512/1024/1024/1024))
+    100
+    [root@r16s01 ~]# echo 0 88080384 thin 254:0 7 | dmsetup load docker-0:37-1471009-4ab0bdde0a0dd663d35993e401055ee0a66c63892ba960680b3386938bda3603
+
+Hostname -- UTS("UNIX Time-sharing System"
+------------------------------------------
+
+
+Conclusion
+----------
+
+- If you do PaaS or other high-density environment:
+    - AUFS (if available on your kernel) 
+    - overlayfs (otherwise)
+If you put big writable files on the CoW filesystem:
+    - BTRFS or Device Mapper
 
 
 
@@ -427,6 +463,35 @@ Issues
     Failed to get D-Bus connection: No connection to service manager
 
 - solution: ``/usr/sbin/sshd``
+
+
+5. service docker failed to start
+
+.. code-block:: console
+
+[root@r3s1 ~]# service docker status
+docker.service - Docker Application Container Engine
+   Loaded: loaded (/usr/lib/systemd/system/docker.service; enabled)
+   Active: failed (Result: start-limit) since Mon 2015-08-03 22:53:15 CST; 56s ago
+     Docs: https://docs.docker.com
+  Process: 53392 ExecStart=/usr/bin/docker -d -H fd:// (code=exited, status=127)
+ Main PID: 53392 (code=exited, status=127)
+
+Aug 03 22:53:15 r3s1 systemd[1]: Started Docker Application Container Engine.
+Aug 03 22:53:15 r3s1 docker[53392]: /usr/bin/docker: relocation error: /usr/bin/docker: symbol d...ence
+Aug 03 22:53:15 r3s1 systemd[1]: docker.service: main process exited, code=exited, status=127/n/a
+Aug 03 22:53:15 r3s1 systemd[1]: Unit docker.service entered failed state.
+Aug 03 22:53:15 r3s1 systemd[1]: Starting Docker Application Container Engine...
+Aug 03 22:53:15 r3s1 systemd[1]: docker.service start request repeated too quickly, refusing to start.
+Aug 03 22:53:15 r3s1 systemd[1]: Failed to start Docker Application Container Engine.
+Hint: Some lines were ellipsized, use -l to show in full.
+
+[root@r3s1 ~]# docker -d
+INFO[0000] Listening for HTTP on unix (/var/run/docker.sock) 
+docker: relocation error: docker: symbol dm_task_get_info_with_deferred_remove, version Base not defined in file libdevmapper.so.1.02 with link time reference
+
+- Solution: ``yum update -y device-mapper``
+    - `docker require proper device-mapper <https://github.com/docker/docker/issues/12108>`_
 
 
 

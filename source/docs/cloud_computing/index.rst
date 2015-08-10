@@ -159,6 +159,9 @@ Terminologies
 | **IMGO** --In My Humble Opinion
 | **mesos** -- distributed system **for running and building** other distributed system(spark hadoop chronos marathon K8s)
 | **RDS** -- Relational Database Service
+| **FCAH** -- Filesystem Compatibility with Apache Hadoop
+| **NFV** -- Network Function Virtualization
+| **CoW** -- Copy-on-Write
 
 
 | `aliyun <http://www.aliyun.com>`_

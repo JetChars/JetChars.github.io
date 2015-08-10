@@ -4,7 +4,12 @@ Secure Shell
 
 
 
-- config file: ``~/.ssh/config``
+- config files:
+    - ``~/.ssh/config``
+    - /etc/ssh/ssh_config
+        - StrictHostKeyChecking no
+
+**Example ~/.ssh/config** :
 
 .. code-block:: guess
 
@@ -14,6 +19,12 @@ Secure Shell
         User            username
         IdentityFile    keypath
 
+**Example ssh_config** :
+
+.. code-block:: guess
+
+    # abandon yes/no prompt
+    StrictHostKeyChecking no
 
 
 

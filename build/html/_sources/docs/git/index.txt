@@ -237,6 +237,14 @@ Review -- The tool to submit code patches
 -----------------------------------------
 
 
+Rebase -- Forward-port local commits to the updated upstream head
+-----------------------------------------------------------------
+
+
+
+
+
+
 Check Infos
 ===========
 

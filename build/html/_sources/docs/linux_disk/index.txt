@@ -438,6 +438,20 @@ Issues
     # dmsetup — low level logical volume management
     dmsetup remove /dev/sdb1
 
+DeviceMapper
+============
+
+
+iSCSI
+=====
+
+tgtadm - Linux SCSI Target Administration Utilit
+------------------------------------------------
+
+.. code-block:: bash
+
+    # tgtadm 
+
 
 Loop Device
 ===========
@@ -560,6 +574,15 @@ count=N  copy only N input blocks
 ::
 
     dd if=/dev/zero of=testfile bs=1M count=512 conv=fdatasync
+
+iozone
+------
+
+.. code-block:: bash
+
+    dd if=/dev/zero of=testfile bs=1M count=8192
+    iozone -a -e -n 2g -g 8g -r 64k -i 0 -i 1 -i 2 -i 5 -f testfile -Rb ./iozone.xls
+
 
 
 .. [#] http://en.wikipedia.org/wiki/Logical_volume_management

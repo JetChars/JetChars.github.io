@@ -2,6 +2,9 @@
 Nova
 ====
 
+nova can use multiple virt driver, but not mature yet
+
+
 
 .. sidebar:: Terms
 
@@ -118,6 +121,36 @@ Instances
     for i in `nova list | grep bootbench | awk '{print $2}'`;do nova console-log $i | grep login: 1>/dev/null || echo $i;done
     # boot instance at specified host
     nova boot --image <uuid/name> --flavor <uuid/name> --key-name <kname> --availability-zone nova:server2
+
+
+- inspect an instance
+    - ``virsh edit <instance/id>``
+
+.. code-block:: xml
+
+    <disk type='file' device='disk'>
+      <driver name='qemu' type='qcow2' cache='none'/>
+      <source file='/opt/stack/data/nova/instances/fa0f8de4-800a-4550-8115-00da86326223/disk'/>
+      <target dev='vda' bus='virtio'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x04' function='0x0'/>
+    </disk>
+    <disk type='block' device='disk'>
+      <driver name='qemu' type='raw' cache='none'/>
+      <source dev='/dev/disk/by-path/ip-192.168.16.10:3260-iscsi-iqn.2010-10.org.openstack:volume-386e0e48-ef30-4673-9d86-f63526f1a322-lun-1'/>
+      <target dev='vdb' bus='virtio'/>
+      <serial>386e0e48-ef30-4673-9d86-f63526f1a322</serial>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x06' function='0x0'/>
+    </disk>
+    <disk type='file' device='cdrom'>
+      <driver name='qemu' type='raw' cache='none'/>
+      <source file='/opt/stack/data/nova/instances/fa0f8de4-800a-4550-8115-00da86326223/disk.config'/>
+      <target dev='hdd' bus='ide'/>
+      <readonly/>
+      <address type='drive' controller='0' bus='1' target='0' unit='1'/>
+    </disk>
+
+
+
 
 Services
 ^^^^^^^^

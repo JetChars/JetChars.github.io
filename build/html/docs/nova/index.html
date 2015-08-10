@@ -117,7 +117,9 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../docker/index.html#core-techs">Core techs</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#storage">storage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#storage-rely-on-mnt-namespace">storage - rely on mnt namespace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#hostname-uts-unix-time-sharing-system">Hostname &#8211; UTS(&#8220;UNIX Time-sharing System&#8221;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#conclusion">Conclusion</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../docker/index.html#basic-commands">Basic Commands</a><ul>
@@ -312,6 +314,7 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../hadoop/index.html">Hadoop</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hadoop/index.html#distro">Distro</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hadoop/index.html#unlimit-non-root-user-s-resources">Unlimit Non-root User&#8217;s Resources</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hadoop/index.html#crunch">crunch</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hadoop/index.html#id2">CDAP</a></li>
@@ -380,6 +383,11 @@
 <li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#issues">Issues</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#devicemapper">DeviceMapper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#iscsi">iSCSI</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#tgtadm-linux-scsi-target-administration-utilit">tgtadm - Linux SCSI Target Administration Utilit</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#loop-device">Loop Device</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#sparse-file">Sparse File</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../linux_disk/index.html#copying-w-cp">copying w/ &#8216;cp&#8217;</a></li>
@@ -396,6 +404,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#disk-performance">Disk Performance</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#dd-convert-and-copy-a-file">dd &#8211; convert and copy a file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#iozone">iozone</a></li>
 </ul>
 </li>
 </ul>
@@ -426,7 +435,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../linux_info/index.html#proc-infos">proc infos</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_info/index.html#enviroments">Enviroments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_info/index.html#enviroments">Enviroments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux_info/index.html#username">username</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_info/index.html#lscommands">lscommands</a></li>
 </ul>
 </li>
@@ -443,9 +455,9 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#dns-management">DNS management</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../linux_net/index.html#bind-main-stream-dns-server">bind &#8211; main stream dns server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_net/index.html#dnsmasq">dnsmasq</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#dnsmasq">dnsmasq</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#route-management">Route Management</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#ip-commands">IP commands</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../linux_net/index.html#addr-address">addr/address</a></li>
@@ -457,12 +469,20 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#open-vswitch">Open vSwitch</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#macvlan">macvlan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#getting-contents">Getting contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux_net/index.html#curl">curl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_net/index.html#wget">wget</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#terms">Terms</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux_pkg/index.html">Linux Package Management</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../linux_pkg/index.html#apt">apt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_pkg/index.html#yum">yum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_pkg/index.html#yum">yum</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux_pkg/index.html#issues">Issues</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_pkg/index.html#rpm">rpm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_pkg/index.html#applications">Applications</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../linux_pkg/index.html#check-install">Check Install</a></li>
@@ -569,6 +589,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../git/index.html#reset-reset-current-head-to-the-specified-state-unstage-files">Reset &#8211; Reset current HEAD to the specified state (unstage files)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../git/index.html#push-update-remote-refs-along-with-associated-objects">Push &#8211; Update remote refs along with associated objects</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../git/index.html#review-the-tool-to-submit-code-patches">Review &#8211; The tool to submit code patches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../git/index.html#rebase-forward-port-local-commits-to-the-updated-upstream-head">Rebase &#8211; Forward-port local commits to the updated upstream head</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../git/index.html#check-infos">Check Infos</a></li>
@@ -819,6 +840,7 @@
             
   <div class="section" id="nova">
 <h1>Nova<a class="headerlink" href="#nova" title="Permalink to this headline">¶</a></h1>
+<p>nova can use multiple virt driver, but not mature yet</p>
 <div class="sidebar">
 <p class="first sidebar-title">Terms</p>
 <div class="last line-block">
@@ -965,6 +987,38 @@ nova boot --flavor &lt;flavor&gt; --block-device <span class="nb">source</span><
 nova boot --image &lt;uuid/name&gt; --flavor &lt;uuid/name&gt; --key-name &lt;kname&gt; --availability-zone nova:server2
 </pre></div>
 </td></tr></table></div>
+<ul>
+<li><dl class="first docutils">
+<dt>inspect an instance</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">virsh</span> <span class="pre">edit</span> <span class="pre">&lt;instance/id&gt;</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;disk</span> <span class="na">type=</span><span class="s">&#39;file&#39;</span> <span class="na">device=</span><span class="s">&#39;disk&#39;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;driver</span> <span class="na">name=</span><span class="s">&#39;qemu&#39;</span> <span class="na">type=</span><span class="s">&#39;qcow2&#39;</span> <span class="na">cache=</span><span class="s">&#39;none&#39;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;source</span> <span class="na">file=</span><span class="s">&#39;/opt/stack/data/nova/instances/fa0f8de4-800a-4550-8115-00da86326223/disk&#39;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;target</span> <span class="na">dev=</span><span class="s">&#39;vda&#39;</span> <span class="na">bus=</span><span class="s">&#39;virtio&#39;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">type=</span><span class="s">&#39;pci&#39;</span> <span class="na">domain=</span><span class="s">&#39;0x0000&#39;</span> <span class="na">bus=</span><span class="s">&#39;0x00&#39;</span> <span class="na">slot=</span><span class="s">&#39;0x04&#39;</span> <span class="na">function=</span><span class="s">&#39;0x0&#39;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/disk&gt;</span>
+<span class="nt">&lt;disk</span> <span class="na">type=</span><span class="s">&#39;block&#39;</span> <span class="na">device=</span><span class="s">&#39;disk&#39;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;driver</span> <span class="na">name=</span><span class="s">&#39;qemu&#39;</span> <span class="na">type=</span><span class="s">&#39;raw&#39;</span> <span class="na">cache=</span><span class="s">&#39;none&#39;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;source</span> <span class="na">dev=</span><span class="s">&#39;/dev/disk/by-path/ip-192.168.16.10:3260-iscsi-iqn.2010-10.org.openstack:volume-386e0e48-ef30-4673-9d86-f63526f1a322-lun-1&#39;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;target</span> <span class="na">dev=</span><span class="s">&#39;vdb&#39;</span> <span class="na">bus=</span><span class="s">&#39;virtio&#39;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;serial&gt;</span>386e0e48-ef30-4673-9d86-f63526f1a322<span class="nt">&lt;/serial&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">type=</span><span class="s">&#39;pci&#39;</span> <span class="na">domain=</span><span class="s">&#39;0x0000&#39;</span> <span class="na">bus=</span><span class="s">&#39;0x00&#39;</span> <span class="na">slot=</span><span class="s">&#39;0x06&#39;</span> <span class="na">function=</span><span class="s">&#39;0x0&#39;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/disk&gt;</span>
+<span class="nt">&lt;disk</span> <span class="na">type=</span><span class="s">&#39;file&#39;</span> <span class="na">device=</span><span class="s">&#39;cdrom&#39;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;driver</span> <span class="na">name=</span><span class="s">&#39;qemu&#39;</span> <span class="na">type=</span><span class="s">&#39;raw&#39;</span> <span class="na">cache=</span><span class="s">&#39;none&#39;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;source</span> <span class="na">file=</span><span class="s">&#39;/opt/stack/data/nova/instances/fa0f8de4-800a-4550-8115-00da86326223/disk.config&#39;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;target</span> <span class="na">dev=</span><span class="s">&#39;hdd&#39;</span> <span class="na">bus=</span><span class="s">&#39;ide&#39;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;readonly/&gt;</span>
+  <span class="nt">&lt;address</span> <span class="na">type=</span><span class="s">&#39;drive&#39;</span> <span class="na">controller=</span><span class="s">&#39;0&#39;</span> <span class="na">bus=</span><span class="s">&#39;1&#39;</span> <span class="na">target=</span><span class="s">&#39;0&#39;</span> <span class="na">unit=</span><span class="s">&#39;1&#39;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/disk&gt;</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="services">
 <h3>Services<a class="headerlink" href="#services" title="Permalink to this headline">¶</a></h3>

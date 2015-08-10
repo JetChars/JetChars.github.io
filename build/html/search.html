@@ -115,7 +115,9 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="docs/docker/index.html#core-techs">Core techs</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="docs/docker/index.html#storage">storage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/docker/index.html#storage-rely-on-mnt-namespace">storage - rely on mnt namespace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/docker/index.html#hostname-uts-unix-time-sharing-system">Hostname &#8211; UTS(&#8220;UNIX Time-sharing System&#8221;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/docker/index.html#conclusion">Conclusion</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="docs/docker/index.html#basic-commands">Basic Commands</a><ul>
@@ -310,6 +312,7 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="docs/hadoop/index.html">Hadoop</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="docs/hadoop/index.html#distro">Distro</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docs/hadoop/index.html#unlimit-non-root-user-s-resources">Unlimit Non-root User&#8217;s Resources</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docs/hadoop/index.html#crunch">crunch</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docs/hadoop/index.html#id2">CDAP</a></li>
@@ -378,6 +381,11 @@
 <li class="toctree-l3"><a class="reference internal" href="docs/linux_disk/index.html#issues">Issues</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="docs/linux_disk/index.html#devicemapper">DeviceMapper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/linux_disk/index.html#iscsi">iSCSI</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docs/linux_disk/index.html#tgtadm-linux-scsi-target-administration-utilit">tgtadm - Linux SCSI Target Administration Utilit</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="docs/linux_disk/index.html#loop-device">Loop Device</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="docs/linux_disk/index.html#sparse-file">Sparse File</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="docs/linux_disk/index.html#copying-w-cp">copying w/ &#8216;cp&#8217;</a></li>
@@ -394,6 +402,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="docs/linux_disk/index.html#disk-performance">Disk Performance</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="docs/linux_disk/index.html#dd-convert-and-copy-a-file">dd &#8211; convert and copy a file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/linux_disk/index.html#iozone">iozone</a></li>
 </ul>
 </li>
 </ul>
@@ -424,7 +433,10 @@
 <li class="toctree-l3"><a class="reference internal" href="docs/linux_info/index.html#proc-infos">proc infos</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="docs/linux_info/index.html#enviroments">Enviroments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/linux_info/index.html#enviroments">Enviroments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docs/linux_info/index.html#username">username</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="docs/linux_info/index.html#lscommands">lscommands</a></li>
 </ul>
 </li>
@@ -441,9 +453,9 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="docs/linux_net/index.html#dns-management">DNS management</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="docs/linux_net/index.html#bind-main-stream-dns-server">bind &#8211; main stream dns server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/linux_net/index.html#dnsmasq">dnsmasq</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="docs/linux_net/index.html#dnsmasq">dnsmasq</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docs/linux_net/index.html#route-management">Route Management</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docs/linux_net/index.html#ip-commands">IP commands</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="docs/linux_net/index.html#addr-address">addr/address</a></li>
@@ -455,12 +467,20 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="docs/linux_net/index.html#open-vswitch">Open vSwitch</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docs/linux_net/index.html#macvlan">macvlan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/linux_net/index.html#getting-contents">Getting contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docs/linux_net/index.html#curl">curl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/linux_net/index.html#wget">wget</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="docs/linux_net/index.html#terms">Terms</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="docs/linux_pkg/index.html">Linux Package Management</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="docs/linux_pkg/index.html#apt">apt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docs/linux_pkg/index.html#yum">yum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/linux_pkg/index.html#yum">yum</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docs/linux_pkg/index.html#issues">Issues</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="docs/linux_pkg/index.html#rpm">rpm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docs/linux_pkg/index.html#applications">Applications</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="docs/linux_pkg/index.html#check-install">Check Install</a></li>
@@ -567,6 +587,7 @@
 <li class="toctree-l3"><a class="reference internal" href="docs/git/index.html#reset-reset-current-head-to-the-specified-state-unstage-files">Reset &#8211; Reset current HEAD to the specified state (unstage files)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="docs/git/index.html#push-update-remote-refs-along-with-associated-objects">Push &#8211; Update remote refs along with associated objects</a></li>
 <li class="toctree-l3"><a class="reference internal" href="docs/git/index.html#review-the-tool-to-submit-code-patches">Review &#8211; The tool to submit code patches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/git/index.html#rebase-forward-port-local-commits-to-the-updated-upstream-head">Rebase &#8211; Forward-port local commits to the updated upstream head</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="docs/git/index.html#check-infos">Check Infos</a></li>

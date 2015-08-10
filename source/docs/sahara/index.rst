@@ -8,7 +8,7 @@ About
 
 `Red Hat's doc of Deploying sahara <http://www.redhat.com/en/resources/deploying-sahara-analytics-service-red-hat-enterprise-linux-openstack-platform-5>`_
 
-
+- sahara - openstack data processing project
 
 .. sidebar:: Terms
 

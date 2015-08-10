@@ -185,7 +185,7 @@ For old systems ``bind`` and ``caching-nameserver`` both required, latter one fo
 
 
 dnsmasq
-=======
+-------
 
 Can provide both dhcp & dns server services. use port 53(ipv4&6,tcp&udp)
 
@@ -318,7 +318,25 @@ maximun 254 virtual nic, current over 10 vnic will cause unstable
 - passthru -- let vm use host's nic
 
 
+Getting contents
+================
 
+curl
+----
+
+=================== =========================
+opts                detail
+=================== =========================
+-L, --location      auto redirect to new location
+-o, --output <file>               
+-s, --silent        quiet mode, no verbose
+-S, --show-error
+--noproxy <list>
+=================== =========================
+
+
+wget
+----
 
 
 

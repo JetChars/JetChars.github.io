@@ -3,6 +3,19 @@ Windows
 =======
 
 
+Tips
+====
+
+Mirror a device
+---------------
+
+| windows network neighbor can mirror sharepoint into local filesystem
+
+``network neighbour --> mirror a device``
+
+
+
+
 Applications
 ============
 
@@ -51,6 +64,8 @@ network tools
     pathping
     netsh interface portproxy add v4tov4 listenport=1080 connectaddress=10.239.4.80 connectport=1080
     netsh interface portproxy show all
+    rem change commandprompt screen size
+    mode con: cols=160 lines=78
 
 
 
