@@ -321,8 +321,10 @@ maximun 254 virtual nic, current over 10 vnic will cause unstable
 Getting contents
 ================
 
-curl
-----
+`curl <http://curl.haxx.se/docs/httpscripting.html>`_ client URL
+--------------
+
+
 
 =================== =========================
 opts                detail

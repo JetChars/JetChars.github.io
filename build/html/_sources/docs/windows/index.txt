@@ -14,6 +14,16 @@ Mirror a device
 ``network neighbour --> mirror a device``
 
 
+Shotcut keys
+------------
+
+============= ===================
+combo         description
+============= ===================
+cmd + enter   pronounce key strokes
+============= ===================
+
+
 
 
 Applications

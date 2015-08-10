@@ -1,0 +1,41 @@
+===========
+RESTful API
+===========
+
+
+- **API** -- Application Programming Interface
+- **REST** -- Representational State Transfer
+
+
+- Advantages
+    - can leverage cache to enhance response speed
+    - easy to access
+
+
+Http Requests [#]_
+=============
+
+method            description
+OPTIONS           
+GET               
+HEAD              
+POST              
+PUT               
+DELETE            
+TRACE             
+CONNECT           
+xtension-method
+
+
+
+
+Sources
+=======
+
+- `apigee <http://apigee.com>`_
+- `ProgrammableWeb <http://www.programmableweb.com/>`_ -- The leading source of news & information about APIs
+- `Example Google Maps API call <https://maps.googleapis.com/maps/api/geocode/json?address=disneyland,ca>`_
+- `Using REST APIs in a web application(php) <https://github.com/jelled/geogram/blob/1-Basic-REST-Application/geogram.php>`_
+
+
+.. [#] http://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html

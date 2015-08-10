@@ -31,8 +31,8 @@
 
   
     <link rel="top" title="JetChars alpha documentation" href="../../index.html"/>
-        <link rel="next" title="Linux Package Management" href="../linux_pkg/index.html"/>
-        <link rel="prev" title="Get System Infos" href="../linux_info/index.html"/> 
+        <link rel="next" title="PXE – Preboot Execution Enviriment" href="../pxe/index.html"/>
+        <link rel="prev" title="Documentation Tools" href="../linux_doc/index.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -117,7 +117,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../docker/index.html#core-techs">Core techs</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#storage">storage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#storage-rely-on-mnt-namespace">storage - rely on mnt namespace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html#hostname-uts-unix-time-sharing-system">Hostname &#8211; UTS(&#8220;UNIX Time-sharing System&#8221;</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../docker/index.html#conclusion">Conclusion</a></li>
 </ul>
 </li>
@@ -421,26 +422,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../linux_doc/index.html#pandoc-universal-document-converter">Pandoc - Universal document converter</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../linux_info/index.html">Get System Infos</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../linux_info/index.html#intro">Intro</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../linux_info/index.html#linux-get-system-version-info">linux get system version info</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../linux_info/index.html#for-any-os">For any os</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../linux_info/index.html#for-ubuntu">For Ubuntu</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../linux_info/index.html#for-centos">For Centos</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../linux_info/index.html#tar-folder-etc">tar folder /etc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../linux_info/index.html#print-infos">print infos</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../linux_info/index.html#proc-infos">proc infos</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_info/index.html#enviroments">Enviroments</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../linux_info/index.html#username">username</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_info/index.html#lscommands">lscommands</a></li>
-</ul>
-</li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Linux Network</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#configurations">Configurations</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#home-made-proxy-setting-tool">Home made proxy setting tool</a></li>
@@ -474,27 +455,6 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#terms">Terms</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../linux_pkg/index.html">Linux Package Management</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../linux_pkg/index.html#apt">apt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_pkg/index.html#yum">yum</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../linux_pkg/index.html#issues">Issues</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_pkg/index.html#rpm">rpm</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_pkg/index.html#applications">Applications</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../linux_pkg/index.html#check-install">Check Install</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../linux_virt/index.html">Virtualization</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../linux_virt/index.html#hypervisors">Hypervisors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_virt/index.html#libvirt">Libvirt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_virt/index.html#virsh-virtualization-management-interface">Virsh &#8211; Virtualization Management Interface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_virt/index.html#ti-calculators-http-www-ticalc-org-basics-calculators-index-html"><cite>TI Calculators &lt;http://www.ticalc.org/basics/calculators/index.html&gt;</cite></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_virt/index.html#docker">Docker</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../pxe/index.html">PXE &#8211; Preboot Execution Enviriment</a><ul>
@@ -1318,10 +1278,10 @@ maximun 254 virtual nic, current over 10 vnic will cause unstable</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../linux_pkg/index.html" class="btn btn-neutral float-right" title="Linux Package Management" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../pxe/index.html" class="btn btn-neutral float-right" title="PXE – Preboot Execution Enviriment" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../linux_info/index.html" class="btn btn-neutral" title="Get System Infos" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../linux_doc/index.html" class="btn btn-neutral" title="Documentation Tools" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
