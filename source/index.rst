@@ -37,8 +37,8 @@ OpenStack Customization
     docs/o7k_docker/index
     
 
-Hadoop Tuning
-=============
+Hadoop
+======
 
 .. toctree::
     :maxdepth: 1
@@ -48,8 +48,8 @@ Hadoop Tuning
     docs/doopshot/index
 
 
-Linux Tools
-===========
+Linux
+=====
 
 .. toctree::
     :maxdepth: 1
@@ -60,8 +60,6 @@ Linux Tools
     docs/screen/index
     docs/vim/index
     docs/ovs/index
-    docs/amqp/index
-    docs/mac/index
 
 Git
 ===
@@ -104,6 +102,19 @@ Algorithms
     :hidden:
 
     docs/algorithms/index
+
+Relevant
+========
+
+.. toctree::
+    :maxdepth: 1
+
+    docs/amqp/index
+    docs/rest/index
+    docs/microservices/index
+    docs/windows/index
+    docs/mac/index
+
 
 Related
 =======

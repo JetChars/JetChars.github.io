@@ -15,16 +15,28 @@ RESTful API
 Http Requests [#]_
 =============
 
+
+- GET vs. POST [#]_
+    - GET can be cached, while POST can't
+    - GET have a restrictions on data length 2048 characters
+    - GET only allow ASCII characters
+    - POST data is not displayed in the url
+
+
+
+================= ==================================
 method            description
-OPTIONS           
-GET               
-HEAD              
-POST              
-PUT               
-DELETE            
+================= ==================================
+OPTIONS           Returns the HTTP methods that the server supports
+GET               Requests data from a specified resource
+HEAD              Same as GET but returns only HTTP headers and no document body
+POST              Submits data to be processed to a specified resource
+PUT               Uploads a representation of the specified URI
+DELETE            Deletes the specified resource
 TRACE             
-CONNECT           
+CONNECT           Converts the request connection to a transparent TCP/IP tunnel
 xtension-method
+================= ==================================
 
 
 
@@ -39,3 +51,4 @@ Sources
 
 
 .. [#] http://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html
+.. [#] http://www.w3schools.com/tags/ref_httpmethods.asp

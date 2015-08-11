@@ -448,7 +448,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#open-vswitch">Open vSwitch</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#macvlan">macvlan</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux_net/index.html#getting-contents">Getting contents</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../linux_net/index.html#curl">curl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux_net/index.html#curl-client-url">curl client URL</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../linux_net/index.html#wget">wget</a></li>
 </ul>
 </li>
@@ -799,19 +799,38 @@
 <h1>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="tips">
 <h2>Tips<a class="headerlink" href="#tips" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="mirror-a-device">
-<h3>Mirror a device<a class="headerlink" href="#mirror-a-device" title="Permalink to this headline">¶</a></h3>
-<div class="line-block">
-<div class="line">windows network neighbor can mirror sharepoint into local filesystem</div>
-</div>
-<p><code class="docutils literal"><span class="pre">network</span> <span class="pre">neighbour</span> <span class="pre">--&gt;</span> <span class="pre">mirror</span> <span class="pre">a</span> <span class="pre">device</span></code></p>
-</div>
+<ul>
+<li><dl class="first docutils">
+<dt>Mirror a device: <code class="docutils literal"><span class="pre">network</span> <span class="pre">neighbour</span> <span class="pre">--&gt;</span> <span class="pre">mirror</span> <span class="pre">a</span> <span class="pre">device</span></code></dt>
+<dd><ul class="first last simple">
+<li>windows network neighbor can mirror sharepoint into local filesystem</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Add a startup item: <code class="docutils literal"><span class="pre">C:\ProgramData\Microsoft\Windows\Start</span> <span class="pre">Menu\Programs\StartUp</span></code> or <code class="docutils literal"><span class="pre">C:\users\username\appdata\roaming\Microsoft\Windows\Start</span> <span class="pre">Menu\Programs\StartUp</span></code></p>
+</li>
+<li><p class="first">change hosts: <code class="docutils literal"><span class="pre">C:\Windows\System32\drivers\etc</span></code></p>
+</li>
+<li><p class="first">make mycompter default in explorer: <code class="docutils literal"><span class="pre">%windir%/explorer.exe</span> <span class="pre">,</span></code></p>
+</li>
+<li><p class="first">any shortcut can change icon</p>
+</li>
+<li><p class="first"><strong>dll</strong> file can&#8217;t delele directly, change name to .txt first</p>
+</li>
+<li><p class="first">stop password protection to enable LAN sharing</p>
+</li>
+<li><p class="first">fix bluetooth device disconnect issue: <code class="docutils literal"><span class="pre">compmgmt--&gt;device</span> <span class="pre">manager--&gt;bluetooth</span> <span class="pre">controller--&gt;power</span> <span class="pre">management--&gt;not</span> <span class="pre">save</span> <span class="pre">power</span></code></p>
+</li>
+<li><p class="first">epoch &#8211; 1970-01-01 00:00:00 UTC</p>
+</li>
+</ul>
 <div class="section" id="shotcut-keys">
 <h3>Shotcut keys<a class="headerlink" href="#shotcut-keys" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="docutils">
 <colgroup>
-<col width="38%" />
-<col width="62%" />
+<col width="32%" />
+<col width="68%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">combo</th>
@@ -819,8 +838,38 @@
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>cmd + enter</td>
-<td>pronounce key strokes</td>
+<tr class="row-even"><td>^ + &lt;-/-&gt;</td>
+<td>move skip a word</td>
+</tr>
+<tr class="row-odd"><td>^ + c/v</td>
+<td>copy paste</td>
+</tr>
+<tr class="row-even"><td>^ + z/y</td>
+<td>undo, redo</td>
+</tr>
+<tr class="row-odd"><td>^ + w</td>
+<td>close tab</td>
+</tr>
+<tr class="row-even"><td>^shift + &lt;-/-&gt;</td>
+<td>select a word</td>
+</tr>
+<tr class="row-odd"><td>shift + &lt;-/-&gt;</td>
+<td>select a character</td>
+</tr>
+<tr class="row-even"><td>shift + home/end</td>
+<td>select a line</td>
+</tr>
+<tr class="row-odd"><td>alt + direction</td>
+<td>change screen direction</td>
+</tr>
+<tr class="row-even"><td>alt + space + N</td>
+<td>minimize current window</td>
+</tr>
+<tr class="row-odd"><td>cmd + enter</td>
+<td>enable narrator (pronounce key strokes)</td>
+</tr>
+<tr class="row-even"><td>cmd x</td>
+<td>enter god mode</td>
 </tr>
 </tbody>
 </table>
@@ -828,8 +877,151 @@
 </div>
 <div class="section" id="applications">
 <h2>Applications<a class="headerlink" href="#applications" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="built-in-apps">
+<h3>built-in Apps<a class="headerlink" href="#built-in-apps" title="Permalink to this headline">¶</a></h3>
+<p><strong>Tools</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="49%" />
+<col width="51%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">name</th>
+<th class="head">description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>notepad</td>
+<td>text editor</td>
+</tr>
+<tr class="row-odd"><td>calc</td>
+<td>calculator</td>
+</tr>
+<tr class="row-even"><td>mspaint</td>
+<td>paint pallet</td>
+</tr>
+<tr class="row-odd"><td>explorer</td>
+<td>file explorer</td>
+</tr>
+<tr class="row-even"><td>charmap</td>
+<td>get special chars</td>
+</tr>
+<tr class="row-odd"><td>cleanmgr</td>
+<td>clean system trash</td>
+</tr>
+<tr class="row-even"><td>write</td>
+<td>wordpad</td>
+</tr>
+<tr class="row-odd"><td>mstsc</td>
+<td>remote desktop</td>
+</tr>
+<tr class="row-even"><td>osk</td>
+<td>on screen keyboard</td>
+</tr>
+</tbody>
+</table>
+<p><strong>sys mgmt</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">name</th>
+<th class="head">description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>dcomcnfg</td>
+<td>component services</td>
+</tr>
+<tr class="row-odd"><td>Msconfig</td>
+<td>system configuration</td>
+</tr>
+<tr class="row-even"><td>regedt32</td>
+<td>register management</td>
+</tr>
+<tr class="row-odd"><td>devmgmt</td>
+<td>device management</td>
+</tr>
+<tr class="row-even"><td>eudcedit</td>
+<td>private character editor (create new char)</td>
+</tr>
+<tr class="row-odd"><td>perfmon</td>
+<td>performance monitor</td>
+</tr>
+<tr class="row-even"><td>compmgmt</td>
+<td>computer management</td>
+</tr>
+<tr class="row-odd"><td>fsmgmt</td>
+<td>share folder management</td>
+</tr>
+</tbody>
+</table>
+<p><strong>cmdline tools</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="59%" />
+<col width="41%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">cmd</th>
+<th class="head">description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>powercfg -h off/on</td>
+<td>sleepmode management</td>
+</tr>
+<tr class="row-odd"><td>chkdsk /r</td>
+<td>repair disk</td>
+</tr>
+<tr class="row-even"><td>help [command]</td>
+<td>get help</td>
+</tr>
+<tr class="row-odd"><td>tasklist</td>
+<td>show task list</td>
+</tr>
+<tr class="row-even"><td>taskkill</td>
+<td>kill a task</td>
+</tr>
+<tr class="row-odd"><td>schtask  /tn tname /tr tbinary</td>
+<td>schedule a task</td>
+</tr>
+<tr class="row-even"><td>date</td>
+<td>set date</td>
+</tr>
+<tr class="row-odd"><td>time</td>
+<td>set time</td>
+</tr>
+<tr class="row-even"><td>regsvr32</td>
+<td>register a server</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="section" id="ms-applications">
 <h3>MS Applications<a class="headerlink" href="#ms-applications" title="Permalink to this headline">¶</a></h3>
+<p>global shortcut keys</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="45%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">combo</th>
+<th class="head">description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>cmd + s</td>
+<td>onenote snapshot</td>
+</tr>
+<tr class="row-odd"><td>cmd + y</td>
+<td>open lync</td>
+</tr>
+</tbody>
+</table>
 <div class="section" id="onenote">
 <h4>OneNote<a class="headerlink" href="#onenote" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
@@ -838,9 +1030,55 @@
 <li>math-addon</li>
 </ul>
 </div>
+<div class="section" id="skype-lync">
+<h4>skype/lync<a class="headerlink" href="#skype-lync" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>keep icon out of dock: <code class="docutils literal"><span class="pre">tools-&gt;settings-&gt;advanced</span></code></li>
+</ul>
+</div>
+<div class="section" id="ie">
+<h4>IE<a class="headerlink" href="#ie" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="39%" />
+<col width="61%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">combo</th>
+<th class="head">description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>f5/^r</td>
+<td>refresh</td>
+</tr>
+<tr class="row-odd"><td>f11</td>
+<td>full screen</td>
+</tr>
+<tr class="row-even"><td>^t/T/w</td>
+<td>new/reopen/close a tab</td>
+</tr>
+<tr class="row-odd"><td>^enter</td>
+<td>auto-complete .com</td>
+</tr>
+<tr class="row-even"><td>^alt+enter</td>
+<td>auto-complete .org</td>
+</tr>
+<tr class="row-odd"><td>^shift+enter</td>
+<td>auto-complete .net</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div class="section" id="legacy-applications">
 <h3>legacy Applications<a class="headerlink" href="#legacy-applications" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="clover-explorer-enhancement-extension">
+<h4>clover - explorer enhancement extension<a class="headerlink" href="#clover-explorer-enhancement-extension" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="goagent-google-free-vpn">
+<h4>goAgent &#8211; google free vpn<a class="headerlink" href="#goagent-google-free-vpn" title="Permalink to this headline">¶</a></h4>
+</div>
 </div>
 <div class="section" id="metro-applications">
 <h3>Metro Applications<a class="headerlink" href="#metro-applications" title="Permalink to this headline">¶</a></h3>
