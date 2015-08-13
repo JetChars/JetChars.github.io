@@ -341,8 +341,60 @@ wget
 ----
 
 
+  
+Secure Shell
+============
+
+
+
+- config files:
+    - ``~/.ssh/config``
+    - /etc/ssh/ssh_config
+        - StrictHostKeyChecking no
+
+**Example ~/.ssh/config** :
+
+.. code-block:: guess
+
+    Host    alias
+        HostName        ipaddr
+        Port            port
+        User            username
+        IdentityFile    keypath
+
+**Example ssh_config** :
+
+.. code-block:: guess
+
+    # abandon yes/no prompt
+    StrictHostKeyChecking no
+
+
+
+3 most powerful ssh tunnel
+--------------------------
+
+.. code-block:: bash
+    
+    ssh -C -f -N -g -L listen_port:DST_Host:DST_port user@Tunnel_Host 
+    ssh -C -f -N -g -R listen_port:DST_Host:DST_port user@Tunnel_Host 
+    ssh -C -f -N -g -D listen_port user@Tunnel_Host
+
+
+SSL
+===
+
+Secure Sockek Layer, is a cryptographic protocol design to provide commuication security over a computer network
+
+- The cheapest place to buy SSL certificates that I'm aware of: https://www.gogetssl.com/
+- As of 2014 the 3.0 version of SSL is considered insecure as it is vulnerable to the POODLE attack that affects all block ciphers in SSL; and RC4, the only non-block cipher supported by SSL 3.0, is also feasibly broken as used in SSL 3.0
+
+
+
 
 Terms
 =====
 
 - **CDN** -- Content Delivery Network, Delivery data according to client's ip or location, to assure fast and stable network.
+
+

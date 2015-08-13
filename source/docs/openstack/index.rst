@@ -16,6 +16,21 @@ OpenStack is open source, openly designed, openly developed by an open community
 
 Now(July 18, 2015) openstack have 19 main services
 
+.. sidebar:: Deployment Methods
+
+    ============= ===================
+    name          description
+    ============= ===================
+    tripleo
+    devstack
+    puppet
+    fuel
+    PackStack     
+    Warm          provides the ability to deploy OpenStack resources from YAML templates
+    Inception     OpenStack in OpenStack for testing and playing
+    Anvil         DevStack version, written in Python, and supported by Yahoo
+    ============= ===================
+
 - Main services
     - Identity (Keystone)
     - Compute (Nova)

@@ -81,7 +81,7 @@ SecGroup
     nova secgroup-add-rule default tcp 1 65535 0.0.0.0/0
     nova secgroup-add-rule default udp 1 65535 0.0.0.0/0
 
-.. image:: images/secgroup.png
+.. image:: /images/secgroup.png
 
 KeyPair
 ^^^^^^^

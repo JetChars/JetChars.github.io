@@ -127,3 +127,26 @@ Find out occupied IPs
 
     >ip_occupied;for i in `seq 1 6`;do for j in `seq 1 255`;do bash -c "ping -w1 -c1 172.16.$i.$j | grep ttl | cut -d' ' -f4 | cut -d: -f1 | tee -a ip_occupied &" ;done;done
     arp-scan -I eth0 -l   # will check every IP eth0 can access locally
+
+
+
+Cons&Pros
+
+============================================== =======================================
+Cons                                           Pros
+============================================== =======================================
+bad boss, no good vision
+bad mood, will harm self-confidence            lots can be learn, and be paid
+bad workig enviroment   
+2hours on the road, get up too early           shuttle help avoid metro
+long enough, should have other experiences     Stay till other job emergence
+current direction not will be prevalent        companies really big have this direction
+============================================== =======================================
+
+
+
+
+
+
+
+

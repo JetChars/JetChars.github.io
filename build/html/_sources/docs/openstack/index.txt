@@ -16,6 +16,17 @@ OpenStack is open source, openly designed, openly developed by an open community
 
 Now(July 18, 2015) openstack have 19 main services
 
+.. sidebar:: Deployment Methods
+
+    ============= ===================
+    name          description
+    ============= ===================
+    tripleo
+    devstack
+    puppet
+    fuel
+    ============= ===================
+
 - Main services
     - Identity (Keystone)
     - Compute (Nova)

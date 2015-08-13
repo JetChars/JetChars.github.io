@@ -30,7 +30,7 @@ OpenStack Customization
     :glob:
 
     docs/openstack/index
-    docs/nova/index
+    docs/nova
     docs/sahara/index
     docs/kvm_optimization/index
     docs/devstack*/index
@@ -56,6 +56,7 @@ Linux
     :glob:
 
     docs/linux_*/index
+    docs/linux_*
     docs/pxe/index
     docs/screen/index
     docs/vim/index
