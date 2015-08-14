@@ -911,7 +911,22 @@
 <div class="line"><br /></div>
 </div>
 <p>The baseboard management controller (BMC) is the intelligence in the IPMI architecture. It is a specialized microcontroller embedded on the motherboard of a computer, generally a server. The BMC manages the interface between system management software and platform hardware. <a class="footnote-reference" href="#id8" id="id3">[3]</a></p>
+<ul class="simple">
+<li>System Information</li>
+</ul>
 <img alt="../_images/bmc_sysinfo.png" src="../_images/bmc_sysinfo.png" />
+<ul class="simple">
+<li>Server Health (126 sensors w/ thresholds)</li>
+</ul>
+<img alt="../_images/bmc_health.png" src="../_images/bmc_health.png" />
+<ul class="simple">
+<li>Server Power Control</li>
+</ul>
+<img alt="../_images/bmc_power_ctrl.png" src="../_images/bmc_power_ctrl.png" />
+<ul class="simple">
+<li>Virtual Front Panel</li>
+</ul>
+<img alt="../_images/bmc_virt_panel.png" src="../_images/bmc_virt_panel.png" />
 </div>
 <div class="section" id="remote-management-model">
 <h2>Remote Management Model<a class="headerlink" href="#remote-management-model" title="Permalink to this headline">¶</a></h2>
@@ -938,6 +953,10 @@
 <ul class="simple">
 <li>File: <code class="docutils literal"><span class="pre">rmm&#64;r3s2.bat</span></code></li>
 </ul>
+<div class="sidebar">
+<p class="first sidebar-title">Note</p>
+<p class="last">enable portforward of 80 port requires admin previledge.</p>
+</div>
 <div class="line-block">
 <div class="line">Only 80 and 7578 port require portforward.</div>
 <div class="line">Username can be replaced with you own at omega.sh.intel.com.</div>

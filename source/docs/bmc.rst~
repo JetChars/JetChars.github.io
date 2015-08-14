@@ -50,7 +50,21 @@ Baseboard Management Console
 
 The baseboard management controller (BMC) is the intelligence in the IPMI architecture. It is a specialized microcontroller embedded on the motherboard of a computer, generally a server. The BMC manages the interface between system management software and platform hardware. [#]_
 
+- System Information
+
 .. image:: /images/bmc_sysinfo.png
+
+- Server Health (126 sensors)
+
+.. image:: /images/bmc_health.png
+
+- Server Power Control
+
+.. image:: /images/bmc_power_ctrl.png
+
+- Virtual Front Panel
+
+.. image:: /images/bmc_virt_panel.png
 
 
 
@@ -84,7 +98,11 @@ Access RMM/KVM from remote desktop
 The Intel RMM/KVM can access via NAT/portforwarding. [#]_
 
 - File: ``rmm@r3s2.bat``
- 
+
+.. sidebar:: Note
+
+    enable portforward of 80 port requires admin previledge.
+
 | Only 80 and 7578 port require portforward.
 | Username can be replaced with you own at omega.sh.intel.com.
 | If you want it passwordless, using 'echo \|' pipwork or ``ssh-copy-id`` might be a good idea.
@@ -149,8 +167,8 @@ SMASH-CLP Console v1.09
 -----------------------
 
 | Targets: SMASH-CLP provides support for different configuration parameters of the server.
-For a complete list of targets please refer to the user's guide. Example targets
- are system1,sp1,logs1 etc.
+| For a complete list of targets please refer to the user's guide. Example targets
+| are system1,sp1,logs1 etc.
 |
 |
 
