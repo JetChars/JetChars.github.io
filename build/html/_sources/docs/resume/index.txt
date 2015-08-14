@@ -17,14 +17,32 @@ Education Background
 * Bachelor's Degree : Nankai University *Basic Chemistry*
 
 
-Experiences
-===========
-2014.11~2015.05 Intel Asia Pacific Research Center.
+InternShip
+==========
 
-* OpenStack Deployment w/ DevStack & PXE
-* Sahara Optimization
-* Hadoop Tuning
 
+
+
+
+Project Experiences
+===================
+
+2014.4~now The Study of BigData-on-Cloud Solutions and Technology(Peking University)
+y
+- Big Data(e.g. Hadoop,spark,storm,tachyon) Technology Study
+- OpenStack Environment Deployment
+- Performance Testing for Big Data on Cloud Platform
+- Other Emerging Technology Study 
+
+2014.8~2014.11 Conditional Randon Field based NLP Study (Essex Lake Group)
+
+
+
+
+2014.11~now Hadoop as a Service Proof of Concept (Intel APAC R&D Ltd.)
+- Performance testing & Develop testing tools doopshot(github)
+- Integration with docker/nova
+- sahara optimization and edp study
 
 Basic Skills
 ============
