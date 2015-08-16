@@ -161,7 +161,6 @@ Discoverings
 
 .. image:: /images/nmap_smc.png
 
-``ssh <SMC Server>``
 
 SMASH-CLP Console v1.09
 -----------------------
@@ -171,6 +170,10 @@ SMASH-CLP Console v1.09
 | are system1,sp1,logs1 etc.
 |
 |
+
+.. code-block:: bash
+
+    ssh root@172.16.3.103
 
 .. image:: /images/smc_ssh.png
 
