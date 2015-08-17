@@ -15,106 +15,126 @@ RedHat RHEL7.1 OSP7
 `RedHat OSP7 Docs <https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux_OpenStack_Platform/>`_
 `OSP7 images <https://access.redhat.com/downloads/content/191/ver=7.0/rhel---7/7.0/x86_64/product-downloads>`_
 
-
-# change hostname
-# ---------------
-hostnamectl set-hostname manager.example.com
-hostnamectl set-hostname --transient manager.example.com
-echo "127.0.0.1   manager.example.com manager" > /etc/hosts
-
-
-echo "no_proxy1=intel.com,localhost,127.0.0.1,172.16.0.1
-printf -v no_proxy2 '%s,' 172.16.{0..16}.{1..255};
-no_proxy2=\"\${no_proxy2%,}\";
-printf -v no_proxy3 '%s,' 192.0.2.{1..255};
-no_proxy3=\"\${no_proxy3%,}\";
-export no_proxy=\${no_proxy1},\${no_proxy2},\${no_proxy3}
-unset no_proxy1
-unset no_proxy2
-unset no_proxy3
-" >> /etc/bashrc
+Prepare
+=======
 
 
 
-# create stack user
-# -----------------
-useradd stack
-passwd stack --stdin << EOF
-123456
-EOF
-echo "stack ALL=(root) NOPASSWD:ALL" | tee -a /etc/sudoers.d/stack
-chmod 0440 /etc/sudoers.d/stack
+.. code-block:: bash
 
-# add template&image folders
-# --------------------------
-su - stack
-mkdir ~/images
-mkdir ~/templates
+    # change hostname
+    # ---------------
+    hostnamectl set-hostname manager.example.com
+    hostnamectl set-hostname --transient manager.example.com
+    echo "127.0.0.1   manager.example.com manager" > /etc/hosts
+    
+    # configure global proxy
+    # ----------------------
+    echo "no_proxy1=intel.com,localhost,127.0.0.1,172.16.0.1
+    printf -v no_proxy2 '%s,' 172.16.{0..16}.{1..255};
+    no_proxy2=\"\${no_proxy2%,}\";
+    printf -v no_proxy3 '%s,' 192.0.2.{1..255};
+    no_proxy3=\"\${no_proxy3%,}\";
+    export no_proxy=\${no_proxy1},\${no_proxy2},\${no_proxy3}
+    unset no_proxy1
+    unset no_proxy2
+    unset no_proxy3
+    " >> /etc/bashrc
+    
+    # create stack user
+    # -----------------
+    useradd stack
+    passwd stack --stdin << EOF
+    123456
+    EOF
+    echo "stack ALL=(root) NOPASSWD:ALL" | tee -a /etc/sudoers.d/stack
+    chmod 0440 /etc/sudoers.d/stack
+    
+    # add template&image folders
+    # --------------------------
+    su - stack
+    mkdir ~/images
+    mkdir ~/templates
+    
+    # enable ip forward
+    # -----------------
+    exit
+    echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf
+    sysctl -p /etc/sysctl.conf
+    
+    # register redhat
+    # ---------------
+    
+    sudo subscription-manager register
+    sudo -E subscription-manager list --available --all   # -E is required in an internal network
+    sudo subscription-manager attach --pool=8a85f9814f02ff15014f08c451ee3644   # pick first one
+    sudo subscription-manager repos --disable=*   # added in html version
+    sudo subscription-manager repos --enable=rhel-7-server-rpms --enable=rhel-7-server-optional-rpms --enable=rhel-7-server-extras-rpms --enable=rhel-7-server-openstack-7.0-rpms --enable=rhel-7-server-openstack-7.0-director-rpms
+    sudo yum update -y
 
-# enable ip forward
-# -----------------
-exit
-echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf
-sysctl -p /etc/sysctl.conf
+- not always get same register ID
 
-# register redhat
-# ---------------
-sudo subscription-manager register << EOF
-weiting.chen@intel.com
-intel@123
-EOF
-sudo subscription-manager attach --pool=8a85f9814f02ff15014f08c451ee3644   # pick first one
-sudo subscription-manager repos --disable=*   # added in html version
-sudo subscription-manager repos --enable=rhel-7-server-rpms --enable=rhel-7-server-optional-rpms --enable=rhel-7-server-extras-rpms --enable=rhel-7-server-openstack-7.0-rpms --enable=rhel-7-server-openstack-7.0-director-rpms
-sudo yum update -y
+.. code-block:: console 
+
+    root@osp7 ~]# subscription-manager register 
+    Username: weiting.chen@intel.com
+    Password: 
+    The system has been registered with ID: 943016c8-26d6-429e-b9b8-fca4f8211fa5
+    
+    [stack@manager ~]$ sudo -E subscription-manager register
+    Username: weiting.chen@intel.com
+    Password: 
+    The system has been registered with ID: ef6c499b-784a-4d37-9736-ccf401e98450
 
 
-[root@osp7 ~]# subscription-manager register 
-Username: weiting.chen@intel.com
-Password: 
-The system has been registered with ID: 943016c8-26d6-429e-b9b8-fca4f8211fa5
-
-[stack@manager ~]$ sudo -E subscription-manager register
-Username: weiting.chen@intel.com
-Password: 
-The system has been registered with ID: ef6c499b-784a-4d37-9736-ccf401e98450
-
-sudo -E subscription-manager list --available --all   # -E is required in an internal network
-sudo -E subscription-manager attach --pool=8a85f9814f02ff15014f08c451ee3644   # pick first one
-sudo -E subscription-manager repos --disable=*   # added in html version
-sudo -E subscription-manager repos --enable=rhel-7-server-rpms --enable=rhel-7-server-optional-rpms --enable=rhel-7-server-extras-rpms --enable=rhel-7-server-openstack-7.0-rpms --enable=rhel-7-server-openstack-7.0-director-rpms
-sudo yum update -y  
-
-
-# create ssl files
-# ----------------
+create ssl files
+----------------
 
 .. code-block:: console
 
-[stack@osp7 ~]$ openssl req -new -x509 -key privkey.pem -out cacert.pem -days 365
-You are about to be asked to enter information that will be incorporated
-into your certificate request.
-What you are about to enter is what is called a Distinguished Name or a DN.
-There are quite a few fields but you can leave some blank
-For some fields there will be a default value,
-If you enter '.', the field will be left blank.
------
-Country Name (2 letter code) [XX]:CN
-State or Province Name (full name) []:Shanghai
-Locality Name (eg, city) [Default City]:Shanghai
-Organization Name (eg, company) [Default Company Ltd]:Intel APAC R&D        
-Organizational Unit Name (eg, section) []:SSG
-Common Name (eg, your name or your server's hostname) []:Weiting, Chen
-Email Address []:weiting.chen@intel.com
+    [stack@osp7 ~]$ openssl req -new -x509 -key privkey.pem -out cacert.pem -days 365
+    You are about to be asked to enter information that will be incorporated
+    into your certificate request.
+    What you are about to enter is what is called a Distinguished Name or a DN.
+    There are quite a few fields but you can leave some blank
+    For some fields there will be a default value,
+    If you enter '.', the field will be left blank.
+    -----
+    Country Name (2 letter code) [XX]:CN
+    State or Province Name (full name) []:Shanghai
+    Locality Name (eg, city) [Default City]:Shanghai
+    Organization Name (eg, company) [Default Company Ltd]:Intel APAC R&D        
+    Organizational Unit Name (eg, section) []:SSG
+    Common Name (eg, your name or your server's hostname) []:Weiting, Chen
+    Email Address []:weiting.chen@intel.com
 
 
-# configure undercloud
-# --------------------
+configure undercloud
+--------------------
+
+.. code-block:: bash
+
+    sudo yum install -y python-rdomanager-oscplugin
+    cp /usr/share/instack-undercloud/undercloud.conf.sample undercloud.conf
+    openstack undercloud install
+
+.. code-block:: console
+
+    [stack@osp7 ~]$ ls /tmp/tmpbIW3ir/
+    bin                   __init__.pyo                       root.d
+    cleanup.d             install.d                          rsyslog.d
+    config.json.template  os-apply-config                    selinux
+    custom-policies       os-refresh-config                  source-repository-os-cloud-config
+    dib-init-system       package-installs.yaml              source-repository-puppet-modules
+    element-deps          pkg-map                            source-repository-tripleo-heat-templates
+    element-provides      post-install.d                     source-repository-tuskar
+    environment.d         pre-install.d                      svc-map
+    extra-data.d          puppet-stack-config.pp             tests
+    finalise.d            puppet-stack-config.yaml.template  upstart
+    __init__.py           README.md
+    __init__.pyc          README.rst
 
 
-sudo yum install -y python-rdomanager-oscplugin
-cp /usr/share/instack-undercloud/undercloud.conf.sample undercloud.conf
-openstack undercloud install
 [stack@manager ~]$ openstack overcloud image upload
 ERROR: Required file "./deploy-ramdisk-ironic.initramfs" does not exist
 
@@ -144,8 +164,6 @@ Node 85830c07-f106-4287-8619-68d352aaf282 has been set to available.
 Node ea979244-7fef-48f7-8c4a-24cbf05aac43 has been set to available.
 
 openstack flavor set --property "capabilities:boot_option"="local" <flavor>
-
-
 
 
 puppet
@@ -190,7 +208,52 @@ class cname {
 
 Note
 
+puppet apply --detailed-exitcodes /etc/puppet/manifests/puppet-stack-config.pp
+Warning: You cannot collect without storeconfigs being set on line 262 in file /etc/puppet/manifests/puppet-stack-config.pp
+Warning: You cannot collect without storeconfigs being set on line 266 in file /etc/puppet/manifests/puppet-stack-config.pp
+Warning: You cannot collect without storeconfigs being set on line 270 in file /etc/puppet/manifests/puppet-stack-config.pp
+Error: Unknown function count at /etc/puppet/manifests/puppet-stack-config.pp:16 on node osp7
+Error: Unknown function count at /etc/puppet/manifests/puppet-stack-config.pp:16 on node osp7
 
+puppet module install puppetlabs-stdlib
+[stack@osp7 ~]$ puppet apply --detailed-exitcodes /etc/puppet/manifests/puppet-stack-config.pp
+Warning: You cannot collect without storeconfigs being set on line 262 in file /etc/puppet/manifests/puppet-stack-config.pp
+Warning: You cannot collect without storeconfigs being set on line 266 in file /etc/puppet/manifests/puppet-stack-config.pp
+Warning: You cannot collect without storeconfigs being set on line 270 in file /etc/puppet/manifests/puppet-stack-config.pp
+Error: Could not find data item ntp::servers in any Hiera data file and no default supplied at /etc/puppet/manifests/puppet-stack-config.pp:16 on node osp7
+Error: Could not find data item ntp::servers in any Hiera data file and no default supplied at /etc/puppet/manifests/puppet-stack-config.pp:16 on node osp7
+
+https://forge.puppetlabs.com/puppetlabs/stdlib
+
+
+selinux
+=======
+
+Intro
+-----
+
+- 3 status
+    - enforcing -- violating selinux policy is prohibited and violations are logged
+    - permissive -- viloations generate warning and the violation is logged, but the action is allowed to continue
+    - disabled -- turned off, if want turn it on, reboot is required.
+- logged at ``/var/log/messages``
+- ``/etc/sysconfig/selinux`` links to ``/etc/selinux/config``
+    - make permanently change
+
+commands
+--------
+
+- ``setenforce`` -- won't work if selinux is disabled
+    - ``setenforce 0`` -- permissive
+    - ``setenforce 1`` -- enforcing
+- ``getenforce`` -- get current selinux status
+- ``ll -z`` show file list with context
+- ``chcon`` -- change a file's selinux security context
+    - ``-R`` -- recursively
+    - ``--reference`` -- copy context from other file
+    - ``-u`` -- set the user portion of the context
+    - ``-r`` -- set the role ...
+    - ``-t`` -- set the type ...
 
 
 CISCO Switch
@@ -219,6 +282,8 @@ ftp://ftp.hp.com/pub/networking/software/6400-5300-4200-3400-AdvTrafficMgmt-Oct2
     - untagged: Allows VLAN connection to a device that is configured for an untagged VLAN instead of a tagged VLAN. A port can be an untagged member of only one port-based VLAN
     - forbid: Prevents the port from joining the VLAN, even if GVRP is enabled on the switch
     - no: Appears when the switch is not GVRP-enabled; prevents the port from - or - joining that VLAN.
+
+
 issues
 ======
 
@@ -278,46 +343,9 @@ RuntimeError: ('%s failed. See log for details.', 'os-refresh-config')
 ERROR: openstack Command 'instack-install-undercloud' returned non-zero exit status 1
 
 
-puppet apply --detailed-exitcodes /etc/puppet/manifests/puppet-stack-config.pp
-Warning: You cannot collect without storeconfigs being set on line 262 in file /etc/puppet/manifests/puppet-stack-config.pp
-Warning: You cannot collect without storeconfigs being set on line 266 in file /etc/puppet/manifests/puppet-stack-config.pp
-Warning: You cannot collect without storeconfigs being set on line 270 in file /etc/puppet/manifests/puppet-stack-config.pp
-Error: Unknown function count at /etc/puppet/manifests/puppet-stack-config.pp:16 on node osp7
-Error: Unknown function count at /etc/puppet/manifests/puppet-stack-config.pp:16 on node osp7
+4. Can't load policy
 
-puppet module install puppetlabs-stdlib
-[stack@osp7 ~]$ puppet apply --detailed-exitcodes /etc/puppet/manifests/puppet-stack-config.pp
-Warning: You cannot collect without storeconfigs being set on line 262 in file /etc/puppet/manifests/puppet-stack-config.pp
-Warning: You cannot collect without storeconfigs being set on line 266 in file /etc/puppet/manifests/puppet-stack-config.pp
-Warning: You cannot collect without storeconfigs being set on line 270 in file /etc/puppet/manifests/puppet-stack-config.pp
-Error: Could not find data item ntp::servers in any Hiera data file and no default supplied at /etc/puppet/manifests/puppet-stack-config.pp:16 on node osp7
-Error: Could not find data item ntp::servers in any Hiera data file and no default supplied at /etc/puppet/manifests/puppet-stack-config.pp:16 on node osp7
-
-
-
-
-
-[stack@osp7 ~]$ ls /tmp/tmpbIW3ir/
-bin                   __init__.pyo                       root.d
-cleanup.d             install.d                          rsyslog.d
-config.json.template  os-apply-config                    selinux
-custom-policies       os-refresh-config                  source-repository-os-cloud-config
-dib-init-system       package-installs.yaml              source-repository-puppet-modules
-element-deps          pkg-map                            source-repository-tripleo-heat-templates
-element-provides      post-install.d                     source-repository-tuskar
-environment.d         pre-install.d                      svc-map
-extra-data.d          puppet-stack-config.pp             tests
-finalise.d            puppet-stack-config.yaml.template  upstart
-__init__.py           README.md
-__init__.pyc          README.rst
-
-
-
-https://forge.puppetlabs.com/puppetlabs/stdlib
-
-
-
-4. 
+.. code-block:: console
 
 dib-run-parts Sun Aug 16 03:57:03 CST 2015 Running /usr/libexec/os-refresh-config/configure.d/88-httpd-vhost-port
 + set -o pipefail  
@@ -362,6 +390,10 @@ ERROR: openstack Command 'instack-install-undercloud' returned non-zero exit sta
 
 5. horizon(rdo dashboard) can't be accessed other than the localhost
 
+.. sidebar:: Tips
+
+    httpd will logging each horizon access at ``/var/log/httpd/horizon_access.log``
+
 By default, OSP7 Undercloud’s dashboard can’t be accessed by hosts other than the localhost. 
 If you want do that.
 
@@ -372,40 +404,12 @@ Then restart the httpd service ``sudo service httpd restart``
 If still not work, try edit ``/etc/httpd/conf.d/10-horizon_vhost.conf``
 add a new line ``ServerAlias *``
 
-httpd will logging each horizon access at ``/var/log/httpd/horizon_access.log``
-
 for more info, pls refer to:
 https://bugzilla.redhat.com/show_bug.cgi?id=1119920
 https://ask.openstack.org/en/question/44151/red-hat-rdo-horizon-dashboard-will-not-load-from-internet/
 
-selinux
-=======
 
-Intro
------
 
-- 3 status
-    - enforcing -- violating selinux policy is prohibited and violations are logged
-    - permissive -- viloations generate warning and the violation is logged, but the action is allowed to continue
-    - disabled -- turned off, if want turn it on, reboot is required.
-- logged at ``/var/log/messages``
-- ``/etc/sysconfig/selinux`` links to ``/etc/selinux/config``
-    - make permanently change
-
-commands
---------
-
-- ``setenforce`` -- won't work if selinux is disabled
-    - ``setenforce 0`` -- permissive
-    - ``setenforce 1`` -- enforcing
-- ``getenforce`` -- get current selinux status
-- ``ll -z`` show file list with context
-- ``chcon`` -- change a file's selinux security context
-    - ``-R`` -- recursively
-    - ``--reference`` -- copy context from other file
-    - ``-u`` -- set the user portion of the context
-    - ``-r`` -- set the role ...
-    - ``-t`` -- set the type ...
 
 
 [stack@manager ~]$ openstack baremetal introspection bulk start
@@ -414,7 +418,9 @@ WARNING: ironicclient.common.http Request returned failure status.
 WARNING: ironicclient.common.http Error contacting Ironic server: Node 1f0dde23-597e-48aa-9d86-5ea203a6d65d is locked by host manager.example.com, please retry after the current operation is completed. (HTTP 409). Attempt 1 of 61
 WARNING: ironicclient.common.http Request returned failure status.
 
-sudo service openstack-ironic-* restart
+.. code-block:: bash
+
+    sudo service openstack-ironic-* restart
 
 
 [root@manager ~]# service --status-all
@@ -426,6 +432,9 @@ lo eno1 eno2 eno3 eno4 enp6s0f0 enp6s0f1 virbr0 br-ctlplane
 
 
 No Presto metadata available for rhel-7-server-rpms
-sudo yum clean metadata
-sudo yum clean all
-sudo yum update -y
+
+.. code-block:: bash
+
+    sudo yum clean metadata
+    sudo yum clean all
+    sudo yum update -y
