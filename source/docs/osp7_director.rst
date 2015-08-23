@@ -8,8 +8,9 @@ RedHat RHEL7.1 OSP7
 - a redhat account was needed
 - use ironic to build overcloud
 - build image w/ tripleo-image-elements & diskimage-builder
-
-
+- ``LOGFILE=~/.instack/install-undercloud.log``
+- ``/tftpboot/`` for ipxe
+- ``/httpboot/`` for images
 
 
 `RedHat OSP7 Docs <https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux_OpenStack_Platform/>`_
@@ -61,11 +62,22 @@ Prepare
     exit
     echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf
     sysctl -p /etc/sysctl.conf
+
+    # speed up yum
+    # ------------
+
+    yum install -y yum-fastestmirror deltarpm
+    yum install http://dl.fedoraproject.org/pub/epel/7/x86_64/a/axel-2.4-9.el7.x86_64.rpm
+    yum install http://dl.fedoraproject.org/pub/epel/7/x86_64/y/yum-axelget-1.0.5.1-1.20140522gitad6fb3e.el7.noarch.rpm
+    # yum-presto only support centos6
     
+
+
+
     # register redhat
     # ---------------
     
-    sudo subscription-manager register
+    sudo subscription-manager register   # not work well w/ proxy-shz.intel.com
     sudo -E subscription-manager list --available --all   # -E is required in an internal network
     sudo subscription-manager attach --pool=8a85f9814f02ff15014f08c451ee3644   # pick first one
     sudo subscription-manager repos --disable=*   # added in html version
@@ -144,27 +156,53 @@ neutron subnet-list
 neutron subnet-update `neutron subnet-list | grep start | awk '{print $2}'` --dns-nameserver 10.248.2.1
 neutron subnet-show `neutron subnet-list | grep start | awk '{print $2}'`
 
-172.16.3.101(r3s1)
+192.0.2.101(r3s1)
 00:1e:67:b3:ba:d1 nic 1
 
-172.16.3.107 (r3s4)
+
+192.0.2.104(r3s4)
 00:1e:67:bc:01:33 nic1
 00:1E:67:BC:01:37 bmc1
 openstack baremetal introspection bulk start
 
-[stack@manager ~]$ openstack baremetal introspection bulk start
-Setting available nodes to manageable...
-Starting introspection of node: 85830c07-f106-4287-8619-68d352aaf282
-Starting introspection of node: ea979244-7fef-48f7-8c4a-24cbf05aac43
-Waiting for discovery to finish...
-Discovery for UUID 85830c07-f106-4287-8619-68d352aaf282 finished successfully.
-Discovery for UUID ea979244-7fef-48f7-8c4a-24cbf05aac43 finished successfully.
-Setting manageable nodes to available...
-Node 85830c07-f106-4287-8619-68d352aaf282 has been set to available.
-Node ea979244-7fef-48f7-8c4a-24cbf05aac43 has been set to available.
+Dashboard --> Nodes
+-------------------
 
-openstack flavor set --property "capabilities:boot_option"="local" <flavor>
+power-off -->
+power-on(deploy ironic-bm-kernel/ramdisk, will update node registered hardware info) --> power-off
 
+
+.. code-block:: console
+
+    [stack@manager ~]$ openstack baremetal introspection bulk start
+    Setting available nodes to manageable...
+    Starting introspection of node: 85830c07-f106-4287-8619-68d352aaf282
+    Starting introspection of node: ea979244-7fef-48f7-8c4a-24cbf05aac43
+    Waiting for discovery to finish...
+    Discovery for UUID 85830c07-f106-4287-8619-68d352aaf282 finished successfully.
+    Discovery for UUID ea979244-7fef-48f7-8c4a-24cbf05aac43 finished successfully.
+    Setting manageable nodes to available...
+    Node 85830c07-f106-4287-8619-68d352aaf282 has been set to available.
+    Node ea979244-7fef-48f7-8c4a-24cbf05aac43 has been set to available.
+
+
+``nova quota-update --cores=400 --ram=1310720 d2df74b78df84bcbb98bb582b33835d0``
+[stack@manager ~]$ nova quota-update --cores=400 --ram=1310720 admin
+[stack@manager ~]$ nova quota-show --user admin --tenant admin
+
+!!!
+pxelinux.cfg/00-1e-67-b3-ba-d1... no such file or directory (http://ipxe.org/2d0c613b)
+
+
+
+will recomment a appropriate flavor name as ``Flavor-40cpu-x86_64-131072MB-929GB``
+openstack flavor set --property "capabilities:boot_option"="local" Flavor-40cpu-x86_64-131072MB-929GB
+
+
+openstack management plan list
+openstack management plan show `openstack management plan list | grep overcloud | awk '{print $2}'`
+mkdir -p ~/templates/overcloud-plan
+openstack management plan download `openstack management plan list | grep overcloud | awk '{print $2}'` -O ~/templates/overcloud-plan/
 
 puppet
 ======
@@ -282,6 +320,64 @@ ftp://ftp.hp.com/pub/networking/software/6400-5300-4200-3400-AdvTrafficMgmt-Oct2
     - untagged: Allows VLAN connection to a device that is configured for an untagged VLAN instead of a tagged VLAN. A port can be an untagged member of only one port-based VLAN
     - forbid: Prevents the port from joining the VLAN, even if GVRP is enabled on the switch
     - no: Appears when the switch is not GVRP-enabled; prevents the port from - or - joining that VLAN.
+
+IPMI
+====
+
+
+
+ipmitool -I lan -H 192.0.2.101 -U root -P 123456 power status
+[root@manager ~]# ipmitool -I open channel info 1
+Channel 0x1 info:
+  Channel Medium Type   : 802.3 LAN
+  Channel Protocol Type : IPMB-1.0
+  Session Support       : multi-session
+  Active Session Count  : 0
+  Protocol Vendor ID    : 7154
+  Volatile(active) Settings
+    Alerting            : enabled
+    Per-message Auth    : enabled
+    User Level Auth     : enabled
+    Access Mode         : always available
+  Non-Volatile Settings
+    Alerting            : enabled
+    Per-message Auth    : enabled
+    User Level Auth     : enabled
+    Access Mode         : always available
+
+[root@manager ~]# ipmitool -I open lan print 1
+Set in Progress         : Set Complete
+Auth Type Support       : MD5 PASSWORD 
+Auth Type Enable        : Callback : MD5 PASSWORD 
+                        : User     : MD5 PASSWORD 
+                        : Operator : MD5 PASSWORD 
+                        : Admin    : MD5 PASSWORD 
+                        : OEM      : 
+IP Address Source       : Static Address
+IP Address              : 172.16.3.105
+Subnet Mask             : 255.255.0.0
+MAC Address             : 00:1e:67:b3:be:71
+SNMP Community String   : public
+IP Header               : TTL=0x00 Flags=0x00 Precedence=0x00 TOS=0x00
+BMC ARP Control         : ARP Responses Enabled, Gratuitous ARP Disabled
+Gratituous ARP Intrvl   : 0.0 seconds
+Default Gateway IP      : 172.16.0.1
+Default Gateway MAC     : 00:00:00:00:00:00
+Backup Gateway IP       : 0.0.0.0
+Backup Gateway MAC      : 00:00:00:00:00:00
+802.1q VLAN ID          : Disabled
+802.1q VLAN Priority    : 0
+RMCP+ Cipher Suites     : 0,1,2,3,4,6,7,8,9,11,12,13,15,16,17,18
+Cipher Suite Priv Max   : caaaaaaaaaaaaaa
+                        :     X=Cipher Suite Unused
+                        :     c=CALLBACK
+                        :     u=USER
+                        :     o=OPERATOR
+                        :     a=ADMIN
+                        :     O=OEM
+
+
+
 
 
 issues
@@ -421,6 +517,8 @@ WARNING: ironicclient.common.http Request returned failure status.
 .. code-block:: bash
 
     sudo service openstack-ironic-* restart
+
+sudo journalctl -u openstack-ironic-conductor -l --no-pager 
 
 
 [root@manager ~]# service --status-all
