@@ -11,7 +11,7 @@ RedHat RHEL7.1 OSP7
 - ``LOGFILE=~/.instack/install-undercloud.log``
 - ``/tftpboot/`` for ipxe
 - ``/httpboot/`` for images
-
+- services named as openstack-<project>-<component>
 
 `RedHat OSP7 Docs <https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux_OpenStack_Platform/>`_
 `OSP7 images <https://access.redhat.com/downloads/content/191/ver=7.0/rhel---7/7.0/x86_64/product-downloads>`_
@@ -67,8 +67,8 @@ Prepare
     # ------------
 
     yum install -y yum-fastestmirror deltarpm
-    yum install http://dl.fedoraproject.org/pub/epel/7/x86_64/a/axel-2.4-9.el7.x86_64.rpm
-    yum install http://dl.fedoraproject.org/pub/epel/7/x86_64/y/yum-axelget-1.0.5.1-1.20140522gitad6fb3e.el7.noarch.rpm
+    yum install -y http://dl.fedoraproject.org/pub/epel/7/x86_64/a/axel-2.4-9.el7.x86_64.rpm
+    yum install -y http://dl.fedoraproject.org/pub/epel/7/x86_64/y/yum-axelget-1.0.5.1-1.20140522gitad6fb3e.el7.noarch.rpm
     # yum-presto only support centos6
     
 
@@ -157,13 +157,74 @@ neutron subnet-update `neutron subnet-list | grep start | awk '{print $2}'` --dn
 neutron subnet-show `neutron subnet-list | grep start | awk '{print $2}'`
 
 192.0.2.101(r3s1)
-00:1e:67:b3:ba:d1 nic 1
+00:1e:67:b3:ba:d1 nic1
 
 
 192.0.2.104(r3s4)
 00:1e:67:bc:01:33 nic1
 00:1E:67:BC:01:37 bmc1
+
+
+cat instackenv.json << EOF
+{
+    "nodes":[
+        {
+            "mac":[
+                "00:1e:67:b3:ba:d1"
+            ],
+            "cpu":"40",
+            "memory":"131072",
+            "disk":"929",
+            "arch":"x86_64",
+            "pm_type":"pxe_ipmitool",
+            "pm_user":"root",
+            "pm_password":"123456",
+            "pm_addr":"192.0.2.101"
+        },
+        {   
+            "mac":[
+                "00:1e:67:bc:01:33"
+            ],
+            "cpu":"40",
+            "memory":"131072",
+            "disk":"929",
+            "arch":"x86_64",
+            "pm_type":"pxe_ipmitool",
+            "pm_user":"root",
+            "pm_password":"123456",
+            "pm_addr":"192.0.2.104"
+        }
+    ]
+}
+EOF
+
+openstack baremetal import --json ~/instackenv.json
+openstack baremetal configure boot
 openstack baremetal introspection bulk start
+openstack flavor set --property "capabilities:boot_option"="local" Flavor-40cpu-x86_64-131072MB-929GB
+
+
+19 parameters will be randomly generated. 
+HeatStackDomainAdminPassword
+KeystoneSigningKey
+SwiftHashSuffix
+AdminPassword
+HashSuffix
+NeutronControlPlaneID
+KeystoneSSLCertificateKey
+NeutronPassword
+SwiftPassword
+CeilometerMeteringSecret
+AdminToken
+GlancePassword
+HeatPassword
+SnmpdReadonlyUserPassword
+KeystoneCACertificate
+CeilometerPassword
+NovaPassword
+CinderPassword
+KeystoneSigningCertificate
+
 
 Dashboard --> Nodes
 -------------------
@@ -186,9 +247,7 @@ power-on(deploy ironic-bm-kernel/ramdisk, will update node registered hardware i
     Node ea979244-7fef-48f7-8c4a-24cbf05aac43 has been set to available.
 
 
-``nova quota-update --cores=400 --ram=1310720 d2df74b78df84bcbb98bb582b33835d0``
-[stack@manager ~]$ nova quota-update --cores=400 --ram=1310720 admin
-[stack@manager ~]$ nova quota-show --user admin --tenant admin
+
 
 !!!
 pxelinux.cfg/00-1e-67-b3-ba-d1... no such file or directory (http://ipxe.org/2d0c613b)
@@ -203,6 +262,11 @@ openstack management plan list
 openstack management plan show `openstack management plan list | grep overcloud | awk '{print $2}'`
 mkdir -p ~/templates/overcloud-plan
 openstack management plan download `openstack management plan list | grep overcloud | awk '{print $2}'` -O ~/templates/overcloud-plan/
+
+
+ssh heat-admin@192.0.2.13
+
+
 
 puppet
 ======
@@ -506,13 +570,19 @@ https://ask.openstack.org/en/question/44151/red-hat-rdo-horizon-dashboard-will-n
 
 
 
-
+Instance is locked by host.
 
 [stack@manager ~]$ openstack baremetal introspection bulk start
 Setting available nodes to manageable...
 WARNING: ironicclient.common.http Request returned failure status.
 WARNING: ironicclient.common.http Error contacting Ironic server: Node 1f0dde23-597e-48aa-9d86-5ea203a6d65d is locked by host manager.example.com, please retry after the current operation is completed. (HTTP 409). Attempt 1 of 61
 WARNING: ironicclient.common.http Request returned failure status.
+
+
+- Solution: Make sure using pingable ipmi address
+
+
+
 
 .. code-block:: bash
 
@@ -536,3 +606,13 @@ No Presto metadata available for rhel-7-server-rpms
     sudo yum clean metadata
     sudo yum clean all
     sudo yum update -y
+
+
+deploymented node can't delete
+
+.. code-block:: bash
+
+    # list all instances
+    nova list --all_tenants   # nova list --all_tenants
+    # amazingly, result shows that tenant=service, not services, nova, ironic or admin
+    # user=admin
