@@ -195,7 +195,8 @@
 <li class="toctree-l3"><a class="reference internal" href="nova.html#keypair">KeyPair</a></li>
 <li class="toctree-l3"><a class="reference internal" href="nova.html#flavor">Flavor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="nova.html#instances">Instances</a></li>
-<li class="toctree-l3"><a class="reference internal" href="nova.html#services">Services</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="nova.html#services">Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nova.html#quota">quota</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="nova.html#issues">issues</a></li>
 </ul>
 </li>
@@ -443,6 +444,10 @@
 <li class="toctree-l3"><a class="reference internal" href="linux_net.html#route-routing-table-management">route &#8211; routing table management</a></li>
 <li class="toctree-l3"><a class="reference internal" href="linux_net.html#netns-network-namespace">netns &#8211; network namespace</a></li>
 <li class="toctree-l3"><a class="reference internal" href="linux_net.html#rule-routing-policy-database-management">rule &#8211; routing policy database management</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linux_net.html#ifconfig">ifconfig</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linux_net.html#add-a-virtual-nic-aliasing">add a virtual nic (aliasing)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="linux_net.html#open-vswitch">Open vSwitch</a></li>
@@ -1003,9 +1008,21 @@ ssh -fgCNL <span class="m">0</span>.<span class="m">0</span>.<span class="m">0</
 <img alt="../_images/screen_out_of_band_hl.png" src="../_images/screen_out_of_band_hl.png" />
 </div>
 </div>
+<div class="section" id="ipmi-cli-tool">
+<h2>IPMI cli tool<a class="headerlink" href="#ipmi-cli-tool" title="Permalink to this headline">¶</a></h2>
+<p>ipmitool -H 172.16.3.104 -U root -P 123456 lan set 1 ipsrc static
+ipmitool -H 172.16.3.104 -U root -P 123456 lan set 1 ipaddr 192.0.2.104
+ipmitool -H 172.16.3.104 -U root -P 123456 lan set 1 netmask 255.255.255.0
+ipmitool -H 172.16.3.104 -U root -P 123456 lan set 1 defgw ipaddr 192.0.2.1</p>
+<p>ipmitool lan set 2 ipsrc static
+ipmitool lan set 2 ipaddr 192.0.2.103
+ipmitool lan set 2 netmask 255.255.255.0
+ipmitool lan set 2 defgw ipaddr 192.0.2.1</p>
+<p>ipmitool chassis bootdev disk/pxe/cdrom/bios</p>
+</div>
 <div class="section" id="discoverings">
 <h2>Discoverings<a class="headerlink" href="#discoverings" title="Permalink to this headline">¶</a></h2>
-<img alt="../_images/nmap_smc.png" src="../_images/nmap_smc.png" />
+<img alt="images/nmap_smc.png" src="images/nmap_smc.png" />
 <div class="section" id="smash-clp-console-v1-09">
 <h3>SMASH-CLP Console v1.09<a class="headerlink" href="#smash-clp-console-v1-09" title="Permalink to this headline">¶</a></h3>
 <div class="line-block">
@@ -1016,8 +1033,47 @@ ssh -fgCNL <span class="m">0</span>.<span class="m">0</span>.<span class="m">0</
 <div class="line"><br /></div>
 </div>
 <div class="highlight-bash"><div class="highlight"><pre>ssh root@172.16.3.103
+<span class="nb">set</span> <span class="se">\n</span>ic1 <span class="nv">properties</span><span class="o">=(</span><span class="nv">IP</span><span class="o">=</span>a.b.c.d, <span class="nv">MASK</span><span class="o">=</span>255.255.255.0<span class="o">)</span>
+-&gt;show
 </pre></div>
 </div>
+<p>COMMAND COMPLETED :
+show</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>ufip=/</dt>
+<dd><p class="first">Targets:</p>
+<blockquote>
+<div>settings1/
+system1/</div></blockquote>
+<dl class="last docutils">
+<dt>Properties:</dt>
+<dd>identity=root</dd>
+<dt>Verbs:</dt>
+<dd>cd
+exit
+help
+show
+version</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+<p>help show</p>
+<p>Command Name: show
+Used to show values of a property or content of a collection/target.</p>
+<p>Usage: show [-options] [target] &lt;property name =&gt; &lt;value&gt;</p>
+<p>Example: show -level all system1</p>
+<dl class="docutils">
+<dt>Options:</dt>
+<dd>all - instructs the implementation to return all data element types
+display - Used to display &#8216;targets&#8217;,&#8217;properties&#8217; or &#8216;verbs&#8217; under one or more targets
+examine - used to examine the command (bypasses executer)
+help - shows help on how to use show
+level - Used to show more than one level of output in the target tree
+output - formats the output string (should be used with format (text,clpcsv,keyword,clpxml)
+version - shows smash version</dd>
+</dl>
 <img alt="../_images/smc_ssh.png" src="../_images/smc_ssh.png" />
 <table class="docutils footnote" frame="void" id="id6" rules="none">
 <colgroup><col class="label" /><col /></colgroup>

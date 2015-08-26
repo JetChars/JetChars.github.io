@@ -241,9 +241,10 @@ addr/address
 .. code-block:: bash
 
     ip a[ddr]  # show all address info
+    ip a add <cidr> dev <devname>  # add a cidr in devname
     ip a del <cidr> dev <devname>  # rm a cidr in devname
+    ip addr add 192.168.58.101/24 dev eth2  # add cidr in eth2
     ip addr del 192.168.58.101/24 dev eth2  # rm cidr in eth2
-
 
 
 
@@ -296,6 +297,31 @@ default namespace 'global'
 rule -- routing policy database management
 ------------------------------------------
 
+ifconfig
+========
+
+add a virtual nic (aliasing)
+----------------------------
+
+.. code-block:: console
+
+    # ifconfig eth0:1 192.168.10.10 netmask 255.255.255.0 up
+    eth0:1  Link encap:Ethernet  HWaddr 00:0C:29:5C:86:F4
+            inet addr:192.168.91.10  Bcast:192.168.91.255  Mask:255.255.255.0
+            UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+            Interrupt:19 Base address:0x2000
+
+If you would like to permanently assign multiple IP addresses to an interface, create corresponding configuration files in /etc/sysconfig/network-scripts.
+
+.. code-block:: console
+
+    $ sudo vi /etc/sysconfig/network-scripts/ifcfg-eth0:1
+    DEVICE=eth0:1
+    BOOTPROTO=static
+    IPADDR=192.168.0.5
+    NETMASK=255.255.255.0
+    ONBOOT=yes
+    $ sudo /etc/init.d/network restart   #　activate IP aliasing
 
 
 
