@@ -122,9 +122,16 @@ Instances
     # boot instance at specified host
     nova boot --image <uuid/name> --flavor <uuid/name> --key-name <kname> --availability-zone nova:server2
 
+- list instances by all tenants: ``nova list --all-tenants``
 
-- inspect an instance
-    - ``virsh edit <instance/id>``
+| For this you will need to set your OS_PASSWORD, OS_USERNAME and OS_TENANT_NAME to an account that has the admin role in each tenant
+
+If you are on a machine running the nova-api, "nova-manage vm list"
+will show you all of the instances (and what nova-compute host they
+are placed on)
+
+
+- inspect an instance: ``virsh edit <instance/id>``
 
 .. code-block:: xml
 
@@ -163,6 +170,20 @@ Services
 
     # disable services
     for i in `seq 10 15`;do nova service-disable --reason=testboot r16s$i nova-compute;done
+
+
+quota
+^^^^^
+
+* -1 mean infinite
+* ``nova quota-show --user <user> --tenant <tenant>``
+* ``nova quota-update --cores=<num> --ram=<num> <tenant_name/tid>``
+
+.. code-block:: bash
+
+    nova quota-update --cores=400 --ram=1310720 admin
+    nova quota-show --user admin --tenant admin
+
 
 
 issues

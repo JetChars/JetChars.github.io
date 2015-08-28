@@ -155,6 +155,59 @@ use existing jnlp and replace received token in it with your token.
 .. image:: /images/screen_out_of_band_hl.png
 
 
+IPMI cli tool
+=============
+
+Installation
+------------
+
+.. code-block:: bash
+
+    yum install ipmitool
+    modprobe ipmi_msghandler
+    modprobe ipmi_devintf
+    modprobe ipmi_si
+
+
+Management
+----------
+
+- enable a user
+
+.. code-block:: bash
+
+    ipmitool user list 1   # show user list
+    ipmitool user set password 2 123456   # set password of root user to 123456
+    ipmitool user enable 2   # enable user root
+
+- change bmc lan IP
+
+.. code-block:: bash
+
+    ipmitool lan set 1 ipsrc static
+    ipmitool lan set 1 ipaddr 192.0.2.104
+    ipmitool lan set 1 netmask 255.255.255.0
+    ipmitool lan set 1 defgw ipaddr 192.0.2.1
+
+- access a remote user
+
+.. code-block:: bash
+
+    ipmitool -H 172.16.3.104 -U root -P 123456 <cmds>
+
+- power management
+
+.. code-block:: bash
+
+    ipmitool power off
+
+- boot device management
+
+.. code-block::bash
+
+    impitool chassis bootdev <disk/pxe/bios/cdrom/floppy...>
+
+
 
 Discoverings
 ============
@@ -174,8 +227,56 @@ SMASH-CLP Console v1.09
 .. code-block:: bash
 
     ssh root@172.16.3.103
+    set \nic1 properties=(IP=a.b.c.d, MASK=255.255.255.0)
+    ->show   
+
+COMMAND COMPLETED :
+show
+
+ ufip=/
+  Targets:
+
+      settings1/
+      system1/
+
+  Properties:
+      identity=root
+
+
+  Verbs:
+      cd
+      exit
+      help
+      show
+      version
+
+help show
+
+
+Command Name: show
+Used to show values of a property or content of a collection/target.
+
+Usage: show [-options] [target] <property name => <value>
+
+Example: show -level all \system1
+
+Options:
+       all - instructs the implementation to return all data element types 
+       display - Used to display 'targets','properties' or 'verbs' under one or more targets
+       examine - used to examine the command (bypasses executer)
+       help - shows help on how to use show
+       level - Used to show more than one level of output in the target tree
+       output - formats the output string (should be used with format (text,clpcsv,keyword,clpxml)
+       version - shows smash version
+
+
+
 
 .. image:: /images/smc_ssh.png
+
+
+
+
 
 
 

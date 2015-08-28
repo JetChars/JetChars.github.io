@@ -197,7 +197,8 @@
 <li class="toctree-l3"><a class="reference internal" href="nova.html#keypair">KeyPair</a></li>
 <li class="toctree-l3"><a class="reference internal" href="nova.html#flavor">Flavor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="nova.html#instances">Instances</a></li>
-<li class="toctree-l3"><a class="reference internal" href="nova.html#services">Services</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="nova.html#services">Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nova.html#quota">quota</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="nova.html#issues">issues</a></li>
 </ul>
 </li>
@@ -445,6 +446,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#route-routing-table-management">route &#8211; routing table management</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#netns-network-namespace">netns &#8211; network namespace</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#rule-routing-policy-database-management">rule &#8211; routing policy database management</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ifconfig">ifconfig</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#add-a-virtual-nic-aliasing">add a virtual nic (aliasing)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#open-vswitch">Open vSwitch</a></li>
@@ -1205,7 +1210,9 @@ domain_name      <span class="c"># query directly</span>
 </ul>
 </div>
 <div class="highlight-bash"><div class="highlight"><pre>ip a<span class="o">[</span>ddr<span class="o">]</span>  <span class="c"># show all address info</span>
+ip a add &lt;cidr&gt; dev &lt;devname&gt;  <span class="c"># add a cidr in devname</span>
 ip a del &lt;cidr&gt; dev &lt;devname&gt;  <span class="c"># rm a cidr in devname</span>
+ip addr add 192.168.58.101/24 dev eth2  <span class="c"># add cidr in eth2</span>
 ip addr del 192.168.58.101/24 dev eth2  <span class="c"># rm cidr in eth2</span>
 </pre></div>
 </div>
@@ -1255,6 +1262,29 @@ ip netns <span class="nb">exec </span>ns1 CMD_UNDET_NETNS  <span class="c"># exe
 </div>
 <div class="section" id="rule-routing-policy-database-management">
 <h3>rule &#8211; routing policy database management<a class="headerlink" href="#rule-routing-policy-database-management" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="ifconfig">
+<h2>ifconfig<a class="headerlink" href="#ifconfig" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="add-a-virtual-nic-aliasing">
+<h3>add a virtual nic (aliasing)<a class="headerlink" href="#add-a-virtual-nic-aliasing" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">#</span> ifconfig eth0:1 192.168.10.10 netmask 255.255.255.0 up
+<span class="go">eth0:1  Link encap:Ethernet  HWaddr 00:0C:29:5C:86:F4</span>
+<span class="go">        inet addr:192.168.91.10  Bcast:192.168.91.255  Mask:255.255.255.0</span>
+<span class="go">        UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1</span>
+<span class="go">        Interrupt:19 Base address:0x2000</span>
+</pre></div>
+</div>
+<p>If you would like to permanently assign multiple IP addresses to an interface, create corresponding configuration files in /etc/sysconfig/network-scripts.</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> sudo vi /etc/sysconfig/network-scripts/ifcfg-eth0:1
+<span class="go">DEVICE=eth0:1</span>
+<span class="go">BOOTPROTO=static</span>
+<span class="go">IPADDR=192.168.0.5</span>
+<span class="go">NETMASK=255.255.255.0</span>
+<span class="go">ONBOOT=yes</span>
+<span class="gp">$</span> sudo /etc/init.d/network restart   <span class="c">#　activate IP aliasing</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="open-vswitch">

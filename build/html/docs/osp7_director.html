@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Network Basics &mdash; JetChars alpha documentation</title>
+  <title>RedHat RHEL7.1 OSP7 &mdash; JetChars alpha documentation</title>
   
 
   
@@ -830,11 +830,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-    <li>Network Basics</li>
+    <li>RedHat RHEL7.1 OSP7</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/docs/network.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/docs/osp7_director.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -843,35 +843,609 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="network-basics">
-<h1>Network Basics<a class="headerlink" href="#network-basics" title="Permalink to this headline">¶</a></h1>
-<p>Internet Protocol Suite</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="13%" />
-<col width="88%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Layer</th>
-<th class="head">Protocol</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>Application</td>
-<td>BGP DHCP DNS FTP HTTP(80) IMAP LDAP MGCP NNTP NTP POP ONC/RPC RTP RTSP RIP SIP SMTP SNMP SSH(22) Telnet TLS/SSL XMPP...</td>
-</tr>
-<tr class="row-odd"><td>Transport</td>
-<td>TCP UDP DCCP SCTP RSVP</td>
-</tr>
-<tr class="row-even"><td>Internet</td>
-<td>IP IPv4 IPv6 ICMP ICMPv6 ECN IGMP IPsec</td>
-</tr>
-<tr class="row-odd"><td>Link</td>
-<td>ARP NDP OSPF Tunnels(L2TP/PPP) MAC Ethernet DSL ISDN FDDI</td>
-</tr>
-</tbody>
-</table>
-<img src="../_images/IP_stack_connections.svg" /><img src="../_images/UDP_encapsulation.svg" /></div>
+  <div class="section" id="redhat-rhel7-1-osp7">
+<h1>RedHat RHEL7.1 OSP7<a class="headerlink" href="#redhat-rhel7-1-osp7" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>manage w/ python-rdomanager-oscplugin (osp director)</li>
+<li>provisioning undercloud w/ puppet</li>
+<li>instead of used 6 nics, 2 nic is minimal</li>
+<li>a redhat account was needed</li>
+<li>use ironic to build overcloud</li>
+<li>build image w/ tripleo-image-elements &amp; diskimage-builder</li>
+<li><code class="docutils literal"><span class="pre">LOGFILE=~/.instack/install-undercloud.log</span></code></li>
+<li><code class="docutils literal"><span class="pre">/tftpboot/</span></code> for ipxe</li>
+<li><code class="docutils literal"><span class="pre">/httpboot/</span></code> for images</li>
+<li>services named as openstack-&lt;project&gt;-&lt;component&gt;</li>
+</ul>
+<p><a class="reference external" href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux_OpenStack_Platform/">RedHat OSP7 Docs</a>
+<a class="reference external" href="https://access.redhat.com/downloads/content/191/ver=7.0/rhel---7/7.0/x86_64/product-downloads">OSP7 images</a></p>
+<div class="section" id="prepare">
+<h2>Prepare<a class="headerlink" href="#prepare" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c"># change hostname</span>
+<span class="c"># ---------------</span>
+hostnamectl <span class="nb">set</span>-hostname manager.example.com
+hostnamectl <span class="nb">set</span>-hostname --transient manager.example.com
+<span class="nb">echo</span> <span class="s2">&quot;127.0.0.1   manager.example.com manager&quot;</span> &gt; /etc/hosts
+
+<span class="c"># configure global proxy</span>
+<span class="c"># ----------------------</span>
+<span class="nb">echo</span> <span class="s2">&quot;no_proxy1=intel.com,localhost,127.0.0.1,172.16.0.1</span>
+<span class="s2">printf -v no_proxy2 &#39;%s,&#39; 172.16.{0..16}.{1..255};</span>
+<span class="s2">no_proxy2=\&quot;\${no_proxy2%,}\&quot;;</span>
+<span class="s2">printf -v no_proxy3 &#39;%s,&#39; 192.0.2.{1..255};</span>
+<span class="s2">no_proxy3=\&quot;\${no_proxy3%,}\&quot;;</span>
+<span class="s2">export no_proxy=\${no_proxy1},\${no_proxy2},\${no_proxy3}</span>
+<span class="s2">unset no_proxy1</span>
+<span class="s2">unset no_proxy2</span>
+<span class="s2">unset no_proxy3</span>
+<span class="s2">&quot;</span> &gt;&gt; /etc/bashrc
+
+<span class="c"># create stack user</span>
+<span class="c"># -----------------</span>
+useradd stack
+passwd stack --stdin <span class="s">&lt;&lt; EOF</span>
+<span class="s">123456</span>
+<span class="s">EOF</span>
+<span class="nb">echo</span> <span class="s2">&quot;stack ALL=(root) NOPASSWD:ALL&quot;</span> <span class="p">|</span> tee -a /etc/sudoers.d/stack
+chmod <span class="m">0440</span> /etc/sudoers.d/stack
+
+<span class="c"># add template&amp;image folders</span>
+<span class="c"># --------------------------</span>
+su - stack
+mkdir ~/images
+mkdir ~/templates
+
+<span class="c"># enable ip forward</span>
+<span class="c"># -----------------</span>
+<span class="nb">exit</span>
+<span class="nb">echo</span> <span class="s2">&quot;net.ipv4.ip_forward = 1&quot;</span> &gt;&gt; /etc/sysctl.conf
+sysctl -p /etc/sysctl.conf
+
+<span class="c"># speed up yum</span>
+<span class="c"># ------------</span>
+
+yum install -y yum-fastestmirror deltarpm
+yum install -y http://dl.fedoraproject.org/pub/epel/7/x86_64/a/axel-2.4-9.el7.x86_64.rpm
+yum install -y http://dl.fedoraproject.org/pub/epel/7/x86_64/y/yum-axelget-1.0.5.1-1.20140522gitad6fb3e.el7.noarch.rpm
+<span class="c"># yum-presto only support centos6</span>
+
+
+
+
+<span class="c"># register redhat</span>
+<span class="c"># ---------------</span>
+
+sudo subscription-manager register   <span class="c"># not work well w/ proxy-shz.intel.com</span>
+sudo -E subscription-manager list --available --all   <span class="c"># -E is required in an internal network</span>
+sudo subscription-manager attach --pool<span class="o">=</span>8a85f9814f02ff15014f08c451ee3644   <span class="c"># pick first one</span>
+sudo subscription-manager repos --disable<span class="o">=</span>*   <span class="c"># added in html version</span>
+sudo subscription-manager repos --enable<span class="o">=</span>rhel-7-server-rpms --enable<span class="o">=</span>rhel-7-server-optional-rpms --enable<span class="o">=</span>rhel-7-server-extras-rpms --enable<span class="o">=</span>rhel-7-server-openstack-7.0-rpms --enable<span class="o">=</span>rhel-7-server-openstack-7.0-director-rpms
+sudo yum update -y
+</pre></div>
+</div>
+<ul class="simple">
+<li>not always get same register ID</li>
+</ul>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">root@osp7 ~]#</span> subscription-manager register
+<span class="go">Username: weiting.chen@intel.com</span>
+<span class="go">Password:</span>
+<span class="go">The system has been registered with ID: 943016c8-26d6-429e-b9b8-fca4f8211fa5</span>
+
+<span class="go">[stack@manager ~]$ sudo -E subscription-manager register</span>
+<span class="go">Username: weiting.chen@intel.com</span>
+<span class="go">Password:</span>
+<span class="go">The system has been registered with ID: ef6c499b-784a-4d37-9736-ccf401e98450</span>
+</pre></div>
+</div>
+<div class="section" id="create-ssl-files">
+<h3>create ssl files<a class="headerlink" href="#create-ssl-files" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">[stack@osp7 ~]$ openssl req -new -x509 -key privkey.pem -out cacert.pem -days 365</span>
+<span class="go">You are about to be asked to enter information that will be incorporated</span>
+<span class="go">into your certificate request.</span>
+<span class="go">What you are about to enter is what is called a Distinguished Name or a DN.</span>
+<span class="go">There are quite a few fields but you can leave some blank</span>
+<span class="go">For some fields there will be a default value,</span>
+<span class="go">If you enter &#39;.&#39;, the field will be left blank.</span>
+<span class="go">-----</span>
+<span class="go">Country Name (2 letter code) [XX]:CN</span>
+<span class="go">State or Province Name (full name) []:Shanghai</span>
+<span class="go">Locality Name (eg, city) [Default City]:Shanghai</span>
+<span class="go">Organization Name (eg, company) [Default Company Ltd]:Intel APAC R&amp;D</span>
+<span class="go">Organizational Unit Name (eg, section) []:SSG</span>
+<span class="go">Common Name (eg, your name or your server&#39;s hostname) []:Weiting, Chen</span>
+<span class="go">Email Address []:weiting.chen@intel.com</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="configure-undercloud">
+<h3>configure undercloud<a class="headerlink" href="#configure-undercloud" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash"><div class="highlight"><pre>sudo yum install -y python-rdomanager-oscplugin
+cp /usr/share/instack-undercloud/undercloud.conf.sample undercloud.conf
+openstack undercloud install
+</pre></div>
+</div>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">[stack@osp7 ~]$ ls /tmp/tmpbIW3ir/</span>
+<span class="go">bin                   __init__.pyo                       root.d</span>
+<span class="go">cleanup.d             install.d                          rsyslog.d</span>
+<span class="go">config.json.template  os-apply-config                    selinux</span>
+<span class="go">custom-policies       os-refresh-config                  source-repository-os-cloud-config</span>
+<span class="go">dib-init-system       package-installs.yaml              source-repository-puppet-modules</span>
+<span class="go">element-deps          pkg-map                            source-repository-tripleo-heat-templates</span>
+<span class="go">element-provides      post-install.d                     source-repository-tuskar</span>
+<span class="go">environment.d         pre-install.d                      svc-map</span>
+<span class="go">extra-data.d          puppet-stack-config.pp             tests</span>
+<span class="go">finalise.d            puppet-stack-config.yaml.template  upstart</span>
+<span class="go">__init__.py           README.md</span>
+<span class="go">__init__.pyc          README.rst</span>
+</pre></div>
+</div>
+<p>[<a class="reference external" href="mailto:stack&#37;&#52;&#48;manager">stack<span>&#64;</span>manager</a> ~]$ openstack overcloud image upload
+ERROR: Required file &#8221;./deploy-ramdisk-ironic.initramfs&#8221; does not exist</p>
+<p>get the admin password <code class="docutils literal"><span class="pre">sudo</span> <span class="pre">hiera</span> <span class="pre">admin_password</span></code></p>
+<p>neutron subnet-list
+neutron subnet-update <cite>neutron subnet-list | grep start | awk &#8216;{print $2}&#8217;</cite> &#8211;dns-nameserver 10.248.2.1
+neutron subnet-show <cite>neutron subnet-list | grep start | awk &#8216;{print $2}&#8217;</cite></p>
+<p>192.0.2.101(r3s1)
+00:1e:67:b3:ba:d1 nic1</p>
+<p>192.0.2.104(r3s4)
+00:1e:67:bc:01:33 nic1
+00:1E:67:BC:01:37 bmc1</p>
+<p>cat instackenv.json &lt;&lt; EOF
+{</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>&#8220;nodes&#8221;:[</dt>
+<dd><dl class="first docutils">
+<dt>{</dt>
+<dd><dl class="first docutils">
+<dt>&#8220;mac&#8221;:[</dt>
+<dd>&#8220;00:1e:67:b3:ba:d1&#8221;</dd>
+</dl>
+<p class="last">],
+&#8220;cpu&#8221;:&#8221;40&#8221;,
+&#8220;memory&#8221;:&#8221;131072&#8221;,
+&#8220;disk&#8221;:&#8221;929&#8221;,
+&#8220;arch&#8221;:&#8221;x86_64&#8221;,
+&#8220;pm_type&#8221;:&#8221;pxe_ipmitool&#8221;,
+&#8220;pm_user&#8221;:&#8221;root&#8221;,
+&#8220;pm_password&#8221;:&#8221;123456&#8221;,
+&#8220;pm_addr&#8221;:&#8221;192.0.2.101&#8221;</p>
+</dd>
+</dl>
+<p>},
+{</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>&#8220;mac&#8221;:[</dt>
+<dd>&#8220;00:1e:67:bc:01:33&#8221;</dd>
+</dl>
+<p>],
+&#8220;cpu&#8221;:&#8221;40&#8221;,
+&#8220;memory&#8221;:&#8221;131072&#8221;,
+&#8220;disk&#8221;:&#8221;929&#8221;,
+&#8220;arch&#8221;:&#8221;x86_64&#8221;,
+&#8220;pm_type&#8221;:&#8221;pxe_ipmitool&#8221;,
+&#8220;pm_user&#8221;:&#8221;root&#8221;,
+&#8220;pm_password&#8221;:&#8221;123456&#8221;,
+&#8220;pm_addr&#8221;:&#8221;192.0.2.104&#8221;</p>
+</div></blockquote>
+<p class="last">}</p>
+</dd>
+</dl>
+<p>]</p>
+</div></blockquote>
+<p>}
+EOF</p>
+<p>openstack baremetal import &#8211;json ~/instackenv.json
+openstack baremetal configure boot
+openstack baremetal introspection bulk start
+openstack flavor set &#8211;property &#8220;capabilities:boot_option&#8221;=&#8221;local&#8221; Flavor-40cpu-x86_64-131072MB-929GB</p>
+<p>19 parameters will be randomly generated.
+HeatStackDomainAdminPassword
+KeystoneSigningKey
+SwiftHashSuffix
+AdminPassword
+HashSuffix
+NeutronControlPlaneID
+KeystoneSSLCertificateKey
+NeutronPassword
+SwiftPassword
+CeilometerMeteringSecret
+AdminToken
+GlancePassword
+HeatPassword
+SnmpdReadonlyUserPassword
+KeystoneCACertificate
+CeilometerPassword
+NovaPassword
+CinderPassword
+KeystoneSigningCertificate</p>
+</div>
+<div class="section" id="dashboard-nodes">
+<h3>Dashboard &#8211;&gt; Nodes<a class="headerlink" href="#dashboard-nodes" title="Permalink to this headline">¶</a></h3>
+<p>power-off &#8211;&gt;
+power-on(deploy ironic-bm-kernel/ramdisk, will update node registered hardware info) &#8211;&gt; power-off</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">[stack@manager ~]$ openstack baremetal introspection bulk start</span>
+<span class="go">Setting available nodes to manageable...</span>
+<span class="go">Starting introspection of node: 85830c07-f106-4287-8619-68d352aaf282</span>
+<span class="go">Starting introspection of node: ea979244-7fef-48f7-8c4a-24cbf05aac43</span>
+<span class="go">Waiting for discovery to finish...</span>
+<span class="go">Discovery for UUID 85830c07-f106-4287-8619-68d352aaf282 finished successfully.</span>
+<span class="go">Discovery for UUID ea979244-7fef-48f7-8c4a-24cbf05aac43 finished successfully.</span>
+<span class="go">Setting manageable nodes to available...</span>
+<span class="go">Node 85830c07-f106-4287-8619-68d352aaf282 has been set to available.</span>
+<span class="go">Node ea979244-7fef-48f7-8c4a-24cbf05aac43 has been set to available.</span>
+</pre></div>
+</div>
+<p>!!!
+pxelinux.cfg/00-1e-67-b3-ba-d1... no such file or directory (<a class="reference external" href="http://ipxe.org/2d0c613b">http://ipxe.org/2d0c613b</a>)</p>
+<p>will recomment a appropriate flavor name as <code class="docutils literal"><span class="pre">Flavor-40cpu-x86_64-131072MB-929GB</span></code>
+openstack flavor set &#8211;property &#8220;capabilities:boot_option&#8221;=&#8221;local&#8221; Flavor-40cpu-x86_64-131072MB-929GB</p>
+<p>openstack management plan list
+openstack management plan show <cite>openstack management plan list | grep overcloud | awk &#8216;{print $2}&#8217;</cite>
+mkdir -p ~/templates/overcloud-plan
+openstack management plan download <cite>openstack management plan list | grep overcloud | awk &#8216;{print $2}&#8217;</cite> -O ~/templates/overcloud-plan/</p>
+<p>ssh <a class="reference external" href="mailto:heat-admin&#37;&#52;&#48;192&#46;0&#46;2&#46;13">heat-admin<span>&#64;</span>192<span>&#46;</span>0<span>&#46;</span>2<span>&#46;</span>13</a></p>
+</div>
+</div>
+<div class="section" id="puppet">
+<h2>puppet<a class="headerlink" href="#puppet" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>&#8221;.ppk&#8221; of PuTTY means putty private key</li>
+</ul>
+<p>puppetmaster puppet(agent)</p>
+<dl class="docutils">
+<dt>/etc/puppet/puppet.conf</dt>
+<dd>add server</dd>
+</dl>
+<p>root&#64;agent# puppet agent &#8211;no-daemonize &#8211;onetime &#8211;verbose   # running foreground one time only
+root&#64;server# puppet cert list
+root&#64;server# puppet cert sign &#8220;&lt;hostname&gt;&#8221;   # after this, agent can connect the server</p>
+<dl class="docutils">
+<dt><code class="docutils literal"><span class="pre">/etc/puppet/fileserver.conf</span></code> configures the fileserver management</dt>
+<dd><ul class="first last simple">
+<li>path: /etc/puppet/files</li>
+<li>access with scheme <code class="docutils literal"><span class="pre">puppet://</span></code></li>
+</ul>
+</dd>
+</dl>
+<p>grep /var/log/syslog</p>
+<dl class="docutils">
+<dt><code class="docutils literal"><span class="pre">/etc/puppet/manifests/</span></code> would be the root of any class</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">/etc/puppet/manifests/classes</span></code></li>
+<li><code class="docutils literal"><span class="pre">/etc/puppet/manifests/&lt;filename&gt;.pp</span></code></li>
+</ul>
+</dd>
+</dl>
+<p># use this as comment
+# other classes can be imported from manifest root folder</p>
+<p>import classes</p>
+<dl class="docutils">
+<dt>class cname {</dt>
+<dd><p class="first">package {</p>
+<p>}
+file {</p>
+<blockquote>
+<div>owner =&gt; root, group =&gt; root, mode =&gt;</div></blockquote>
+<p class="last">}</p>
+</dd>
+</dl>
+<p>}</p>
+<p>Note</p>
+<p>puppet apply &#8211;detailed-exitcodes /etc/puppet/manifests/puppet-stack-config.pp
+Warning: You cannot collect without storeconfigs being set on line 262 in file /etc/puppet/manifests/puppet-stack-config.pp
+Warning: You cannot collect without storeconfigs being set on line 266 in file /etc/puppet/manifests/puppet-stack-config.pp
+Warning: You cannot collect without storeconfigs being set on line 270 in file /etc/puppet/manifests/puppet-stack-config.pp
+Error: Unknown function count at /etc/puppet/manifests/puppet-stack-config.pp:16 on node osp7
+Error: Unknown function count at /etc/puppet/manifests/puppet-stack-config.pp:16 on node osp7</p>
+<p>puppet module install puppetlabs-stdlib
+[<a class="reference external" href="mailto:stack&#37;&#52;&#48;osp7">stack<span>&#64;</span>osp7</a> ~]$ puppet apply &#8211;detailed-exitcodes /etc/puppet/manifests/puppet-stack-config.pp
+Warning: You cannot collect without storeconfigs being set on line 262 in file /etc/puppet/manifests/puppet-stack-config.pp
+Warning: You cannot collect without storeconfigs being set on line 266 in file /etc/puppet/manifests/puppet-stack-config.pp
+Warning: You cannot collect without storeconfigs being set on line 270 in file /etc/puppet/manifests/puppet-stack-config.pp
+Error: Could not find data item ntp::servers in any Hiera data file and no default supplied at /etc/puppet/manifests/puppet-stack-config.pp:16 on node osp7
+Error: Could not find data item ntp::servers in any Hiera data file and no default supplied at /etc/puppet/manifests/puppet-stack-config.pp:16 on node osp7</p>
+<p><a class="reference external" href="https://forge.puppetlabs.com/puppetlabs/stdlib">https://forge.puppetlabs.com/puppetlabs/stdlib</a></p>
+</div>
+<div class="section" id="selinux">
+<h2>selinux<a class="headerlink" href="#selinux" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="intro">
+<h3>Intro<a class="headerlink" href="#intro" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><dl class="first docutils">
+<dt>3 status</dt>
+<dd><ul class="first last simple">
+<li>enforcing &#8211; violating selinux policy is prohibited and violations are logged</li>
+<li>permissive &#8211; viloations generate warning and the violation is logged, but the action is allowed to continue</li>
+<li>disabled &#8211; turned off, if want turn it on, reboot is required.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">logged at <code class="docutils literal"><span class="pre">/var/log/messages</span></code></p>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">/etc/sysconfig/selinux</span></code> links to <code class="docutils literal"><span class="pre">/etc/selinux/config</span></code></dt>
+<dd><ul class="first last simple">
+<li>make permanently change</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="commands">
+<h3>commands<a class="headerlink" href="#commands" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">setenforce</span></code> &#8211; won&#8217;t work if selinux is disabled</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">setenforce</span> <span class="pre">0</span></code> &#8211; permissive</li>
+<li><code class="docutils literal"><span class="pre">setenforce</span> <span class="pre">1</span></code> &#8211; enforcing</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">getenforce</span></code> &#8211; get current selinux status</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">ll</span> <span class="pre">-z</span></code> show file list with context</p>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">chcon</span></code> &#8211; change a file&#8217;s selinux security context</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">-R</span></code> &#8211; recursively</li>
+<li><code class="docutils literal"><span class="pre">--reference</span></code> &#8211; copy context from other file</li>
+<li><code class="docutils literal"><span class="pre">-u</span></code> &#8211; set the user portion of the context</li>
+<li><code class="docutils literal"><span class="pre">-r</span></code> &#8211; set the role ...</li>
+<li><code class="docutils literal"><span class="pre">-t</span></code> &#8211; set the type ...</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="cisco-switch">
+<h2>CISCO Switch<a class="headerlink" href="#cisco-switch" title="Permalink to this headline">¶</a></h2>
+<p>exec/configure (mode or context)
+- exec mode &#8211; make changes temporary
+- configure mode &#8211; make permantly changes</p>
+<p>create a vlan</p>
+<div class="highlight-telnet"><div class="highlight"><pre>configure terminal
+</pre></div>
+</div>
+</div>
+<div class="section" id="hp-switch">
+<h2>hp switch<a class="headerlink" href="#hp-switch" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://www.hp.com/rnd/support/manuals/2910.htm">http://www.hp.com/rnd/support/manuals/2910.htm</a>
+<a class="reference external" href="ftp://ftp.hp.com/pub/networking/software/6400-5300-4200-3400-AdvTrafficMgmt-Oct2005-Ch-02-VLANs.pdf">ftp://ftp.hp.com/pub/networking/software/6400-5300-4200-3400-AdvTrafficMgmt-Oct2005-Ch-02-VLANs.pdf</a></p>
+<ul>
+<li><dl class="first docutils">
+<dt>vlan</dt>
+<dd><ul class="first last simple">
+<li>tagged: Allows the port to join multiple VLANs</li>
+<li>untagged: Allows VLAN connection to a device that is configured for an untagged VLAN instead of a tagged VLAN. A port can be an untagged member of only one port-based VLAN</li>
+<li>forbid: Prevents the port from joining the VLAN, even if GVRP is enabled on the switch</li>
+<li>no: Appears when the switch is not GVRP-enabled; prevents the port from - or - joining that VLAN.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="ipmi">
+<h2>IPMI<a class="headerlink" href="#ipmi" title="Permalink to this headline">¶</a></h2>
+<p>ipmitool -I lan -H 192.0.2.101 -U root -P 123456 power status
+[<a class="reference external" href="mailto:root&#37;&#52;&#48;manager">root<span>&#64;</span>manager</a> ~]# ipmitool -I open channel info 1
+Channel 0x1 info:</p>
+<blockquote>
+<div><p>Channel Medium Type   : 802.3 LAN
+Channel Protocol Type : IPMB-1.0
+Session Support       : multi-session
+Active Session Count  : 0
+Protocol Vendor ID    : 7154
+Volatile(active) Settings</p>
+<blockquote>
+<div>Alerting            : enabled
+Per-message Auth    : enabled
+User Level Auth     : enabled
+Access Mode         : always available</div></blockquote>
+<dl class="docutils">
+<dt>Non-Volatile Settings</dt>
+<dd>Alerting            : enabled
+Per-message Auth    : enabled
+User Level Auth     : enabled
+Access Mode         : always available</dd>
+</dl>
+</div></blockquote>
+<p>[<a class="reference external" href="mailto:root&#37;&#52;&#48;manager">root<span>&#64;</span>manager</a> ~]# ipmitool -I open lan print 1
+Set in Progress         : Set Complete
+Auth Type Support       : MD5 PASSWORD
+Auth Type Enable        : Callback : MD5 PASSWORD</p>
+<blockquote>
+<div>: User     : MD5 PASSWORD
+: Operator : MD5 PASSWORD
+: Admin    : MD5 PASSWORD
+: OEM      :</div></blockquote>
+<p>IP Address Source       : Static Address
+IP Address              : 172.16.3.105
+Subnet Mask             : 255.255.0.0
+MAC Address             : 00:1e:67:b3:be:71
+SNMP Community String   : public
+IP Header               : TTL=0x00 Flags=0x00 Precedence=0x00 TOS=0x00
+BMC ARP Control         : ARP Responses Enabled, Gratuitous ARP Disabled
+Gratituous ARP Intrvl   : 0.0 seconds
+Default Gateway IP      : 172.16.0.1
+Default Gateway MAC     : 00:00:00:00:00:00
+Backup Gateway IP       : 0.0.0.0
+Backup Gateway MAC      : 00:00:00:00:00:00
+802.1q VLAN ID          : Disabled
+802.1q VLAN Priority    : 0
+RMCP+ Cipher Suites     : 0,1,2,3,4,6,7,8,9,11,12,13,15,16,17,18
+Cipher Suite Priv Max   : caaaaaaaaaaaaaa</p>
+<blockquote>
+<div>:     X=Cipher Suite Unused
+:     c=CALLBACK
+:     u=USER
+:     o=OPERATOR
+:     a=ADMIN
+:     O=OEM</div></blockquote>
+</div>
+<div class="section" id="issues">
+<h2>issues<a class="headerlink" href="#issues" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Package does not match intended download</li>
+</ol>
+<div class="highlight-console"><div class="highlight"><pre>
+</pre></div>
+</div>
+<p>Delta RPMs disabled because /usr/bin/applydeltarpm not installed.
+openssh-6.6.1p1-12.el7_1.x86_6 FAILED                                           ]  72 kB/s | 180 kB  00:01:50 ETA
+<a class="reference external" href="https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/os/Packages/openssh-6.6.1p1-12.el7_1.x86_64.rpm">https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/os/Packages/openssh-6.6.1p1-12.el7_1.x86_64.rpm</a>: [Errno -1] Package does not match intended download. Suggestion: run yum &#8211;enablerepo=rhel-7-server-rpms clean metadata
+Trying other mirror.
+NetworkManager-1.0.0-16.git201 FAILED                                           ]  70 kB/s | 3.5 MB  00:01:04 ETA
+<a class="reference external" href="https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/os/Packages/NetworkManager-1.0.0-16.git20150121.b4ea599c.el7_1.x86_64.rpm">https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/os/Packages/NetworkManager-1.0.0-16.git20150121.b4ea599c.el7_1.x86_64.rpm</a>: [Errno -1] Package does not match intended download. Suggestion: run yum &#8211;enablerepo=rhel-7-server-rpms clean metadata
+Trying other mirror.
+python-libs-2.7.5-18.el7_1.1.x FAILED                                           ]  25 kB/s | 3.4 MB  00:03:05 ETA
+<a class="reference external" href="https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/os/Packages/python-libs-2.7.5-18.el7_1.1.x86_64.rpm">https://cdn.redhat.com/content/dist/rhel/server/7/7Server/x86_64/os/Packages/python-libs-2.7.5-18.el7_1.1.x86_64.rpm</a>: [Errno -1] Package does not match intended download. Suggestion: run yum &#8211;enablerepo=rhel-7-server-rpms clean metadata
+Trying other mirror.</p>
+<ul class="simple">
+<li>Solution: delete corrupt packages</li>
+</ul>
+<div class="highlight-bash"><div class="highlight"><pre>sudo rm -rf /var/cache/yum/x86_x64/7Server/&lt;repo&gt;/packages/&lt;pkg&gt;
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li>can&#8217;t create context</li>
+<li>exit 6</li>
+</ol>
+<p>Notice: /Stage[main]/Nova::Compute/Nova::Generic_service[compute]/Service[nova-compute]/ensure: ensure changed &#8216;stopped&#8217; to &#8216;running&#8217;
+Notice: Finished catalog run in 17.07 seconds
++ rc=6
++ set -e
++ echo &#8216;puppet apply exited with exit code 6&#8217;
+puppet apply exited with exit code 6
++ &#8216;[&#8216; 6 &#8216;!=&#8217; 2 -a 6 &#8216;!=&#8217; 0 &#8216;]&#8217;
++ exit 6
+[2015-08-13 18:09:06,946] (os-refresh-config) [ERROR] during configure phase. [Command &#8216;[&#8216;dib-run-parts&#8217;, &#8216;/usr/libexec/os-refresh-config/configure.d&#8217;]&#8217; returned non-zero exit status 6]</p>
+<p>[2015-08-13 18:09:06,946] (os-refresh-config) [ERROR] Aborting...
+Traceback (most recent call last):</p>
+<blockquote>
+<div><p>File &#8220;&lt;string&gt;&#8221;, line 1, in &lt;module&gt;
+File &#8220;/usr/lib/python2.7/site-packages/instack_undercloud/undercloud.py&#8221;, line 526, in install</p>
+<blockquote>
+<div>_run_orc(instack_env)</div></blockquote>
+<dl class="docutils">
+<dt>File &#8220;/usr/lib/python2.7/site-packages/instack_undercloud/undercloud.py&#8221;, line 461, in _run_orc</dt>
+<dd>_run_live_command(args, instack_env, &#8216;os-refresh-config&#8217;)</dd>
+<dt>File &#8220;/usr/lib/python2.7/site-packages/instack_undercloud/undercloud.py&#8221;, line 297, in _run_live_command</dt>
+<dd>raise RuntimeError(&#8216;%s failed. See log for details.&#8217;, name)</dd>
+</dl>
+</div></blockquote>
+<p>RuntimeError: (&#8216;%s failed. See log for details.&#8217;, &#8216;os-refresh-config&#8217;)
+ERROR: openstack Command &#8216;instack-install-undercloud&#8217; returned non-zero exit status 1</p>
+<ol class="arabic simple" start="4">
+<li>Can&#8217;t load policy</li>
+</ol>
+<div class="highlight-console"><div class="highlight"><pre>
+</pre></div>
+</div>
+<p>dib-run-parts Sun Aug 16 03:57:03 CST 2015 Running /usr/libexec/os-refresh-config/configure.d/88-httpd-vhost-port
++ set -o pipefail
++ add-rule INPUT -p tcp &#8211;dport 8088 -j ACCEPT
+active
+iptables: Bad rule (does a matching rule exist in that chain?).
++ mkdir -p /etc/httpd/conf.d
+++ dirname /usr/libexec/os-refresh-config/configure.d/88-httpd-vhost-port
++ sudo cp -r /usr/libexec/os-refresh-config/configure.d/ipxe-vhost.template /etc/httpd/conf.d/10-ipxe_vhost.conf
++ os-svc-enable -n apache2
+WARNING: map-services has been deprecated.  Please use the svc-map element.
++ os-svc-restart -n apache2
+WARNING: map-services has been deprecated.  Please use the svc-map element.
++ &#8216;[&#8216; -x /usr/sbin/semanage &#8216;]&#8217;
++ semanage fcontext -a -t httpd_sys_content_t &#8216;/httpboot(/.*)?&#8217;
+SELinux:  Could not downgrade policy file /etc/selinux/targeted/policy/policy.29, searching for an older version.
+SELinux:  Could not open policy file &lt;= /etc/selinux/targeted/policy/policy.29:  No such file or directory
+/sbin/load_policy:  Can&#8217;t load policy:  No such file or directory
+libsemanage.semanage_reload_policy: load_policy returned error code 2.
+SELinux:  Could not downgrade policy file /etc/selinux/targeted/policy/policy.29, searching for an older version.
+SELinux:  Could not open policy file &lt;= /etc/selinux/targeted/policy/policy.29:  No such file or directory
+/sbin/load_policy:  Can&#8217;t load policy:  No such file or directory
+libsemanage.semanage_reload_policy: load_policy returned error code 2.
+ValueError: Could not commit semanage transaction
+[2015-08-16 03:57:12,568] (os-refresh-config) [ERROR] during configure phase. [Command &#8216;[&#8216;dib-run-parts&#8217;, &#8216;/usr/libexec/os-refresh-config/configure.d&#8217;]&#8217; returned non-zero exit status 1]</p>
+<p>[2015-08-16 03:57:12,569] (os-refresh-config) [ERROR] Aborting...
+Traceback (most recent call last):</p>
+<blockquote>
+<div><p>File &#8220;&lt;string&gt;&#8221;, line 1, in &lt;module&gt;
+File &#8220;/usr/lib/python2.7/site-packages/instack_undercloud/undercloud.py&#8221;, line 526, in install</p>
+<blockquote>
+<div>_run_orc(instack_env)</div></blockquote>
+<dl class="docutils">
+<dt>File &#8220;/usr/lib/python2.7/site-packages/instack_undercloud/undercloud.py&#8221;, line 461, in _run_orc</dt>
+<dd>_run_live_command(args, instack_env, &#8216;os-refresh-config&#8217;)</dd>
+<dt>File &#8220;/usr/lib/python2.7/site-packages/instack_undercloud/undercloud.py&#8221;, line 297, in _run_live_command</dt>
+<dd>raise RuntimeError(&#8216;%s failed. See log for details.&#8217;, name)</dd>
+</dl>
+</div></blockquote>
+<p>RuntimeError: (&#8216;%s failed. See log for details.&#8217;, &#8216;os-refresh-config&#8217;)
+ERROR: openstack Command &#8216;instack-install-undercloud&#8217; returned non-zero exit status 1
+[<a class="reference external" href="mailto:stack&#37;&#52;&#48;manager">stack<span>&#64;</span>manager</a> ~]$ vi /etc/selinux/targeted/policy/policy.29</p>
+<ul class="simple">
+<li>Solution : enable selinux</li>
+</ul>
+<ol class="arabic simple" start="5">
+<li>horizon(rdo dashboard) can&#8217;t be accessed other than the localhost</li>
+</ol>
+<div class="sidebar">
+<p class="first sidebar-title">Tips</p>
+<p class="last">httpd will logging each horizon access at <code class="docutils literal"><span class="pre">/var/log/httpd/horizon_access.log</span></code></p>
+</div>
+<p>By default, OSP7 Undercloud?s dashboard can?t be accessed by hosts other than the localhost.
+If you want do that.</p>
+<p>Edit <code class="docutils literal"><span class="pre">/etc/openstack-dashboard/local_settings</span></code>
+Change `` ALLOWED_HOSTS = [&#8216;192.0.2.1&#8217;, &#8216;manager.example.com&#8217;, &#8216;localhost&#8217;, ] ``  to  <code class="docutils literal"><span class="pre">ALLOWED_HOSTS</span> <span class="pre">=</span> <span class="pre">['*']</span></code>
+Then restart the httpd service <code class="docutils literal"><span class="pre">sudo</span> <span class="pre">service</span> <span class="pre">httpd</span> <span class="pre">restart</span></code></p>
+<p>If still not work, try edit <code class="docutils literal"><span class="pre">/etc/httpd/conf.d/10-horizon_vhost.conf</span></code>
+add a new line <code class="docutils literal"><span class="pre">ServerAlias</span> <span class="pre">*</span></code></p>
+<p>for more info, pls refer to:
+<a class="reference external" href="https://bugzilla.redhat.com/show_bug.cgi?id=1119920">https://bugzilla.redhat.com/show_bug.cgi?id=1119920</a>
+<a class="reference external" href="https://ask.openstack.org/en/question/44151/red-hat-rdo-horizon-dashboard-will-not-load-from-internet/">https://ask.openstack.org/en/question/44151/red-hat-rdo-horizon-dashboard-will-not-load-from-internet/</a></p>
+<p>Instance is locked by host.</p>
+<p>[<a class="reference external" href="mailto:stack&#37;&#52;&#48;manager">stack<span>&#64;</span>manager</a> ~]$ openstack baremetal introspection bulk start
+Setting available nodes to manageable...
+WARNING: ironicclient.common.http Request returned failure status.
+WARNING: ironicclient.common.http Error contacting Ironic server: Node 1f0dde23-597e-48aa-9d86-5ea203a6d65d is locked by host manager.example.com, please retry after the current operation is completed. (HTTP 409). Attempt 1 of 61
+WARNING: ironicclient.common.http Request returned failure status.</p>
+<ul class="simple">
+<li>Solution: Make sure using pingable ipmi address</li>
+</ul>
+<div class="highlight-bash"><div class="highlight"><pre>sudo service openstack-ironic-* restart
+</pre></div>
+</div>
+<p>sudo journalctl -u openstack-ironic-conductor -l &#8211;no-pager</p>
+<p>[<a class="reference external" href="mailto:root&#37;&#52;&#48;manager">root<span>&#64;</span>manager</a> ~]# service &#8211;status-all
+netconsole module not loaded
+Configured devices:
+lo br-ctlplane eno1 eno2 eno3 eno4 enp6s0f0 enp6s0f1
+Currently active devices:
+lo eno1 eno2 eno3 eno4 enp6s0f0 enp6s0f1 virbr0 br-ctlplane</p>
+<p>No Presto metadata available for rhel-7-server-rpms</p>
+<div class="highlight-bash"><div class="highlight"><pre>sudo yum clean metadata
+sudo yum clean all
+sudo yum update -y
+</pre></div>
+</div>
+<p>deploymented node can&#8217;t delete</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c"># list all instances</span>
+nova list --all_tenants   <span class="c"># nova list --all_tenants</span>
+<span class="c"># amazingly, result shows that tenant=service, not services, nova, ironic or admin</span>
+<span class="c"># user=admin</span>
+</pre></div>
+</div>
+</div>
+</div>
 
 
           </div>
