@@ -163,7 +163,7 @@ Installation
 
 .. code-block:: bash
 
-    yum install ipmitool
+    yum install -y ipmitool
     modprobe ipmi_msghandler
     modprobe ipmi_devintf
     modprobe ipmi_si

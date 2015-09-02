@@ -200,7 +200,7 @@ EOF
 
 openstack baremetal import --json ~/instackenv.json
 openstack baremetal configure boot
-openstack baremetal introspection bulk start
+openstack baremetal introspection bulk start   # can only be used before overcloud been deployed
 openstack flavor set --property "capabilities:boot_option"="local" Flavor-40cpu-x86_64-131072MB-929GB
 
 
