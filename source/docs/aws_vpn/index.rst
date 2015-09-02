@@ -85,8 +85,9 @@ following script should run as root user
     remoteip $REMOTEIP" >> /etc/pptpd.conf
     echo "ms-dns $MSDNS" >> /etc/ppp/options.pptpd
     echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf
+    sysctl -p
     # sysctl -w net.ipv4.ip_forward=1
-    echo "  ACCOUNT       pptpd       passwd          *" >> /etc/ppp/chap-secrets
+    echo "  $ACCOUNT       pptpd       $PASSWD          *" >> /etc/ppp/chap-secrets
     iptables -t nat -A POSTROUTING -s $CIDR -o $NIC -j MASQUERADE
     iptables-save > /etc/sysconfig/iptables
 
