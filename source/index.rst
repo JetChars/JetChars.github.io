@@ -101,7 +101,7 @@ Algorithms
 .. toctree::
     :maxdepth: 1
 
-    docs/algorithms/index
+    docs/sort
     docs/data_structure
 
 Relevant
