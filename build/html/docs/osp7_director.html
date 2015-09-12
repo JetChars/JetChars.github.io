@@ -628,6 +628,7 @@
 <li class="toctree-l2"><a class="reference internal" href="algorithms/index.html#heap-sort">heap sort</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="data_structure.html">Review DataStructure with Pics</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="amqp/index.html">AMQP &#8211; Advanced Message Queuing Protocol</a><ul>
@@ -1038,7 +1039,7 @@ neutron subnet-show <cite>neutron subnet-list | grep start | awk &#8216;{print $
 EOF</p>
 <p>openstack baremetal import &#8211;json ~/instackenv.json
 openstack baremetal configure boot
-openstack baremetal introspection bulk start
+openstack baremetal introspection bulk start   # can only be used before overcloud been deployed
 openstack flavor set &#8211;property &#8220;capabilities:boot_option&#8221;=&#8221;local&#8221; Flavor-40cpu-x86_64-131072MB-929GB</p>
 <p>19 parameters will be randomly generated.
 HeatStackDomainAdminPassword

@@ -628,6 +628,7 @@
 <li class="toctree-l2"><a class="reference internal" href="algorithms/index.html#heap-sort">heap sort</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="data_structure.html">Review DataStructure with Pics</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="amqp/index.html">AMQP &#8211; Advanced Message Queuing Protocol</a><ul>
@@ -1010,15 +1011,50 @@ ssh -fgCNL <span class="m">0</span>.<span class="m">0</span>.<span class="m">0</
 </div>
 <div class="section" id="ipmi-cli-tool">
 <h2>IPMI cli tool<a class="headerlink" href="#ipmi-cli-tool" title="Permalink to this headline">¶</a></h2>
-<p>ipmitool -H 172.16.3.104 -U root -P 123456 lan set 1 ipsrc static
-ipmitool -H 172.16.3.104 -U root -P 123456 lan set 1 ipaddr 192.0.2.104
-ipmitool -H 172.16.3.104 -U root -P 123456 lan set 1 netmask 255.255.255.0
-ipmitool -H 172.16.3.104 -U root -P 123456 lan set 1 defgw ipaddr 192.0.2.1</p>
-<p>ipmitool lan set 2 ipsrc static
-ipmitool lan set 2 ipaddr 192.0.2.103
-ipmitool lan set 2 netmask 255.255.255.0
-ipmitool lan set 2 defgw ipaddr 192.0.2.1</p>
-<p>ipmitool chassis bootdev disk/pxe/cdrom/bios</p>
+<div class="section" id="installation">
+<h3>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash"><div class="highlight"><pre>yum install -y ipmitool
+modprobe ipmi_msghandler
+modprobe ipmi_devintf
+modprobe ipmi_si
+</pre></div>
+</div>
+</div>
+<div class="section" id="management">
+<h3>Management<a class="headerlink" href="#management" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>enable a user</li>
+</ul>
+<div class="highlight-bash"><div class="highlight"><pre>ipmitool user list <span class="m">1</span>   <span class="c"># show user list</span>
+ipmitool user <span class="nb">set </span>password <span class="m">2</span> <span class="m">123456</span>   <span class="c"># set password of root user to 123456</span>
+ipmitool user <span class="nb">enable </span><span class="m">2</span>   <span class="c"># enable user root</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>change bmc lan IP</li>
+</ul>
+<div class="highlight-bash"><div class="highlight"><pre>ipmitool lan <span class="nb">set </span><span class="m">1</span> ipsrc static
+ipmitool lan <span class="nb">set </span><span class="m">1</span> ipaddr 192.0.2.104
+ipmitool lan <span class="nb">set </span><span class="m">1</span> netmask 255.255.255.0
+ipmitool lan <span class="nb">set </span><span class="m">1</span> defgw ipaddr 192.0.2.1
+</pre></div>
+</div>
+<ul class="simple">
+<li>access a remote user</li>
+</ul>
+<div class="highlight-bash"><div class="highlight"><pre>ipmitool -H 172.16.3.104 -U root -P <span class="m">123456</span> &lt;cmds&gt;
+</pre></div>
+</div>
+<ul class="simple">
+<li>power management</li>
+</ul>
+<div class="highlight-bash"><div class="highlight"><pre>ipmitool power off
+</pre></div>
+</div>
+<ul class="simple">
+<li>boot device management</li>
+</ul>
+</div>
 </div>
 <div class="section" id="discoverings">
 <h2>Discoverings<a class="headerlink" href="#discoverings" title="Permalink to this headline">¶</a></h2>

@@ -630,6 +630,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../algorithms/index.html#heap-sort">heap sort</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../data_structure.html">Review DataStructure with Pics</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../amqp/index.html">AMQP &#8211; Advanced Message Queuing Protocol</a><ul>
@@ -932,7 +933,8 @@ chkconfig iptables on
 28
 29
 30
-31</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># prepare</span>
+31
+32</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># prepare</span>
 <span class="c"># -------</span>
 <span class="nv">LOCALIP</span><span class="o">=</span>172.31.5.164
 <span class="nv">REMOTEIP</span><span class="o">=</span>172.31.5.165-180
@@ -953,8 +955,9 @@ rpm -ivh http://static.ucloud.cn/pptpd-1.3.4-2.el6.x86_64.rpm
 <span class="s2">remoteip </span><span class="nv">$REMOTEIP</span><span class="s2">&quot;</span> &gt;&gt; /etc/pptpd.conf
 <span class="nb">echo</span> <span class="s2">&quot;ms-dns </span><span class="nv">$MSDNS</span><span class="s2">&quot;</span> &gt;&gt; /etc/ppp/options.pptpd
 <span class="nb">echo</span> <span class="s2">&quot;net.ipv4.ip_forward = 1&quot;</span> &gt;&gt; /etc/sysctl.conf
+sysctl -p
 <span class="c"># sysctl -w net.ipv4.ip_forward=1</span>
-<span class="nb">echo</span> <span class="s2">&quot;  ACCOUNT       pptpd       passwd          *&quot;</span> &gt;&gt; /etc/ppp/chap-secrets
+<span class="nb">echo</span> <span class="s2">&quot;  </span><span class="nv">$ACCOUNT</span><span class="s2">       pptpd       </span><span class="nv">$PASSWD</span><span class="s2">          *&quot;</span> &gt;&gt; /etc/ppp/chap-secrets
 iptables -t nat -A POSTROUTING -s <span class="nv">$CIDR</span> -o <span class="nv">$NIC</span> -j MASQUERADE
 iptables-save &gt; /etc/sysconfig/iptables
 

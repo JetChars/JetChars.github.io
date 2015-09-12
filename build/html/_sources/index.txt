@@ -100,9 +100,9 @@ Algorithms
 
 .. toctree::
     :maxdepth: 1
-    :hidden:
 
     docs/algorithms/index
+    docs/data_structure
 
 Relevant
 ========

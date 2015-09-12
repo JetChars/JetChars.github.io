@@ -158,17 +158,54 @@ use existing jnlp and replace received token in it with your token.
 IPMI cli tool
 =============
 
-ipmitool -H 172.16.3.104 -U root -P 123456 lan set 1 ipsrc static
-ipmitool -H 172.16.3.104 -U root -P 123456 lan set 1 ipaddr 192.0.2.104
-ipmitool -H 172.16.3.104 -U root -P 123456 lan set 1 netmask 255.255.255.0
-ipmitool -H 172.16.3.104 -U root -P 123456 lan set 1 defgw ipaddr 192.0.2.1
+Installation
+------------
 
-ipmitool lan set 2 ipsrc static
-ipmitool lan set 2 ipaddr 192.0.2.103
-ipmitool lan set 2 netmask 255.255.255.0
-ipmitool lan set 2 defgw ipaddr 192.0.2.1
+.. code-block:: bash
 
-ipmitool chassis bootdev disk/pxe/cdrom/bios
+    yum install -y ipmitool
+    modprobe ipmi_msghandler
+    modprobe ipmi_devintf
+    modprobe ipmi_si
+
+
+Management
+----------
+
+- enable a user
+
+.. code-block:: bash
+
+    ipmitool user list 1   # show user list
+    ipmitool user set password 2 123456   # set password of root user to 123456
+    ipmitool user enable 2   # enable user root
+
+- change bmc lan IP
+
+.. code-block:: bash
+
+    ipmitool lan set 1 ipsrc static
+    ipmitool lan set 1 ipaddr 192.0.2.104
+    ipmitool lan set 1 netmask 255.255.255.0
+    ipmitool lan set 1 defgw ipaddr 192.0.2.1
+
+- access a remote user
+
+.. code-block:: bash
+
+    ipmitool -H 172.16.3.104 -U root -P 123456 <cmds>
+
+- power management
+
+.. code-block:: bash
+
+    ipmitool power off
+
+- boot device management
+
+.. code-block::bash
+
+    impitool chassis bootdev <disk/pxe/bios/cdrom/floppy...>
 
 
 
