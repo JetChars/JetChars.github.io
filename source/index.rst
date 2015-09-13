@@ -12,7 +12,7 @@ Since 5/1/2015
 .. toctree::
     :maxdepth: 1
 
-    docs/cloud_computing/index
+    docs/cloud_computing
     docs/aws/index
     docs/aws_vpn/index
     docs/docker/index

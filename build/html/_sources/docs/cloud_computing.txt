@@ -2,12 +2,31 @@
 Cloud Computing
 ===============
 
-* High value data must be structured data, can be transfer from low value data
-* Data stored worldwide has been exploded, growing by a factor of 9 in five years (2006~2011) [#]_
-* Classification
-    * SaaS, Software as a Service
-    * PaaS, Software as a Service
-    * IaaS, Software as a Service (old name HaaS)
+.. sidebar:: Note
+
+    * High value data must be structured data, can be transfer from low value data
+    * Data stored worldwide has been exploded, growing by a factor of 9 in five years (2006~2011) [#]_
+
+- Cloud provides services, service orchestration, and provisioning
+    - Cloud may provide IaaS, PaaS, SaaS and both internal and external API
+    - Service Orchestration
+- The mechanisms and concept of providing services, orchestration, and provisioning is called Software Defined Architecture
+    - Software Defined Compute
+    - Software Defined Network
+    - Software Defined Storage
+
+
+
+Software Defined Computing
+==========================
+
+What
+----
+
+- Classification
+    - SaaS, Software as a Service
+    - PaaS, Software as a Service
+    - IaaS, Software as a Service (old name HaaS)
     - MLaaS, BDaaS, HaaS
 
 ======== =======================================
@@ -19,13 +38,11 @@ PaaS     Docker, GAE,
 IaaS     Heat/Nova/Neutron/Cinder/Ironic, EC2
 ======== =======================================
 
-
 AWS -- Amazon Web Services
-==========================
-
+--------------------------
 
 Data Pipeline
--------------
+^^^^^^^^^^^^^
 
 * **Pipeline** -- specifies the business logic for data processing(graphical, more complex situation can be edit w/ sdk)
     * can be export as a json file
@@ -37,11 +54,8 @@ Data Pipeline
 * **Resources** -- ec2resources, emrcluster
 * **Precondiction**  -- if file exist or any other situation mathches will run disgnated job.
 
-
-
 EMR -- Managed Hadoop Framework
--------------------------------
-
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. sidebar:: Terms
 
@@ -59,18 +73,33 @@ EMR -- Managed Hadoop Framework
 
 
 
+Software Defined Networking
+===========================
+
+
+Software Defined Storage
+========================
+
+
+
+
+
+
+
+
+
 
 `Ceph <http://ceph.com>`_
 =========================
 
-.. image:: images/ceph.png
+.. image:: /images/ceph.png
     :align: right
 
 Ceph is a free software storage platform designed to present object, block, and file storage from a single distributed computer cluster [#]_
 
 `doc <http://docs.ceph.com/docs/master/>`_
 
-.. image:: images/ceph_components.svg
+.. image:: /images/ceph_components.svg
 
 
 - rbd -- utility for manipulating rados block device(RBD) images.
