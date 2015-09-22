@@ -2,7 +2,7 @@
 reStructured Text (rst)
 =======================
 
-.. image:: images/rst.png
+.. image:: /images/rst.png
     :align: right
     :width: 200px
     :alt: rst logo
@@ -204,6 +204,12 @@ Paragraph Mark
 
 Code Block
 ----------
+
+.. sidebar:: Note
+
+    - `check all available languages <http://pygments.org/docs/lexers/>`_
+
+
 .. code-block:: rst
 
     .. code-block:: c
@@ -223,8 +229,6 @@ Code Block
         }
         void main(){for(qne(0,0,0),scanf("%d",&m);m--;printf("%d\n",Q[c]))scanf("%d",&c);}
 
-
-
 .. code-block:: c
     :linenos:
     :emphasize-lines: 3,5-7
@@ -241,6 +245,8 @@ Code Block
         --m;
     }
     void main(){for(qne(0,0,0),scanf("%d",&m);m--;printf("%d\n",Q[c]))scanf("%d",&c);}
+
+
 
 
 Intersect Index

@@ -91,7 +91,7 @@ Markup Languages
 .. toctree::
     :maxdepth: 1
 
-    docs/rst/index
+    docs/rst
     docs/md/index
     docs/svg/index
 
