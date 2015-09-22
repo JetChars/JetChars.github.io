@@ -264,7 +264,7 @@ Download
 
 .. code-block:: rst
 
-    :download:`rst.png <images/rst.png>`
+    :download:`rst.png </images/rst.png>`
 
 Maths & Equttions w/ LaTeX
 --------------------------
