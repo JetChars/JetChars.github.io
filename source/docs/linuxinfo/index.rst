@@ -114,3 +114,11 @@ lscommands
     configuration: autonegotiation=off broadcast=yes driver=ixgbe driverversion=3.15.1-k duplex=full firmware=0x5e0b0001 ip=192.168.16.12 latency=0 link=yes multicast=yes speed=10Gbit/s
 
 
+syslog
+======
+
+- config file /etc/syslog.conf
+- man {1,2,3} syslog
+    - man 1 syslog -- manual for syslog useage
+    - man 3 syslog -- used to get description of each level of syslog
+

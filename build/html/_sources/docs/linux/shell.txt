@@ -2,10 +2,27 @@
 Shell
 =====
 
+About
+=====
+
+shell is the main scripting language of linux operating system.
+- there are so many dirtribution of shell
+    - Bourne Shell(sh)、Bourne again Shell(bash)、 C Shell(csh)、Korn Shell(ksh)
+    - by defalut, Ubuntu supports sh/bash and use bash as its main shell(evolve from sh/csh/ksh).
+- configuration files
+    - before: /etc/profile --> ~/.bash_profile --> ~/.bashrc --> /etc/bashrc
+    - after: ~/.bash_logout
+
+
 
 
 Variables
 =========
+
+Enviroment variables
+--------------------
+
+
 
 Parameter Expansion
 -------------------
@@ -29,6 +46,15 @@ ${varname:?message}  if null, print message then exit
 
 positional parameter
 ^^^^^^^^^^^^^^^^^^^^
+
+===============   ================================================================
+expression        descriptions
+===============   ================================================================
+$num              **num** can be 1~9, $10 will be $1 and 0, ${10} is correct expression
+$*                if **cmd a b c d** , then $*="a" "b" "c" "d", "$*" will be "a b c d"
+$@                $@="a" "b" "c" "d", "$@" still is "a" "b" "c" "d"
+$#                number of positonal parameters
+===============   ================================================================
 
 special parameter
 ^^^^^^^^^^^^^^^^^

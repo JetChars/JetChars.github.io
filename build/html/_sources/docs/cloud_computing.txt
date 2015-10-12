@@ -10,11 +10,11 @@ Cloud Computing
 - Cloud provides services, service orchestration, and provisioning
     - Cloud may provide IaaS, PaaS, SaaS and both internal and external API
     - Service Orchestration
-- The mechanisms and concept of providing services, orchestration, and provisioning is called Software Defined Architecture
+- The mechanisms and concept of providing services, orchestration, and provisioning is called Software Defined Architecture(SDA)
     - Software Defined Compute
     - Software Defined Network
     - Software Defined Storage
-
+    - Virtualization is a key abstraction in building SDA
 
 
 Software Defined Computing

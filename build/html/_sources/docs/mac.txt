@@ -99,7 +99,14 @@ Cannot find bluetooth device
 2. reset **power management unit** : ``shift+ctrl+option+cmd`` 5sec
 3. reset **NVRAM** : ``option+cmd+p+r`` 4 times bibi
 
+Cann't detect smb server
+------------------------
 
+.. sidebar:: Note
+    
+    **<user>@** can be omitted if anonymous user.
+
+input **smb://<user>@<ip>** at safari will start to mount it.
 
 
 

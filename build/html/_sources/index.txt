@@ -55,6 +55,7 @@ Linux
     :maxdepth: 1
     :glob:
 
+    docs/linux/*
     docs/linux_*/index
     docs/linux_*
     docs/pxe/index
@@ -114,7 +115,7 @@ Relevant
     docs/rest/index
     docs/microservices/index
     docs/windows/index
-    docs/mac/index
+    docs/mac
 
 
 Related
