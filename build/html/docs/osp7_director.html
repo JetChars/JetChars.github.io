@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>RedHat RHEL7.1 OSP7 &mdash; JetChars alpha documentation</title>
+  <title>OpenStack Platform 7 Director &mdash; JetChars alpha documentation</title>
   
 
   
@@ -30,7 +30,9 @@
   
 
   
-    <link rel="top" title="JetChars alpha documentation" href="../index.html"/> 
+    <link rel="top" title="JetChars alpha documentation" href="../index.html"/>
+        <link rel="next" title="Hadoop" href="hadoop/index.html"/>
+        <link rel="prev" title="OpenStack &amp; Docker" href="o7k_docker/index.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -153,7 +155,7 @@
 </ul>
 </li>
 </ul>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="openstack/index.html">OpenStack</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="openstack/index.html#intro">Intro</a></li>
 <li class="toctree-l2"><a class="reference internal" href="openstack/index.html#heat">Heat</a></li>
@@ -316,6 +318,25 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">OpenStack Platform 7 Director</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#prepare">Prepare</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#create-ssl-files">create ssl files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configure-undercloud">configure undercloud</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dashboard-nodes">Dashboard &#8211;&gt; Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#puppet">puppet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#selinux">selinux</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#intro">Intro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#commands">commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#cisco-switch">CISCO Switch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hp-switch">hp switch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ipmi">IPMI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#issues">issues</a></li>
+</ul>
+</li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="hadoop/index.html">Hadoop</a><ul>
@@ -375,7 +396,9 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="linux/shell.html">Shell</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="linux/shell.html#about">About</a></li>
 <li class="toctree-l2"><a class="reference internal" href="linux/shell.html#variables">Variables</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linux/shell.html#enviroment-variables">Enviroment variables</a></li>
 <li class="toctree-l3"><a class="reference internal" href="linux/shell.html#parameter-expansion">Parameter Expansion</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="linux/shell.html#expansion-operators">expansion operators</a></li>
 <li class="toctree-l4"><a class="reference internal" href="linux/shell.html#positional-parameter">positional parameter</a></li>
@@ -630,6 +653,7 @@
 <li class="toctree-l3"><a class="reference internal" href="rst.html#inline-mark">Inline mark</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="rst.html#tables">Tables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rst.html#directives">Directives</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="rst.html#photos">Photos</a></li>
 <li class="toctree-l3"><a class="reference internal" href="rst.html#sidebar">SideBar</a></li>
@@ -879,7 +903,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-    <li>RedHat RHEL7.1 OSP7</li>
+    <li>OpenStack Platform 7 Director</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -892,9 +916,12 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="redhat-rhel7-1-osp7">
-<h1>RedHat RHEL7.1 OSP7<a class="headerlink" href="#redhat-rhel7-1-osp7" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
+  <div class="section" id="openstack-platform-7-director">
+<h1>OpenStack Platform 7 Director<a class="headerlink" href="#openstack-platform-7-director" title="Permalink to this headline">¶</a></h1>
+<ul>
+<li><dl class="first docutils">
+<dt>RedHat RHEL7.1 OSP7</dt>
+<dd><ul class="first last simple">
 <li>manage w/ python-rdomanager-oscplugin (osp director)</li>
 <li>provisioning undercloud w/ puppet</li>
 <li>instead of used 6 nics, 2 nic is minimal</li>
@@ -906,8 +933,19 @@
 <li><code class="docutils literal"><span class="pre">/httpboot/</span></code> for images</li>
 <li>services named as openstack-&lt;project&gt;-&lt;component&gt;</li>
 </ul>
-<p><a class="reference external" href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux_OpenStack_Platform/">RedHat OSP7 Docs</a>
-<a class="reference external" href="https://access.redhat.com/downloads/content/191/ver=7.0/rhel---7/7.0/x86_64/product-downloads">OSP7 images</a></p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Resources</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux_OpenStack_Platform/">RedHat OSP7 Docs</a></li>
+<li><a class="reference external" href="https://access.redhat.com/downloads/content/191/ver=7.0/rhel---7/7.0/x86_64/product-downloads">OSP7 images</a></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
 <div class="section" id="prepare">
 <h2>Prepare<a class="headerlink" href="#prepare" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-bash"><div class="highlight"><pre><span class="c"># change hostname</span>
@@ -1499,6 +1537,15 @@ nova list --all_tenants   <span class="c"># nova list --all_tenants</span>
 
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="hadoop/index.html" class="btn btn-neutral float-right" title="Hadoop" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="o7k_docker/index.html" class="btn btn-neutral" title="OpenStack &amp; Docker" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

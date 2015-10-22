@@ -1,20 +1,22 @@
-===================
-RedHat RHEL7.1 OSP7
-===================
+=============================
+OpenStack Platform 7 Director
+=============================
 
-- manage w/ python-rdomanager-oscplugin (osp director)
-- provisioning undercloud w/ puppet
-- instead of used 6 nics, 2 nic is minimal
-- a redhat account was needed
-- use ironic to build overcloud
-- build image w/ tripleo-image-elements & diskimage-builder
-- ``LOGFILE=~/.instack/install-undercloud.log``
-- ``/tftpboot/`` for ipxe
-- ``/httpboot/`` for images
-- services named as openstack-<project>-<component>
+- RedHat RHEL7.1 OSP7
+    - manage w/ python-rdomanager-oscplugin (osp director)
+    - provisioning undercloud w/ puppet
+    - instead of used 6 nics, 2 nic is minimal
+    - a redhat account was needed
+    - use ironic to build overcloud
+    - build image w/ tripleo-image-elements & diskimage-builder
+    - ``LOGFILE=~/.instack/install-undercloud.log``
+    - ``/tftpboot/`` for ipxe
+    - ``/httpboot/`` for images
+    - services named as openstack-<project>-<component>
 
-`RedHat OSP7 Docs <https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux_OpenStack_Platform/>`_
-`OSP7 images <https://access.redhat.com/downloads/content/191/ver=7.0/rhel---7/7.0/x86_64/product-downloads>`_
+- Resources
+    - `RedHat OSP7 Docs <https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux_OpenStack_Platform/>`_
+    - `OSP7 images <https://access.redhat.com/downloads/content/191/ver=7.0/rhel---7/7.0/x86_64/product-downloads>`_
 
 Prepare
 =======

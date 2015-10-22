@@ -22,6 +22,16 @@ Variables
 Enviroment variables
 --------------------
 
+============== =================================
+name           descriptions
+============== =================================
+SHELL          the shell current using
+LANG\LC_ALL    language configurations
+PATH           path to find executables
+PS1            command line prompt, see more (**man bash** , then **/\\u**)
+LINENO         current line NO.
+HISTSIZE       the number of history cmds will be preserved
+============== =================================
 
 
 Parameter Expansion
@@ -71,6 +81,16 @@ operator            description                    sequence
 \+ \- ! ~           unary +/- , AND/OPPISITE       RL
 =================== =============================  ========
 
+=====  =====  ======
+   Inputs     Output
+------------  ------
+  A      B    A or B
+=====  =====  ======
+False  False  False A
+True   False  True
+False  True   True
+True   True   True
+=====  =====  ======
 
 set
 ===

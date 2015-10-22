@@ -924,6 +924,37 @@
 <h2>Variables<a class="headerlink" href="#variables" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="enviroment-variables">
 <h3>Enviroment variables<a class="headerlink" href="#enviroment-variables" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="81%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">name</th>
+<th class="head">descriptions</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>SHELL</td>
+<td>the shell current using</td>
+</tr>
+<tr class="row-odd"><td>LANGLC_ALL</td>
+<td>language configurations</td>
+</tr>
+<tr class="row-even"><td>PATH</td>
+<td>path to find executables</td>
+</tr>
+<tr class="row-odd"><td>PS1</td>
+<td>command line prompt, see more (<strong>man bash</strong> , then <strong>/\u</strong>)</td>
+</tr>
+<tr class="row-even"><td>LINENO</td>
+<td>current line NO.</td>
+</tr>
+<tr class="row-odd"><td>HISTSIZE</td>
+<td>the number of history cmds will be preserved</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="parameter-expansion">
 <h3>Parameter Expansion<a class="headerlink" href="#parameter-expansion" title="Permalink to this headline">¶</a></h3>
@@ -1016,6 +1047,40 @@
 <tr class="row-odd"><td>+ - ! ~</td>
 <td>unary +/- , AND/OPPISITE</td>
 <td>RL</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="29%" />
+<col width="41%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2">Inputs</th>
+<th class="head">Output</th>
+</tr>
+<tr class="row-even"><th class="head">A</th>
+<th class="head">B</th>
+<th class="head">A or B</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td>False</td>
+<td>False</td>
+<td>False A</td>
+</tr>
+<tr class="row-even"><td>True</td>
+<td>False</td>
+<td>True</td>
+</tr>
+<tr class="row-odd"><td>False</td>
+<td>True</td>
+<td>True</td>
+</tr>
+<tr class="row-even"><td>True</td>
+<td>True</td>
+<td>True</td>
 </tr>
 </tbody>
 </table>

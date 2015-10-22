@@ -318,6 +318,25 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="osp7_director.html">OpenStack Platform 7 Director</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="osp7_director.html#prepare">Prepare</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="osp7_director.html#create-ssl-files">create ssl files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="osp7_director.html#configure-undercloud">configure undercloud</a></li>
+<li class="toctree-l3"><a class="reference internal" href="osp7_director.html#dashboard-nodes">Dashboard &#8211;&gt; Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="osp7_director.html#puppet">puppet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="osp7_director.html#selinux">selinux</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="osp7_director.html#intro">Intro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="osp7_director.html#commands">commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="osp7_director.html#cisco-switch">CISCO Switch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="osp7_director.html#hp-switch">hp switch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="osp7_director.html#ipmi">IPMI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="osp7_director.html#issues">issues</a></li>
+</ul>
+</li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="hadoop/index.html">Hadoop</a><ul>
@@ -634,6 +653,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#inline-mark">Inline mark</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#tables">Tables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#directives">Directives</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#photos">Photos</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#sidebar">SideBar</a></li>
@@ -916,6 +936,7 @@
 </div>
 <div class="section" id="standard-rst">
 <h2>Standard rST<a class="headerlink" href="#standard-rst" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
 <div class="section" id="headings">
 <h3>Headings<a class="headerlink" href="#headings" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
@@ -930,7 +951,7 @@
 <div class="section" id="inline-mark">
 <h3>Inline mark<a class="headerlink" href="#inline-mark" title="Permalink to this headline">¶</a></h3>
 <div class="sidebar"><div class="line-block">
-<div class="line"><em>italic</em></div>
+<div class="line"><em>italic</em> <cite>italic</cite></div>
 <div class="line"><strong>bold</strong></div>
 <div class="line"><code class="docutils literal"><span class="pre">inline</span> <span class="pre">literal</span></code></div>
 </div>
@@ -938,15 +959,263 @@
 <div class="line">Inline markup allows words and phrases within text to have character styles (like italics and boldface) and functionality (like hyperlinks).</div>
 <div class="line"><br /></div>
 </div>
-<div class="highlight-rst"><div class="highlight"><pre><span class="ge">*italic*</span>
+<div class="highlight-rst"><div class="highlight"><pre><span class="ge">*italic*</span> <span class="nv">`italic`</span>
 <span class="gs">**bold**</span>
 <span class="s">``inline literal``</span>
 </pre></div>
 </div>
 </div>
 </div>
+<div class="section" id="tables">
+<h2>Tables<a class="headerlink" href="#tables" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<div class="sidebar">
+<p class="first sidebar-title">Example</p>
+<ul class="simple">
+<li>simple</li>
+</ul>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="31%" />
+<col width="38%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">A</th>
+<th class="head">B</th>
+<th class="head">A or B</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>False</td>
+<td>False</td>
+<td>False</td>
+</tr>
+<tr class="row-odd"><td>True</td>
+<td>False</td>
+<td>True</td>
+</tr>
+<tr class="row-even"><td>False</td>
+<td>True</td>
+<td>True</td>
+</tr>
+<tr class="row-odd"><td>True</td>
+<td>True</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="31%" />
+<col width="38%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2">Inputs</th>
+<th class="head">Output</th>
+</tr>
+<tr class="row-even"><th class="head">A</th>
+<th class="head">B</th>
+<th class="head">A or B</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td>False</td>
+<td>False</td>
+<td>False</td>
+</tr>
+<tr class="row-even"><td>True</td>
+<td>False</td>
+<td>True</td>
+</tr>
+<tr class="row-odd"><td>False</td>
+<td>True</td>
+<td>True</td>
+</tr>
+<tr class="row-even"><td>True</td>
+<td>True</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li>standard</li>
+</ul>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="31%" />
+<col width="38%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">A</th>
+<th class="head">B</th>
+<th class="head">A or B</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>False</td>
+<td>False</td>
+<td>False</td>
+</tr>
+<tr class="row-odd"><td>True</td>
+<td>False</td>
+<td>True</td>
+</tr>
+<tr class="row-even"><td>False</td>
+<td>True</td>
+<td>True</td>
+</tr>
+<tr class="row-odd"><td>True</td>
+<td>True</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="31%" />
+<col width="38%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2">Inputs</th>
+<th class="head">Output</th>
+</tr>
+<tr class="row-even"><th class="head">A</th>
+<th class="head">B</th>
+<th class="head">A or B</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td>False</td>
+<td>False</td>
+<td>False</td>
+</tr>
+<tr class="row-even"><td>True</td>
+<td>False</td>
+<td>True</td>
+</tr>
+<tr class="row-odd"><td>False</td>
+<td>True</td>
+<td>True</td>
+</tr>
+<tr class="row-even"><td>True</td>
+<td>True</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="last docutils">
+<colgroup>
+<col width="34%" />
+<col width="34%" />
+<col width="31%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Header 1</th>
+<th class="head">Header 2</th>
+<th class="head">Header 3</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>body row 1</td>
+<td>column 2</td>
+<td>column 3</td>
+</tr>
+<tr class="row-odd"><td>body row 2</td>
+<td colspan="2">Cells may span columns.</td>
+</tr>
+<tr class="row-even"><td>body row 3</td>
+<td rowspan="2">Cells may
+span rows.</td>
+<td rowspan="2"><ul class="first last simple">
+<li>Cells</li>
+<li>contain</li>
+<li>blocks.</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>body row 4</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ol class="arabic simple">
+<li>fastest way (simple)</li>
+</ol>
+<div class="highlight-rst"><div class="highlight"><pre>=====  =====  ======
+  A      B    A or B
+=====  =====  ======
+False  False  False
+True   False  True
+False  True   True
+True   True   True
+=====  =====  ======
+
+
+=====  =====  ======
+   Inputs     Output
+------------  ------
+  A      B    A or B
+=====  =====  ======
+False  False  False
+True   False  True
+False  True   True
+True   True   True
+=====  =====  ======
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li>standard way (complex)</li>
+</ol>
+<ul class="simple">
+<li>In this way, cells will be much easier to merge.</li>
+</ul>
+<div class="highlight-rst"><div class="highlight"><pre>+-----+-----+------+
+<span class="o">|</span>  A  |  B  |A or B|
++=====+=====+======+
+|False|False|False |
++-----+-----+------+
+|True |False|True  |
++-----+-----+------+
+|False|True |True  |
++-----+-----+------+
+|True |True |True  |
++-----+-----+------+
+
++-----+-----+------+
+<span class="o">|</span>   Inputs  |Output|
++-----+-----+------+
+<span class="o">|</span>  A  |  B  |A or B|
++=====+=====+======+
+|False|False|False |
++-----+-----+------+
+|True |False|True  |
++-----+-----+------+
+|False|True |True  |
++-----+-----+------+
+|True |True |True  |
++-----+-----+------+
+
++------------+------------+-----------+
+<span class="o">|</span> Header 1   | Header 2   | Header 3  |
++============+============+===========+
+<span class="o">|</span> body row 1 | column 2   | column 3  |
++------------+------------+-----------+
+<span class="o">|</span> body row 2 | Cells may span columns.|
++------------+------------+-----------+
+<span class="o">|</span> body row 3 | Cells may  | - Cells   |
++------------+ span rows. | - contain |
+<span class="o">|</span> body row 4 |            | - blocks. |
++------------+------------+-----------+
+</pre></div>
+</div>
+</div>
 <div class="section" id="directives">
 <h2>Directives<a class="headerlink" href="#directives" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
 <div class="highlight-rst"><div class="highlight"><pre><span class="cp">.. &lt;name&gt;:: &lt;arguments&gt;</span>
 <span class="cp">    :&lt;option&gt;: &lt;option values&gt;</span>
 
@@ -1025,6 +1294,7 @@ rst contents with no titlebar
 </div>
 <div class="section" id="sphinx-customized-rst">
 <h2>Sphinx Customized rST<a class="headerlink" href="#sphinx-customized-rst" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
 <div class="section" id="table-of-content-tree-toctree">
 <h3>Table of Content Tree (toctree)<a class="headerlink" href="#table-of-content-tree-toctree" title="Permalink to this headline">¶</a></h3>
 <div class="sidebar">

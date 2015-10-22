@@ -35,6 +35,7 @@ OpenStack Customization
     docs/kvm_optimization/index
     docs/devstack*/index
     docs/o7k_docker/index
+    docs/osp7_director
     
 
 Hadoop

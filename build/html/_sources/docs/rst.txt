@@ -26,6 +26,7 @@ reStructuredText is an easy-to-read, what-you-see-is-what-you-get plaintext mark
 
 Standard rST
 ============
+============
 
 Headings
 --------
@@ -46,7 +47,7 @@ Inline mark
     
     <div class="sidebar">
 
-| *italic*
+| *italic* `italic`
 | **bold**
 | ``inline literal``
 
@@ -59,13 +60,152 @@ Inline mark
 
 .. code-block:: rst
 
-    *italic*
+    *italic* `italic`
     **bold**
     ``inline literal``
 
+Tables
+======
+======
+
+.. sidebar:: Example
+
+    - simple
+
+    =====  =====  ======
+      A      B    A or B
+    =====  =====  ======
+    False  False  False
+    True   False  True
+    False  True   True
+    True   True   True
+    =====  =====  ======
+
+
+    =====  =====  ======
+       Inputs     Output
+    ------------  ------
+      A      B    A or B
+    =====  =====  ======
+    False  False  False
+    True   False  True
+    False  True   True
+    True   True   True
+    =====  =====  ======
+
+    - standard
+
+    +-----+-----+------+
+    |  A  |  B  |A or B|
+    +=====+=====+======+
+    |False|False|False |
+    +-----+-----+------+
+    |True |False|True  |
+    +-----+-----+------+
+    |False|True |True  |
+    +-----+-----+------+
+    |True |True |True  |
+    +-----+-----+------+
+
+    +-----+-----+------+
+    |   Inputs  |Output|
+    +-----+-----+------+
+    |  A  |  B  |A or B|
+    +=====+=====+======+
+    |False|False|False |
+    +-----+-----+------+
+    |True |False|True  |
+    +-----+-----+------+
+    |False|True |True  |
+    +-----+-----+------+
+    |True |True |True  |
+    +-----+-----+------+
+
+    +------------+------------+-----------+
+    | Header 1   | Header 2   | Header 3  |
+    +============+============+===========+
+    | body row 1 | column 2   | column 3  |
+    +------------+------------+-----------+
+    | body row 2 | Cells may span columns.|
+    +------------+------------+-----------+
+    | body row 3 | Cells may  | - Cells   |
+    +------------+ span rows. | - contain |
+    | body row 4 |            | - blocks. |
+    +------------+------------+-----------+
+
+1. fastest way (simple)
+
+
+.. code-block:: rst
+
+    =====  =====  ======
+      A      B    A or B
+    =====  =====  ======
+    False  False  False
+    True   False  True
+    False  True   True
+    True   True   True
+    =====  =====  ======
+
+
+    =====  =====  ======
+       Inputs     Output
+    ------------  ------
+      A      B    A or B
+    =====  =====  ======
+    False  False  False
+    True   False  True
+    False  True   True
+    True   True   True
+    =====  =====  ======
+
+2. standard way (complex)
+
+- In this way, cells will be much easier to merge.
+
+.. code-block:: rst
+
+    +-----+-----+------+
+    |  A  |  B  |A or B|
+    +=====+=====+======+
+    |False|False|False |
+    +-----+-----+------+
+    |True |False|True  |
+    +-----+-----+------+
+    |False|True |True  |
+    +-----+-----+------+
+    |True |True |True  |
+    +-----+-----+------+
+
+    +-----+-----+------+
+    |   Inputs  |Output|
+    +-----+-----+------+
+    |  A  |  B  |A or B|
+    +=====+=====+======+
+    |False|False|False |
+    +-----+-----+------+
+    |True |False|True  |
+    +-----+-----+------+
+    |False|True |True  |
+    +-----+-----+------+
+    |True |True |True  |
+    +-----+-----+------+
+
+    +------------+------------+-----------+
+    | Header 1   | Header 2   | Header 3  |
+    +============+============+===========+
+    | body row 1 | column 2   | column 3  |
+    +------------+------------+-----------+
+    | body row 2 | Cells may span columns.|
+    +------------+------------+-----------+
+    | body row 3 | Cells may  | - Cells   |
+    +------------+ span rows. | - contain |
+    | body row 4 |            | - blocks. |
+    +------------+------------+-----------+
 
 
 Directives
+==========
 ==========
 
 .. code-block:: rst
@@ -161,6 +301,7 @@ rst contents with no titlebar
 
 
 Sphinx Customized rST
+=====================
 =====================
 
 
