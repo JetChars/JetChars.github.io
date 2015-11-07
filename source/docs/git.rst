@@ -7,11 +7,12 @@
 * CVS/SVN(SubVersion) both need need web connection, while git don't
 
 
-`Official Doc <http://git-scm.com/doc>`_
-
+- `Official Doc <http://git-scm.com/doc>`_
+- `Pro Git <http://git-scm.com/book/en/v2>`_
 
 
 Configuration
+=============
 =============
 
 Config -- Get and set repository or global options
@@ -111,6 +112,7 @@ Git Proxy Command
 
 Repository Management
 =====================
+=====================
 
 Clone -- Clone a repository into a new directory
 ------------------------------------------------
@@ -142,6 +144,7 @@ Remote -- Manage set of tracked repositories
 
 
 Branch Management
+=================
 =================
 
 
@@ -182,6 +185,7 @@ Checkout -- Checkout a branch or paths to the working tree
 
 
 Submit
+======
 ======
 
 Add/rm -- Add file contents to the index (stage files)
@@ -264,6 +268,7 @@ Check Infos
 
 
 Init a project
+==============
 ==============
 
 .. code-block:: bash

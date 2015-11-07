@@ -71,6 +71,7 @@ Git
     :maxdepth: 1
     :glob:
 
+    docs/git
     docs/git*/index
  
 
@@ -94,7 +95,7 @@ Markup Languages
     :maxdepth: 1
 
     docs/rst
-    docs/md/index
+    docs/md
     docs/svg/index
 
 Algorithms
