@@ -98,6 +98,15 @@ Markup Languages
     docs/md
     docs/svg/index
 
+Operating System & Network
+==========================
+
+.. toctree::
+    :maxdepth: 1
+
+    docs/netease_homework/os.rst
+
+
 Algorithms
 ==========
 
