@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Operating System &mdash; JetChars alpha documentation</title>
+  <title>梦幻西游 &mdash; JetChars alpha documentation</title>
   
 
   
@@ -30,9 +30,7 @@
   
 
   
-    <link rel="top" title="JetChars alpha documentation" href="../../index.html"/>
-        <link rel="next" title="Sorting" href="../sort.html"/>
-        <link rel="prev" title="Scalable Vector Graphics (SVG)" href="../svg/index.html"/> 
+    <link rel="top" title="JetChars alpha documentation" href="../../index.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -689,12 +687,12 @@
 </ul>
 </li>
 </ul>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">Operating System</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#basics">Basics</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#bashrcbashrc">bashrcbashrc与环境变量</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#fhsproc">FHS与proc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#cron">cron</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="os.html">Operating System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="os.html#basics">Basics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="os.html#bashrcbashrc">bashrcbashrc与环境变量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="os.html#fhsproc">FHS与proc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="os.html#cron">cron</a></li>
 </ul>
 </li>
 </ul>
@@ -915,11 +913,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
-    <li>Operating System</li>
+    <li>梦幻西游</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../../_sources/docs/netease_homework/os.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/docs/netease_homework/xyq.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -928,107 +926,97 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="operating-system">
-<h1>Operating System<a class="headerlink" href="#operating-system" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="basics">
-<h2>Basics<a class="headerlink" href="#basics" title="Permalink to this headline">¶</a></h2>
-<hr class="docutils" />
-<div class="section" id="bashrcbashrc">
-<h3>bashrcbashrc与环境变量<a class="headerlink" href="#bashrcbashrc" title="Permalink to this headline">¶</a></h3>
-<ul>
+  <div class="section" id="id1">
+<h1>梦幻西游<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>使用工具wireshark
+netstat
+直接查看源文件（可以查到分区服务器的IP/PORT）
+手游还可以使用工具surge或者使用代理服务器到pc然后通过桌面工具来进行分析</p>
+<ol class="arabic">
 <li><dl class="first docutils">
-<dt>bash的系统和个人配置文件的路径是什么?</dt>
+<dt>打开游戏客户端后, 游戏客户端要连接哪些服务器和端口?</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>打开客户端 xyq.163.com</dt>
 <dd><ul class="first last simple">
-<li>/etc/bashrc ~/.bashrc</li>
+<li>58.221.78.39 80</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">更新服务器 update.xyq.163.com</p>
+</li>
+<li><dl class="first docutils">
+<dt>补丁服务器 autopatch.xyq.163.com</dt>
+<dd><ul class="first last simple">
+<li>xy-cache.163.com</li>
+<li>snaly.nie.163.com</li>
 </ul>
 </dd>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt>$PS1这个环境变量有什么用?</dt>
+<dt>补丁下载服务器 xyq.gph0{1-3}.netease.com</dt>
 <dd><ul class="first last simple">
-<li>修改命令行提示符</li>
+<li>lst.dlmix.ourdvs.com(xyq.gph02.netease.com) 122.228.237.175 62078</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">新闻、广告服务器 gad.netease.com</p>
+</li>
+<li><p class="first">游戏下载？ xyq.gdl.netease.com</p>
+</li>
+<li><p class="first">更新api？ api.ku.163.com</p>
+</li>
+<li><p class="first">a.tool.netease.com</p>
+</li>
+<li><p class="first">a.game.163.com</p>
+</li>
+<li><p class="first">pic.x1.126.net</p>
+</li>
+<li><p class="first">analytics.163.com</p>
+</li>
+<li><p class="first">pr.tool.netease.com</p>
+</li>
+<li><p class="first">pr.game.netease.com</p>
+</li>
 </ul>
 </dd>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt>在什么情况下需要修改 <code class="docutils literal"><span class="pre">$PATH</span></code> ,应该如何合理地修改它?</dt>
+<dt>游戏客户端如何得到游戏服务器的IP地址和端口?</dt>
 <dd><ul class="first last simple">
-<li>修改 <code class="docutils literal"><span class="pre">$PATH</span></code> 是为了运行可执行文件时省略文件的详细路径</li>
-<li>可以在 <code class="docutils literal"><span class="pre">/etc/enviroment</span></code> <code class="docutils literal"><span class="pre">/etc/profile</span></code> <code class="docutils literal"><span class="pre">bashrc</span></code> 等文件中进行修改</li>
-<li>可以使用 <code class="docutils literal"><span class="pre">PATH=$PATH:&lt;new_path&gt;</span></code> 这样的形式来添加新的路径</li>
+<li>从配置文件server.ini中读取</li>
 </ul>
 </dd>
 </dl>
+</li>
+<li><p class="first">用户密码的校验过程中, 会连接哪些服务器和端口?</p>
+</li>
+<li><p class="first">登录进入游戏后, 在游戏过程中, 游戏客户端会连接哪些服务器和端口?</p>
+</li>
+<li><p class="first">退出客户端时, 客户端访问了哪些服务器和端口?</p>
+</li>
+<li><p class="first">游戏里有哪些分区和服,向导师讲述你对分区和服这两个概念的理解?</p>
 </li>
 <li><dl class="first docutils">
-<dt>修改过~/.bashrc后,如何让改变立即生效?</dt>
+<dt>玩家看到的游戏服,背后由多少台物理服务器组成?</dt>
 <dd><ul class="first last simple">
-<li>修改 <code class="docutils literal"><span class="pre">~/.bashrc</span></code> 文件后可以使用命令 <code class="docutils literal"><span class="pre">source</span> <span class="pre">~/.bashrc</span></code> 或 <code class="docutils literal"><span class="pre">.</span> <span class="pre">~/.bashrc</span></code> 来进行导入</li>
+<li>有57个分区，具体的列表可以从server.ini文件中获得</li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>bashrc与profile有什么异同点?两者的加载顺序如何?</dt>
-<dd><ul class="first last simple">
-<li>profile文件仅在login shell中会读取</li>
-<li><code class="docutils literal"><span class="pre">/etc/profile</span></code> -&gt; <code class="docutils literal"><span class="pre">~/.profile</span></code> (.bash_profile &gt; .bash_login &gt; .profile) -&gt; <code class="docutils literal"><span class="pre">~/.bashrc</span></code> -&gt; <code class="docutils literal"><span class="pre">/etc/bashrc</span></code></li>
-</ul>
-</dd>
-</dl>
+<li><p class="first">如果玩家连不上游戏,客户端提供哪些途径让玩家反馈问题? 尝试运行这样的工具,看看输</p>
 </li>
-</ul>
-</div>
-<div class="section" id="fhsproc">
-<h3>FHS与proc<a class="headerlink" href="#fhsproc" title="Permalink to this headline">¶</a></h3>
-<ul>
-<li><dl class="first docutils">
-<dt>为什么系统命令会分别放到/bin, /sbin, /usr/bin, /usr/sbin这四个目录中? 这些目录间有什么区别?</dt>
-<dd><ul class="first last simple">
-<li>bin和sbin路径是用来存放系统工具的，sbin中的工具是需要root权限才能执行的</li>
-<li>usr 目录下的工具是用户自行安装的</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><p class="first">/var目录通常用来放哪些内容?/var和/tmp有什么区别?</p>
-</li>
-<li><p class="first">/boot目录里有哪些内容?</p>
-</li>
-<li><p class="first">/usr/include和/usr/lib有什么区别?</p>
-</li>
-<li><p class="first">/proc目录下的那些数字是什么东西?</p>
-</li>
-<li><p class="first">如何在proc文件系统中查看CPU和内存信息?</p>
-</li>
-</ul>
-</div>
-<div class="section" id="cron">
-<h3>cron<a class="headerlink" href="#cron" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li>系统配置文件的路径是什么?</li>
-<li>cron时间描述里的&#8217;-&#8216;是什么意思, &#8216;/&#8217;是什么意思?</li>
-<li>&#64;reboot会在什么时候执行?</li>
-<li>cron的最小粒度是分钟, 如何用cron实现每分钟跑两次(例如, 分别在第0秒和第 30秒)运行的任务?</li>
-</ul>
-</div>
-</div>
+</ol>
 </div>
 
 
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../sort.html" class="btn btn-neutral float-right" title="Sorting" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="../svg/index.html" class="btn btn-neutral" title="Scalable Vector Graphics (SVG)" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>
