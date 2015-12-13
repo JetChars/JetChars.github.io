@@ -40,6 +40,26 @@ cron
 ----
 
 - 系统配置文件的路径是什么? 
+    - /etc/cron{tab,.allow,.deny}
+    - /etc/cron.{d,hourly,daily,weekly,monthly}
 - cron时间描述里的'-'是什么意思, '/'是什么意思?
+    - ``-`` 表示时间段
+    - ``/`` 连接时间间隔
 - @reboot会在什么时候执行?
+    - 重启后立即执行
 - cron的最小粒度是分钟, 如何用cron实现每分钟跑两次(例如, 分别在第0秒和第 30秒)运行的任务?
+    - 自己写个脚本 ``sleep 30``
+
+
+NTP与UTC
+--------
+- ntpdate和ntpd相比有什么优势和劣势. 
+    - ntpdate会立即矫正时间，但会导致很多时间相关的系统冲突，如数据库
+    - ntpd会慢慢的逐渐修正时间，可以避免ntpdate的问题
+- 既然已经有了ntp, 为什么还需要有hwclock? 
+    - 确保断电后时间也能保留
+- UTC是什么? 
+    - Universal Time Coordinated 世界统一时间
+- Debian中如何修改系统时区?
+    - tzselect/timadatectrl
+    - ``ln -sf /usr/share/zoneinfo/posix/Asia/Shanghai /etc/localtime``
