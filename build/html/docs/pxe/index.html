@@ -32,7 +32,7 @@
   
     <link rel="top" title="JetChars alpha documentation" href="../../index.html"/>
         <link rel="next" title="Screen - Full-screen window manager" href="../screen/index.html"/>
-        <link rel="prev" title="Linux Network" href="../linux_net.html"/> 
+        <link rel="prev" title="Ubuntu" href="../linux/ubuntu.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -318,6 +318,25 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../osp7_director.html">OpenStack Platform 7 Director</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../osp7_director.html#prepare">Prepare</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../osp7_director.html#create-ssl-files">create ssl files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../osp7_director.html#configure-undercloud">configure undercloud</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../osp7_director.html#dashboard-nodes">Dashboard &#8211;&gt; Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../osp7_director.html#puppet">puppet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../osp7_director.html#selinux">selinux</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../osp7_director.html#intro">Intro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../osp7_director.html#commands">commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../osp7_director.html#cisco-switch">CISCO Switch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../osp7_director.html#hp-switch">hp switch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../osp7_director.html#ipmi">IPMI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../osp7_director.html#issues">issues</a></li>
+</ul>
+</li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../hadoop/index.html">Hadoop</a><ul>
@@ -376,8 +395,166 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_disk.html">Linux Disk</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux_disk.html#filesystem">Filesystem</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux_disk.html#kernnel-vfs">Kernnel &#8211; VFS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux_disk.html#driver">Driver</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../linux/linux_disk.html#mke2fs">mke2fs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux_disk.html#devices">Devices</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../linux/linux_disk.html#storage-cards">Storage Cards</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../linux/linux_disk.html#serial-devices">Serial Devices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../linux/linux_disk.html#network-storage">Network Storage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux_disk.html#mount">Mount</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux_disk.html#mount-a-device">Mount a device</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux_disk.html#unmount-a-device">Unmount a device</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux_disk.html#auto-mount">Auto Mount</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux_disk.html#lvm-logical-volume-management">LVM &#8211; Logical volume management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux_disk.html#management">Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux_disk.html#check-lvm-infos">Check lvm infos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux_disk.html#issues">Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux_disk.html#devicemapper">DeviceMapper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux_disk.html#iscsi">iSCSI</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux_disk.html#tgtadm-linux-scsi-target-administration-utilit">tgtadm - Linux SCSI Target Administration Utilit</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux_disk.html#loop-device">Loop Device</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux_disk.html#sparse-file">Sparse File</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../linux/linux_disk.html#copying-w-cp">copying w/ &#8216;cp&#8217;</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../linux/linux_disk.html#archiving-w-tar">Archiving w/ `tar&#8217;</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../linux/linux_disk.html#mount-sparse-file">Mount sparse file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux_disk.html#create-loop-device">Create Loop Device</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux_disk.html#raid">RAID</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux_disk.html#raid10">raid10</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux_disk.html#disk-performance">Disk Performance</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux_disk.html#dd-convert-and-copy-a-file">dd &#8211; convert and copy a file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux_disk.html#iozone">iozone</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_doc.html">Documentation Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux_doc.html#sphinx-python-document-generator">Sphinx - Python Document Generator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux_doc.html#configuration">Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../linux/linux_doc.html#id1">Built-in themes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux_doc.html#tips">Tips</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux_doc.html#issues">Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux_doc.html#pandoc-universal-document-converter">Pandoc - Universal document converter</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_info.html">Get System Infos</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux_info.html#intro">Intro</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux_info.html#linux-get-system-version-info">linux get system version info</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../linux/linux_info.html#for-any-os">For any os</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../linux/linux_info.html#for-ubuntu">For Ubuntu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../linux/linux_info.html#for-centos">For Centos</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux_info.html#tar-folder-etc">tar folder /etc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux_info.html#print-infos">print infos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux_info.html#proc-infos">proc infos</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux_info.html#enviroments">Enviroments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux_info.html#username">username</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux_info.html#lscommands">lscommands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux_info.html#syslog">syslog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_net.html">Linux Network</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux_net.html#configurations">Configurations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux_net.html#home-made-proxy-setting-tool">Home made proxy setting tool</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux_net.html#network-trouble-shooting">Network Trouble Shooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux_net.html#website-errs">WebSite Errs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux_net.html#ping">Ping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux_net.html#check-nic">Check NIC</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux_net.html#dns-management">DNS management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux_net.html#bind-main-stream-dns-server">bind &#8211; main stream dns server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux_net.html#dnsmasq">dnsmasq</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux_net.html#route-management">Route Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux_net.html#ip-commands">IP commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux_net.html#addr-address">addr/address</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux_net.html#link-network-device">link &#8211; network device</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux_net.html#route-routing-table-management">route &#8211; routing table management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux_net.html#netns-network-namespace">netns &#8211; network namespace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux_net.html#rule-routing-policy-database-management">rule &#8211; routing policy database management</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux_net.html#ifconfig">ifconfig</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux_net.html#add-a-virtual-nic-aliasing">add a virtual nic (aliasing)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux_net.html#open-vswitch">Open vSwitch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux_net.html#macvlan">macvlan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux_net.html#getting-contents">Getting contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux_net.html#curl-client-url">curl client URL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux_net.html#wget">wget</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux_net.html#secure-shell">Secure Shell</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux_net.html#most-powerful-ssh-tunnel">3 most powerful ssh tunnel</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux_net.html#ssl">SSL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux_net.html#terms">Terms</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_pkg.html">Linux Package Management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux_pkg.html#apt">apt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux_pkg.html#yum">yum</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux_pkg.html#issues">Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux_pkg.html#rpm">rpm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux_pkg.html#applications">Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux_pkg.html#check-install">Check Install</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_virt.html">Virtualization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux_virt.html#hypervisors">Hypervisors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux_virt.html#libvirt">Libvirt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux_virt.html#kvm">KVM</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux_virt.html#nested-kvm">nested KVM</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux_virt.html#virsh-virtualization-management-interface">Virsh &#8211; Virtualization Management Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux_virt.html#id2">TI Calculators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux_virt.html#docker">Docker</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/shell.html">Shell</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../linux/shell.html#about">About</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linux/shell.html#variables">Variables</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux/shell.html#enviroment-variables">Enviroment variables</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../linux/shell.html#parameter-expansion">Parameter Expansion</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../linux/shell.html#expansion-operators">expansion operators</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../linux/shell.html#positional-parameter">positional parameter</a></li>
@@ -398,114 +575,20 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../linux_disk/index.html">Linux Disk</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#filesystem">Filesystem</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#kernnel-vfs">Kernnel &#8211; VFS</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#driver">Driver</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../linux_disk/index.html#mke2fs">mke2fs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/ubuntu.html">Ubuntu</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../linux/ubuntu.html#shortcuts">Shortcuts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/ubuntu.html#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux/ubuntu.html#termial-mode-configuration">Termial Mode Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux/ubuntu.html#configure-wireless-nic">Configure Wireless NIC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux/ubuntu.html#install-gnome">Install gnome</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#devices">Devices</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../linux_disk/index.html#storage-cards">Storage Cards</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../linux_disk/index.html#serial-devices">Serial Devices</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../linux_disk/index.html#network-storage">Network Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/ubuntu.html#apt-advanced-package-tool">APT (Advanced Package Tool)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux/ubuntu.html#configuration-files">Configuration files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux/ubuntu.html#apt-get">apt-get</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux/ubuntu.html#apt-cache">apt-cache</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#mount">Mount</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#mount-a-device">Mount a device</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#unmount-a-device">Unmount a device</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#auto-mount">Auto Mount</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#lvm-logical-volume-management">LVM &#8211; Logical volume management</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#management">Management</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#check-lvm-infos">Check lvm infos</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#issues">Issues</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#devicemapper">DeviceMapper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#iscsi">iSCSI</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#tgtadm-linux-scsi-target-administration-utilit">tgtadm - Linux SCSI Target Administration Utilit</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#loop-device">Loop Device</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#sparse-file">Sparse File</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../linux_disk/index.html#copying-w-cp">copying w/ &#8216;cp&#8217;</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../linux_disk/index.html#archiving-w-tar">Archiving w/ `tar&#8217;</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../linux_disk/index.html#mount-sparse-file">Mount sparse file</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#create-loop-device">Create Loop Device</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#raid">RAID</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#raid10">raid10</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_disk/index.html#disk-performance">Disk Performance</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#dd-convert-and-copy-a-file">dd &#8211; convert and copy a file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../linux_disk/index.html#iozone">iozone</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../linux_doc/index.html">Documentation Tools</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../linux_doc/index.html#sphinx-python-document-generator">Sphinx - Python Document Generator</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../linux_doc/index.html#configuration">Configuration</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../linux_doc/index.html#id1">Built-in themes</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../linux_doc/index.html#tips">Tips</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../linux_doc/index.html#issues">Issues</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_doc/index.html#pandoc-universal-document-converter">Pandoc - Universal document converter</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../linux_net.html">Linux Network</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../linux_net.html#configurations">Configurations</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../linux_net.html#home-made-proxy-setting-tool">Home made proxy setting tool</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_net.html#network-trouble-shooting">Network Trouble Shooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../linux_net.html#website-errs">WebSite Errs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../linux_net.html#ping">Ping</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../linux_net.html#check-nic">Check NIC</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_net.html#dns-management">DNS management</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../linux_net.html#bind-main-stream-dns-server">bind &#8211; main stream dns server</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../linux_net.html#dnsmasq">dnsmasq</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_net.html#route-management">Route Management</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_net.html#ip-commands">IP commands</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../linux_net.html#addr-address">addr/address</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../linux_net.html#link-network-device">link &#8211; network device</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../linux_net.html#route-routing-table-management">route &#8211; routing table management</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../linux_net.html#netns-network-namespace">netns &#8211; network namespace</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../linux_net.html#rule-routing-policy-database-management">rule &#8211; routing policy database management</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_net.html#ifconfig">ifconfig</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../linux_net.html#add-a-virtual-nic-aliasing">add a virtual nic (aliasing)</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_net.html#open-vswitch">Open vSwitch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_net.html#macvlan">macvlan</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_net.html#getting-contents">Getting contents</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../linux_net.html#curl-client-url">curl client URL</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../linux_net.html#wget">wget</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_net.html#secure-shell">Secure Shell</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../linux_net.html#most-powerful-ssh-tunnel">3 most powerful ssh tunnel</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_net.html#ssl">SSL</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../linux_net.html#terms">Terms</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">PXE &#8211; Preboot Execution Enviriment</a><ul>
@@ -547,33 +630,33 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git &#8211; Extraordinary version contrl software</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../git/index.html#configuration">Configuration</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../git/index.html#config-get-and-set-repository-or-global-options">Config &#8211; Get and set repository or global options</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../git/index.html#git-proxy-command">Git Proxy Command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git.html">Git &#8211; Extraordinary version contrl software</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../git.html#configuration">Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../git.html#config-get-and-set-repository-or-global-options">Config &#8211; Get and set repository or global options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../git.html#git-proxy-command">Git Proxy Command</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../git/index.html#repository-management">Repository Management</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../git/index.html#clone-clone-a-repository-into-a-new-directory">Clone &#8211; Clone a repository into a new directory</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../git/index.html#remote-manage-set-of-tracked-repositories">Remote &#8211; Manage set of tracked repositories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../git.html#repository-management">Repository Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../git.html#clone-clone-a-repository-into-a-new-directory">Clone &#8211; Clone a repository into a new directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../git.html#remote-manage-set-of-tracked-repositories">Remote &#8211; Manage set of tracked repositories</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../git/index.html#branch-management">Branch Management</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../git/index.html#branch-list-create-or-delete-branches">Branch &#8211; List, create, or delete branches</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../git/index.html#merge-join-two-or-more-development-histories-together">Merge &#8211; Join two or more development histories together</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../git/index.html#checkout-checkout-a-branch-or-paths-to-the-working-tree">Checkout &#8211; Checkout a branch or paths to the working tree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../git.html#branch-management">Branch Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../git.html#branch-list-create-or-delete-branches">Branch &#8211; List, create, or delete branches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../git.html#merge-join-two-or-more-development-histories-together">Merge &#8211; Join two or more development histories together</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../git.html#checkout-checkout-a-branch-or-paths-to-the-working-tree">Checkout &#8211; Checkout a branch or paths to the working tree</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../git/index.html#submit">Submit</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../git/index.html#add-rm-add-file-contents-to-the-index-stage-files">Add/rm &#8211; Add file contents to the index (stage files)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../git/index.html#reset-reset-current-head-to-the-specified-state-unstage-files">Reset &#8211; Reset current HEAD to the specified state (unstage files)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../git/index.html#push-update-remote-refs-along-with-associated-objects">Push &#8211; Update remote refs along with associated objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../git/index.html#review-the-tool-to-submit-code-patches">Review &#8211; The tool to submit code patches</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../git/index.html#rebase-forward-port-local-commits-to-the-updated-upstream-head">Rebase &#8211; Forward-port local commits to the updated upstream head</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../git.html#submit">Submit</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../git.html#add-rm-add-file-contents-to-the-index-stage-files">Add/rm &#8211; Add file contents to the index (stage files)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../git.html#reset-reset-current-head-to-the-specified-state-unstage-files">Reset &#8211; Reset current HEAD to the specified state (unstage files)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../git.html#push-update-remote-refs-along-with-associated-objects">Push &#8211; Update remote refs along with associated objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../git.html#review-the-tool-to-submit-code-patches">Review &#8211; The tool to submit code patches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../git.html#rebase-forward-port-local-commits-to-the-updated-upstream-head">Rebase &#8211; Forward-port local commits to the updated upstream head</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../git/index.html#check-infos">Check Infos</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../git/index.html#init-a-project">Init a project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../git.html#check-infos">Check Infos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../git.html#init-a-project">Init a project</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../github/index.html">GitHub &#8211; Git repository hosting service</a><ul>
@@ -632,6 +715,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../rst.html#inline-mark">Inline mark</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../rst.html#tables">Tables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../rst.html#directives">Directives</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../rst.html#photos">Photos</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../rst.html#sidebar">SideBar</a></li>
@@ -651,9 +735,10 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../md/index.html">MarkDown (md)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../md/index.html#symbols">Symbols</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../md/index.html#gitbub-flavored">Gitbub Flavored</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../md.html">MarkDown (md)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../md.html#symbols">Symbols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../md.html#gitbub-flavored">Gitbub Flavored</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../md.html#references">References</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../svg/index.html">Scalable Vector Graphics (SVG)</a><ul>
@@ -663,6 +748,23 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../svg/index.html#gimp">GIMP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../svg/index.html#resources">Resources</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../netease_homework/os.html">Operating System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../netease_homework/os.html#basics">Basics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../netease_homework/os.html#bashrcbashrc">bashrcbashrc与环境变量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netease_homework/os.html#fhsproc">FHS与proc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netease_homework/os.html#cron">cron</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netease_homework/os.html#ntputc">NTP与UTC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netease_homework/os.html#id1">文件的权限</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netease_homework/os.html#id2">管道与重定向</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netease_homework/os.html#id3">用户管理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netease_homework/os.html#apt-getdebian">apt-get与Debian软件包管理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../netease_homework/os.html#suidsudo">SUID机制与sudo</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1329,7 +1431,7 @@ reboot
         <a href="../screen/index.html" class="btn btn-neutral float-right" title="Screen - Full-screen window manager" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../linux_net.html" class="btn btn-neutral" title="Linux Network" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../linux/ubuntu.html" class="btn btn-neutral" title="Ubuntu" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

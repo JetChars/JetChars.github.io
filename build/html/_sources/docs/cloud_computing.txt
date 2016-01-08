@@ -7,14 +7,48 @@ Cloud Computing
     * High value data must be structured data, can be transfer from low value data
     * Data stored worldwide has been exploded, growing by a factor of 9 in five years (2006~2011) [#]_
 
-- Cloud provides services, service orchestration, and provisioning
-    - Cloud may provide IaaS, PaaS, SaaS and both internal and external API
-    - Service Orchestration
-- The mechanisms and concept of providing services, orchestration, and provisioning is called Software Defined Architecture(SDA)
-    - Software Defined Compute
-    - Software Defined Network
-    - Software Defined Storage
+- Here are some advantages of Cloud Computing
+    - Faster, flexible and cheaper
+    - Achives a quicker return on investment
+    - The biggest upheaval since the invention of the PC in 1970s
+    - IT department will have little left to do once the bulk of business computing shifts into the cloud
+    - No less influential than e-business
+    - Domestic cloud computing will soar
+- Disadvantages of build an information systems
+    - capital investment
+    - heavy fixed costs
+    - redundant expenditures
+    - high energy cost, low CPU utilization
+    - dealing with unreliable hardware
+    - high levels of overcapacity(technology and labor)
+- Virtualization is the Foundation of Cloud Computing
     - Virtualization is a key abstraction in building SDA
+    - above layer is ``Abatract Programing Platform``
+    - Hardware-level virtualizaion
+        - Native and Full Virtualization
+            - virtual box
+            - vmware
+        - Hardware enabled virtualization
+            - intel
+            - AMD
+        - Paravirtualization
+            - XEN
+    - Operating system-level virtualization
+        - Linux-Vserver
+        - Solaris Containers
+        - FreeBSD Jails
+        - Chroot
+        - CGroups
+- Software Defined Architecture(SDA)
+    - The mechanisms and concept of providing services, orchestration, and provisioning
+    - Software Defined Compute (Abstract Compute)
+    - Software Defined Network (Abstract Networe)
+    - Software Defined Storage (Abstract Storage)
+- Cloud provides services, service orchestration, and provisioning
+    - Cloud may provide IaaS, PaaS, SaaS(deliver models) and both internal and external API
+    - Service Orchestration
+    - easy to write programs, fast turn around
+    - MapR -- Hadoop, HDFS, pig, HBase
 
 
 Software Defined Computing

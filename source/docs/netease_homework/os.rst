@@ -112,8 +112,25 @@ apt-get与Debian软件包管理
 
 - 请尽量详细地描述在执行apt-get update && apt-get install mtr 的过程中, apt-get是如何工作的.
 - 怎么升级一个软件. 
+    - ``apt-get install -U <package>``
 - apt-get install 是如何处理已安装但需要升级的软件(例如openssh)的升级的?
-- apt-cache
+- apt-cache::
+
+    apt-cache search <pkg>   # search w/ regex
+    pkgnames  # list all installed pkgnames
+    apt-cache stats    # list statistic infos
+    apt-cache show <pkg>   # show pkg's detail online
+    apt-cache depends <pkg>  # show pkg's dependencies
+    apt-cache rdepends <pkg>  # show pkgs depends on this pkg
+
+SUID机制与sudo
+--------------
+
+- 建简述SUID机制存在的意义.
+    - 让具有可执行文件的执行权限的用户以该文件的拥有者身份执行该程序。如普通用户使用passwd指令来修改/etc/shadow文件
+- sudo的主配置文件路径是什么? 应如何更新这个文件?
+- 如果需要在shell脚本中通过sudo调用某个命令或者程序, 应如何配置sudo?
+- 怎样将某个高权限程序一部分的功能开放给sudo? 例如能让用户改子网掩码, 而不让他修改机器ip地址.
 
 
 
