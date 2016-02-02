@@ -57,8 +57,6 @@ Linux
     :glob:
 
     docs/linux/*
-    docs/linux_*/index
-    docs/linux_*
     docs/pxe/index
     docs/screen/index
     docs/vim/index
