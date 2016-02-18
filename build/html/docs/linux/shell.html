@@ -382,15 +382,16 @@
 <li class="toctree-l1"><a class="reference internal" href="../doopshot/index.html">DoopShot</a></li>
 </ul>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="index.html">Linux</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="index.html#getting-helps">Getting Helps</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#configuration-file">Configuration file</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="index.html#pseudo-filesystem">Pseudo-filesystem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="freebsd.html">FreeBSD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linux.html">Linux</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="linux.html#getting-helps">Getting Helps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linux.html#configuration-file">Configuration file</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linux.html#pseudo-filesystem">Pseudo-filesystem</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#user-managemanet">User Managemanet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#kernel-management">Kernel Management</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="index.html#sysctl">sysctl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linux.html#user-managemanet">User Managemanet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linux.html#kernel-management">Kernel Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linux.html#sysctl">sysctl</a></li>
 </ul>
 </li>
 </ul>
@@ -553,6 +554,14 @@
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Shell</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#about">About</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#utilization">Utilization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#parsing-arguments">Parsing Arguments</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#shift">shift</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#getopts">getopts</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#variables">Variables</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#enviroment-variables">Enviroment variables</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#parameter-expansion">Parameter Expansion</a><ul>
@@ -561,6 +570,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#special-parameter">special parameter</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#slicing">slicing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#arithmetic-expansion">Arithmetic Expansion</a></li>
 </ul>
 </li>
@@ -1020,14 +1030,54 @@
 </li>
 </ul>
 </div>
+<div class="section" id="utilization">
+<h2>Utilization<a class="headerlink" href="#utilization" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="parsing-arguments">
+<h3>Parsing Arguments<a class="headerlink" href="#parsing-arguments" title="Permalink to this headline">¶</a></h3>
+<div class="sidebar">
+<p class="first sidebar-title">Note</p>
+<ul class="last simple">
+<li>case WORD in [PATTERN [| PATTERN]...) COMMANDS ;;]... esac</li>
+</ul>
+</div>
+<div class="section" id="shift">
+<h4>shift<a class="headerlink" href="#shift" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bshell"><div class="highlight"><pre>until [ $# -eq 0 ];do
+    case $1 in
+        -t)
+            TASK=$2;;
+        -u)
+            RUNNER=$2;;
+    esac
+    shift
+    shift
+done
+</pre></div>
+</div>
+</div>
+<div class="section" id="getopts">
+<h4>getopts<a class="headerlink" href="#getopts" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bshell"><div class="highlight"><pre>while getopts t:u: option; do
+    case &quot;$option&quot; in
+        t)
+            TASK=$OPTARG;;
+        u)
+            RUNNER=$OPTARG;;
+    esac
+done
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 <div class="section" id="variables">
 <h2>Variables<a class="headerlink" href="#variables" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="enviroment-variables">
 <h3>Enviroment variables<a class="headerlink" href="#enviroment-variables" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="docutils">
 <colgroup>
-<col width="19%" />
-<col width="81%" />
+<col width="18%" />
+<col width="82%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">name</th>
@@ -1045,7 +1095,7 @@
 <td>path to find executables</td>
 </tr>
 <tr class="row-odd"><td>PS1</td>
-<td>command line prompt, see more (<strong>man bash</strong> , then <strong>/\u</strong>)</td>
+<td>command line prompt, see more (<strong>man bash</strong> , then <strong>/\\u</strong>)</td>
 </tr>
 <tr class="row-even"><td>LINENO</td>
 <td>current line NO.</td>
@@ -1123,6 +1173,37 @@
 <div class="section" id="special-parameter">
 <h4>special parameter<a class="headerlink" href="#special-parameter" title="Permalink to this headline">¶</a></h4>
 </div>
+</div>
+<div class="section" id="slicing">
+<h3>slicing<a class="headerlink" href="#slicing" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="74%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">operator</th>
+<th class="head">substitute</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>${var#*regex}</td>
+<td>keep right part of regex(search from left, first result)</td>
+</tr>
+<tr class="row-odd"><td>${var##*regex}</td>
+<td>keep right part of regex(search from left, last result)</td>
+</tr>
+<tr class="row-even"><td>${var%regex*}</td>
+<td>keep left part of regex(search from right, first result)</td>
+</tr>
+<tr class="row-odd"><td>${var%%regex*}</td>
+<td>keep left part of regex(search from right, last result)</td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li>* can be omitted if regex at front or end of string</li>
+</ul>
 </div>
 <div class="section" id="arithmetic-expansion">
 <h3>Arithmetic Expansion<a class="headerlink" href="#arithmetic-expansion" title="Permalink to this headline">¶</a></h3>

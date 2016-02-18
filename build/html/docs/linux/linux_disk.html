@@ -554,6 +554,14 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="shell.html">Shell</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="shell.html#about">About</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shell.html#utilization">Utilization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="shell.html#parsing-arguments">Parsing Arguments</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="shell.html#shift">shift</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shell.html#getopts">getopts</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="shell.html#variables">Variables</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="shell.html#enviroment-variables">Enviroment variables</a></li>
 <li class="toctree-l3"><a class="reference internal" href="shell.html#parameter-expansion">Parameter Expansion</a><ul>
@@ -1597,7 +1605,38 @@ dmsetup remove /dev/sdb1
 <p>In Unix-like operating systems, a loop device, vnd (vnode disk), or lofi (loop file interface) is a pseudo-device that makes a file accessible as a block device. <a class="footnote-reference" href="#id9" id="id2">[2]</a></p>
 <div class="section" id="sparse-file">
 <h3>Sparse File<a class="headerlink" href="#sparse-file" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="../../_images/sparse_file.svg.png"><img alt="../../_images/sparse_file.svg.png" class="align-right" src="../../_images/sparse_file.svg.png" style="width: 260px;" /></a>
 <p>Sparse file is a type of computer file that attempts to use file system space more efficiently when blocks allocated to the file are mostly empty. <a class="footnote-reference" href="#id10" id="id3">[3]</a></p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>This is achieved by writing brief information (metadata) representing the empty blocks to disk instead of the actual &#8220;empty&#8221; space which makes up the block, using less disk space.
+When reading sparse files, the file system transparently converts metadata representing empty blocks into &#8220;real&#8221; blocks filled with zero bytes at runtime. The application is unaware of this conversion.</p>
+<div class="sidebar">
+<p class="first sidebar-title">du &#8211; display disk usage statistic(block usage)</p>
+<table border="1" class="last docutils">
+<colgroup>
+<col width="15%" />
+<col width="85%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">opts</th>
+<th class="head">description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>-h</td>
+<td>human readable format</td>
+</tr>
+<tr class="row-odd"><td>-T</td>
+<td>print file system type</td>
+</tr>
+<tr class="row-even"><td>-t</td>
+<td>limit file system type</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> truncate -s 512M file1.img
 <span class="gp">$</span> dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span>file2.img <span class="nv">bs</span><span class="o">=</span><span class="m">1</span> <span class="nv">count</span><span class="o">=</span><span class="m">0</span> <span class="nv">seek</span><span class="o">=</span>512M
 <span class="go">0+0 records in</span>

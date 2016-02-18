@@ -552,6 +552,14 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/shell.html">Shell</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../linux/shell.html#about">About</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/shell.html#utilization">Utilization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux/shell.html#parsing-arguments">Parsing Arguments</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../linux/shell.html#shift">shift</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../linux/shell.html#getopts">getopts</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../linux/shell.html#variables">Variables</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../linux/shell.html#enviroment-variables">Enviroment variables</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../linux/shell.html#parameter-expansion">Parameter Expansion</a><ul>
@@ -1000,11 +1008,45 @@
 <p><a class="reference external" href="https://docs.python.org/3/">online doc</a></p>
 <div class="section" id="helloworld">
 <h2>HelloWorld<a class="headerlink" href="#helloworld" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="shebang-sh-bang">
-<h3>shebang/sh-bang<a class="headerlink" href="#shebang-sh-bang" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="shebang-sh-bang-sharp-bang">
+<h3>shebang/sh-bang/sharp-bang<a class="headerlink" href="#shebang-sh-bang-sharp-bang" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first"><strong>#!/usr/local/bin/python</strong></p>
+</li>
+<li><p class="first"><strong>#!/usr/bin/env python</strong> &#8211; only work w/ OS have cmd env</p>
+</li>
+<li><p class="first"><strong>bash test.sh</strong> &#8211; sh-bang will not take effect in this situation</p>
+</li>
+<li><dl class="first docutils">
+<dt>issues</dt>
+<dd><ul class="first last simple">
+<li><strong>bad interpreter: Permission denied</strong></li>
+<li><strong>bad interpreter: No such file or directory</strong></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>realization of python</dt>
+<dd><ul class="first last simple">
+<li>Cpython</li>
+<li>Jython</li>
+<li>IronPython</li>
+<li>Stackless</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="permanent-storage">
+<h2>Permanent storage<a class="headerlink" href="#permanent-storage" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="pickle">
+<h3>pickle<a class="headerlink" href="#pickle" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">#!/usr/local/bin/python</span></code></li>
-<li><code class="docutils literal"><span class="pre">#!/usr/bin/env</span> <span class="pre">python</span></code></li>
+<li>only support <strong>ASCII string</strong>, unicode not supported(will crash the pickle).</li>
+<li>cPicle &#8211; enhanced version of pickle(faster)</li>
 </ul>
 </div>
 </div>

@@ -462,7 +462,28 @@ In Unix-like operating systems, a loop device, vnd (vnode disk), or lofi (loop f
 Sparse File
 -----------
 
+.. image:: /images/sparse_file.svg.png
+    :align: right
+    :width: 260px
+
 Sparse file is a type of computer file that attempts to use file system space more efficiently when blocks allocated to the file are mostly empty. [#]_
+
+|
+
+This is achieved by writing brief information (metadata) representing the empty blocks to disk instead of the actual "empty" space which makes up the block, using less disk space.
+When reading sparse files, the file system transparently converts metadata representing empty blocks into "real" blocks filled with zero bytes at runtime. The application is unaware of this conversion.
+
+
+.. sidebar:: du -- display disk usage statistic(block usage)
+
+    ==== ===========
+    opts description
+    ==== ===========
+    -h   human readable format
+    -T   print file system type
+    -t   limit file system type
+    ==== ===========
+
 
 
 .. code-block:: console

@@ -14,6 +14,53 @@ shell is the main scripting language of linux operating system.
     - after: ~/.bash_logout
 
 
+Utilization
+===========
+
+
+Parsing Arguments
+-----------------
+
+.. sidebar:: Note
+
+    - case WORD in [PATTERN [| PATTERN]...) COMMANDS ;;]... esac
+
+shift
+^^^^^
+
+.. code-block:: bshell
+
+    until [ $# -eq 0 ];do
+        case $1 in
+            -t)
+                TASK=$2;;
+            -u)
+                RUNNER=$2;;
+        esac
+        shift
+        shift
+    done
+
+
+
+
+getopts
+^^^^^^^
+
+.. code-block:: bshell
+
+    while getopts t:u: option; do
+        case "$option" in
+            t)
+                TASK=$OPTARG;;
+            u)
+                RUNNER=$OPTARG;;
+        esac
+    done
+
+
+
+
 
 
 Variables
@@ -28,7 +75,7 @@ name           descriptions
 SHELL          the shell current using
 LANG\LC_ALL    language configurations
 PATH           path to find executables
-PS1            command line prompt, see more (**man bash** , then **/\\u**)
+PS1            command line prompt, see more (**man bash** , then **/\\\\u**)
 LINENO         current line NO.
 HISTSIZE       the number of history cmds will be preserved
 ============== =================================
@@ -68,6 +115,25 @@ $#                number of positonal parameters
 
 special parameter
 ^^^^^^^^^^^^^^^^^
+
+slicing
+-------
+
+==================== ========================
+operator             substitute
+==================== ========================
+${var#*regex}        keep right part of regex(search from left, first result)
+${var##*regex}       keep right part of regex(search from left, last result)
+${var%regex*}        keep left part of regex(search from right, first result)
+${var%%regex*}       keep left part of regex(search from right, last result)
+${var:3}             keep chars since 4th charactor
+${var:3:2}           keep 2 chars since 4th charactor
+${var:0-3}           keep last 3 chars
+${var:0-3:2}         keep 2 chars since 3rd charactor from bottom
+==================== ========================
+
+- \* can be omitted if regex at front or end of string
+
 
 Arithmetic Expansion
 --------------------
