@@ -6,6 +6,7 @@ The future of Storage!
 
 Ceph Intro
 ==========
+==========
 
 Ceph can uniquely deliver object, block and file storage in one unified system.
 
@@ -24,6 +25,10 @@ Act. retirement May 2015     May 2014             Apr 2015
 =============== ============ ======== =========== ======== ========== ==========
 
 
+References
+==========
+==========
 
 
+.. [#] https://www.ustack.com/blog/ceph_infra/
 

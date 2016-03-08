@@ -21,6 +21,17 @@ Since 5/1/2015
 .. docs/resume/index
 
 
+Ceph
+====
+
+.. toctree::
+    :maxdepth: 1
+    :glob:
+
+    docs/ceph/*
+ 
+
+
 
 OpenStack Customization
 =======================

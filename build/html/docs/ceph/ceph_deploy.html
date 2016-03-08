@@ -1,0 +1,513 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Ceph Deploy &mdash; JetChars alpha documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="JetChars alpha documentation" href="../../index.html"/>
+        <link rel="next" title="Ceph Management Platforms" href="ceph_management_platforms.html"/>
+        <link rel="prev" title="Ceph" href="ceph.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> JetChars
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.7
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../cloud_computing.html">Cloud Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aws/index.html">AWS &#8211; Amazon Web Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aws_vpn/index.html">Build VPN with AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ceph.html">Ceph</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Ceph Deploy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#prefight">Prefight</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ceph-node">ceph node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#admin-node">admin node</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#storage-cluster-quick-start">Storage Cluster Quick Start</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#create-a-cluster-w-1-mon-2-osds">create a cluster w/ 1 MON &amp; 2 OSDs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ceph-usages">Ceph Usages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cmds-to-check-cluster-stats">cmds to check cluster stats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ceph-client">ceph client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rbd-client">rbd client</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ceph_management_platforms.html">Ceph Management Platforms</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../openstack/index.html">OpenStack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nova.html">Nova</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sahara/index.html">Sahara</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kvm_optimization/index.html">KVM Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devstack/index.html">DevStack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devstack_dvr/index.html">DevStack with DVR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devstack_t13g/index.html">DevStack Trouble Shooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../o7k_docker/index.html">OpenStack &amp; Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../osp7_director.html">OpenStack Platform 7 Director</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hadoop/index.html">Hadoop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hadoop_conf_tuning/index.html">Hadoop Configuration Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hadoop_hibench/index.html">HiBench - The Hadoop BenchMark Suit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../doopshot/index.html">DoopShot</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../linux/freebsd.html">FreeBSD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux.html">Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_disk.html">Linux Disk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_doc.html">Documentation Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_info.html">Get System Infos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_net.html">Linux Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_pkg.html">Linux Package Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_virt.html">Virtualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/shell.html">Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/ubuntu.html">Ubuntu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pxe/index.html">PXE &#8211; Preboot Execution Enviriment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../screen/index.html">Screen - Full-screen window manager</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../git.html">Git &#8211; Extraordinary version contrl software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../github/index.html">GitHub &#8211; Git repository hosting service</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../regex/index.html">Regular Expression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sql/index.html">SQL &#8211; Structured Query Language</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../rst.html">reStructured Text (rst)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../md.html">MarkDown (md)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../svg/index.html">Scalable Vector Graphics (SVG)</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../netease_homework/os.html">Operating System</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../sort.html">Sorting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_structure.html">Review DataStructure with Pics</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../amqp/index.html">AMQP &#8211; Advanced Message Queuing Protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rest/index.html">RESTful API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../microservices/index.html">MicroServices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../windows/index.html">Windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mac.html">Mac as Main OS</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../kickstart/index.html">Kickstart Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">JetChars</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>Ceph Deploy</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/docs/ceph/ceph_deploy.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ceph-deploy">
+<h1>Ceph Deploy<a class="headerlink" href="#ceph-deploy" title="Permalink to this headline">¶</a></h1>
+<p>This doc records ceph deployment based on debian 14.04 trusty</p>
+<div class="section" id="prefight">
+<h2>Prefight<a class="headerlink" href="#prefight" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<div class="section" id="ceph-node">
+<h3>ceph node<a class="headerlink" href="#ceph-node" title="Permalink to this headline">¶</a></h3>
+<p>Every node will config in a same way.
+So basicly we can config a host manually, then clone it into some other nodes w/ hostname and IP changed.</p>
+<p>Notice, we can&#8217;t run this scrip directly
+- some variables should be switched</p>
+<div class="highlight-shell"><div class="highlight"><pre><span></span><span class="c1"># install required pkgs</span>
+<span class="c1"># =====================</span>
+sudo apt-get install ntp openssh-server -y
+
+<span class="c1"># create a ceph deploy user with sudo privileges</span>
+<span class="c1"># ==============================================</span>
+sudo useradd -d /home/<span class="o">{</span>username<span class="o">}</span> -m <span class="o">{</span>username<span class="o">}</span>
+sudo passwd <span class="o">{</span>username<span class="o">}</span> <span class="s">&lt;&lt; EOF</span>
+<span class="s">{passwd}</span>
+<span class="s">{passwd}</span>
+<span class="s">EOF</span>
+<span class="nb">echo</span> <span class="s2">&quot;{username} ALL = (root) NOPASSWD:ALL&quot;</span> <span class="p">|</span> sudo tee /etc/sudoers.d/<span class="o">{</span>username<span class="o">}</span>
+sudo chmod <span class="m">0440</span> /etc/sudoers.d/<span class="o">{</span>username<span class="o">}</span>
+
+<span class="c1"># config ssh</span>
+<span class="c1"># ==========</span>
+<span class="nb">echo</span> <span class="s2">&quot;StrictHostKeyChecking no&quot;</span> &gt;&gt; /etc/ssh/ssh_config
+<span class="nb">echo</span> <span class="s2">&quot;PermitRootLogin yes</span>
+<span class="s2">PasswordAuthentication yes</span>
+<span class="s2">ClientAliveInterval 30</span>
+<span class="s2">ClientAliveCountMax 99999</span>
+<span class="s2">&quot;</span> &gt;&gt; /etc/ssh/ssh_config
+<span class="nb">echo</span> <span class="s2">&quot;Host    {alias}</span>
+<span class="s2">HostName        {ipaddr}</span>
+<span class="s2">User            {username}</span>
+<span class="s2">IdentityFile    {keypath}</span>
+<span class="s2">Port            {port}</span>
+<span class="s2">&quot;</span> &gt;&gt; ~/.ssh/config
+
+<span class="c1"># restart vm</span>
+<span class="c1"># ==========</span>
+sudo reboot
+</pre></div>
+</div>
+</div>
+<div class="section" id="admin-node">
+<h3>admin node<a class="headerlink" href="#admin-node" title="Permalink to this headline">¶</a></h3>
+<p>Notice, we can&#8217;t run this scrip directly
+- some variables should be switched
+- should change current user into ceph-admin user since this user was created
+- we should add all nodes&#8217; hostname into <strong>ssh_config</strong>, <em>Port</em> and <em>IdentityFile</em> can be ommited.</p>
+<div class="highlight-shell"><div class="highlight"><pre><span></span><span class="c1"># add release key, apt repo and install ceph-deploy</span>
+<span class="c1"># =================================================</span>
+wget -q -O- <span class="s1">&#39;https://download.ceph.com/keys/release.asc&#39;</span> <span class="p">|</span> sudo apt-key add -
+<span class="nb">echo</span> deb http://download.ceph.com/debian-<span class="o">{</span>ceph-stable-release<span class="o">}</span>/ <span class="k">$(</span>lsb_release -sc<span class="k">)</span> main <span class="p">|</span> sudo tee /etc/apt/sources.list.d/ceph.list
+sudo apt-get update <span class="o">&amp;&amp;</span> sudo apt-get install ceph-deploy
+
+<span class="c1"># install required pkgs</span>
+<span class="c1"># =====================</span>
+sudo apt-get install ntp openssh-server -y
+
+<span class="c1"># create a ceph deploy user with sudo privileges</span>
+<span class="c1"># ==============================================</span>
+sudo useradd -d /home/<span class="o">{</span>username<span class="o">}</span> -m <span class="o">{</span>username<span class="o">}</span>
+sudo passwd <span class="o">{</span>username<span class="o">}</span> <span class="s">&lt;&lt; EOF</span>
+<span class="s">{passwd}</span>
+<span class="s">{passwd}</span>
+<span class="s">EOF</span>
+<span class="nb">echo</span> <span class="s2">&quot;{username} ALL = (root) NOPASSWD:ALL&quot;</span> <span class="p">|</span> sudo tee /etc/sudoers.d/<span class="o">{</span>username<span class="o">}</span>
+sudo chmod <span class="m">0440</span> /etc/sudoers.d/<span class="o">{</span>username<span class="o">}</span>
+
+<span class="c1"># config ssh</span>
+<span class="c1"># ==========</span>
+shh-keygen -P <span class="s1">&#39;&#39;</span> <span class="s">&lt;&lt; EOF</span>
+
+<span class="s">EOF</span>
+<span class="nb">echo</span> <span class="s2">&quot;StrictHostKeyChecking no&quot;</span> &gt;&gt; /etc/ssh/ssh_config
+<span class="nb">echo</span> <span class="s2">&quot;PermitRootLogin yes</span>
+<span class="s2">PasswordAuthentication yes</span>
+<span class="s2">ClientAliveInterval 30</span>
+<span class="s2">ClientAliveCountMax 99999</span>
+<span class="s2">&quot;</span> &gt;&gt; /etc/ssh/ssh_config
+<span class="nb">echo</span> <span class="s2">&quot;Host    {alias}</span>
+<span class="s2">HostName        {ipaddr}</span>
+<span class="s2">User            {username}</span>
+<span class="s2">IdentityFile    {keypath}</span>
+<span class="s2">Port            {port}</span>
+<span class="s2">&quot;</span> &gt;&gt; ~/.ssh/config
+<span class="c1"># ceph-deploy conn ceph nodes w/ hostname</span>
+<span class="nb">echo</span> <span class="s2">&quot;{host list}&quot;</span> &gt;&gt; /etc/hosts
+<span class="c1"># we should repeat this step, add copy to all ceph nodes</span>
+ssh-copy-id <span class="o">{</span>host<span class="o">}</span>
+
+<span class="c1"># restart vm</span>
+<span class="c1"># ==========</span>
+sudo reboot
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="storage-cluster-quick-start">
+<h2>Storage Cluster Quick Start<a class="headerlink" href="#storage-cluster-quick-start" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<div class="section" id="create-a-cluster-w-1-mon-2-osds">
+<h3>create a cluster w/ 1 MON &amp; 2 OSDs<a class="headerlink" href="#create-a-cluster-w-1-mon-2-osds" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-guessdd"><div class="highlight"><pre><span></span> -------------            -----------
+| admin-node  | ________ | ceph-mon  |
+| ceph-deploy |          | mon.node1 |
+ -------------            -----------
+      |
+      |
+      |                   -----------
+      |_________________ | ceph-osd0 |
+      |                  | osd.0     |
+      |                   -----------
+      |
+      |
+      |                   -----------
+      |_________________ | ceph-osd1 |
+                         | osd.1     |
+                          -----------
+</pre></div>
+</div>
+<p>runnig this cmd in ceph-admin node w/ cephadmin user:</p>
+<div class="highlight-shell"><div class="highlight"><pre><span></span><span class="c1"># admin user need to create a folder storage config files</span>
+<span class="c1"># any deploy cmds will need running in this folder</span>
+<span class="c1"># =======================================================</span>
+mkdir my-cluster
+<span class="nb">cd</span> my-clustr
+
+<span class="c1"># add initial mon node,</span>
+<span class="c1"># then install ceph(full pkg) within all nodes</span>
+<span class="c1"># ========================================================</span>
+ceph-deploy new ceph-mon
+<span class="c1"># notice here are no underscores</span>
+<span class="nb">echo</span> <span class="s2">&quot;osd pool default size = 2&quot;</span> &gt;&gt; ceph.conf
+ceph-deploy install ceph-admin ceph-mon ceph-osd1 ceph-osd2
+<span class="c1"># will create keyrings named start w/ clustername</span>
+ceph-deploy mon create-initial
+
+<span class="c1"># add OSDs</span>
+<span class="c1"># ========</span>
+<span class="c1"># create ceph folders first</span>
+ssh ceph-osd0
+sudo mkdir /var/local/osd0
+<span class="nb">exit</span>
+ssh ceph-osd01
+sudo mkdir /var/local/osd1
+<span class="nb">exit</span>
+<span class="c1"># prepare and activate OSDs</span>
+ceph-deploy osd prepare ceph-osd0:/var/local/osd0 ceph-osd1:/var/local/osd1
+ceph-deploy osd activate ceph-osd0:/var/local/osd0 ceph-osd1:/var/local/osd1
+
+<span class="c1"># copy admin key and conf-file to all ceph nodes</span>
+<span class="c1"># hence, all ceph nodes can exec ceph-cli w/o ip&amp;keyring</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="ceph-usages">
+<h2>Ceph Usages<a class="headerlink" href="#ceph-usages" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<div class="section" id="cmds-to-check-cluster-stats">
+<h3>cmds to check cluster stats<a class="headerlink" href="#cmds-to-check-cluster-stats" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-shell"><div class="highlight"><pre><span></span><span class="c1"># check cluster version</span>
+ceph -v
+<span class="c1"># w/ param detail will see verbose verion of health stat</span>
+ceph health <span class="o">{</span>detail<span class="o">}</span>
+<span class="c1"># show cluster stat, will contain more info than *ceph health*</span>
+ceph -s
+<span class="c1"># watch live cluster changes, will contain info in *ceph -s*</span>
+ceph -w
+ceph osd lspools
+ceph auth list
+ceph df
+ceph mon stat
+ceph mon dump
+ceph osd stat
+ceph osd dump
+ceph osd tree
+rbd list
+</pre></div>
+</div>
+</div>
+<div class="section" id="ceph-client">
+<h3>ceph client<a class="headerlink" href="#ceph-client" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="rbd-client">
+<h3>rbd client<a class="headerlink" href="#rbd-client" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<table class="docutils footnote" frame="void" id="id1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[1]</td><td><a class="reference external" href="http://docs.ceph.com/docs/master/start/quick-start-preflight/">http://docs.ceph.com/docs/master/start/quick-start-preflight/</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[2]</td><td><a class="reference external" href="http://docs.ceph.com/docs/master/start/quick-ceph-deploy/">http://docs.ceph.com/docs/master/start/quick-ceph-deploy/</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[3]</td><td><a class="reference external" href="http://www.centoscn.com/CentosServer/test/2015/0521/5489.html">http://www.centoscn.com/CentosServer/test/2015/0521/5489.html</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[4]</td><td><a class="reference external" href="http://zhanguo1110.blog.51cto.com/5750817/1543032">http://zhanguo1110.blog.51cto.com/5750817/1543032</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id5" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[5]</td><td><a class="reference external" href="http://www.07net01.com/2015/12/1029404.html">http://www.07net01.com/2015/12/1029404.html</a></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ceph_management_platforms.html" class="btn btn-neutral float-right" title="Ceph Management Platforms" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ceph.html" class="btn btn-neutral" title="Ceph" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, JetChars.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'alpha',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
