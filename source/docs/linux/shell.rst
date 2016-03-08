@@ -170,7 +170,39 @@ options       descriptions
 -E, errtrace  
 ============= ============
 
+Inter Process Communication (IPC)
+=================================
 
+Pipe
+----
+
+In linux OS, there is no special data structure for this feature. 
+Realizing it by creating 2 files link to a VFS index node, and this VFS node will link to a physical page. [#]_
+
+.. image:: /images/linux_pipe.gif
+
+Named pipe(FIFO)
+----------
+
+- named pipe (also known as a FIFO for its behavior) is an extension to the traditional pipe concept
+- one of the methods of inter-process communication (IPC)
+- A named pipe, however, can last as long as the system is up (appears as a file or a device)
+- It can be deleted if no longer used
+- create w/ mkfifo() or mknod()
+
+.. code-block:: console
+    :emphasize-lines: 3,7
+
+    $ mkfifo my_pipe
+    $ ll my_file
+    prw-r--r--   1 JetChars  staff      0  2 20 17:13 my_pipe
+    $ gzip -9 -c < my_pipe > out.gz &
+    [1] 8530
+    $ echo hello > my_pipe
+    [1]+  Done                    gzip -9 -c < my_pipe > out.gz
+
+Signal
+------
 
 
 
@@ -287,3 +319,6 @@ config sshd
 
     *** Info: Host configuration finished. Have fun!
 
+
+
+.. [#] http://www.cnblogs.com/biyeymyhjob/archive/2012/11/03/2751593.html

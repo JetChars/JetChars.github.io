@@ -382,15 +382,16 @@
 <li class="toctree-l1"><a class="reference internal" href="../doopshot/index.html">DoopShot</a></li>
 </ul>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../linux/index.html">Linux</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../linux/index.html#getting-helps">Getting Helps</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../linux/index.html#configuration-file">Configuration file</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../linux/index.html#pseudo-filesystem">Pseudo-filesystem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/freebsd.html">FreeBSD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux.html">Linux</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux.html#getting-helps">Getting Helps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux.html#configuration-file">Configuration file</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux.html#pseudo-filesystem">Pseudo-filesystem</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../linux/index.html#user-managemanet">User Managemanet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../linux/index.html#kernel-management">Kernel Management</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../linux/index.html#sysctl">sysctl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux.html#user-managemanet">User Managemanet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/linux.html#kernel-management">Kernel Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux/linux.html#sysctl">sysctl</a></li>
 </ul>
 </li>
 </ul>
@@ -430,7 +431,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../linux/linux_disk.html#loop-device">Loop Device</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../linux/linux_disk.html#sparse-file">Sparse File</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../linux/linux_disk.html#copying-w-cp">copying w/ &#8216;cp&#8217;</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../linux/linux_disk.html#archiving-w-tar">Archiving w/ `tar&#8217;</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../linux/linux_disk.html#archiving-w-tar">Archiving w/ &#8216;tar&#8217;</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../linux/linux_disk.html#mount-sparse-file">Mount sparse file</a></li>
 </ul>
 </li>
@@ -553,6 +554,14 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/shell.html">Shell</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../linux/shell.html#about">About</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/shell.html#utilization">Utilization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux/shell.html#parsing-arguments">Parsing Arguments</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../linux/shell.html#shift">shift</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../linux/shell.html#getopts">getopts</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../linux/shell.html#variables">Variables</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../linux/shell.html#enviroment-variables">Enviroment variables</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../linux/shell.html#parameter-expansion">Parameter Expansion</a><ul>
@@ -561,13 +570,20 @@
 <li class="toctree-l4"><a class="reference internal" href="../linux/shell.html#special-parameter">special parameter</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../linux/shell.html#slicing">slicing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../linux/shell.html#arithmetic-expansion">Arithmetic Expansion</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../linux/shell.html#set">set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/shell.html#inter-process-communication-ipc">Inter Process Communication (IPC)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux/shell.html#pipe">Pipe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux/shell.html#named-pipe-fifo">Named pipe(FIFO)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linux/shell.html#signal">Signal</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../linux/shell.html#shell-at-windows">Shell at windows</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../linux/shell.html#xshell">xshell</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../linux/shell.html#id1">cygwin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linux/shell.html#id2">cygwin</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../linux/shell.html#config-sshd">config sshd</a></li>
 </ul>
 </li>
@@ -624,6 +640,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#ex-mode">Ex Mode</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#set">Set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#split">Split</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fisa-vim-config-popular-vim-config-file">fisa-vim-config &#8211; popular vim config file</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id1">Sublime Text</a></li>
 </ul>
@@ -1063,6 +1080,10 @@
 </tr>
 </tbody>
 </table>
+</div>
+<div class="section" id="split">
+<h2>Split<a class="headerlink" href="#split" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal"><span class="pre">sp/vsp</span> <span class="pre">&lt;filename&gt;</span></code></p>
 <img src="../../_images/vi-vim-tutorial-1.svg" /><img src="../../_images/vi-vim-tutorial-2.svg" /><img src="../../_images/vi-vim-tutorial-3.svg" /><img src="../../_images/vi-vim-tutorial-4.svg" /><img src="../../_images/vi-vim-tutorial-5.svg" /><img src="../../_images/vi-vim-tutorial-6.svg" /><img src="../../_images/vi-vim-tutorial-7.svg" /></div>
 <div class="section" id="fisa-vim-config-popular-vim-config-file">
 <h2><a class="reference external" href="https://github.com/fisadev/fisa-vim-config.git">fisa-vim-config</a> &#8211; popular vim config file<a class="headerlink" href="#fisa-vim-config-popular-vim-config-file" title="Permalink to this headline">¶</a></h2>

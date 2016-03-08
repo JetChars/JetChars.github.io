@@ -431,7 +431,7 @@
 <li class="toctree-l2"><a class="reference internal" href="linux_disk.html#loop-device">Loop Device</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="linux_disk.html#sparse-file">Sparse File</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="linux_disk.html#copying-w-cp">copying w/ &#8216;cp&#8217;</a></li>
-<li class="toctree-l4"><a class="reference internal" href="linux_disk.html#archiving-w-tar">Archiving w/ `tar&#8217;</a></li>
+<li class="toctree-l4"><a class="reference internal" href="linux_disk.html#archiving-w-tar">Archiving w/ &#8216;tar&#8217;</a></li>
 <li class="toctree-l4"><a class="reference internal" href="linux_disk.html#mount-sparse-file">Mount sparse file</a></li>
 </ul>
 </li>
@@ -554,6 +554,14 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="shell.html">Shell</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="shell.html#about">About</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shell.html#utilization">Utilization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="shell.html#parsing-arguments">Parsing Arguments</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="shell.html#shift">shift</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shell.html#getopts">getopts</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="shell.html#variables">Variables</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="shell.html#enviroment-variables">Enviroment variables</a></li>
 <li class="toctree-l3"><a class="reference internal" href="shell.html#parameter-expansion">Parameter Expansion</a><ul>
@@ -562,13 +570,20 @@
 <li class="toctree-l4"><a class="reference internal" href="shell.html#special-parameter">special parameter</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="shell.html#slicing">slicing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="shell.html#arithmetic-expansion">Arithmetic Expansion</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="shell.html#set">set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shell.html#inter-process-communication-ipc">Inter Process Communication (IPC)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="shell.html#pipe">Pipe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="shell.html#named-pipe-fifo">Named pipe(FIFO)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="shell.html#signal">Signal</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="shell.html#shell-at-windows">Shell at windows</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="shell.html#xshell">xshell</a></li>
-<li class="toctree-l3"><a class="reference internal" href="shell.html#id1">cygwin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="shell.html#id2">cygwin</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="shell.html#config-sshd">config sshd</a></li>
 </ul>
 </li>
@@ -1008,6 +1023,7 @@ info &lt;key&gt;
 <span class="nb">help</span> &lt;key&gt;    <span class="c"># for built-in cmds</span>
 </pre></div>
 </div>
+<p>also <a class="reference external" href="http://www.freebsd.org/cgi/man.cgi">online man page</a></p>
 </div>
 <div class="section" id="configuration-file">
 <h2>Configuration file<a class="headerlink" href="#configuration-file" title="Permalink to this headline">¶</a></h2>

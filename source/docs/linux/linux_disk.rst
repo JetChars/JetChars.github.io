@@ -507,13 +507,18 @@ When reading sparse files, the file system transparently converts metadata repre
 copying w/ 'cp'
 ^^^^^^^^^^^^^^^
 
-Normally, `cp' is good at detecting whether a file is sparse, so it suffices to run::
+Normally, 'cp' is good at detecting whether a file is sparse.
+Some cp implementations, like FreeBSD's cp, do not support the ``--sparse`` option and will always expand sparse files
 
-    cp file.img new_file.img   # will create sparse file if src file is in sparse state
-    cp --sparse=always new_file.img recovered_file.img   # useful if a sparse-file has somehow become non-sparse
+.. code-block:: shell
+
+    # will create sparse file if src file is in sparse state
+    cp file.img new_file.img   
+    # usful if a file containing long zero blocks is saved in a non-sparse way (will saving space)
+    cp --sparse=always new_file.img recovered_file.img   
 
 
-Archiving w/ `tar'
+Archiving w/ 'tar'
 ^^^^^^^^^^^^^^^^^^
 
 .. code-block:: console

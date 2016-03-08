@@ -575,9 +575,15 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#set">set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#inter-process-communication-ipc">Inter Process Communication (IPC)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pipe">Pipe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#named-pipe-fifo">Named pipe(FIFO)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#signal">Signal</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#shell-at-windows">Shell at windows</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#xshell">xshell</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id1">cygwin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">cygwin</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#config-sshd">config sshd</a></li>
 </ul>
 </li>
@@ -1199,6 +1205,18 @@ done
 <tr class="row-odd"><td>${var%%regex*}</td>
 <td>keep left part of regex(search from right, last result)</td>
 </tr>
+<tr class="row-even"><td>${var:3}</td>
+<td>keep chars since 4th charactor</td>
+</tr>
+<tr class="row-odd"><td>${var:3:2}</td>
+<td>keep 2 chars since 4th charactor</td>
+</tr>
+<tr class="row-even"><td>${var:0-3}</td>
+<td>keep last 3 chars</td>
+</tr>
+<tr class="row-odd"><td>${var:0-3:2}</td>
+<td>keep 2 chars since 3rd charactor from bottom</td>
+</tr>
 </tbody>
 </table>
 <ul class="simple">
@@ -1290,13 +1308,44 @@ done
 </tbody>
 </table>
 </div>
+<div class="section" id="inter-process-communication-ipc">
+<h2>Inter Process Communication (IPC)<a class="headerlink" href="#inter-process-communication-ipc" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="pipe">
+<h3>Pipe<a class="headerlink" href="#pipe" title="Permalink to this headline">¶</a></h3>
+<p>In linux OS, there is no special data structure for this feature.
+Realizing it by creating 2 files link to a VFS index node, and this VFS node will link to a physical page. <a class="footnote-reference" href="#id3" id="id1">[1]</a></p>
+<img alt="../../_images/linux_pipe.gif" src="../../_images/linux_pipe.gif" />
+</div>
+<div class="section" id="named-pipe-fifo">
+<h3>Named pipe(FIFO)<a class="headerlink" href="#named-pipe-fifo" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>named pipe (also known as a FIFO for its behavior) is an extension to the traditional pipe concept</li>
+<li>one of the methods of inter-process communication (IPC)</li>
+<li>A named pipe, however, can last as long as the system is up (appears as a file or a device)</li>
+<li>It can be deleted if no longer used</li>
+<li>create w/ mkfifo() or mknod()</li>
+</ul>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> mkfifo my_pipe
+<span class="gp">$</span> ll my_file
+<span class="hll"><span class="go">prw-r--r--   1 JetChars  staff      0  2 20 17:13 my_pipe</span>
+</span><span class="gp">$</span> gzip -9 -c &lt; my_pipe &gt; out.gz <span class="p">&amp;</span>
+<span class="go">[1] 8530</span>
+<span class="gp">$</span> <span class="nb">echo </span>hello &gt; my_pipe
+<span class="hll"><span class="go">[1]+  Done                    gzip -9 -c &lt; my_pipe &gt; out.gz</span>
+</span></pre></div>
+</div>
+</div>
+<div class="section" id="signal">
+<h3>Signal<a class="headerlink" href="#signal" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
 <div class="section" id="shell-at-windows">
 <h2>Shell at windows<a class="headerlink" href="#shell-at-windows" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="xshell">
 <h3>xshell<a class="headerlink" href="#xshell" title="Permalink to this headline">¶</a></h3>
 </div>
-<div class="section" id="id1">
-<h3><a class="reference external" href="https://www.cygwin.com/">cygwin</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id2">
+<h3><a class="reference external" href="https://www.cygwin.com/">cygwin</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>run as admin will become a sudoer. cygwin have no sudo/su command.</li>
 </ul>
@@ -1466,6 +1515,12 @@ cygrunsrv -S sshd   <span class="c"># same as ``net start sshd``</span>
 <span class="go">*** Info: Host configuration finished. Have fun!</span>
 </pre></div>
 </td></tr></table></div>
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://www.cnblogs.com/biyeymyhjob/archive/2012/11/03/2751593.html">http://www.cnblogs.com/biyeymyhjob/archive/2012/11/03/2751593.html</a></td></tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>

@@ -14,6 +14,8 @@ Getting Helps
     info <key>
     help <key>    # for built-in cmds
 
+also `online man page <http://www.freebsd.org/cgi/man.cgi>`_
+
 
 
 Configuration file

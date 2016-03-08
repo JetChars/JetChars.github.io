@@ -431,7 +431,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#loop-device">Loop Device</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#sparse-file">Sparse File</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#copying-w-cp">copying w/ &#8216;cp&#8217;</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#archiving-w-tar">Archiving w/ `tar&#8217;</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#archiving-w-tar">Archiving w/ &#8216;tar&#8217;</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#mount-sparse-file">Mount sparse file</a></li>
 </ul>
 </li>
@@ -570,13 +570,20 @@
 <li class="toctree-l4"><a class="reference internal" href="shell.html#special-parameter">special parameter</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="shell.html#slicing">slicing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="shell.html#arithmetic-expansion">Arithmetic Expansion</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="shell.html#set">set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shell.html#inter-process-communication-ipc">Inter Process Communication (IPC)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="shell.html#pipe">Pipe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="shell.html#named-pipe-fifo">Named pipe(FIFO)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="shell.html#signal">Signal</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="shell.html#shell-at-windows">Shell at windows</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="shell.html#xshell">xshell</a></li>
-<li class="toctree-l3"><a class="reference internal" href="shell.html#id1">cygwin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="shell.html#id2">cygwin</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="shell.html#config-sshd">config sshd</a></li>
 </ul>
 </li>
@@ -1257,7 +1264,7 @@ umount testlvm/    # umount object can be device or mount point
 <li><strong>LV</strong> &#8211; Logic Volume</li>
 </ul>
 </div>
-<p>In computer storage, <em>logical volume management</em> or LVM provides a method of <em>allocating space</em> on mass-storage devices that is <em>more flexible</em> than conventional partitioning schemes. In particular, a volume manager can <strong>concatenate</strong>, <strong>stripe together</strong> or otherwise <strong>combine partitions</strong> (or block devices in general) into larger virtual ones that administrators can re-size or move, <em>potentially without interrupting system use</em>. <a class="footnote-reference" href="#id8" id="id1">[1]</a></p>
+<p>In computer storage, <em>logical volume management</em> or LVM provides a method of <em>allocating space</em> on mass-storage devices that is <em>more flexible</em> than conventional partitioning schemes. In particular, a volume manager can <strong>concatenate</strong>, <strong>stripe together</strong> or otherwise <strong>combine partitions</strong> (or block devices in general) into larger virtual ones that administrators can re-size or move, <em>potentially without interrupting system use</em>. <a class="footnote-reference" href="#id4" id="id1">[1]</a></p>
 <ul class="simple">
 <li>Conf-file &#8211; <code class="docutils literal"><span class="pre">/etc/lvm/lvm.conf</span></code></li>
 </ul>
@@ -1602,11 +1609,11 @@ dmsetup remove /dev/sdb1
 </div>
 <div class="section" id="loop-device">
 <h2>Loop Device<a class="headerlink" href="#loop-device" title="Permalink to this headline">¶</a></h2>
-<p>In Unix-like operating systems, a loop device, vnd (vnode disk), or lofi (loop file interface) is a pseudo-device that makes a file accessible as a block device. <a class="footnote-reference" href="#id9" id="id2">[2]</a></p>
+<p>In Unix-like operating systems, a loop device, vnd (vnode disk), or lofi (loop file interface) is a pseudo-device that makes a file accessible as a block device. <a class="footnote-reference" href="#id5" id="id2">[2]</a></p>
 <div class="section" id="sparse-file">
 <h3>Sparse File<a class="headerlink" href="#sparse-file" title="Permalink to this headline">¶</a></h3>
 <a class="reference internal image-reference" href="../../_images/sparse_file.svg.png"><img alt="../../_images/sparse_file.svg.png" class="align-right" src="../../_images/sparse_file.svg.png" style="width: 260px;" /></a>
-<p>Sparse file is a type of computer file that attempts to use file system space more efficiently when blocks allocated to the file are mostly empty. <a class="footnote-reference" href="#id10" id="id3">[3]</a></p>
+<p>Sparse file is a type of computer file that attempts to use file system space more efficiently when blocks allocated to the file are mostly empty. <a class="footnote-reference" href="#id6" id="id3">[3]</a></p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -1656,14 +1663,17 @@ When reading sparse files, the file system transparently converts metadata repre
 </div>
 <div class="section" id="copying-w-cp">
 <h4>copying w/ &#8216;cp&#8217;<a class="headerlink" href="#copying-w-cp" title="Permalink to this headline">¶</a></h4>
-<p>Normally, <a href="#id4"><span class="problematic" id="id5">`</span></a>cp&#8217; is good at detecting whether a file is sparse, so it suffices to run:</p>
-<div class="highlight-python"><div class="highlight"><pre>cp file.img new_file.img   # will create sparse file if src file is in sparse state
-cp --sparse=always new_file.img recovered_file.img   # useful if a sparse-file has somehow become non-sparse
+<p>Normally, &#8216;cp&#8217; is good at detecting whether a file is sparse.
+Some cp implementations, like FreeBSD&#8217;s cp, do not support the <code class="docutils literal"><span class="pre">--sparse</span></code> option and will always expand sparse files</p>
+<div class="highlight-shell"><div class="highlight"><pre><span class="c"># will create sparse file if src file is in sparse state</span>
+cp file.img new_file.img
+<span class="c"># usful if a file containing long zero blocks is saved in a non-sparse way (will saving space)</span>
+cp --sparse<span class="o">=</span>always new_file.img recovered_file.img
 </pre></div>
 </div>
 </div>
 <div class="section" id="archiving-w-tar">
-<h4>Archiving w/ <a href="#id6"><span class="problematic" id="id7">`</span></a>tar&#8217;<a class="headerlink" href="#archiving-w-tar" title="Permalink to this headline">¶</a></h4>
+<h4>Archiving w/ &#8216;tar&#8217;<a class="headerlink" href="#archiving-w-tar" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-console"><div class="highlight"><pre><span class="gp">#</span> tar -Scf file.tar file.img   <span class="c"># w/o &#39;-S&#39;, it will be 512M</span>
 <span class="gp">#</span> du -h file.tar
 <span class="go">12K     file.tar</span>
@@ -1754,19 +1764,19 @@ losetup -c loopdev   <span class="c"># Resize loop device</span>
 iozone -a -e -n 2g -g 8g -r 64k -i <span class="m">0</span> -i <span class="m">1</span> -i <span class="m">2</span> -i <span class="m">5</span> -f testfile -Rb ./iozone.xls
 </pre></div>
 </div>
-<table class="docutils footnote" frame="void" id="id8" rules="none">
+<table class="docutils footnote" frame="void" id="id4" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Logical_volume_management">http://en.wikipedia.org/wiki/Logical_volume_management</a></td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id9" rules="none">
+<table class="docutils footnote" frame="void" id="id5" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Loop_device">http://en.wikipedia.org/wiki/Loop_device</a></td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id10" rules="none">
+<table class="docutils footnote" frame="void" id="id6" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference external" href="https://wiki.archlinux.org/index.php/Sparse_file">https://wiki.archlinux.org/index.php/Sparse_file</a></td></tr>
