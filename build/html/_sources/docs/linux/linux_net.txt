@@ -372,11 +372,18 @@ Secure Shell
 ============
 
 
-
+- get helps
+    - ``man ssh`` ``man ssh_config``
+    - ``man sshd`` ``man sshd_config``
 - config files:
     - ``~/.ssh/config``
     - /etc/ssh/ssh_config
         - StrictHostKeyChecking no
+    - /etc/ssh/sshd_config
+        - PermitRootLogin yes
+        - PasswordAuthentication yes
+        - ClientAliveInterval 30
+        - ClientAliveCountMax 99999
 
 **Example ~/.ssh/config** :
 
@@ -405,6 +412,26 @@ Secure Shell
     ssh -C -f -N -g -L listen_port:DST_Host:DST_port user@Tunnel_Host 
     ssh -C -f -N -g -R listen_port:DST_Host:DST_port user@Tunnel_Host 
     ssh -C -f -N -g -D listen_port user@Tunnel_Host
+
+
+ssh tools
+---------
+
+putty
+^^^^^
+
+It's a very popular windows ssh management tool.
+
+- tricks
+    - config a ssh conn(ip/fontsize), then save it as a **session config**.
+    - save this config file as a shotcut, then change it's attribute, add **-load conf_file -ssh -l root -pw 666**
+- enhancement tools
+    - puttyman
+    - puttycm
+    - superputty
+
+
+
 
 
 SSL
