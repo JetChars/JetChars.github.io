@@ -66,6 +66,11 @@ Shotcuts
 
 - **require module** ``vim_debug`` ``isort``
 
+.. code-block:: shell
+    
+    sudo apt-get install vim exuberant-ctags git
+    sudo pip install dbgp vim-debug pep8 flake8 pyflakes isort
+
 
 `Sublime Text <http://www.sublimetext.com/>`_
 =============================================
