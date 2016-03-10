@@ -10,8 +10,12 @@ Ceph Intro
 
 Ceph can uniquely deliver object, block and file storage in one unified system.
 
+- start since Jun 2004, write w/ C++, now adopted by RedHat
 - provide block storage other than gluster
+- applications: OpenStack/CloudStack/OpenNebula/Hadoop/Mesos
 - urls : `home <http://ceph.com>`_ / `get ceph <http://ceph.com/get>`_ / `quick start <http://ceph.com/qsg>`_ / `docs <http://ceph.com/docs>`_ / `mailing list <http://ceph.com/list>`_ / `irc <http://ceph.com/irc>`_ / `git repo <http://github.com/ceph>`_ /
+- peopele are mostly build ceph within private cloud using debian servers [#]_
+
 
 ceph releases
 -------------
@@ -30,5 +34,6 @@ References
 ==========
 
 
+.. [#] http://ceph.com/community/results-from-the-ceph-census/
 .. [#] https://www.ustack.com/blog/ceph_infra/
-
+.. [#] https://www.ustack.com/blog/ceph-distributed-block-storage/#2_Ceph

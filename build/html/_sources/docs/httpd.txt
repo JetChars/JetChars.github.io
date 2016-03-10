@@ -18,9 +18,10 @@ Management
 .. code-block:: shell
 
 
-    # we can start httpd use *apachectl* or *service*
+    # 3 diff ways to start apache2
     apachctl start
     service httpd start
+    /etc/init.d/apache2 start
 
 
 

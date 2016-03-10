@@ -86,3 +86,17 @@ Can be run in vi mode.
       "ignored_packages": []
     }
 
+
+
+
+
+Issues
+======
+
+can't use backspace in insert mode
+----------------------------------
+
+
+solution:
+
+add a new setting in vimrc, ``set backspace=indent,eol,start``

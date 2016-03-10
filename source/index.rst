@@ -9,6 +9,9 @@ Welcome to JetChars' Documentation!
 
 Since 5/1/2015
 
+Cloud Computing
+===============
+
 .. toctree::
     :maxdepth: 1
 
@@ -29,6 +32,15 @@ Ceph
     :glob:
 
     docs/ceph/*
+ 
+Web Dev
+=======
+
+.. toctree::
+    :maxdepth: 1
+    :glob:
+
+    docs/web/*
  
 
 

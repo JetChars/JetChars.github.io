@@ -88,6 +88,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="ceph/ceph.html">Ceph</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ceph/ceph_deploy.html">Ceph Deploy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ceph/ceph_management_platforms.html">Ceph Management Platforms</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="openstack/index.html">OpenStack</a></li>
@@ -203,9 +204,10 @@
 </div>
 <div class="section" id="management">
 <h2>Management<a class="headerlink" href="#management" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-shell"><div class="highlight"><pre><span></span><span class="c1"># we can start httpd use *apachectl* or *service*</span>
+<div class="highlight-shell"><div class="highlight"><pre><span></span><span class="c1"># 3 diff ways to start apache2</span>
 apachctl start
 service httpd start
+/etc/init.d/apache2 start
 </pre></div>
 </div>
 <div class="section" id="config-files">

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Ceph &mdash; JetChars alpha documentation</title>
+  <title>Ceph Issues &mdash; JetChars alpha documentation</title>
   
 
   
@@ -31,8 +31,8 @@
 
   
     <link rel="top" title="JetChars alpha documentation" href="../../index.html"/>
-        <link rel="next" title="Ceph Deploy" href="ceph_deploy.html"/>
-        <link rel="prev" title="Docker" href="../docker/index.html"/> 
+        <link rel="next" title="Ceph Management Platforms" href="ceph_management_platforms.html"/>
+        <link rel="prev" title="Ceph Deploy" href="ceph_deploy.html"/> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -88,21 +88,17 @@
 <li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">Ceph</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#ceph-intro">Ceph Intro</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#ceph-releases">ceph releases</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="ceph.html">Ceph</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ceph_deploy.html">Ceph Deploy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ceph_issues.html">Ceph Issues</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ceph_management_platforms.html">Ceph Management Platforms</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Ceph Issues</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation-issues">Installation issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#maintenance-issues">Maintenance issues</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#clock-skew-detected-on-mon">clock skew detected on mon</a></li>
 </ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../web/bootstrap.html">bootstrap</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../web/web.html">Web Server</a></li>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ceph_management_platforms.html">Ceph Management Platforms</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../openstack/index.html">OpenStack</a></li>
@@ -194,11 +190,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
-    <li>Ceph</li>
+    <li>Ceph Issues</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../../_sources/docs/ceph/ceph.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/docs/ceph/ceph_issues.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -208,92 +204,40 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="ceph">
-<h1>Ceph<a class="headerlink" href="#ceph" title="Permalink to this headline">¶</a></h1>
-<p>The future of Storage!</p>
-<div class="section" id="ceph-intro">
-<h2>Ceph Intro<a class="headerlink" href="#ceph-intro" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="ceph-issues">
+<h1>Ceph Issues<a class="headerlink" href="#ceph-issues" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="installation-issues">
+<h2>Installation issues<a class="headerlink" href="#installation-issues" title="Permalink to this headline">¶</a></h2>
+</div>
 <hr class="docutils" />
-<p>Ceph can uniquely deliver object, block and file storage in one unified system.</p>
+<div class="section" id="maintenance-issues">
+<h2>Maintenance issues<a class="headerlink" href="#maintenance-issues" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<div class="section" id="clock-skew-detected-on-mon">
+<h3>clock skew detected on mon<a class="headerlink" href="#clock-skew-detected-on-mon" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">#</span> ceph health
+<span class="go">HEALTH_WARN clock skew detected on</span>
+<span class="go">mon.ceph-osd2, mon.ceph-mon</span>
+<span class="go">Monitor clock skew detected</span>
+</pre></div>
+</div>
 <ul class="simple">
-<li>start since Jun 2004, write w/ C++, now adopted by RedHat</li>
-<li>provide block storage other than gluster</li>
-<li>applications: OpenStack/CloudStack/OpenNebula/Hadoop/Mesos</li>
-<li>urls : <a class="reference external" href="http://ceph.com">home</a> / <a class="reference external" href="http://ceph.com/get">get ceph</a> / <a class="reference external" href="http://ceph.com/qsg">quick start</a> / <a class="reference external" href="http://ceph.com/docs">docs</a> / <a class="reference external" href="http://ceph.com/list">mailing list</a> / <a class="reference external" href="http://ceph.com/irc">irc</a> / <a class="reference external" href="http://github.com/ceph">git repo</a> /</li>
-<li>peopele are mostly build ceph within private cloud using debian servers <a class="footnote-reference" href="#id2" id="id1">[1]</a></li>
+<li>Add key-vals into ceph.conf</li>
 </ul>
-<div class="section" id="ceph-releases">
-<h3>ceph releases<a class="headerlink" href="#ceph-releases" title="Permalink to this headline">¶</a></h3>
-<table border="1" class="docutils">
-<colgroup>
-<col width="20%" />
-<col width="16%" />
-<col width="11%" />
-<col width="15%" />
-<col width="11%" />
-<col width="14%" />
-<col width="14%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Times</th>
-<th class="head">Dumpling LTS</th>
-<th class="head">Emperor</th>
-<th class="head">Firefly LTS</th>
-<th class="head">Giant</th>
-<th class="head">Hammer LTS</th>
-<th class="head">Infernalis</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>First release</td>
-<td>Aug 2013</td>
-<td>Nov 2013</td>
-<td>May 2014</td>
-<td>Oct 2014</td>
-<td>Apr 2015</td>
-<td>Nov 2015</td>
-</tr>
-<tr class="row-odd"><td>Est. retirement</td>
-<td>Mar 2015</td>
-<td>&nbsp;</td>
-<td>Jan 2016</td>
-<td>&nbsp;</td>
-<td>Nov 2016</td>
-<td>Jun 2016</td>
-</tr>
-<tr class="row-even"><td>Act. retirement</td>
-<td>May 2015</td>
-<td>May 2014</td>
-<td>&nbsp;</td>
-<td>Apr 2015</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-</tr>
-</tbody>
-</table>
+<div class="highlight-guess"><div class="highlight"><pre><span></span><span class="k">[mon.{hostname of MON}]</span>
+<span class="na">host</span> <span class="o">=</span> <span class="s">{hostname of MON}</span>
+<span class="na">mon_data</span> <span class="o">=</span> <span class="s">/var/lib/ceph/mon/ceph-{hostname of MON}/</span>
+<span class="na">mon_addr</span> <span class="o">=</span> <span class="s">{IP of MON}:6789</span>
+<span class="na">mon clock drift allowed</span> <span class="o">=</span> <span class="s">2</span>
+<span class="na">mon clock drift warn backoff</span> <span class="o">=</span> <span class="s">30</span>
+</pre></div>
 </div>
+<ul class="simple">
+<li>Then sync config: <code class="docutils literal"><span class="pre">ceph-deploy</span> <span class="pre">--overwrite-conf</span> <span class="pre">admin</span> <span class="pre">{hostname</span> <span class="pre">of</span> <span class="pre">MON}</span></code></li>
+<li>Restart MON: <code class="docutils literal"><span class="pre">/etc/init.d/ceph</span> <span class="pre">restart</span> <span class="pre">mon</span></code></li>
+<li>Verify: <code class="docutils literal"><span class="pre">ceph</span> <span class="pre">-w</span></code></li>
+</ul>
 </div>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
-<hr class="docutils" />
-<table class="docutils footnote" frame="void" id="id2" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://ceph.com/community/results-from-the-ceph-census/">http://ceph.com/community/results-from-the-ceph-census/</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id3" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[2]</td><td><a class="reference external" href="https://www.ustack.com/blog/ceph_infra/">https://www.ustack.com/blog/ceph_infra/</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id4" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[3]</td><td><a class="reference external" href="https://www.ustack.com/blog/ceph-distributed-block-storage/#2_Ceph">https://www.ustack.com/blog/ceph-distributed-block-storage/#2_Ceph</a></td></tr>
-</tbody>
-</table>
 </div>
 </div>
 
@@ -304,10 +248,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="ceph_deploy.html" class="btn btn-neutral float-right" title="Ceph Deploy" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="ceph_management_platforms.html" class="btn btn-neutral float-right" title="Ceph Management Platforms" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../docker/index.html" class="btn btn-neutral" title="Docker" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="ceph_deploy.html" class="btn btn-neutral" title="Ceph Deploy" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

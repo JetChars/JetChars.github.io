@@ -10,7 +10,7 @@ nginx
 engine x, is a high performance http server.
 
 
-.. image:: images/django_logo.svg
+.. image:: /images/web/django_logo.svg
     :align: right
 
 Django -- web framework

@@ -139,7 +139,7 @@ create a cluster w/ 1 MON & 2 OSDs
                             | osd.1     |
                              ----------- 
 
-runnig this cmd in ceph-admin node w/ cephadmin user:
+runnig this cmd in ceph-admin node w/ ceph-admin user and in config folder:
 
 .. code-block:: shell
 
@@ -176,6 +176,99 @@ runnig this cmd in ceph-admin node w/ cephadmin user:
     # hence, all ceph nodes can exec ceph-cli w/o ip&keyring
 
 
+Expanding Cluster
+-----------------
+
+.. code-block:: guessdd
+
+    -------------            ---------------
+   | admin-node  | ________ | ceph-mon      |
+   | ceph-deploy |          | mon.ceph-mon  |
+    -------------           | osd.2         |
+         |                  | mds.ceph-mon  |
+         |                   ---------------
+         |                           
+         |                           
+         |                   ---------------
+         |_________________ | ceph-osd0     |
+         |                  | osd.0         |
+         |                  | mon.ceph-osd0 |
+         |                   ---------------
+         |                              
+         |                              
+         |                   ---------------  
+         |_________________ | ceph-osd1     |
+                            | osd.1         |
+                            | mon.ceph-osd1 |
+                             ---------------
+
+runnig this cmd in ceph-admin node w/ ceph-admin user and in config folder:
+
+
+.. code-block:: shell
+
+    # adding a OSD in ceph-mon
+    # ========================
+    ssh ceph-mon
+    sudo mkdir /var/local/osd2
+    exit
+    ceph-deploy osd prepare ceph-mon:/var/local/osd2
+    ceph-deploy osd activate ceph-mon:/var/local/osd2
+    ceph -w   # watch changes when adding new osd
+
+    # adding a MDS in ceph-mon
+    # ========================
+    ceph-deploy mds create ceph-mon
+    
+    # adding MONs
+    # ===========
+    ssh ceph-osd1
+    sudo apt-get install ntp -y
+    echo "server 192.168.56.101" >> /etc/ntp.conf
+    exit
+    ssh ceph-osd2
+    sudo apt-get install ntp -y
+    echo "server 192.168.56.101" >> /etc/ntp.conf
+    exit
+    ceph-deploy mon add ceph-osd1 ceph-osd2   # probably not working when adding 2 MONs
+
+
+.. note:: when run ceph cluster w/ multi MONs, ntp should configured.
+
+
+Once MONs were adding into current cluster,it will begin synchronizing MONs and form a quorum. [#]_
+
+
+.. code-block:: console
+
+    # ceph quorum_status --format json-pretty
+
+    { "election_epoch": 12,
+      "quorum": [
+            0,
+            1,
+            2],
+      "quorum_names": [
+            "ceph-osd1",
+            "ceph-osd2",
+            "ceph-mon"],
+      "quorum_leader_name": "ceph-osd1",
+      "monmap": { "epoch": 3,
+          "fsid": "5b598bb1-4fa5-44c8-bce0-d490cf8571a5",
+          "modified": "2016-03-08 19:19:39.396616",
+          "created": "0.000000",
+          "mons": [
+                { "rank": 0,
+                  "name": "ceph-osd1",
+                  "addr": "192.168.56.111:6789\/0"},
+                { "rank": 1,
+                  "name": "ceph-osd2",
+                  "addr": "192.168.56.112:6789\/0"},
+                { "rank": 2,
+                  "name": "ceph-mon",
+                  "addr": "192.168.56.113:6789\/0"}]}}
+
+
 Ceph Usages
 ===========
 ===========
@@ -202,14 +295,58 @@ cmds to check cluster stats
     ceph osd stat
     ceph osd dump
     ceph osd tree
+    p
     rbd list
 
 ceph client
 -----------
 
 
+rados client
+------------
+
+
+.. code-block:: console
+
+    $ echo "hello ceph" >> testobj.txt
+    $ rados -p data put testobj testobj.txt
+    $ rados -p data ls   # get file list in pool 'data'
+    testobj
+    $ ceph osd map data testobj   # get testobj's location
+    osdmap e20 pool 'data' (0) object 'testobj' -> 
+    pg 0.780569b (0.1b) -> up ([1,2], p1) acting ([1,2], p1)
+    $ # get obj locations within pool 'rbd'
+    $ for i in $(rados -p rbd ls);do ceph osd map rbd $i;done
+    $ # remove obj
+    $ rados -p data rm testobj 
+
+
+.. note:: notice that **rados** can exec w/ ``-p data`` or ``-p=data`` or ``--pool=data``
+
+
 rbd client
 ----------
+
+.. code-block:: shell
+
+    # create a 4GB block device, and map to localhost
+    # using -m0 make sure no space preserved for superuser
+    # ====================================================
+    rbd create foo --size 4096   # unit is MB
+    sudo rbd map foo --pool rbd --name client.admin
+    sudo mkfs.ext4 -m0 /dev/rbd/foo
+    sudo mkdir /mnt/test
+    sudo mount /dev/rbd/rbd/foo /mnt/test
+    cd /mnt/test
+    rbd list {-l/--long}  # check rbd list, 'long' for more info
+    # unmount device and unmap the block device
+    # =========================================
+    umount /mnt/test
+    rbd unmap /dev/rbd/rdb/foo
+
+
+
+
 
 
 References
@@ -217,6 +354,7 @@ References
 ==========
 
 
+.. [#] https://en.wikipedia.org/wiki/Quorum_(distributed_computing)
 .. [#] http://docs.ceph.com/docs/master/start/quick-start-preflight/
 .. [#] http://docs.ceph.com/docs/master/start/quick-ceph-deploy/
 .. [#] http://www.centoscn.com/CentosServer/test/2015/0521/5489.html
