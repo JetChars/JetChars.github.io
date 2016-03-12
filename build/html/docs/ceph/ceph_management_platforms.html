@@ -108,9 +108,11 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ceph_openstack.html">Ceph w/ OpenStack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ceph_ops.html">Ceph Operation</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../web/bootstrap.html">bootstrap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../web/html.html">HTML</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../web/web.html">Web Server</a></li>
 </ul>
 <ul>
@@ -136,6 +138,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_disk.html">Linux Disk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_doc.html">Documentation Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_info.html">Get System Infos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_mon.html">Linux Monitoring</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_net.html">Linux Network</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_pkg.html">Linux Package Management</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_virt.html">Virtualization</a></li>
@@ -221,17 +224,19 @@
 <h1>Ceph Management Platforms<a class="headerlink" href="#ceph-management-platforms" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="intro">
 <h2>Intro<a class="headerlink" href="#intro" title="Permalink to this headline">¶</a></h2>
+<p>Till now I&#8217;ve found 6 opensrc Ceph Mangement Platforms, I&#8217;ll pick up 3 of them to compare, in order to save our precious time. cause I think w/ these 3 management platform we can tell what do we want.</p>
+<p>they are: Calamari, ceph-dash, VSM, inkscope, krakendash, ceph-web
+ranked by watch+star+fork numbers.</p>
+<p>notice ceph-dash only support monitoring, added here for comparison.</p>
 <div class="section" id="comparion">
 <h3>Comparion<a class="headerlink" href="#comparion" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="docutils">
 <colgroup>
-<col width="13%" />
-<col width="15%" />
+<col width="23%" />
+<col width="18%" />
+<col width="22%" />
 <col width="17%" />
-<col width="13%" />
-<col width="17%" />
-<col width="13%" />
-<col width="11%" />
+<col width="20%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Item</th>
@@ -239,8 +244,6 @@
 <th class="head">ceph-dash</th>
 <th class="head">VSM</th>
 <th class="head">inkscope</th>
-<th class="head">krakendash</th>
-<th class="head">ceph-web</th>
 </tr>
 </thead>
 <tbody valign="top">
@@ -249,135 +252,70 @@
 <td>36,128,46</td>
 <td>50,82,57</td>
 <td>38,82,36</td>
-<td>20,54,23</td>
-<td>2,9,2</td>
 </tr>
 <tr class="row-odd"><td>license</td>
 <td>LGPL2.1</td>
 <td>MIT-</td>
 <td>Apache v2</td>
 <td>Apache v2</td>
-<td>MIT</td>
-<td>MIT</td>
 </tr>
 <tr class="row-even"><td>language</td>
 <td>python</td>
 <td>python/JS</td>
 <td>python</td>
 <td>python</td>
-<td>python</td>
-<td>go</td>
 </tr>
 <tr class="row-odd"><td>web_engine</td>
 <td>django</td>
 <td>&nbsp;</td>
 <td>django</td>
 <td>Apache/flask</td>
-<td>django</td>
-<td>smarty</td>
 </tr>
 <tr class="row-even"><td>DB</td>
 <td>postgreSQL</td>
 <td>&nbsp;</td>
 <td>MySQL</td>
 <td>mongoDB</td>
-<td>sqlite3</td>
-<td>N/A</td>
 </tr>
-<tr class="row-odd"><td>dashboard</td>
-<td>yes</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<tr class="row-odd"><td>Backing</td>
+<td>RedHat</td>
+<td>Chri./Eich.</td>
+<td>Intel</td>
+<td>Orange Labs</td>
 </tr>
-<tr class="row-even"><td>Vis. OSD</td>
-<td>yes</td>
-<td>&nbsp;</td>
+<tr class="row-even"><td>Latest V.</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 </tr>
-<tr class="row-odd"><td>Vis. Host</td>
-<td>yes</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<tr class="row-odd"><td>Release D.</td>
+<td>Sep 2014</td>
+<td>Dec 2014</td>
+<td>Jan 2015</td>
+<td>Feb 2015</td>
 </tr>
-<tr class="row-even"><td>Vis. PG</td>
-<td>yes</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<tr class="row-even"><td>Capabilities</td>
+<td>Mon &amp; LConf</td>
+<td>Mon</td>
+<td>Mon &amp; Conf</td>
+<td>Mon &amp; LConf</td>
 </tr>
-<tr class="row-odd"><td>Vis. CMap</td>
-<td>no</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-</tr>
-<tr class="row-even"><td>Vis. Objs</td>
-<td>no</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-</tr>
-<tr class="row-odd"><td>Gra. Clst</td>
-<td>yes</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-</tr>
-<tr class="row-even"><td>Gra. P IO</td>
-<td>yes</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-</tr>
-<tr class="row-odd"><td>Gra. Host</td>
-<td>yes</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-</tr>
-<tr class="row-even"><td>feature</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>docker</td>
+<tr class="row-odd"><td>Compatability</td>
+<td>wide</td>
+<td>wide</td>
+<td>limited</td>
+<td>wide</td>
 </tr>
 </tbody>
 </table>
-<ul class="simple">
-<li>Monitoring</li>
-</ul>
 <table border="1" class="docutils">
 <colgroup>
-<col width="13%" />
-<col width="15%" />
+<col width="23%" />
+<col width="18%" />
+<col width="22%" />
 <col width="17%" />
-<col width="13%" />
-<col width="17%" />
-<col width="13%" />
-<col width="11%" />
+<col width="20%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Item</th>
@@ -385,52 +323,182 @@
 <th class="head">ceph-dash</th>
 <th class="head">VSM</th>
 <th class="head">inkscope</th>
-<th class="head">krakendash</th>
-<th class="head">ceph-web</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<tr class="row-even"><td>MON Stats</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr class="row-odd"><td>OSD Stats</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr class="row-even"><td>MDS Stats</td>
+<td>N</td>
+<td>N</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr class="row-odd"><td>PG Stats</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr class="row-even"><td>Host Stats</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr class="row-odd"><td>OSD-host-M</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr class="row-even"><td>PG-OSD-M</td>
+<td>N</td>
+<td>N</td>
+<td>N</td>
+<td>Y</td>
+</tr>
+<tr class="row-odd"><td>Capacity</td>
+<td>Y</td>
+<td>Y</td>
+<td>via Groups</td>
+<td>Y</td>
+</tr>
+<tr class="row-even"><td>Throughput</td>
+<td>N</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr class="row-odd"><td>IOPS</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr class="row-even"><td>ERR/WRN</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr class="row-odd"><td>view logs</td>
+<td>Y</td>
+<td>N</td>
+<td>N</td>
+<td>N</td>
+</tr>
+<tr class="row-even"><td>send email</td>
+<td>N</td>
+<td>w/ nagios</td>
+<td>N</td>
+<td>N</td>
+</tr>
+<tr class="row-odd"><td>charts/G</td>
+<td>Y</td>
+<td>w/ nagios</td>
+<td>N</td>
+<td>N</td>
 </tr>
 </tbody>
 </table>
-<ul class="simple">
-<li>Monitoring</li>
-</ul>
 <table border="1" class="docutils">
 <colgroup>
-<col width="13%" />
-<col width="15%" />
-<col width="17%" />
-<col width="13%" />
-<col width="17%" />
-<col width="13%" />
-<col width="11%" />
+<col width="30%" />
+<col width="23%" />
+<col width="21%" />
+<col width="26%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Item</th>
 <th class="head">Calamari</th>
-<th class="head">ceph-dash</th>
 <th class="head">VSM</th>
 <th class="head">inkscope</th>
-<th class="head">krakendash</th>
-<th class="head">ceph-web</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<tr class="row-even"><td>Deploy Cluster</td>
+<td>N</td>
+<td>Y</td>
+<td>N</td>
+</tr>
+<tr class="row-odd"><td>Deploy Hosts</td>
+<td>N</td>
+<td>Y</td>
+<td>N</td>
+</tr>
+<tr class="row-even"><td><ol class="first last upperalpha simple" start="4">
+<li>Storage G.</li>
+</ol>
+</td>
+<td>N</td>
+<td>Y</td>
+<td>N</td>
+</tr>
+<tr class="row-odd"><td>Daemons</td>
+<td>OSD only</td>
+<td>Y</td>
+<td>N</td>
+</tr>
+<tr class="row-even"><td>set ops flags</td>
+<td>Y</td>
+<td>N</td>
+<td>Y</td>
+</tr>
+<tr class="row-odd"><td>set parametrs</td>
+<td>Y</td>
+<td>N</td>
+<td>view</td>
+</tr>
+<tr class="row-even"><td>set crush</td>
+<td>N</td>
+<td>partial</td>
+<td>view</td>
+</tr>
+<tr class="row-odd"><td>set EC</td>
+<td>N</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr class="row-even"><td>OSD</td>
+<td>partial</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr class="row-odd"><td>Pools(Rep)</td>
+<td>limited</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr class="row-even"><td>Pools(EC&amp;Teir)</td>
+<td>N</td>
+<td>Y</td>
+<td>partial</td>
+</tr>
+<tr class="row-odd"><td>RBDs</td>
+<td>N</td>
+<td>partial</td>
+<td>N</td>
+</tr>
+<tr class="row-even"><td>S3/Swift/...</td>
+<td>N</td>
+<td>N</td>
+<td>Y</td>
+</tr>
+<tr class="row-odd"><td>link to Nova</td>
+<td>N</td>
+<td>Y</td>
+<td>N</td>
 </tr>
 </tbody>
 </table>

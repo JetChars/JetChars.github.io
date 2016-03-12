@@ -6,47 +6,78 @@ Ceph Management Platforms
 Intro
 =====
 
+Till now I've found 6 opensrc Ceph Mangement Platforms, I'll pick up 3 of them to compare, in order to save our precious time. cause I think w/ these 3 management platform we can tell what do we want.
+
+they are: Calamari, ceph-dash, VSM, inkscope, krakendash, ceph-web
+ranked by watch+star+fork numbers.
+
+
+notice ceph-dash only support monitoring, added here for comparison.
+
+
+
+
 
 Comparion
 ---------
-    
-
-========== =========== ============= ========== ============= ========== ======== 
-Item       Calamari    ceph-dash      VSM       inkscope      krakendash ceph-web
-========== =========== ============= ========== ============= ========== ======== 
-hotness    66,175,116  36,128,46      50,82,57   38,82,36      20,54,23   2,9,2
-license    LGPL2.1     MIT-           Apache v2  Apache v2     MIT        MIT
-language   python      python/JS      python     python        python     go
-web_engine django                     django     Apache/flask  django     smarty
-DB         postgreSQL                 MySQL      mongoDB       sqlite3    N/A
-dashboard  yes
-Vis. OSD   yes
-Vis. Host  yes
-Vis. PG    yes
-Vis. CMap  no
-Vis. Objs  no
-Gra. Clst  yes
-Gra. P IO  yes
-Gra. Host  yes
-feature                                                                   docker
-========== =========== ============= ========== ============= ========== ======== 
 
 
-- Monitoring
-
-========== =========== ============= ========== ============= ========== ======== 
-Item       Calamari    ceph-dash      VSM       inkscope      krakendash ceph-web
-========== =========== ============= ========== ============= ========== ======== 
-========== =========== ============= ========== ============= ========== ======== 
-
-- Monitoring
-
-========== =========== ============= ========== ============= ========== ======== 
-Item       Calamari    ceph-dash      VSM       inkscope      krakendash ceph-web
-========== =========== ============= ========== ============= ========== ======== 
-========== =========== ============= ========== ============= ========== ======== 
 
 
+============== =========== ============= ========== ============  
+Item           Calamari    ceph-dash     VSM        inkscope      
+============== =========== ============= ========== ============  
+hotness        66,175,116  36,128,46     50,82,57   38,82,36     
+license        LGPL2.1     MIT-          Apache v2  Apache v2    
+language       python      python/JS     python     python       
+web_engine     django                    django     Apache/flask 
+DB             postgreSQL                MySQL      mongoDB      
+Backing        RedHat      Chri./Eich.   Intel      Orange Labs
+Latest V.
+Release D.     Sep 2014    Dec 2014      Jan 2015   Feb 2015
+Capabilities   Mon & LConf Mon           Mon & Conf Mon & LConf
+Compatability  wide        wide          limited    wide
+============== =========== ============= ========== ============  
+
+
+============== =========== ============= ========== ============  
+Item           Calamari    ceph-dash     VSM        inkscope      
+============== =========== ============= ========== ============  
+MON Stats      Y           Y             Y          Y
+OSD Stats      Y           Y             Y          Y
+MDS Stats      N           N             Y          Y
+PG Stats       Y           Y             Y          Y
+Host Stats     Y           Y             Y          Y
+OSD-host-M     Y           Y             Y          Y
+PG-OSD-M       N           N             N          Y
+Capacity       Y           Y             via Groups Y
+Throughput     N           Y             Y          Y
+IOPS           Y           Y             Y          Y
+ERR/WRN        Y           Y             Y          Y
+view logs      Y           N             N          N
+send email     N           w/ nagios     N          N
+charts/G       Y           w/ nagios     N          N
+============== =========== ============= ========== ============  
+
+
+============== =========== ========== ============  
+Item           Calamari    VSM        inkscope      
+============== =========== ========== ============  
+Deploy Cluster N           Y          N
+Deploy Hosts   N           Y          N
+D. Storage G.  N           Y          N
+Daemons        OSD only    Y          N
+set ops flags  Y           N          Y
+set parametrs  Y           N          view
+set crush      N           partial    view
+set EC         N           Y          Y
+OSD            partial     Y          Y
+Pools(Rep)     limited     Y          Y
+Pools(EC&Teir) N           Y          partial
+RBDs           N           partial    N
+S3/Swift/...   N           N          Y
+link to Nova   N           Y          N
+============== =========== ========== ============  
 
 
 

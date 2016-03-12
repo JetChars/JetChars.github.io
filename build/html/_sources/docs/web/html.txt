@@ -55,6 +55,11 @@ grammar
 elements
 --------
 
+- <head>
+    - meta
+        - viewport -- viewing mode
+
+
 
 
 
