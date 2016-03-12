@@ -27,6 +27,7 @@ Linux Disk
 
 Filesystem
 ==========
+==========
 
 Kernnel -- VFS
 --------------
@@ -36,6 +37,24 @@ Short for **Virtual File System**, or **Virtual Filesystem Switch**, maintain tr
 - It's a glue level between storage media and filesystem, let system calls like ``open()`` ``read()`` ``write()`` don't need to know to realize it in lower level
 - Sometimes short for **Stackable Filesystem** , because it can combine different filesystem seamlessly
 - Use command like ``mount`` to manage filesystem
+
+
+
+FUSE
+----
+
+Filesystem in Userspace(FUSE) is a **software interface** for **Unix-like** computer OS, let non priviledged users create their own FS w/o editing kernel code. [#]_
+
+- FUSE module provide a "bridge" to the actual kernel interface
+- In priciple, any resources available to a FUSE implementation can be explored as a FS
+
+
+
+
+.. image:: /images/linux/fuse_structure.png
+    :align: left
+    :width: 300px
+
 
 
 Driver
@@ -97,6 +116,7 @@ Network Storage
 
 
 Mount
+=====
 =====
 
 .. sidebar:: Note
@@ -192,6 +212,7 @@ Auto Mount
 
 
 LVM -- Logical volume management
+================================
 ================================
 
 
@@ -440,9 +461,11 @@ Issues
 
 DeviceMapper
 ============
+============
 
 
 iSCSI
+=====
 =====
 
 tgtadm - Linux SCSI Target Administration Utilit
@@ -454,6 +477,7 @@ tgtadm - Linux SCSI Target Administration Utilit
 
 
 Loop Device
+===========
 ===========
 
 In Unix-like operating systems, a loop device, vnd (vnode disk), or lofi (loop file interface) is a pseudo-device that makes a file accessible as a block device. [#]_
@@ -570,6 +594,7 @@ Create Loop Device
 
 RAID
 ====
+====
 
 raid10
 ------
@@ -580,7 +605,22 @@ raid10
 Also called raid1+0, build raid1 first then use two raid 1 to build a raid0. different from raid 01.
 
 
+Erasure Coding
+--------------
+
+Erasure Coding is a method of data protection in which data is broken into fragements that are expanded and encoded w/ a configurable number of redundant pieces and stored accross different locations. eg. disks, storage nodes or geographical locations [#]_
+
+- goal is to reconstruct corrupted by using infos about that data stored elsewhere.
+- works by creating a mathematical func to describe a set of numbers that they can be checked for accuracy and recovered if one is lost.
+- first used in CDs and DVDs, allows a player to calculate the correct information even though part of dice's surface may be obsecured.
+- allows for the failure of two or more elements of a storage array.
+
+
+
+
+
 Disk Performance
+================
 ================
 
 
@@ -610,7 +650,13 @@ iozone
     iozone -a -e -n 2g -g 8g -r 64k -i 0 -i 1 -i 2 -i 5 -f testfile -Rb ./iozone.xls
 
 
+References
+==========
+==========
 
+
+.. [#] https://en.wikipedia.org/wiki/Filesystem_in_Userspace
 .. [#] http://en.wikipedia.org/wiki/Logical_volume_management
 .. [#] http://en.wikipedia.org/wiki/Loop_device
 .. [#] https://wiki.archlinux.org/index.php/Sparse_file
+.. [#] http://www.computerweekly.com/feature/Erasure-coding-versus-RAID-as-a-data-protection-method

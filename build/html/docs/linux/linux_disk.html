@@ -90,6 +90,15 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ceph/ceph.html">Ceph</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ceph/ceph_deploy.html">Ceph Deploy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ceph/ceph_issues.html">Ceph Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ceph/ceph_management_platforms.html">Ceph Management Platforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ceph/ceph_openstack.html">Ceph w/ OpenStack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ceph/ceph_ops.html">Ceph Operation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../web/bootstrap.html">bootstrap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../web/html.html">HTML</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../web/web.html">Web Server</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../openstack/index.html">OpenStack</a></li>
@@ -114,6 +123,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="">Linux Disk</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#filesystem">Filesystem</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#kernnel-vfs">Kernnel &#8211; VFS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fuse">FUSE</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#driver">Driver</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#mke2fs">mke2fs</a></li>
 </ul>
@@ -155,6 +165,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#raid">RAID</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#raid10">raid10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#erasure-coding">Erasure Coding</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#disk-performance">Disk Performance</a><ul>
@@ -162,10 +173,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#iozone">iozone</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="linux_doc.html">Documentation Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linux_info.html">Get System Infos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linux_mon.html">Linux Monitoring</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linux_net.html">Linux Network</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linux_pkg.html">Linux Package Management</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linux_virt.html">Virtualization</a></li>
@@ -196,7 +209,7 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../amqp/index.html">AMQP &#8211; Advanced Message Queuing Protocol</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../rest/index.html">RESTful API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rest.html">RESTful API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../microservices/index.html">MicroServices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../windows/index.html">Windows</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mac.html">Mac as Main OS</a></li>
@@ -265,6 +278,7 @@
 </div>
 <div class="section" id="filesystem">
 <h2>Filesystem<a class="headerlink" href="#filesystem" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
 <div class="section" id="kernnel-vfs">
 <h3>Kernnel &#8211; VFS<a class="headerlink" href="#kernnel-vfs" title="Permalink to this headline">¶</a></h3>
 <p>Short for <strong>Virtual File System</strong>, or <strong>Virtual Filesystem Switch</strong>, maintain tree shaped linux filesystem</p>
@@ -273,6 +287,15 @@
 <li>Sometimes short for <strong>Stackable Filesystem</strong> , because it can combine different filesystem seamlessly</li>
 <li>Use command like <code class="docutils literal"><span class="pre">mount</span></code> to manage filesystem</li>
 </ul>
+</div>
+<div class="section" id="fuse">
+<h3>FUSE<a class="headerlink" href="#fuse" title="Permalink to this headline">¶</a></h3>
+<p>Filesystem in Userspace(FUSE) is a <strong>software interface</strong> for <strong>Unix-like</strong> computer OS, let non priviledged users create their own FS w/o editing kernel code. <a class="footnote-reference" href="#id6" id="id1">[1]</a></p>
+<ul class="simple">
+<li>FUSE module provide a &#8220;bridge&#8221; to the actual kernel interface</li>
+<li>In priciple, any resources available to a FUSE implementation can be explored as a FS</li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/fuse_structure.png"><img alt="../../_images/fuse_structure.png" class="align-left" src="../../_images/fuse_structure.png" style="width: 300px;" /></a>
 </div>
 <div class="section" id="driver">
 <h3>Driver<a class="headerlink" href="#driver" title="Permalink to this headline">¶</a></h3>
@@ -366,6 +389,7 @@ cramfs          fscache  lockd  nls
 </div>
 <div class="section" id="mount">
 <h2>Mount<a class="headerlink" href="#mount" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
 <div class="sidebar">
 <p class="first sidebar-title">Note</p>
 <p><strong>mount.ntfs</strong></p>
@@ -489,6 +513,7 @@ umount testlvm/    # umount object can be device or mount point
 </div>
 <div class="section" id="lvm-logical-volume-management">
 <h2>LVM &#8211; Logical volume management<a class="headerlink" href="#lvm-logical-volume-management" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
 <div class="sidebar">
 <p class="first sidebar-title">Terminologies</p>
 <p>Every thing have an UUID</p>
@@ -499,7 +524,7 @@ umount testlvm/    # umount object can be device or mount point
 <li><strong>LV</strong> &#8211; Logic Volume</li>
 </ul>
 </div>
-<p>In computer storage, <em>logical volume management</em> or LVM provides a method of <em>allocating space</em> on mass-storage devices that is <em>more flexible</em> than conventional partitioning schemes. In particular, a volume manager can <strong>concatenate</strong>, <strong>stripe together</strong> or otherwise <strong>combine partitions</strong> (or block devices in general) into larger virtual ones that administrators can re-size or move, <em>potentially without interrupting system use</em>. <a class="footnote-reference" href="#id4" id="id1">[1]</a></p>
+<p>In computer storage, <em>logical volume management</em> or LVM provides a method of <em>allocating space</em> on mass-storage devices that is <em>more flexible</em> than conventional partitioning schemes. In particular, a volume manager can <strong>concatenate</strong>, <strong>stripe together</strong> or otherwise <strong>combine partitions</strong> (or block devices in general) into larger virtual ones that administrators can re-size or move, <em>potentially without interrupting system use</em>. <a class="footnote-reference" href="#id7" id="id2">[2]</a></p>
 <ul class="simple">
 <li>Conf-file &#8211; <code class="docutils literal"><span class="pre">/etc/lvm/lvm.conf</span></code></li>
 </ul>
@@ -833,8 +858,10 @@ dmsetup remove /dev/sdb1
 <div class="section" id="devicemapper">
 <h2>DeviceMapper<a class="headerlink" href="#devicemapper" title="Permalink to this headline">¶</a></h2>
 </div>
+<hr class="docutils" />
 <div class="section" id="iscsi">
 <h2>iSCSI<a class="headerlink" href="#iscsi" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
 <div class="section" id="tgtadm-linux-scsi-target-administration-utilit">
 <h3>tgtadm - Linux SCSI Target Administration Utilit<a class="headerlink" href="#tgtadm-linux-scsi-target-administration-utilit" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># tgtadm</span>
@@ -844,11 +871,12 @@ dmsetup remove /dev/sdb1
 </div>
 <div class="section" id="loop-device">
 <h2>Loop Device<a class="headerlink" href="#loop-device" title="Permalink to this headline">¶</a></h2>
-<p>In Unix-like operating systems, a loop device, vnd (vnode disk), or lofi (loop file interface) is a pseudo-device that makes a file accessible as a block device. <a class="footnote-reference" href="#id5" id="id2">[2]</a></p>
+<hr class="docutils" />
+<p>In Unix-like operating systems, a loop device, vnd (vnode disk), or lofi (loop file interface) is a pseudo-device that makes a file accessible as a block device. <a class="footnote-reference" href="#id8" id="id3">[3]</a></p>
 <div class="section" id="sparse-file">
 <h3>Sparse File<a class="headerlink" href="#sparse-file" title="Permalink to this headline">¶</a></h3>
 <a class="reference internal image-reference" href="../../_images/sparse_file.svg.png"><img alt="../../_images/sparse_file.svg.png" class="align-right" src="../../_images/sparse_file.svg.png" style="width: 260px;" /></a>
-<p>Sparse file is a type of computer file that attempts to use file system space more efficiently when blocks allocated to the file are mostly empty. <a class="footnote-reference" href="#id6" id="id3">[3]</a></p>
+<p>Sparse file is a type of computer file that attempts to use file system space more efficiently when blocks allocated to the file are mostly empty. <a class="footnote-reference" href="#id9" id="id4">[4]</a></p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -959,14 +987,26 @@ losetup -c loopdev   <span class="c1"># Resize loop device</span>
 </div>
 <div class="section" id="raid">
 <h2>RAID<a class="headerlink" href="#raid" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
 <div class="section" id="raid10">
 <h3>raid10<a class="headerlink" href="#raid10" title="Permalink to this headline">¶</a></h3>
 <img alt="../../_images/raid10.jpg" class="align-right" src="../../_images/raid10.jpg" />
 <p>Also called raid1+0, build raid1 first then use two raid 1 to build a raid0. different from raid 01.</p>
 </div>
+<div class="section" id="erasure-coding">
+<h3>Erasure Coding<a class="headerlink" href="#erasure-coding" title="Permalink to this headline">¶</a></h3>
+<p>Erasure Coding is a method of data protection in which data is broken into fragements that are expanded and encoded w/ a configurable number of redundant pieces and stored accross different locations. eg. disks, storage nodes or geographical locations <a class="footnote-reference" href="#id10" id="id5">[5]</a></p>
+<ul class="simple">
+<li>goal is to reconstruct corrupted by using infos about that data stored elsewhere.</li>
+<li>works by creating a mathematical func to describe a set of numbers that they can be checked for accuracy and recovered if one is lost.</li>
+<li>first used in CDs and DVDs, allows a player to calculate the correct information even though part of dice&#8217;s surface may be obsecured.</li>
+<li>allows for the failure of two or more elements of a storage array.</li>
+</ul>
+</div>
 </div>
 <div class="section" id="disk-performance">
 <h2>Disk Performance<a class="headerlink" href="#disk-performance" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
 <div class="section" id="dd-convert-and-copy-a-file">
 <h3>dd &#8211; convert and copy a file<a class="headerlink" href="#dd-convert-and-copy-a-file" title="Permalink to this headline">¶</a></h3>
 <p>The dd utility copies the standard input to the standard output.  Input data is read and written in 512-byte blocks.  If input reads are short, input from multiple reads are aggregated to form the output block.  When finished, dd displays the number of complete and partial input and output blocks and truncated input records to the standard error output.</p>
@@ -999,25 +1039,41 @@ losetup -c loopdev   <span class="c1"># Resize loop device</span>
 iozone -a -e -n 2g -g 8g -r 64k -i <span class="m">0</span> -i <span class="m">1</span> -i <span class="m">2</span> -i <span class="m">5</span> -f testfile -Rb ./iozone.xls
 </pre></div>
 </div>
-<table class="docutils footnote" frame="void" id="id4" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Logical_volume_management">http://en.wikipedia.org/wiki/Logical_volume_management</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id5" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Loop_device">http://en.wikipedia.org/wiki/Loop_device</a></td></tr>
-</tbody>
-</table>
+</div>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
 <table class="docutils footnote" frame="void" id="id6" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference external" href="https://wiki.archlinux.org/index.php/Sparse_file">https://wiki.archlinux.org/index.php/Sparse_file</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://en.wikipedia.org/wiki/Filesystem_in_Userspace">https://en.wikipedia.org/wiki/Filesystem_in_Userspace</a></td></tr>
 </tbody>
 </table>
-</div>
+<table class="docutils footnote" frame="void" id="id7" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Logical_volume_management">http://en.wikipedia.org/wiki/Logical_volume_management</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id8" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Loop_device">http://en.wikipedia.org/wiki/Loop_device</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id9" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[4]</a></td><td><a class="reference external" href="https://wiki.archlinux.org/index.php/Sparse_file">https://wiki.archlinux.org/index.php/Sparse_file</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id10" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id5">[5]</a></td><td><a class="reference external" href="http://www.computerweekly.com/feature/Erasure-coding-versus-RAID-as-a-data-protection-method">http://www.computerweekly.com/feature/Erasure-coding-versus-RAID-as-a-data-protection-method</a></td></tr>
+</tbody>
+</table>
 </div>
 </div>
 

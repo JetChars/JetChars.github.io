@@ -49,6 +49,18 @@ solution: ``dpkg -r ceph-deploy && apt-get instll -fy``
 - ceph-deploy and ceph are in conflict [#]_
 
 
+Err deploy rgw
+--------------
+
+.. code-block:: console
+
+    $ ceph-deploy rgw create ceph-rgw
+    [ceph_deploy.rgw][DEBUG ] Deploying rgw, cluster ceph hosts ceph-rgw:rgw.ceph-rgw
+    [ceph_deploy][ERROR ] RuntimeError: bootstrap-rgw keyring not found; run 'gatherkeys'
+
+
+- solution: this issue caused by bootstrap-rgw.keying missing, which is only created during installation of cluster running **hammer or newer**.
+
 
 
 Maintenance issues

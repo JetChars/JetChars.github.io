@@ -25,12 +25,20 @@ Ceph can uniquely deliver object, block and file storage in one unified system.
     - c++ & python, slower and simpler than **c**
     - doubel input, long IO path and bad support for fast storage deviecs(SSD/PCIe SSD/NVRAM)
     - bad cephfs
-    - write-all-read-one will cause bad performance when disk failure
+    - write-all-read-one will cause bad performance when writing w/ disk failure
     - supervised by redhat and contributed mostly by them
 
 
 ceph releases
 -------------
+
+Ceph starts at UCSC, OpenSrc at 2006, Developed by InkTank
+
+
+.. image:: /images/ceph/ceph_chronicles.png
+
+
+
 
 =============== ============ ======== =========== ======== ========== ==========
 Times           Dumpling LTS Emperor  Firefly LTS Giant    Hammer LTS Infernalis

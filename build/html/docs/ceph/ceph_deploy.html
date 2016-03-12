@@ -106,6 +106,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#rados-client">rados client</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#rbd-client">rbd client</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ceph-fs">ceph_fs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rgw">RGW</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#disable-cephx">disable cephx </a></li>
 <li class="toctree-l3"><a class="reference internal" href="#upgrading">Upgrading</a></li>
 </ul>
@@ -177,7 +178,7 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../amqp/index.html">AMQP &#8211; Advanced Message Queuing Protocol</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../rest/index.html">RESTful API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rest.html">RESTful API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../microservices/index.html">MicroServices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../windows/index.html">Windows</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mac.html">Mac as Main OS</a></li>
@@ -577,6 +578,21 @@ sudo ceph-fuse -m 192.168.56.113:6789 /mnt/mycephfs -k /etc/ceph/ceph.client.adm
 <p class="first admonition-title">Note</p>
 <p class="last">this IP is MON&#8217;s, and admin.secret looks like this <code class="docutils literal"><span class="pre">AQAsO9hWcAqwJRAAuahZhGDGjQryjaK4AXqUww==</span></code></p>
 </div>
+</div>
+<div class="section" id="rgw">
+<h3>RGW<a class="headerlink" href="#rgw" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-shell"><div class="highlight"><pre><span></span>ceph-deploy rgw create <span class="o">{</span>gateway-node<span class="o">}</span>
+</pre></div>
+</div>
+<p>change RGW config file in RGW node</p>
+<div class="highlight-ini"><div class="highlight"><pre><span></span><span class="k">[client]</span>
+<span class="na">rgw frontends</span> <span class="o">=</span> <span class="s">civetweb port=80</span>
+<span class="na">rgw frontends</span> <span class="o">=</span> <span class="s">civetweb port=[::]:80</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>notice second option is for ipv6, only need one line of rgw frontends.</li>
+</ul>
 </div>
 <div class="section" id="disable-cephx">
 <h3>disable cephx <a class="footnote-reference" href="#id5" id="id2">[2]</a><a class="headerlink" href="#disable-cephx" title="Permalink to this headline">¶</a></h3>

@@ -144,7 +144,7 @@ Relevant
     :maxdepth: 1
 
     docs/amqp/index
-    docs/rest/index
+    docs/rest
     docs/microservices/index
     docs/windows/index
     docs/mac

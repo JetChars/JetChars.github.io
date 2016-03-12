@@ -379,6 +379,27 @@ ceph_fs
 .. note:: this IP is MON's, and admin.secret looks like this ``AQAsO9hWcAqwJRAAuahZhGDGjQryjaK4AXqUww==``
 
 
+
+RGW
+---
+
+.. code-block:: shell
+
+    ceph-deploy rgw create {gateway-node}
+
+
+change RGW config file in RGW node
+
+.. code-block:: ini
+
+    [client]
+    rgw frontends = civetweb port=80
+    rgw frontends = civetweb port=[::]:80
+
+- notice second option is for ipv6, only need one line of rgw frontends.
+
+
+
 disable cephx [#]_
 -------------
 
