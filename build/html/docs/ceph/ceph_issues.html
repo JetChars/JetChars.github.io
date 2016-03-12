@@ -97,6 +97,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#maintenance-issues">Maintenance issues</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ceph-fs-mount-err">ceph fs mount err</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#auth-file-can-t-found">auth file can&#8217;t found</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#clock-skew-detected-on-mon">clock skew detected on mon</a></li>
 </ul>
 </li>
@@ -261,6 +263,23 @@
 <div class="section" id="maintenance-issues">
 <h2>Maintenance issues<a class="headerlink" href="#maintenance-issues" title="Permalink to this headline">¶</a></h2>
 <hr class="docutils" />
+<div class="section" id="ceph-fs-mount-err">
+<h3>ceph fs mount err<a class="headerlink" href="#ceph-fs-mount-err" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo mount -t ceph 192.168.56.113:6789:/ /mnt/mycephfs -o <span class="nv">name</span><span class="o">=</span>admin,secret<span class="o">=</span><span class="nv">AQAsO9hWcAqwJRAAuahZhGDGjQryjaK4AXqUww</span><span class="o">==</span>
+<span class="go">mount error 5 = Input/output error</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="auth-file-can-t-found">
+<h3>auth file can&#8217;t found<a class="headerlink" href="#auth-file-can-t-found" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">2016-03-12 18:27:05.747204 7f3c8d193700 -1 auth: unable to find a keyring on /etc/ceph/ceph.client.admin.keyring,/etc/ceph/ceph.keyring,/etc/ceph/keyring,/etc/ceph/keyring.bin: (2) No such file or directory</span>
+<span class="go">2016-03-12 18:27:05.747476 7f3c8d193700 -1 monclient(hunting): ERROR: missing keyring, cannot use cephx for authentication</span>
+<span class="go">2016-03-12 18:27:05.747579 7f3c8d193700  0 librados: client.admin initialization error (2) No such file or directory</span>
+<span class="go">Error connecting to cluster: ObjectNotFound</span>
+</pre></div>
+</div>
+<p>Solution: copy auth files to <code class="docutils literal"><span class="pre">/etc/ceph/</span></code> or use cmd <code class="docutils literal"><span class="pre">ceph</span> <span class="pre">admin</span> <span class="pre">&lt;nodename&gt;</span></code> in ctrl node.</p>
+</div>
 <div class="section" id="clock-skew-detected-on-mon">
 <h3>clock skew detected on mon<a class="headerlink" href="#clock-skew-detected-on-mon" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">#</span> ceph health

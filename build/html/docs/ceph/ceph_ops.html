@@ -93,7 +93,13 @@
 <li class="toctree-l1"><a class="reference internal" href="ceph_issues.html">Ceph Issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ceph_management_platforms.html">Ceph Management Platforms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ceph_openstack.html">Ceph w/ OpenStack</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Ceph Operation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Ceph Operation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ceph-conf">ceph-conf</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../web/bootstrap.html">bootstrap</a></li>
@@ -122,6 +128,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_disk.html">Linux Disk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_doc.html">Documentation Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_info.html">Get System Infos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_mon.html">Linux Monitoring</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_net.html">Linux Network</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_pkg.html">Linux Package Management</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_virt.html">Virtualization</a></li>
@@ -232,6 +239,27 @@ sudo stop ceph-osd <span class="nv">id</span><span class="o">={</span>id<span cl
 sudo stop ceph-mon <span class="nv">id</span><span class="o">={</span>hostname<span class="o">}</span>
 sudo stop ceph-mds <span class="nv">id</span><span class="o">={</span>hostname<span class="o">}</span>
 </pre></div>
+</div>
+<div class="section" id="ceph-conf">
+<h2>ceph-conf<a class="headerlink" href="#ceph-conf" title="Permalink to this headline">¶</a></h2>
+<p>ceph conf file tool <a class="footnote-reference" href="#id2" id="id1">[1]</a></p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> ceph -L   <span class="c1"># will list all sections</span>
+<span class="go">gloabl</span>
+<span class="go">mon</span>
+<span class="gp">$</span> ceph -l global   <span class="c1"># will display specified section</span>
+<span class="go">global</span>
+</pre></div>
+</div>
+<div class="section" id="references">
+<h3>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h3>
+<hr class="docutils" />
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://docs.ceph.com/docs/master/man/8/ceph-conf/">http://docs.ceph.com/docs/master/man/8/ceph-conf/</a></td></tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 

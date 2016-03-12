@@ -55,6 +55,30 @@ Maintenance issues
 ==================
 ==================
 
+ceph fs mount err
+-----------------
+
+.. code-block:: console
+
+    $ sudo mount -t ceph 192.168.56.113:6789:/ /mnt/mycephfs -o name=admin,secret=AQAsO9hWcAqwJRAAuahZhGDGjQryjaK4AXqUww==
+    mount error 5 = Input/output error
+
+
+auth file can't found
+---------------------
+
+.. code-block:: console
+
+    2016-03-12 18:27:05.747204 7f3c8d193700 -1 auth: unable to find a keyring on /etc/ceph/ceph.client.admin.keyring,/etc/ceph/ceph.keyring,/etc/ceph/keyring,/etc/ceph/keyring.bin: (2) No such file or directory
+    2016-03-12 18:27:05.747476 7f3c8d193700 -1 monclient(hunting): ERROR: missing keyring, cannot use cephx for authentication
+    2016-03-12 18:27:05.747579 7f3c8d193700  0 librados: client.admin initialization error (2) No such file or directory
+    Error connecting to cluster: ObjectNotFound
+
+
+Solution: copy auth files to ``/etc/ceph/`` or use cmd ``ceph admin <nodename>`` in ctrl node.
+
+
+
 
 clock skew detected on mon
 --------------------------

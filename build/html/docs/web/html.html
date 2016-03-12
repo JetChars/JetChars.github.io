@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>bootstrap &mdash; JetChars alpha documentation</title>
+  <title>HTML &mdash; JetChars alpha documentation</title>
   
 
   
@@ -31,8 +31,8 @@
 
   
     <link rel="top" title="JetChars alpha documentation" href="../../index.html"/>
-        <link rel="next" title="HTML" href="html.html"/>
-        <link rel="prev" title="Ceph Operation" href="../ceph/ceph_ops.html"/> 
+        <link rel="next" title="Web Server" href="web.html"/>
+        <link rel="prev" title="bootstrap" href="bootstrap.html"/> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -96,15 +96,16 @@
 <li class="toctree-l1"><a class="reference internal" href="../ceph/ceph_ops.html">Ceph Operation</a></li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">bootstrap</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#intro">Intro</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#example-of-use">Example of Use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootstrap.html">bootstrap</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">HTML</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#elements">Elements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#grammar">grammar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">elements</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="html.html">HTML</a></li>
 <li class="toctree-l1"><a class="reference internal" href="web.html">Web Server</a></li>
 </ul>
 <ul>
@@ -198,11 +199,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
-    <li>bootstrap</li>
+    <li>HTML</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../../_sources/docs/web/bootstrap.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/docs/web/html.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -212,66 +213,92 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="bootstrap">
-<h1>bootstrap<a class="headerlink" href="#bootstrap" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="intro">
-<h2>Intro<a class="headerlink" href="#intro" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="html">
+<h1>HTML<a class="headerlink" href="#html" title="Permalink to this headline">¶</a></h1>
+<p>Hyper Text Markup Language</p>
+<p>2008 w3c release the HTML5</p>
+<p><a class="reference external" href="http://www.w3school.com.cn/html/index.asp">Tutorials from w3c</a></p>
+<div class="section" id="elements">
+<h2>Elements<a class="headerlink" href="#elements" title="Permalink to this headline">¶</a></h2>
 <hr class="docutils" />
-<p>BootStrap is Front-end Framework
-- include HTML/CSS/JS framewrok for depeloping responsive, mobile first projects on the web.
-- ready-to-use web elements: buttom, form, table, image, navbar, label, progress bar, alert etc.
-- provide cdn for fast loading
-- 4 sizes of bootstrap grid
--</p>
-<div class="section" id="example-of-use">
-<h3>Example of Use<a class="headerlink" href="#example-of-use" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-html"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
-<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;zh-CN&quot;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&quot;X-UA-Compatible&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;IE=edge&quot;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1&quot;</span><span class="p">&gt;</span>
-    <span class="c">&lt;!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ --&gt;</span>
-    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Bootstrap 101 Template<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
-
-    <span class="c">&lt;!-- Bootstrap --&gt;</span>
-    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;css/bootstrap.min.css&quot;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span><span class="p">&gt;</span>
-
-    <span class="c">&lt;!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries --&gt;</span>
-    <span class="c">&lt;!-- WARNING: Respond.js doesn&#39;t work if you view the page via file:// --&gt;</span>
-    <span class="c">&lt;!--[if lt IE 9]&gt;</span>
-<span class="c">      &lt;script src=&quot;//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js&quot;&gt;&lt;/script&gt;</span>
-<span class="c">      &lt;script src=&quot;//cdn.bootcss.com/respond.js/1.4.2/respond.min.js&quot;&gt;&lt;/script&gt;</span>
-<span class="c">    &lt;![endif]--&gt;</span>
-  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>你好，世界！<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
-
-    <span class="c">&lt;!-- jQuery (necessary for Bootstrap&#39;s JavaScript plugins) --&gt;</span>
-    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;//cdn.bootcss.com/jquery/1.11.3/jquery.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-    <span class="c">&lt;!-- Include all compiled plugins (below), or include individual files as needed --&gt;</span>
-    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;js/bootstrap.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
-</pre></div>
+<div class="section" id="grammar">
+<h3>grammar<a class="headerlink" href="#grammar" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">comments: <code class="docutils literal"><span class="pre">&lt;!--comment_contents--&gt;</span></code></p>
+</li>
+<li><dl class="first docutils">
+<dt>conditional comments</dt>
+<dd><ul class="first last simple">
+<li>&lt;!&#8211;[if !IE]&gt;&lt;!&#8211;&gt; 除IE外都可识别 &lt;!&#8211;&lt;![endif]&#8211;&gt;</li>
+<li>&lt;!&#8211;[if IE]&gt; 所有的IE可识别 &lt;![endif]&#8211;&gt;</li>
+<li>&lt;!&#8211;[if IE 6]&gt; 仅IE6可识别 &lt;![endif]&#8211;&gt;</li>
+<li>&lt;!&#8211;[if !(IE 6)]&gt; 非IE6可识别 &lt;![endif]&#8211;&gt;</li>
+<li>&lt;!&#8211;[if lt IE 6]&gt; IE6以下版本可识别 &lt;![endif]&#8211;&gt;</li>
+<li>&lt;!&#8211;[if lte IE 6]&gt; IE6以及IE6以下版本可识别 &lt;![endif]&#8211;&gt;</li>
+<li>&lt;!&#8211;[if gt IE 6]&gt; IE6以上版本可识别 &lt;![endif]&#8211;&gt;</li>
+<li>&lt;!&#8211;[if gte IE 6]&gt; IE6以及IE6以上版本可识别 &lt;![endif]&#8211;&gt;</li>
+<li>&lt;!&#8211;[if (IE 6)&amp;(IE 7)]&gt; IE6和IE7可识别 &lt;![endif]&#8211;&gt;</li>
+<li>&lt;!&#8211;[if (IE 6)|(IE 7)]&gt; IE6或IE7可识别 &lt;![endif]&#8211;&gt;</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">element format: <code class="docutils literal"><span class="pre">&lt;type/&gt;</span></code> or <code class="docutils literal"><span class="pre">&lt;type&gt;</span> <span class="pre">...</span> <span class="pre">&lt;/type&gt;</span></code></p>
+</li>
+<li><p class="first">text: surrounded by <code class="docutils literal"><span class="pre">&quot;&quot;</span></code> or <code class="docutils literal"><span class="pre">''</span></code></p>
+</li>
+<li><p class="first">file suffix : <code class="docutils literal"><span class="pre">html</span></code> or <code class="docutils literal"><span class="pre">htm</span></code></p>
+</li>
+<li><p class="first">path : document root is <code class="docutils literal"><span class="pre">http://ip:port/</span></code></p>
+</li>
+<li><dl class="first docutils">
+<dt>script triggered by event</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">onkeydown=&quot;test()&quot;</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>entity symbols</dt>
+<dd><ul class="first last simple">
+<li>space : <code class="docutils literal"><span class="pre">&amp;nbsp</span></code></li>
+<li>dash <code class="docutils literal"><span class="pre">-</span></code> : <code class="docutils literal"><span class="pre">&amp;mdash;</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>global attributes</dt>
+<dd><ul class="first last simple">
+<li>class &#8211; spceified one or multiple classname of one element</li>
+<li>id &#8211; each element have a unique ID</li>
+<li>style &#8211; specify CSS style in specified element</li>
+<li>lang &#8211; specify language</li>
+<li>dir &#8211; specify direction of text</li>
+<li>data-* &#8211; only works w/ HTML5</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>html files start w/ document type</dt>
+<dd><ul class="first last simple">
+<li>html 4.01 have 3 kinds of document type</li>
+<li>html 5 have only one document type <code class="docutils literal"><span class="pre">&lt;!DOCTYPE</span> <span class="pre">html&gt;</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h3>elements<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
-</div>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <hr class="docutils" />
-<table class="docutils footnote" frame="void" id="id1" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[1]</td><td><a class="reference external" href="http://www.slideshare.net/ronreiter/bootstrap-26583904?qid=51b655bb-a6be-43d0-b305-e91147bf4f0e&amp;v=&amp;b=&amp;from_search=6">http://www.slideshare.net/ronreiter/bootstrap-26583904?qid=51b655bb-a6be-43d0-b305-e91147bf4f0e&amp;v=&amp;b=&amp;from_search=6</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id2" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[2]</td><td><a class="reference external" href="http://www.slideshare.net/CedricSpillebeen/bootstrap-3-twitter-bootstrap-3-cedric-spillebeen-deftig?qid=51b655bb-a6be-43d0-b305-e91147bf4f0e&amp;v=&amp;b=&amp;from_search=5">http://www.slideshare.net/CedricSpillebeen/bootstrap-3-twitter-bootstrap-3-cedric-spillebeen-deftig?qid=51b655bb-a6be-43d0-b305-e91147bf4f0e&amp;v=&amp;b=&amp;from_search=5</a></td></tr>
-</tbody>
-</table>
 </div>
 </div>
 
@@ -282,10 +309,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="html.html" class="btn btn-neutral float-right" title="HTML" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="web.html" class="btn btn-neutral float-right" title="Web Server" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../ceph/ceph_ops.html" class="btn btn-neutral" title="Ceph Operation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="bootstrap.html" class="btn btn-neutral" title="bootstrap" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

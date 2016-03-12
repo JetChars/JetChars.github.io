@@ -160,7 +160,7 @@ runnig this cmd in ceph-admin node w/ ceph-admin user and in config folder:
     echo "osd pool default size = 2" >> ceph.conf
     ceph-deploy install ceph-admin ceph-mon ceph-osd1 ceph-osd2
     # will create keyrings named start w/ clustername
-    ceph-deploy mon create-initial
+    ceph-deploy {--overwrite-conf} mon create-initial
 
     # add OSDs
     # ========
@@ -378,10 +378,20 @@ ceph_fs
 
 .. note:: this IP is MON's, and admin.secret looks like this ``AQAsO9hWcAqwJRAAuahZhGDGjQryjaK4AXqUww==``
 
-block storage
+
+disable cephx [#]_
 -------------
 
 
+change ``ceph.conf`` [#]_
+
+.. code-block:: ini
+
+    [global]
+    ...
+    auth_cluster_required = none
+    auth_service_required = none
+    auth_client_required = none
 
 
 
@@ -423,6 +433,8 @@ References
 
 
 .. [#] https://en.wikipedia.org/wiki/Quorum_(distributed_computing)
+.. [#] http://dachary.org/loic/ceph-doc/rados/configuration/auth-config-ref/
+.. [#] http://docs.openfans.org/ceph/ceph4e2d658765876863/ceph-1/ceph-storage-cluster3010ceph5b5850a896c67fa43011/operations301064cd4f5c3011/cephx-authentication3010cephx9a8c8bc13011
 .. [#] http://docs.ceph.com/docs/master/start/quick-start-preflight/
 .. [#] http://docs.ceph.com/docs/master/start/quick-ceph-deploy/
 .. [#] http://www.centoscn.com/CentosServer/test/2015/0521/5489.html

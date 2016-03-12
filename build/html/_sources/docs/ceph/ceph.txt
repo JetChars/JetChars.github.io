@@ -16,6 +16,18 @@ Ceph can uniquely deliver object, block and file storage in one unified system.
 - urls : `home <http://ceph.com>`_ / `get ceph <http://ceph.com/get>`_ / `quick start <http://ceph.com/qsg>`_ / `docs <http://ceph.com/docs>`_ / `mailing list <http://ceph.com/list>`_ / `irc <http://ceph.com/irc>`_ / `git repo <http://github.com/ceph>`_ /
 - peopele are mostly build ceph within private cloud using debian servers [#]_
 
+- advantages
+    - CRUSH make sure the consistency
+    - Unified storage architecture
+    - other features: scalability/replication/balance/rolling upgrade/multi-pool/snapshots
+
+- disadvantages
+    - c++ & python, slower and simpler than **c**
+    - doubel input, long IO path and bad support for fast storage deviecs(SSD/PCIe SSD/NVRAM)
+    - bad cephfs
+    - write-all-read-one will cause bad performance when disk failure
+    - supervised by redhat and contributed mostly by them
+
 
 ceph releases
 -------------

@@ -38,6 +38,25 @@ Ceph managed by upstar, which leave users w/o define daemon.
 
 
 
+ceph-conf
+---------
+
+ceph conf file tool [#]_
+
+.. code-block:: console
+
+    $ ceph -L   # will list all sections
+    gloabl
+    mon
+    $ ceph -l global   # will display specified section
+    global
 
 
+
+References
+==========
+==========
+
+
+.. [#] http://docs.ceph.com/docs/master/man/8/ceph-conf/
 
