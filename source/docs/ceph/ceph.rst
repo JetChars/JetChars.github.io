@@ -28,6 +28,49 @@ Est. retirement Mar 2015              Jan 2016             Nov 2016   Jun 2016
 Act. retirement May 2015     May 2014             Apr 2015
 =============== ============ ======== =========== ======== ========== ==========
 
+features
+--------
+
+- thin provisioning
+- copy on read for librbd
+- clustered MDS -- diff MDS will cover diff subtree of CephFS
+- health check -- MON will ping osd nodes periodly, and OSDs also can report it's and peer's status to MON
+- scrubing -- daily light check file zize & attr. weekly deep check with checksum
+- no centralize access point -- client contact Primary OSD directly
+
+
+Architecture
+============
+============
+
+
+
+
+
+Glossariy
+=========
+=========
+
+=========================================== =========== ===================================================================
+name                                        abbr.       description
+=========================================== =========== ===================================================================
+Reliable Autonomic Distributed Object Store RADOS       self-healing,self-managing, inteligence storage include(OSD&MON)
+RADOS Gateway                               RADOSGW/RGW manage object store
+RADOS Block Device                          RBD         include KRBD for CephFS, and LIBRBD for dirct use of block device
+Ceph FileSystem                             CephFS      a shared filesystem
+Ceph Release Candidate                      Ceph RC     will be released but under testing and debuging
+Monitor                                     MON         
+Object Storage Device                       OSD         
+Metadata Server                             MDS         
+Controlled Replication Under Scalable Hash  CRUSH       Core Algorithm of Ceph
+Paxos/Quorum                                            algorithm make sure the consistency of distribution system
+Cephx                                                   authentication protocol, operates like kerberos, w/o SPoF
+Pool                                                    logical partitions for storing objs
+Placement Group                             PG          
+Primary OSD                                             OSD in a PG, that client will talk w/
+=========================================== =========== ===================================================================
+
+
 
 References
 ==========

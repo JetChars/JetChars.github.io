@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Ceph Operation &mdash; JetChars alpha documentation</title>
+  <title>Linux Monitoring &mdash; JetChars alpha documentation</title>
   
 
   
@@ -31,8 +31,8 @@
 
   
     <link rel="top" title="JetChars alpha documentation" href="../../index.html"/>
-        <link rel="next" title="bootstrap" href="../web/bootstrap.html"/>
-        <link rel="prev" title="Ceph w/ OpenStack" href="ceph_openstack.html"/> 
+        <link rel="next" title="Linux Network" href="linux_net.html"/>
+        <link rel="prev" title="Get System Infos" href="linux_info.html"/> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -87,13 +87,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../aws_vpn/index.html">Build VPN with AWS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
 </ul>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="ceph.html">Ceph</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ceph_deploy.html">Ceph Deploy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ceph_issues.html">Ceph Issues</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ceph_management_platforms.html">Ceph Management Platforms</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ceph_openstack.html">Ceph w/ OpenStack</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Ceph Operation</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ceph/ceph.html">Ceph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ceph/ceph_deploy.html">Ceph Deploy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ceph/ceph_issues.html">Ceph Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ceph/ceph_management_platforms.html">Ceph Management Platforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ceph/ceph_openstack.html">Ceph w/ OpenStack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ceph/ceph_ops.html">Ceph Operation</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../web/bootstrap.html">bootstrap</a></li>
@@ -116,17 +116,22 @@
 <li class="toctree-l1"><a class="reference internal" href="../hadoop_hibench/index.html">HiBench - The Hadoop BenchMark Suit</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../doopshot/index.html">DoopShot</a></li>
 </ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../linux/freebsd.html">FreeBSD</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../linux/linux.html">Linux</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../linux/linux_disk.html">Linux Disk</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../linux/linux_doc.html">Documentation Tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../linux/linux_info.html">Get System Infos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../linux/linux_net.html">Linux Network</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../linux/linux_pkg.html">Linux Package Management</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../linux/linux_virt.html">Virtualization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../linux/shell.html">Shell</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../linux/ubuntu.html">Ubuntu</a></li>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="freebsd.html">FreeBSD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linux.html">Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linux_disk.html">Linux Disk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linux_doc.html">Documentation Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linux_info.html">Get System Infos</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Linux Monitoring</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#zeonss">Zeonss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#zabbix">Zabbix</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="linux_net.html">Linux Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linux_pkg.html">Linux Package Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linux_virt.html">Virtualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shell.html">Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ubuntu.html">Ubuntu</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../pxe/index.html">PXE &#8211; Preboot Execution Enviriment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../screen/index.html">Screen - Full-screen window manager</a></li>
 </ul>
@@ -189,11 +194,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
-    <li>Ceph Operation</li>
+    <li>Linux Monitoring</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../../_sources/docs/ceph/ceph_ops.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/docs/linux/linux_mon.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -203,35 +208,45 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="ceph-operation">
-<h1>Ceph Operation<a class="headerlink" href="#ceph-operation" title="Permalink to this headline">¶</a></h1>
-<p>Ceph managed by upstar, which leave users w/o define daemon.</p>
-<div class="sidebar">
-<p class="first sidebar-title">Upstart</p>
-<p class="last">Upstart is an event-based replacement for the /sbin/init daemon which handles starting of tasks and services during boot, stopping them during shutdown and supervising them while the system is running.
-It was originally developed for the Ubuntu distribution, but is intended to be suitable for deployment in all Linux distributions as a replacement for the venerable System-V init.
-<a class="reference external" href="http://manpages.ubuntu.com/manpages/raring/en/man8/initctl.8.html">initctl</a></p>
+  <div class="section" id="linux-monitoring">
+<h1>Linux Monitoring<a class="headerlink" href="#linux-monitoring" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="zeonss">
+<h2>Zeonss<a class="headerlink" href="#zeonss" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p>It&#8217;s an OpenSrc Enterprise Level inteligence montoring software provides a web console, w/ it, users can monitoring the cluster&#8217;s network structure and health degree.</p>
+<ul>
+<li><dl class="first docutils">
+<dt>includes</dt>
+<dd><ul class="first last simple">
+<li>network &#8211; router, switch, firewall, access point</li>
+<li>servers &#8211; windows, linux, unix, hp, NetApp, Dell</li>
+<li>virtualization &#8211; VI3, XenSource</li>
+<li>Applications &#8211; Process, port, network, web, db, middleware</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
 </div>
-<div class="highlight-shell"><div class="highlight"><pre><span></span><span class="c1"># using &#39;initctl list&#39; get available ceph daemons</span>
-<span class="c1"># user can start or stop group of daemons</span>
-<span class="c1"># or manage w/ it&#39;s id/hostname</span>
-<span class="c1"># ===============================================</span>
-sudo intictl list <span class="p">|</span> grep ceph
-sudo start ceph-all   <span class="c1"># start all in current host</span>
-sudo stop ceph-all
-sudo start ceph-osd-all   <span class="c1"># start all OSDs</span>
-sudo start ceph-mon-all
-sudo start ceph-mds-all
-sudo stop ceph-osd-all
-sudo stop ceph-mon-all
-sudo stop ceph-mds-all
-sudo start ceph-osd <span class="nv">id</span><span class="o">={</span>id<span class="o">}</span>
-sudo start ceph-mon <span class="nv">id</span><span class="o">={</span>hostname<span class="o">}</span>
-sudo start ceph-mds <span class="nv">id</span><span class="o">={</span>hostname<span class="o">}</span>
-sudo stop ceph-osd <span class="nv">id</span><span class="o">={</span>id<span class="o">}</span>
-sudo stop ceph-mon <span class="nv">id</span><span class="o">={</span>hostname<span class="o">}</span>
-sudo stop ceph-mds <span class="nv">id</span><span class="o">={</span>hostname<span class="o">}</span>
-</pre></div>
+<div class="section" id="zabbix">
+<h2>Zabbix<a class="headerlink" href="#zabbix" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p>It&#8217;s an OpenSrc enterprise level distributed monitoring system, provides web UI</p>
+<ul>
+<li><dl class="first docutils">
+<dt>include: zabbix server &amp; zabbix agent</dt>
+<dd><ul class="first last simple">
+<li>zabbix agent collect cpu/mem/disk/log infos, it&#8217;s an optional component</li>
+<li>zabbix server include 3 components: UI/Server/DB, can be instlled in diff. server</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">monitoring based on: SNMP, zabbix agent, ping, port_monitoring</p>
+</li>
+<li><p class="first">servers: Linux, Solaris, HP-UX, AIX, FreeBSD, OpenBSD, OS X</p>
+</li>
+</ul>
 </div>
 </div>
 
@@ -242,10 +257,10 @@ sudo stop ceph-mds <span class="nv">id</span><span class="o">={</span>hostname<s
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../web/bootstrap.html" class="btn btn-neutral float-right" title="bootstrap" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="linux_net.html" class="btn btn-neutral float-right" title="Linux Network" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="ceph_openstack.html" class="btn btn-neutral" title="Ceph w/ OpenStack" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="linux_info.html" class="btn btn-neutral" title="Get System Infos" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

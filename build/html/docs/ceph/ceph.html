@@ -91,14 +91,19 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="">Ceph</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#ceph-intro">Ceph Intro</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#ceph-releases">ceph releases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#features">features</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#architecture">Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#glossariy">Glossariy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ceph_deploy.html">Ceph Deploy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ceph_issues.html">Ceph Issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ceph_management_platforms.html">Ceph Management Platforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ceph_openstack.html">Ceph w/ OpenStack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ceph_ops.html">Ceph Operation</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../web/bootstrap.html">bootstrap</a></li>
@@ -127,6 +132,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_disk.html">Linux Disk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_doc.html">Documentation Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_info.html">Get System Infos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_mon.html">Linux Monitoring</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_net.html">Linux Network</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_pkg.html">Linux Package Management</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_virt.html">Virtualization</a></li>
@@ -272,6 +278,96 @@
 </tbody>
 </table>
 </div>
+<div class="section" id="features">
+<h3>features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>thin provisioning</li>
+<li>copy on read for librbd</li>
+<li>clustered MDS &#8211; diff MDS will cover diff subtree of CephFS</li>
+<li>health check &#8211; MON will ping osd nodes periodly, and OSDs also can report it&#8217;s and peer&#8217;s status to MON</li>
+<li>scrubing &#8211; daily light check file zize &amp; attr. weekly deep check with checksum</li>
+<li>no centralize access point &#8211; client contact Primary OSD directly</li>
+</ul>
+</div>
+</div>
+<div class="section" id="architecture">
+<h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">¶</a></h2>
+</div>
+<hr class="docutils" />
+<div class="section" id="glossariy">
+<h2>Glossariy<a class="headerlink" href="#glossariy" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<table border="1" class="docutils">
+<colgroup>
+<col width="36%" />
+<col width="9%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">name</th>
+<th class="head">abbr.</th>
+<th class="head">description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Reliable Autonomic Distributed Object Store</td>
+<td>RADOS</td>
+<td>self-healing,self-managing, inteligence storage include(OSD&amp;MON)</td>
+</tr>
+<tr class="row-odd"><td>RADOS Gateway</td>
+<td>RADOSGW/RGW</td>
+<td>manage object store</td>
+</tr>
+<tr class="row-even"><td>RADOS Block Device</td>
+<td>RBD</td>
+<td>include KRBD for CephFS, and LIBRBD for dirct use of block device</td>
+</tr>
+<tr class="row-odd"><td>Ceph FileSystem</td>
+<td>CephFS</td>
+<td>a shared filesystem</td>
+</tr>
+<tr class="row-even"><td>Ceph Release Candidate</td>
+<td>Ceph RC</td>
+<td>will be released but under testing and debuging</td>
+</tr>
+<tr class="row-odd"><td>Monitor</td>
+<td>MON</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Object Storage Device</td>
+<td>OSD</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Metadata Server</td>
+<td>MDS</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Controlled Replication Under Scalable Hash</td>
+<td>CRUSH</td>
+<td>Core Algorithm of Ceph</td>
+</tr>
+<tr class="row-odd"><td>Paxos/Quorum</td>
+<td>&nbsp;</td>
+<td>algorithm make sure the consistency of distribution system</td>
+</tr>
+<tr class="row-even"><td>Cephx</td>
+<td>&nbsp;</td>
+<td>authentication protocol, operates like kerberos, w/o SPoF</td>
+</tr>
+<tr class="row-odd"><td>Pool</td>
+<td>&nbsp;</td>
+<td>logical partitions for storing objs</td>
+</tr>
+<tr class="row-even"><td>Placement Group</td>
+<td>PG</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Primary OSD</td>
+<td>&nbsp;</td>
+<td>OSD in a PG, that client will talk w/</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>

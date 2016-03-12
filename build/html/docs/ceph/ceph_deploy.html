@@ -105,6 +105,9 @@
 <li class="toctree-l3"><a class="reference internal" href="#ceph-client">ceph client</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#rados-client">rados client</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#rbd-client">rbd client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ceph-fs">ceph_fs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#block-storage">block storage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#upgrading">Upgrading</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
@@ -113,6 +116,7 @@
 <li class="toctree-l1"><a class="reference internal" href="ceph_issues.html">Ceph Issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ceph_management_platforms.html">Ceph Management Platforms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ceph_openstack.html">Ceph w/ OpenStack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ceph_ops.html">Ceph Operation</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../web/bootstrap.html">bootstrap</a></li>
@@ -141,6 +145,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_disk.html">Linux Disk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_doc.html">Documentation Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_info.html">Get System Infos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_mon.html">Linux Monitoring</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_net.html">Linux Network</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_pkg.html">Linux Package Management</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_virt.html">Virtualization</a></li>
@@ -228,6 +233,11 @@
 <div class="section" id="prefight">
 <h2>Prefight<a class="headerlink" href="#prefight" title="Permalink to this headline">¶</a></h2>
 <hr class="docutils" />
+<ul class="simple">
+<li>Ceph Cluster require at least 1 Admin, 1 MON and 2 OSDs.</li>
+<li>Ceph repo and key only need to be installed on Admin Node</li>
+<li>Admin node require password-less access to Ceph Nodes</li>
+</ul>
 <div class="section" id="ceph-node">
 <h3>ceph node<a class="headerlink" href="#ceph-node" title="Permalink to this headline">¶</a></h3>
 <p>Every node will config in a same way.
@@ -533,6 +543,73 @@ rbd list <span class="o">{</span>-l/--long<span class="o">}</span>  <span class=
 <span class="c1"># =========================================</span>
 umount /mnt/test
 rbd unmap /dev/rbd/rdb/foo
+</pre></div>
+</div>
+</div>
+<div class="section" id="ceph-fs">
+<h3>ceph_fs<a class="headerlink" href="#ceph-fs" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">ceph</span> <span class="pre">osd</span> <span class="pre">pool</span> <span class="pre">create</span> <span class="pre">&lt;poolname&gt;</span> <span class="pre">&lt;int[0-]&gt;</span> <span class="pre">{&lt;int[0-]&gt;}</span> <span class="pre">{replicated|erasure}</span> <span class="pre">{&lt;erasure_code_profile&gt;}</span> <span class="pre">{&lt;ruleset&gt;}</span></code></li>
+</ul>
+<div class="highlight-shell"><div class="highlight"><pre><span></span>ceph osd pool create fs_data <span class="m">100</span>   <span class="c1"># pg num required</span>
+ceph osd pool create fs_metadata 100
+<span class="c1"># ceph osd fs new myfs fs_metadata fs_data</span>
+<span class="c1"># exec this cmd is quickly, but takes long to active</span>
+ceph mds newfs <span class="o">{</span>metaid<span class="o">}</span> <span class="o">{</span>dataid<span class="o">}</span> --yes-i-really-mean-it
+ceph mds newfs <span class="m">4</span> <span class="m">3</span> --yes-i-really-mean-it
+
+<span class="c1"># mount cephfs, need secret if cephx enabled</span>
+<span class="c1"># ==========================================</span>
+sudo mkdir /mnt/mycephfs
+sudo mount -t ceph 192.168.56.113:6789:/ /mnt/mycephfs
+sudo mount -t ceph 192.168.56.113:6789:/ /mnt/mycephfs -o <span class="nv">name</span><span class="o">=</span>admin,secret<span class="o">=</span><span class="nv">AQAsO9hWcAqwJRAAuahZhGDGjQryjaK4AXqUww</span><span class="o">==</span>
+sudo mount -t ceph 192.168.56.113:6789:/ /mnt/mycephfs -o <span class="nv">name</span><span class="o">=</span>admin,secretfile<span class="o">=</span>/etc/ceph/admin.secret
+sudo umount /mnt/mycephfs
+
+<span class="c1"># mount cephfs in User Space (FUSE)</span>
+sudo mkdir /mnt/mycephfs
+sudo ceph-fuse -m 192.168.56.113:6789 /mnt/mycephfs
+sudo ceph-fuse -m 192.168.56.113:6789 /mnt/mycephfs -k /etc/ceph/ceph.client.admin.keyring
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">this IP is MON&#8217;s, and admin.secret looks like this <code class="docutils literal"><span class="pre">AQAsO9hWcAqwJRAAuahZhGDGjQryjaK4AXqUww==</span></code></p>
+</div>
+</div>
+<div class="section" id="block-storage">
+<h3>block storage<a class="headerlink" href="#block-storage" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="upgrading">
+<h3>Upgrading<a class="headerlink" href="#upgrading" title="Permalink to this headline">¶</a></h3>
+<p>upgrade ceph from firefly to</p>
+<ul>
+<li><dl class="first docutils">
+<dt>will processed in this order</dt>
+<dd><ul class="first last simple">
+<li>Ceph deploy</li>
+<li>Ceph MONs</li>
+<li>Ceph OSDs</li>
+<li>Ceph MDSs</li>
+<li>RGW</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="highlight-shell"><div class="highlight"><pre><span></span><span class="c1"># upgrade ceph</span>
+<span class="c1"># ============</span>
+<span class="nb">echo</span> deb http://download.ceph.com/debian-<span class="o">{</span>ceph-stable-release<span class="o">}</span>/ <span class="k">$(</span>lsb_release -sc<span class="k">)</span> main <span class="p">|</span> sudo tee /etc/apt/sources.list.d/ceph.list
+sudo apt-get update <span class="o">&amp;&amp;</span> sudo apt-get install --upgrade ceph-deploy
+ceph-deploy install --release hammer ceph-mon ceph-osd1 ceph-osd2 ceph-mds ceph-rgw
+
+<span class="c1"># restart all services</span>
+<span class="c1"># ====================</span>
+sudo restart ceph-mon-all
+sudo restart ceph-osd-all
+sudo restart ceph-mds-all
+sudo restart ceph-rgw-all
+ceph -s   <span class="c1"># check cluster stat</span>
 </pre></div>
 </div>
 </div>

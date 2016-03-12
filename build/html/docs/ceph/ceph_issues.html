@@ -91,14 +91,25 @@
 <li class="toctree-l1"><a class="reference internal" href="ceph.html">Ceph</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ceph_deploy.html">Ceph Deploy</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Ceph Issues</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#installation-issues">Installation issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-issues">Installation issues</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#err-upgrade-cluster">err upgrade cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#err-upgrade-debian">Err upgrade debian</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#maintenance-issues">Maintenance issues</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#clock-skew-detected-on-mon">clock skew detected on mon</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ceph_management_platforms.html">Ceph Management Platforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ceph_openstack.html">Ceph w/ OpenStack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ceph_ops.html">Ceph Operation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../web/bootstrap.html">bootstrap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../web/web.html">Web Server</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../openstack/index.html">OpenStack</a></li>
@@ -123,6 +134,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_disk.html">Linux Disk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_doc.html">Documentation Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_info.html">Get System Infos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_mon.html">Linux Monitoring</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_net.html">Linux Network</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_pkg.html">Linux Package Management</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_virt.html">Virtualization</a></li>
@@ -208,8 +220,44 @@
 <h1>Ceph Issues<a class="headerlink" href="#ceph-issues" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="installation-issues">
 <h2>Installation issues<a class="headerlink" href="#installation-issues" title="Permalink to this headline">¶</a></h2>
-</div>
 <hr class="docutils" />
+<div class="section" id="err-upgrade-cluster">
+<h3>err upgrade cluster<a class="headerlink" href="#err-upgrade-cluster" title="Permalink to this headline">¶</a></h3>
+<p>this err occurs when upgrade firefly to hammer</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> ceph-deploy install --version hammer ceph-admin ceph-mon ceph-osd1 ceph-osd2 ceph-msd ceph-rgw
+<span class="go">[ceph-admin][INFO  ] Running command: sudo env DEBIAN_FRONTEND=noninteractive apt-get -q install --assume-yes ca-certificates</span>
+<span class="go">[ceph-admin][WARNIN] E: Unmet dependencies. Try &#39;apt-get -f install&#39; with no packages (or specify a solution).</span>
+<span class="go">[ceph-admin][DEBUG ] Reading package lists...</span>
+<span class="go">[ceph-admin][DEBUG ] Building dependency tree...</span>
+<span class="go">[ceph-admin][DEBUG ] Reading state information...</span>
+<span class="go">[ceph-admin][DEBUG ] ca-certificates is already the newest version.</span>
+<span class="go">[ceph-admin][DEBUG ] You might want to run &#39;apt-get -f install&#39; to correct these:</span>
+<span class="go">[ceph-admin][DEBUG ] The following packages have unmet dependencies:</span>
+<span class="go">[ceph-admin][DEBUG ]  ceph-common : Breaks: ceph (&lt; 0.94.2-2) but 0.80.11-1trusty is to be installed</span>
+<span class="go">[ceph-admin][ERROR ] RuntimeError: command returned non-zero exit status: 100</span>
+<span class="go">[ceph_deploy][ERROR ] RuntimeError: Failed to execute command: env DEBIAN_FRONTEND=noninteractive apt-get -q install --assume-yes ca-certificates</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="err-upgrade-debian">
+<h3>Err upgrade debian<a class="headerlink" href="#err-upgrade-debian" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get install -fy   <span class="c1"># try to fix current issues</span>
+<span class="go">Unpacking ceph (0.94.6-1trusty) over (0.80.11-1trusty) ...</span>
+<span class="go">dpkg: error processing archive /var/cache/apt/archives/ceph_0.94.6-1trusty_amd64.deb (--unpack):</span>
+<span class="go"> trying to overwrite &#39;/usr/share/man/man8/ceph-deploy.8.gz&#39;, which is also in package ceph-deploy 1.4.0-0ubuntu1</span>
+<span class="go"> Processing triggers for ureadahead (0.100.0-16) ...</span>
+<span class="go"> Processing triggers for man-db (2.6.7.1-1ubuntu1) ...</span>
+<span class="go"> Errors were encountered while processing:</span>
+<span class="go">  /var/cache/apt/archives/ceph_0.94.6-1trusty_amd64.deb</span>
+<span class="go">  E: Sub-process /usr/bin/dpkg returned an error code (1)</span>
+</pre></div>
+</div>
+<p>solution: <code class="docutils literal"><span class="pre">dpkg</span> <span class="pre">-r</span> <span class="pre">ceph-deploy</span> <span class="pre">&amp;&amp;</span> <span class="pre">apt-get</span> <span class="pre">instll</span> <span class="pre">-fy</span></code></p>
+<ul class="simple">
+<li>ceph-deploy and ceph are in conflict <a class="footnote-reference" href="#id2" id="id1">[1]</a></li>
+</ul>
+</div>
+</div>
 <div class="section" id="maintenance-issues">
 <h2>Maintenance issues<a class="headerlink" href="#maintenance-issues" title="Permalink to this headline">¶</a></h2>
 <hr class="docutils" />
@@ -238,6 +286,15 @@
 <li>Verify: <code class="docutils literal"><span class="pre">ceph</span> <span class="pre">-w</span></code></li>
 </ul>
 </div>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://bugs.launchpad.net/ubuntu/+source/ceph/+bug/1475910">https://bugs.launchpad.net/ubuntu/+source/ceph/+bug/1475910</a></td></tr>
+</tbody>
+</table>
 </div>
 </div>
 

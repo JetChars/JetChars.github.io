@@ -9,6 +9,9 @@ Prefight
 ========
 ========
 
+- Ceph Cluster require at least 1 Admin, 1 MON and 2 OSDs.
+- Ceph repo and key only need to be installed on Admin Node
+- Admin node require password-less access to Ceph Nodes
 
 ceph node
 ---------
@@ -345,6 +348,71 @@ rbd client
     rbd unmap /dev/rbd/rdb/foo
 
 
+ceph_fs
+-------
+
+- ``ceph osd pool create <poolname> <int[0-]> {<int[0-]>} {replicated|erasure} {<erasure_code_profile>} {<ruleset>}``
+
+
+.. code-block:: shell
+
+    ceph osd pool create fs_data 100   # pg num required
+    ceph osd pool create fs_metadata 100
+    # ceph osd fs new myfs fs_metadata fs_data
+    # exec this cmd is quickly, but takes long to active
+    ceph mds newfs {metaid} {dataid} --yes-i-really-mean-it
+    ceph mds newfs 4 3 --yes-i-really-mean-it
+
+    # mount cephfs, need secret if cephx enabled
+    # ==========================================
+    sudo mkdir /mnt/mycephfs
+    sudo mount -t ceph 192.168.56.113:6789:/ /mnt/mycephfs
+    sudo mount -t ceph 192.168.56.113:6789:/ /mnt/mycephfs -o name=admin,secret=AQAsO9hWcAqwJRAAuahZhGDGjQryjaK4AXqUww==
+    sudo mount -t ceph 192.168.56.113:6789:/ /mnt/mycephfs -o name=admin,secretfile=/etc/ceph/admin.secret
+    sudo umount /mnt/mycephfs
+
+    # mount cephfs in User Space (FUSE)
+    sudo mkdir /mnt/mycephfs
+    sudo ceph-fuse -m 192.168.56.113:6789 /mnt/mycephfs
+    sudo ceph-fuse -m 192.168.56.113:6789 /mnt/mycephfs -k /etc/ceph/ceph.client.admin.keyring
+
+.. note:: this IP is MON's, and admin.secret looks like this ``AQAsO9hWcAqwJRAAuahZhGDGjQryjaK4AXqUww==``
+
+block storage
+-------------
+
+
+
+
+
+Upgrading
+---------
+
+upgrade ceph from firefly to 
+
+- will processed in this order
+    - Ceph deploy
+    - Ceph MONs
+    - Ceph OSDs
+    - Ceph MDSs
+    - RGW
+
+
+.. code-block:: shell
+
+    # upgrade ceph
+    # ============
+    echo deb http://download.ceph.com/debian-{ceph-stable-release}/ $(lsb_release -sc) main | sudo tee /etc/apt/sources.list.d/ceph.list
+    sudo apt-get update && sudo apt-get install --upgrade ceph-deploy
+    ceph-deploy install --release hammer ceph-mon ceph-osd1 ceph-osd2 ceph-mds ceph-rgw
+
+    # restart all services
+    # ====================
+    sudo restart ceph-mon-all
+    sudo restart ceph-osd-all
+    sudo restart ceph-mds-all
+    sudo restart ceph-rgw-all
+    ceph -s   # check cluster stat 
 
 
 

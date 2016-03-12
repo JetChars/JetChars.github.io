@@ -222,5 +222,19 @@ apt-cache
     apt-cache rdepends <pkg>  # show pkgs depends on this pkg
 
 
+DPKG
+====
+
+.. code-block:: shell
+
+    # install or remove a deb binary
+    dpkg -i <pkgname>   
+    dpkg -r <pkgname>
+    dpkg -P <pkgname>   # will purge deb completely0
+    # show pkg list
+    dpkg -l
+
+
+
 
 .. [#] https://bugs.launchpad.net/ubuntu/+source/usb-creator/+bug/1325801
