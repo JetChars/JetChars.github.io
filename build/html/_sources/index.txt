@@ -94,6 +94,16 @@ Git
 
     docs/git
     docs/git*/index
+
+
+Python
+======
+
+.. toctree::
+    :maxdepth: 1
+    :glob:
+
+    docs/python/*
  
 
 Declarative Programing

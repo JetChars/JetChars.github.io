@@ -67,6 +67,21 @@ Maintenance issues
 ==================
 ==================
 
+
+ceph -s err
+-----------
+
+.. code-block:: console
+
+    $ ceph -s
+    2016-03-13 05:54:31.854272 7f3fe8269700  0 -- :/3950156637 >> 192.168.56.113:6789/0 pipe(0x7f3fe4060590 sd=3 :0 s=1 pgs=0 cs=0 l=1 c=0x7f3fe405a370).fault
+
+
+- which means monitor can't comm w/ the rest fo the cluster.
+
+
+
+
 ceph fs mount err
 -----------------
 

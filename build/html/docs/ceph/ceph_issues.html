@@ -94,9 +94,11 @@
 <li class="toctree-l2"><a class="reference internal" href="#installation-issues">Installation issues</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#err-upgrade-cluster">err upgrade cluster</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#err-upgrade-debian">Err upgrade debian</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#err-deploy-rgw">Err deploy rgw</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#maintenance-issues">Maintenance issues</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ceph-s-err">ceph -s err</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ceph-fs-mount-err">ceph fs mount err</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#auth-file-can-t-found">auth file can&#8217;t found</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#clock-skew-detected-on-mon">clock skew detected on mon</a></li>
@@ -260,10 +262,31 @@
 <li>ceph-deploy and ceph are in conflict <a class="footnote-reference" href="#id2" id="id1">[1]</a></li>
 </ul>
 </div>
+<div class="section" id="err-deploy-rgw">
+<h3>Err deploy rgw<a class="headerlink" href="#err-deploy-rgw" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> ceph-deploy rgw create ceph-rgw
+<span class="go">[ceph_deploy.rgw][DEBUG ] Deploying rgw, cluster ceph hosts ceph-rgw:rgw.ceph-rgw</span>
+<span class="go">[ceph_deploy][ERROR ] RuntimeError: bootstrap-rgw keyring not found; run &#39;gatherkeys&#39;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>solution: this issue caused by bootstrap-rgw.keying missing, which is only created during installation of cluster running <strong>hammer or newer</strong>.</li>
+</ul>
+</div>
 </div>
 <div class="section" id="maintenance-issues">
 <h2>Maintenance issues<a class="headerlink" href="#maintenance-issues" title="Permalink to this headline">¶</a></h2>
 <hr class="docutils" />
+<div class="section" id="ceph-s-err">
+<h3>ceph -s err<a class="headerlink" href="#ceph-s-err" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> ceph -s
+<span class="go">2016-03-13 05:54:31.854272 7f3fe8269700  0 -- :/3950156637 &gt;&gt; 192.168.56.113:6789/0 pipe(0x7f3fe4060590 sd=3 :0 s=1 pgs=0 cs=0 l=1 c=0x7f3fe405a370).fault</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>which means monitor can&#8217;t comm w/ the rest fo the cluster.</li>
+</ul>
+</div>
 <div class="section" id="ceph-fs-mount-err">
 <h3>ceph fs mount err<a class="headerlink" href="#ceph-fs-mount-err" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo mount -t ceph 192.168.56.113:6789:/ /mnt/mycephfs -o <span class="nv">name</span><span class="o">=</span>admin,secret<span class="o">=</span><span class="nv">AQAsO9hWcAqwJRAAuahZhGDGjQryjaK4AXqUww</span><span class="o">==</span>

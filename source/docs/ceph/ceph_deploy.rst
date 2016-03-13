@@ -2,7 +2,7 @@
 Ceph Deploy
 ===========
 
-This doc records ceph deployment based on debian 14.04 trusty
+This doc records ceph deployment based on **debian trusty(14.04)** and **ceph firefly(0.80.11)**
 
 
 Prefight
@@ -419,7 +419,7 @@ change ``ceph.conf`` [#]_
 Upgrading
 ---------
 
-upgrade ceph from firefly to 
+upgrade ceph from **firefly(0.80.11)** to **hammmer(0.94.6)**
 
 - will processed in this order
     - Ceph deploy
