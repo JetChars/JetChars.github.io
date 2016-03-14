@@ -87,7 +87,10 @@ Paxos/Quorum                                            algorithm make sure the 
 Cephx                                                   authentication protocol, operates like kerberos, w/o SPoF
 Pool                                                    logical partitions for storing objs
 Placement Group                             PG          
+Acting Set                                              Ceph OSD Daemons that are currently responsible for the PG
+Up Set                                                  OSDs in the Acting Set is up
 Primary OSD                                             OSD in a PG, that client will talk w/
+Cache Tier                                              provides ceph clients w/ better I/O performance
 =========================================== =========== ===================================================================
 
 
@@ -102,6 +105,78 @@ Cephx
 
 Erasure Coding
 --------------
+
+
+Interrupted Full Writes
+^^^^^^^^^^^^^^^^^^^^^^^
+
+- last_compelete -- a pointer to locate data positions
+- Data chunck -- stroage 1/k part of data
+- Coding chunck -- storage erasure coding data
+- WRITE FULL -- payload is to replace the object entirely instead of overwriting a portion of it.
+- Primary OSD -- responsible for storing chunks in addition to handling write operations and maintaining an authoritative verion of PG log to reflect the changes.
+
+In the following diagram, k=2 and m=1, D1v1 means Data chunck 1 version 1, similarily C1v1 means Coding chunck number 1 version 1.
+
+
+.. image:: /images/ceph/interrupted_full_write_1.png
+    :align: left
+    :width: 208px
+
+.. image:: /images/ceph/interrupted_full_write_2.png
+    :align: left
+    :width: 208px
+
+.. image:: /images/ceph/interrupted_full_write_3.png
+    :align: left
+    :width: 208px
+
+
+|
+|
+| OSD1 is the primary and receives a **WRITE FULL** from a client (pic2,3)
+| v2 of obj is created to override v1 (pic2,3,4,5,6)
+| OSDs will create an entry (i.e. epoch1, v2) to its logs as soon as data chunck stored. (pic2)
+|
+
+
+.. image:: /images/ceph/interrupted_full_write_4.png
+    :align: left
+    :width: 208px
+
+.. image:: /images/ceph/interrupted_full_write_5.png
+    :align: left
+    :width: 208px
+
+.. image:: /images/ceph/interrupted_full_write_6.png
+    :align: left
+    :width: 208px
+
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+| If all goes well, last_compelte will be pointed to new version of data (1,1 --> 1,2), and erase old version of data. (pic4)
+| If OSD1 goes down and ther is only one chunck of verion 2 is written, OSD4 will take over OSD1's job, find **last_complete** log entry, will restore object to latest edition(1,1). mean while discard data chunck of v2 at OSD3. (pic5,6)
+|
+|
+|
+|
+
 
 
 Scrubbing

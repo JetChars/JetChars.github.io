@@ -223,6 +223,7 @@ Photos
     - suffix of image is required
     - png file not support distortion, so resize it only need to change width or height
     - ``align`` can be ``left`` , ``right`` or ``center``
+    - if you want 3 pics in a row, use ``left`` repeatly
 
 .. code-block:: rst
 
