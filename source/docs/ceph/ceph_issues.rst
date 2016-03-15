@@ -68,6 +68,79 @@ Maintenance issues
 ==================
 
 
+Troubleshooting MON
+-------------------
+
+
+.. code-block:: shell
+
+    ceph-conf --name mon.{ID} --show-config-value {admin_socket}
+
+
+
+Troubleshooting OSDs
+--------------------
+
+
+.. code-block:: shell
+
+    # obtaining data about OSDs
+    # =========================
+    ls /var/log/ceph   # will show current log list
+    ls /var/run/ceph   # will show current running sockets
+    ceph daemon {daemon-name/socket-file}   # can be "osd.0" or "/var/run/ceph/ceph-osd.0.asok"
+    df -h
+    iostat -x
+    dmesg | tail
+    dmesg | grep scsi
+
+    # stopping w/o rebalancing
+    # ========================
+    ceph osd set noout
+    stop ceph-osd id={num}   # start from 0
+    start ceph-osd id={num}   # start from 0
+    ceph osd unset noout
+
+
+
+- admin sockets ``ceph daemon`` allowing you:
+    - list you conf at runtime
+    - dump historic ops/operation queue stat/ops in flight/perfcounter
+- **snoot** will withhold rebalancing while rm OSD
+- if OSD can't start
+    - check conf(hostname/paths/max_threadcount)
+    - check kernel version
+    - segment fault -- contact ceph-dev team
+
+An OSD failed
+^^^^^^^^^^^^^
+
+.. code-block:: console
+
+    $ ceph health
+    HEALTH_WARN 1/3 in osds are down
+
+    $ ceph health detail
+    HEALTH_WARN 1/3 in osds are down
+    osd.0 is down since epoch 23, last address 192.168.106.220:6800/11080
+
+
+- using cmd ``ceph health detail`` locate which OSD is down
+- Errs will logged at ``/var/log/ceph``
+- ``dmesg`` also can show something
+
+
+No free drive space
+^^^^^^^^^^^^^^^^^^^
+
+
+Networking issues
+^^^^^^^^^^^^^^^^^
+
+
+
+
+
 ceph -s err
 -----------
 
@@ -75,6 +148,13 @@ ceph -s err
 
     $ ceph -s
     2016-03-13 05:54:31.854272 7f3fe8269700  0 -- :/3950156637 >> 192.168.56.113:6789/0 pipe(0x7f3fe4060590 sd=3 :0 s=1 pgs=0 cs=0 l=1 c=0x7f3fe405a370).fault
+    $ sudo start ceph-mon id=0
+    $ dmesg | tail
+    [190945.284897] init: ceph-mon (ceph/ceph-mon) main process (23755) terminated with status 28
+    [190945.284904] init: ceph-mon (ceph/ceph-mon) respawning too fast, stopped
+    [190945.293275] init: ceph-create-keys main process (23758) killed by TERM signal
+
+
 
 
 - which means monitor can't comm w/ the rest fo the cluster.

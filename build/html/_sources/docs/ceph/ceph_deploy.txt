@@ -159,7 +159,7 @@ runnig this cmd in ceph-admin node w/ ceph-admin user and in config folder:
     # notice here are no underscores
     echo "osd pool default size = 2" >> ceph.conf
     ceph-deploy install ceph-admin ceph-mon ceph-osd1 ceph-osd2
-    # will create keyrings named start w/ clustername
+    # create-initial create keyrings named start w/ clustername
     ceph-deploy {--overwrite-conf} mon create-initial
 
     # add OSDs
@@ -272,6 +272,17 @@ Once MONs were adding into current cluster,it will begin synchronizing MONs and 
                   "addr": "192.168.56.113:6789\/0"}]}}
 
 
+Remove Ceph
+-----------
+
+.. code-block:: shell
+
+    ceph-deploy purgedata <ceph-nodes>
+    ceph-deploy forgetkeys
+    ceph-deploy purge <ceph-nodes>   # will purge ceph pkgs too
+
+
+
 Ceph Usages
 ===========
 ===========
@@ -298,7 +309,6 @@ cmds to check cluster stats
     ceph osd stat
     ceph osd dump
     ceph osd tree
-    p
     rbd list
 
 ceph client

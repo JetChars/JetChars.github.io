@@ -98,6 +98,13 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#maintenance-issues">Maintenance issues</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#troubleshooting-mon">Troubleshooting MON</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#troubleshooting-osds">Troubleshooting OSDs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#an-osd-failed">An OSD failed</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#no-free-drive-space">No free drive space</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#networking-issues">Networking issues</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#ceph-s-err">ceph -s err</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ceph-fs-mount-err">ceph fs mount err</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#auth-file-can-t-found">auth file can&#8217;t found</a></li>
@@ -151,6 +158,12 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../git.html">Git &#8211; Extraordinary version contrl software</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../github/index.html">GitHub &#8211; Git repository hosting service</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../python/pelican.html">pelican</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/pep8.html">PEP8</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/psdash.html">psdash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/python.html">Python</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../regex/index.html">Regular Expression</a></li>
@@ -277,10 +290,87 @@
 <div class="section" id="maintenance-issues">
 <h2>Maintenance issues<a class="headerlink" href="#maintenance-issues" title="Permalink to this headline">¶</a></h2>
 <hr class="docutils" />
+<div class="section" id="troubleshooting-mon">
+<h3>Troubleshooting MON<a class="headerlink" href="#troubleshooting-mon" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-shell"><div class="highlight"><pre><span></span>ceph-conf --name mon.<span class="o">{</span>ID<span class="o">}</span> --show-config-value <span class="o">{</span>admin_socket<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="troubleshooting-osds">
+<h3>Troubleshooting OSDs<a class="headerlink" href="#troubleshooting-osds" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-shell"><div class="highlight"><pre><span></span><span class="c1"># obtaining data about OSDs</span>
+<span class="c1"># =========================</span>
+ls /var/log/ceph   <span class="c1"># will show current log list</span>
+ls /var/run/ceph   <span class="c1"># will show current running sockets</span>
+ceph daemon <span class="o">{</span>daemon-name/socket-file<span class="o">}</span>   <span class="c1"># can be &quot;osd.0&quot; or &quot;/var/run/ceph/ceph-osd.0.asok&quot;</span>
+df -h
+iostat -x
+dmesg <span class="p">|</span> tail
+dmesg <span class="p">|</span> grep scsi
+
+<span class="c1"># stopping w/o rebalancing</span>
+<span class="c1"># ========================</span>
+ceph osd <span class="nb">set</span> noout
+stop ceph-osd <span class="nv">id</span><span class="o">={</span>num<span class="o">}</span>   <span class="c1"># start from 0</span>
+start ceph-osd <span class="nv">id</span><span class="o">={</span>num<span class="o">}</span>   <span class="c1"># start from 0</span>
+ceph osd <span class="nb">unset</span> noout
+</pre></div>
+</div>
+<ul>
+<li><dl class="first docutils">
+<dt>admin sockets <code class="docutils literal"><span class="pre">ceph</span> <span class="pre">daemon</span></code> allowing you:</dt>
+<dd><ul class="first last simple">
+<li>list you conf at runtime</li>
+<li>dump historic ops/operation queue stat/ops in flight/perfcounter</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first"><strong>snoot</strong> will withhold rebalancing while rm OSD</p>
+</li>
+<li><dl class="first docutils">
+<dt>if OSD can&#8217;t start</dt>
+<dd><ul class="first last simple">
+<li>check conf(hostname/paths/max_threadcount)</li>
+<li>check kernel version</li>
+<li>segment fault &#8211; contact ceph-dev team</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="section" id="an-osd-failed">
+<h4>An OSD failed<a class="headerlink" href="#an-osd-failed" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> ceph health
+<span class="go">HEALTH_WARN 1/3 in osds are down</span>
+
+<span class="gp">$</span> ceph health detail
+<span class="go">HEALTH_WARN 1/3 in osds are down</span>
+<span class="go">osd.0 is down since epoch 23, last address 192.168.106.220:6800/11080</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>using cmd <code class="docutils literal"><span class="pre">ceph</span> <span class="pre">health</span> <span class="pre">detail</span></code> locate which OSD is down</li>
+<li>Errs will logged at <code class="docutils literal"><span class="pre">/var/log/ceph</span></code></li>
+<li><code class="docutils literal"><span class="pre">dmesg</span></code> also can show something</li>
+</ul>
+</div>
+<div class="section" id="no-free-drive-space">
+<h4>No free drive space<a class="headerlink" href="#no-free-drive-space" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="networking-issues">
+<h4>Networking issues<a class="headerlink" href="#networking-issues" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
 <div class="section" id="ceph-s-err">
 <h3>ceph -s err<a class="headerlink" href="#ceph-s-err" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> ceph -s
 <span class="go">2016-03-13 05:54:31.854272 7f3fe8269700  0 -- :/3950156637 &gt;&gt; 192.168.56.113:6789/0 pipe(0x7f3fe4060590 sd=3 :0 s=1 pgs=0 cs=0 l=1 c=0x7f3fe405a370).fault</span>
+<span class="gp">$</span> sudo start ceph-mon <span class="nv">id</span><span class="o">=</span>0
+<span class="gp">$</span> dmesg <span class="p">|</span> tail
+<span class="go">[190945.284897] init: ceph-mon (ceph/ceph-mon) main process (23755) terminated with status 28</span>
+<span class="go">[190945.284904] init: ceph-mon (ceph/ceph-mon) respawning too fast, stopped</span>
+<span class="go">[190945.293275] init: ceph-create-keys main process (23758) killed by TERM signal</span>
 </pre></div>
 </div>
 <ul class="simple">

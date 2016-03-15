@@ -98,6 +98,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#storage-cluster-quick-start">Storage Cluster Quick Start</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#create-a-cluster-w-1-mon-2-osds">create a cluster w/ 1 MON &amp; 2 OSDs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#expanding-cluster">Expanding Cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#remove-ceph">Remove Ceph</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#ceph-usages">Ceph Usages</a><ul>
@@ -379,7 +380,7 @@ ceph-deploy new ceph-mon
 <span class="c1"># notice here are no underscores</span>
 <span class="nb">echo</span> <span class="s2">&quot;osd pool default size = 2&quot;</span> &gt;&gt; ceph.conf
 ceph-deploy install ceph-admin ceph-mon ceph-osd1 ceph-osd2
-<span class="c1"># will create keyrings named start w/ clustername</span>
+<span class="c1"># create-initial create keyrings named start w/ clustername</span>
 ceph-deploy <span class="o">{</span>--overwrite-conf<span class="o">}</span> mon create-initial
 
 <span class="c1"># add OSDs</span>
@@ -485,6 +486,14 @@ ceph-deploy mon add ceph-osd1 ceph-osd2   <span class="c1"># probably not workin
 </pre></div>
 </div>
 </div>
+<div class="section" id="remove-ceph">
+<h3>Remove Ceph<a class="headerlink" href="#remove-ceph" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-shell"><div class="highlight"><pre><span></span>ceph-deploy purgedata &lt;ceph-nodes&gt;
+ceph-deploy forgetkeys
+ceph-deploy purge &lt;ceph-nodes&gt;   <span class="c1"># will purge ceph pkgs too</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="ceph-usages">
 <h2>Ceph Usages<a class="headerlink" href="#ceph-usages" title="Permalink to this headline">¶</a></h2>
@@ -507,7 +516,6 @@ ceph mon dump
 ceph osd stat
 ceph osd dump
 ceph osd tree
-p
 rbd list
 </pre></div>
 </div>

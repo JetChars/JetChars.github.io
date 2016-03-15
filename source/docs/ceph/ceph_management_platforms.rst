@@ -111,6 +111,58 @@ Virtual Storage Manager
 
 `gitrepo <https://github.com/01org/virtual-storage-manager>`_
 
+- Intel VSM v0.5.1
+    - WebUI for cluster management, monitoring and troubleshooting
+    - Server management -- Organize servers and disks
+    - Cluster management -- Manages cluster/pool creation
+    - OpenStack interface -- conn pools to OpenStack
+    - VSM administration -- User/Passwd
+
+.. image:: /images/ceph/vsm_arch.png
+
+- VSM Controller -- WebUI, API, conn to Agents and NovaCtrl
+- VSM Agent -- runs on every ceph node, pass conf&stats info to controller
+
+.. image:: /images/ceph/vsm_net.png
+
+- nothing special
+
+.. image:: /images/ceph/vsm_disks.png
+
+
+- VSM concepts
+    - Storage Class -- Drivers w/ similar performance characteristics
+    - Storage Group -- Drivers w/ same Storage Class grouped together
+
+.. image:: /images/ceph/vsm_fd.png
+
+- Servers can grouped into failure domains(call **Zone** in VSM)
+
+
+.. image:: /images/ceph/vsm_nav_bar.png
+
+- Monitoring
+    - using ceph client
+        - ``ceph -s``
+        - ``ceph pg dump osds``
+        - ``ceph pg dump pgs_brief``
+        - ``ceph osd pool stats``
+        - ``ceph osd dump``
+        - ``ceph osd tree``
+        - ``ceph mds dump``
+        - ``rbd ls -l {pool name}``
+    - status: StorageGroup, RBD, OSD, MON, PG, MDS, Capacity, IOPS, throughput, ERR, WRN
+        - detect OSDs not running, near full or full
+        - identifying ntp latency err
+- Managing
+    - create pools,add/rm/stop/start OSDs, add/rm MON
+        - stop w/o rebalancing
+    - ssh2nova_ctrl, expose pools to OpenStack
+    - vsm account mgt
+
+
+
+
 
 Inkscope
 --------

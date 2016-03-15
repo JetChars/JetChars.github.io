@@ -152,6 +152,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../github/index.html">GitHub &#8211; Git repository hosting service</a></li>
 </ul>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../python/pelican.html">pelican</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/pep8.html">PEP8</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/psdash.html">psdash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/python.html">Python</a></li>
+</ul>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../regex/index.html">Regular Expression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../sql/index.html">SQL &#8211; Structured Query Language</a></li>
 </ul>
@@ -541,6 +547,98 @@ ranked by watch+star+fork numbers.</p>
 <div class="section" id="virtual-storage-manager">
 <h3>Virtual Storage Manager<a class="headerlink" href="#virtual-storage-manager" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://github.com/01org/virtual-storage-manager">gitrepo</a></p>
+<ul>
+<li><dl class="first docutils">
+<dt>Intel VSM v0.5.1</dt>
+<dd><ul class="first last simple">
+<li>WebUI for cluster management, monitoring and troubleshooting</li>
+<li>Server management &#8211; Organize servers and disks</li>
+<li>Cluster management &#8211; Manages cluster/pool creation</li>
+<li>OpenStack interface &#8211; conn pools to OpenStack</li>
+<li>VSM administration &#8211; User/Passwd</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<img alt="../../_images/vsm_arch.png" src="../../_images/vsm_arch.png" />
+<ul class="simple">
+<li>VSM Controller &#8211; WebUI, API, conn to Agents and NovaCtrl</li>
+<li>VSM Agent &#8211; runs on every ceph node, pass conf&amp;stats info to controller</li>
+</ul>
+<img alt="../../_images/vsm_net.png" src="../../_images/vsm_net.png" />
+<ul class="simple">
+<li>nothing special</li>
+</ul>
+<img alt="../../_images/vsm_disks.png" src="../../_images/vsm_disks.png" />
+<ul>
+<li><dl class="first docutils">
+<dt>VSM concepts</dt>
+<dd><ul class="first last simple">
+<li>Storage Class &#8211; Drivers w/ similar performance characteristics</li>
+<li>Storage Group &#8211; Drivers w/ same Storage Class grouped together</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<img alt="../../_images/vsm_fd.png" src="../../_images/vsm_fd.png" />
+<ul class="simple">
+<li>Servers can grouped into failure domains(call <strong>Zone</strong> in VSM)</li>
+</ul>
+<img alt="../../_images/vsm_nav_bar.png" src="../../_images/vsm_nav_bar.png" />
+<ul>
+<li><dl class="first docutils">
+<dt>Monitoring</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>using ceph client</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">ceph</span> <span class="pre">-s</span></code></li>
+<li><code class="docutils literal"><span class="pre">ceph</span> <span class="pre">pg</span> <span class="pre">dump</span> <span class="pre">osds</span></code></li>
+<li><code class="docutils literal"><span class="pre">ceph</span> <span class="pre">pg</span> <span class="pre">dump</span> <span class="pre">pgs_brief</span></code></li>
+<li><code class="docutils literal"><span class="pre">ceph</span> <span class="pre">osd</span> <span class="pre">pool</span> <span class="pre">stats</span></code></li>
+<li><code class="docutils literal"><span class="pre">ceph</span> <span class="pre">osd</span> <span class="pre">dump</span></code></li>
+<li><code class="docutils literal"><span class="pre">ceph</span> <span class="pre">osd</span> <span class="pre">tree</span></code></li>
+<li><code class="docutils literal"><span class="pre">ceph</span> <span class="pre">mds</span> <span class="pre">dump</span></code></li>
+<li><code class="docutils literal"><span class="pre">rbd</span> <span class="pre">ls</span> <span class="pre">-l</span> <span class="pre">{pool</span> <span class="pre">name}</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>status: StorageGroup, RBD, OSD, MON, PG, MDS, Capacity, IOPS, throughput, ERR, WRN</dt>
+<dd><ul class="first last simple">
+<li>detect OSDs not running, near full or full</li>
+<li>identifying ntp latency err</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Managing</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>create pools,add/rm/stop/start OSDs, add/rm MON</dt>
+<dd><ul class="first last simple">
+<li>stop w/o rebalancing</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">ssh2nova_ctrl, expose pools to OpenStack</p>
+</li>
+<li><p class="first">vsm account mgt</p>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
 </div>
 <div class="section" id="inkscope">
 <h3>Inkscope<a class="headerlink" href="#inkscope" title="Permalink to this headline">¶</a></h3>
