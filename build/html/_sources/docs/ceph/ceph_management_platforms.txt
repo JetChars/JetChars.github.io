@@ -146,18 +146,18 @@ Comparison
 
 
 
-============== =========== ============= ========== ============  
-Item           Calamari    ceph-dash     VSM        inkscope      
-============== =========== ============= ========== ============  
-hotness        66,175,116  36,128,46     50,82,57   38,82,36     
-license        LGPL2.1     MIT-          Apache v2  Apache v2    
-language       python/JS   python/JS     python     python       
-web_engine     django                    django     Apache/flask 
-DB             postgreSQL                MySQL      mongoDB      
-Backing        RedHat      Chri./Eich.   Intel      Orange Labs
-Capabilities   Mon & LConf Mon           Mon & Conf Mon & LConf
-Compatability  wide        wide          limited    wide
-============== =========== ============= ========== ============  
+============== ============= =========== ========== ============  
+Item           Calamari      ceph-dash   VSM        inkscope      
+============== ============= =========== ========== ============  
+hotness        66,175,116    36,128,46   50,82,57   38,82,36     
+license        LGPL2.1       MIT-        Apache v2  Apache v2    
+language       python/JS     python/JS   python     python       
+web_engine     Apache/django Apache      django     Apache/flask 
+DB             postgreSQL    InfluxDB    MySQL      mongoDB      
+Backing        RedHat        Chri./Eich. Intel      Orange Labs
+Capabilities   Mon & LConf   Mon         Mon & Conf Mon & LConf
+Compatability  wide          wide        limited    wide
+============== ============= =========== ========== ============  
 
 
 ============== =========== ============= ========== ============  

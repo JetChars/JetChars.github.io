@@ -6,6 +6,18 @@ Python
 `online doc <https://docs.python.org/3/>`_
 
 
+Get Helps
+=========
+
+.. code-block:: python
+
+    # can omit "" if module imported
+    help("full path of moduel/class")
+    help("re.compile")
+
+
+
+
 HelloWorld
 ==========
 

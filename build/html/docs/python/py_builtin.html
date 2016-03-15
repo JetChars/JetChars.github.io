@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Python &mdash; JetChars alpha documentation</title>
+  <title>Python Built-in Modules &mdash; JetChars alpha documentation</title>
   
 
   
@@ -31,8 +31,8 @@
 
   
     <link rel="top" title="JetChars alpha documentation" href="../../index.html"/>
-        <link rel="next" title="Regular Expression" href="../regex/index.html"/>
-        <link rel="prev" title="Python Built-in Modules" href="py_builtin.html"/> 
+        <link rel="next" title="Python" href="python.html"/>
+        <link rel="prev" title="psdash" href="psdash.html"/> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -141,27 +141,11 @@
 <li class="toctree-l1"><a class="reference internal" href="pelican.html">pelican</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pep8.html">PEP8</a></li>
 <li class="toctree-l1"><a class="reference internal" href="psdash.html">psdash</a></li>
-<li class="toctree-l1"><a class="reference internal" href="py_builtin.html">Python Built-in Modules</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Python</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#get-helps">Get Helps</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#helloworld">HelloWorld</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#shebang-sh-bang-sharp-bang">shebang/sh-bang/sharp-bang</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Python Built-in Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#re">re</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#permanent-storage">Permanent storage</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#pickle">pickle</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#peps-python-enhancement-proposals">PEPs &#8211; Python Enhancement Proposals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#applications">Applications</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#pip">pip</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#flask-py-based-web-framework">flask &#8211; py based web framework</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sphinx">sphinx</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#fabric">fabric</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">Python</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../regex/index.html">Regular Expression</a></li>
@@ -218,11 +202,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
-    <li>Python</li>
+    <li>Python Built-in Modules</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../../_sources/docs/python/python.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/docs/python/py_builtin.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -232,85 +216,51 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="python">
-<h1>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="https://docs.python.org/3/">online doc</a></p>
-<div class="section" id="get-helps">
-<h2>Get Helps<a class="headerlink" href="#get-helps" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># can omit &quot;&quot; if module imported</span>
-<span class="n">help</span><span class="p">(</span><span class="s2">&quot;full path of moduel/class&quot;</span><span class="p">)</span>
-<span class="n">help</span><span class="p">(</span><span class="s2">&quot;re.compile&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="helloworld">
-<h2>HelloWorld<a class="headerlink" href="#helloworld" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="shebang-sh-bang-sharp-bang">
-<h3>shebang/sh-bang/sharp-bang<a class="headerlink" href="#shebang-sh-bang-sharp-bang" title="Permalink to this headline">¶</a></h3>
+  <div class="section" id="python-built-in-modules">
+<h1>Python Built-in Modules<a class="headerlink" href="#python-built-in-modules" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="re">
+<h2>re<a class="headerlink" href="#re" title="Permalink to this headline">¶</a></h2>
+<p>Regular Expression processing module.</p>
 <ul>
-<li><p class="first"><strong>#!/usr/local/bin/python</strong></p>
-</li>
-<li><p class="first"><strong>#!/usr/bin/env python</strong> &#8211; only work w/ OS have cmd env</p>
-</li>
-<li><p class="first"><strong>bash test.sh</strong> &#8211; sh-bang will not take effect in this situation</p>
+<li><p class="first">compile(pattern, flags=0) &#8211; Escape all non-alphanumeric characters in pattern.</p>
 </li>
 <li><dl class="first docutils">
-<dt>issues</dt>
+<dt>findall(pattern, string, flags=0) &#8211; Return a list of all non-overlapping matches in the string.</dt>
 <dd><ul class="first last simple">
-<li><strong>bad interpreter: Permission denied</strong></li>
-<li><strong>bad interpreter: No such file or directory</strong></li>
+<li>Empty matches are included in the result.</li>
 </ul>
 </dd>
 </dl>
 </li>
+<li><p class="first">finditer(pattern, string, flags=0) &#8211; Return an iterator over all non-overlapping matches in the string.</p>
+</li>
+<li><p class="first">match(pattern, string, flags=0) &#8211; Try to apply the pattern at the start of the string, returning a match object, or None if no match was found.</p>
+</li>
+<li><p class="first">purge() &#8211; Clear the regular expression cache</p>
+</li>
+<li><p class="first">search(pattern, string, flags=0) &#8211; Scan through string looking for a match to the pattern, returni</p>
+</li>
+<li><p class="first">split(pattern, string, maxsplit=0, flags=0) &#8211; Split the source string by the occurrences of the pattern, returning a list containing the resulting substrings.</p>
+</li>
+<li><p class="first">sub(pattern, repl, string, count=0, flags=0) &#8211; Return the string obtained by replacing the leftmost non-overlapping occurrences of the pattern in string by the replacement repl.</p>
+</li>
 <li><dl class="first docutils">
-<dt>realization of python</dt>
+<dt>subn(pattern, repl, string, count=0, flags=0) &#8211; Return a 2-tuple containing (new_string, number).</dt>
 <dd><ul class="first last simple">
-<li>Cpython</li>
-<li>Jython</li>
-<li>IronPython</li>
-<li>Stackless</li>
+<li>number is the number of substitutions that were made.</li>
 </ul>
 </dd>
 </dl>
 </li>
+<li><p class="first">template(pattern, flags=0) &#8211; Compile a template pattern, returning a pattern object</p>
+</li>
 </ul>
-</div>
-</div>
-<div class="section" id="permanent-storage">
-<h2>Permanent storage<a class="headerlink" href="#permanent-storage" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="pickle">
-<h3>pickle<a class="headerlink" href="#pickle" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li>only support <strong>ASCII string</strong>, unicode not supported(will crash the pickle).</li>
-<li>cPicle &#8211; enhanced version of pickle(faster)</li>
-</ul>
-</div>
-</div>
-<div class="section" id="peps-python-enhancement-proposals">
-<h2>PEPs &#8211; Python Enhancement Proposals<a class="headerlink" href="#peps-python-enhancement-proposals" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://www.python.org/dev/peps/">PEP 0 &#8211; Index of PEPs</a>
-<a class="reference external" href="https://www.python.org/dev/peps/pep-0381/">PEP 0381 &#8211; Mirroring infrastructure for PyPI</a>
-bandersnatch &#8211; Mirroring tool that implements the client (mirror) side of PEP 381</p>
-</div>
-<div class="section" id="applications">
-<h2>Applications<a class="headerlink" href="#applications" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="pip">
-<h3>pip<a class="headerlink" href="#pip" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="https://bootstrap.pypa.io/get-pip.py">get-pip.py</a></p>
-</div>
-<div class="section" id="flask-py-based-web-framework">
-<h3>flask &#8211; py based web framework<a class="headerlink" href="#flask-py-based-web-framework" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="http://flask.pocoo.org/">http://flask.pocoo.org/</a></p>
-</div>
-<div class="section" id="sphinx">
-<h3>sphinx<a class="headerlink" href="#sphinx" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="http://sphinx-doc.org/latest/index.html">http://sphinx-doc.org/latest/index.html</a></p>
-</div>
-<div class="section" id="fabric">
-<h3>fabric<a class="headerlink" href="#fabric" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="http://www.fabfile.org/">http://www.fabfile.org/</a></p>
-<p>Fabric is a Python (2.5-2.7) library and command-line tool for streamlining the use of SSH for application deployment or systems administration tasks.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;regex&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s2">&quot;str&quot;</span><span class="p">):</span>
+    <span class="n">do_some_thing</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;regex&quot;</span><span class="p">,</span> <span class="s2">&quot;str&quot;</span><span class="p">):</span>
+    <span class="n">do_some_thing</span><span class="p">()</span>
+</pre></div>
 </div>
 </div>
 </div>
@@ -322,10 +272,10 @@ bandersnatch &#8211; Mirroring tool that implements the client (mirror) side of 
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../regex/index.html" class="btn btn-neutral float-right" title="Regular Expression" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="python.html" class="btn btn-neutral float-right" title="Python" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="py_builtin.html" class="btn btn-neutral" title="Python Built-in Modules" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="psdash.html" class="btn btn-neutral" title="psdash" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
