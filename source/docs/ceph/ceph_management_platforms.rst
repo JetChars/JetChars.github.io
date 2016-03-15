@@ -92,7 +92,7 @@ link to Nova   N           Y          N
 Calamari
 --------
 
-`gitrepo <https://github.com/ceph/calamari>`_
+https://github.com/ceph/calamari
 
 - start by inktank
 - opensrc since May 2014
@@ -109,9 +109,9 @@ Calamari
 Virtual Storage Manager
 -----------------------
 
-`gitrepo <https://github.com/01org/virtual-storage-manager>`_
+https://github.com/01org/virtual-storage-manager
 
-- Intel VSM v0.5.1
+- Intel VSM v0.5.1 [#]_
     - WebUI for cluster management, monitoring and troubleshooting
     - Server management -- Organize servers and disks
     - Cluster management -- Manages cluster/pool creation
@@ -167,7 +167,7 @@ Virtual Storage Manager
 Inkscope
 --------
 
-`gitrepo <https://github.com/inkscope/inkscope>`_
+https://github.com/inkscope/inkscope
 
 - Ceph visualiztion and operation through CLI [#]_
 - Open Source
@@ -188,14 +188,23 @@ Functions
 Krakendash
 ----------
 
-`gitrepo <https://github.com/01org/virtual-storage-manager>`_
+https://github.com/01org/virtual-storage-manager
 
 
 Ceph-web
 --------
 
-`gitrepo <https://github.com/tobegit3hub/ceph-web>`_
+https://github.com/tobegit3hub/ceph-web
 
 
 
+References
+==========
+==========
+
+
+
+.. [#] https://01.org/virtual-storage-manager/documentation/vsm-0.5.1-training-slides
 .. [#] http://www.slideshare.net/alaindechorgnat/inkscope-ceph-day-paris-final?qid=24a1a418-b01c-4f91-b718-f26cffe920b7&v=&b=&from_search=1
+.. [#] http://www.slideshare.net/DaystromTech/ceph-days-sf2015-paul-evans-static?qid=4398eec4-e73a-4483-8e47-61f9875872d3&v=&b=&from_search=2
+.. [#] http://calamari.readthedocs.org/en/latest/operations/index.html
