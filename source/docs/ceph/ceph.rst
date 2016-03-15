@@ -27,6 +27,7 @@ Ceph can uniquely deliver object, block and file storage in one unified system.
     - bad cephfs
     - write-all-read-one will cause bad performance when writing w/ disk failure
     - supervised by redhat and contributed mostly by them
+    - multiple OSDs in a single host, if host down, tons of PG will be affected
 
 
 ceph releases

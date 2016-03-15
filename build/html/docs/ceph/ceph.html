@@ -31,7 +31,7 @@
 
   
     <link rel="top" title="JetChars alpha documentation" href="../../index.html"/>
-        <link rel="next" title="Ceph Deploy" href="ceph_deploy.html"/>
+        <link rel="next" title="Ceph APIs" href="ceph_api.html"/>
         <link rel="prev" title="Docker" href="../docker/index.html"/> 
 
   
@@ -109,6 +109,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="ceph_api.html">Ceph APIs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ceph_deploy.html">Ceph Deploy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ceph_issues.html">Ceph Issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ceph_management_platforms.html">Ceph Management Platforms</a></li>
@@ -267,6 +268,7 @@
 <li>bad cephfs</li>
 <li>write-all-read-one will cause bad performance when writing w/ disk failure</li>
 <li>supervised by redhat and contributed mostly by them</li>
+<li>multiple OSDs in a single host, if host down, tons of PG will be affected</li>
 </ul>
 </dd>
 </dl>
@@ -524,7 +526,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="ceph_deploy.html" class="btn btn-neutral float-right" title="Ceph Deploy" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="ceph_api.html" class="btn btn-neutral float-right" title="Ceph APIs" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../docker/index.html" class="btn btn-neutral" title="Docker" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>

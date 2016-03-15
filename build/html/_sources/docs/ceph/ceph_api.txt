@@ -9,6 +9,13 @@ LIBRBD
 
 - librbd does not know how to deal w/ characters wider than a **:c:type:char**
 
+
+
+
+Example of creating & writing to an image
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
 .. code-block:: python
 
     # conn to RADOS & open a IO context
@@ -71,7 +78,11 @@ LIBRBD
                 image.write(data, 0)
 
 
+API reference
+^^^^^^^^^^^^^
 
+Error --> PermissionError
+      --> IOError
 
 
 

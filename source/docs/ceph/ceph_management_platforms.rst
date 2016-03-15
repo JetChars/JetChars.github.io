@@ -37,6 +37,9 @@ https://github.com/ceph/calamari-clients
 - ceph clients
     - composed of: salt-minion , diamond
 
+``deb http://download.ceph.com/calamari/1.3.1/ubuntu/trusty/ trusty main``
+
+
 
 .. image:: /images/ceph/ceph_calamari_summary.png
 .. image:: /images/ceph/ceph_calamari_osds.png
@@ -113,14 +116,15 @@ https://github.com/inkscope/inkscope
 - Use Ceph RESTful API
 - Modularity and simplicity
 
-Modules
-^^^^^^^
-
-Functions
-^^^^^^^^^
+.. image:: /images/ceph/ceph_inkscope.png
 
 
+Ceph-dash
+---------
 
+https://github.com/Crapworks/ceph-dash
+
+.. image:: /images/ceph/ceph_dash.png
 
 
 
@@ -142,19 +146,18 @@ Comparison
 
 
 
-============== =========== ============= ========== ============  
-Item           Calamari    ceph-dash     VSM        inkscope      
-============== =========== ============= ========== ============  
-hotness        66,175,116  36,128,46     50,82,57   38,82,36     
-license        LGPL2.1     MIT-          Apache v2  Apache v2    
-language       python      python/JS     python     python       
-web_engine     django                    django     Apache/flask 
-DB             postgreSQL                MySQL      mongoDB      
-Backing        RedHat      Chri./Eich.   Intel      Orange Labs
-Latest V.
-Capabilities   Mon & LConf Mon           Mon & Conf Mon & LConf
-Compatability  wide        wide          limited    wide
-============== =========== ============= ========== ============  
+============== ============= =========== ========== ============  
+Item           Calamari      ceph-dash   VSM        inkscope      
+============== ============= =========== ========== ============  
+hotness        66,175,116    36,128,46   50,82,57   38,82,36     
+license        LGPL2.1       MIT-        Apache v2  Apache v2    
+language       python/JS     python/JS   python     python       
+web_engine     Apache/django Apache      django     Apache/flask 
+DB             postgreSQL    InfluxDB    MySQL      mongoDB      
+Backing        RedHat        Chri./Eich. Intel      Orange Labs
+Capabilities   Mon & LConf   Mon         Mon & Conf Mon & LConf
+Compatability  wide          wide        limited    wide
+============== ============= =========== ========== ============  
 
 
 ============== =========== ============= ========== ============  
@@ -183,7 +186,7 @@ Item           Calamari    VSM        inkscope
 Deploy Cluster N           Y          N
 Deploy Hosts   N           Y          N
 D. Storage G.  N           Y          N
-Daemons        OSD only    Y          N
+set Daemons    OSD only    Y          N
 set ops flags  Y           N          Y
 set parametrs  Y           N          view
 set crush      N           partial    view

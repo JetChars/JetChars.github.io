@@ -90,7 +90,11 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="ceph.html">Ceph</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Ceph APIs</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#librbd">LIBRBD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#librbd">LIBRBD</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#example-of-creating-writing-to-an-image">Example of creating &amp; writing to an image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#api-reference">API reference</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ceph_deploy.html">Ceph Deploy</a></li>
@@ -222,6 +226,8 @@
 <ul class="simple">
 <li>librbd does not know how to deal w/ characters wider than a <strong>:c:type:char</strong></li>
 </ul>
+<div class="section" id="example-of-creating-writing-to-an-image">
+<h3>Example of creating &amp; writing to an image<a class="headerlink" href="#example-of-creating-writing-to-an-image" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># conn to RADOS &amp; open a IO context</span>
 <span class="c1"># =================================</span>
 <span class="n">cluster</span> <span class="o">=</span> <span class="n">rados</span><span class="o">.</span><span class="n">Rados</span><span class="p">(</span><span class="n">conffile</span><span class="o">=</span><span class="s1">&#39;my_ceph.conf&#39;</span><span class="p">)</span>
@@ -280,6 +286,14 @@
             <span class="n">data</span> <span class="o">=</span> <span class="s1">&#39;foo&#39;</span> <span class="o">*</span> <span class="mi">200</span>
             <span class="n">image</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+<div class="section" id="api-reference">
+<h3>API reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>Error &#8211;&gt; PermissionError</dt>
+<dd>&#8211;&gt; IOError</dd>
+</dl>
 </div>
 </div>
 </div>

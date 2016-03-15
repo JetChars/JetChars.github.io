@@ -165,6 +165,11 @@ Configuration files
   - DebType: 'deb' means binary, 'deb-src' means source-codes
   - AddrType: http/file/ftp/cdrom/ssh
   - Distribution: dapper/feisty/trusty(14.04)
+  - resource types
+      - main -- supported by Canonical society
+      - universe -- maintain by community
+      - restricted -- dedicated driver for devices
+      - multiverse -- have copyright and legitimacy issue
 
 
 2. ``/etc/apt/apt.conf`` overall conf-file::
