@@ -4,11 +4,22 @@ Ceph APIs
 =========
 
 
+
 LIBRBD
 ======
 
 - librbd does not know how to deal w/ characters wider than a **:c:type:char**
+    - image -- a block device, can be attached to a VM. consist of multiple object
+    - snapshot -- a preservation of image. used to recovery image(clone).
 
+.. image:: /images/ceph/ceph_librbd_path.png
+
+- librbd is suited for VM useage, which is much stable. on the other side krbd is used for the Host.
+
+
+.. image:: /images/ceph/ceph_librbd_snapshot.png
+
+- while reading objs, data could be derived from it's parent volume.
 
 
 
@@ -86,4 +97,9 @@ Error --> PermissionError
 
 
 
+References
+==========
+==========
 
+
+.. [#] http://www.tuicool.com/articles/mYbEn2u

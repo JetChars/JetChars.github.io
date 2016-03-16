@@ -95,6 +95,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#api-reference">API reference</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ceph_deploy.html">Ceph Deploy</a></li>
@@ -128,6 +129,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../linux/freebsd.html">FreeBSD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux.html">Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_auto.html">Linux Automizaiton Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_disk.html">Linux Disk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_doc.html">Documentation Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_info.html">Get System Infos</a></li>
@@ -148,6 +150,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../python/pelican.html">pelican</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python/pep8.html">PEP8</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python/psdash.html">psdash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/py_builtin.html">Python Built-in Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/py_issues.html">Python Issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python/python.html">Python</a></li>
 </ul>
 <ul>
@@ -223,8 +227,24 @@
 <h1>Ceph APIs<a class="headerlink" href="#ceph-apis" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="librbd">
 <h2>LIBRBD<a class="headerlink" href="#librbd" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><dl class="first docutils">
+<dt>librbd does not know how to deal w/ characters wider than a <strong>:c:type:char</strong></dt>
+<dd><ul class="first last simple">
+<li>image &#8211; a block device, can be attached to a VM. consist of multiple object</li>
+<li>snapshot &#8211; a preservation of image. used to recovery image(clone).</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<img alt="../../_images/ceph_librbd_path.png" src="../../_images/ceph_librbd_path.png" />
 <ul class="simple">
-<li>librbd does not know how to deal w/ characters wider than a <strong>:c:type:char</strong></li>
+<li>librbd is suited for VM useage, which is much stable. on the other side krbd is used for the Host.</li>
+</ul>
+<img alt="../../_images/ceph_librbd_snapshot.png" src="../../_images/ceph_librbd_snapshot.png" />
+<ul class="simple">
+<li>while reading objs, data could be derived from it&#8217;s parent volume.</li>
 </ul>
 <div class="section" id="example-of-creating-writing-to-an-image">
 <h3>Example of creating &amp; writing to an image<a class="headerlink" href="#example-of-creating-writing-to-an-image" title="Permalink to this headline">¶</a></h3>
@@ -295,6 +315,16 @@
 <dd>&#8211;&gt; IOError</dd>
 </dl>
 </div>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<table class="docutils footnote" frame="void" id="id1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[1]</td><td><a class="reference external" href="http://www.tuicool.com/articles/mYbEn2u">http://www.tuicool.com/articles/mYbEn2u</a></td></tr>
+</tbody>
+</table>
 </div>
 </div>
 

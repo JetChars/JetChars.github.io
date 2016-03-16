@@ -148,6 +148,19 @@
 <li class="toctree-l3"><a class="reference internal" href="#shebang-sh-bang-sharp-bang">shebang/sh-bang/sharp-bang</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#data-structures">Data Structures</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#sequences">Sequences</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#statements">Statements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#loop">loop</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#capture-of-err">Capture of err</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#iterator">Iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#judgement">Judgement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generator">Generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#context-manager">Context manager</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#permanent-storage">Permanent storage</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#pickle">pickle</a></li>
 </ul>
@@ -235,11 +248,15 @@
   <div class="section" id="python">
 <h1>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://docs.python.org/3/">online doc</a></p>
+<ul class="simple">
+<li>python compilers: python,`cython &lt;<a class="reference external" href="http://docs.cython.org/src/reference/language_basics.html">http://docs.cython.org/src/reference/language_basics.html</a>&gt;`_ ,Jython</li>
+</ul>
 <div class="section" id="get-helps">
 <h2>Get Helps<a class="headerlink" href="#get-helps" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># can omit &quot;&quot; if module imported</span>
-<span class="n">help</span><span class="p">(</span><span class="s2">&quot;full path of moduel/class&quot;</span><span class="p">)</span>
+<span class="n">help</span><span class="p">(</span><span class="s2">&quot;full path of module/class&quot;</span><span class="p">)</span>
 <span class="n">help</span><span class="p">(</span><span class="s2">&quot;re.compile&quot;</span><span class="p">)</span>
+<span class="nb">dir</span><span class="p">(</span><span class="o">&lt;</span><span class="n">full</span> <span class="n">path</span> <span class="n">of</span> <span class="n">module</span><span class="o">/</span><span class="n">class</span><span class="o">&gt;</span><span class="p">)</span>   <span class="c1"># class should be imported first</span>
 </pre></div>
 </div>
 </div>
@@ -275,6 +292,166 @@
 </dl>
 </li>
 </ul>
+</div>
+</div>
+<div class="section" id="data-structures">
+<h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<div class="section" id="sequences">
+<h3>Sequences<a class="headerlink" href="#sequences" title="Permalink to this headline">¶</a></h3>
+<p>list, tuple and str are sequences, shared some same methods</p>
+</div>
+</div>
+<div class="section" id="statements">
+<h2>Statements<a class="headerlink" href="#statements" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<div class="section" id="loop">
+<h3>loop<a class="headerlink" href="#loop" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">for</span> <span class="pre">i</span> <span class="pre">in</span> <span class="pre">range(a,b)</span></code></li>
+<li><code class="docutils literal"><span class="pre">for</span> <span class="pre">k,v</span> <span class="pre">in</span> <span class="pre">dict</span></code></li>
+<li><code class="docutils literal"><span class="pre">while</span> <span class="pre">True</span></code></li>
+<li><code class="docutils literal"><span class="pre">pass</span></code> &#8211; do nothing, used to make sure the integrity of code block</li>
+<li><code class="docutils literal"><span class="pre">break/continue</span></code> &#8211; same as other languages</li>
+</ul>
+</div>
+<div class="section" id="capture-of-err">
+<h3>Capture of err<a class="headerlink" href="#capture-of-err" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">b</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">c</span>
+<span class="k">except</span> <span class="ne">Exception</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+    <span class="k">print</span> <span class="ne">Exception</span><span class="p">,</span> <span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">e</span>
+
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">b</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">c</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="n">info</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">exec_info</span><span class="p">()</span>
+    <span class="k">print</span> <span class="n">info</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">info</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="kn">import</span> <span class="nn">traceback</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">b</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">c</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;log.txt&quot;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span>
+    <span class="n">traceback</span><span class="o">.</span><span class="n">print_exc</span><span class="p">()</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>   <span class="c1"># dump from internal I/O buffer</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="iterator">
+<h3>Iterator<a class="headerlink" href="#iterator" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Iterator class should have pre-defined function <code class="docutils literal"><span class="pre">next()</span></code> and <code class="docutils literal"><span class="pre">__iter__</span></code></li>
+<li><code class="docutils literal"><span class="pre">iter()</span></code> can translate list into a iterator</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">lst</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">it</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">val</span> <span class="o">=</span> <span class="n">it</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+        <span class="k">print</span> <span class="n">val</span>
+<span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+    <span class="k">pass</span>
+
+
+
+<span class="c1"># define a iterator class</span>
+<span class="k">class</span> <span class="nc">Fabs</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">max</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max</span> <span class="o">=</span> <span class="nb">max</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span>
+    <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">return</span> <span class="n">r</span>
+        <span class="k">raise</span> <span class="ne">StopIteration</span><span class="p">()</span>
+
+<span class="k">print</span> <span class="n">Fabs</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">Fabs</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="k">print</span> <span class="n">key</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="judgement">
+<h3>Judgement<a class="headerlink" href="#judgement" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">if/elif/else</span></code> &#8211; there is no swith statement in python</p>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">is/in/not</span></code> &#8211; not can cooperate w/ <code class="docutils literal"><span class="pre">is/in</span></code></dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">is</span></code> used to judge the obj&#8217;s type</li>
+<li><code class="docutils literal"><span class="pre">in</span></code> used to judge including relationship</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="ow">is</span> <span class="bp">None</span>
+<span class="n">a</span> <span class="ow">is</span> <span class="n">b</span>
+<span class="n">a</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">b</span>
+<span class="n">a</span> <span class="ow">in</span> <span class="n">b</span>
+<span class="n">a</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">b</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="generator">
+<h3>Generator<a class="headerlink" href="#generator" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal"><span class="pre">yield</span></code> makes function a generator</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fab</span><span class="p">(</span><span class="nb">max</span><span class="p">):</span>
+    <span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="nb">max</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">b</span>
+        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="context-manager">
+<h3>Context manager<a class="headerlink" href="#context-manager" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal"><span class="pre">with</span> <span class="pre">...</span> <span class="pre">as</span> <span class="pre">...:</span></code> will help us to call the close() function.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># try except is hard to use</span>
+<span class="c1"># =========================</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;xxx&#39;</span><span class="p">)</span>
+    <span class="n">do</span> <span class="n">something</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="n">do</span> <span class="n">something</span>
+<span class="k">finally</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c1"># correct format</span>
+<span class="c1"># ==============</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;xxx&#39;</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s1">&#39;fail to open&#39;</span>
+    <span class="nb">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">do</span> <span class="n">something</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="n">do</span> <span class="n">something</span>
+<span class="k">finally</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c1"># elegant way</span>
+<span class="c1"># ===========</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;xxx&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">do</span> <span class="n">something</span>
+<span class="k">except</span> <span class="n">xxxError</span><span class="p">:</span>
+    <span class="n">do</span> <span class="n">something</span> <span class="n">about</span> <span class="n">err</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="permanent-storage">

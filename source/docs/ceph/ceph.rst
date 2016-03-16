@@ -24,10 +24,12 @@ Ceph can uniquely deliver object, block and file storage in one unified system.
 - disadvantages
     - c++ & python, slower and simpler than **c**
     - doubel input, long IO path and bad support for fast storage deviecs(SSD/PCIe SSD/NVRAM)
-    - bad cephfs
+    - bad cephfs no big move recently
     - write-all-read-one will cause bad performance when writing w/ disk failure
     - supervised by redhat and contributed mostly by them
-    - multiple OSDs in a single host, if host down, tons of PG will be affected
+    - multiple OSDs in a single host, if host down, tons of PG will be affecte
+    - upper limited of single cluster
+    - rgw index pool bad performance, even w/ SSD
 
 
 ceph releases

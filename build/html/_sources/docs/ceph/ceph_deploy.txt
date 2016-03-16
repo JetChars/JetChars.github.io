@@ -347,7 +347,7 @@ rbd client
     # ====================================================
     rbd create foo --size 4096   # unit is MB
     sudo rbd map foo --pool rbd --name client.admin
-    sudo mkfs.ext4 -m0 /dev/rbd/foo
+    sudo mkfs.ext4 -m0 /dev/rbd/rbd/foo
     sudo mkdir /mnt/test
     sudo mount /dev/rbd/rbd/foo /mnt/test
     cd /mnt/test

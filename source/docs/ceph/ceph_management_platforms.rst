@@ -37,13 +37,54 @@ https://github.com/ceph/calamari-clients
 - ceph clients
     - composed of: salt-minion , diamond
 
-``deb http://download.ceph.com/calamari/1.3.1/ubuntu/trusty/ trusty main``
-
-
 
 .. image:: /images/ceph/ceph_calamari_summary.png
 .. image:: /images/ceph/ceph_calamari_osds.png
 
+
+
+installation
+^^^^^^^^^^^^
+
+.. code-block:: shell
+
+    # add repo, install dependency and install calamari
+    # =================================================
+    echo "deb http://download.ceph.com/calamari/1.3.1/ubuntu/trusty/ trusty main" >> /etc/apt/source.list.d/ceph.list
+    sudo apt-get update && sudo apt-get install -y apache2 libapache2-mod-wsgi libcairo2 supervisor python-cairo libpq5 postgresql
+    sudo apt-get install calamari-* -y
+
+    # initialize calamari and conn to ceph nodes
+    sudo calamari-ctl initialize
+    sudo apt-get intall python-dev   # prerequsite to install diamond
+    git clone -b calamarihttps://github.com/ceph/diamond/
+    sudo pip install -y diamond/
+    echo ``auto_accept: True`` >> /etc/salt/master   # make sure salt master auto accept the conn request
+    ceph-deploy calamari connect <ceph nodes>
+    kill `ps aux | grep salt | awk '{print $2}'`   # kill all salt in a single server
+
+
+.. code-block:: console
+
+    $ sudo calamari-ctl initialize
+    [INFO] Loading configuration..
+    [INFO] Starting/enabling salt...
+    [INFO] Starting/enabling postgres...
+    [INFO] Updating database...
+    [INFO] Initializing web interface...
+    [INFO] Starting/enabling services...
+    [INFO] Updating already connected nodes.
+    [INFO] Restarting services...
+    [INFO] Complete.
+
+    $ 
+
+
+- issues
+    - errors can be shown in /var/log/calamari/calamari.log
+    - **can't open log/config file** -- ``sudo chmod 777 /var/log/calamari/ -R``
+    -  **Master hostname: salt not found**  -- debug w/ ``salt-minion -l debug``
+    - **Cluster Updates Are Stale. The Cluster isn't updating Calamari. Please contact Administrator** -- solution can't access from redhat website!
 
 
 
@@ -101,6 +142,8 @@ https://github.com/01org/virtual-storage-manager
         - stop w/o rebalancing
     - ssh2nova_ctrl, expose pools to OpenStack
     - vsm account mgt
+
+
 
 
 
