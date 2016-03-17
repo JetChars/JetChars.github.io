@@ -214,6 +214,27 @@ clock skew detected on mon
 - Verify: ``ceph -w``
 
 
+pg issues
+---------
+
+.. code-block:: console
+
+    # ceph -s
+     cluster 5604fcc8-4773-4e11-9c10-9070cc27ff17
+     health HEALTH_WARN
+            64 pgs degraded
+            33 pgs stuck unclean
+            64 pgs undersized
+            recovery 558/1116 objects degraded (50.000%)
+
+- This issue can be fixed by pg repair.
+
+.. code-block:: shell
+
+    for i in `ceph pg dump | awk '{print $1}'`; do ceph pg repair $i;done 2>/dev/null
+
+
+
 
 
 References

@@ -89,6 +89,7 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="ceph/ceph.html">Ceph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ceph/ceph_api.html">Ceph APIs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ceph/ceph_deploy.html">Ceph Deploy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ceph/ceph_issues.html">Ceph Issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ceph/ceph_management_platforms.html">Ceph Management Platforms</a></li>
@@ -120,6 +121,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="linux/freebsd.html">FreeBSD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linux/linux.html">Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linux/linux_auto.html">Linux Automizaiton Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linux/linux_disk.html">Linux Disk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linux/linux_doc.html">Documentation Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linux/linux_info.html">Get System Infos</a></li>
@@ -160,9 +162,21 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#check-infos">Check Infos</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#init-a-project">Init a project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#other-things">Other Things</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodule">submodule</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="github/index.html">GitHub &#8211; Git repository hosting service</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="python/pelican.html">pelican</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python/pep8.html">PEP8</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python/psdash.html">psdash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python/py_builtin.html">Python Built-in Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python/py_issues.html">Python Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python/python.html">Python</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="regex/index.html">Regular Expression</a></li>
@@ -568,6 +582,25 @@ git commit -m <span class="s2">&quot;first commit&quot;</span>
 git remote add origin https://github.com/JetChars/myho.git
 git push -u origin master  <span class="c1"># -u tells git to remember the parameters</span>
 </pre></div>
+</div>
+</div>
+<div class="section" id="other-things">
+<h2>Other Things<a class="headerlink" href="#other-things" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<div class="section" id="submodule">
+<h3>submodule<a class="headerlink" href="#submodule" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>config file &#8211; <code class="docutils literal"><span class="pre">/project_folder/.gitmodules</span></code></li>
+</ul>
+<div class="highlight-ini"><div class="highlight"><pre><span></span><span class="k">[submodule &quot;docs&quot;]</span>
+        <span class="na">path</span> <span class="o">=</span> <span class="s">docs</span>
+<span class="s">        url = git://github.com/BrightcoveOS/Diamond.wiki.git</span>
+</pre></div>
+</div>
+<div class="highlight-shell"><div class="highlight"><pre><span></span>git submodule init
+git submodule update
+</pre></div>
+</div>
 </div>
 </div>
 </div>

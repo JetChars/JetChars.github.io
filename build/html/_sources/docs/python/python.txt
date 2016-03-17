@@ -184,7 +184,12 @@ Generator
 Context manager
 ---------------
 
-``with ... as ...:`` will help us to call the close() function.
+- Context Management Protocol -- defines function include ``__enter__()`` and ``__exit__()``
+- Context Managet -- an implementation of CMP
+    - use ``with context_expression [as targets]: with-body`` enter&exit context
+    - ``__enter__()`` -- enter context before with-body
+    - ``__exit__()`` -- exit context after with-body
+    - like ``try/finally`` -- can make sure context exit correctly
 
 .. code-block:: python
 

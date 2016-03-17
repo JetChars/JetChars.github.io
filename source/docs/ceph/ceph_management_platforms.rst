@@ -22,6 +22,7 @@ Calamari
 --------
 
 https://github.com/ceph/calamari
+
 https://github.com/ceph/calamari-clients
 
 - start by inktank
@@ -35,8 +36,8 @@ https://github.com/ceph/calamari-clients
 - client side (frontend)
     - Web UI primary in JS uses the Calamari REST API
 - ceph clients
-    - composed of: salt-minion , diamond
-
+    - composed of -- salt-minion , diamond
+    - diamond -- collect monitoring datas, support over 90 kinds of info. report to graphite.
 
 .. image:: /images/ceph/ceph_calamari_summary.png
 .. image:: /images/ceph/ceph_calamari_osds.png
@@ -53,15 +54,22 @@ installation
     echo "deb http://download.ceph.com/calamari/1.3.1/ubuntu/trusty/ trusty main" >> /etc/apt/source.list.d/ceph.list
     sudo apt-get update && sudo apt-get install -y apache2 libapache2-mod-wsgi libcairo2 supervisor python-cairo libpq5 postgresql
     sudo apt-get install calamari-* -y
+    sudo chmod a+w /var/log/calamari/cthulhu.log   # can't access by default
+
+    # install ceph nodes
+    # ==================
+    sudo apt-get intall python-dev   # prerequsite to install diamond
+    git clone -b calamari https://github.com/ceph/diamond/
+    sudo pip install -y diamond/
 
     # initialize calamari and conn to ceph nodes
     sudo calamari-ctl initialize
-    sudo apt-get intall python-dev   # prerequsite to install diamond
-    git clone -b calamarihttps://github.com/ceph/diamond/
-    sudo pip install -y diamond/
     echo ``auto_accept: True`` >> /etc/salt/master   # make sure salt master auto accept the conn request
     ceph-deploy calamari connect <ceph nodes>
+
+    # kill all salts
     kill `ps aux | grep salt | awk '{print $2}'`   # kill all salt in a single server
+
 
 
 .. code-block:: console
@@ -82,9 +90,14 @@ installation
 
 - issues
     - errors can be shown in /var/log/calamari/calamari.log
+    - query calamari issuses -- http://tracker.ceph.com/projects/calamari/issues
     - **can't open log/config file** -- ``sudo chmod 777 /var/log/calamari/ -R``
     -  **Master hostname: salt not found**  -- debug w/ ``salt-minion -l debug``
     - **Cluster Updates Are Stale. The Cluster isn't updating Calamari. Please contact Administrator** -- solution can't access from redhat website!
+    - **diamond can't start** -- default conf call the path of diamond ``/usr/bin/diamond``, real path is ``/usr/local/bin/diamond``, create a link file to solve this issue
+        - ``mkdir /usr/share/diamond/collectors/ -p``
+        - ``mkdir /var/log/calamari/``
+        - ``ln -sf /usr/local/bin/diamond /usr/bin/diamond``
 
 
 

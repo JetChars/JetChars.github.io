@@ -28,3 +28,27 @@ Regular Expression processing module.
         do_some_thing()
     if re.search("regex", "str"):
         do_some_thing()
+
+
+
+
+
+SocketServer
+============
+
+
+.. code-block:: guess
+
+    +------------+
+    | BaseServer |
+    +------------+
+          |
+          v
+    +-----------+        +------------------+
+    | TCPServer |------->| UnixStreamServer |
+    +-----------+        +------------------+
+          |
+          v
+    +-----------+        +--------------------+
+    | UDPServer |------->| UnixDatagramServer |
+    +-----------+        +--------------------+

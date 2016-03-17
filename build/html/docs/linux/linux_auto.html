@@ -122,7 +122,12 @@
 <li class="toctree-l1"><a class="reference internal" href="freebsd.html">FreeBSD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linux.html">Linux</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Linux Automizaiton Tools</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#salt">Salt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#puppet">Puppet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#chef">chef</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#saltstack">SaltStack</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#master-and-minion">Master and Minion</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="linux_disk.html">Linux Disk</a></li>
@@ -220,21 +225,49 @@
             
   <div class="section" id="linux-automizaiton-tools">
 <h1>Linux Automizaiton Tools<a class="headerlink" href="#linux-automizaiton-tools" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="salt">
-<h2>Salt<a class="headerlink" href="#salt" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="puppet">
+<h2>Puppet<a class="headerlink" href="#puppet" title="Permalink to this headline">¶</a></h2>
+</div>
 <hr class="docutils" />
+<div class="section" id="chef">
+<h2>chef<a class="headerlink" href="#chef" title="Permalink to this headline">¶</a></h2>
+</div>
+<hr class="docutils" />
+<div class="section" id="saltstack">
+<h2>SaltStack<a class="headerlink" href="#saltstack" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p>SaltStack is brand new automization management tool, used to manage configurations and exec cmds remotely.
+- every config file in YAML format
+- config files &#8211; <code class="docutils literal"><span class="pre">/etc/salt/</span></code></p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">/etc/salt/master</span></code> &#8211; interface(listening IP), auto_accept(True, will reduce the key adding work)</li>
+</ul>
+</div></blockquote>
 <ul class="simple">
-<li>salt-mater/salt-client</li>
-<li>config files &#8211; <code class="docutils literal"><span class="pre">/etc/salt/</span></code></li>
 <li>log files &#8211; <code class="docutils literal"><span class="pre">/var/log/salt/</span></code></li>
 </ul>
-<div class="highlight-shell"><div class="highlight"><pre><span></span>salt-master -l debug
+<div class="section" id="master-and-minion">
+<h3>Master and Minion<a class="headerlink" href="#master-and-minion" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>minino will create <code class="docutils literal"><span class="pre">/etc/salt/pki/minion/minion.{pem,pub}</span></code> when first started. then send <code class="docutils literal"><span class="pre">pub</span></code> file to master</li>
+<li>after accept the <code class="docutils literal"><span class="pre">pub</span></code> key from minion, master should use cmd <code class="docutils literal"><span class="pre">salt-key</span> <span class="pre">-a</span> <span class="pre">&lt;minion&gt;</span></code> to accept this key. then put this key under <code class="docutils literal"><span class="pre">/etc/salt/pki/master/minions</span></code></li>
+<li>master will use port 4505 and 4506 &#8211; 4505 will keep conn w/ minions</li>
+</ul>
+<div class="highlight-shell"><div class="highlight"><pre><span></span><span class="c1"># install and start the salt master</span>
+<span class="c1"># =================================</span>
+apt-get install salt-master -y
+salt-master -l debug
 salt-master -d
+salt-master status
+
+salt-master restart --log-level<span class="o">=</span>debug
 salt-minion -l debug
 salt-minion -d
 salt-key -a &lt;minion&gt;
 salt-key -L
 </pre></div>
+</div>
 </div>
 </div>
 </div>

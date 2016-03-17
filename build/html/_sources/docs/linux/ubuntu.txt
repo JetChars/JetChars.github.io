@@ -235,9 +235,10 @@ DPKG
     # install or remove a deb binary
     dpkg -i <pkgname>   
     dpkg -r <pkgname>
-    dpkg -P <pkgname>   # will purge deb completely0
+    dpkg -P <pkgname>   # will purge deb completely
     # show pkg list
     dpkg -l
+    dpkg -l | grep <pkg>
 
 
 

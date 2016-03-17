@@ -62,6 +62,34 @@ features
 - no centralize access point -- client contact Primary OSD directly
 
 
+pg states
+---------
+
+- creating -- pg under creating
+- active -- can process r/w or other operations
+- clean -- make the full reps of objs
+- down -- the pg is offline
+- replay -- waiting for client to replay op after an OSD crashed
+- splitting -- splitting 1 pg into multi pg
+- scrubbing -- cheking for inconsistencies
+- degraded -- not have enough reps
+- inconsistent -- wrong size, missing, etc.
+- peering -- OSDs not reached a consensus
+- repair -- repairing inconsistencies
+- recovering -- migrating/synchronizing objs and their reps
+- backfill -- scanning and synchronizing the entire pg from the logs for recent op. (special recovering)
+- wait-backfill -- wait for backfill
+- backfill-toofull -- waiting because the dest OSD is over full ratio
+- incomplete -- have unhealthy copies, can solve by start failed OSD to temporary meet the condition of **min_size**.
+- stale -- pg is in an unknow state
+- remapped -- pg is temporarily mapped to a diff set of OSDs
+- undersized -- pg have fewer copies than configured pool rep level
+- peered -- pg has peered, but not reach **min_size**
+
+
+
+
+
 Architecture
 ============
 ============

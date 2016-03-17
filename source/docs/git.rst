@@ -285,4 +285,28 @@ Init a project
 
 
 
+Other Things
+============
+============
 
+
+submodule
+---------
+
+
+- config file -- ``/project_folder/.gitmodules``
+
+
+.. code-block:: ini
+
+    [submodule "docs"]
+            path = docs
+            url = git://github.com/BrightcoveOS/Diamond.wiki.git
+
+
+
+.. code-block:: shell
+
+    git submodule init
+    git submodule update
+            

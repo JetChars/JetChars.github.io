@@ -31,7 +31,7 @@
 
   
     <link rel="top" title="JetChars alpha documentation" href="../../index.html"/>
-        <link rel="next" title="Python" href="python.html"/>
+        <link rel="next" title="Python Issues" href="py_issues.html"/>
         <link rel="prev" title="psdash" href="psdash.html"/> 
 
   
@@ -121,6 +121,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../linux/freebsd.html">FreeBSD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux.html">Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_auto.html">Linux Automizaiton Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_disk.html">Linux Disk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_doc.html">Documentation Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_info.html">Get System Infos</a></li>
@@ -143,8 +144,10 @@
 <li class="toctree-l1"><a class="reference internal" href="psdash.html">psdash</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Python Built-in Modules</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#re">re</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#socketserver">SocketServer</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="py_issues.html">Python Issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="python.html">Python</a></li>
 </ul>
 <ul>
@@ -263,6 +266,24 @@
 </pre></div>
 </div>
 </div>
+<div class="section" id="socketserver">
+<h2>SocketServer<a class="headerlink" href="#socketserver" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-guess"><div class="highlight"><pre><span></span>+------------+
+| BaseServer |
++------------+
+      |
+      v
++-----------+        +------------------+
+| TCPServer |-------&gt;| UnixStreamServer |
++-----------+        +------------------+
+      |
+      v
++-----------+        +--------------------+
+| UDPServer |-------&gt;| UnixDatagramServer |
++-----------+        +--------------------+
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -272,7 +293,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="python.html" class="btn btn-neutral float-right" title="Python" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="py_issues.html" class="btn btn-neutral float-right" title="Python Issues" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="psdash.html" class="btn btn-neutral" title="psdash" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>

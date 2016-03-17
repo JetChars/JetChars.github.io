@@ -309,6 +309,7 @@ cmds to check cluster stats
     ceph osd stat
     ceph osd dump
     ceph osd tree
+    ceph pg dump
     rbd list
 
 ceph client

@@ -92,6 +92,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#ceph-intro">Ceph Intro</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#ceph-releases">ceph releases</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#features">features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pg-states">pg states</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#architecture">Architecture</a></li>
@@ -340,6 +341,31 @@
 <li>health check &#8211; MON will ping osd nodes periodly, and OSDs also can report it&#8217;s and peer&#8217;s status to MON</li>
 <li>scrubing &#8211; daily light check file zize &amp; attr. weekly deep check with checksum</li>
 <li>no centralize access point &#8211; client contact Primary OSD directly</li>
+</ul>
+</div>
+<div class="section" id="pg-states">
+<h3>pg states<a class="headerlink" href="#pg-states" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>creating &#8211; pg under creating</li>
+<li>active &#8211; can process r/w or other operations</li>
+<li>clean &#8211; make the full reps of objs</li>
+<li>down &#8211; the pg is offline</li>
+<li>replay &#8211; waiting for client to replay op after an OSD crashed</li>
+<li>splitting &#8211; splitting 1 pg into multi pg</li>
+<li>scrubbing &#8211; cheking for inconsistencies</li>
+<li>degraded &#8211; not have enough reps</li>
+<li>inconsistent &#8211; wrong size, missing, etc.</li>
+<li>peering &#8211; OSDs not reached a consensus</li>
+<li>repair &#8211; repairing inconsistencies</li>
+<li>recovering &#8211; migrating/synchronizing objs and their reps</li>
+<li>backfill &#8211; scanning and synchronizing the entire pg from the logs for recent op. (special recovering)</li>
+<li>wait-backfill &#8211; wait for backfill</li>
+<li>backfill-toofull &#8211; waiting because the dest OSD is over full ratio</li>
+<li>incomplete &#8211; have unhealthy copies, can solve by start failed OSD to temporary meet the condition of <strong>min_size</strong>.</li>
+<li>stale &#8211; pg is in an unknow state</li>
+<li>remapped &#8211; pg is temporarily mapped to a diff set of OSDs</li>
+<li>undersized &#8211; pg have fewer copies than configured pool rep level</li>
+<li>peered &#8211; pg has peered, but not reach <strong>min_size</strong></li>
 </ul>
 </div>
 </div>

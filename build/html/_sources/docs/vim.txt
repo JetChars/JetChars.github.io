@@ -74,16 +74,92 @@ Shotcuts
 
 `Sublime Text <http://www.sublimetext.com/>`_
 =============================================
+=============================================
 
 Can be run in vi mode.
+
+shortcuts
+---------
+
+======================= ===========================================
+Combination             Description
+======================= ===========================================
+alt_shift_{1~9}         switch window layout
+F6                      check spelling
+^/                      comment selected lines
+^b                      compile
+^B                      compile and run
+^l                      select line(reps can select lines below)
+^L                      entering multi-line editing mode
+^[/]                    indent left/right
+^{/}                    fold/collapse code-block
+^P                      sublime cmds
+^f                      search
+^d                      select same, can be batch replaced
+^`                      exec py cmds
+shift_rightclick        multi-line select&edit
+======================= ===========================================
+
+
+config
+------
 
 .. code-block:: json
     :linenos:
 
     {
-      "font_size": 19,
+      "font_size": 16,
       "update_check": false,
-      "ignored_packages": []
+      "ignored_packages": [],
+      "http_proxy":"proxy-us.intel.com:911"
+    }
+
+
+install pkgmgt module
+---------------------
+
+- use ``^``` calling sublime cli
+- entering codes below
+- then restart the sublime.
+
+
+- code for sublime text2
+
+.. code-block:: python
+
+    import urllib2,os; pf='Package Control.sublime-package'; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) if not os.path.exists(ipp) else None; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler( ))); open( os.path.join( ipp, pf), 'wb' ).write( urllib2.urlopen( 'http://sublime.wbond.net/' +pf.replace( ' ','%20' )).read()); print( 'Please restart Sublime Text to finish installation') 
+
+
+- code for sublime text 3
+
+.. code-block:: python
+
+    import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())
+
+
+manage pkgs w/ pkgmgt
+---------------------
+
+- install pkgs -- ``^p`` --> search install --> query pkgs
+- remove pkgs -- ``^p`` --> search remove --> query pkgs
+- good pkgs
+    - SublimeCodeIntel -- auto-completion tool(works for python)
+
+
+PyLinter
+^^^^^^^^
+
+- module pylint must be installed
+    - ``python -m pip install pylint`` -- install pylint
+    - ``python -m pip show pylint`` -- get pylint's location
+
+.. code-block:: json
+
+    {
+        "pylint_path": "C:\\Python27\\Lib\\site-packages\\pylint",
+        "use_icons": true,
+        "run_on_save": true,
+        "message_stay": true
     }
 
 

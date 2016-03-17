@@ -87,6 +87,7 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="ceph/ceph.html">Ceph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ceph/ceph_api.html">Ceph APIs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ceph/ceph_deploy.html">Ceph Deploy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ceph/ceph_issues.html">Ceph Issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ceph/ceph_management_platforms.html">Ceph Management Platforms</a></li>
@@ -118,6 +119,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="linux/freebsd.html">FreeBSD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linux/linux.html">Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linux/linux_auto.html">Linux Automizaiton Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linux/linux_disk.html">Linux Disk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linux/linux_doc.html">Documentation Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linux/linux_info.html">Get System Infos</a></li>
@@ -133,6 +135,14 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="git.html">Git &#8211; Extraordinary version contrl software</a></li>
 <li class="toctree-l1"><a class="reference internal" href="github/index.html">GitHub &#8211; Git repository hosting service</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="python/pelican.html">pelican</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python/pep8.html">PEP8</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python/psdash.html">psdash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python/py_builtin.html">Python Built-in Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python/py_issues.html">Python Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python/python.html">Python</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="regex/index.html">Regular Expression</a></li>
@@ -290,18 +300,139 @@ sudo pip install dbgp vim-debug pep8 flake8 pyflakes isort
 </div>
 <div class="section" id="id1">
 <h2><a class="reference external" href="http://www.sublimetext.com/">Sublime Text</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
 <p>Can be run in vi mode.</p>
+<div class="section" id="shortcuts">
+<h3>shortcuts<a class="headerlink" href="#shortcuts" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="35%" />
+<col width="65%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Combination</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>alt_shift_{1~9}</td>
+<td>switch window layout</td>
+</tr>
+<tr class="row-odd"><td>F6</td>
+<td>check spelling</td>
+</tr>
+<tr class="row-even"><td>^/</td>
+<td>comment selected lines</td>
+</tr>
+<tr class="row-odd"><td>^b</td>
+<td>compile</td>
+</tr>
+<tr class="row-even"><td>^B</td>
+<td>compile and run</td>
+</tr>
+<tr class="row-odd"><td>^l</td>
+<td>select line(reps can select lines below)</td>
+</tr>
+<tr class="row-even"><td>^L</td>
+<td>entering multi-line editing mode</td>
+</tr>
+<tr class="row-odd"><td>^[/]</td>
+<td>indent left/right</td>
+</tr>
+<tr class="row-even"><td>^{/}</td>
+<td>fold/collapse code-block</td>
+</tr>
+<tr class="row-odd"><td>^P</td>
+<td>sublime cmds</td>
+</tr>
+<tr class="row-even"><td>^f</td>
+<td>search</td>
+</tr>
+<tr class="row-odd"><td>^d</td>
+<td>select same, can be batch replaced</td>
+</tr>
+<tr class="row-even"><td>^`</td>
+<td>exec py cmds</td>
+</tr>
+<tr class="row-odd"><td>shift_rightclick</td>
+<td>multi-line select&amp;edit</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="config">
+<h3>config<a class="headerlink" href="#config" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-json"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4
-5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="nt">&quot;font_size&quot;</span><span class="p">:</span> <span class="mi">19</span><span class="p">,</span>
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;font_size&quot;</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
   <span class="nt">&quot;update_check&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="nt">&quot;ignored_packages&quot;</span><span class="p">:</span> <span class="p">[]</span>
+  <span class="nt">&quot;ignored_packages&quot;</span><span class="p">:</span> <span class="p">[],</span>
+  <span class="nt">&quot;http_proxy&quot;</span><span class="p">:</span><span class="s2">&quot;proxy-us.intel.com:911&quot;</span>
 <span class="p">}</span>
 </pre></div>
 </td></tr></table></div>
+</div>
+<div class="section" id="install-pkgmgt-module">
+<h3>install pkgmgt module<a class="headerlink" href="#install-pkgmgt-module" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>use <code class="docutils literal"><span class="pre">^`</span></code> calling sublime cli</li>
+<li>entering codes below</li>
+<li>then restart the sublime.</li>
+<li>code for sublime text2</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib2</span><span class="o">,</span><span class="nn">os</span><span class="p">;</span> <span class="n">pf</span><span class="o">=</span><span class="s1">&#39;Package Control.sublime-package&#39;</span><span class="p">;</span> <span class="n">ipp</span> <span class="o">=</span> <span class="n">sublime</span><span class="o">.</span><span class="n">installed_packages_path</span><span class="p">();</span> <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span> <span class="n">ipp</span> <span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">ipp</span><span class="p">)</span> <span class="k">else</span> <span class="bp">None</span><span class="p">;</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">install_opener</span><span class="p">(</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">build_opener</span><span class="p">(</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">ProxyHandler</span><span class="p">(</span> <span class="p">)));</span> <span class="nb">open</span><span class="p">(</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span> <span class="n">ipp</span><span class="p">,</span> <span class="n">pf</span><span class="p">),</span> <span class="s1">&#39;wb&#39;</span> <span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span> <span class="s1">&#39;http://sublime.wbond.net/&#39;</span> <span class="o">+</span><span class="n">pf</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span> <span class="s1">&#39; &#39;</span><span class="p">,</span><span class="s1">&#39;%20&#39;</span> <span class="p">))</span><span class="o">.</span><span class="n">read</span><span class="p">());</span> <span class="k">print</span><span class="p">(</span> <span class="s1">&#39;Please restart Sublime Text to finish installation&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>code for sublime text 3</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib.request</span><span class="o">,</span><span class="nn">os</span><span class="p">;</span> <span class="n">pf</span> <span class="o">=</span> <span class="s1">&#39;Package Control.sublime-package&#39;</span><span class="p">;</span> <span class="n">ipp</span> <span class="o">=</span> <span class="n">sublime</span><span class="o">.</span><span class="n">installed_packages_path</span><span class="p">();</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">install_opener</span><span class="p">(</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">build_opener</span><span class="p">(</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">ProxyHandler</span><span class="p">())</span> <span class="p">);</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ipp</span><span class="p">,</span> <span class="n">pf</span><span class="p">),</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span> <span class="s1">&#39;http://sublime.wbond.net/&#39;</span> <span class="o">+</span> <span class="n">pf</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="s1">&#39;%20&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="manage-pkgs-w-pkgmgt">
+<h3>manage pkgs w/ pkgmgt<a class="headerlink" href="#manage-pkgs-w-pkgmgt" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">install pkgs &#8211; <code class="docutils literal"><span class="pre">^p</span></code> &#8211;&gt; search install &#8211;&gt; query pkgs</p>
+</li>
+<li><p class="first">remove pkgs &#8211; <code class="docutils literal"><span class="pre">^p</span></code> &#8211;&gt; search remove &#8211;&gt; query pkgs</p>
+</li>
+<li><dl class="first docutils">
+<dt>good pkgs</dt>
+<dd><ul class="first last simple">
+<li>SublimeCodeIntel &#8211; auto-completion tool(works for python)</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="section" id="pylinter">
+<h4>PyLinter<a class="headerlink" href="#pylinter" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><dl class="first docutils">
+<dt>module pylint must be installed</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pylint</span></code> &#8211; install pylint</li>
+<li><code class="docutils literal"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">show</span> <span class="pre">pylint</span></code> &#8211; get pylint&#8217;s location</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;pylint_path&quot;</span><span class="p">:</span> <span class="s2">&quot;C:\\Python27\\Lib\\site-packages\\pylint&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;use_icons&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&quot;run_on_save&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&quot;message_stay&quot;</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="issues">
 <h2>Issues<a class="headerlink" href="#issues" title="Permalink to this headline">¶</a></h2>

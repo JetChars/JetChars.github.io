@@ -32,7 +32,7 @@
   
     <link rel="top" title="JetChars alpha documentation" href="../../index.html"/>
         <link rel="next" title="Regular Expression" href="../regex/index.html"/>
-        <link rel="prev" title="Python Built-in Modules" href="py_builtin.html"/> 
+        <link rel="prev" title="Python Issues" href="py_issues.html"/> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -121,6 +121,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../linux/freebsd.html">FreeBSD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux.html">Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_auto.html">Linux Automizaiton Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_disk.html">Linux Disk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_doc.html">Documentation Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_info.html">Get System Infos</a></li>
@@ -142,6 +143,7 @@
 <li class="toctree-l1"><a class="reference internal" href="pep8.html">PEP8</a></li>
 <li class="toctree-l1"><a class="reference internal" href="psdash.html">psdash</a></li>
 <li class="toctree-l1"><a class="reference internal" href="py_builtin.html">Python Built-in Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_issues.html">Python Issues</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Python</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#get-helps">Get Helps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#helloworld">HelloWorld</a><ul>
@@ -418,7 +420,21 @@
 </div>
 <div class="section" id="context-manager">
 <h3>Context manager<a class="headerlink" href="#context-manager" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal"><span class="pre">with</span> <span class="pre">...</span> <span class="pre">as</span> <span class="pre">...:</span></code> will help us to call the close() function.</p>
+<ul>
+<li><p class="first">Context Management Protocol &#8211; defines function include <code class="docutils literal"><span class="pre">__enter__()</span></code> and <code class="docutils literal"><span class="pre">__exit__()</span></code></p>
+</li>
+<li><dl class="first docutils">
+<dt>Context Managet &#8211; an implementation of CMP</dt>
+<dd><ul class="first last simple">
+<li>use <code class="docutils literal"><span class="pre">with</span> <span class="pre">context_expression</span> <span class="pre">[as</span> <span class="pre">targets]:</span> <span class="pre">with-body</span></code> enter&amp;exit context</li>
+<li><code class="docutils literal"><span class="pre">__enter__()</span></code> &#8211; enter context before with-body</li>
+<li><code class="docutils literal"><span class="pre">__exit__()</span></code> &#8211; exit context after with-body</li>
+<li>like <code class="docutils literal"><span class="pre">try/finally</span></code> &#8211; can make sure context exit correctly</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># try except is hard to use</span>
 <span class="c1"># =========================</span>
 <span class="k">try</span><span class="p">:</span>
@@ -502,7 +518,7 @@ bandersnatch &#8211; Mirroring tool that implements the client (mirror) side of 
         <a href="../regex/index.html" class="btn btn-neutral float-right" title="Regular Expression" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="py_builtin.html" class="btn btn-neutral" title="Python Built-in Modules" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="py_issues.html" class="btn btn-neutral" title="Python Issues" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
