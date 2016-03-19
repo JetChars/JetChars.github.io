@@ -155,6 +155,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../github/index.html">GitHub &#8211; Git repository hosting service</a></li>
 </ul>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../python/cython.html">Cython</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python/pelican.html">pelican</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python/pep8.html">PEP8</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python/psdash.html">psdash</a></li>
@@ -243,22 +244,20 @@
 <h3>Calamari<a class="headerlink" href="#calamari" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://github.com/ceph/calamari">https://github.com/ceph/calamari</a></p>
 <p><a class="reference external" href="https://github.com/ceph/calamari-clients">https://github.com/ceph/calamari-clients</a></p>
+<ul class="simple">
+<li>start by inktank</li>
+<li>opensrc since May 2014</li>
+<li>present as diagnostic tool</li>
+<li>exposing a high level REST API</li>
+<li>precompiled pkgs not available(in ubuntu vagrant)</li>
+</ul>
+<img alt="../../_images/calamari_architecture.jpg" class="align-right" src="../../_images/calamari_architecture.jpg" />
 <ul>
-<li><p class="first">start by inktank</p>
-</li>
-<li><p class="first">opensrc since May 2014</p>
-</li>
-<li><p class="first">present as diagnostic tool</p>
-</li>
-<li><p class="first">exposing a high level REST API</p>
-</li>
-<li><p class="first">precompiled pkgs not available(in ubuntu vagrant)</p>
-</li>
 <li><dl class="first docutils">
 <dt>server side (backend)</dt>
 <dd><ul class="first last simple">
 <li>composed of:  Apache, salt-master , supervisord , cthulhu , carbon-cache</li>
-<li>newer version provide a compelte new REST API(old based on Ceph REST API)</li>
+<li>newer version provide a compelte new REST API(old based on Ceph REST API), abstract the ops of CEPH API, convient for people not know CEPH deeply.</li>
 </ul>
 </dd>
 </dl>
@@ -272,13 +271,17 @@
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt>ceph clients</dt>
+<dt>ceph nodes</dt>
 <dd><ul class="first last simple">
 <li>composed of &#8211; salt-minion , diamond</li>
 <li>diamond &#8211; collect monitoring datas, support over 90 kinds of info. report to graphite.</li>
 </ul>
 </dd>
 </dl>
+</li>
+<li><p class="first">manage cluster using cthulhu and saltstack</p>
+</li>
+<li><p class="first">monitoring using graphite and diamond</p>
 </li>
 </ul>
 <img alt="../../_images/ceph_calamari_summary.png" src="../../_images/ceph_calamari_summary.png" />
@@ -294,9 +297,9 @@ sudo chmod a+w /var/log/calamari/cthulhu.log   <span class="c1"># can&#39;t acce
 
 <span class="c1"># install ceph nodes</span>
 <span class="c1"># ==================</span>
-sudo apt-get intall python-dev   <span class="c1"># prerequsite to install diamond</span>
+sudo apt-get install python-dev python-pip git -y  <span class="c1"># prerequsite to install diamond</span>
 git clone -b calamari https://github.com/ceph/diamond/
-sudo pip install -y diamond/
+sudo pip install diamond/
 
 <span class="c1"># initialize calamari and conn to ceph nodes</span>
 sudo calamari-ctl initialize
@@ -327,7 +330,7 @@ ceph-deploy calamari connect &lt;ceph nodes&gt;
 <dd><ul class="first last">
 <li><p class="first">errors can be shown in /var/log/calamari/calamari.log</p>
 </li>
-<li><p class="first">query calamari issuses &#8211; <a class="reference external" href="http://tracker.ceph.com/projects/calamari/issues">http://tracker.ceph.com/projects/calamari/issues</a></p>
+<li><p class="first">query calamari issuses (some function not realized)&#8211; <a class="reference external" href="http://tracker.ceph.com/projects/calamari/issues">http://tracker.ceph.com/projects/calamari/issues</a></p>
 </li>
 <li><p class="first"><strong>can&#8217;t open log/config file</strong> &#8211; <code class="docutils literal"><span class="pre">sudo</span> <span class="pre">chmod</span> <span class="pre">777</span> <span class="pre">/var/log/calamari/</span> <span class="pre">-R</span></code></p>
 </li>
@@ -340,10 +343,23 @@ ceph-deploy calamari connect &lt;ceph nodes&gt;
 <dd><ul class="first last simple">
 <li><code class="docutils literal"><span class="pre">mkdir</span> <span class="pre">/usr/share/diamond/collectors/</span> <span class="pre">-p</span></code></li>
 <li><code class="docutils literal"><span class="pre">mkdir</span> <span class="pre">/var/log/calamari/</span></code></li>
+<li><code class="docutils literal"><span class="pre">scp</span> <span class="pre">/etc/diamond/*</span> <span class="pre">root&#64;192.168.56.111:/etc/diamond</span></code></li>
+<li><code class="docutils literal"><span class="pre">scp</span> <span class="pre">/usr/share/diamond/*</span> <span class="pre">root&#64;192.168.56.111:/usr/share/diamond</span></code></li>
 <li><code class="docutils literal"><span class="pre">ln</span> <span class="pre">-sf</span> <span class="pre">/usr/local/bin/diamond</span> <span class="pre">/usr/bin/diamond</span></code></li>
+<li><code class="docutils literal"><span class="pre">nohup</span> <span class="pre">/usr/bin/python</span> <span class="pre">/usr/local/bin/diamond</span> <span class="pre">--foreground</span> <span class="pre">--skip-change-user</span> <span class="pre">--skip-fork</span> <span class="pre">--skip-pidfile</span> <span class="pre">&amp;</span></code></li>
 </ul>
 </dd>
 </dl>
+</li>
+<li><dl class="first docutils">
+<dt><strong>diamond not report</strong> &#8211; <code class="docutils literal"><span class="pre">/var/lib/graphite/index</span></code> in thisfile we can tell all observation entries</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">netstat</span> <span class="pre">-tunpla</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">`ps</span> <span class="pre">aux</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">diamond</span> <span class="pre">|</span> <span class="pre">awk</span> <span class="pre">'{print</span> <span class="pre">$2}'</span> <span class="pre">|</span> <span class="pre">head</span> <span class="pre">-n1`</span></code>  &#8211; all nodes connected</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first"><strong>salt.loaded.int.module.cmdmod</strong></p>
 </li>
 </ul>
 </dd>

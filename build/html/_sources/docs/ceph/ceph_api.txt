@@ -3,6 +3,41 @@
 Ceph APIs
 =========
 
+LIBRADOS
+========
+
+librados ralize the messaging layer protocol, enable ceph-client comm w/ ceph-nodes.
+- librados support multi-lang
+    - librados-dev -- C/C++ version
+    - librados-python -- python version
+    - java verion will be unfriendly
+
+
+.. code-block:: python
+
+    import rados, sys
+
+    # use default or designate conffile, even specify a keyring
+    # =========================================================
+    cluster = rados.Rados(conffile='/etc/ceph/ceph.conf')
+    cluster = rados.Rados(conffile=sys.argv[1])
+    cluster = rados.Rados(conffile=sys.argv[1], conf=dict(keyring='/path/to/keyring'))
+
+    # conn to ceph cluster and manage pools
+    # =====================================
+    cluster.connect()
+    cluster_stats = cluster.get_cluster_stats()
+    pools = cluster.list_pools()
+    cluster.create_pool('test')
+    cluster.delete_pool('test')
+
+    # r/w w/ ioctx
+    ioctx = cluster.open_ioctx('mypool')
+    ioctx.write_full("hw", "Hello World!")
+    print ioctx.read("hw")
+    ioctx.remove_object("hw")
+
+
 
 
 LIBRBD

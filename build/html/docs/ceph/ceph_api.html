@@ -90,6 +90,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="ceph.html">Ceph</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Ceph APIs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#librados">LIBRADOS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#librbd">LIBRBD</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#example-of-creating-writing-to-an-image">Example of creating &amp; writing to an image</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#api-reference">API reference</a></li>
@@ -147,6 +148,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../github/index.html">GitHub &#8211; Git repository hosting service</a></li>
 </ul>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../python/cython.html">Cython</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python/pelican.html">pelican</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python/pep8.html">PEP8</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python/psdash.html">psdash</a></li>
@@ -225,6 +227,41 @@
             
   <div class="section" id="ceph-apis">
 <h1>Ceph APIs<a class="headerlink" href="#ceph-apis" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="librados">
+<h2>LIBRADOS<a class="headerlink" href="#librados" title="Permalink to this headline">¶</a></h2>
+<p>librados ralize the messaging layer protocol, enable ceph-client comm w/ ceph-nodes.
+- librados support multi-lang</p>
+<blockquote>
+<div><ul class="simple">
+<li>librados-dev &#8211; C/C++ version</li>
+<li>librados-python &#8211; python version</li>
+<li>java verion will be unfriendly</li>
+</ul>
+</div></blockquote>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rados</span><span class="o">,</span> <span class="nn">sys</span>
+
+<span class="c1"># use default or designate conffile, even specify a keyring</span>
+<span class="c1"># =========================================================</span>
+<span class="n">cluster</span> <span class="o">=</span> <span class="n">rados</span><span class="o">.</span><span class="n">Rados</span><span class="p">(</span><span class="n">conffile</span><span class="o">=</span><span class="s1">&#39;/etc/ceph/ceph.conf&#39;</span><span class="p">)</span>
+<span class="n">cluster</span> <span class="o">=</span> <span class="n">rados</span><span class="o">.</span><span class="n">Rados</span><span class="p">(</span><span class="n">conffile</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">cluster</span> <span class="o">=</span> <span class="n">rados</span><span class="o">.</span><span class="n">Rados</span><span class="p">(</span><span class="n">conffile</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">conf</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">keyring</span><span class="o">=</span><span class="s1">&#39;/path/to/keyring&#39;</span><span class="p">))</span>
+
+<span class="c1"># conn to ceph cluster and manage pools</span>
+<span class="c1"># =====================================</span>
+<span class="n">cluster</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="n">cluster_stats</span> <span class="o">=</span> <span class="n">cluster</span><span class="o">.</span><span class="n">get_cluster_stats</span><span class="p">()</span>
+<span class="n">pools</span> <span class="o">=</span> <span class="n">cluster</span><span class="o">.</span><span class="n">list_pools</span><span class="p">()</span>
+<span class="n">cluster</span><span class="o">.</span><span class="n">create_pool</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">)</span>
+<span class="n">cluster</span><span class="o">.</span><span class="n">delete_pool</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">)</span>
+
+<span class="c1"># r/w w/ ioctx</span>
+<span class="n">ioctx</span> <span class="o">=</span> <span class="n">cluster</span><span class="o">.</span><span class="n">open_ioctx</span><span class="p">(</span><span class="s1">&#39;mypool&#39;</span><span class="p">)</span>
+<span class="n">ioctx</span><span class="o">.</span><span class="n">write_full</span><span class="p">(</span><span class="s2">&quot;hw&quot;</span><span class="p">,</span> <span class="s2">&quot;Hello World!&quot;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">ioctx</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;hw&quot;</span><span class="p">)</span>
+<span class="n">ioctx</span><span class="o">.</span><span class="n">remove_object</span><span class="p">(</span><span class="s2">&quot;hw&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="librbd">
 <h2>LIBRBD<a class="headerlink" href="#librbd" title="Permalink to this headline">¶</a></h2>
 <ul>

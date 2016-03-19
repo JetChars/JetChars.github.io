@@ -160,6 +160,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../github/index.html">GitHub &#8211; Git repository hosting service</a></li>
 </ul>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../python/cython.html">Cython</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python/pelican.html">pelican</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python/pep8.html">PEP8</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python/psdash.html">psdash</a></li>
@@ -465,6 +466,45 @@
 <hr class="docutils" />
 <div class="section" id="cephx">
 <h3>Cephx<a class="headerlink" href="#cephx" title="Permalink to this headline">¶</a></h3>
+<p>It helps ceph to authenticate users and daemons, but not address data encription in transport.</p>
+<ul class="simple">
+<li>both client and monitors have a copy of clients&#8217;s key</li>
+<li></li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/cephx_1.png"><img alt="../../_images/cephx_1.png" class="align-right" src="../../_images/cephx_1.png" style="width: 310px;" /></a>
+<ul>
+<li><dl class="first docutils">
+<dt>user creation</dt>
+<dd><ul class="first last simple">
+<li>client.admin user invokes <code class="docutils literal"><span class="pre">ceph</span> <span class="pre">auth</span> <span class="pre">get-or-crete-key</span></code> from cli, to generate a username and secret key.</li>
+<li>ceph&#8217;s auth subsystem gen the uname&amp;key, store them in MONs and transmit back to client.admin</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/cephx_2.png"><img alt="../../_images/cephx_2.png" class="align-right" src="../../_images/cephx_2.png" style="width: 310px;" /></a>
+<ul>
+<li><dl class="first docutils">
+<dt>auth w/ MON</dt>
+<dd><ul class="first last simple">
+<li>client passes in the uname to MON</li>
+<li>MON gen a session key and encrypts it w/ client&#8217;s key.</li>
+<li>MON sent session key to client</li>
+<li>client request a ticket signed w/ previous session key</li>
+<li>MON gen a ticket encrypts w/ client&#8217;s key.</li>
+<li>client decrypts encrypted ticket</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<img alt="../../_images/cephx_3.png" class="align-right" src="../../_images/cephx_3.png" />
+<ul class="simple">
+<li>ticket will can be expired</li>
+<li>this ticket will be shared w/ OSDs, MDSs and MONs</li>
+<li>client comm w/ ceph nodes by signing this ticket on each msg.</li>
+</ul>
 </div>
 <div class="section" id="erasure-coding">
 <h3>Erasure Coding<a class="headerlink" href="#erasure-coding" title="Permalink to this headline">¶</a></h3>

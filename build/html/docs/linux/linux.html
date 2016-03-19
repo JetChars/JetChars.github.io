@@ -31,7 +31,7 @@
 
   
     <link rel="top" title="JetChars alpha documentation" href="../../index.html"/>
-        <link rel="next" title="Linux Disk" href="linux_disk.html"/>
+        <link rel="next" title="Linux Automizaiton Tools" href="linux_auto.html"/>
         <link rel="prev" title="FreeBSD" href="freebsd.html"/> 
 
   
@@ -89,6 +89,7 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ceph/ceph.html">Ceph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ceph/ceph_api.html">Ceph APIs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ceph/ceph_deploy.html">Ceph Deploy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ceph/ceph_issues.html">Ceph Issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ceph/ceph_management_platforms.html">Ceph Management Platforms</a></li>
@@ -126,12 +127,14 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#user-managemanet">User Managemanet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#date-management">Date management</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#kernel-management">Kernel Management</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#sysctl">sysctl</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="linux_auto.html">Linux Automizaiton Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linux_disk.html">Linux Disk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linux_doc.html">Documentation Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linux_info.html">Get System Infos</a></li>
@@ -147,6 +150,15 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../git.html">Git &#8211; Extraordinary version contrl software</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../github/index.html">GitHub &#8211; Git repository hosting service</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../python/cython.html">Cython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/pelican.html">pelican</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/pep8.html">PEP8</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/psdash.html">psdash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/py_builtin.html">Python Built-in Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/py_issues.html">Python Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/python.html">Python</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../regex/index.html">Regular Expression</a></li>
@@ -274,6 +286,44 @@ usermod -U &lt;user&gt;   <span class="c1"># unlock user&#39;s account</span>
 </pre></div>
 </td></tr></table></div>
 </div>
+<div class="section" id="date-management">
+<h2>Date management<a class="headerlink" href="#date-management" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-shell"><div class="highlight"><pre><span></span>hwclock   <span class="c1"># show hardware clock</span>
+hwclock --hctosys    <span class="c1"># sync hwclock to sysclock</span>
+hwclock --systohc    <span class="c1"># sync sysclock to hwclock</span>
+ntpdata &lt;ntpserver&gt;  <span class="c1"># sync sysclock manually</span>
+</pre></div>
+</div>
+<ul>
+<li><dl class="first docutils">
+<dt>use windows an ntp server</dt>
+<dd><ul class="first last simple">
+<li>HKEY_LOCAL_MACHINE&#8211;&gt;SYSTEM&#8211;&gt;CurrentControlSet&#8211;&gt;services&#8211;&gt;W32Time&#8211;&gt;TimeProviders&#8211;&gt;NtpServer&#8211;&gt;Enabled=1</li>
+<li>restart service windows time</li>
+<li>or simply cp following as <code class="docutils literal"><span class="pre">.reg</span></code> file, click to overlap reg config</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="highlight-guess"><div class="highlight"><pre><span></span>Windows Registry Editor Version 5.00
+
+<span class="k">[</span><span class="nb">HKEY_LOCAL_MACHINE</span><span class="k">\SYSTEM\CurrentControlSet\services\W32Time\TimeProviders\NtpServer]</span>
+<span class="na">&quot;DllName&quot;</span><span class="o">=</span><span class="nv">hex(2)</span><span class="p">:</span><span class="m">25,00,73,00,79,00,73,00,74,00,65,00,6d,00,72,00,6f,00,6f,00,</span><span class="err">\</span>
+  <span class="err">74,00,25,00,5c,00,73,00,79,00,73,00,74,00,65,00,6d,00,33,00,32,00,5c,00,77,\</span>
+  <span class="err">00,33,00,32,00,74,00,69,00,6d,00,65,00,2e,00,64,00,6c,00,6c,00,00,00</span>
+<span class="na">&quot;Enabled&quot;</span><span class="o">=</span><span class="nv">dword</span><span class="p">:</span><span class="m">00000001</span>
+<span class="na">&quot;InputProvider&quot;</span><span class="o">=</span><span class="nv">dword</span><span class="p">:</span><span class="m">00000000</span>
+<span class="na">&quot;AllowNonstandardModeCombinations&quot;</span><span class="o">=</span><span class="nv">dword</span><span class="p">:</span><span class="m">00000001</span>
+<span class="na">&quot;EventLogFlags&quot;</span><span class="o">=</span><span class="nv">dword</span><span class="p">:</span><span class="m">00000000</span>
+<span class="na">&quot;ChainEntryTimeout&quot;</span><span class="o">=</span><span class="nv">dword</span><span class="p">:</span><span class="m">00000010</span>
+<span class="na">&quot;ChainMaxEntries&quot;</span><span class="o">=</span><span class="nv">dword</span><span class="p">:</span><span class="m">00000080</span>
+<span class="na">&quot;ChainMaxHostEntries&quot;</span><span class="o">=</span><span class="nv">dword</span><span class="p">:</span><span class="m">00000004</span>
+<span class="na">&quot;ChainDisable&quot;</span><span class="o">=</span><span class="nv">dword</span><span class="p">:</span><span class="m">00000000</span>
+<span class="na">&quot;ChainLoggingRate&quot;</span><span class="o">=</span><span class="nv">dword</span><span class="p">:</span><span class="m">0000001e</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="kernel-management">
 <h2>Kernel Management<a class="headerlink" href="#kernel-management" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="sysctl">
@@ -305,7 +355,7 @@ sysctl -w net.ipv4.icmp_echo_ignore_broadcasts<span class="o">=</span>1
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="linux_disk.html" class="btn btn-neutral float-right" title="Linux Disk" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="linux_auto.html" class="btn btn-neutral float-right" title="Linux Automizaiton Tools" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="freebsd.html" class="btn btn-neutral" title="FreeBSD" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>

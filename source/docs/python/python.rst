@@ -225,6 +225,54 @@ Context manager
     except xxxError:
         do something about err
      
+contextlib
+^^^^^^^^^^
+
+Utilities for with-statement contexts.
+
+- contextlib.contextmanager(func) -- decorator can be used to define a factory function for with statement context manager, w/o creating ``__enter__()`` or ``__exit__()``
+
+
+.. code-block:: python
+
+    from contextlib import contextmanager
+
+    @contextmanager
+    def tag(name):
+        print "<%s>" % name
+        yield
+        print "</%s>" % name
+
+.. code-block:: console
+
+    >>> with tag("h1"):
+    ...    print "foo"
+    ...
+    <h1>
+    foo
+    </h1>
+
+
+.. code-block:: python
+
+
+    from contextlib import contextmanager
+
+    @contextmanager
+    def closing(thing):
+        try:
+            yield thing
+        finally:
+            thing.close()
+
+
+
+    from contextlib import closing
+    import urllib
+
+    with closing(urllib.urlopen('http://www.python.org')) as page:
+        for line in page:
+            print line
 
 
 

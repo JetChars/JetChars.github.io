@@ -18,6 +18,34 @@ Utilization
 ===========
 
 
+Jobs
+====
+
+.. code-block:: shell
+
+    cmd &   # running a job in background
+    jobs    # list all jobs in background
+    kill %{num}   # kill background job
+    bg %{num}     # makes job running in background
+    fg %{num}     # makes job running in foreground
+    nohup cmd &   # make sure job running in backgound even colsed ssh session
+
+
+
+kill
+====
+
+.. code-block:: shell
+
+    kill -l      # list all available signals
+    kill -1 {signum/signame}   # translate between signame and signum
+    kill -9 -1   # kill all processes you can kill
+    kill {pids}  # send SIGTERM(15) to those processes
+
+
+
+
+
 Parsing Arguments
 -----------------
 

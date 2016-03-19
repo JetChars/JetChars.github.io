@@ -132,6 +132,46 @@ Architecture
 Cephx
 -----
 
+It helps ceph to authenticate users and daemons, but not address data encription in transport.
+
+- both client and monitors have a copy of clients's key
+- 
+
+.. image:: /images/ceph/cephx_1.png
+    :align: right
+    :width: 310px
+
+- user creation
+    - client.admin user invokes ``ceph auth get-or-crete-key`` from cli, to generate a username and secret key.
+    - ceph's auth subsystem gen the uname&key, store them in MONs and transmit back to client.admin
+
+
+
+
+.. image:: /images/ceph/cephx_2.png
+    :align: right
+    :width: 310px
+
+
+- auth w/ MON
+    - client passes in the uname to MON
+    - MON gen a session key and encrypts it w/ client's key.
+    - MON sent session key to client
+    - client request a ticket signed w/ previous session key
+    - MON gen a ticket encrypts w/ client's key.
+    - client decrypts encrypted ticket
+
+
+
+
+.. image:: /images/ceph/cephx_3.png
+    :align: right
+
+- ticket will can be expired
+- this ticket will be shared w/ OSDs, MDSs and MONs
+- client comm w/ ceph nodes by signing this ticket on each msg.
+
+
 
 
 Erasure Coding

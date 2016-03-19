@@ -89,6 +89,7 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ceph/ceph.html">Ceph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ceph/ceph_api.html">Ceph APIs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ceph/ceph_deploy.html">Ceph Deploy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ceph/ceph_issues.html">Ceph Issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ceph/ceph_management_platforms.html">Ceph Management Platforms</a></li>
@@ -120,6 +121,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="freebsd.html">FreeBSD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linux.html">Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linux_auto.html">Linux Automizaiton Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linux_disk.html">Linux Disk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linux_doc.html">Documentation Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linux_info.html">Get System Infos</a></li>
@@ -129,7 +131,9 @@
 <li class="toctree-l1"><a class="reference internal" href="linux_virt.html">Virtualization</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Shell</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#about">About</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#utilization">Utilization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#utilization">Utilization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#jobs">Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kill">kill</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#parsing-arguments">Parsing Arguments</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#shift">shift</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#getopts">getopts</a></li>
@@ -173,6 +177,15 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../git.html">Git &#8211; Extraordinary version contrl software</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../github/index.html">GitHub &#8211; Git repository hosting service</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../python/cython.html">Cython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/pelican.html">pelican</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/pep8.html">PEP8</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/psdash.html">psdash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/py_builtin.html">Python Built-in Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/py_issues.html">Python Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/python.html">Python</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../regex/index.html">Regular Expression</a></li>
@@ -269,6 +282,26 @@
 </div>
 <div class="section" id="utilization">
 <h2>Utilization<a class="headerlink" href="#utilization" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="jobs">
+<h2>Jobs<a class="headerlink" href="#jobs" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-shell"><div class="highlight"><pre><span></span>cmd <span class="p">&amp;</span>   <span class="c1"># running a job in background</span>
+<span class="nb">jobs</span>    <span class="c1"># list all jobs in background</span>
+<span class="nb">kill</span> %<span class="o">{</span>num<span class="o">}</span>   <span class="c1"># kill background job</span>
+<span class="nb">bg</span> %<span class="o">{</span>num<span class="o">}</span>     <span class="c1"># makes job running in background</span>
+<span class="nb">fg</span> %<span class="o">{</span>num<span class="o">}</span>     <span class="c1"># makes job running in foreground</span>
+nohup cmd <span class="p">&amp;</span>   <span class="c1"># make sure job running in backgound even colsed ssh session</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="kill">
+<h2>kill<a class="headerlink" href="#kill" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-shell"><div class="highlight"><pre><span></span><span class="nb">kill</span> -l      <span class="c1"># list all available signals</span>
+<span class="nb">kill</span> -1 <span class="o">{</span>signum/signame<span class="o">}</span>   <span class="c1"># translate between signame and signum</span>
+<span class="nb">kill</span> -9 -1   <span class="c1"># kill all processes you can kill</span>
+<span class="nb">kill</span> <span class="o">{</span>pids<span class="o">}</span>  <span class="c1"># send SIGTERM(15) to those processes</span>
+</pre></div>
+</div>
 <div class="section" id="parsing-arguments">
 <h3>Parsing Arguments<a class="headerlink" href="#parsing-arguments" title="Permalink to this headline">¶</a></h3>
 <div class="sidebar">

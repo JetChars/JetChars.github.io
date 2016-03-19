@@ -144,10 +144,14 @@ manage pkgs w/ pkgmgt
 - remove pkgs -- ``^p`` --> search remove --> query pkgs
 - good pkgs
     - SublimeCodeIntel -- auto-completion tool(works for python)
+    - PyLinter -- pep8 highlighter
 
 
 PyLinter
 ^^^^^^^^
+
+https://github.com/biermeester/Pylinter
+
 
 - module pylint must be installed
     - ``python -m pip install pylint`` -- install pylint

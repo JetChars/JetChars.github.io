@@ -30,17 +30,24 @@ https://github.com/ceph/calamari-clients
 - present as diagnostic tool
 - exposing a high level REST API
 - precompiled pkgs not available(in ubuntu vagrant)
+
+.. image:: /images/ceph/calamari_architecture.jpg
+    :align: right
+
 - server side (backend)
     - composed of:  Apache, salt-master , supervisord , cthulhu , carbon-cache
-    - newer version provide a compelte new REST API(old based on Ceph REST API)
+    - newer version provide a compelte new REST API(old based on Ceph REST API), abstract the ops of CEPH API, convient for people not know CEPH deeply.
 - client side (frontend)
     - Web UI primary in JS uses the Calamari REST API
-- ceph clients
+- ceph nodes
     - composed of -- salt-minion , diamond
     - diamond -- collect monitoring datas, support over 90 kinds of info. report to graphite.
+- manage cluster using cthulhu and saltstack
+- monitoring using graphite and diamond
 
 .. image:: /images/ceph/ceph_calamari_summary.png
 .. image:: /images/ceph/ceph_calamari_osds.png
+
 
 
 
@@ -58,9 +65,9 @@ installation
 
     # install ceph nodes
     # ==================
-    sudo apt-get intall python-dev   # prerequsite to install diamond
+    sudo apt-get install python-dev python-pip git -y  # prerequsite to install diamond
     git clone -b calamari https://github.com/ceph/diamond/
-    sudo pip install -y diamond/
+    sudo pip install diamond/
 
     # initialize calamari and conn to ceph nodes
     sudo calamari-ctl initialize
@@ -90,14 +97,20 @@ installation
 
 - issues
     - errors can be shown in /var/log/calamari/calamari.log
-    - query calamari issuses -- http://tracker.ceph.com/projects/calamari/issues
+    - query calamari issuses (some function not realized)-- http://tracker.ceph.com/projects/calamari/issues
     - **can't open log/config file** -- ``sudo chmod 777 /var/log/calamari/ -R``
     -  **Master hostname: salt not found**  -- debug w/ ``salt-minion -l debug``
     - **Cluster Updates Are Stale. The Cluster isn't updating Calamari. Please contact Administrator** -- solution can't access from redhat website!
     - **diamond can't start** -- default conf call the path of diamond ``/usr/bin/diamond``, real path is ``/usr/local/bin/diamond``, create a link file to solve this issue
         - ``mkdir /usr/share/diamond/collectors/ -p``
         - ``mkdir /var/log/calamari/``
+        - ``scp /etc/diamond/* root@192.168.56.111:/etc/diamond``
+        - ``scp /usr/share/diamond/* root@192.168.56.111:/usr/share/diamond``
         - ``ln -sf /usr/local/bin/diamond /usr/bin/diamond``
+        - ``nohup /usr/bin/python /usr/local/bin/diamond --foreground --skip-change-user --skip-fork --skip-pidfile &``
+    - **diamond not report** -- ``/var/lib/graphite/index`` in thisfile we can tell all observation entries
+        - ``netstat -tunpla | grep `ps aux | grep diamond | awk '{print $2}' | head -n1```  -- all nodes connected
+    - **salt.loaded.int.module.cmdmod**
 
 
 

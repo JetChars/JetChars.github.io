@@ -23,6 +23,7 @@ SaltStack is brand new automization management tool, used to manage configuratio
 - config files -- ``/etc/salt/``
     - ``/etc/salt/master`` -- interface(listening IP), auto_accept(True, will reduce the key adding work)
 - log files -- ``/var/log/salt/``
+- comm w/ zeromq's pub-sub&req-rep mode, conn w/ tcp and ipc
 
 Master and Minion
 -----------------
@@ -56,6 +57,7 @@ Master and Minion
 
     # test
     # ====
+    salt '*' cmd.run ls        # run ls in all minion
     salt <minion> test.ping    # built-in script, will report OK if pingable
 
 
