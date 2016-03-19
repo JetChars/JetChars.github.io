@@ -145,6 +145,8 @@ manage pkgs w/ pkgmgt
 - good pkgs
     - SublimeCodeIntel -- auto-completion tool(works for python)
     - PyLinter -- pep8 highlighter
+    - reStructureText Snippets -- auto-completion for rst
+    - reStructureText Improved -- highlighter
 
 
 PyLinter

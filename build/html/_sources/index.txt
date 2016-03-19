@@ -158,6 +158,7 @@ Relevant
     docs/microservices/index
     docs/windows/index
     docs/mac
+    docs/vim
 
 
 Related

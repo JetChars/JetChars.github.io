@@ -89,6 +89,7 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ceph/ceph.html">Ceph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ceph/ceph_api.html">Ceph APIs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ceph/ceph_deploy.html">Ceph Deploy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ceph/ceph_issues.html">Ceph Issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ceph/ceph_management_platforms.html">Ceph Management Platforms</a></li>
@@ -99,6 +100,23 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="">bootstrap</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#intro">Intro</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#example-of-use">Example of Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#components">Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#glyphicon">Glyphicon</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#button">button</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#button-menu">button-menu</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#navbar">Navbar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#form">form</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#div">Div</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#alert-box">alert box</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dropdown-menu">dropdown menu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#button-group-toolbar">Button group &amp; toolbar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#input">Input</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
@@ -127,6 +145,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../linux/freebsd.html">FreeBSD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux.html">Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_auto.html">Linux Automizaiton Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_disk.html">Linux Disk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_doc.html">Documentation Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_info.html">Get System Infos</a></li>
@@ -142,6 +161,15 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../git.html">Git &#8211; Extraordinary version contrl software</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../github/index.html">GitHub &#8211; Git repository hosting service</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../python/cython.html">Cython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/pelican.html">pelican</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/pep8.html">PEP8</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/psdash.html">psdash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/py_builtin.html">Python Built-in Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/py_issues.html">Python Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/python.html">Python</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../regex/index.html">Regular Expression</a></li>
@@ -165,6 +193,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../microservices/index.html">MicroServices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../windows/index.html">Windows</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mac.html">Mac as Main OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vim.html">Vim - My Favourite Editor</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../kickstart/index.html">Kickstart Documentation</a></li>
@@ -217,12 +246,14 @@
 <div class="section" id="intro">
 <h2>Intro<a class="headerlink" href="#intro" title="Permalink to this headline">¶</a></h2>
 <hr class="docutils" />
-<p>BootStrap is Front-end Framework
-- include HTML/CSS/JS framewrok for depeloping responsive, mobile first projects on the web.
-- ready-to-use web elements: buttom, form, table, image, navbar, label, progress bar, alert etc.
-- provide cdn for fast loading
-- 4 sizes of bootstrap grid
--</p>
+<p>BootStrap is Front-end Framework</p>
+<ul class="simple">
+<li>include HTML/CSS/JS framewrok for depeloping responsive, mobile first projects on the web.</li>
+<li>ready-to-use web elements: button, form, table, image, navbar, label, progress bar, alert etc.</li>
+<li>provide cdn for fast loading</li>
+<li>4 sizes of bootstrap grid</li>
+<li></li>
+</ul>
 <div class="section" id="example-of-use">
 <h3>Example of Use<a class="headerlink" href="#example-of-use" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-html"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
@@ -254,6 +285,299 @@
   <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
 </pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="components">
+<h2>Components<a class="headerlink" href="#components" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="glyphicon">
+<h3>Glyphicon<a class="headerlink" href="#glyphicon" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;glyphicon glyphicon-search&quot;</span> <span class="na">aria-hidden</span><span class="o">=</span><span class="s">&quot;true&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">aria-hidden</span></code> let browsers know its just icon</p>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">glyphicon-align-*</span></code> have 4 diff shapes</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">glyphicon-align-left</span></code>, <code class="docutils literal"><span class="pre">glyphicon-align-center</span></code>, <code class="docutils literal"><span class="pre">glyphicon-align-right</span></code> and <code class="docutils literal"><span class="pre">glyphicon-align-justify`</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="button">
+<h3>button<a class="headerlink" href="#button" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-default&quot;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&quot;Left Align&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;glyphicon glyphicon-align-left&quot;</span> <span class="na">aria-hidden</span><span class="o">=</span><span class="s">&quot;true&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-default btn-lg&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;glyphicon glyphicon-star&quot;</span> <span class="na">aria-hidden</span><span class="o">=</span><span class="s">&quot;true&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span> Star
+<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<ul>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">btn</span></code> defines a button</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">btn-default</span></code> &#8211; button w/ default size</li>
+<li><code class="docutils literal"><span class="pre">btn-default</span> <span class="pre">btn-lg</span></code> &#8211; button w/ large size, there is also <code class="docutils literal"><span class="pre">btn-sm</span></code> &amp; <code class="docutils literal"><span class="pre">btn-xs</span></code></li>
+<li><code class="docutils literal"><span class="pre">btn-danger</span></code> &#8211; change btn color, also <code class="docutils literal"><span class="pre">btn-warning</span></code> , <code class="docutils literal"><span class="pre">btn-info</span></code> , <code class="docutils literal"><span class="pre">btn-success</span></code> and <code class="docutils literal"><span class="pre">btn-primary</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="section" id="button-menu">
+<h4>button-menu<a class="headerlink" href="#button-menu" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>button can used as dropdown/dropup menu</li>
+</ul>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="c">&lt;!-- Single button --&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn-group&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-default dropdown-toggle&quot;</span> <span class="na">data-toggle</span><span class="o">=</span><span class="s">&quot;dropdown&quot;</span> <span class="na">aria-haspopup</span><span class="o">=</span><span class="s">&quot;true&quot;</span> <span class="na">aria-expanded</span><span class="o">=</span><span class="s">&quot;false&quot;</span><span class="p">&gt;</span>
+    Action <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;caret&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">ul</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;dropdown-menu&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span><span class="p">&gt;</span>Action<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span><span class="p">&gt;</span>Another action<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span><span class="p">&gt;</span>Something else here<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;separator&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;divider&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span><span class="p">&gt;</span>Separated link<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>we can split button</li>
+</ul>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="c">&lt;!-- Split button --&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn-group&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-danger&quot;</span><span class="p">&gt;</span>Action<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-danger dropdown-toggle&quot;</span> <span class="na">data-toggle</span><span class="o">=</span><span class="s">&quot;dropdown&quot;</span> <span class="na">aria-haspopup</span><span class="o">=</span><span class="s">&quot;true&quot;</span> <span class="na">aria-expanded</span><span class="o">=</span><span class="s">&quot;false&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;caret&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;sr-only&quot;</span><span class="p">&gt;</span>Toggle Dropdown<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">ul</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;dropdown-menu&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span><span class="p">&gt;</span>Action<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span><span class="p">&gt;</span>Another action<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span><span class="p">&gt;</span>Something else here<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;separator&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;divider&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span><span class="p">&gt;</span>Separated link<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="navbar">
+<h3>Navbar<a class="headerlink" href="#navbar" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>navbar sytles &#8211; <code class="docutils literal"><span class="pre">nav-tabs</span></code> or <code class="docutils literal"><span class="pre">nav-pills</span></code></li>
+<li>justify &#8211; <code class="docutils literal"><span class="pre">nav-justified</span></code></li>
+<li>disable a item &#8211; <code class="docutils literal"><span class="pre">class=&quot;disable&quot;</span></code> in <strong>li class</strong></li>
+<li>dropdown-menu can be nested in navbar</li>
+<li>fixed on top &#8211; <code class="docutils literal"><span class="pre">navbar-fixed-top</span></code></li>
+</ul>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">ul</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;nav nav-tabs&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">li</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;presentation&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;active&quot;</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span><span class="p">&gt;</span>Home<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">li</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;presentation&quot;</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span><span class="p">&gt;</span>Profile<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">li</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;presentation&quot;</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span><span class="p">&gt;</span>Messages<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">ul</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;nav nav-tabs&quot;</span><span class="p">&gt;</span>
+  ...
+  <span class="p">&lt;</span><span class="nt">li</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;presentation&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;dropdown&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;dropdown-toggle&quot;</span> <span class="na">data-toggle</span><span class="o">=</span><span class="s">&quot;dropdown&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">aria-haspopup</span><span class="o">=</span><span class="s">&quot;true&quot;</span> <span class="na">aria-expanded</span><span class="o">=</span><span class="s">&quot;false&quot;</span><span class="p">&gt;</span>
+      Dropdown <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;caret&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">ul</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;dropdown-menu&quot;</span><span class="p">&gt;</span>
+      ...
+    <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+  ...
+<span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>real navbar, <code class="docutils literal"><span class="pre">div</span> <span class="pre">class=&quot;container-fluid&quot;</span></code> and <code class="docutils literal"><span class="pre">&lt;div</span> <span class="pre">class=&quot;navbar-header&quot;&gt;</span></code> are required</li>
+</ul>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">nav</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;navbar navbar-default&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;container-fluid&quot;</span><span class="p">&gt;</span>
+    <span class="c">&lt;!-- Brand and toggle get grouped for better mobile display --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;navbar-header&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;navbar-toggle collapsed&quot;</span> <span class="na">data-toggle</span><span class="o">=</span><span class="s">&quot;collapse&quot;</span> <span class="na">data-target</span><span class="o">=</span><span class="s">&quot;#bs-example-navbar-collapse-1&quot;</span> <span class="na">aria-expanded</span><span class="o">=</span><span class="s">&quot;false&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;sr-only&quot;</span><span class="p">&gt;</span>Toggle navigation<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;icon-bar&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;icon-bar&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;icon-bar&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;navbar-brand&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span><span class="p">&gt;</span>Brand<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+    <span class="c">&lt;!-- Collect the nav links, forms, and other content for toggling --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;collapse navbar-collapse&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;bs-example-navbar-collapse-1&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">ul</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;nav navbar-nav&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">li</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;active&quot;</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span><span class="p">&gt;</span>Link <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;sr-only&quot;</span><span class="p">&gt;</span>(current)<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span><span class="p">&gt;</span>Link<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">li</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;dropdown&quot;</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;dropdown-toggle&quot;</span> <span class="na">data-toggle</span><span class="o">=</span><span class="s">&quot;dropdown&quot;</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">aria-haspopup</span><span class="o">=</span><span class="s">&quot;true&quot;</span> <span class="na">aria-expanded</span><span class="o">=</span><span class="s">&quot;false&quot;</span><span class="p">&gt;</span>Dropdown <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;caret&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">ul</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;dropdown-menu&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span><span class="p">&gt;</span>Action<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span><span class="p">&gt;</span>Another action<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span><span class="p">&gt;</span>Something else here<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">li</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;separator&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;divider&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span><span class="p">&gt;</span>Separated link<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">li</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;separator&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;divider&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span><span class="p">&gt;</span>One more separated link<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+          <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">form</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;navbar-form navbar-left&quot;</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;search&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-group&quot;</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-control&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Search&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-default&quot;</span><span class="p">&gt;</span>Submit<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">ul</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;nav navbar-nav navbar-right&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span><span class="p">&gt;</span>Link<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">li</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;dropdown&quot;</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;dropdown-toggle&quot;</span> <span class="na">data-toggle</span><span class="o">=</span><span class="s">&quot;dropdown&quot;</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">aria-haspopup</span><span class="o">=</span><span class="s">&quot;true&quot;</span> <span class="na">aria-expanded</span><span class="o">=</span><span class="s">&quot;false&quot;</span><span class="p">&gt;</span>Dropdown <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;caret&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">ul</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;dropdown-menu&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span><span class="p">&gt;</span>Action<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span><span class="p">&gt;</span>Another action<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span><span class="p">&gt;</span>Something else here<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">li</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;separator&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;divider&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span><span class="p">&gt;</span>Separated link<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+          <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span><span class="c">&lt;!-- /.navbar-collapse --&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span><span class="c">&lt;!-- /.container-fluid --&gt;</span>
+<span class="p">&lt;/</span><span class="nt">nav</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="form">
+<h3>form<a class="headerlink" href="#form" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">form</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;navbar-form navbar-left&quot;</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;search&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-group&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-control&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Search&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-default&quot;</span><span class="p">&gt;</span>Submit<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="div">
+<h3>Div<a class="headerlink" href="#div" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="alert-box">
+<h4>alert box<a class="headerlink" href="#alert-box" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;alert alert-danger&quot;</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;alert&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;glyphicon glyphicon-exclamation-sign&quot;</span> <span class="na">aria-hidden</span><span class="o">=</span><span class="s">&quot;true&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;sr-only&quot;</span><span class="p">&gt;</span>Error:<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+  Enter a valid email address
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">sr-only</span></code> let browsers know the meaning.</li>
+</ul>
+</div>
+<div class="section" id="dropdown-menu">
+<h4>dropdown menu<a class="headerlink" href="#dropdown-menu" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;dropdown&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-default dropdown-toggle&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;dropdownMenu1&quot;</span> <span class="na">data-toggle</span><span class="o">=</span><span class="s">&quot;dropdown&quot;</span> <span class="na">aria-haspopup</span><span class="o">=</span><span class="s">&quot;true&quot;</span> <span class="na">aria-expanded</span><span class="o">=</span><span class="s">&quot;true&quot;</span><span class="p">&gt;</span>
+    Dropdown
+    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;caret&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">ul</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;dropdown-menu&quot;</span> <span class="na">aria-labelledby</span><span class="o">=</span><span class="s">&quot;dropdownMenu1&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span><span class="p">&gt;</span>Action<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span><span class="p">&gt;</span>Another action<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span><span class="p">&gt;</span>Something else here<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span><span class="p">&gt;</span>Separated link<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;dropup&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-default dropdown-toggle&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;dropdownMenu2&quot;</span> <span class="na">data-toggle</span><span class="o">=</span><span class="s">&quot;dropdown&quot;</span> <span class="na">aria-haspopup</span><span class="o">=</span><span class="s">&quot;true&quot;</span> <span class="na">aria-expanded</span><span class="o">=</span><span class="s">&quot;false&quot;</span><span class="p">&gt;</span>
+    Dropup
+    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;caret&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">ul</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;dropdown-menu dropdown-menu-right&quot;</span> <span class="na">aria-labelledby</span><span class="o">=</span><span class="s">&quot;dropdownMenu2&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span><span class="p">&gt;</span>Action<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span><span class="p">&gt;</span>Another action<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span><span class="p">&gt;</span>Something else here<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span><span class="p">&gt;</span>Separated link<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>dropdown or dropup menu by edit <strong>div class</strong></li>
+<li>set alignment by edit <strong>ul class</strong> &#8211; <code class="docutils literal"><span class="pre">class=&quot;dropdown-menu</span> <span class="pre">dropdown-menu-right&quot;</span></code>, menu box will go far right!</li>
+<li>set dropdown header by edit <strong>li class</strong> &#8211; <code class="docutils literal"><span class="pre">class=&quot;dropdown-header&quot;</span></code></li>
+<li>set a split line &#8211; <code class="docutils literal"><span class="pre">&lt;li</span> <span class="pre">role=&quot;separator&quot;</span> <span class="pre">class=&quot;divider&quot;&gt;&lt;/li&gt;</span></code></li>
+<li>disable a line &#8211; <code class="docutils literal"><span class="pre">&lt;li</span> <span class="pre">class=&quot;disabled&quot;&gt;&lt;a</span> <span class="pre">href=&quot;#&quot;&gt;Disabled</span> <span class="pre">link&lt;/a&gt;&lt;/li&gt;</span></code></li>
+</ul>
+</div>
+<div class="section" id="button-group-toolbar">
+<h4>Button group &amp; toolbar<a class="headerlink" href="#button-group-toolbar" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>button-toolbar contains multi button-group</li>
+<li>change buttom size within button-group &#8211; <code class="docutils literal"><span class="pre">class=&quot;btn-group</span> <span class="pre">btn-group-lg&quot;</span></code>, similarly <code class="docutils literal"><span class="pre">sm</span></code> , <code class="docutils literal"><span class="pre">xs</span></code></li>
+<li>dropdown menu can be nested into button-group</li>
+<li>align btn-group vertically &#8211; <code class="docutils literal"><span class="pre">class=&quot;btn-group-vertical&quot;</span></code></li>
+<li>both ends aligned &#8211; <code class="docutils literal"><span class="pre">btn-group</span> <span class="pre">btn-group-justified</span></code></li>
+</ul>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn-group&quot;</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;group&quot;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&quot;...&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-default&quot;</span><span class="p">&gt;</span>Left<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-default&quot;</span><span class="p">&gt;</span>Middle<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-default&quot;</span><span class="p">&gt;</span>Right<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn-toolbar&quot;</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;toolbar&quot;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&quot;...&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn-group&quot;</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;group&quot;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&quot;...&quot;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn-group&quot;</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;group&quot;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&quot;...&quot;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn-group&quot;</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;group&quot;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&quot;...&quot;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="input">
+<h4>Input<a class="headerlink" href="#input" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>encapsuled by div</li>
+<li>change size by adding <code class="docutils literal"><span class="pre">input-group-lg</span></code> in <strong>div class</strong></li>
+<li><strong>checkbox</strong> or <strong>radio</strong> can be nested in span</li>
+<li>add placeholder attribute can set <strong>prompte phrases</strong></li>
+<li>can nest dropdown menu</li>
+</ul>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;row&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;col-lg-6&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;input-group&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;input-group-addon&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;checkbox&quot;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&quot;...&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-control&quot;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&quot;...&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span><span class="c">&lt;!-- /input-group --&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span><span class="c">&lt;!-- /.col-lg-6 --&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;col-lg-6&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;input-group&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;input-group-addon&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;radio&quot;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&quot;...&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-control&quot;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&quot;...&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;helloworld&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span><span class="c">&lt;!-- /input-group --&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span><span class="c">&lt;!-- /.col-lg-6 --&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span><span class="c">&lt;!-- /.row --&gt;</span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>
