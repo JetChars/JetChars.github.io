@@ -74,6 +74,10 @@ https://github.com/ceph/calamari-clients
 installation
 ^^^^^^^^^^^^
 
+- Requirements: ceph-deploy and it's env
+
+
+
 .. code-block:: shell
 
     # add repo, install dependency and install calamari
@@ -149,12 +153,17 @@ https://github.com/01org/virtual-storage-manager
 
 .. image:: /images/ceph/vsm_arch.png
 
-- VSM Controller -- WebUI, API, conn to Agents and NovaCtrl
+- VSM Controller -- conn to Agents and NovaCtrl
+    - WebUI, API(?)
+    - mariadb, rabbitmq
 - VSM Agent -- runs on every ceph node, pass conf&stats info to controller
 
 .. image:: /images/ceph/vsm_net.png
 
 - nothing special
+    - mgmt network
+    - ceph pub network
+    - ceph cluster network
 
 .. image:: /images/ceph/vsm_disks.png
 
@@ -190,6 +199,20 @@ https://github.com/01org/virtual-storage-manager
     - vsm account mgt
 
 
+
+Installation
+^^^^^^^^^^^^
+
+- requirements
+    - OS: Ubuntu Server 14.04.2/CentOS 7 Server Basic
+    - Ceph: Firefly/Giant/Hammer/Infernalis
+    - OpenStack: Havana/Icehouse/Juno/Kilo/Liberty
+    - at least 3 storage nodes
+    - passwd-less ssh
+    - will sync ``/etc/hosts`` on each nodes
+
+- note
+    - will disable selinux
 
 
 
