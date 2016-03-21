@@ -10,6 +10,18 @@ Hyper Text Markup Language
 `Tutorials from w3c <http://www.w3school.com.cn/html/index.asp>`_
 
 
+Status codes
+============
+============
+
+
+- 200 -- ok
+- 301 -- permantly redirect
+- 302 -- temporary redirect
+
+
+
+
 
 
 Elements

@@ -135,6 +135,7 @@ installation
     - **diamond not report** -- ``/var/lib/graphite/index`` in thisfile we can tell all observation entries
         - ``netstat -tunpla | grep `ps aux | grep diamond | awk '{print $2}' | head -n1```  -- all nodes connected
     - **salt.loaded.int.module.cmdmod**
+    - dump whisper data -- ``/opt/calamari/venv/bin/whisper-dump.py /var/lib/graphite/whisper/servers/ceph-osd2/diskspace/root/byte_used.wsp | less``
 
 
 
@@ -152,9 +153,10 @@ https://github.com/01org/virtual-storage-manager
     - VSM administration -- User/Passwd
 
 .. image:: /images/ceph/vsm_arch.png
+.. image:: /images/ceph/vsm_architecture.png
 
 - VSM Controller -- conn to Agents and NovaCtrl
-    - WebUI, API(?)
+    - WebUI, REST API
     - mariadb, rabbitmq
 - VSM Agent -- runs on every ceph node, pass conf&stats info to controller
 
@@ -230,6 +232,24 @@ https://github.com/inkscope/inkscope
 
 .. image:: /images/ceph/ceph_inkscope.png
 
+- inkscopeViz 
+    - Web client 
+- inkscopeCtrl
+    - Server part 
+    - Provides an advanced REST API
+- inkscopeProbe
+    - Collects system and ceph infos 
+    - Feeds a mongoDB database
+- inkscopeMonitor (not developed)
+    - Monitoring of Ceph metrics stored in db
+    - Feeds monitoring tools like Nagios
+
+
+.. image:: /images/ceph/inkscope_architecture.png
+
+
+
+
 
 Ceph-dash
 ---------
@@ -258,19 +278,20 @@ Comparison
 
 
 
-============= ============= =========== ========== ============ 
-Item          Calamari      ceph-dash   VSM        inkscope     
-============= ============= =========== ========== ============ 
-hotness       66,175,116    36,128,46   50,82,57   38,82,36     
-license       LGPL2.1       MIT-        Apache v2  Apache v2    
-language      python/JS     python/JS   python     python       
-web_engine    Apache/django Apache      django     Apache/flask 
-DB            postgreSQL    InfluxDB    MySQL      mongoDB      
-Backing       RedHat        Chri./Eich. Intel      Orange Labs
-Capabilities  Mon & LConf   Mon         Mon & Conf Mon & LConf
-Compatability wide          wide        limited    wide
-============= ============= =========== ========== ============  
-
+============= ============= =========== ============= ============ 
+Item          Calamari      ceph-dash   VSM           inkscope     
+============= ============= =========== ============= ============ 
+hotness       66,175,116    36,128,46   50,82,57      38,82,36     
+license       LGPL2.1       MIT-        Apache v2     Apache v2    
+language      python/JS     python/JS   python        python       
+web_engine    Apache/django Apache      Apache/django Apache/flask 
+js_lib        AngularJS                               AngularJS
+css           bootstrap                               bootstrap
+DB            postgreSQL    InfluxDB    MySQL         mongoDB
+Backing       RedHat        Chri./Eich. Intel         Orange Labs
+Capabilities  Mon & LConf   Mon         Mon & Conf    Mon & LConf
+Compatability wide          wide        limited       wide
+============= ============= =========== ============= ============
 
 ============== =========== ============= ========== ========  
 Item           Calamari    ceph-dash     VSM        inkscope  
