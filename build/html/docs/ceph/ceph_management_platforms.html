@@ -185,6 +185,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../microservices/index.html">MicroServices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../windows/index.html">Windows</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mac.html">Mac as Main OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vim.html">Vim - My Favourite Editor</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../kickstart/index.html">Kickstart Documentation</a></li>
@@ -244,14 +245,49 @@
 <h3>Calamari<a class="headerlink" href="#calamari" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://github.com/ceph/calamari">https://github.com/ceph/calamari</a></p>
 <p><a class="reference external" href="https://github.com/ceph/calamari-clients">https://github.com/ceph/calamari-clients</a></p>
-<ul class="simple">
-<li>start by inktank</li>
-<li>opensrc since May 2014</li>
-<li>present as diagnostic tool</li>
-<li>exposing a high level REST API</li>
-<li>precompiled pkgs not available(in ubuntu vagrant)</li>
+<ul>
+<li><p class="first">start by inktank</p>
+</li>
+<li><p class="first">opensrc since May 2014</p>
+</li>
+<li><p class="first">present as diagnostic tool</p>
+</li>
+<li><dl class="first docutils">
+<dt>exposing a high level REST API</dt>
+<dd><ul class="first last simple">
+<li>calamari provides a view of the entire system instead of access to RADOS within one cluster.</li>
 </ul>
-<img alt="../../_images/calamari_architecture.jpg" class="align-right" src="../../_images/calamari_architecture.jpg" />
+</dd>
+</dl>
+</li>
+<li><p class="first">precompiled pkgs not available(in ubuntu vagrant)</p>
+</li>
+</ul>
+<img alt="../../_images/summary.jpeg" src="../../_images/summary.jpeg" />
+<ul>
+<li><dl class="first docutils">
+<dt>dashboard</dt>
+<dd><ul class="first last simple">
+<li>shows HEALTH(can show <code class="docutils literal"><span class="pre">health</span> <span class="pre">detail</span></code>), OSD, MON, POOL &amp; PG stats</li>
+<li>IOPS(N/A), Usage(N/A) and HOSTs</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<img alt="../../_images/Main_Dashboard.png" src="../../_images/Main_Dashboard.png" />
+<ul class="simple">
+<li>workbench shows PG &amp; OSD stats, can sort by OSD or HOST</li>
+</ul>
+<img alt="../../_images/workbench_with_pg_state_filtering.png" src="../../_images/workbench_with_pg_state_filtering.png" />
+<ul class="simple">
+<li>graph shows</li>
+</ul>
+<img alt="../../_images/Graph_UI.png" src="../../_images/Graph_UI.png" />
+<img alt="../../_images/manage_default_view.png" src="../../_images/manage_default_view.png" />
+<img alt="../../_images/manage_OSD_hosts_view.png" src="../../_images/manage_OSD_hosts_view.png" />
+<img alt="../../_images/manage_OSDS_by_host.png" src="../../_images/manage_OSDS_by_host.png" />
+<img alt="../../_images/manage_pool_view.png" src="../../_images/manage_pool_view.png" />
 <ul>
 <li><dl class="first docutils">
 <dt>server side (backend)</dt>
@@ -284,8 +320,7 @@
 <li><p class="first">monitoring using graphite and diamond</p>
 </li>
 </ul>
-<img alt="../../_images/ceph_calamari_summary.png" src="../../_images/ceph_calamari_summary.png" />
-<img alt="../../_images/ceph_calamari_osds.png" src="../../_images/ceph_calamari_osds.png" />
+<img alt="../../_images/calamari_architecture.jpg" src="../../_images/calamari_architecture.jpg" />
 <div class="section" id="installation">
 <h4>installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-shell"><div class="highlight"><pre><span></span><span class="c1"># add repo, install dependency and install calamari</span>
@@ -494,9 +529,9 @@ ceph-deploy calamari connect &lt;ceph nodes&gt;
 <hr class="docutils" />
 <table border="1" class="docutils">
 <colgroup>
-<col width="23%" />
 <col width="22%" />
-<col width="18%" />
+<col width="22%" />
+<col width="19%" />
 <col width="17%" />
 <col width="20%" />
 </colgroup>
@@ -561,11 +596,11 @@ ceph-deploy calamari connect &lt;ceph nodes&gt;
 </table>
 <table border="1" class="docutils">
 <colgroup>
+<col width="25%" />
+<col width="20%" />
 <col width="23%" />
 <col width="18%" />
-<col width="22%" />
-<col width="17%" />
-<col width="20%" />
+<col width="14%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Item</th>
@@ -664,10 +699,10 @@ ceph-deploy calamari connect &lt;ceph nodes&gt;
 </table>
 <table border="1" class="docutils">
 <colgroup>
-<col width="30%" />
-<col width="23%" />
-<col width="21%" />
+<col width="33%" />
 <col width="26%" />
+<col width="23%" />
+<col width="19%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Item</th>
@@ -802,6 +837,12 @@ ceph-deploy calamari connect &lt;ceph nodes&gt;
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label">[6]</td><td><a class="reference external" href="http://ceph.com/planet/ceph-calamari-the-survival-guide/">http://ceph.com/planet/ceph-calamari-the-survival-guide/</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id9" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[7]</td><td><a class="reference external" href="http://www.openstack.cn/?p=2708">http://www.openstack.cn/?p=2708</a></td></tr>
 </tbody>
 </table>
 </div>

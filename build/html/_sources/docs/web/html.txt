@@ -59,7 +59,17 @@ elements
     - meta
         - viewport -- viewing mode
 
+- <style> -- define within <head> to specify stles
+  
+.. code-block:: html
 
+    <style>
+      div:{
+          width:200px;
+          height:200px;
+          background:blue;
+      }
+    </style>
 
 
 

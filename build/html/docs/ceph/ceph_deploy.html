@@ -164,6 +164,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../github/index.html">GitHub &#8211; Git repository hosting service</a></li>
 </ul>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../python/cython.html">Cython</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python/pelican.html">pelican</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python/pep8.html">PEP8</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python/psdash.html">psdash</a></li>
@@ -193,6 +194,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../microservices/index.html">MicroServices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../windows/index.html">Windows</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mac.html">Mac as Main OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vim.html">Vim - My Favourite Editor</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../kickstart/index.html">Kickstart Documentation</a></li>
@@ -395,6 +397,7 @@ sudo mkdir /var/local/osd0
 <span class="nb">exit</span>
 ssh ceph-osd01
 sudo mkdir /var/local/osd1
+sudo chmod a+w /var/local/ -R   <span class="c1"># can&#39;t write if not do this</span>
 <span class="nb">exit</span>
 <span class="c1"># prepare and activate OSDs</span>
 ceph-deploy osd prepare ceph-osd0:/var/local/osd0 ceph-osd1:/var/local/osd1

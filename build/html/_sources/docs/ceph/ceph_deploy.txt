@@ -170,6 +170,7 @@ runnig this cmd in ceph-admin node w/ ceph-admin user and in config folder:
     exit
     ssh ceph-osd01
     sudo mkdir /var/local/osd1
+    sudo chmod a+w /var/local/ -R   # can't write if not do this
     exit
     # prepare and activate OSDs
     ceph-deploy osd prepare ceph-osd0:/var/local/osd0 ceph-osd1:/var/local/osd1

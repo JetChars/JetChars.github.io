@@ -126,6 +126,21 @@ button-menu
     </div>
 
 
+image
+-----
+
+- chang img shapes via editing img class
+
+.. code-block:: html
+
+    <img alt="Brand" src="img/hadoop.png" class="img-thumbnail">
+    <img alt="Brand" src="img/hadoop.png" class="img-rounded">
+    <img alt="Brand" src="img/hadoop.png" class="img-circle">
+
+
+
+
+
 Navbar
 ------
 
@@ -161,6 +176,7 @@ Navbar
 
 
 - real navbar, ``div class="container-fluid"`` and ``<div class="navbar-header">`` are required
+- add brand -- ``<img alt="Brand" src="/path/to/img">``
 
 
 .. code-block:: html
@@ -222,6 +238,9 @@ Navbar
 
 form
 ----
+
+- ``form-inline`` - makes elements within form allign inline
+
 
 .. code-block:: html
 
@@ -326,6 +345,9 @@ Input
 - **checkbox** or **radio** can be nested in span
 - add placeholder attribute can set **prompte phrases**
 - can nest dropdown menu
+- ``col-lg-6`` means using 6 out of 12 columns(vertically)
+- can mimic button -- ``<input type="button" class="btn btn-success"/>``
+
 
 .. code-block:: html
 
@@ -347,6 +369,15 @@ Input
         </div><!-- /input-group -->
       </div><!-- /.col-lg-6 -->
     </div><!-- /.row -->
+
+
+Auxilarly Classes
+=================
+
+background color
+----------------
+
+- ``bg-danger`` , ``bg-success`` ...
 
 
 

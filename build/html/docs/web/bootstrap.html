@@ -108,6 +108,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#button-menu">button-menu</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#image">image</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#navbar">Navbar</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#form">form</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#div">Div</a><ul>
@@ -117,6 +118,10 @@
 <li class="toctree-l4"><a class="reference internal" href="#input">Input</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#auxilarly-classes">Auxilarly Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#background-color">background color</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
@@ -373,6 +378,17 @@
 </div>
 </div>
 </div>
+<div class="section" id="image">
+<h3>image<a class="headerlink" href="#image" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>chang img shapes via editing img class</li>
+</ul>
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">img</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;Brand&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;img/hadoop.png&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;img-thumbnail&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">img</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;Brand&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;img/hadoop.png&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;img-rounded&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">img</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;Brand&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;img/hadoop.png&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;img-circle&quot;</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="navbar">
 <h3>Navbar<a class="headerlink" href="#navbar" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
@@ -405,6 +421,7 @@
 </div>
 <ul class="simple">
 <li>real navbar, <code class="docutils literal"><span class="pre">div</span> <span class="pre">class=&quot;container-fluid&quot;</span></code> and <code class="docutils literal"><span class="pre">&lt;div</span> <span class="pre">class=&quot;navbar-header&quot;&gt;</span></code> are required</li>
+<li>add brand &#8211; <code class="docutils literal"><span class="pre">&lt;img</span> <span class="pre">alt=&quot;Brand&quot;</span> <span class="pre">src=&quot;/path/to/img&quot;&gt;</span></code></li>
 </ul>
 <div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">nav</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;navbar navbar-default&quot;</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;container-fluid&quot;</span><span class="p">&gt;</span>
@@ -464,6 +481,9 @@
 </div>
 <div class="section" id="form">
 <h3>form<a class="headerlink" href="#form" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">form-inline</span></code> - makes elements within form allign inline</li>
+</ul>
 <div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">form</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;navbar-form navbar-left&quot;</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;search&quot;</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-group&quot;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-control&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Search&quot;</span><span class="p">&gt;</span>
@@ -557,6 +577,8 @@
 <li><strong>checkbox</strong> or <strong>radio</strong> can be nested in span</li>
 <li>add placeholder attribute can set <strong>prompte phrases</strong></li>
 <li>can nest dropdown menu</li>
+<li><code class="docutils literal"><span class="pre">col-lg-6</span></code> means using 6 out of 12 columns(vertically)</li>
+<li>can mimic button &#8211; <code class="docutils literal"><span class="pre">&lt;input</span> <span class="pre">type=&quot;button&quot;</span> <span class="pre">class=&quot;btn</span> <span class="pre">btn-success&quot;/&gt;</span></code></li>
 </ul>
 <div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;row&quot;</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;col-lg-6&quot;</span><span class="p">&gt;</span>
@@ -579,6 +601,15 @@
 </pre></div>
 </div>
 </div>
+</div>
+</div>
+<div class="section" id="auxilarly-classes">
+<h2>Auxilarly Classes<a class="headerlink" href="#auxilarly-classes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="background-color">
+<h3>background color<a class="headerlink" href="#background-color" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">bg-danger</span></code> , <code class="docutils literal"><span class="pre">bg-success</span></code> ...</li>
+</ul>
 </div>
 </div>
 <div class="section" id="references">

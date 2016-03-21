@@ -29,10 +29,29 @@ https://github.com/ceph/calamari-clients
 - opensrc since May 2014
 - present as diagnostic tool
 - exposing a high level REST API
+    - calamari provides a view of the entire system instead of access to RADOS within one cluster.
 - precompiled pkgs not available(in ubuntu vagrant)
 
-.. image:: /images/ceph/calamari_architecture.jpg
-    :align: right
+.. image:: /images/ceph/calamari/summary.jpeg
+
+- dashboard
+    - shows HEALTH(can show ``health detail``), OSD, MON, POOL & PG stats
+    - IOPS(N/A), Usage(N/A) and HOSTs
+
+.. image:: /images/ceph/calamari/Main_Dashboard.png
+
+- workbench shows PG & OSD stats, can sort by OSD or HOST
+
+.. image:: /images/ceph/calamari/workbench_with_pg_state_filtering.png
+
+- graph shows
+
+.. image:: /images/ceph/calamari/Graph_UI.png
+.. image:: /images/ceph/calamari/manage_default_view.png
+.. image:: /images/ceph/calamari/manage_OSD_hosts_view.png
+.. image:: /images/ceph/calamari/manage_OSDS_by_host.png
+.. image:: /images/ceph/calamari/manage_pool_view.png
+
 
 - server side (backend)
     - composed of:  Apache, salt-master , supervisord , cthulhu , carbon-cache
@@ -45,8 +64,9 @@ https://github.com/ceph/calamari-clients
 - manage cluster using cthulhu and saltstack
 - monitoring using graphite and diamond
 
-.. image:: /images/ceph/ceph_calamari_summary.png
-.. image:: /images/ceph/ceph_calamari_osds.png
+.. image:: /images/ceph/calamari/calamari_architecture.jpg
+
+
 
 
 
@@ -215,23 +235,23 @@ Comparison
 
 
 
-============== ============= =========== ========== ============  
-Item           Calamari      ceph-dash   VSM        inkscope      
-============== ============= =========== ========== ============  
-hotness        66,175,116    36,128,46   50,82,57   38,82,36     
-license        LGPL2.1       MIT-        Apache v2  Apache v2    
-language       python/JS     python/JS   python     python       
-web_engine     Apache/django Apache      django     Apache/flask 
-DB             postgreSQL    InfluxDB    MySQL      mongoDB      
-Backing        RedHat        Chri./Eich. Intel      Orange Labs
-Capabilities   Mon & LConf   Mon         Mon & Conf Mon & LConf
-Compatability  wide          wide        limited    wide
-============== ============= =========== ========== ============  
+============= ============= =========== ========== ============ 
+Item          Calamari      ceph-dash   VSM        inkscope     
+============= ============= =========== ========== ============ 
+hotness       66,175,116    36,128,46   50,82,57   38,82,36     
+license       LGPL2.1       MIT-        Apache v2  Apache v2    
+language      python/JS     python/JS   python     python       
+web_engine    Apache/django Apache      django     Apache/flask 
+DB            postgreSQL    InfluxDB    MySQL      mongoDB      
+Backing       RedHat        Chri./Eich. Intel      Orange Labs
+Capabilities  Mon & LConf   Mon         Mon & Conf Mon & LConf
+Compatability wide          wide        limited    wide
+============= ============= =========== ========== ============  
 
 
-============== =========== ============= ========== ============  
-Item           Calamari    ceph-dash     VSM        inkscope      
-============== =========== ============= ========== ============  
+============== =========== ============= ========== ========  
+Item           Calamari    ceph-dash     VSM        inkscope  
+============== =========== ============= ========== ========  
 MON Stats      Y           Y             Y          Y
 OSD Stats      Y           Y             Y          Y
 MDS Stats      N           N             Y          Y
@@ -246,12 +266,12 @@ ERR/WRN        Y           Y             Y          Y
 view logs      Y           N             N          N
 send email     N           w/ nagios     N          N
 charts/G       Y           w/ nagios     N          N
-============== =========== ============= ========== ============  
+============== =========== ============= ========== ========  
 
 
-============== =========== ========== ============  
-Item           Calamari    VSM        inkscope      
-============== =========== ========== ============  
+============== =========== ========== ========  
+Item           Calamari    VSM        inkscope  
+============== =========== ========== ========  
 Deploy Cluster N           Y          N
 Deploy Hosts   N           Y          N
 D. Storage G.  N           Y          N
@@ -266,7 +286,7 @@ Pools(EC&Teir) N           Y          partial
 RBDs           N           partial    N
 S3/Swift/...   N           N          Y
 link to Nova   N           Y          N
-============== =========== ========== ============  
+============== =========== ========== ========  
 
 
 
@@ -290,3 +310,4 @@ References
 .. [#] http://calamari.readthedocs.org/en/latest/operations/index.html
 .. [#] http://ceph.com/category/calamari/
 .. [#] http://ceph.com/planet/ceph-calamari-the-survival-guide/
+.. [#] http://www.openstack.cn/?p=2708
