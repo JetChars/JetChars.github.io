@@ -295,33 +295,3 @@ bandersnatch -- Mirroring tool that implements the client (mirror) side of PEP 3
 
 
 
-
-Applications
-============
-
-pip
----
-
-`get-pip.py <https://bootstrap.pypa.io/get-pip.py>`_
-
-
-flask -- py based web framework
--------------------------------
-
-
-http://flask.pocoo.org/
-
-sphinx
-------
-
-http://sphinx-doc.org/latest/index.html
-
-
-fabric
-------
-
-http://www.fabfile.org/
-
-Fabric is a Python (2.5-2.7) library and command-line tool for streamlining the use of SSH for application deployment or systems administration tasks.
-
-

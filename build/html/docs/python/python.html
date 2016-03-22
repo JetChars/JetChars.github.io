@@ -92,9 +92,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../ceph/ceph_api.html">Ceph APIs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ceph/ceph_deploy.html">Ceph Deploy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ceph/ceph_issues.html">Ceph Issues</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ceph/ceph_management_platforms.html">Ceph Management Platforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ceph/ceph_mgmt_platforms.html">Ceph Management Platforms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ceph/ceph_openstack.html">Ceph w/ OpenStack</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ceph/ceph_ops.html">Ceph Operation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ceph/ceph_rest.html">Ceph RESTful API</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../web/bootstrap.html">bootstrap</a></li>
@@ -139,9 +140,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../github/index.html">GitHub &#8211; Git repository hosting service</a></li>
 </ul>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="cython.html">Cython</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pelican.html">pelican</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pep8.html">PEP8</a></li>
 <li class="toctree-l1"><a class="reference internal" href="psdash.html">psdash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_apps.html">Python Applications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="py_builtin.html">Python Built-in Modules</a></li>
 <li class="toctree-l1"><a class="reference internal" href="py_issues.html">Python Issues</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Python</a><ul>
@@ -160,7 +163,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#iterator">Iterator</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#judgement">Judgement</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#generator">Generator</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#context-manager">Context manager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#context-manager">Context manager</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#contextlib">contextlib</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#permanent-storage">Permanent storage</a><ul>
@@ -168,13 +174,6 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#peps-python-enhancement-proposals">PEPs &#8211; Python Enhancement Proposals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#applications">Applications</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#pip">pip</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#flask-py-based-web-framework">flask &#8211; py based web framework</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sphinx">sphinx</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#fabric">fabric</a></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -200,6 +199,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../microservices/index.html">MicroServices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../windows/index.html">Windows</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mac.html">Mac as Main OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vim.html">Vim - My Favourite Editor</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../kickstart/index.html">Kickstart Documentation</a></li>
@@ -468,6 +468,49 @@
     <span class="n">do</span> <span class="n">something</span> <span class="n">about</span> <span class="n">err</span>
 </pre></div>
 </div>
+<div class="section" id="contextlib">
+<h4>contextlib<a class="headerlink" href="#contextlib" title="Permalink to this headline">¶</a></h4>
+<p>Utilities for with-statement contexts.</p>
+<ul class="simple">
+<li>contextlib.contextmanager(func) &#8211; decorator can be used to define a factory function for with statement context manager, w/o creating <code class="docutils literal"><span class="pre">__enter__()</span></code> or <code class="docutils literal"><span class="pre">__exit__()</span></code></li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">contextmanager</span>
+
+<span class="nd">@contextmanager</span>
+<span class="k">def</span> <span class="nf">tag</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s2">&quot;&lt;</span><span class="si">%s</span><span class="s2">&gt;&quot;</span> <span class="o">%</span> <span class="n">name</span>
+    <span class="k">yield</span>
+    <span class="k">print</span> <span class="s2">&quot;&lt;/</span><span class="si">%s</span><span class="s2">&gt;&quot;</span> <span class="o">%</span> <span class="n">name</span>
+</pre></div>
+</div>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">&gt;</span>&gt;&gt; with tag<span class="o">(</span><span class="s2">&quot;h1&quot;</span><span class="o">)</span>:
+<span class="go">...    print &quot;foo&quot;</span>
+<span class="go">...</span>
+<span class="go">&lt;h1&gt;</span>
+<span class="go">foo</span>
+<span class="go">&lt;/h1&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">contextmanager</span>
+
+<span class="nd">@contextmanager</span>
+<span class="k">def</span> <span class="nf">closing</span><span class="p">(</span><span class="n">thing</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">thing</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">thing</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+
+
+<span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">closing</span>
+<span class="kn">import</span> <span class="nn">urllib</span>
+
+<span class="k">with</span> <span class="n">closing</span><span class="p">(</span><span class="n">urllib</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s1">&#39;http://www.python.org&#39;</span><span class="p">))</span> <span class="k">as</span> <span class="n">page</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">page</span><span class="p">:</span>
+        <span class="k">print</span> <span class="n">line</span>
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="permanent-storage">
@@ -485,26 +528,6 @@
 <p><a class="reference external" href="https://www.python.org/dev/peps/">PEP 0 &#8211; Index of PEPs</a>
 <a class="reference external" href="https://www.python.org/dev/peps/pep-0381/">PEP 0381 &#8211; Mirroring infrastructure for PyPI</a>
 bandersnatch &#8211; Mirroring tool that implements the client (mirror) side of PEP 381</p>
-</div>
-<div class="section" id="applications">
-<h2>Applications<a class="headerlink" href="#applications" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="pip">
-<h3>pip<a class="headerlink" href="#pip" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="https://bootstrap.pypa.io/get-pip.py">get-pip.py</a></p>
-</div>
-<div class="section" id="flask-py-based-web-framework">
-<h3>flask &#8211; py based web framework<a class="headerlink" href="#flask-py-based-web-framework" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="http://flask.pocoo.org/">http://flask.pocoo.org/</a></p>
-</div>
-<div class="section" id="sphinx">
-<h3>sphinx<a class="headerlink" href="#sphinx" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="http://sphinx-doc.org/latest/index.html">http://sphinx-doc.org/latest/index.html</a></p>
-</div>
-<div class="section" id="fabric">
-<h3>fabric<a class="headerlink" href="#fabric" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="http://www.fabfile.org/">http://www.fabfile.org/</a></p>
-<p>Fabric is a Python (2.5-2.7) library and command-line tool for streamlining the use of SSH for application deployment or systems administration tasks.</p>
-</div>
 </div>
 </div>
 
