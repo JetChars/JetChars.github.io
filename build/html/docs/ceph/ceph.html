@@ -92,6 +92,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#ceph-intro">Ceph Intro</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#ceph-releases">ceph releases</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#features">features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#filesystem">filesystem</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pg-states">pg states</a></li>
 </ul>
 </li>
@@ -113,9 +114,10 @@
 <li class="toctree-l1"><a class="reference internal" href="ceph_api.html">Ceph APIs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ceph_deploy.html">Ceph Deploy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ceph_issues.html">Ceph Issues</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ceph_management_platforms.html">Ceph Management Platforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ceph_mgmt_platforms.html">Ceph Management Platforms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ceph_openstack.html">Ceph w/ OpenStack</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ceph_ops.html">Ceph Operation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ceph_rest.html">Ceph RESTful API</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../web/bootstrap.html">bootstrap</a></li>
@@ -164,6 +166,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../python/pelican.html">pelican</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python/pep8.html">PEP8</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python/psdash.html">psdash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/py_apps.html">Python Applications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python/py_builtin.html">Python Built-in Modules</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python/py_issues.html">Python Issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python/python.html">Python</a></li>
@@ -190,6 +193,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../microservices/index.html">MicroServices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../windows/index.html">Windows</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mac.html">Mac as Main OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vim.html">Vim - My Favourite Editor</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../kickstart/index.html">Kickstart Documentation</a></li>
@@ -342,6 +346,43 @@
 <li>health check &#8211; MON will ping osd nodes periodly, and OSDs also can report it&#8217;s and peer&#8217;s status to MON</li>
 <li>scrubing &#8211; daily light check file zize &amp; attr. weekly deep check with checksum</li>
 <li>no centralize access point &#8211; client contact Primary OSD directly</li>
+</ul>
+</div>
+<div class="section" id="filesystem">
+<h3>filesystem<a class="headerlink" href="#filesystem" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><dl class="first docutils">
+<dt>current only supports XFS, brtfs, and ext4</dt>
+<dd><ul class="first last">
+<li><p class="first">because OSD depends on the Extended Attributes(XATTRs) of underlying FS for various forms of internal object state and metadata</p>
+</li>
+<li><dl class="first docutils">
+<dt>btrfs &#8211; now under great progrss, but not stable. will be the future of ceph, not bound the total xattr size.</dt>
+<dd><ul class="first last simple">
+<li>its a CoW fs, supports snapshots that are writeable.</li>
+<li>supports file creation timestamps &amp; checksums that verify metadata integrity. can detect bad copis &amp; recover w/ good copies</li>
+<li>incorporates multi-device mgmt into fs, which enable heterogeneous disk storage infrastructure</li>
+<li>support transparent compression and other features.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">xfs &#8211; stable, has a relative large limit of xattr size (64KB), should be first option.</p>
+</li>
+<li><p class="first">ext4 &#8211; stable, but small xattr size.</p>
+</li>
+<li><dl class="first docutils">
+<dt>xfs, brtfs and ext4 are better than ext3,</dt>
+<dd><ul class="first last simple">
+<li>they are journal fs. will be much eariser to recover from cursh or power outages.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
 </ul>
 </div>
 <div class="section" id="pg-states">

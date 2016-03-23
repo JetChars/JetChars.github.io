@@ -47,9 +47,29 @@ https://github.com/ceph/calamari-clients
 - graph shows
 
 .. image:: /images/ceph/calamari/Graph_UI.png
+
+
+- default mgmt view can tag cluster stats
+
 .. image:: /images/ceph/calamari/manage_default_view.png
+
+- OSDs grouped into diff HOSTs
+
 .. image:: /images/ceph/calamari/manage_OSD_hosts_view.png
+
+- manage OSD
+    - scrubbing -- scrub, deep scrub
+    - tagging OSDs -- tag down/out
+
 .. image:: /images/ceph/calamari/manage_OSDS_by_host.png
+
+- manage pool
+    - change name
+    - change reps
+    - change PG number
+    - switch crush-rule
+    - del pool
+
 .. image:: /images/ceph/calamari/manage_pool_view.png
 
 

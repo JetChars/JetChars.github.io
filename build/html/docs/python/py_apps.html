@@ -269,6 +269,10 @@
 <span class="go">Done.</span>
 </pre></div>
 </div>
+<ul class="simple">
+<li>open local dir w/ <code class="docutils literal"><span class="pre">lcd()</span></code></li>
+<li>exec cmd in localhost <code class="docutils literal"><span class="pre">local()</span></code></li>
+</ul>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">fabric.api</span> <span class="kn">import</span> <span class="n">local</span><span class="p">,</span> <span class="n">lcd</span>
 
 <span class="k">def</span> <span class="nf">lsfab</span><span class="p">():</span>
@@ -286,6 +290,7 @@
 </div>
 <ul class="simple">
 <li>exec cmds remotely w/ <code class="docutils literal"><span class="pre">run()</span></code></li>
+<li>open remode working dir <code class="docutils literal"><span class="pre">cd()</span></code></li>
 </ul>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">fabric.api</span> <span class="kn">import</span> <span class="o">*</span>
 
@@ -313,6 +318,54 @@
 
 <span class="go">Done.</span>
 <span class="go">Disconnecting from root@192.168.56.111... done.</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>exec cmds within multi-hosts</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">fabric.api</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="c1"># set host list</span>
+<span class="n">env</span><span class="o">.</span><span class="n">hosts</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;root@192.168.56.111:22&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;root@192.168.56.112:22&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;root@192.168.56.113:22&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;root@192.168.56.114:22&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;root@192.168.56.115:22&#39;</span>
+<span class="p">]</span>
+
+<span class="c1"># set default passwd</span>
+<span class="n">env</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="s1">&#39;3333&#39;</span>
+
+<span class="c1"># define roles (host groups)</span>
+<span class="n">env</span><span class="o">.</span><span class="n">roledefs</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;osd_server&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s1">&#39;root@192.168.56.111:22&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;root@192.168.56.112:22&#39;</span><span class="p">,</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+
+<span class="c1"># specify passwds</span>
+<span class="n">env</span><span class="o">.</span><span class="n">passwords</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;root@192.168.56.111:22&#39;</span><span class="p">:</span><span class="s1">&#39;6666&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;root@192.168.56.112:22&#39;</span><span class="p">:</span><span class="s1">&#39;6666&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;root@192.168.56.113:22&#39;</span><span class="p">:</span><span class="s1">&#39;6666&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;root@192.168.56.114:22&#39;</span><span class="p">:</span><span class="s1">&#39;6666&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;root@192.168.56.115:22&#39;</span><span class="p">:</span><span class="s1">&#39;6666&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># run in each host</span>
+<span class="k">def</span> <span class="nf">date</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">cd</span><span class="p">(</span><span class="s1">&#39;~&#39;</span><span class="p">):</span>
+        <span class="n">run</span><span class="p">(</span><span class="s1">&#39;hostname&#39;</span><span class="p">)</span>
+        <span class="n">run</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span>
+
+<span class="c1"># run in specified role</span>
+<span class="nd">@roles</span><span class="p">(</span><span class="s1">&#39;osd_server&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">osd_date</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">cd</span><span class="p">(</span><span class="s1">&#39;~&#39;</span><span class="p">):</span>
+        <span class="n">run</span><span class="p">(</span><span class="s1">&#39;hostname&#39;</span><span class="p">)</span>
+        <span class="n">run</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

@@ -53,6 +53,31 @@ ceph conf file tool [#]_
 
 
 
+
+Management
+==========
+
+
+OSD
+---
+
+- Remove OSD
+
+.. code-block:: shell
+
+    ceph osd out 5                 # mark it down
+    service ceph -a stop osd.5     # if not working using following cmd
+    sudo kill `ps aux | grep 'ceph -i 5' | awk '{print $2}'`   # kill osd process
+    ceph osd crush remove osd.5
+    ceph auth del osd.5            # remove auth info
+    ceph osd rm 5                  # remove osd
+
+
+
+
+
+
+
 References
 ==========
 ==========

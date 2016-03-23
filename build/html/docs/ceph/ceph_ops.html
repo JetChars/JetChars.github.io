@@ -31,7 +31,7 @@
 
   
     <link rel="top" title="JetChars alpha documentation" href="../../index.html"/>
-        <link rel="next" title="bootstrap" href="../web/bootstrap.html"/>
+        <link rel="next" title="Ceph RESTful API" href="ceph_rest.html"/>
         <link rel="prev" title="Ceph w/ OpenStack" href="ceph_openstack.html"/> 
 
   
@@ -89,17 +89,23 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="ceph.html">Ceph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ceph_api.html">Ceph APIs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ceph_deploy.html">Ceph Deploy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ceph_issues.html">Ceph Issues</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ceph_management_platforms.html">Ceph Management Platforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ceph_mgmt_platforms.html">Ceph Management Platforms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ceph_openstack.html">Ceph w/ OpenStack</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Ceph Operation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#ceph-conf">ceph-conf</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#management">Management</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#osd">OSD</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#references">References</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="ceph_rest.html">Ceph RESTful API</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../web/bootstrap.html">bootstrap</a></li>
@@ -126,6 +132,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../linux/freebsd.html">FreeBSD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux.html">Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_auto.html">Linux Automizaiton Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_disk.html">Linux Disk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_doc.html">Documentation Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux/linux_info.html">Get System Infos</a></li>
@@ -141,6 +148,16 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../git.html">Git &#8211; Extraordinary version contrl software</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../github/index.html">GitHub &#8211; Git repository hosting service</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../python/cython.html">Cython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/pelican.html">pelican</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/pep8.html">PEP8</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/psdash.html">psdash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/py_apps.html">Python Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/py_builtin.html">Python Built-in Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/py_issues.html">Python Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/python.html">Python</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../regex/index.html">Regular Expression</a></li>
@@ -164,6 +181,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../microservices/index.html">MicroServices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../windows/index.html">Windows</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mac.html">Mac as Main OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vim.html">Vim - My Favourite Editor</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../kickstart/index.html">Kickstart Documentation</a></li>
@@ -251,6 +269,23 @@ sudo stop ceph-mds <span class="nv">id</span><span class="o">={</span>hostname<s
 <span class="go">global</span>
 </pre></div>
 </div>
+<div class="section" id="management">
+<h3>Management<a class="headerlink" href="#management" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="osd">
+<h2>OSD<a class="headerlink" href="#osd" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Remove OSD</li>
+</ul>
+<div class="highlight-shell"><div class="highlight"><pre><span></span>ceph osd out <span class="m">5</span>                 <span class="c1"># mark it down</span>
+service ceph -a stop osd.5     <span class="c1"># if not working using following cmd</span>
+sudo <span class="nb">kill</span> <span class="sb">`</span>ps aux <span class="p">|</span> grep <span class="s1">&#39;ceph -i 5&#39;</span> <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span><span class="sb">`</span>   <span class="c1"># kill osd process</span>
+ceph osd crush remove osd.5
+ceph auth del osd.5            <span class="c1"># remove auth info</span>
+ceph osd rm <span class="m">5</span>                  <span class="c1"># remove osd</span>
+</pre></div>
+</div>
 <div class="section" id="references">
 <h3>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h3>
 <hr class="docutils" />
@@ -271,7 +306,7 @@ sudo stop ceph-mds <span class="nv">id</span><span class="o">={</span>hostname<s
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../web/bootstrap.html" class="btn btn-neutral float-right" title="bootstrap" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="ceph_rest.html" class="btn btn-neutral float-right" title="Ceph RESTful API" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="ceph_openstack.html" class="btn btn-neutral" title="Ceph w/ OpenStack" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
