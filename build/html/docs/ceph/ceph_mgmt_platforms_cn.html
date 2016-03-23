@@ -96,11 +96,13 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="">Ceph 管理监控平台</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id1">介绍</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#calamari">Calamari</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#installation">installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">图形界面</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">系统介绍及架构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">安装</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#virtual-storage-manager">Virtual Storage Manager</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id3">Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#installation">Installation</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#inkscope">Inkscope</a></li>
@@ -110,7 +112,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#comparison">Comparison</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id5">参考文献</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">参考文献</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ceph_openstack.html">Ceph w/ OpenStack</a></li>
@@ -284,6 +286,8 @@
 <li><p class="first">目前仅提供debian Trusty版本的软件，替他版本需要用户自行编译。</p>
 </li>
 </ul>
+<div class="section" id="id2">
+<h4>图形界面<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
 <img alt="../../_images/summary.jpeg" src="../../_images/summary.jpeg" />
 <ul>
 <li><dl class="first docutils">
@@ -297,86 +301,115 @@
 </li>
 </ul>
 <img alt="../../_images/Main_Dashboard.png" src="../../_images/Main_Dashboard.png" />
-<ul class="simple">
-<li>workbench shows PG &amp; OSD stats, can sort by OSD or HOST</li>
-</ul>
-<img alt="../../_images/workbench_with_pg_state_filtering.png" src="../../_images/workbench_with_pg_state_filtering.png" />
-<ul class="simple">
-<li>graph shows</li>
-</ul>
-<img alt="../../_images/Graph_UI.png" src="../../_images/Graph_UI.png" />
-<ul class="simple">
-<li>default mgmt view can tag cluster stats</li>
-</ul>
-<img alt="../../_images/manage_default_view.png" src="../../_images/manage_default_view.png" />
-<ul class="simple">
-<li>OSDs grouped into diff HOSTs</li>
-</ul>
-<img alt="../../_images/manage_OSD_hosts_view.png" src="../../_images/manage_OSD_hosts_view.png" />
 <ul>
 <li><dl class="first docutils">
-<dt>manage OSD</dt>
+<dt>工作台</dt>
 <dd><ul class="first last simple">
-<li>scrubbing &#8211; scrub, deep scrub</li>
-<li>tagging OSDs &#8211; tag down/out</li>
+<li>以田字格的样式展示了OSD的状态汇总信息</li>
+<li>可以按OSD或者其宿主机进行分类</li>
+<li>可以通过OSD或PG的状态对OSD进行过滤</li>
 </ul>
 </dd>
 </dl>
 </li>
 </ul>
+<img alt="../../_images/workbench_with_pg_state_filtering.png" src="../../_images/workbench_with_pg_state_filtering.png" />
+<ul>
+<li><dl class="first docutils">
+<dt>集群性能实时监控</dt>
+<dd><ul class="first last simple">
+<li>显示CPU、磁盘、网络的监控信息</li>
+<li>按集群、pool分类的综合监控信息无法正常显示</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<img alt="../../_images/Graph_UI.png" src="../../_images/Graph_UI.png" />
+<ul>
+<li><dl class="first docutils">
+<dt>集群管理</dt>
+<dd><ul class="first last simple">
+<li>集群配置文件的查询</li>
+<li>集群tag管理</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<img alt="../../_images/manage_default_view.png" src="../../_images/manage_default_view.png" />
+<ul>
+<li><dl class="first docutils">
+<dt>OSD管理</dt>
+<dd><ul class="first last simple">
+<li>OSD按宿主机进行分组</li>
+<li>查看OSD信息</li>
+<li>Scrub、Deep Scrub</li>
+<li>设置为down或out</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<img alt="../../_images/manage_OSD_hosts_view.png" src="../../_images/manage_OSD_hosts_view.png" />
 <img alt="../../_images/manage_OSDS_by_host.png" src="../../_images/manage_OSDS_by_host.png" />
 <ul>
 <li><dl class="first docutils">
-<dt>manage pool</dt>
+<dt>Pool管理</dt>
 <dd><ul class="first last simple">
-<li>change name</li>
-<li>change reps</li>
-<li>change PG number</li>
-<li>switch crush-rule</li>
-<li>del pool</li>
+<li>添加、删除pool</li>
+<li>修改pool配置：name、reps、PGs、选择Ruleset</li>
 </ul>
 </dd>
 </dl>
 </li>
 </ul>
 <img alt="../../_images/manage_pool_view.png" src="../../_images/manage_pool_view.png" />
+</div>
+<div class="section" id="id3">
+<h4>系统介绍及架构<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
 <ul>
 <li><dl class="first docutils">
-<dt>server side (backend)</dt>
+<dt>Calamri服务端</dt>
 <dd><ul class="first last simple">
-<li>composed of:  Apache, salt-master , supervisord , cthulhu , carbon-cache</li>
-<li>newer version provide a compelte new REST API(old based on Ceph REST API), abstract the ops of CEPH API, convient for people not know CEPH deeply.</li>
+<li>包含组件：Apache、Salt-master、supervisord、cthulhu、carbon-cache、graphite、whisper</li>
+<li>carbon-cache将ceph node传来的数据存入顺序存储数据库whisper</li>
+<li>graphite-web将whisper中接受到的数据进行绘图</li>
+<li>通过cthulhu对saltstack进行管理，但是主要还是通过直接调用salt-master</li>
+<li>基于Ceph REST API提供了以一个相对高级的REST API，对其操作进行了抽象</li>
+<li>对ceph node提供yum源</li>
 </ul>
 </dd>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt>client side (frontend)</dt>
+<dt>Calamari客户端</dt>
 <dd><ul class="first last simple">
-<li>Web UI primary in JS uses the Calamari REST API</li>
+<li>提供web图形化界面</li>
+<li>基于bootstrap的响应式布局</li>
+<li>由AngularJS编写的多个SAPs组成</li>
+<li>JS通过调用Calamari REST API对服务端进行管理</li>
 </ul>
 </dd>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt>ceph nodes</dt>
+<dt>ceph节点</dt>
 <dd><ul class="first last simple">
-<li>composed of &#8211; salt-minion , diamond</li>
-<li>diamond &#8211; collect monitoring datas, support over 90 kinds of info. report to graphite.</li>
+<li>ceph集群中的每一个节点都包含：salt-minion以及diamond</li>
+<li>salt-minion用于ceph节点的管理</li>
+<li>diamiond用于ceph节点的监控，并将监控信息汇报给控制节点的Carbon-cache</li>
 </ul>
 </dd>
 </dl>
-</li>
-<li><p class="first">manage cluster using cthulhu and saltstack</p>
-</li>
-<li><p class="first">monitoring using graphite and diamond</p>
 </li>
 </ul>
 <img alt="../../_images/calamari_architecture.jpg" src="../../_images/calamari_architecture.jpg" />
-<div class="section" id="installation">
-<h4>installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="id4">
+<h4>安装<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
-<li>Requirements: ceph-deploy and it&#8217;s env</li>
+<li>环境需求: 使用Ceph-deploy安装配置好的Ceph集群。</li>
 </ul>
 <div class="highlight-shell"><div class="highlight"><pre><span></span><span class="c1"># add repo, install dependency and install calamari</span>
 <span class="c1"># =================================================</span>
@@ -465,7 +498,7 @@ ceph-deploy calamari connect &lt;ceph nodes&gt;
 <p><a class="reference external" href="https://github.com/01org/virtual-storage-manager">https://github.com/01org/virtual-storage-manager</a></p>
 <ul>
 <li><dl class="first docutils">
-<dt>Intel VSM v0.5.1 <a class="footnote-reference" href="#id6" id="id2">[1]</a></dt>
+<dt>Intel VSM v0.5.1 <a class="footnote-reference" href="#id8" id="id5">[1]</a></dt>
 <dd><ul class="first last simple">
 <li>WebUI for cluster management, monitoring and troubleshooting</li>
 <li>Server management &#8211; Organize servers and disks</li>
@@ -574,8 +607,8 @@ ceph-deploy calamari connect &lt;ceph nodes&gt;
 </dl>
 </li>
 </ul>
-<div class="section" id="id3">
-<h4>Installation<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="installation">
+<h4>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h4>
 <ul>
 <li><dl class="first docutils">
 <dt>requirements</dt>
@@ -605,7 +638,7 @@ ceph-deploy calamari connect &lt;ceph nodes&gt;
 <h3>Inkscope<a class="headerlink" href="#inkscope" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://github.com/inkscope/inkscope">https://github.com/inkscope/inkscope</a></p>
 <ul class="simple">
-<li>Ceph visualiztion and operation through CLI <a class="footnote-reference" href="#id7" id="id4">[2]</a></li>
+<li>Ceph visualiztion and operation through CLI <a class="footnote-reference" href="#id9" id="id6">[2]</a></li>
 <li>Open Source</li>
 <li>Use Ceph RESTful API</li>
 <li>Modularity and simplicity</li>
@@ -952,46 +985,46 @@ ceph-deploy calamari connect &lt;ceph nodes&gt;
 </li>
 </ul>
 </div>
-<div class="section" id="id5">
-<h2>参考文献<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id7">
+<h2>参考文献<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
 <hr class="docutils" />
-<table class="docutils footnote" frame="void" id="id6" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td><a class="reference external" href="https://01.org/virtual-storage-manager/documentation/vsm-0.5.1-training-slides">https://01.org/virtual-storage-manager/documentation/vsm-0.5.1-training-slides</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id7" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id4">[2]</a></td><td><a class="reference external" href="http://www.slideshare.net/alaindechorgnat/inkscope-ceph-day-paris-final?qid=24a1a418-b01c-4f91-b718-f26cffe920b7&amp;v=&amp;b=&amp;from_search=1">http://www.slideshare.net/alaindechorgnat/inkscope-ceph-day-paris-final?qid=24a1a418-b01c-4f91-b718-f26cffe920b7&amp;v=&amp;b=&amp;from_search=1</a></td></tr>
-</tbody>
-</table>
 <table class="docutils footnote" frame="void" id="id8" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[3]</td><td><a class="reference external" href="http://www.slideshare.net/DaystromTech/ceph-days-sf2015-paul-evans-static?qid=4398eec4-e73a-4483-8e47-61f9875872d3&amp;v=&amp;b=&amp;from_search=2">http://www.slideshare.net/DaystromTech/ceph-days-sf2015-paul-evans-static?qid=4398eec4-e73a-4483-8e47-61f9875872d3&amp;v=&amp;b=&amp;from_search=2</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id5">[1]</a></td><td><a class="reference external" href="https://01.org/virtual-storage-manager/documentation/vsm-0.5.1-training-slides">https://01.org/virtual-storage-manager/documentation/vsm-0.5.1-training-slides</a></td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="id9" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[4]</td><td><a class="reference external" href="http://calamari.readthedocs.org/en/latest/operations/index.html">http://calamari.readthedocs.org/en/latest/operations/index.html</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id6">[2]</a></td><td><a class="reference external" href="http://www.slideshare.net/alaindechorgnat/inkscope-ceph-day-paris-final?qid=24a1a418-b01c-4f91-b718-f26cffe920b7&amp;v=&amp;b=&amp;from_search=1">http://www.slideshare.net/alaindechorgnat/inkscope-ceph-day-paris-final?qid=24a1a418-b01c-4f91-b718-f26cffe920b7&amp;v=&amp;b=&amp;from_search=1</a></td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="id10" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[5]</td><td><a class="reference external" href="http://ceph.com/category/calamari/">http://ceph.com/category/calamari/</a></td></tr>
+<tr><td class="label">[3]</td><td><a class="reference external" href="http://www.slideshare.net/DaystromTech/ceph-days-sf2015-paul-evans-static?qid=4398eec4-e73a-4483-8e47-61f9875872d3&amp;v=&amp;b=&amp;from_search=2">http://www.slideshare.net/DaystromTech/ceph-days-sf2015-paul-evans-static?qid=4398eec4-e73a-4483-8e47-61f9875872d3&amp;v=&amp;b=&amp;from_search=2</a></td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="id11" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[6]</td><td><a class="reference external" href="http://ceph.com/planet/ceph-calamari-the-survival-guide/">http://ceph.com/planet/ceph-calamari-the-survival-guide/</a></td></tr>
+<tr><td class="label">[4]</td><td><a class="reference external" href="http://calamari.readthedocs.org/en/latest/operations/index.html">http://calamari.readthedocs.org/en/latest/operations/index.html</a></td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="id12" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[5]</td><td><a class="reference external" href="http://ceph.com/category/calamari/">http://ceph.com/category/calamari/</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id13" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[6]</td><td><a class="reference external" href="http://ceph.com/planet/ceph-calamari-the-survival-guide/">http://ceph.com/planet/ceph-calamari-the-survival-guide/</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id14" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label">[7]</td><td><a class="reference external" href="http://www.openstack.cn/?p=2708">http://www.openstack.cn/?p=2708</a></td></tr>

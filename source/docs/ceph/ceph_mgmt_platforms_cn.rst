@@ -28,6 +28,9 @@ Calamari
 - 目前仅提供debian Trusty版本的软件，替他版本需要用户自行编译。
 
 
+图形界面
+^^^^^^^^
+
 .. image:: /images/ceph/calamari/summary.jpeg
 
 - 仪表板
@@ -36,61 +39,68 @@ Calamari
 
 .. image:: /images/ceph/calamari/Main_Dashboard.png
 
-- workbench shows PG & OSD stats, can sort by OSD or HOST
+- 工作台
+    - 以田字格的样式展示了OSD的状态汇总信息
+    - 可以按OSD或者其宿主机进行分类
+    - 可以通过OSD或PG的状态对OSD进行过滤
 
 .. image:: /images/ceph/calamari/workbench_with_pg_state_filtering.png
 
-- graph shows
+- 集群性能实时监控
+    - 显示CPU、磁盘、网络的监控信息
+    - 按集群、pool分类的综合监控信息无法正常显示
 
 .. image:: /images/ceph/calamari/Graph_UI.png
 
-
-- default mgmt view can tag cluster stats
+- 集群管理
+    - 集群配置文件的查询
+    - 集群tag管理
 
 .. image:: /images/ceph/calamari/manage_default_view.png
 
-- OSDs grouped into diff HOSTs
+- OSD管理
+    - OSD按宿主机进行分组
+    - 查看OSD信息
+    - Scrub、Deep Scrub
+    - 设置为down或out
 
 .. image:: /images/ceph/calamari/manage_OSD_hosts_view.png
-
-- manage OSD
-    - scrubbing -- scrub, deep scrub
-    - tagging OSDs -- tag down/out
-
 .. image:: /images/ceph/calamari/manage_OSDS_by_host.png
 
-- manage pool
-    - change name
-    - change reps
-    - change PG number
-    - switch crush-rule
-    - del pool
+- Pool管理
+    - 添加、删除pool
+    - 修改pool配置：name、reps、PGs、选择Ruleset
 
 .. image:: /images/ceph/calamari/manage_pool_view.png
 
 
-- server side (backend)
-    - composed of:  Apache, salt-master , supervisord , cthulhu , carbon-cache
-    - newer version provide a compelte new REST API(old based on Ceph REST API), abstract the ops of CEPH API, convient for people not know CEPH deeply.
-- client side (frontend)
-    - Web UI primary in JS uses the Calamari REST API
-- ceph nodes
-    - composed of -- salt-minion , diamond
-    - diamond -- collect monitoring datas, support over 90 kinds of info. report to graphite.
-- manage cluster using cthulhu and saltstack
-- monitoring using graphite and diamond
+系统介绍及架构
+^^^^^^^^^^^^^^
+
+- Calamri服务端
+    - 包含组件：Apache、Salt-master、supervisord、cthulhu、carbon-cache、graphite、whisper
+    - carbon-cache将ceph node传来的数据存入顺序存储数据库whisper
+    - graphite-web将whisper中接受到的数据进行绘图
+    - 通过cthulhu对saltstack进行管理，但是主要还是通过直接调用salt-master
+    - 基于Ceph REST API提供了以一个相对高级的REST API，对其操作进行了抽象
+    - 对ceph node提供yum源
+- Calamari客户端
+    - 提供web图形化界面
+    - 基于bootstrap的响应式布局
+    - 由AngularJS编写的多个SAPs组成
+    - JS通过调用Calamari REST API对服务端进行管理
+- ceph节点
+    - ceph集群中的每一个节点都包含：salt-minion以及diamond
+    - salt-minion用于ceph节点的管理
+    - diamiond用于ceph节点的监控，并将监控信息汇报给控制节点的Carbon-cache
 
 .. image:: /images/ceph/calamari/calamari_architecture.jpg
 
 
+安装
+^^^^
 
-
-
-
-installation
-^^^^^^^^^^^^
-
-- Requirements: ceph-deploy and it's env
+- 环境需求: 使用Ceph-deploy安装配置好的Ceph集群。
 
 
 
