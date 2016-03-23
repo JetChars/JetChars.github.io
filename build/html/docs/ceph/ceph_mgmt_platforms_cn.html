@@ -1,0 +1,1070 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Ceph 管理监控平台 &mdash; JetChars alpha documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="JetChars alpha documentation" href="../../index.html"/>
+        <link rel="next" title="Ceph w/ OpenStack" href="ceph_openstack.html"/>
+        <link rel="prev" title="Ceph Management Platforms" href="ceph_mgmt_platforms.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> JetChars
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.7
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../cloud_computing.html">Cloud Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aws/index.html">AWS &#8211; Amazon Web Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aws_vpn/index.html">Build VPN with AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ceph.html">Ceph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ceph_api.html">Ceph APIs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ceph_deploy.html">Ceph Deploy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ceph_issues.html">Ceph Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ceph_mgmt_platforms.html">Ceph Management Platforms</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Ceph 管理监控平台</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">介绍</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#calamari">Calamari</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#installation">installation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#virtual-storage-manager">Virtual Storage Manager</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#inkscope">Inkscope</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ceph-dash">Ceph-dash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#krakendash">Krakendash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ceph-web">Ceph-web</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#comparison">Comparison</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">参考文献</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ceph_openstack.html">Ceph w/ OpenStack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ceph_ops.html">Ceph Operation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ceph_rest.html">Ceph RESTful API</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../web/bootstrap.html">bootstrap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../web/html.html">HTML</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../web/web.html">Web Server</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../openstack/index.html">OpenStack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nova.html">Nova</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sahara/index.html">Sahara</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kvm_optimization/index.html">KVM Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devstack/index.html">DevStack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devstack_dvr/index.html">DevStack with DVR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devstack_t13g/index.html">DevStack Trouble Shooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../o7k_docker/index.html">OpenStack &amp; Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../osp7_director.html">OpenStack Platform 7 Director</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hadoop/index.html">Hadoop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hadoop_conf_tuning/index.html">Hadoop Configuration Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hadoop_hibench/index.html">HiBench - The Hadoop BenchMark Suit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../doopshot/index.html">DoopShot</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../linux/freebsd.html">FreeBSD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux.html">Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_auto.html">Linux Automizaiton Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_disk.html">Linux Disk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_doc.html">Documentation Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_info.html">Get System Infos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_mon.html">Linux Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_net.html">Linux Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_pkg.html">Linux Package Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/linux_virt.html">Virtualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/shell.html">Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/ubuntu.html">Ubuntu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pxe/index.html">PXE &#8211; Preboot Execution Enviriment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../screen/index.html">Screen - Full-screen window manager</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../git.html">Git &#8211; Extraordinary version contrl software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../github/index.html">GitHub &#8211; Git repository hosting service</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../python/cython.html">Cython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/pelican.html">pelican</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/pep8.html">PEP8</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/psdash.html">psdash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/py_apps.html">Python Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/py_builtin.html">Python Built-in Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/py_issues.html">Python Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/python.html">Python</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../regex/index.html">Regular Expression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sql/index.html">SQL &#8211; Structured Query Language</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../rst.html">reStructured Text (rst)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../md.html">MarkDown (md)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../svg/index.html">Scalable Vector Graphics (SVG)</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../netease_homework/os.html">Operating System</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../sort.html">Sorting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_structure.html">Review DataStructure with Pics</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../amqp/index.html">AMQP &#8211; Advanced Message Queuing Protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rest.html">RESTful API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../microservices/index.html">MicroServices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../windows/index.html">Windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mac.html">Mac as Main OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vim.html">Vim - My Favourite Editor</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../kickstart/index.html">Kickstart Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">JetChars</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>Ceph 管理监控平台</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/docs/ceph/ceph_mgmt_platforms_cn.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ceph">
+<h1>Ceph 管理监控平台<a class="headerlink" href="#ceph" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>介绍<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>到目前为止，在网上一共找到了6款开源的Ceph管理平台，为了节约我们的时间，为将挑出其中的3款进行比较。通过对比这三款管理平台我们基本上能够大体了解目前Ceph管理平台的现状。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>这6个Ceph管理平台按在github上面的热度排序（watch+star+fork）：</dt>
+<dd><ul class="first last simple">
+<li>Calamari，Ceph-dash，VSM，InkScope，krakendash以及Ceph-web。</li>
+<li>其中Ceph-dash仅支持Ceph集群的监控，并不支持管理。在后文中将用作监控指标的对比。</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="section" id="calamari">
+<h3>Calamari<a class="headerlink" href="#calamari" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><dl class="first docutils">
+<dt>Repos</dt>
+<dd><ul class="first last simple">
+<li>服务端： <a class="reference external" href="https://github.com/ceph/calamari">https://github.com/ceph/calamari</a></li>
+<li>客户端： <a class="reference external" href="https://github.com/ceph/calamari-clients">https://github.com/ceph/calamari-clients</a></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">这个项目是由InkTank发起的</p>
+</li>
+<li><p class="first">在2014年5月被开源</p>
+</li>
+<li><p class="first">主要被用来当做Ceph的诊断工具</p>
+</li>
+<li><dl class="first docutils">
+<dt>提供了以一个相对高级的REST API，而不是使用Ceph-rest-api</dt>
+<dd><ul class="first last simple">
+<li>简化了ceph系统的管理</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">目前仅提供debian Trusty版本的软件，替他版本需要用户自行编译。</p>
+</li>
+</ul>
+<img alt="../../_images/summary.jpeg" src="../../_images/summary.jpeg" />
+<ul>
+<li><dl class="first docutils">
+<dt>仪表板</dt>
+<dd><ul class="first last simple">
+<li>可以查看系统的健康信息：集群的健康信息、OSD、MON、POOLs、PG、</li>
+<li>可以查看系统资源的使用：实时的IOPS、存储容量及其使用率。（IOPS、USAGE目前无法正常显示）</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<img alt="../../_images/Main_Dashboard.png" src="../../_images/Main_Dashboard.png" />
+<ul class="simple">
+<li>workbench shows PG &amp; OSD stats, can sort by OSD or HOST</li>
+</ul>
+<img alt="../../_images/workbench_with_pg_state_filtering.png" src="../../_images/workbench_with_pg_state_filtering.png" />
+<ul class="simple">
+<li>graph shows</li>
+</ul>
+<img alt="../../_images/Graph_UI.png" src="../../_images/Graph_UI.png" />
+<ul class="simple">
+<li>default mgmt view can tag cluster stats</li>
+</ul>
+<img alt="../../_images/manage_default_view.png" src="../../_images/manage_default_view.png" />
+<ul class="simple">
+<li>OSDs grouped into diff HOSTs</li>
+</ul>
+<img alt="../../_images/manage_OSD_hosts_view.png" src="../../_images/manage_OSD_hosts_view.png" />
+<ul>
+<li><dl class="first docutils">
+<dt>manage OSD</dt>
+<dd><ul class="first last simple">
+<li>scrubbing &#8211; scrub, deep scrub</li>
+<li>tagging OSDs &#8211; tag down/out</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<img alt="../../_images/manage_OSDS_by_host.png" src="../../_images/manage_OSDS_by_host.png" />
+<ul>
+<li><dl class="first docutils">
+<dt>manage pool</dt>
+<dd><ul class="first last simple">
+<li>change name</li>
+<li>change reps</li>
+<li>change PG number</li>
+<li>switch crush-rule</li>
+<li>del pool</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<img alt="../../_images/manage_pool_view.png" src="../../_images/manage_pool_view.png" />
+<ul>
+<li><dl class="first docutils">
+<dt>server side (backend)</dt>
+<dd><ul class="first last simple">
+<li>composed of:  Apache, salt-master , supervisord , cthulhu , carbon-cache</li>
+<li>newer version provide a compelte new REST API(old based on Ceph REST API), abstract the ops of CEPH API, convient for people not know CEPH deeply.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>client side (frontend)</dt>
+<dd><ul class="first last simple">
+<li>Web UI primary in JS uses the Calamari REST API</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>ceph nodes</dt>
+<dd><ul class="first last simple">
+<li>composed of &#8211; salt-minion , diamond</li>
+<li>diamond &#8211; collect monitoring datas, support over 90 kinds of info. report to graphite.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">manage cluster using cthulhu and saltstack</p>
+</li>
+<li><p class="first">monitoring using graphite and diamond</p>
+</li>
+</ul>
+<img alt="../../_images/calamari_architecture.jpg" src="../../_images/calamari_architecture.jpg" />
+<div class="section" id="installation">
+<h4>installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Requirements: ceph-deploy and it&#8217;s env</li>
+</ul>
+<div class="highlight-shell"><div class="highlight"><pre><span></span><span class="c1"># add repo, install dependency and install calamari</span>
+<span class="c1"># =================================================</span>
+<span class="nb">echo</span> <span class="s2">&quot;deb http://download.ceph.com/calamari/1.3.1/ubuntu/trusty/ trusty main&quot;</span> &gt;&gt; /etc/apt/source.list.d/ceph.list
+sudo apt-get update <span class="o">&amp;&amp;</span> sudo apt-get install -y apache2 libapache2-mod-wsgi libcairo2 supervisor python-cairo libpq5 postgresql
+sudo apt-get install calamari-* -y
+sudo chmod a+w /var/log/calamari/cthulhu.log   <span class="c1"># can&#39;t access by default</span>
+
+<span class="c1"># install ceph nodes</span>
+<span class="c1"># ==================</span>
+sudo apt-get install python-dev python-pip git -y  <span class="c1"># prerequsite to install diamond</span>
+git clone -b calamari https://github.com/ceph/diamond/
+sudo pip install diamond/
+
+<span class="c1"># initialize calamari and conn to ceph nodes</span>
+sudo calamari-ctl initialize
+<span class="nb">echo</span> <span class="sb">``</span>auto_accept: True<span class="sb">``</span> &gt;&gt; /etc/salt/master   <span class="c1"># make sure salt master auto accept the conn request</span>
+ceph-deploy calamari connect &lt;ceph nodes&gt;
+
+<span class="c1"># kill all salts</span>
+<span class="nb">kill</span> <span class="sb">`</span>ps aux <span class="p">|</span> grep salt <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span><span class="sb">`</span>   <span class="c1"># kill all salt in a single server</span>
+</pre></div>
+</div>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo calamari-ctl initialize
+<span class="go">[INFO] Loading configuration..</span>
+<span class="go">[INFO] Starting/enabling salt...</span>
+<span class="go">[INFO] Starting/enabling postgres...</span>
+<span class="go">[INFO] Updating database...</span>
+<span class="go">[INFO] Initializing web interface...</span>
+<span class="go">[INFO] Starting/enabling services...</span>
+<span class="go">[INFO] Updating already connected nodes.</span>
+<span class="go">[INFO] Restarting services...</span>
+<span class="go">[INFO] Complete.</span>
+
+<span class="gp">$</span>
+</pre></div>
+</div>
+<ul>
+<li><dl class="first docutils">
+<dt>issues</dt>
+<dd><ul class="first last">
+<li><p class="first">errors can be shown in /var/log/calamari/calamari.log</p>
+</li>
+<li><p class="first">query calamari issuses (some function not realized)&#8211; <a class="reference external" href="http://tracker.ceph.com/projects/calamari/issues">http://tracker.ceph.com/projects/calamari/issues</a></p>
+</li>
+<li><p class="first"><strong>can&#8217;t open log/config file</strong> &#8211; <code class="docutils literal"><span class="pre">sudo</span> <span class="pre">chmod</span> <span class="pre">777</span> <span class="pre">/var/log/calamari/</span> <span class="pre">-R</span></code></p>
+</li>
+<li><p class="first"><strong>Master hostname: salt not found</strong>  &#8211; debug w/ <code class="docutils literal"><span class="pre">salt-minion</span> <span class="pre">-l</span> <span class="pre">debug</span></code></p>
+</li>
+<li><p class="first"><strong>Cluster Updates Are Stale. The Cluster isn&#8217;t updating Calamari. Please contact Administrator</strong> &#8211; solution can&#8217;t access from redhat website!</p>
+</li>
+<li><dl class="first docutils">
+<dt><strong>diamond can&#8217;t start</strong> &#8211; default conf call the path of diamond <code class="docutils literal"><span class="pre">/usr/bin/diamond</span></code>, real path is <code class="docutils literal"><span class="pre">/usr/local/bin/diamond</span></code>, create a link file to solve this issue</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">mkdir</span> <span class="pre">/usr/share/diamond/collectors/</span> <span class="pre">-p</span></code></li>
+<li><code class="docutils literal"><span class="pre">mkdir</span> <span class="pre">/var/log/calamari/</span></code></li>
+<li><code class="docutils literal"><span class="pre">scp</span> <span class="pre">/etc/diamond/*</span> <span class="pre">root&#64;192.168.56.111:/etc/diamond</span></code></li>
+<li><code class="docutils literal"><span class="pre">scp</span> <span class="pre">/usr/share/diamond/*</span> <span class="pre">root&#64;192.168.56.111:/usr/share/diamond</span></code></li>
+<li><code class="docutils literal"><span class="pre">ln</span> <span class="pre">-sf</span> <span class="pre">/usr/local/bin/diamond</span> <span class="pre">/usr/bin/diamond</span></code></li>
+<li><code class="docutils literal"><span class="pre">nohup</span> <span class="pre">/usr/bin/python</span> <span class="pre">/usr/local/bin/diamond</span> <span class="pre">--foreground</span> <span class="pre">--skip-change-user</span> <span class="pre">--skip-fork</span> <span class="pre">--skip-pidfile</span> <span class="pre">&amp;</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><strong>diamond not report</strong> &#8211; <code class="docutils literal"><span class="pre">/var/lib/graphite/index</span></code> in thisfile we can tell all observation entries</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">netstat</span> <span class="pre">-tunpla</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">`ps</span> <span class="pre">aux</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">diamond</span> <span class="pre">|</span> <span class="pre">awk</span> <span class="pre">'{print</span> <span class="pre">$2}'</span> <span class="pre">|</span> <span class="pre">head</span> <span class="pre">-n1`</span></code>  &#8211; all nodes connected</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first"><strong>salt.loaded.int.module.cmdmod</strong></p>
+</li>
+<li><p class="first">dump whisper data &#8211; <code class="docutils literal"><span class="pre">/opt/calamari/venv/bin/whisper-dump.py</span> <span class="pre">/var/lib/graphite/whisper/servers/ceph-osd2/diskspace/root/byte_used.wsp</span> <span class="pre">|</span> <span class="pre">less</span></code></p>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="virtual-storage-manager">
+<h3>Virtual Storage Manager<a class="headerlink" href="#virtual-storage-manager" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://github.com/01org/virtual-storage-manager">https://github.com/01org/virtual-storage-manager</a></p>
+<ul>
+<li><dl class="first docutils">
+<dt>Intel VSM v0.5.1 <a class="footnote-reference" href="#id6" id="id2">[1]</a></dt>
+<dd><ul class="first last simple">
+<li>WebUI for cluster management, monitoring and troubleshooting</li>
+<li>Server management &#8211; Organize servers and disks</li>
+<li>Cluster management &#8211; Manages cluster/pool creation</li>
+<li>OpenStack interface &#8211; conn pools to OpenStack</li>
+<li>VSM administration &#8211; User/Passwd</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<img alt="../../_images/vsm_arch.png" src="../../_images/vsm_arch.png" />
+<img alt="../../_images/vsm_architecture.png" src="../../_images/vsm_architecture.png" />
+<ul>
+<li><dl class="first docutils">
+<dt>VSM Controller &#8211; conn to Agents and NovaCtrl</dt>
+<dd><ul class="first last simple">
+<li>WebUI, REST API</li>
+<li>mariadb, rabbitmq</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">VSM Agent &#8211; runs on every ceph node, pass conf&amp;stats info to controller</p>
+</li>
+</ul>
+<img alt="../../_images/vsm_net.png" src="../../_images/vsm_net.png" />
+<ul>
+<li><dl class="first docutils">
+<dt>nothing special</dt>
+<dd><ul class="first last simple">
+<li>mgmt network</li>
+<li>ceph pub network</li>
+<li>ceph cluster network</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<img alt="../../_images/vsm_disks.png" src="../../_images/vsm_disks.png" />
+<ul>
+<li><dl class="first docutils">
+<dt>VSM concepts</dt>
+<dd><ul class="first last simple">
+<li>Storage Class &#8211; Drivers w/ similar performance characteristics</li>
+<li>Storage Group &#8211; Drivers w/ same Storage Class grouped together</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<img alt="../../_images/vsm_fd.png" src="../../_images/vsm_fd.png" />
+<ul class="simple">
+<li>Servers can grouped into failure domains(call <strong>Zone</strong> in VSM)</li>
+</ul>
+<img alt="../../_images/vsm_nav_bar.png" src="../../_images/vsm_nav_bar.png" />
+<ul>
+<li><dl class="first docutils">
+<dt>Monitoring</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>using ceph client</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">ceph</span> <span class="pre">-s</span></code></li>
+<li><code class="docutils literal"><span class="pre">ceph</span> <span class="pre">pg</span> <span class="pre">dump</span> <span class="pre">osds</span></code></li>
+<li><code class="docutils literal"><span class="pre">ceph</span> <span class="pre">pg</span> <span class="pre">dump</span> <span class="pre">pgs_brief</span></code></li>
+<li><code class="docutils literal"><span class="pre">ceph</span> <span class="pre">osd</span> <span class="pre">pool</span> <span class="pre">stats</span></code></li>
+<li><code class="docutils literal"><span class="pre">ceph</span> <span class="pre">osd</span> <span class="pre">dump</span></code></li>
+<li><code class="docutils literal"><span class="pre">ceph</span> <span class="pre">osd</span> <span class="pre">tree</span></code></li>
+<li><code class="docutils literal"><span class="pre">ceph</span> <span class="pre">mds</span> <span class="pre">dump</span></code></li>
+<li><code class="docutils literal"><span class="pre">rbd</span> <span class="pre">ls</span> <span class="pre">-l</span> <span class="pre">{pool</span> <span class="pre">name}</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>status: StorageGroup, RBD, OSD, MON, PG, MDS, Capacity, IOPS, throughput, ERR, WRN</dt>
+<dd><ul class="first last simple">
+<li>detect OSDs not running, near full or full</li>
+<li>identifying ntp latency err</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Managing</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>create pools,add/rm/stop/start OSDs, add/rm MON</dt>
+<dd><ul class="first last simple">
+<li>stop w/o rebalancing</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">ssh2nova_ctrl, expose pools to OpenStack</p>
+</li>
+<li><p class="first">vsm account mgt</p>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="section" id="id3">
+<h4>Installation<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><dl class="first docutils">
+<dt>requirements</dt>
+<dd><ul class="first last simple">
+<li>OS: Ubuntu Server 14.04.2/CentOS 7 Server Basic</li>
+<li>Ceph: Firefly/Giant/Hammer/Infernalis</li>
+<li>OpenStack: Havana/Icehouse/Juno/Kilo/Liberty</li>
+<li>at least 3 storage nodes</li>
+<li>passwd-less ssh</li>
+<li>will sync <code class="docutils literal"><span class="pre">/etc/hosts</span></code> on each nodes</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>note</dt>
+<dd><ul class="first last simple">
+<li>will disable selinux</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="inkscope">
+<h3>Inkscope<a class="headerlink" href="#inkscope" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://github.com/inkscope/inkscope">https://github.com/inkscope/inkscope</a></p>
+<ul class="simple">
+<li>Ceph visualiztion and operation through CLI <a class="footnote-reference" href="#id7" id="id4">[2]</a></li>
+<li>Open Source</li>
+<li>Use Ceph RESTful API</li>
+<li>Modularity and simplicity</li>
+</ul>
+<img alt="../../_images/ceph_inkscope.png" src="../../_images/ceph_inkscope.png" />
+<ul>
+<li><dl class="first docutils">
+<dt>inkscopeViz</dt>
+<dd><ul class="first last simple">
+<li>Web client</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>inkscopeCtrl</dt>
+<dd><ul class="first last simple">
+<li>Server part</li>
+<li>Provides an advanced REST API</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>inkscopeProbe</dt>
+<dd><ul class="first last simple">
+<li>Collects system and ceph infos</li>
+<li>Feeds a mongoDB database</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>inkscopeMonitor (not developed)</dt>
+<dd><ul class="first last simple">
+<li>Monitoring of Ceph metrics stored in db</li>
+<li>Feeds monitoring tools like Nagios</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<img alt="../../_images/inkscope_architecture.png" src="../../_images/inkscope_architecture.png" />
+</div>
+<div class="section" id="ceph-dash">
+<h3>Ceph-dash<a class="headerlink" href="#ceph-dash" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://github.com/Crapworks/ceph-dash">https://github.com/Crapworks/ceph-dash</a></p>
+<img alt="../../_images/ceph_dash.png" src="../../_images/ceph_dash.png" />
+</div>
+<div class="section" id="krakendash">
+<h3>Krakendash<a class="headerlink" href="#krakendash" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://github.com/01org/virtual-storage-manager">https://github.com/01org/virtual-storage-manager</a></p>
+</div>
+<div class="section" id="ceph-web">
+<h3>Ceph-web<a class="headerlink" href="#ceph-web" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://github.com/tobegit3hub/ceph-web">https://github.com/tobegit3hub/ceph-web</a></p>
+</div>
+</div>
+<div class="section" id="comparison">
+<h2>Comparison<a class="headerlink" href="#comparison" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="21%" />
+<col width="18%" />
+<col width="21%" />
+<col width="19%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Item</th>
+<th class="head">Calamari</th>
+<th class="head">ceph-dash</th>
+<th class="head">VSM</th>
+<th class="head">inkscope</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>hotness</td>
+<td>66,175,116</td>
+<td>36,128,46</td>
+<td>50,82,57</td>
+<td>38,82,36</td>
+</tr>
+<tr class="row-odd"><td>license</td>
+<td>LGPL2.1</td>
+<td>MIT-</td>
+<td>Apache v2</td>
+<td>Apache v2</td>
+</tr>
+<tr class="row-even"><td>language</td>
+<td>python/JS</td>
+<td>python/JS</td>
+<td>python</td>
+<td>python</td>
+</tr>
+<tr class="row-odd"><td>web_engine</td>
+<td>Apache/django</td>
+<td>Apache</td>
+<td>Apache/django</td>
+<td>Apache/flask</td>
+</tr>
+<tr class="row-even"><td>js_lib</td>
+<td>AngularJS</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>AngularJS</td>
+</tr>
+<tr class="row-odd"><td>css</td>
+<td>bootstrap</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>bootstrap</td>
+</tr>
+<tr class="row-even"><td>DB</td>
+<td>postgreSQL</td>
+<td>InfluxDB</td>
+<td>MySQL</td>
+<td>mongoDB</td>
+</tr>
+<tr class="row-odd"><td>Backing</td>
+<td>RedHat</td>
+<td>Chri./Eich.</td>
+<td>Intel</td>
+<td>Orange Labs</td>
+</tr>
+<tr class="row-even"><td>Capabilities</td>
+<td>Mon &amp; LConf</td>
+<td>Mon</td>
+<td>Mon &amp; Conf</td>
+<td>Mon &amp; LConf</td>
+</tr>
+<tr class="row-odd"><td>Compatability</td>
+<td>wide</td>
+<td>wide</td>
+<td>limited</td>
+<td>wide</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="20%" />
+<col width="23%" />
+<col width="18%" />
+<col width="14%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Item</th>
+<th class="head">Calamari</th>
+<th class="head">ceph-dash</th>
+<th class="head">VSM</th>
+<th class="head">inkscope</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>MON Stats</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr class="row-odd"><td>OSD Stats</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr class="row-even"><td>MDS Stats</td>
+<td>N</td>
+<td>N</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr class="row-odd"><td>PG Stats</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr class="row-even"><td>Host Stats</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr class="row-odd"><td>OSD-host-M</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr class="row-even"><td>PG-OSD-M</td>
+<td>N</td>
+<td>N</td>
+<td>N</td>
+<td>Y</td>
+</tr>
+<tr class="row-odd"><td>Capacity</td>
+<td>Y</td>
+<td>Y</td>
+<td>via Groups</td>
+<td>Y</td>
+</tr>
+<tr class="row-even"><td>Throughput</td>
+<td>N</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr class="row-odd"><td>IOPS</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr class="row-even"><td>ERR/WRN</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr class="row-odd"><td>view logs</td>
+<td>Y</td>
+<td>N</td>
+<td>N</td>
+<td>N</td>
+</tr>
+<tr class="row-even"><td>send email</td>
+<td>N</td>
+<td>w/ nagios</td>
+<td>N</td>
+<td>N</td>
+</tr>
+<tr class="row-odd"><td>charts/G</td>
+<td>Y</td>
+<td>w/ nagios</td>
+<td>N</td>
+<td>N</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="26%" />
+<col width="23%" />
+<col width="19%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Item</th>
+<th class="head">Calamari</th>
+<th class="head">VSM</th>
+<th class="head">inkscope</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Deploy Cluster</td>
+<td>N</td>
+<td>Y</td>
+<td>N</td>
+</tr>
+<tr class="row-odd"><td>Deploy Hosts</td>
+<td>N</td>
+<td>Y</td>
+<td>N</td>
+</tr>
+<tr class="row-even"><td><ol class="first last upperalpha simple" start="4">
+<li>Storage G.</li>
+</ol>
+</td>
+<td>N</td>
+<td>Y</td>
+<td>N</td>
+</tr>
+<tr class="row-odd"><td>set Daemons</td>
+<td>OSD only</td>
+<td>Y</td>
+<td>N</td>
+</tr>
+<tr class="row-even"><td>set ops flags</td>
+<td>Y</td>
+<td>N</td>
+<td>Y</td>
+</tr>
+<tr class="row-odd"><td>set parametrs</td>
+<td>Y</td>
+<td>N</td>
+<td>view</td>
+</tr>
+<tr class="row-even"><td>set crush</td>
+<td>N</td>
+<td>partial</td>
+<td>view</td>
+</tr>
+<tr class="row-odd"><td>set EC</td>
+<td>N</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr class="row-even"><td>OSD</td>
+<td>partial</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr class="row-odd"><td>Pools(Rep)</td>
+<td>limited</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr class="row-even"><td>Pools(EC&amp;Teir)</td>
+<td>N</td>
+<td>Y</td>
+<td>partial</td>
+</tr>
+<tr class="row-odd"><td>RBDs</td>
+<td>N</td>
+<td>partial</td>
+<td>N</td>
+</tr>
+<tr class="row-even"><td>S3/Swift/...</td>
+<td>N</td>
+<td>N</td>
+<td>Y</td>
+</tr>
+<tr class="row-odd"><td>link to Nova</td>
+<td>N</td>
+<td>Y</td>
+<td>N</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><dl class="first docutils">
+<dt>Notice</dt>
+<dd><ul class="first last simple">
+<li>hotness include watch,star,fork of 2016/3/9</li>
+<li>krakendash has modified the MIT license</li>
+<li>these comp infos derived from internet, not up to date.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h2>参考文献<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td><a class="reference external" href="https://01.org/virtual-storage-manager/documentation/vsm-0.5.1-training-slides">https://01.org/virtual-storage-manager/documentation/vsm-0.5.1-training-slides</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id7" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[2]</a></td><td><a class="reference external" href="http://www.slideshare.net/alaindechorgnat/inkscope-ceph-day-paris-final?qid=24a1a418-b01c-4f91-b718-f26cffe920b7&amp;v=&amp;b=&amp;from_search=1">http://www.slideshare.net/alaindechorgnat/inkscope-ceph-day-paris-final?qid=24a1a418-b01c-4f91-b718-f26cffe920b7&amp;v=&amp;b=&amp;from_search=1</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id8" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[3]</td><td><a class="reference external" href="http://www.slideshare.net/DaystromTech/ceph-days-sf2015-paul-evans-static?qid=4398eec4-e73a-4483-8e47-61f9875872d3&amp;v=&amp;b=&amp;from_search=2">http://www.slideshare.net/DaystromTech/ceph-days-sf2015-paul-evans-static?qid=4398eec4-e73a-4483-8e47-61f9875872d3&amp;v=&amp;b=&amp;from_search=2</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id9" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[4]</td><td><a class="reference external" href="http://calamari.readthedocs.org/en/latest/operations/index.html">http://calamari.readthedocs.org/en/latest/operations/index.html</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id10" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[5]</td><td><a class="reference external" href="http://ceph.com/category/calamari/">http://ceph.com/category/calamari/</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id11" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[6]</td><td><a class="reference external" href="http://ceph.com/planet/ceph-calamari-the-survival-guide/">http://ceph.com/planet/ceph-calamari-the-survival-guide/</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id12" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[7]</td><td><a class="reference external" href="http://www.openstack.cn/?p=2708">http://www.openstack.cn/?p=2708</a></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ceph_openstack.html" class="btn btn-neutral float-right" title="Ceph w/ OpenStack" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ceph_mgmt_platforms.html" class="btn btn-neutral" title="Ceph Management Platforms" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, JetChars.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'alpha',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
