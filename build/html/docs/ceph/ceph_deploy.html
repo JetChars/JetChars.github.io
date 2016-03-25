@@ -518,14 +518,14 @@ ceph health <span class="o">{</span>detail<span class="o">}</span>
 ceph -s
 <span class="c1"># watch live cluster changes, will contain info in *ceph -s*</span>
 ceph -w
-ceph osd lspools
+ceph df    <span class="c1"># display disk usages</span>
 ceph auth list
-ceph df
 ceph mon stat
 ceph mon dump
 ceph osd stat
 ceph osd dump
 ceph osd tree
+ceph osd lspools
 ceph pg dump
 rbd list
 </pre></div>
@@ -715,12 +715,8 @@ ceph -s   <span class="c1"># check cluster stat</span>
 <tr><td class="label">[8]</td><td><a class="reference external" href="http://www.07net01.com/2015/12/1029404.html">http://www.07net01.com/2015/12/1029404.html</a></td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id12" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[9]</td><td><a class="reference external" href="http://blog.csdn.net/zhoudaxia/article/details/8044129">http://blog.csdn.net/zhoudaxia/article/details/8044129</a></td></tr>
-</tbody>
-</table>
+<p>w
+.. [#] <a class="reference external" href="http://blog.csdn.net/zhoudaxia/article/details/8044129">http://blog.csdn.net/zhoudaxia/article/details/8044129</a></p>
 </div>
 </div>
 

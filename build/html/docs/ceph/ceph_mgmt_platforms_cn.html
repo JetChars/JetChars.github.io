@@ -102,7 +102,9 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#virtual-storage-manager">Virtual Storage Manager</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">图形化界面</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">系统介绍及架构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">安装</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#inkscope">Inkscope</a></li>
@@ -111,8 +113,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#ceph-web">Ceph-web</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#comparison">Comparison</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id7">参考文献</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id9">总结</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id10">对比</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#calamarivsm">Calamari与VSM</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id11">参考文献</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ceph_openstack.html">Ceph w/ OpenStack</a></li>
@@ -443,48 +449,34 @@ ceph-deploy calamari connect &lt;ceph nodes&gt;
 <span class="go">[INFO] Updating already connected nodes.</span>
 <span class="go">[INFO] Restarting services...</span>
 <span class="go">[INFO] Complete.</span>
-
-<span class="gp">$</span>
 </pre></div>
 </div>
 <ul>
 <li><dl class="first docutils">
 <dt>issues</dt>
 <dd><ul class="first last">
-<li><p class="first">errors can be shown in /var/log/calamari/calamari.log</p>
+<li><p class="first">log文档位置 &#8211; <code class="docutils literal"><span class="pre">var/log/calamari/calamari.log</span></code></p>
 </li>
-<li><p class="first">query calamari issuses (some function not realized)&#8211; <a class="reference external" href="http://tracker.ceph.com/projects/calamari/issues">http://tracker.ceph.com/projects/calamari/issues</a></p>
-</li>
-<li><p class="first"><strong>can&#8217;t open log/config file</strong> &#8211; <code class="docutils literal"><span class="pre">sudo</span> <span class="pre">chmod</span> <span class="pre">777</span> <span class="pre">/var/log/calamari/</span> <span class="pre">-R</span></code></p>
-</li>
-<li><p class="first"><strong>Master hostname: salt not found</strong>  &#8211; debug w/ <code class="docutils literal"><span class="pre">salt-minion</span> <span class="pre">-l</span> <span class="pre">debug</span></code></p>
-</li>
-<li><p class="first"><strong>Cluster Updates Are Stale. The Cluster isn&#8217;t updating Calamari. Please contact Administrator</strong> &#8211; solution can&#8217;t access from redhat website!</p>
+<li><p class="first">追踪calamari isues &#8211; <a class="reference external" href="http://tracker.ceph.com/projects/calamari/issues">http://tracker.ceph.com/projects/calamari/issues</a></p>
 </li>
 <li><dl class="first docutils">
-<dt><strong>diamond can&#8217;t start</strong> &#8211; default conf call the path of diamond <code class="docutils literal"><span class="pre">/usr/bin/diamond</span></code>, real path is <code class="docutils literal"><span class="pre">/usr/local/bin/diamond</span></code>, create a link file to solve this issue</dt>
+<dt>可能需要手动配置的部分</dt>
 <dd><ul class="first last simple">
-<li><code class="docutils literal"><span class="pre">mkdir</span> <span class="pre">/usr/share/diamond/collectors/</span> <span class="pre">-p</span></code></li>
-<li><code class="docutils literal"><span class="pre">mkdir</span> <span class="pre">/var/log/calamari/</span></code></li>
-<li><code class="docutils literal"><span class="pre">scp</span> <span class="pre">/etc/diamond/*</span> <span class="pre">root&#64;192.168.56.111:/etc/diamond</span></code></li>
-<li><code class="docutils literal"><span class="pre">scp</span> <span class="pre">/usr/share/diamond/*</span> <span class="pre">root&#64;192.168.56.111:/usr/share/diamond</span></code></li>
-<li><code class="docutils literal"><span class="pre">ln</span> <span class="pre">-sf</span> <span class="pre">/usr/local/bin/diamond</span> <span class="pre">/usr/bin/diamond</span></code></li>
-<li><code class="docutils literal"><span class="pre">nohup</span> <span class="pre">/usr/bin/python</span> <span class="pre">/usr/local/bin/diamond</span> <span class="pre">--foreground</span> <span class="pre">--skip-change-user</span> <span class="pre">--skip-fork</span> <span class="pre">--skip-pidfile</span> <span class="pre">&amp;</span></code></li>
+<li><strong>can&#8217;t open log/config file</strong> &#8211; <code class="docutils literal"><span class="pre">sudo</span> <span class="pre">chmod</span> <span class="pre">777</span> <span class="pre">/var/log/calamari/</span> <span class="pre">-R</span></code></li>
+<li><strong>Master hostname: salt not found</strong>  &#8211; debug w/ <code class="docutils literal"><span class="pre">salt-minion</span> <span class="pre">-l</span> <span class="pre">debug</span></code></li>
+<li><strong>Cluster Updates Are Stale. The Cluster isn&#8217;t updating Calamari. Please contact Administrator</strong> &#8211; 与宿主机同步时间（在宿主机中启动ntp server）</li>
+<li><strong>diamond can&#8217;t start</strong> &#8211; diamond的执行路径不正确 <code class="docutils literal"><span class="pre">/usr/bin/diamond</span></code>, 实际的路径 <code class="docutils literal"><span class="pre">/usr/local/bin/diamond</span></code> &#8211; 通过创建一个软连接解决这个问题 <code class="docutils literal"><span class="pre">ln</span> <span class="pre">-sf</span> <span class="pre">/usr/local/bin/diamond</span> <span class="pre">/usr/bin/diamond</span></code></li>
+<li>手动创建collector所在的路径 &#8211; <code class="docutils literal"><span class="pre">mkdir</span> <span class="pre">/usr/share/diamond/collectors/</span> <span class="pre">-p</span></code></li>
+<li>手动从创建calamari的日志文件夹 &#8211; <code class="docutils literal"><span class="pre">mkdir</span> <span class="pre">/var/log/calamari/</span></code></li>
+<li>拷贝diamond配置文件到ceph节点 &#8211; <code class="docutils literal"><span class="pre">scp</span> <span class="pre">/etc/diamond/*</span> <span class="pre">root&#64;192.168.56.111:/etc/diamond</span></code> <code class="docutils literal"><span class="pre">scp</span> <span class="pre">/usr/share/diamond/*</span> <span class="pre">root&#64;192.168.56.111:/usr/share/diamond</span></code></li>
+<li>手动启动diamond守护进程 &#8211; <code class="docutils literal"><span class="pre">nohup</span> <span class="pre">/usr/bin/python</span> <span class="pre">/usr/local/bin/diamond</span> <span class="pre">--foreground</span> <span class="pre">--skip-change-user</span> <span class="pre">--skip-fork</span> <span class="pre">--skip-pidfile</span> <span class="pre">&amp;</span></code></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt><strong>diamond not report</strong> &#8211; <code class="docutils literal"><span class="pre">/var/lib/graphite/index</span></code> in thisfile we can tell all observation entries</dt>
-<dd><ul class="first last simple">
-<li><code class="docutils literal"><span class="pre">netstat</span> <span class="pre">-tunpla</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">`ps</span> <span class="pre">aux</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">diamond</span> <span class="pre">|</span> <span class="pre">awk</span> <span class="pre">'{print</span> <span class="pre">$2}'</span> <span class="pre">|</span> <span class="pre">head</span> <span class="pre">-n1`</span></code>  &#8211; all nodes connected</li>
-</ul>
-</dd>
-</dl>
+<li><p class="first"><strong>diamond not report</strong> &#8211; 同过查看这个文档判断diamond的传输到whisper数据库中的数据列表 <code class="docutils literal"><span class="pre">/var/lib/graphite/index</span></code></p>
 </li>
-<li><p class="first"><strong>salt.loaded.int.module.cmdmod</strong></p>
-</li>
-<li><p class="first">dump whisper data &#8211; <code class="docutils literal"><span class="pre">/opt/calamari/venv/bin/whisper-dump.py</span> <span class="pre">/var/lib/graphite/whisper/servers/ceph-osd2/diskspace/root/byte_used.wsp</span> <span class="pre">|</span> <span class="pre">less</span></code></p>
+<li><p class="first">查看whisper中存储的数据 &#8211; <code class="docutils literal"><span class="pre">/opt/calamari/venv/bin/whisper-dump.py</span> <span class="pre">/var/lib/graphite/whisper/servers/ceph-osd2/diskspace/root/byte_used.wsp</span> <span class="pre">|</span> <span class="pre">less</span></code></p>
 </li>
 </ul>
 </dd>
@@ -496,71 +488,68 @@ ceph-deploy calamari connect &lt;ceph nodes&gt;
 <div class="section" id="virtual-storage-manager">
 <h3>Virtual Storage Manager<a class="headerlink" href="#virtual-storage-manager" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://github.com/01org/virtual-storage-manager">https://github.com/01org/virtual-storage-manager</a></p>
-<ul>
-<li><dl class="first docutils">
-<dt>Intel VSM v0.5.1 <a class="footnote-reference" href="#id8" id="id5">[1]</a></dt>
-<dd><ul class="first last simple">
-<li>WebUI for cluster management, monitoring and troubleshooting</li>
-<li>Server management &#8211; Organize servers and disks</li>
-<li>Cluster management &#8211; Manages cluster/pool creation</li>
-<li>OpenStack interface &#8211; conn pools to OpenStack</li>
-<li>VSM administration &#8211; User/Passwd</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-<img alt="../../_images/vsm_arch.png" src="../../_images/vsm_arch.png" />
-<img alt="../../_images/vsm_architecture.png" src="../../_images/vsm_architecture.png" />
-<ul>
-<li><dl class="first docutils">
-<dt>VSM Controller &#8211; conn to Agents and NovaCtrl</dt>
-<dd><ul class="first last simple">
-<li>WebUI, REST API</li>
-<li>mariadb, rabbitmq</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><p class="first">VSM Agent &#8211; runs on every ceph node, pass conf&amp;stats info to controller</p>
-</li>
-</ul>
-<img alt="../../_images/vsm_net.png" src="../../_images/vsm_net.png" />
-<ul>
-<li><dl class="first docutils">
-<dt>nothing special</dt>
-<dd><ul class="first last simple">
-<li>mgmt network</li>
-<li>ceph pub network</li>
-<li>ceph cluster network</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-<img alt="../../_images/vsm_disks.png" src="../../_images/vsm_disks.png" />
-<ul>
-<li><dl class="first docutils">
-<dt>VSM concepts</dt>
-<dd><ul class="first last simple">
-<li>Storage Class &#8211; Drivers w/ similar performance characteristics</li>
-<li>Storage Group &#8211; Drivers w/ same Storage Class grouped together</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-<img alt="../../_images/vsm_fd.png" src="../../_images/vsm_fd.png" />
 <ul class="simple">
-<li>Servers can grouped into failure domains(call <strong>Zone</strong> in VSM)</li>
+<li>Intel VSM v2.0</li>
 </ul>
-<img alt="../../_images/vsm_nav_bar.png" src="../../_images/vsm_nav_bar.png" />
+<div class="section" id="id5">
+<h4>图形化界面<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
 <ul>
 <li><dl class="first docutils">
-<dt>Monitoring</dt>
+<dt>仪表盘</dt>
 <dd><ul class="first last">
 <li><dl class="first docutils">
-<dt>using ceph client</dt>
+<dt>查看vsm、cluster、storage group、OSD、MON、MDS、PG的状态统计信息</dt>
+<dd><ul class="first last simple">
+<li>可以判断OSD是否正常运作，空间是否满</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>查看IOPS、latency、bandwidth、CPU实时监控信息(通过diamond实现数据的收集)</dt>
+<dd><ul class="first last simple">
+<li>可以用来发现ntp延迟的问题</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<img alt="../../_images/vsm_dashboard.PNG" src="../../_images/vsm_dashboard.PNG" />
+<ul>
+<li><dl class="first docutils">
+<dt>vsm管理工具</dt>
+<dd><ul class="first last simple">
+<li>所有的宿主节点都需要在安装vsm的时候写在配置文件中</li>
+<li>添加删除MON/OSD 守护进程</li>
+<li>OSD 增删、重启、恢复（N/A）</li>
+<li>osd pool的管理 &#8211; 支持cache tier的增删、replicated/EC pool的创建</li>
+<li>StorageGroup的管理 &#8211; 添加新的SG，存储资源将以SG为单位进行统计</li>
+<li>支持ceph系统的升级功能，通过github下载源码实现</li>
+<li>将通过ssh配置openstack的控制节点把**rbd pool** present给cinder</li>
+<li>管理系统的临界值，将在dashboard中得到体现</li>
+<li>vsm 账户管理</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<img alt="../../_images/vsm_mgmt_devices.PNG" src="../../_images/vsm_mgmt_devices.PNG" />
+<img alt="../../_images/vsm_mgmt_servers.PNG" src="../../_images/vsm_mgmt_servers.PNG" />
+<img alt="../../_images/vsm_mgmt_pools.PNG" src="../../_images/vsm_mgmt_pools.PNG" />
+<img alt="../../_images/vsm_mgmt_sg.PNG" src="../../_images/vsm_mgmt_sg.PNG" />
+<img alt="../../_images/vsm_mgmt_upgrade.PNG" src="../../_images/vsm_mgmt_upgrade.PNG" />
+<img alt="../../_images/vsm_openstack.PNG" src="../../_images/vsm_openstack.PNG" />
+<img alt="../../_images/vsm_mgmt_thresholds.PNG" src="../../_images/vsm_mgmt_thresholds.PNG" />
+<ul>
+<li><dl class="first docutils">
+<dt>vsm监控工具</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>实现的功能非常的简单，通过使用ceph client实现</dt>
 <dd><ul class="first last simple">
 <li><code class="docutils literal"><span class="pre">ceph</span> <span class="pre">-s</span></code></li>
 <li><code class="docutils literal"><span class="pre">ceph</span> <span class="pre">pg</span> <span class="pre">dump</span> <span class="pre">osds</span></code></li>
@@ -574,59 +563,149 @@ ceph-deploy calamari connect &lt;ceph nodes&gt;
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>status: StorageGroup, RBD, OSD, MON, PG, MDS, Capacity, IOPS, throughput, ERR, WRN</dt>
-<dd><ul class="first last simple">
-<li>detect OSDs not running, near full or full</li>
-<li>identifying ntp latency err</li>
 </ul>
 </dd>
 </dl>
 </li>
 </ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>Managing</dt>
-<dd><ul class="first last">
-<li><dl class="first docutils">
-<dt>create pools,add/rm/stop/start OSDs, add/rm MON</dt>
-<dd><ul class="first last simple">
-<li>stop w/o rebalancing</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><p class="first">ssh2nova_ctrl, expose pools to OpenStack</p>
-</li>
-<li><p class="first">vsm account mgt</p>
-</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-<div class="section" id="installation">
-<h4>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h4>
+<img alt="../../_images/vsm_mon.PNG" src="../../_images/vsm_mon.PNG" />
+</div>
+<div class="section" id="id6">
+<h4>系统介绍及架构<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
+<a class="reference internal image-reference" href="../../_images/vsm_arch.png"><img alt="../../_images/vsm_arch.png" class="align-right" src="../../_images/vsm_arch.png" style="width: 300px;" /></a>
 <ul>
 <li><dl class="first docutils">
-<dt>requirements</dt>
+<dt>VSM 控制节点</dt>
 <dd><ul class="first last simple">
-<li>OS: Ubuntu Server 14.04.2/CentOS 7 Server Basic</li>
-<li>Ceph: Firefly/Giant/Hammer/Infernalis</li>
-<li>OpenStack: Havana/Icehouse/Juno/Kilo/Liberty</li>
-<li>at least 3 storage nodes</li>
-<li>passwd-less ssh</li>
-<li>will sync <code class="docutils literal"><span class="pre">/etc/hosts</span></code> on each nodes</li>
+<li>WebUI &#8211; 通过访问VSM REST API用于集群的管理、监控</li>
+<li>REST API &#8211; 供vsm client访问</li>
+<li>mariadb, rabbitmq</li>
 </ul>
 </dd>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt>note</dt>
+<dt>VSM 代理节点</dt>
 <dd><ul class="first last simple">
-<li>will disable selinux</li>
+<li>使用diamond收集ceph节点的监控信息</li>
+<li>vsm-agent工具对ceph节点进行管理</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<img alt="../../_images/vsm_architecture.png" src="../../_images/vsm_architecture.png" />
+<ul>
+<li><dl class="first docutils">
+<dt>VSM推荐使用三个分别的子网进行管理</dt>
+<dd><ul class="first last simple">
+<li>mgmt network</li>
+<li>ceph pub network</li>
+<li>ceph cluster network</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<img alt="../../_images/vsm_net.png" src="../../_images/vsm_net.png" />
+<ul>
+<li><dl class="first docutils">
+<dt>VSM 概念</dt>
+<dd><ul class="first last simple">
+<li>Storage Class &#8211; 具有类似存储性能的磁盘分类</li>
+<li>Storage Group &#8211; 用同一种Storage Class组成的磁盘集合</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<img alt="../../_images/vsm_disks.png" src="../../_images/vsm_disks.png" />
+<ul class="simple">
+<li>书主机可以按失效域啊（failure domain）进行划归(在VSM中层位zone)</li>
+</ul>
+<img alt="../../_images/vsm_fd.png" src="../../_images/vsm_fd.png" />
+</div>
+<div class="section" id="id7">
+<h4>安装<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
+<ul>
+<li><dl class="first docutils">
+<dt>环境需求</dt>
+<dd><ul class="first last simple">
+<li>debian trusty/centos 7 (master branch仅支持centos)</li>
+<li>ceph版本目前仅支持hammer</li>
+<li>安装时需要至少三个空白的宿主机</li>
+<li>需要配置无密码登陆ssh</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>提示</dt>
+<dd><ul class="first last simple">
+<li>vsm将同步控制节点的``/etc/hosts``文件到所有的节点</li>
+<li>vsm将关闭系统的selinux</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">ceph节点的准备工作</p>
+</li>
+</ul>
+<div class="highlight-shell"><div class="highlight"><pre><span></span>sudo mkdir /loop
+<span class="k">for</span> i in <span class="o">{</span>0..5<span class="o">}</span><span class="p">;</span> <span class="k">do</span>
+    sudo truncate -s 5G /loop/loop<span class="nv">$i</span>.img
+    sudo losetup /dev/loop<span class="nv">$i</span> /loop/loop<span class="nv">$i</span>.img
+    sudo parted /dev/loop<span class="nv">$i</span> -- mklabel gpt
+    sudo parted -a optimal /dev/loop<span class="nv">$i</span> -- mkpart primary 1MB 100%
+<span class="k">done</span>
+git clone -b http://github.com/01org/vsm-dependencies
+cp vsm-dependencies/ubuntu/* vsm-dep-repo/
+./install.sh -v 2.0 -u vsm
+</pre></div>
+</div>
+<ul class="simple">
+<li>vsm控制节点的安装</li>
+</ul>
+<div class="highlight-shell"><div class="highlight"><pre><span></span><span class="c1"># ceph repo should be added manually</span>
+wget -q -O- <span class="s1">&#39;https://download.ceph.com/keys/release.asc&#39;</span> <span class="p">|</span> sudo apt-key add -
+<span class="nb">echo</span> deb http://download.ceph.com/debian-hammer/ <span class="k">$(</span>lsb_release -sc<span class="k">)</span> main <span class="p">|</span> sudo tee /etc/apt/sources.list.d/ceph.list
+git clone -b 2.0 http://github.com/01org/virtual-storage-manager
+<span class="nb">cd</span> virtual-storage-manager
+./buildvsm.sh
+<span class="nb">cd</span> release
+tar -xvzf 2.0.0-216.tar.gz
+<span class="nb">cd</span> 2.0.0-216     <span class="c1"># enter the vsm package</span>
+mkdir manifest/192.168.56.12<span class="o">{</span>0..3<span class="o">}</span>
+cp manifest/<span class="o">{</span>cluster.manifest.sample,192.168.56.120/cluster.manifest<span class="o">}</span>   <span class="c1"># then edit it</span>
+cp manifest/<span class="o">{</span>server.manifest.sample,192.168.56.121/server.manifest<span class="o">}</span>   <span class="c1"># then edit it</span>
+cp manifest/192.168.56.12<span class="o">{</span>1,2<span class="o">}</span>/server.manifest
+cp manifest/192.168.56.12<span class="o">{</span>1,3<span class="o">}</span>/server.manifest
+./install.sh -u vsm -v 2.0   <span class="c1"># vsm is the username of ceph-nodes</span>
+./get_pass.sh                <span class="c1"># generate admin password, username *admin*</span>
+cat /etc/vsmdeploy/deployrc <span class="p">|</span> grep -i admin_password <span class="p">|</span> cut -d<span class="s1">&#39;=&#39;</span> -f2
+</pre></div>
+</div>
+<ul>
+<li><dl class="first docutils">
+<dt>issues</dt>
+<dd><ul class="first last">
+<li><p class="first">依赖包被托管在github上面，且无法通过脚本完成下载。（2015年1月停止更新）</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">install.sh</span> <span class="pre">-k</span> <span class="pre">&lt;path/to/key/file&gt;</span></code> &#8211; keyfile即使使用完整路径也无法找到，需要手动输入cpeh节点的密码几十次（ssh-copy-id也无效）</p>
+</li>
+<li><p class="first">Apache端口80需要手动开启</p>
+</li>
+<li><dl class="first docutils">
+<dt>osd 无法启动</dt>
+<dd><ul class="first last simple">
+<li>can&#8217;t start osd w/ directory or  loopback device.</li>
+<li><code class="docutils literal"><span class="pre">ERROR:</span> <span class="pre">error</span> <span class="pre">creating</span> <span class="pre">empty</span> <span class="pre">object</span> <span class="pre">store</span> <span class="pre">in</span> <span class="pre">/data11/osd.11:</span> <span class="pre">(21)</span> <span class="pre">Is</span> <span class="pre">a</span> <span class="pre">directory</span></code></li>
+<li><code class="docutils literal"><span class="pre">ERROR:</span> <span class="pre">unable</span> <span class="pre">to</span> <span class="pre">open</span> <span class="pre">OSD</span> <span class="pre">superblock</span> <span class="pre">on</span> <span class="pre">/data11/osd.11:</span> <span class="pre">(2)</span> <span class="pre">No</span> <span class="pre">such</span> <span class="pre">file</span> <span class="pre">or</span> <span class="pre">directory</span></code></li>
+<li><code class="docutils literal"><span class="pre">ERROR:</span> <span class="pre">osd</span> <span class="pre">init</span> <span class="pre">failed:</span> <span class="pre">(22)</span> <span class="pre">Invalid</span> <span class="pre">argument</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
 </ul>
 </dd>
 </dl>
@@ -638,17 +717,16 @@ ceph-deploy calamari connect &lt;ceph nodes&gt;
 <h3>Inkscope<a class="headerlink" href="#inkscope" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://github.com/inkscope/inkscope">https://github.com/inkscope/inkscope</a></p>
 <ul class="simple">
-<li>Ceph visualiztion and operation through CLI <a class="footnote-reference" href="#id9" id="id6">[2]</a></li>
-<li>Open Source</li>
-<li>Use Ceph RESTful API</li>
-<li>Modularity and simplicity</li>
+<li>模块化管理</li>
+<li>提供REST API</li>
+<li>通过访问Inkscope REST API提供Ceph的web图形化界面 <a class="footnote-reference" href="#id12" id="id8">[1]</a></li>
 </ul>
 <img alt="../../_images/ceph_inkscope.png" src="../../_images/ceph_inkscope.png" />
 <ul>
 <li><dl class="first docutils">
 <dt>inkscopeViz</dt>
 <dd><ul class="first last simple">
-<li>Web client</li>
+<li>Web客户端</li>
 </ul>
 </dd>
 </dl>
@@ -656,8 +734,8 @@ ceph-deploy calamari connect &lt;ceph nodes&gt;
 <li><dl class="first docutils">
 <dt>inkscopeCtrl</dt>
 <dd><ul class="first last simple">
-<li>Server part</li>
-<li>Provides an advanced REST API</li>
+<li>是inkscope的服务器端</li>
+<li>提供了REST API</li>
 </ul>
 </dd>
 </dl>
@@ -665,20 +743,13 @@ ceph-deploy calamari connect &lt;ceph nodes&gt;
 <li><dl class="first docutils">
 <dt>inkscopeProbe</dt>
 <dd><ul class="first last simple">
-<li>Collects system and ceph infos</li>
-<li>Feeds a mongoDB database</li>
+<li>收集ceph节点的系统信息</li>
+<li>收集到的数据将传输到MongoDB</li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>inkscopeMonitor (not developed)</dt>
-<dd><ul class="first last simple">
-<li>Monitoring of Ceph metrics stored in db</li>
-<li>Feeds monitoring tools like Nagios</li>
-</ul>
-</dd>
-</dl>
+<li><p class="first">inkscopeMonitor (开发中)</p>
 </li>
 </ul>
 <img alt="../../_images/inkscope_architecture.png" src="../../_images/inkscope_architecture.png" />
@@ -697,9 +768,11 @@ ceph-deploy calamari connect &lt;ceph nodes&gt;
 <p><a class="reference external" href="https://github.com/tobegit3hub/ceph-web">https://github.com/tobegit3hub/ceph-web</a></p>
 </div>
 </div>
-<div class="section" id="comparison">
-<h2>Comparison<a class="headerlink" href="#comparison" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id9">
+<h2>总结<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
 <hr class="docutils" />
+<div class="section" id="id10">
+<h3>对比<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="docutils">
 <colgroup>
 <col width="21%" />
@@ -743,14 +816,14 @@ ceph-deploy calamari connect &lt;ceph nodes&gt;
 </tr>
 <tr class="row-even"><td>js_lib</td>
 <td>AngularJS</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>TBD</td>
+<td>N/A</td>
 <td>AngularJS</td>
 </tr>
 <tr class="row-odd"><td>css</td>
 <td>bootstrap</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>TBD</td>
+<td>bootstrap</td>
 <td>bootstrap</td>
 </tr>
 <tr class="row-even"><td>DB</td>
@@ -965,7 +1038,7 @@ ceph-deploy calamari connect &lt;ceph nodes&gt;
 <td>N</td>
 <td>Y</td>
 </tr>
-<tr class="row-odd"><td>link to Nova</td>
+<tr class="row-odd"><td>link to cinder</td>
 <td>N</td>
 <td>Y</td>
 <td>N</td>
@@ -974,60 +1047,204 @@ ceph-deploy calamari connect &lt;ceph nodes&gt;
 </table>
 <ul>
 <li><dl class="first docutils">
-<dt>Notice</dt>
+<dt>注意</dt>
 <dd><ul class="first last simple">
-<li>hotness include watch,star,fork of 2016/3/9</li>
-<li>krakendash has modified the MIT license</li>
-<li>these comp infos derived from internet, not up to date.</li>
+<li>热度是按github上2016/3/9，watch+star+fork的数量进行排序的</li>
+<li>krakendash使用的是修改过的MIT license</li>
+<li>部分数据来自互联网</li>
 </ul>
 </dd>
 </dl>
 </li>
 </ul>
 </div>
-<div class="section" id="id7">
-<h2>参考文献<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="calamarivsm">
+<h3>Calamari与VSM<a class="headerlink" href="#calamarivsm" title="Permalink to this headline">¶</a></h3>
+<p>Calamari在程序的设计上较为合理，有相对更强的MicroServices属性，不仅提供了对ceph集群的监控，同时也提供了宿主机的监控；管理功能不足，主要实现一些属性方面的配置修改。
+VSM实现的管理功能很多，但是局限于对VSM创建的Ceph集群进行管理。监控功能不足，主要实现了ceph客户端的一些监控指令的简单汇总。</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Calamari</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>亮点</dt>
+<dd><ul class="first last simple">
+<li>支持响应式布局（material design）</li>
+<li>diamond收集ceph节点的监控信息，用户可以通过添加collecter实现不同维度数据的收集</li>
+<li>carbon-cache配合whisper存储，由supervisord确保这两个工具的正常运行，具有较好的容错性</li>
+<li>graphite生成集群监控视图，支持区间显示</li>
+<li>Ceph开源社区管理</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>不足</dt>
+<dd><ul class="first last">
+<li><p class="first">需要借助saltstack对集群进行管理，或许会与其他运维工具（ansible、puppet、chef）冲突</p>
+</li>
+<li><dl class="first docutils">
+<dt>管理功能偏弱</dt>
+<dd><ul class="first last simple">
+<li>web界面中主要能实现一些tagging操作</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">控制添加新节点的命令集成在ceph-deploy中（仅此而已）</p>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>VSM</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>亮点</dt>
+<dd><ul class="first last simple">
+<li>支持将rbd pool与openstack/cinder关联</li>
+<li>支持EC/replicated pool的管理以及cache tier的管理</li>
+<li>支持ntp latency的监控</li>
+<li>vsm控制节点实现所有安装包及依赖包的预下载，便于ceph节点的安装</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>不足</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>监控功能偏弱</dt>
+<dd><ul class="first last simple">
+<li>大部分监控功能通过ceph client实现数据的收集</li>
+<li>实时监控的功能局限于IOPS、ntp latency、bandwidth、CPU使用率</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>功能缺失</dt>
+<dd><ul class="first last simple">
+<li>在图形化界面中无法添加新的主机（仅支持对现有的主机进行管理）</li>
+<li>仅支持存储空间按StorageGroup进行统计</li>
+<li>仅支持对vsm创建的集群进行管理，不支持添加新的节点</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>维护缺失</dt>
+<dd><ul class="first last simple">
+<li>用户使用文档无法找到（404）</li>
+<li>vsm-dependencies 2015年1月后就没有更新</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>安装脚本漏洞百出，安装时间比较长。</dt>
+<dd><ul class="first last simple">
+<li>无法实现无密码访问，需要数十次的手动输入密码</li>
+<li>依赖包无法正确安装，需手动在github中进行下载</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id11">
+<h2>参考文献<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
 <hr class="docutils" />
-<table class="docutils footnote" frame="void" id="id8" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id5">[1]</a></td><td><a class="reference external" href="https://01.org/virtual-storage-manager/documentation/vsm-0.5.1-training-slides">https://01.org/virtual-storage-manager/documentation/vsm-0.5.1-training-slides</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id9" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id6">[2]</a></td><td><a class="reference external" href="http://www.slideshare.net/alaindechorgnat/inkscope-ceph-day-paris-final?qid=24a1a418-b01c-4f91-b718-f26cffe920b7&amp;v=&amp;b=&amp;from_search=1">http://www.slideshare.net/alaindechorgnat/inkscope-ceph-day-paris-final?qid=24a1a418-b01c-4f91-b718-f26cffe920b7&amp;v=&amp;b=&amp;from_search=1</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id10" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[3]</td><td><a class="reference external" href="http://www.slideshare.net/DaystromTech/ceph-days-sf2015-paul-evans-static?qid=4398eec4-e73a-4483-8e47-61f9875872d3&amp;v=&amp;b=&amp;from_search=2">http://www.slideshare.net/DaystromTech/ceph-days-sf2015-paul-evans-static?qid=4398eec4-e73a-4483-8e47-61f9875872d3&amp;v=&amp;b=&amp;from_search=2</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id11" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[4]</td><td><a class="reference external" href="http://calamari.readthedocs.org/en/latest/operations/index.html">http://calamari.readthedocs.org/en/latest/operations/index.html</a></td></tr>
-</tbody>
-</table>
 <table class="docutils footnote" frame="void" id="id12" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[5]</td><td><a class="reference external" href="http://ceph.com/category/calamari/">http://ceph.com/category/calamari/</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id8">[1]</a></td><td><a class="reference external" href="http://www.slideshare.net/alaindechorgnat/inkscope-ceph-day-paris-final?qid=24a1a418-b01c-4f91-b718-f26cffe920b7&amp;v=&amp;b=&amp;from_search=1">http://www.slideshare.net/alaindechorgnat/inkscope-ceph-day-paris-final?qid=24a1a418-b01c-4f91-b718-f26cffe920b7&amp;v=&amp;b=&amp;from_search=1</a></td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="id13" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[6]</td><td><a class="reference external" href="http://ceph.com/planet/ceph-calamari-the-survival-guide/">http://ceph.com/planet/ceph-calamari-the-survival-guide/</a></td></tr>
+<tr><td class="label">[2]</td><td><a class="reference external" href="https://01.org/virtual-storage-manager/documentation/vsm-0.5.1-training-slides">https://01.org/virtual-storage-manager/documentation/vsm-0.5.1-training-slides</a></td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="id14" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
+<tr><td class="label">[3]</td><td><a class="reference external" href="http://www.slideshare.net/DaystromTech/ceph-days-sf2015-paul-evans-static?qid=4398eec4-e73a-4483-8e47-61f9875872d3&amp;v=&amp;b=&amp;from_search=2">http://www.slideshare.net/DaystromTech/ceph-days-sf2015-paul-evans-static?qid=4398eec4-e73a-4483-8e47-61f9875872d3&amp;v=&amp;b=&amp;from_search=2</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id15" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[4]</td><td><a class="reference external" href="http://calamari.readthedocs.org/en/latest/operations/index.html">http://calamari.readthedocs.org/en/latest/operations/index.html</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id16" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[5]</td><td><a class="reference external" href="http://ceph.com/category/calamari/">http://ceph.com/category/calamari/</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id17" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[6]</td><td><a class="reference external" href="http://ceph.com/planet/ceph-calamari-the-survival-guide/">http://ceph.com/planet/ceph-calamari-the-survival-guide/</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id18" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
 <tr><td class="label">[7]</td><td><a class="reference external" href="http://www.openstack.cn/?p=2708">http://www.openstack.cn/?p=2708</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id19" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[8]</td><td><a class="reference external" href="https://communities.intel.com/community/itpeernetwork/datastack/blog/2014/11/03/helping-open-source-storage-move-into-enterprise-data-centers">https://communities.intel.com/community/itpeernetwork/datastack/blog/2014/11/03/helping-open-source-storage-move-into-enterprise-data-centers</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id20" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[9]</td><td><a class="reference external" href="https://segmentfault.com/a/1190000002533877">https://segmentfault.com/a/1190000002533877</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id21" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[10]</td><td><a class="reference external" href="https://segmentfault.com/a/1190000003860692">https://segmentfault.com/a/1190000003860692</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id22" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[11]</td><td><a class="reference external" href="https://segmentfault.com/a/1190000000744706">https://segmentfault.com/a/1190000000744706</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id23" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[12]</td><td><a class="reference external" href="http://www.tuicool.com/articles/j6FBvq">http://www.tuicool.com/articles/j6FBvq</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id24" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[13]</td><td><a class="reference external" href="http://emmanuel.iffly.free.fr/doku.php?id=linux:graphite_opensuse">http://emmanuel.iffly.free.fr/doku.php?id=linux:graphite_opensuse</a></td></tr>
 </tbody>
 </table>
 </div>

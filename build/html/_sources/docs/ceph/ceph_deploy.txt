@@ -302,14 +302,14 @@ cmds to check cluster stats
     ceph -s
     # watch live cluster changes, will contain info in *ceph -s*
     ceph -w
-    ceph osd lspools
+    ceph df    # display disk usages
     ceph auth list
-    ceph df
     ceph mon stat
     ceph mon dump
     ceph osd stat
     ceph osd dump
     ceph osd tree
+    ceph osd lspools
     ceph pg dump
     rbd list
 
@@ -473,4 +473,5 @@ References
 .. [#] http://www.centoscn.com/CentosServer/test/2015/0521/5489.html
 .. [#] http://zhanguo1110.blog.51cto.com/5750817/1543032
 .. [#] http://www.07net01.com/2015/12/1029404.html
+w
 .. [#] http://blog.csdn.net/zhoudaxia/article/details/8044129

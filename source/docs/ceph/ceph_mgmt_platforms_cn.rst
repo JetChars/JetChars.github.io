@@ -142,26 +142,21 @@ Calamari
     [INFO] Restarting services...
     [INFO] Complete.
 
-    $ 
-
 
 - issues
-    - errors can be shown in /var/log/calamari/calamari.log
-    - query calamari issuses (some function not realized)-- http://tracker.ceph.com/projects/calamari/issues
-    - **can't open log/config file** -- ``sudo chmod 777 /var/log/calamari/ -R``
-    -  **Master hostname: salt not found**  -- debug w/ ``salt-minion -l debug``
-    - **Cluster Updates Are Stale. The Cluster isn't updating Calamari. Please contact Administrator** -- solution can't access from redhat website!
-    - **diamond can't start** -- default conf call the path of diamond ``/usr/bin/diamond``, real path is ``/usr/local/bin/diamond``, create a link file to solve this issue
-        - ``mkdir /usr/share/diamond/collectors/ -p``
-        - ``mkdir /var/log/calamari/``
-        - ``scp /etc/diamond/* root@192.168.56.111:/etc/diamond``
-        - ``scp /usr/share/diamond/* root@192.168.56.111:/usr/share/diamond``
-        - ``ln -sf /usr/local/bin/diamond /usr/bin/diamond``
-        - ``nohup /usr/bin/python /usr/local/bin/diamond --foreground --skip-change-user --skip-fork --skip-pidfile &``
-    - **diamond not report** -- ``/var/lib/graphite/index`` in thisfile we can tell all observation entries
-        - ``netstat -tunpla | grep `ps aux | grep diamond | awk '{print $2}' | head -n1```  -- all nodes connected
-    - **salt.loaded.int.module.cmdmod**
-    - dump whisper data -- ``/opt/calamari/venv/bin/whisper-dump.py /var/lib/graphite/whisper/servers/ceph-osd2/diskspace/root/byte_used.wsp | less``
+    - log文档位置 -- ``var/log/calamari/calamari.log``
+    - 追踪calamari isues -- http://tracker.ceph.com/projects/calamari/issues
+    - 可能需要手动配置的部分
+        - **can't open log/config file** -- ``sudo chmod 777 /var/log/calamari/ -R``
+        -  **Master hostname: salt not found**  -- debug w/ ``salt-minion -l debug``
+        - **Cluster Updates Are Stale. The Cluster isn't updating Calamari. Please contact Administrator** -- 与宿主机同步时间（在宿主机中启动ntp server）
+        - **diamond can't start** -- diamond的执行路径不正确 ``/usr/bin/diamond``, 实际的路径 ``/usr/local/bin/diamond`` -- 通过创建一个软连接解决这个问题 ``ln -sf /usr/local/bin/diamond /usr/bin/diamond``
+        - 手动创建collector所在的路径 -- ``mkdir /usr/share/diamond/collectors/ -p``
+        - 手动从创建calamari的日志文件夹 -- ``mkdir /var/log/calamari/``
+        - 拷贝diamond配置文件到ceph节点 -- ``scp /etc/diamond/* root@192.168.56.111:/etc/diamond`` ``scp /usr/share/diamond/* root@192.168.56.111:/usr/share/diamond``
+        - 手动启动diamond守护进程 -- ``nohup /usr/bin/python /usr/local/bin/diamond --foreground --skip-change-user --skip-fork --skip-pidfile &``
+    - **diamond not report** -- 同过查看这个文档判断diamond的传输到whisper数据库中的数据列表 ``/var/lib/graphite/index``
+    - 查看whisper中存储的数据 -- ``/opt/calamari/venv/bin/whisper-dump.py /var/lib/graphite/whisper/servers/ceph-osd2/diskspace/root/byte_used.wsp | less``
 
 
 
@@ -171,44 +166,46 @@ Virtual Storage Manager
 
 https://github.com/01org/virtual-storage-manager
 
-- Intel VSM v0.5.1 [#]_
-    - WebUI for cluster management, monitoring and troubleshooting
-    - Server management -- Organize servers and disks
-    - Cluster management -- Manages cluster/pool creation
-    - OpenStack interface -- conn pools to OpenStack
-    - VSM administration -- User/Passwd
-
-.. image:: /images/ceph/vsm_arch.png
-.. image:: /images/ceph/vsm_architecture.png
-
-- VSM Controller -- conn to Agents and NovaCtrl
-    - WebUI, REST API
-    - mariadb, rabbitmq
-- VSM Agent -- runs on every ceph node, pass conf&stats info to controller
-
-.. image:: /images/ceph/vsm_net.png
-
-- nothing special
-    - mgmt network
-    - ceph pub network
-    - ceph cluster network
-
-.. image:: /images/ceph/vsm_disks.png
+- Intel VSM v2.0
 
 
-- VSM concepts
-    - Storage Class -- Drivers w/ similar performance characteristics
-    - Storage Group -- Drivers w/ same Storage Class grouped together
 
-.. image:: /images/ceph/vsm_fd.png
-
-- Servers can grouped into failure domains(call **Zone** in VSM)
+图形化界面
+^^^^^^^^^^
 
 
-.. image:: /images/ceph/vsm_nav_bar.png
+- 仪表盘
+    - 查看vsm、cluster、storage group、OSD、MON、MDS、PG的状态统计信息
+        - 可以判断OSD是否正常运作，空间是否满
+    - 查看IOPS、latency、bandwidth、CPU实时监控信息(通过diamond实现数据的收集)
+        - 可以用来发现ntp延迟的问题
 
-- Monitoring
-    - using ceph client
+.. image:: /images/ceph/vsm/vsm_dashboard.PNG
+
+
+- vsm管理工具
+    - 所有的宿主节点都需要在安装vsm的时候写在配置文件中
+    - 添加删除MON/OSD 守护进程
+    - OSD 增删、重启、恢复（N/A）
+    - osd pool的管理 -- 支持cache tier的增删、replicated/EC pool的创建
+    - StorageGroup的管理 -- 添加新的SG，存储资源将以SG为单位进行统计
+    - 支持ceph系统的升级功能，通过github下载源码实现
+    - 将通过ssh配置openstack的控制节点把**rbd pool** present给cinder
+    - 管理系统的临界值，将在dashboard中得到体现
+    - vsm 账户管理
+      
+
+
+.. image:: /images/ceph/vsm/vsm_mgmt_devices.PNG
+.. image:: /images/ceph/vsm/vsm_mgmt_servers.PNG
+.. image:: /images/ceph/vsm/vsm_mgmt_pools.PNG
+.. image:: /images/ceph/vsm/vsm_mgmt_sg.PNG
+.. image:: /images/ceph/vsm/vsm_mgmt_upgrade.PNG
+.. image:: /images/ceph/vsm/vsm_openstack.PNG
+.. image:: /images/ceph/vsm/vsm_mgmt_thresholds.PNG
+
+- vsm监控工具
+    - 实现的功能非常的简单，通过使用ceph client实现
         - ``ceph -s``
         - ``ceph pg dump osds``
         - ``ceph pg dump pgs_brief``
@@ -216,34 +213,113 @@ https://github.com/01org/virtual-storage-manager
         - ``ceph osd dump``
         - ``ceph osd tree``
         - ``ceph mds dump``
-        - ``rbd ls -l {pool name}``
-    - status: StorageGroup, RBD, OSD, MON, PG, MDS, Capacity, IOPS, throughput, ERR, WRN
-        - detect OSDs not running, near full or full
-        - identifying ntp latency err
-- Managing
-    - create pools,add/rm/stop/start OSDs, add/rm MON
-        - stop w/o rebalancing
-    - ssh2nova_ctrl, expose pools to OpenStack
-    - vsm account mgt
+        - ``rbd ls -l {pool name}``  
+ 
+
+.. image:: /images/ceph/vsm/vsm_mon.PNG
+
+
+系统介绍及架构
+^^^^^^^^^^^^^^
+
+
+.. image:: /images/ceph/vsm/vsm_arch.png
+    :width: 300px
+    :align: right
+
+- VSM 控制节点
+    - WebUI -- 通过访问VSM REST API用于集群的管理、监控
+    - REST API -- 供vsm client访问
+    - mariadb, rabbitmq
+- VSM 代理节点
+    - 使用diamond收集ceph节点的监控信息
+    - vsm-agent工具对ceph节点进行管理
+    
+.. image:: /images/ceph/vsm/vsm_architecture.png
+
+
+- VSM推荐使用三个分别的子网进行管理
+    - mgmt network
+    - ceph pub network
+    - ceph cluster network
+
+.. image:: /images/ceph/vsm/vsm_net.png
+
+
+- VSM 概念
+    - Storage Class -- 具有类似存储性能的磁盘分类
+    - Storage Group -- 用同一种Storage Class组成的磁盘集合
+
+.. image:: /images/ceph/vsm/vsm_disks.png
+
+
+- 书主机可以按失效域啊（failure domain）进行划归(在VSM中层位zone)
+
+.. image:: /images/ceph/vsm/vsm_fd.png
 
 
 
-Installation
-^^^^^^^^^^^^
+安装
+^^^^
 
-- requirements
-    - OS: Ubuntu Server 14.04.2/CentOS 7 Server Basic
-    - Ceph: Firefly/Giant/Hammer/Infernalis
-    - OpenStack: Havana/Icehouse/Juno/Kilo/Liberty
-    - at least 3 storage nodes
-    - passwd-less ssh
-    - will sync ``/etc/hosts`` on each nodes
+- 环境需求
+    - debian trusty/centos 7 (master branch仅支持centos)
+    - ceph版本目前仅支持hammer
+    - 安装时需要至少三个空白的宿主机
+    - 需要配置无密码登陆ssh
 
-- note
-    - will disable selinux
+- 提示
+    - vsm将同步控制节点的``/etc/hosts``文件到所有的节点
+    - vsm将关闭系统的selinux
+
+- ceph节点的准备工作
+
+.. code-block:: shell
+
+    sudo mkdir /loop
+    for i in {0..5}; do
+        sudo truncate -s 5G /loop/loop$i.img
+        sudo losetup /dev/loop$i /loop/loop$i.img
+        sudo parted /dev/loop$i -- mklabel gpt
+        sudo parted -a optimal /dev/loop$i -- mkpart primary 1MB 100%
+    done
+    git clone -b http://github.com/01org/vsm-dependencies
+    cp vsm-dependencies/ubuntu/* vsm-dep-repo/
+    ./install.sh -v 2.0 -u vsm
 
 
+- vsm控制节点的安装
 
+.. code-block:: shell
+
+    # ceph repo should be added manually
+    wget -q -O- 'https://download.ceph.com/keys/release.asc' | sudo apt-key add -
+    echo deb http://download.ceph.com/debian-hammer/ $(lsb_release -sc) main | sudo tee /etc/apt/sources.list.d/ceph.list
+    git clone -b 2.0 http://github.com/01org/virtual-storage-manager
+    cd virtual-storage-manager
+    ./buildvsm.sh
+    cd release
+    tar -xvzf 2.0.0-216.tar.gz
+    cd 2.0.0-216     # enter the vsm package
+    mkdir manifest/192.168.56.12{0..3}
+    cp manifest/{cluster.manifest.sample,192.168.56.120/cluster.manifest}   # then edit it
+    cp manifest/{server.manifest.sample,192.168.56.121/server.manifest}   # then edit it
+    cp manifest/192.168.56.12{1,2}/server.manifest
+    cp manifest/192.168.56.12{1,3}/server.manifest
+    ./install.sh -u vsm -v 2.0   # vsm is the username of ceph-nodes
+    ./get_pass.sh                # generate admin password, username *admin*
+    cat /etc/vsmdeploy/deployrc | grep -i admin_password | cut -d'=' -f2
+
+
+- issues
+    - 依赖包被托管在github上面，且无法通过脚本完成下载。（2015年1月停止更新）
+    - ``install.sh -k <path/to/key/file>`` -- keyfile即使使用完整路径也无法找到，需要手动输入cpeh节点的密码几十次（ssh-copy-id也无效）
+    - Apache端口80需要手动开启
+    - osd 无法启动
+        - can't start osd w/ directory or  loopback device.
+        - ``ERROR: error creating empty object store in /data11/osd.11: (21) Is a directory``
+        - ``ERROR: unable to open OSD superblock on /data11/osd.11: (2) No such file or directory``
+        - ``ERROR: osd init failed: (22) Invalid argument``
 
 
 Inkscope
@@ -251,24 +327,21 @@ Inkscope
 
 https://github.com/inkscope/inkscope
 
-- Ceph visualiztion and operation through CLI [#]_
-- Open Source
-- Use Ceph RESTful API
-- Modularity and simplicity
+- 模块化管理
+- 提供REST API
+- 通过访问Inkscope REST API提供Ceph的web图形化界面 [#]_
 
 .. image:: /images/ceph/ceph_inkscope.png
 
 - inkscopeViz 
-    - Web client 
+    - Web客户端 
 - inkscopeCtrl
-    - Server part 
-    - Provides an advanced REST API
+    - 是inkscope的服务器端
+    - 提供了REST API
 - inkscopeProbe
-    - Collects system and ceph infos 
-    - Feeds a mongoDB database
-- inkscopeMonitor (not developed)
-    - Monitoring of Ceph metrics stored in db
-    - Feeds monitoring tools like Nagios
+    - 收集ceph节点的系统信息
+    - 收集到的数据将传输到MongoDB
+- inkscopeMonitor (开发中)
 
 
 .. image:: /images/ceph/inkscope_architecture.png
@@ -298,11 +371,12 @@ Ceph-web
 https://github.com/tobegit3hub/ceph-web
 
 
-Comparison
-==========
-==========
+总结
+====
+====
 
-
+对比
+----
 
 ============= ============= =========== ============= ============ 
 Item          Calamari      ceph-dash   VSM           inkscope     
@@ -311,13 +385,13 @@ hotness       66,175,116    36,128,46   50,82,57      38,82,36
 license       LGPL2.1       MIT-        Apache v2     Apache v2    
 language      python/JS     python/JS   python        python       
 web_engine    Apache/django Apache      Apache/django Apache/flask 
-js_lib        AngularJS                               AngularJS
-css           bootstrap                               bootstrap
+js_lib        AngularJS     TBD         N/A           AngularJS
+css           bootstrap     TBD         bootstrap     bootstrap
 DB            postgreSQL    InfluxDB    MySQL         mongoDB
 Backing       RedHat        Chri./Eich. Intel         Orange Labs
 Capabilities  Mon & LConf   Mon         Mon & Conf    Mon & LConf
 Compatability wide          wide        limited       wide
-============= ============= =========== ============= ============
+============= ============= =========== ============= ============ 
 
 ============== =========== ============= ========== ========  
 Item           Calamari    ceph-dash     VSM        inkscope  
@@ -355,16 +429,60 @@ Pools(Rep)     limited     Y          Y
 Pools(EC&Teir) N           Y          partial
 RBDs           N           partial    N
 S3/Swift/...   N           N          Y
-link to Nova   N           Y          N
+link to cinder N           Y          N
 ============== =========== ========== ========  
 
 
+- 注意
+    - 热度是按github上2016/3/9，watch+star+fork的数量进行排序的
+    - krakendash使用的是修改过的MIT license
+    - 部分数据来自互联网
 
 
-- Notice
-    - hotness include watch,star,fork of 2016/3/9
-    - krakendash has modified the MIT license
-    - these comp infos derived from internet, not up to date.
+Calamari与VSM
+-------------
+
+Calamari在程序的设计上较为合理，有相对更强的MicroServices属性，不仅提供了对ceph集群的监控，同时也提供了宿主机的监控；管理功能不足，主要实现一些属性方面的配置修改。
+VSM实现的管理功能很多，但是局限于对VSM创建的Ceph集群进行管理。监控功能不足，主要实现了ceph客户端的一些监控指令的简单汇总。
+
+
+- Calamari
+    - 亮点
+        - 支持响应式布局（material design）
+        - diamond收集ceph节点的监控信息，用户可以通过添加collecter实现不同维度数据的收集
+        - carbon-cache配合whisper存储，由supervisord确保这两个工具的正常运行，具有较好的容错性
+        - graphite生成集群监控视图，支持区间显示
+        - Ceph开源社区管理
+    - 不足
+        - 需要借助saltstack对集群进行管理，或许会与其他运维工具（ansible、puppet、chef）冲突
+        - 管理功能偏弱 
+            - web界面中主要能实现一些tagging操作
+        - 控制添加新节点的命令集成在ceph-deploy中（仅此而已）
+
+- VSM
+    - 亮点
+        - 支持将rbd pool与openstack/cinder关联
+        - 支持EC/replicated pool的管理以及cache tier的管理
+        - 支持ntp latency的监控
+        - vsm控制节点实现所有安装包及依赖包的预下载，便于ceph节点的安装
+    - 不足
+        - 监控功能偏弱
+            - 大部分监控功能通过ceph client实现数据的收集
+            - 实时监控的功能局限于IOPS、ntp latency、bandwidth、CPU使用率
+        - 功能缺失
+            - 在图形化界面中无法添加新的主机（仅支持对现有的主机进行管理）
+            - 仅支持存储空间按StorageGroup进行统计
+            - 仅支持对vsm创建的集群进行管理，不支持添加新的节点
+        - 维护缺失
+            - 用户使用文档无法找到（404）
+            - vsm-dependencies 2015年1月后就没有更新
+        - 安装脚本漏洞百出，安装时间比较长。
+            - 无法实现无密码访问，需要数十次的手动输入密码
+            - 依赖包无法正确安装，需手动在github中进行下载
+
+
+
+
 
 
 
@@ -374,10 +492,18 @@ link to Nova   N           Y          N
 
 
 
-.. [#] https://01.org/virtual-storage-manager/documentation/vsm-0.5.1-training-slides
 .. [#] http://www.slideshare.net/alaindechorgnat/inkscope-ceph-day-paris-final?qid=24a1a418-b01c-4f91-b718-f26cffe920b7&v=&b=&from_search=1
+.. [#] https://01.org/virtual-storage-manager/documentation/vsm-0.5.1-training-slides
 .. [#] http://www.slideshare.net/DaystromTech/ceph-days-sf2015-paul-evans-static?qid=4398eec4-e73a-4483-8e47-61f9875872d3&v=&b=&from_search=2
 .. [#] http://calamari.readthedocs.org/en/latest/operations/index.html
 .. [#] http://ceph.com/category/calamari/
 .. [#] http://ceph.com/planet/ceph-calamari-the-survival-guide/
 .. [#] http://www.openstack.cn/?p=2708
+.. [#] https://communities.intel.com/community/itpeernetwork/datastack/blog/2014/11/03/helping-open-source-storage-move-into-enterprise-data-centers
+.. [#] https://segmentfault.com/a/1190000002533877
+.. [#] https://segmentfault.com/a/1190000003860692
+.. [#] https://segmentfault.com/a/1190000000744706
+.. [#] http://www.tuicool.com/articles/j6FBvq
+.. [#] http://emmanuel.iffly.free.fr/doku.php?id=linux:graphite_opensuse
+
+
