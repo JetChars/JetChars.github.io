@@ -92,7 +92,16 @@ option        description                  examples
 -L label      specify volume label
 -j            create journal system        ext2 doesn't contain jornal ext3/4 built-in journal sys
 ============= ============================ ========================
- 
+
+
+check fs type
+^^^^^^^^^^^^^
+
+.. code-block:: shell
+
+    df -T              # check fs type of all devices
+    df -T /dev/loop0   # check fs type of specified device
+
 
 
 
@@ -208,7 +217,7 @@ Auto Mount
 
     mount -a  # take effect fstab
 
-
+- mounted devices will be shown in ``/etc/mtab``, same as cmd ``mount``
 
 
 LVM -- Logical volume management
@@ -512,7 +521,7 @@ When reading sparse files, the file system transparently converts metadata repre
 
 .. code-block:: console
 
-    $ truncate -s 512M file1.img
+    $ truncate -s 512M file1.img    # notice 512M not same as 512MB
     $ dd if=/dev/zero of=file2.img bs=1 count=0 seek=512M
     0+0 records in
     0+0 records out
@@ -587,6 +596,7 @@ Create Loop Device
     losetup -f   # Print first unused loop device
     # management
     # ----------
+    losetup <sparsefile> /dev/loop{num}   # create a loop device
     losetup -d loopdev...   # Delete loop
     losetup -D   # Delete all used loop devices
     losetup -c loopdev   # Resize loop device

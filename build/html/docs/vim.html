@@ -30,7 +30,9 @@
   
 
   
-    <link rel="top" title="JetChars alpha documentation" href="../index.html"/> 
+    <link rel="top" title="JetChars alpha documentation" href="../index.html"/>
+        <link rel="next" title="Kickstart Documentation" href="kickstart/index.html"/>
+        <link rel="prev" title="Mac as Main OS" href="mac.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -90,9 +92,11 @@
 <li class="toctree-l1"><a class="reference internal" href="ceph/ceph_api.html">Ceph APIs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ceph/ceph_deploy.html">Ceph Deploy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ceph/ceph_issues.html">Ceph Issues</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ceph/ceph_management_platforms.html">Ceph Management Platforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ceph/ceph_mgmt_platforms.html">Ceph Management Platforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ceph/ceph_mgmt_platforms_cn.html">Ceph 管理监控平台</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ceph/ceph_openstack.html">Ceph w/ OpenStack</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ceph/ceph_ops.html">Ceph Operation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ceph/ceph_rest.html">Ceph RESTful API</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="web/bootstrap.html">bootstrap</a></li>
@@ -141,6 +145,7 @@
 <li class="toctree-l1"><a class="reference internal" href="python/pelican.html">pelican</a></li>
 <li class="toctree-l1"><a class="reference internal" href="python/pep8.html">PEP8</a></li>
 <li class="toctree-l1"><a class="reference internal" href="python/psdash.html">psdash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python/py_apps.html">Python Applications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="python/py_builtin.html">Python Built-in Modules</a></li>
 <li class="toctree-l1"><a class="reference internal" href="python/py_issues.html">Python Issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="python/python.html">Python</a></li>
@@ -161,12 +166,38 @@
 <li class="toctree-l1"><a class="reference internal" href="sort.html">Sorting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_structure.html">Review DataStructure with Pics</a></li>
 </ul>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="amqp/index.html">AMQP &#8211; Advanced Message Queuing Protocol</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rest.html">RESTful API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="microservices/index.html">MicroServices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="windows/index.html">Windows</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mac.html">Mac as Main OS</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Vim - My Favourite Editor</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#commnd-mode">Commnd Mode</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#move">Move</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ex-mode">Ex Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#set">Set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#split">Split</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shotcuts">Shotcuts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fisa-vim-config-popular-vim-config-file">fisa-vim-config &#8211; popular vim config file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Sublime Text</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#shortcuts">shortcuts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#config">config</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-pkgmgt-module">install pkgmgt module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#manage-pkgs-w-pkgmgt">manage pkgs w/ pkgmgt</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pylinter">PyLinter</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#issues">Issues</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#can-t-use-backspace-in-insert-mode">can&#8217;t use backspace in insert mode</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="kickstart/index.html">Kickstart Documentation</a></li>
@@ -409,6 +440,8 @@ sudo pip install dbgp vim-debug pep8 flake8 pyflakes isort
 <li>PyLinter &#8211; pep8 highlighter</li>
 <li>reStructureText Snippets &#8211; auto-completion for rst</li>
 <li>reStructureText Improved &#8211; highlighter</li>
+<li>HTML/CSS/JS Prettify &#8211; auto formater</li>
+<li>sublime-rst-completion &#8211; auto complete the rst</li>
 </ul>
 </dd>
 </dl>
@@ -453,6 +486,15 @@ sudo pip install dbgp vim-debug pep8 flake8 pyflakes isort
            </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="kickstart/index.html" class="btn btn-neutral float-right" title="Kickstart Documentation" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mac.html" class="btn btn-neutral" title="Mac as Main OS" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

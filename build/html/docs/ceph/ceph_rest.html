@@ -93,6 +93,7 @@
 <li class="toctree-l1"><a class="reference internal" href="ceph_deploy.html">Ceph Deploy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ceph_issues.html">Ceph Issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ceph_mgmt_platforms.html">Ceph Management Platforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ceph_mgmt_platforms_cn.html">Ceph 管理监控平台</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ceph_openstack.html">Ceph w/ OpenStack</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ceph_ops.html">Ceph Operation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Ceph RESTful API</a></li>
@@ -223,6 +224,11 @@
 <h1>Ceph RESTful API<a class="headerlink" href="#ceph-restful-api" title="Permalink to this headline">¶</a></h1>
 <div class="highlight-shell"><div class="highlight"><pre><span></span>nohup ceph-rest-api -n client.admin <span class="p">&amp;</span>
 curl localhost:5000/api/v0.1/status   <span class="c1"># same as ceph -s</span>
+curl -X POST -H <span class="s2">&quot;Content-Type: application/json&quot;</span> -d <span class="s1">&#39;</span>
+<span class="s1">{</span>
+<span class="s1">    &quot;username&quot;: &quot;jet&quot;,</span>
+<span class="s1">    &quot;password&quot;: &quot;6666&quot;</span>
+<span class="s1">}&#39;</span> http://127.0.0.1/api/v2/auth/login
 </pre></div>
 </div>
 </div>

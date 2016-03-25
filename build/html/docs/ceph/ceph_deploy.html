@@ -117,9 +117,11 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ceph_issues.html">Ceph Issues</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ceph_management_platforms.html">Ceph Management Platforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ceph_mgmt_platforms.html">Ceph Management Platforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ceph_mgmt_platforms_cn.html">Ceph 管理监控平台</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ceph_openstack.html">Ceph w/ OpenStack</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ceph_ops.html">Ceph Operation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ceph_rest.html">Ceph RESTful API</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../web/bootstrap.html">bootstrap</a></li>
@@ -168,6 +170,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../python/pelican.html">pelican</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python/pep8.html">PEP8</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python/psdash.html">psdash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/py_apps.html">Python Applications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python/py_builtin.html">Python Built-in Modules</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python/py_issues.html">Python Issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python/python.html">Python</a></li>
@@ -280,7 +283,7 @@ sudo chmod <span class="m">0440</span> /etc/sudoers.d/<span class="o">{</span>us
 <span class="s2">PasswordAuthentication yes</span>
 <span class="s2">ClientAliveInterval 30</span>
 <span class="s2">ClientAliveCountMax 99999</span>
-<span class="s2">&quot;</span> &gt;&gt; /etc/ssh/ssh_config
+<span class="s2">&quot;</span> &gt;&gt; /etc/ssh/sshd_config
 <span class="nb">echo</span> <span class="s2">&quot;Host    {alias}</span>
 <span class="s2">HostName        {ipaddr}</span>
 <span class="s2">User            {username}</span>
@@ -330,7 +333,7 @@ shh-keygen -P <span class="s1">&#39;&#39;</span> <span class="s">&lt;&lt; EOF</s
 <span class="s2">PasswordAuthentication yes</span>
 <span class="s2">ClientAliveInterval 30</span>
 <span class="s2">ClientAliveCountMax 99999</span>
-<span class="s2">&quot;</span> &gt;&gt; /etc/ssh/ssh_config
+<span class="s2">&quot;</span> &gt;&gt; /etc/ssh/sshd_config
 <span class="nb">echo</span> <span class="s2">&quot;Host    {alias}</span>
 <span class="s2">HostName        {ipaddr}</span>
 <span class="s2">User            {username}</span>

@@ -45,7 +45,7 @@ Notice, we can't run this scrip directly
     PasswordAuthentication yes
     ClientAliveInterval 30
     ClientAliveCountMax 99999
-    " >> /etc/ssh/ssh_config
+    " >> /etc/ssh/sshd_config
     echo "Host    {alias}
     HostName        {ipaddr}
     User            {username}
@@ -99,7 +99,7 @@ Notice, we can't run this scrip directly
     PasswordAuthentication yes
     ClientAliveInterval 30
     ClientAliveCountMax 99999
-    " >> /etc/ssh/ssh_config
+    " >> /etc/ssh/sshd_config
     echo "Host    {alias}
     HostName        {ipaddr}
     User            {username}

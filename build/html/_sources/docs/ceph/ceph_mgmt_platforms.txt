@@ -226,8 +226,8 @@ Installation
 ^^^^^^^^^^^^
 
 - requirements
-    - OS: Ubuntu Server 14.04.2/CentOS 7 Server Basic
-    - Ceph: Firefly/Giant/Hammer/Infernalis
+    - OS: Ubuntu Server 14.04.2/CentOS 7 Server Basic (master only support centos)
+    - Ceph: Firefly/Giant/Hammer/Infernalis  (only hammer available)
     - OpenStack: Havana/Icehouse/Juno/Kilo/Liberty
     - at least 3 storage nodes
     - passwd-less ssh
@@ -235,6 +235,75 @@ Installation
 
 - note
     - will disable selinux
+
+
+- ceph-nodes
+
+.. code-block:: shell
+
+    sudo mkdir /loop
+    for i in {0..5}; do
+        sudo truncate -s 5G /loop/loop$i.img
+        sudo losetup /dev/loop$i /loop/loop$i.img
+        sudo parted /dev/loop$i -- mklabel gpt
+        sudo parted -a optimal /dev/loop$i -- mkpart primary 1MB 100%
+    done
+    git clone -b http://github.com/01org/vsm-dependencies
+    cp vsm-dependencies/ubuntu/* vsm-dep-repo/
+    ./install.sh -v 2.0 -u vsm
+
+
+- vsm-ctrl-node
+
+.. code-block:: shell
+
+    git clone -b 2.0 http://github.com/01org/virtual-storage-manager
+    cd virtual-storage-manager
+    ./buildvsm.sh
+    cd release
+    tar -xvzf 2.0.0-216.tar.gz
+    cd 2.0.0-216     # enter the vsm package
+    mkdir manifest/192.168.56.12{0..3}
+    cp manifest/{cluster.manifest.sample,192.168.56.120/cluster.manifest}   # then edit it
+    cp manifest/{server.manifest.sample,192.168.56.121/server.manifest}   # then edit it
+    cp manifest/192.168.56.12{1,2}/server.manifest
+    cp manifest/192.168.56.12{1,3}/server.manifest
+    ./install.sh -u vsm -v 2.0   # vsm is the username of ceph-nodes
+    ./get_pass.sh                # generate admin password, username *admin*
+    cat /etc/vsmdeploy/deployrc | grep -i admin_password | cut -d'=' -f2
+
+
+- issues
+    - ``install.sh -k <path/to/key/file>`` -- can't find keyfile, hundreds of input manually!
+    - should enable port 80 manually
+    - osd can't startup
+        - can't start osd w/ directory or  loopback device.
+        - ``ERROR: error creating empty object store in /data11/osd.11: (21) Is a directory``
+        - ``ERROR: unable to open OSD superblock on /data11/osd.11: (2) No such file or directory``
+        - ``ERROR: osd init failed: (22) Invalid argument``
+
+.. code-block:: console
+
+    $ ./install.sh -u vsm -v 2.0
+    The following information may help to resolve the situation:
+    
+    The following packages have unmet dependencies:
+     ceph : Depends: ceph-common (>= 0.78-500) but it is not going to be installed
+     librbd-dev : Depends: librados-dev but it is not going to be installed
+                  Depends: librbd1 (= 0.80.11-0ubuntu1.14.04.1) but 0.94.1-1trusty is to be installed
+     librbd1-dbg : Depends: librbd1 (= 0.80.11-0ubuntu1.14.04.1) but 0.94.1-1trusty is to be installed
+    E: Unable to correct problems, you have held broken packages.
+
+**Solution**
+
+.. code-block:: shell
+
+    wget -q -O- 'https://download.ceph.com/keys/release.asc' | sudo apt-key add -
+    echo deb http://download.ceph.com/debian-{hammer}/ $(lsb_release -sc) main | sudo tee /etc/apt/sources.list.d/ceph.list
+
+
+
+
 
 
 
