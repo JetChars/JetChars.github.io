@@ -40,6 +40,16 @@ xtension-method
 
 
 
+Using cURL to automate HTTP requests
+====================================
+
+https://curl.haxx.se/docs/httpscripting.html
+
+
+
+
+
+
 
 Sources
 =======

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Ceph &mdash; JetChars alpha documentation</title>
+  <title>Apache Httpd &mdash; JetChars alpha documentation</title>
   
 
   
@@ -31,8 +31,8 @@
 
   
     <link rel="top" title="JetChars alpha documentation" href="../../index.html"/>
-        <link rel="next" title="Ceph APIs" href="ceph_api.html"/>
-        <link rel="prev" title="Docker" href="../docker/index.html"/> 
+        <link rel="next" title="Web Server" href="web.html"/>
+        <link rel="prev" title="HTML" href="html.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -155,184 +155,184 @@
 </ul>
 </li>
 </ul>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">Ceph</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#ceph-intro">Ceph Intro</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#ceph-releases">ceph releases</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#features">features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#pg-states">pg states</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#architecture">Architecture</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#glossariy">Glossariy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">Architecture</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#cephx">Cephx</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#erasure-coding">Erasure Coding</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#interrupted-full-writes">Interrupted Full Writes</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#scrubbing">Scrubbing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#crush">CRUSH</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="ceph_api.html">Ceph APIs</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ceph_api.html#librados">LIBRADOS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ceph_api.html#librbd">LIBRBD</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="ceph_api.html#example-of-creating-writing-to-an-image">Example of creating &amp; writing to an image</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ceph_api.html#api-reference">API reference</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="ceph_api.html#references">References</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="ceph_deploy.html">Ceph Deploy</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ceph_deploy.html#prefight">Prefight</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="ceph_deploy.html#ceph-node">ceph node</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ceph_deploy.html#admin-node">admin node</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="ceph_deploy.html#storage-cluster-quick-start">Storage Cluster Quick Start</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="ceph_deploy.html#create-a-cluster-w-1-mon-2-osds">create a cluster w/ 1 MON &amp; 2 OSDs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ceph_deploy.html#expanding-cluster">Expanding Cluster</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ceph_deploy.html#remove-ceph">Remove Ceph</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="ceph_deploy.html#ceph-usages">Ceph Usages</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="ceph_deploy.html#cmds-to-check-cluster-stats">cmds to check cluster stats</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ceph_deploy.html#ceph-client">ceph client</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ceph_deploy.html#rados-client">rados client</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ceph_deploy.html#rbd-client">rbd client</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ceph_deploy.html#ceph-fs">ceph_fs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ceph_deploy.html#rgw">RGW</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ceph_deploy.html#disable-cephx">disable cephx </a></li>
-<li class="toctree-l3"><a class="reference internal" href="ceph_deploy.html#upgrading">Upgrading</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="ceph_deploy.html#references">References</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="ceph_issues.html">Ceph Issues</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ceph_issues.html#installation-issues">Installation issues</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="ceph_issues.html#err-upgrade-cluster">err upgrade cluster</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ceph_issues.html#err-upgrade-debian">Err upgrade debian</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ceph_issues.html#err-deploy-rgw">Err deploy rgw</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="ceph_issues.html#maintenance-issues">Maintenance issues</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="ceph_issues.html#troubleshooting-mon">Troubleshooting MON</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ceph_issues.html#troubleshooting-osds">Troubleshooting OSDs</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="ceph_issues.html#an-osd-failed">An OSD failed</a></li>
-<li class="toctree-l4"><a class="reference internal" href="ceph_issues.html#no-free-drive-space">No free drive space</a></li>
-<li class="toctree-l4"><a class="reference internal" href="ceph_issues.html#networking-issues">Networking issues</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="ceph_issues.html#ceph-s-err">ceph -s err</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ceph_issues.html#ceph-fs-mount-err">ceph fs mount err</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ceph_issues.html#auth-file-can-t-found">auth file can&#8217;t found</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ceph_issues.html#clock-skew-detected-on-mon">clock skew detected on mon</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ceph_issues.html#pg-issues">pg issues</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="ceph_issues.html#references">References</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="ceph_mgmt_platforms.html">Ceph Management Platforms</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ceph_mgmt_platforms.html#intro">Intro</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="ceph_mgmt_platforms.html#calamari">Calamari</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="ceph_mgmt_platforms.html#installation">installation</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="ceph_mgmt_platforms.html#virtual-storage-manager">Virtual Storage Manager</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="ceph_mgmt_platforms.html#id2">Installation</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="ceph_mgmt_platforms.html#inkscope">Inkscope</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ceph_mgmt_platforms.html#ceph-dash">Ceph-dash</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ceph_mgmt_platforms.html#krakendash">Krakendash</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ceph_mgmt_platforms.html#ceph-web">Ceph-web</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="ceph_mgmt_platforms.html#comparison">Comparison</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ceph_mgmt_platforms.html#references">References</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="ceph_openstack.html">Ceph w/ OpenStack</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ceph_openstack.html#radosgw-keystone">RADOSGW &amp; Keystone</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ceph_openstack.html#glance-integration">Glance Integration</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="ceph_ops.html">Ceph Operation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ceph_ops.html#ceph-conf">ceph-conf</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="ceph_ops.html#references">References</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="ceph_rest.html">Ceph RESTful API</a></li>
-</ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../web/bootstrap.html">bootstrap</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../web/bootstrap.html#intro">Intro</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../web/bootstrap.html#example-of-use">Example of Use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ceph/ceph.html">Ceph</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ceph/ceph.html#ceph-intro">Ceph Intro</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ceph/ceph.html#ceph-releases">ceph releases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ceph/ceph.html#features">features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ceph/ceph.html#pg-states">pg states</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../web/bootstrap.html#components">Components</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../web/bootstrap.html#glyphicon">Glyphicon</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../web/bootstrap.html#button">button</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../web/bootstrap.html#button-menu">button-menu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ceph/ceph.html#architecture">Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ceph/ceph.html#glossariy">Glossariy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ceph/ceph.html#id2">Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ceph/ceph.html#cephx">Cephx</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ceph/ceph.html#erasure-coding">Erasure Coding</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../ceph/ceph.html#interrupted-full-writes">Interrupted Full Writes</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../web/bootstrap.html#image">image</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../web/bootstrap.html#navbar">Navbar</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../web/bootstrap.html#form">form</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../web/bootstrap.html#div">Div</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../web/bootstrap.html#alert-box">alert box</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../web/bootstrap.html#dropdown-menu">dropdown menu</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../web/bootstrap.html#button-group-toolbar">Button group &amp; toolbar</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../web/bootstrap.html#input">Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ceph/ceph.html#scrubbing">Scrubbing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ceph/ceph.html#crush">CRUSH</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ceph/ceph.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ceph/ceph_api.html">Ceph APIs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ceph/ceph_api.html#librados">LIBRADOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ceph/ceph_api.html#librbd">LIBRBD</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ceph/ceph_api.html#example-of-creating-writing-to-an-image">Example of creating &amp; writing to an image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ceph/ceph_api.html#api-reference">API reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ceph/ceph_api.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ceph/ceph_deploy.html">Ceph Deploy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ceph/ceph_deploy.html#prefight">Prefight</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ceph/ceph_deploy.html#ceph-node">ceph node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ceph/ceph_deploy.html#admin-node">admin node</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ceph/ceph_deploy.html#storage-cluster-quick-start">Storage Cluster Quick Start</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ceph/ceph_deploy.html#create-a-cluster-w-1-mon-2-osds">create a cluster w/ 1 MON &amp; 2 OSDs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ceph/ceph_deploy.html#expanding-cluster">Expanding Cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ceph/ceph_deploy.html#remove-ceph">Remove Ceph</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ceph/ceph_deploy.html#ceph-usages">Ceph Usages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ceph/ceph_deploy.html#cmds-to-check-cluster-stats">cmds to check cluster stats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ceph/ceph_deploy.html#ceph-client">ceph client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ceph/ceph_deploy.html#rados-client">rados client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ceph/ceph_deploy.html#rbd-client">rbd client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ceph/ceph_deploy.html#ceph-fs">ceph_fs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ceph/ceph_deploy.html#rgw">RGW</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ceph/ceph_deploy.html#disable-cephx">disable cephx </a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ceph/ceph_deploy.html#upgrading">Upgrading</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ceph/ceph_deploy.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ceph/ceph_issues.html">Ceph Issues</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ceph/ceph_issues.html#installation-issues">Installation issues</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ceph/ceph_issues.html#err-upgrade-cluster">err upgrade cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ceph/ceph_issues.html#err-upgrade-debian">Err upgrade debian</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ceph/ceph_issues.html#err-deploy-rgw">Err deploy rgw</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ceph/ceph_issues.html#maintenance-issues">Maintenance issues</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ceph/ceph_issues.html#troubleshooting-mon">Troubleshooting MON</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ceph/ceph_issues.html#troubleshooting-osds">Troubleshooting OSDs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../ceph/ceph_issues.html#an-osd-failed">An OSD failed</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ceph/ceph_issues.html#no-free-drive-space">No free drive space</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ceph/ceph_issues.html#networking-issues">Networking issues</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../ceph/ceph_issues.html#ceph-s-err">ceph -s err</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ceph/ceph_issues.html#ceph-fs-mount-err">ceph fs mount err</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ceph/ceph_issues.html#auth-file-can-t-found">auth file can&#8217;t found</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ceph/ceph_issues.html#clock-skew-detected-on-mon">clock skew detected on mon</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ceph/ceph_issues.html#pg-issues">pg issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ceph/ceph_issues.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ceph/ceph_mgmt_platforms.html">Ceph Management Platforms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ceph/ceph_mgmt_platforms.html#intro">Intro</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ceph/ceph_mgmt_platforms.html#calamari">Calamari</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../ceph/ceph_mgmt_platforms.html#installation">installation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../ceph/ceph_mgmt_platforms.html#virtual-storage-manager">Virtual Storage Manager</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../ceph/ceph_mgmt_platforms.html#id2">Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../ceph/ceph_mgmt_platforms.html#inkscope">Inkscope</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ceph/ceph_mgmt_platforms.html#ceph-dash">Ceph-dash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ceph/ceph_mgmt_platforms.html#krakendash">Krakendash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ceph/ceph_mgmt_platforms.html#ceph-web">Ceph-web</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ceph/ceph_mgmt_platforms.html#comparison">Comparison</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ceph/ceph_mgmt_platforms.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ceph/ceph_openstack.html">Ceph w/ OpenStack</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ceph/ceph_openstack.html#radosgw-keystone">RADOSGW &amp; Keystone</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ceph/ceph_openstack.html#glance-integration">Glance Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ceph/ceph_ops.html">Ceph Operation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ceph/ceph_ops.html#ceph-conf">ceph-conf</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ceph/ceph_ops.html#references">References</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../web/bootstrap.html#auxilarly-classes">Auxilarly Classes</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../web/bootstrap.html#background-color">background color</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ceph/ceph_rest.html">Ceph RESTful API</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="bootstrap.html">bootstrap</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bootstrap.html#intro">Intro</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="bootstrap.html#example-of-use">Example of Use</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../web/bootstrap.html#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bootstrap.html#components">Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="bootstrap.html#glyphicon">Glyphicon</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bootstrap.html#button">button</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="bootstrap.html#button-menu">button-menu</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../web/html.html">HTML</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../web/html.html#status-codes">Status codes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../web/html.html#elements">Elements</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../web/html.html#grammar">grammar</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../web/html.html#id1">elements</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../web/html.html#examples">Examples</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../web/httpd.html">Apache Httpd</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../web/httpd.html#install">Install</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../web/httpd.html#management">Management</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../web/httpd.html#config-files">config files</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../web/httpd.html#features">Features</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../web/httpd.html#virtual-host">virtual host</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../web/httpd.html#issues">Issues</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../web/httpd.html#ah00035">AH00035</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bootstrap.html#image">image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bootstrap.html#navbar">Navbar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bootstrap.html#form">form</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bootstrap.html#div">Div</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="bootstrap.html#alert-box">alert box</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bootstrap.html#dropdown-menu">dropdown menu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bootstrap.html#button-group-toolbar">Button group &amp; toolbar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bootstrap.html#input">Input</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../web/web.html">Web Server</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../web/web.html#nginx">nginx</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../web/web.html#django-web-framework">Django &#8211; web framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bootstrap.html#auxilarly-classes">Auxilarly Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="bootstrap.html#background-color">background color</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="bootstrap.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="html.html">HTML</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="html.html#status-codes">Status codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html.html#elements">Elements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="html.html#grammar">grammar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="html.html#id1">elements</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="html.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Apache Httpd</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#install">Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#management">Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#config-files">config files</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#features">Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#virtual-host">virtual host</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#issues">Issues</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ah00035">AH00035</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="web.html">Web Server</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="web.html#nginx">nginx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="web.html#django-web-framework">Django &#8211; web framework</a></li>
 </ul>
 </li>
 </ul>
@@ -1308,11 +1308,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
-    <li>Ceph</li>
+    <li>Apache Httpd</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../../_sources/docs/ceph/ceph.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/docs/web/httpd.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -1321,356 +1321,66 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="ceph">
-<h1>Ceph<a class="headerlink" href="#ceph" title="Permalink to this headline">¶</a></h1>
-<p>The future of Storage!</p>
-<div class="section" id="ceph-intro">
-<h2>Ceph Intro<a class="headerlink" href="#ceph-intro" title="Permalink to this headline">¶</a></h2>
-<hr class="docutils" />
-<p>Ceph can uniquely deliver object, block and file storage in one unified system.</p>
-<ul>
-<li><p class="first">start since Jun 2004, write w/ C++, now adopted by RedHat</p>
-</li>
-<li><p class="first">provide block storage other than gluster</p>
-</li>
-<li><p class="first">applications: OpenStack/CloudStack/OpenNebula/Hadoop/Mesos</p>
-</li>
-<li><p class="first">urls : <a class="reference external" href="http://ceph.com">home</a> / <a class="reference external" href="http://ceph.com/get">get ceph</a> / <a class="reference external" href="http://ceph.com/qsg">quick start</a> / <a class="reference external" href="http://ceph.com/docs">docs</a> / <a class="reference external" href="http://ceph.com/list">mailing list</a> / <a class="reference external" href="http://ceph.com/irc">irc</a> / <a class="reference external" href="http://github.com/ceph">git repo</a> /</p>
-</li>
-<li><p class="first">peopele are mostly build ceph within private cloud using debian servers <a class="footnote-reference" href="#id3" id="id1">[1]</a></p>
-</li>
-<li><dl class="first docutils">
-<dt>advantages</dt>
-<dd><ul class="first last simple">
-<li>CRUSH make sure the consistency</li>
-<li>Unified storage architecture</li>
-<li>other features: scalability/replication/balance/rolling upgrade/multi-pool/snapshots</li>
+  <div class="section" id="apache-httpd">
+<h1>Apache Httpd<a class="headerlink" href="#apache-httpd" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="install">
+<h2>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-shell"><div class="highlight"><pre>sudo apt-get install apache2 -y
+</pre></div>
+</div>
+</div>
+<div class="section" id="management">
+<h2>Management<a class="headerlink" href="#management" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-shell"><div class="highlight"><pre><span class="c"># 3 diff ways to start apache2</span>
+apachctl start
+service httpd start
+/etc/init.d/apache2 start
+</pre></div>
+</div>
+<div class="section" id="config-files">
+<h3>config files<a class="headerlink" href="#config-files" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">/etc/apache2/{apache,httpd}.conf</span></code> &#8211; httpd&#8217;s main configrue file</li>
+<li><code class="docutils literal"><span class="pre">/etc/apache2/ports.conf</span></code> &#8211; users can change http/https access ports</li>
 </ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>disadvantages</dt>
-<dd><ul class="first last simple">
-<li>c++ &amp; python, slower and simpler than <strong>c</strong></li>
-<li>doubel input, long IO path and bad support for fast storage deviecs(SSD/PCIe SSD/NVRAM)</li>
-<li>bad cephfs no big move recently</li>
-<li>write-all-read-one will cause bad performance when writing w/ disk failure</li>
-<li>supervised by redhat and contributed mostly by them</li>
-<li>multiple OSDs in a single host, if host down, tons of PG will be affecte</li>
-<li>upper limited of single cluster</li>
-<li>rgw index pool bad performance, even w/ SSD</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-<div class="section" id="ceph-releases">
-<h3>ceph releases<a class="headerlink" href="#ceph-releases" title="Permalink to this headline">¶</a></h3>
-<p>Ceph starts at UCSC, OpenSrc at 2006, Developed by InkTank</p>
-<img alt="../../_images/ceph_chronicles.png" src="../../_images/ceph_chronicles.png" />
-<table border="1" class="docutils">
-<colgroup>
-<col width="20%" />
-<col width="16%" />
-<col width="11%" />
-<col width="15%" />
-<col width="11%" />
-<col width="14%" />
-<col width="14%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Times</th>
-<th class="head">Dumpling LTS</th>
-<th class="head">Emperor</th>
-<th class="head">Firefly LTS</th>
-<th class="head">Giant</th>
-<th class="head">Hammer LTS</th>
-<th class="head">Infernalis</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>First release</td>
-<td>Aug 2013</td>
-<td>Nov 2013</td>
-<td>May 2014</td>
-<td>Oct 2014</td>
-<td>Apr 2015</td>
-<td>Nov 2015</td>
-</tr>
-<tr class="row-odd"><td>Est. retirement</td>
-<td>Mar 2015</td>
-<td>&nbsp;</td>
-<td>Jan 2016</td>
-<td>&nbsp;</td>
-<td>Nov 2016</td>
-<td>Jun 2016</td>
-</tr>
-<tr class="row-even"><td>Act. retirement</td>
-<td>May 2015</td>
-<td>May 2014</td>
-<td>&nbsp;</td>
-<td>Apr 2015</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-</tr>
-</tbody>
-</table>
+</div>
 </div>
 <div class="section" id="features">
-<h3>features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h3>
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="virtual-host">
+<h3>virtual host<a class="headerlink" href="#virtual-host" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>thin provisioning</li>
-<li>copy on read for librbd</li>
-<li>clustered MDS &#8211; diff MDS will cover diff subtree of CephFS</li>
-<li>health check &#8211; MON will ping osd nodes periodly, and OSDs also can report it&#8217;s and peer&#8217;s status to MON</li>
-<li>scrubing &#8211; daily light check file zize &amp; attr. weekly deep check with checksum</li>
-<li>no centralize access point &#8211; client contact Primary OSD directly</li>
+<li>enable vhost at <strong>httpd.conf</strong> &#8211; <code class="docutils literal"><span class="pre">Include</span> <span class="pre">/private/etc/apache2/extra/httpd-vhosts.conf</span></code></li>
+<li>add virtual hosts at <code class="docutils literal"><span class="pre">/etc/apache2/extra/httpd-vhosts.conf</span></code></li>
 </ul>
-</div>
-<div class="section" id="pg-states">
-<h3>pg states<a class="headerlink" href="#pg-states" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li>creating &#8211; pg under creating</li>
-<li>active &#8211; can process r/w or other operations</li>
-<li>clean &#8211; make the full reps of objs</li>
-<li>down &#8211; the pg is offline</li>
-<li>replay &#8211; waiting for client to replay op after an OSD crashed</li>
-<li>splitting &#8211; splitting 1 pg into multi pg</li>
-<li>scrubbing &#8211; cheking for inconsistencies</li>
-<li>degraded &#8211; not have enough reps</li>
-<li>inconsistent &#8211; wrong size, missing, etc.</li>
-<li>peering &#8211; OSDs not reached a consensus</li>
-<li>repair &#8211; repairing inconsistencies</li>
-<li>recovering &#8211; migrating/synchronizing objs and their reps</li>
-<li>backfill &#8211; scanning and synchronizing the entire pg from the logs for recent op. (special recovering)</li>
-<li>wait-backfill &#8211; wait for backfill</li>
-<li>backfill-toofull &#8211; waiting because the dest OSD is over full ratio</li>
-<li>incomplete &#8211; have unhealthy copies, can solve by start failed OSD to temporary meet the condition of <strong>min_size</strong>.</li>
-<li>stale &#8211; pg is in an unknow state</li>
-<li>remapped &#8211; pg is temporarily mapped to a diff set of OSDs</li>
-<li>undersized &#8211; pg have fewer copies than configured pool rep level</li>
-<li>peered &#8211; pg has peered, but not reach <strong>min_size</strong></li>
-</ul>
-</div>
-</div>
-<div class="section" id="architecture">
-<h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">¶</a></h2>
-</div>
-<hr class="docutils" />
-<div class="section" id="glossariy">
-<h2>Glossariy<a class="headerlink" href="#glossariy" title="Permalink to this headline">¶</a></h2>
-<hr class="docutils" />
-<table border="1" class="docutils">
-<colgroup>
-<col width="36%" />
-<col width="9%" />
-<col width="55%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">name</th>
-<th class="head">abbr.</th>
-<th class="head">description</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>Reliable Autonomic Distributed Object Store</td>
-<td>RADOS</td>
-<td>self-healing,self-managing, inteligence storage include(OSD&amp;MON)</td>
-</tr>
-<tr class="row-odd"><td>RADOS Gateway</td>
-<td>RADOSGW/RGW</td>
-<td>manage object store</td>
-</tr>
-<tr class="row-even"><td>RADOS Block Device</td>
-<td>RBD</td>
-<td>include KRBD for CephFS, and LIBRBD for dirct use of block device</td>
-</tr>
-<tr class="row-odd"><td>Ceph FileSystem</td>
-<td>CephFS</td>
-<td>a shared filesystem</td>
-</tr>
-<tr class="row-even"><td>Ceph Release Candidate</td>
-<td>Ceph RC</td>
-<td>will be released but under testing and debuging</td>
-</tr>
-<tr class="row-odd"><td>Monitor</td>
-<td>MON</td>
-<td>&nbsp;</td>
-</tr>
-<tr class="row-even"><td>Object Storage Device</td>
-<td>OSD</td>
-<td>&nbsp;</td>
-</tr>
-<tr class="row-odd"><td>Metadata Server</td>
-<td>MDS</td>
-<td>&nbsp;</td>
-</tr>
-<tr class="row-even"><td>Controlled Replication Under Scalable Hash</td>
-<td>CRUSH</td>
-<td>Core Algorithm of Ceph</td>
-</tr>
-<tr class="row-odd"><td>Paxos/Quorum</td>
-<td>&nbsp;</td>
-<td>algorithm make sure the consistency of distribution system</td>
-</tr>
-<tr class="row-even"><td>Cephx</td>
-<td>&nbsp;</td>
-<td>authentication protocol, operates like kerberos, w/o SPoF</td>
-</tr>
-<tr class="row-odd"><td>Pool</td>
-<td>&nbsp;</td>
-<td>logical partitions for storing objs</td>
-</tr>
-<tr class="row-even"><td>Placement Group</td>
-<td>PG</td>
-<td>&nbsp;</td>
-</tr>
-<tr class="row-odd"><td>Acting Set</td>
-<td>&nbsp;</td>
-<td>Ceph OSD Daemons that are currently responsible for the PG</td>
-</tr>
-<tr class="row-even"><td>Up Set</td>
-<td>&nbsp;</td>
-<td>OSDs in the Acting Set is up</td>
-</tr>
-<tr class="row-odd"><td>Primary OSD</td>
-<td>&nbsp;</td>
-<td>OSD in a PG, that client will talk w/</td>
-</tr>
-<tr class="row-even"><td>Cache Tier</td>
-<td>&nbsp;</td>
-<td>provides ceph clients w/ better I/O performance</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="id2">
-<h2>Architecture<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<hr class="docutils" />
-<div class="section" id="cephx">
-<h3>Cephx<a class="headerlink" href="#cephx" title="Permalink to this headline">¶</a></h3>
-<p>It helps ceph to authenticate users and daemons, but not address data encription in transport.</p>
-<ul class="simple">
-<li>both client and monitors have a copy of clients&#8217;s key</li>
-<li></li>
-</ul>
-<a class="reference internal image-reference" href="../../_images/cephx_1.png"><img alt="../../_images/cephx_1.png" class="align-right" src="../../_images/cephx_1.png" style="width: 310px;" /></a>
-<ul>
-<li><dl class="first docutils">
-<dt>user creation</dt>
-<dd><ul class="first last simple">
-<li>client.admin user invokes <code class="docutils literal"><span class="pre">ceph</span> <span class="pre">auth</span> <span class="pre">get-or-crete-key</span></code> from cli, to generate a username and secret key.</li>
-<li>ceph&#8217;s auth subsystem gen the uname&amp;key, store them in MONs and transmit back to client.admin</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-<a class="reference internal image-reference" href="../../_images/cephx_2.png"><img alt="../../_images/cephx_2.png" class="align-right" src="../../_images/cephx_2.png" style="width: 310px;" /></a>
-<ul>
-<li><dl class="first docutils">
-<dt>auth w/ MON</dt>
-<dd><ul class="first last simple">
-<li>client passes in the uname to MON</li>
-<li>MON gen a session key and encrypts it w/ client&#8217;s key.</li>
-<li>MON sent session key to client</li>
-<li>client request a ticket signed w/ previous session key</li>
-<li>MON gen a ticket encrypts w/ client&#8217;s key.</li>
-<li>client decrypts encrypted ticket</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-<img alt="../../_images/cephx_3.png" class="align-right" src="../../_images/cephx_3.png" />
-<ul class="simple">
-<li>ticket will can be expired</li>
-<li>this ticket will be shared w/ OSDs, MDSs and MONs</li>
-<li>client comm w/ ceph nodes by signing this ticket on each msg.</li>
-</ul>
-</div>
-<div class="section" id="erasure-coding">
-<h3>Erasure Coding<a class="headerlink" href="#erasure-coding" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="interrupted-full-writes">
-<h4>Interrupted Full Writes<a class="headerlink" href="#interrupted-full-writes" title="Permalink to this headline">¶</a></h4>
-<ul class="simple">
-<li>last_compelete &#8211; a pointer to locate data positions</li>
-<li>Data chunck &#8211; stroage 1/k part of data</li>
-<li>Coding chunck &#8211; storage erasure coding data</li>
-<li>WRITE FULL &#8211; payload is to replace the object entirely instead of overwriting a portion of it.</li>
-<li>Primary OSD &#8211; responsible for storing chunks in addition to handling write operations and maintaining an authoritative verion of PG log to reflect the changes.</li>
-</ul>
-<p>In the following diagram, k=2 and m=1, D1v1 means Data chunck 1 version 1, similarily C1v1 means Coding chunck number 1 version 1.</p>
-<a class="reference internal image-reference" href="../../_images/interrupted_full_write_1.png"><img alt="../../_images/interrupted_full_write_1.png" class="align-left" src="../../_images/interrupted_full_write_1.png" style="width: 208px;" /></a>
-<a class="reference internal image-reference" href="../../_images/interrupted_full_write_2.png"><img alt="../../_images/interrupted_full_write_2.png" class="align-left" src="../../_images/interrupted_full_write_2.png" style="width: 208px;" /></a>
-<a class="reference internal image-reference" href="../../_images/interrupted_full_write_3.png"><img alt="../../_images/interrupted_full_write_3.png" class="align-left" src="../../_images/interrupted_full_write_3.png" style="width: 208px;" /></a>
-<div class="line-block">
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-<div class="line">OSD1 is the primary and receives a <strong>WRITE FULL</strong> from a client (pic2,3)</div>
-<div class="line">v2 of obj is created to override v1 (pic2,3,4,5,6)</div>
-<div class="line">OSDs will create an entry (i.e. epoch1, v2) to its logs as soon as data chunck stored. (pic2)</div>
-<div class="line"><br /></div>
-</div>
-<a class="reference internal image-reference" href="../../_images/interrupted_full_write_4.png"><img alt="../../_images/interrupted_full_write_4.png" class="align-left" src="../../_images/interrupted_full_write_4.png" style="width: 208px;" /></a>
-<a class="reference internal image-reference" href="../../_images/interrupted_full_write_5.png"><img alt="../../_images/interrupted_full_write_5.png" class="align-left" src="../../_images/interrupted_full_write_5.png" style="width: 208px;" /></a>
-<a class="reference internal image-reference" href="../../_images/interrupted_full_write_6.png"><img alt="../../_images/interrupted_full_write_6.png" class="align-left" src="../../_images/interrupted_full_write_6.png" style="width: 208px;" /></a>
-<div class="line-block">
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-<div class="line">If all goes well, last_compelte will be pointed to new version of data (1,1 &#8211;&gt; 1,2), and erase old version of data. (pic4)</div>
-<div class="line">If OSD1 goes down and ther is only one chunck of verion 2 is written, OSD4 will take over OSD1&#8217;s job, find <strong>last_complete</strong> log entry, will restore object to latest edition(1,1). mean while discard data chunck of v2 at OSD3. (pic5,6)</div>
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-<div class="line"><br /></div>
+<div class="highlight-xml"><div class="highlight"><pre>&lt;VirtualHost *:8008&gt;
+    DocumentRoot &quot;/Users/JetChars/github/autoop/dashboard&quot;
+    ServerName sphinx
+    ErrorLog &quot;/private/var/log/apache2/sites-error_log&quot;
+    CustomLog &quot;/private/var/log/apache2/sites-access_log&quot; common
+    &lt;Directory /&gt;
+                Options Indexes FollowSymLinks MultiViews
+                AllowOverride None
+                Require all granted
+      &lt;/Directory&gt;
+&lt;/VirtualHost&gt;
+</pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="scrubbing">
-<h3>Scrubbing<a class="headerlink" href="#scrubbing" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="issues">
+<h2>Issues<a class="headerlink" href="#issues" title="Permalink to this headline">¶</a></h2>
+<p>try to find solutions at <a class="reference external" href="http://wiki.apache.org/httpd/FrontPage">httpd wiki</a> first</p>
+<div class="section" id="ah00035">
+<h3>AH00035<a class="headerlink" href="#ah00035" title="Permalink to this headline">¶</a></h3>
+<p>Description:
+<strong>You don&#8217;t have permission to access / on this server.</strong></p>
+<p>Apache require the permissons of every parent directory!!</p>
+<p>Solution:</p>
+<div class="highlight-shell"><div class="highlight"><pre>sudo chomd <span class="m">755</span> /root
+</pre></div>
 </div>
-<div class="section" id="crush">
-<h3>CRUSH<a class="headerlink" href="#crush" title="Permalink to this headline">¶</a></h3>
 </div>
-</div>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
-<hr class="docutils" />
-<table class="docutils footnote" frame="void" id="id3" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://ceph.com/community/results-from-the-ceph-census/">http://ceph.com/community/results-from-the-ceph-census/</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id4" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[2]</td><td><a class="reference external" href="https://www.ustack.com/blog/ceph_infra/">https://www.ustack.com/blog/ceph_infra/</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id5" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[3]</td><td><a class="reference external" href="https://www.ustack.com/blog/ceph-distributed-block-storage/#2_Ceph">https://www.ustack.com/blog/ceph-distributed-block-storage/#2_Ceph</a></td></tr>
-</tbody>
-</table>
 </div>
 </div>
 
@@ -1680,10 +1390,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="ceph_api.html" class="btn btn-neutral float-right" title="Ceph APIs" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="web.html" class="btn btn-neutral float-right" title="Web Server" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../docker/index.html" class="btn btn-neutral" title="Docker" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="html.html" class="btn btn-neutral" title="HTML" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
