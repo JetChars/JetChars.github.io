@@ -98,6 +98,7 @@ F6                      check spelling
 ^d                      select same, can be batch replaced
 ^`                      exec py cmds
 shift_rightclick        multi-line select&edit
+opt_rightclick(mac)     multi-line select&edit
 ======================= ===========================================
 
 

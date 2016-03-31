@@ -38,7 +38,11 @@ CONNECT           Converts the request connection to a transparent TCP/IP tunnel
 xtension-method
 ================= ==================================
 
-
+- GET -- simply get info
+- POST -- used to create a object
+- PUT -- used to update a object totally.
+- PATCH -- used to change a specified value, patch file format should refer to `rfc6902 <http://tools.ietf.org/html/rfc6902#appendix-A.5>`_
+- DELETE -- used to del a objcet
 
 Using cURL to automate HTTP requests
 ====================================
