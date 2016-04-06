@@ -31,7 +31,7 @@
 
   
     <link rel="top" title="JetChars alpha documentation" href="../../index.html"/>
-        <link rel="next" title="Ceph w/ OpenStack" href="ceph_openstack.html"/>
+        <link rel="next" title="Ceph 管理监控平台" href="ceph_mgmt_platforms_cn.html"/>
         <link rel="prev" title="Ceph Issues" href="ceph_issues.html"/> 
 
   
@@ -160,6 +160,7 @@
 <li class="toctree-l2"><a class="reference internal" href="ceph.html#ceph-intro">Ceph Intro</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="ceph.html#ceph-releases">ceph releases</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ceph.html#features">features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ceph.html#filesystem">filesystem</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ceph.html#pg-states">pg states</a></li>
 </ul>
 </li>
@@ -259,6 +260,34 @@
 <li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="ceph_mgmt_platforms_cn.html">Ceph 管理监控平台</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ceph_mgmt_platforms_cn.html#id1">介绍</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ceph_mgmt_platforms_cn.html#calamari">Calamari</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ceph_mgmt_platforms_cn.html#id2">图形界面</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ceph_mgmt_platforms_cn.html#id3">系统介绍及架构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ceph_mgmt_platforms_cn.html#id4">安装</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ceph_mgmt_platforms_cn.html#virtual-storage-manager">Virtual Storage Manager</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ceph_mgmt_platforms_cn.html#id5">图形化界面</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ceph_mgmt_platforms_cn.html#id6">系统介绍及架构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ceph_mgmt_platforms_cn.html#id7">安装</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ceph_mgmt_platforms_cn.html#inkscope">Inkscope</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ceph_mgmt_platforms_cn.html#ceph-dash">Ceph-dash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ceph_mgmt_platforms_cn.html#krakendash">Krakendash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ceph_mgmt_platforms_cn.html#ceph-web">Ceph-web</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ceph_mgmt_platforms_cn.html#id9">总结</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ceph_mgmt_platforms_cn.html#id10">对比</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ceph_mgmt_platforms_cn.html#calamarivsm">Calamari与VSM</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ceph_mgmt_platforms_cn.html#id11">参考文献</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="ceph_openstack.html">Ceph w/ OpenStack</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="ceph_openstack.html#radosgw-keystone">RADOSGW &amp; Keystone</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ceph_openstack.html#glance-integration">Glance Integration</a></li>
@@ -266,6 +295,10 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ceph_ops.html">Ceph Operation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="ceph_ops.html#ceph-conf">ceph-conf</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ceph_ops.html#management">Management</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ceph_ops.html#osd">OSD</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="ceph_ops.html#references">References</a></li>
 </ul>
 </li>
@@ -330,9 +363,20 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../web/rest.html">RESTful API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../web/rest.html#http-requests">Http Requests </a></li>
+<li class="toctree-l2"><a class="reference internal" href="../web/rest.html#using-curl-to-automate-http-requests">Using cURL to automate HTTP requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../web/rest.html#sources">Sources</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../web/web.html">Web Server</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../web/web.html#nginx">nginx</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../web/web.html#django-web-framework">Django &#8211; web framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../web/web.html#gateway-interface">Gateway Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../web/web.html#cgi">CGI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../web/web.html#wsgi">WSGI</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -593,6 +637,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../linux/linux_disk.html#fuse">FUSE</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../linux/linux_disk.html#driver">Driver</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../linux/linux_disk.html#mke2fs">mke2fs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../linux/linux_disk.html#check-fs-type">check fs type</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../linux/linux_disk.html#devices">Devices</a><ul>
@@ -1085,11 +1130,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../amqp/index.html#rabbitmq">RabbitMQ</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../rest.html">RESTful API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../rest.html#http-requests">Http Requests </a></li>
-<li class="toctree-l2"><a class="reference internal" href="../rest.html#sources">Sources</a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="../microservices/index.html">MicroServices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../windows/index.html">Windows</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../windows/index.html#tips">Tips</a><ul>
@@ -1372,9 +1412,40 @@
 <li>graph shows</li>
 </ul>
 <img alt="../../_images/Graph_UI.png" src="../../_images/Graph_UI.png" />
+<ul class="simple">
+<li>default mgmt view can tag cluster stats</li>
+</ul>
 <img alt="../../_images/manage_default_view.png" src="../../_images/manage_default_view.png" />
+<ul class="simple">
+<li>OSDs grouped into diff HOSTs</li>
+</ul>
 <img alt="../../_images/manage_OSD_hosts_view.png" src="../../_images/manage_OSD_hosts_view.png" />
+<ul>
+<li><dl class="first docutils">
+<dt>manage OSD</dt>
+<dd><ul class="first last simple">
+<li>scrubbing &#8211; scrub, deep scrub</li>
+<li>tagging OSDs &#8211; tag down/out</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
 <img alt="../../_images/manage_OSDS_by_host.png" src="../../_images/manage_OSDS_by_host.png" />
+<ul>
+<li><dl class="first docutils">
+<dt>manage pool</dt>
+<dd><ul class="first last simple">
+<li>change name</li>
+<li>change reps</li>
+<li>change PG number</li>
+<li>switch crush-rule</li>
+<li>del pool</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
 <img alt="../../_images/manage_pool_view.png" src="../../_images/manage_pool_view.png" />
 <ul>
 <li><dl class="first docutils">
@@ -1513,8 +1584,8 @@ ceph-deploy calamari connect &lt;ceph nodes&gt;
 </dl>
 </li>
 </ul>
-<img alt="../../_images/vsm_arch.png" src="../../_images/vsm_arch.png" />
-<img alt="../../_images/vsm_architecture.png" src="../../_images/vsm_architecture.png" />
+<img alt="images/ceph/vsm_arch.png" src="images/ceph/vsm_arch.png" />
+<img alt="images/ceph/vsm_architecture.png" src="images/ceph/vsm_architecture.png" />
 <ul>
 <li><dl class="first docutils">
 <dt>VSM Controller &#8211; conn to Agents and NovaCtrl</dt>
@@ -1528,7 +1599,7 @@ ceph-deploy calamari connect &lt;ceph nodes&gt;
 <li><p class="first">VSM Agent &#8211; runs on every ceph node, pass conf&amp;stats info to controller</p>
 </li>
 </ul>
-<img alt="../../_images/vsm_net.png" src="../../_images/vsm_net.png" />
+<img alt="images/ceph/vsm_net.png" src="images/ceph/vsm_net.png" />
 <ul>
 <li><dl class="first docutils">
 <dt>nothing special</dt>
@@ -1541,7 +1612,7 @@ ceph-deploy calamari connect &lt;ceph nodes&gt;
 </dl>
 </li>
 </ul>
-<img alt="../../_images/vsm_disks.png" src="../../_images/vsm_disks.png" />
+<img alt="images/ceph/vsm_disks.png" src="images/ceph/vsm_disks.png" />
 <ul>
 <li><dl class="first docutils">
 <dt>VSM concepts</dt>
@@ -1553,11 +1624,11 @@ ceph-deploy calamari connect &lt;ceph nodes&gt;
 </dl>
 </li>
 </ul>
-<img alt="../../_images/vsm_fd.png" src="../../_images/vsm_fd.png" />
+<img alt="images/ceph/vsm_fd.png" src="images/ceph/vsm_fd.png" />
 <ul class="simple">
 <li>Servers can grouped into failure domains(call <strong>Zone</strong> in VSM)</li>
 </ul>
-<img alt="../../_images/vsm_nav_bar.png" src="../../_images/vsm_nav_bar.png" />
+<img alt="images/ceph/vsm_nav_bar.png" src="images/ceph/vsm_nav_bar.png" />
 <ul>
 <li><dl class="first docutils">
 <dt>Monitoring</dt>
@@ -1616,8 +1687,8 @@ ceph-deploy calamari connect &lt;ceph nodes&gt;
 <li><dl class="first docutils">
 <dt>requirements</dt>
 <dd><ul class="first last simple">
-<li>OS: Ubuntu Server 14.04.2/CentOS 7 Server Basic</li>
-<li>Ceph: Firefly/Giant/Hammer/Infernalis</li>
+<li>OS: Ubuntu Server 14.04.2/CentOS 7 Server Basic (master only support centos)</li>
+<li>Ceph: Firefly/Giant/Hammer/Infernalis  (only hammer available)</li>
 <li>OpenStack: Havana/Icehouse/Juno/Kilo/Liberty</li>
 <li>at least 3 storage nodes</li>
 <li>passwd-less ssh</li>
@@ -1634,7 +1705,80 @@ ceph-deploy calamari connect &lt;ceph nodes&gt;
 </dd>
 </dl>
 </li>
+<li><p class="first">ceph-nodes</p>
+</li>
 </ul>
+<div class="highlight-shell"><div class="highlight"><pre>sudo mkdir /loop
+<span class="k">for</span> i in <span class="o">{</span>0..5<span class="o">}</span><span class="p">;</span> <span class="k">do</span>
+    sudo truncate -s 5G /loop/loop<span class="nv">$i</span>.img
+    sudo losetup /dev/loop<span class="nv">$i</span> /loop/loop<span class="nv">$i</span>.img
+    sudo parted /dev/loop<span class="nv">$i</span> -- mklabel gpt
+    sudo parted -a optimal /dev/loop<span class="nv">$i</span> -- mkpart primary 1MB 100%
+<span class="k">done</span>
+git clone -b http://github.com/01org/vsm-dependencies
+cp vsm-dependencies/ubuntu/* vsm-dep-repo/
+./install.sh -v 2.0 -u vsm
+</pre></div>
+</div>
+<ul class="simple">
+<li>vsm-ctrl-node</li>
+</ul>
+<div class="highlight-shell"><div class="highlight"><pre>git clone -b 2.0 http://github.com/01org/virtual-storage-manager
+<span class="nb">cd </span>virtual-storage-manager
+./buildvsm.sh
+<span class="nb">cd </span>release
+tar -xvzf 2.0.0-216.tar.gz
+<span class="nb">cd </span>2.0.0-216     <span class="c"># enter the vsm package</span>
+mkdir manifest/192.168.56.12<span class="o">{</span>0..3<span class="o">}</span>
+cp manifest/<span class="o">{</span>cluster.manifest.sample,192.168.56.120/cluster.manifest<span class="o">}</span>   <span class="c"># then edit it</span>
+cp manifest/<span class="o">{</span>server.manifest.sample,192.168.56.121/server.manifest<span class="o">}</span>   <span class="c"># then edit it</span>
+cp manifest/192.168.56.12<span class="o">{</span>1,2<span class="o">}</span>/server.manifest
+cp manifest/192.168.56.12<span class="o">{</span>1,3<span class="o">}</span>/server.manifest
+./install.sh -u vsm -v 2.0   <span class="c"># vsm is the username of ceph-nodes</span>
+./get_pass.sh                <span class="c"># generate admin password, username *admin*</span>
+cat /etc/vsmdeploy/deployrc <span class="p">|</span> grep -i admin_password <span class="p">|</span> cut -d<span class="s1">&#39;=&#39;</span> -f2
+</pre></div>
+</div>
+<ul>
+<li><dl class="first docutils">
+<dt>issues</dt>
+<dd><ul class="first last">
+<li><p class="first"><code class="docutils literal"><span class="pre">install.sh</span> <span class="pre">-k</span> <span class="pre">&lt;path/to/key/file&gt;</span></code> &#8211; can&#8217;t find keyfile, hundreds of input manually!</p>
+</li>
+<li><p class="first">should enable port 80 manually</p>
+</li>
+<li><dl class="first docutils">
+<dt>osd can&#8217;t startup</dt>
+<dd><ul class="first last simple">
+<li>can&#8217;t start osd w/ directory or  loopback device.</li>
+<li><code class="docutils literal"><span class="pre">ERROR:</span> <span class="pre">error</span> <span class="pre">creating</span> <span class="pre">empty</span> <span class="pre">object</span> <span class="pre">store</span> <span class="pre">in</span> <span class="pre">/data11/osd.11:</span> <span class="pre">(21)</span> <span class="pre">Is</span> <span class="pre">a</span> <span class="pre">directory</span></code></li>
+<li><code class="docutils literal"><span class="pre">ERROR:</span> <span class="pre">unable</span> <span class="pre">to</span> <span class="pre">open</span> <span class="pre">OSD</span> <span class="pre">superblock</span> <span class="pre">on</span> <span class="pre">/data11/osd.11:</span> <span class="pre">(2)</span> <span class="pre">No</span> <span class="pre">such</span> <span class="pre">file</span> <span class="pre">or</span> <span class="pre">directory</span></code></li>
+<li><code class="docutils literal"><span class="pre">ERROR:</span> <span class="pre">osd</span> <span class="pre">init</span> <span class="pre">failed:</span> <span class="pre">(22)</span> <span class="pre">Invalid</span> <span class="pre">argument</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> ./install.sh -u vsm -v 2.0
+<span class="go">The following information may help to resolve the situation:</span>
+
+<span class="go">The following packages have unmet dependencies:</span>
+<span class="go"> ceph : Depends: ceph-common (&gt;= 0.78-500) but it is not going to be installed</span>
+<span class="go"> librbd-dev : Depends: librados-dev but it is not going to be installed</span>
+<span class="go">              Depends: librbd1 (= 0.80.11-0ubuntu1.14.04.1) but 0.94.1-1trusty is to be installed</span>
+<span class="go"> librbd1-dbg : Depends: librbd1 (= 0.80.11-0ubuntu1.14.04.1) but 0.94.1-1trusty is to be installed</span>
+<span class="go">E: Unable to correct problems, you have held broken packages.</span>
+</pre></div>
+</div>
+<p><strong>Solution</strong></p>
+<div class="highlight-shell"><div class="highlight"><pre>wget -q -O- <span class="s1">&#39;https://download.ceph.com/keys/release.asc&#39;</span> <span class="p">|</span> sudo apt-key add -
+<span class="nb">echo </span>deb http://download.ceph.com/debian-<span class="o">{</span>hammer<span class="o">}</span>/ <span class="k">$(</span>lsb_release -sc<span class="k">)</span> main <span class="p">|</span> sudo tee /etc/apt/sources.list.d/ceph.list
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="inkscope">
@@ -2042,7 +2186,7 @@ ceph-deploy calamari connect &lt;ceph nodes&gt;
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="ceph_openstack.html" class="btn btn-neutral float-right" title="Ceph w/ OpenStack" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="ceph_mgmt_platforms_cn.html" class="btn btn-neutral float-right" title="Ceph 管理监控平台" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="ceph_issues.html" class="btn btn-neutral" title="Ceph Issues" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>

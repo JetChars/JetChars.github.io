@@ -62,6 +62,24 @@ features
 - no centralize access point -- client contact Primary OSD directly
 
 
+filesystem
+----------
+
+- current only supports XFS, brtfs, and ext4
+    - because OSD depends on the Extended Attributes(XATTRs) of underlying FS for various forms of internal object state and metadata
+    - btrfs -- now under great progrss, but not stable. will be the future of ceph, not bound the total xattr size. 
+        - its a CoW fs, supports snapshots that are writeable.
+        - supports file creation timestamps & checksums that verify metadata integrity. can detect bad copis & recover w/ good copies
+        - incorporates multi-device mgmt into fs, which enable heterogeneous disk storage infrastructure
+        - support transparent compression and other features.
+    - xfs -- stable, has a relative large limit of xattr size (64KB), should be first option.
+    - ext4 -- stable, but small xattr size.
+    - xfs, brtfs and ext4 are better than ext3, 
+        - they are journal fs. will be much eariser to recover from cursh or power outages.
+
+
+
+
 pg states
 ---------
 

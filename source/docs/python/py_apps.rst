@@ -55,6 +55,8 @@ Fabric is a Python (2.5-2.7) library and command-line tool for streamlining the 
 
     Done.
 
+- open local dir w/ ``lcd()``
+- exec cmd in localhost ``local()``
 
 .. code-block:: python
 
@@ -76,6 +78,7 @@ Fabric is a Python (2.5-2.7) library and command-line tool for streamlining the 
 
 
 - exec cmds remotely w/ ``run()``
+- open remode working dir ``cd()``
 
 .. code-block:: python
 
@@ -106,6 +109,57 @@ Fabric is a Python (2.5-2.7) library and command-line tool for streamlining the 
 
     Done.
     Disconnecting from root@192.168.56.111... done.
+
+
+
+- exec cmds within multi-hosts
+
+
+.. code-block:: python
+
+    from fabric.api import *
+
+    # set host list
+    env.hosts = [
+        'root@192.168.56.111:22',
+        'root@192.168.56.112:22',
+        'root@192.168.56.113:22',
+        'root@192.168.56.114:22',
+        'root@192.168.56.115:22'
+    ]
+    
+    # set default passwd
+    env.password = '3333'
+    
+    # define roles (host groups)
+    env.roledefs = {
+        'osd_server': [
+            'root@192.168.56.111:22',
+            'root@192.168.56.112:22',
+        ]
+    }
+    
+    # specify passwds
+    env.passwords = {
+        'root@192.168.56.111:22':'6666',
+        'root@192.168.56.112:22':'6666',
+        'root@192.168.56.113:22':'6666',
+        'root@192.168.56.114:22':'6666',
+        'root@192.168.56.115:22':'6666',
+    }
+    
+    # run in each host
+    def date():
+        with cd('~'):
+            run('hostname')
+            run('date')
+    
+    # run in specified role
+    @roles('osd_server')
+    def osd_date():
+        with cd('~'):
+            run('hostname')
+            run('date')
 
 
 

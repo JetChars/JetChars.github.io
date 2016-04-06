@@ -148,6 +148,8 @@ manage pkgs w/ pkgmgt
     - PyLinter -- pep8 highlighter
     - reStructureText Snippets -- auto-completion for rst
     - reStructureText Improved -- highlighter
+    - HTML/CSS/JS Prettify -- auto formater
+    - sublime-rst-completion -- auto complete the rst
 
 
 PyLinter
