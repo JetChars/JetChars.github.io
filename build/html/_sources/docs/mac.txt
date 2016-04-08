@@ -87,7 +87,33 @@ qwertyuiop[]\  œ∑´®†\¨ˆøπ“‘«
 QWERTYUIOP{}|  Œ„´‰ˇÁ¨ˆØ∏”’»
 ============== ==================
 
+Terminal
+--------
 
+============== ==================
+commands       description
+============== ==================
+cmd_t          create a tab
+cmd_{/}        switch tabs
+^a|e           front or end of line
+============== ==================
+
+
+
+Terminal beutify
+----------------
+
+`oh-my-zsh <https://github.com/robbyrussell/oh-my-zsh>`_
+
+- install oh-my-zsh w/ 
+    - ``sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"``
+- install powerline-fonts 
+    - ``git clone http://github.com/powerline/fonts``
+    - import fonts to mac font lib manually
+- change font at terminal preferences
+    - not work well w/ macOS above 10.10
+    - only work w/ font ``Ubuntu Mono derivative Powerline``
+    
 
 Issues
 ======
@@ -172,7 +198,6 @@ Other Good Softwares
 - bartender -- mini icons management(upright corner)
 - hyperdock -- windows like dock preview & screen split
 - aircontrol -- graphical recognition for music ctrl
-
 
 
 
