@@ -10,6 +10,10 @@ Hyper Text Markup Language
 `Tutorials from w3c <http://www.w3school.com.cn/html/index.asp>`_
 
 
+- ``#`` after url, used to locate a anchor point identified by ``id``
+
+
+
 Status codes
 ============
 ============
