@@ -17,6 +17,7 @@ Configurations
         gateway 192.168.2.200
 
 - ``/etc/resolv.conf`` -- dns servers
+- ``/etc/nsswithch.conf`` -- nameserver switch configuration file
 - ``/etc/hostname`` ``/etc/sysconfig/network``
 
 .. code-block:: bash

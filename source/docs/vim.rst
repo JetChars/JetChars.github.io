@@ -112,7 +112,9 @@ config
       "font_size": 16,
       "update_check": false,
       "ignored_packages": [],
-      "http_proxy":"proxy-us.intel.com:911"
+      "http_proxy":"proxy-us.intel.com:911",
+      "tab_size": 4,
+      "translate_tabs_to_spaces": false
     }
 
 
