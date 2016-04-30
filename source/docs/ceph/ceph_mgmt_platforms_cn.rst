@@ -6,7 +6,7 @@ Ceph 管理监控平台
 介绍
 ====
 
-到目前为止，在网上一共找到了6款开源的Ceph管理平台，为了节约我们的时间，为将挑出其中的3款进行比较。通过对比这三款管理平台我们基本上能够大体了解目前Ceph管理平台的现状。
+到目前为止，在网上一共找到了6款开源的Ceph管理平台，为了节约我们的时间，为将挑出其中的几款进行比较。通过对比这三款管理平台我们基本上能够大体了解目前Ceph管理平台的现状。
 
 - 这6个Ceph管理平台按在github上面的热度排序（watch+star+fork）： 
     - Calamari，Ceph-dash，VSM，InkScope，krakendash以及Ceph-web。
@@ -18,14 +18,16 @@ Calamari
 
 - Repos
     - 服务端： https://github.com/ceph/calamari
-    - 客户端： https://github.com/ceph/calamari-clients
+    - 客户端： https://github.com/ceph/romana
 
 - 这个项目是由InkTank发起的
 - 在2014年5月被开源
 - 主要被用来当做Ceph的诊断工具
 - 提供了以一个相对高级的REST API，而不是使用Ceph-rest-api
     - 简化了ceph系统的管理
-- 目前仅提供debian Trusty版本的软件，替他版本需要用户自行编译。
+    - 对操作进行了抽象，用户不需要了解底层是怎么实现的
+    - 支持访问ceph cli
+- 目前仅提供Ubuntu Trusty版本的软件，替他版本需要用户自行编译。
 
 
 图形界面
