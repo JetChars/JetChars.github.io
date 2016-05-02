@@ -110,20 +110,20 @@
 <li class="toctree-l3"><a class="reference internal" href="#tricks">tricks</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#dockerfile">Dockerfile</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">Dockerfile</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#instructions">Instructions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#caching">Caching</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#network-management">Network Management</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">libswarm</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">pipwork</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">libswarm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">pipwork</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#container-in-kvm">container in kvm</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#tier-of-competition">3 tier of competition</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">CoreOS</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id5">Kubernetes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">CoreOS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Kubernetes</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#issues">Issues</a></li>
@@ -434,7 +434,7 @@ adding your user to the &#8220;docker&#8221; group with something like:</p>
 <li><a class="reference external" href="http://aufs.sourceforge.net/">AUFS</a></li>
 </ul>
 <div class="line-block">
-<div class="line">In the early days, aufs was entirely re-designed and re-implemented Unionfs Version 1.x series. Adding many original ideas, approaches, improvements and implementations, it becomes totally different from Unionfs while keeping the basic features. <a class="footnote-reference" href="#id6" id="id1">[1]</a></div>
+<div class="line">In the early days, aufs was entirely re-designed and re-implemented Unionfs Version 1.x series. Adding many original ideas, approaches, improvements and implementations, it becomes totally different from Unionfs while keeping the basic features. <a class="footnote-reference" href="#id7" id="id1">[1]</a></div>
 </div>
 <ul>
 <li><dl class="first docutils">
@@ -580,8 +580,8 @@ docker rmi -f <span class="sb">`</span>docker images <span class="p">|</span>  g
 </td></tr></table></div>
 </div>
 </div>
-<div class="section" id="dockerfile">
-<h2>Dockerfile<a class="headerlink" href="#dockerfile" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h2><a class="reference external" href="https://docs.docker.com/engine/reference/builder/">Dockerfile</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="instructions">
 <h3>Instructions<a class="headerlink" href="#instructions" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="docutils">
@@ -699,12 +699,12 @@ docker build --no-cache<span class="o">=</span><span class="nb">true</span> -f &
 <div class="section" id="network-management">
 <h2>Network Management<a class="headerlink" href="#network-management" title="Permalink to this headline">¶</a></h2>
 <a class="reference internal image-reference" href="../../_images/docker_swarm.png"><img alt="../../_images/docker_swarm.png" class="align-right" src="../../_images/docker_swarm.png" style="width: 200px;" /></a>
-<div class="section" id="id2">
-<h3><a class="reference external" href="https://github.com/docker/swarm">libswarm</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id3">
+<h3><a class="reference external" href="https://github.com/docker/swarm">libswarm</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p>It&#8217;s a small toolkit, for docker network settings. Defines a standard service interface, for communications between service module in distributed operation system.</p>
 </div>
-<div class="section" id="id3">
-<h3><a class="reference external" href="https://github.com/jpetazzo/pipework">pipwork</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id4">
+<h3><a class="reference external" href="https://github.com/jpetazzo/pipework">pipwork</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p>Software-Defined Networking for Linux Containers</p>
 </div>
 </div>
@@ -741,8 +741,8 @@ docker build --no-cache<span class="o">=</span><span class="nb">true</span> -f &
 </table>
 <img alt="../../_images/coreos.png" class="align-right" src="../../_images/coreos.png" />
 </div>
-<div class="section" id="id4">
-<h3><a class="reference external" href="https://coreos.com">CoreOS</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id5">
+<h3><a class="reference external" href="https://coreos.com">CoreOS</a><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Open Source project for linux containers</li>
 <li>Linux for massive server deployment</li>
@@ -751,8 +751,8 @@ docker build --no-cache<span class="o">=</span><span class="nb">true</span> -f &
 <img alt="../../_images/coreos_docker.png" src="../../_images/coreos_docker.png" />
 <img alt="../../_images/coreos_etcd.png" src="../../_images/coreos_etcd.png" />
 </div>
-<div class="section" id="id5">
-<h3><a class="reference external" href="http://kubernetes.io">Kubernetes</a><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id6">
+<h3><a class="reference external" href="http://kubernetes.io">Kubernetes</a><a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://github.com/GoogleCloudPlatform/kubernetes">https://github.com/GoogleCloudPlatform/kubernetes</a></p>
 <p>It&#8217;s an open source orchestration system for Docker containers, open-sourced by google</p>
 <ul class="simple">
@@ -856,7 +856,7 @@ docker: relocation error: docker: symbol dm_task_get_info_with_deferred_remove, 
 </dl>
 </li>
 </ul>
-<table class="docutils footnote" frame="void" id="id6" rules="none">
+<table class="docutils footnote" frame="void" id="id7" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://aufs.sourceforge.net/">http://aufs.sourceforge.net/</a></td></tr>

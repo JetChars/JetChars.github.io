@@ -253,7 +253,7 @@
 <h1>Ceph 管理监控平台<a class="headerlink" href="#ceph" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
 <h2>介绍<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<p>到目前为止，在网上一共找到了6款开源的Ceph管理平台，为了节约我们的时间，为将挑出其中的3款进行比较。通过对比这三款管理平台我们基本上能够大体了解目前Ceph管理平台的现状。</p>
+<p>到目前为止，在网上一共找到了6款开源的Ceph管理平台，为了节约我们的时间，为将挑出其中的几款进行比较。通过对比这三款管理平台我们基本上能够大体了解目前Ceph管理平台的现状。</p>
 <ul>
 <li><dl class="first docutils">
 <dt>这6个Ceph管理平台按在github上面的热度排序（watch+star+fork）：</dt>
@@ -272,7 +272,7 @@
 <dt>Repos</dt>
 <dd><ul class="first last simple">
 <li>服务端： <a class="reference external" href="https://github.com/ceph/calamari">https://github.com/ceph/calamari</a></li>
-<li>客户端： <a class="reference external" href="https://github.com/ceph/calamari-clients">https://github.com/ceph/calamari-clients</a></li>
+<li>客户端： <a class="reference external" href="https://github.com/ceph/romana">https://github.com/ceph/romana</a></li>
 </ul>
 </dd>
 </dl>
@@ -287,11 +287,13 @@
 <dt>提供了以一个相对高级的REST API，而不是使用Ceph-rest-api</dt>
 <dd><ul class="first last simple">
 <li>简化了ceph系统的管理</li>
+<li>对操作进行了抽象，用户不需要了解底层是怎么实现的</li>
+<li>支持访问ceph cli</li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><p class="first">目前仅提供debian Trusty版本的软件，替他版本需要用户自行编译。</p>
+<li><p class="first">目前仅提供Ubuntu Trusty版本的软件，替他版本需要用户自行编译。</p>
 </li>
 </ul>
 <div class="section" id="id2">

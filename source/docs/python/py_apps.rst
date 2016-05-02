@@ -7,6 +7,12 @@ pip
 
 `get-pip.py <https://bootstrap.pypa.io/get-pip.py>`_
 
+.. code-block:: shell
+
+    pip install -U pkg
+    pip freeze > requirement.txt   # Output installed pkgs in requirement format
+    pip install -r requirement.txt   # Install as requirement denotes
+
 
 flask -- py based web framework
 ===============================
