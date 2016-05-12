@@ -161,6 +161,7 @@ Mount a device
 ::
 
     mount [-t fstype] [-o mount_opt] device mountpoint
+    mount --bind /spacy/folder /folder/tobe/bind   # will cover old files
 
 
 | **Mount Options** -- seperate by comma
@@ -210,6 +211,16 @@ Unmount a device
     umount testlvm/    # umount object can be device or mount point
 
 
+fstab
+-----
+
+.. code-block:: fstab
+
+    #<fs> <mount point> <type> <options> <dump> <pass>
+    /proc /chroot/mysql/proc none defaults,bind 0 0
+
+
+
 Auto Mount
 ----------
 
@@ -218,6 +229,7 @@ Auto Mount
     mount -a  # take effect fstab
 
 - mounted devices will be shown in ``/etc/mtab``, same as cmd ``mount``
+  
 
 
 LVM -- Logical volume management

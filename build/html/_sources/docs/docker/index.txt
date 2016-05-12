@@ -68,12 +68,21 @@ Getting started
 Configuration files
 ^^^^^^^^^^^^^^^^^^^
 
-- ``/etc/default/docker`` -- Docker Upstart and SysVinit configuration file(ubuntu)
+- ``/etc/default/docker`` -- Docker Upstart and SysVinit configuration file(ubuntu/debian)
     - location of docker binary, daemon startup opts, proxy, tmpdir
     - can work with export or any other cmds
+
+.. code-block:: shell
+    
+    sudo echo "DOCKER_OPTS=\"--insecure-registry <registry>:<port> -D\""
+    service docker stop && rm -rf /var/lib/docker && mkdir -p /home/docker/var/docker && ln -sf /home/docker/var/docker /var/lib/docker && service docker start
+
 - ``/etc/sysconfig/docker`` -- Docker configuration file for centos/fedora/redhat
     - parameters(key-value pair) only 
 - docker will copy host's ``resolv.conf``
+
+
+
 
 
 
@@ -86,6 +95,15 @@ Install Docker
     wget -qO- https://get.docker.com/ | sh
     curl -sSL https://get.docker.com/ | sh
     wget -qO- https://test.docker.com/ | sh   # test verison
+
+Remove Docker
+^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+    apt-get remove docker*
+    apt-get autoremove
+    apt-get autoclean
 
 
 Update Dockera
@@ -256,13 +274,13 @@ FROM              sets the Base Image for subsequent instructions
 MAINTAINER        set the Author field of the generated images
 LABEL             adds metadata to an image, use ``docker inspect`` view an image's labels
 ENV               sets the environment in container, same as ``docker run --env <key>=<value>``
-ADD               copies new files, directories or remote file URLs to container
+ADD               copies new files, zip files(auto decompress), dirs or file URLs to container
 COPY              copies new files or directories to container
 RUN               execute any commands in a new layer on top of the current image and commit the results
 CMD               provide defaults for an executing container, There can only be one CMD instruction in a Dockerfile
 ================= =========================================
 
-
+- FROM --> MAINTAINER --> ENV --> RUN(unify multi RUNs, ``yum clean all`` after ``install`` ) --> COPY/ADD --> CMD
 
 
 

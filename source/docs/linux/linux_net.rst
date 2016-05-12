@@ -380,11 +380,16 @@ Secure Shell
     - ``~/.ssh/config``
     - /etc/ssh/ssh_config
         - StrictHostKeyChecking no
+        - UserKnownHostsFile ~/.ssh/known_hosts,~/.ssh/known_hosts2
     - /etc/ssh/sshd_config
         - PermitRootLogin yes
         - PasswordAuthentication yes
         - ClientAliveInterval 30
         - ClientAliveCountMax 99999
+- arguments:
+    - `-o` -- set ssh client option, can use multiple times
+        - `ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null`
+
 
 **Example ~/.ssh/config** :
 
@@ -413,6 +418,15 @@ Secure Shell
     ssh -C -f -N -g -L listen_port:DST_Host:DST_port user@Tunnel_Host 
     ssh -C -f -N -g -R listen_port:DST_Host:DST_port user@Tunnel_Host 
     ssh -C -f -N -g -D listen_port user@Tunnel_Host
+
+
+ssh issues
+----------
+
+- `Can't ssh w/ correct private key`
+    - `usermod -p '*' <username>`
+      
+.. [#] http://arlimus.github.io/articles/usepam/
 
 
 ssh tools
